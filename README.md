@@ -10,7 +10,7 @@
 <br>
 
 <div align="left">
-   <img src="https://user-images.githubusercontent.com/73880564/228779052-e6fcf167-c750-4dea-a14a-4ad697e036f6.png" width="60%"></img>
+   <img src="https://user-images.githubusercontent.com/73880564/228806177-d8c51013-57e4-4fa9-9e4b-87e722eb1374.png" width="60%"></img>
 </div>
 
 <br><br>
