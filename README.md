@@ -47,7 +47,16 @@
 
 ## 🔨 사용하는 툴
 
-#### 나중에 배지형식으로 다 바꿀게여 ~~~~
+<img src="https://img.shields.io/badge/Java-007396?style=flat&logo=Java&logoColor=white" style="height : auto; margin-left : 10px; margin-right : 10px;"/>&nbsp;
+<img src="https://img.shields.io/badge/SpringFramework-6DB33F?style=flat&logo=Spring&logoColor=white" style="height: auto; margin-left : 10px; margin-right : 10px;"/>&nbsp;
+<img src="https://img.shields.io/badge/OracleSQL-F80000?style=flat&logo=Oracle&logoColor=white" style="height: auto; margin-left : 10px; margin-right : 10px;"/>&nbsp;
+<img src="https://img.shields.io/badge/ApacheTomcat9-F8DC75?style=flat&logo=Apache Tomcat&logoColor=white" style="height: auto; margin-left : 10px; margin-right : 10px;"/>&nbsp;
+<br><br>
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=HTML5&logoColor=white" style="height : auto; margin-left : 10px; margin-right : 10px;"/>&nbsp;
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=CSS3&logoColor=white" style="height : auto; margin-left : 10px; margin-right : 10px;"/>&nbsp;
+<img src="https://img.shields.io/badge/jQuery-0769AD?style=flat&logo=jQuery&logoColor=white" style="height : auto; margin-left : 10px; margin-right : 10px;"/>&nbsp;
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=white" style="height : auto; margin-left : 10px; margin-right : 10px;"/>&nbsp;
+<img src="https://img.shields.io/badge/Postman-FF6C37?style=flat&logo=Postman&logoColor=white"  style="height : auto; margin-left : 10px; margin-right : 10px;"/>&nbsp;
 
 1. Java : 11 version
 2. 어쩌구 저쩍우우
