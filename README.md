@@ -10,7 +10,7 @@
 <br>
 
 <div align="left">
-   <img src="https://user-images.githubusercontent.com/73880564/228806177-d8c51013-57e4-4fa9-9e4b-87e722eb1374.png" width="60%"></img>
+   <img src="https://user-images.githubusercontent.com/73880564/228806177-d8c51013-57e4-4fa9-9e4b-87e722eb1374.png" width="40%"></img>
 </div>
 
 <br><br>
@@ -24,7 +24,7 @@
 - <a href="https://github.com/choibyul2" target="_blank">⭐별e곤듀 님</a> 
 - <a href="https://github.com/yoounggg" target="_blank">채영곤듀👸🏻 님</a> 
 - <a href="https://github.com/CHANOH5" target="_blank">찬돌🪨 님</a>
-- <a href="https://github.com/hyeokgyukwon" target="_blank">혁규 님</a>
+- <a href="https://github.com/hyeokgyukwon" target="_blank">혁99999🕊️ 님</a>
 - <a href="https://github.com/주소" target="_blank">ㅇㅇ 님</a>
 
 <br><br>
