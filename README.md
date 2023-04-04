@@ -20,9 +20,9 @@
 
 ## 👩🏻‍💻KH_Final Project Moya Moga에 참여한 사람들👨🏻‍💻
 
-- <a href="https://github.com/jeonsein" target="_blank">셍나 님</a> 
-- <a href="https://github.com/choibyul2" target="_blank">사회화가 덜 된 짱별이 님</a> 
-- <a href="https://github.com/yoounggg" target="_blank">채영 님</a> 
+- <a href="https://github.com/jeonsein" target="_blank">셍나🐹 님</a> 
+- <a href="https://github.com/choibyul2" target="_blank">⭐별e곤듀 님</a> 
+- <a href="https://github.com/yoounggg" target="_blank">채영곤듀👸🏻 님</a> 
 - <a href="https://github.com/CHANOH5" target="_blank">찬돌 님</a>
 - <a href="https://github.com/hyeokgyukwon" target="_blank">혁규 님</a>
 - <a href="https://github.com/주소" target="_blank">ㅇㅇ 님</a>
