@@ -25,7 +25,7 @@
 - <a href="https://github.com/yoounggg" target="_blank">채영곤듀👸🏻 님</a> 
 - <a href="https://github.com/CHANOH5" target="_blank">찬돌🪨 님</a>
 - <a href="https://github.com/hyeokgyukwon" target="_blank">혁99999🕊️ 님</a>
-- <a href="https://github.com/주소" target="_blank">ㅇㅇ 님</a>
+- <a href="https://github.com/jj03202" target="_blank">ㅇㅇ 님</a>
 
 <br><br>
 
