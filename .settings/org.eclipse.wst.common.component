@@ -29,8 +29,12 @@
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+<<<<<<< HEAD
                                         		
         
+=======
+                                		
+>>>>>>> 77d9f86eb9332fa8eaf9a29eacb12dd85bcef89f
         
         
         
