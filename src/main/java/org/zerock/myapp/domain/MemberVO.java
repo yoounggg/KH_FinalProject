@@ -35,5 +35,6 @@ public class MemberVO {
 //	private String gender;
 //	private TIMESTAMP joinDate;
 //	private String birthDate;
-//	private Integer adminCk;	
+//	private Integer adminCk;
+	
 } // end class
