@@ -25,7 +25,7 @@
             font-family: "맑은 고딕",AppleGothic,Dotum,"돋움",sans-serif;
             /* color: #000; */
             padding: 0;
-            width : 950px;
+            width : 800px;
             height: 700px;
             margin : auto;
         }
@@ -38,20 +38,20 @@
         }
 
         h3 {
-            width: 950px;
+            width: 800px;
             height: 30px;
             font-size: 22px;
         }
 
         .notice_detail {
-            width: 950px;
+            width: 800px;
             height: 500px;
             font-size: 20px;
             font-weight: 700;
         }
 
         form {
-            width: 950px;
+            width: 800px;
             margin-top: 40px;
         }
 
@@ -79,12 +79,12 @@
 	    <div class="state">
 	        <span class="login">admin님 로그인하였습니다</span>
 	        <span class="login">Ι</span>
-	        <span class="login"><a href="/main">홈페이지</a></span>
+	        <span class="login"><a href="#">홈페이지</a></span>
 	        <span class="login">Ι</span>
 	        <span class="login"><a href="#">로그아웃</a></span>
 	    </div>
 	    <div>
-        <h1><img src="/resources/css/admin/logo.png" id="logo" width="200"></h1> 
+	        <h1><img src="/admin/css/admin/logo.png" id="logo" width="200"></h1> 
 	    </div>
 	    <h2 class="admin">관리자 페이지</h2>
 	    
@@ -96,12 +96,11 @@
             <nav> 메인페이지 </nav>
             <div class="menu1">
                 <ul id="menu2">
-                    <li><a href="/admin/product/register">상품등록</a></li>
-                    <li><a href="/admin/product/list">상품목록</a></li>
+                    <li><a href="#">상품등록</a></li>
+                    <li><a href="#">상품목록</a></li>
                     <li><a href="/admin/notice/list">공지사항</a></li>
                     <li><a href="/admin/faq/list">FAQ</a></li>
                     <li><a href="/admin/member/list">회원관리</a></li>
-                    <li><a href="/admin/farm/list">거래처관리</a></li>             
                 </ul>
             </div>
         </div> 
@@ -113,10 +112,10 @@
             <h2>공지사항 <span class="test">테스트</span></h2>
             <div class="write">
                 <form>
-                    <p><input type="hidden" name="no" value="${notice.no}"></p>
+                	<p>글번호 : ${notice.no}</p>
                     <h3>${notice.title}</h3>
                     <hr>
-                    <span>[${notice.no}]</span> <span>작성자 : ${notice.writer}</span>
+                    <span>작성자 : ${notice.writer}</span>
                     <span class="reg_date">작성날짜 : ${notice.reg_date}</span>
                     <hr>
                     <div class="notice_detail">
@@ -124,9 +123,9 @@
                     </div>
                     <hr>
                     <div class="notice_button">
+                        <button type="button" id="listBtn">목록</button>
                         <button type="button" id="modifyBtn">수정</button>
                         <button type="button" id="removeBtn">삭제</button>
-                        <button type="button" id="listBtn">목록</button>
                     </div>
                  </form>
             </div>
@@ -155,7 +154,7 @@
 	// 수정 버튼을 눌러 수정페이지로 가기
 	modifyBtn.addEventListener('click', function() {
 		console.log('modifyBtn clicked');
-		self.location="/admin/notice/modify?no=${notice.no}";
+		location.href="/admin/notice/modify?no=${notice.no}";
 	});
 	
 	

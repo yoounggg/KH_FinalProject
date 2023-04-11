@@ -5,7 +5,6 @@ import java.util.Objects;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
-import org.zerock.myapp.domain.Criteria;
 import org.zerock.myapp.domain.NoticeDTO;
 import org.zerock.myapp.domain.NoticeVO;
 import org.zerock.myapp.exception.ServiceException;
@@ -50,18 +49,6 @@ public class NoticeServiceImpl implements NoticeService, InitializingBean{
 
 	} // getList()
 
-
-	@Override
-	public List<NoticeVO> getListPaging(Criteria cri) throws ServiceException {
-		
-		try {
-			return this.mapper.getListPaging(cri);
-		} catch (Exception e) {
-			throw new ServiceException(e);
-		} // try-catch
-		
-	} // getListPaging
-	
 	
 	@Override
 	public NoticeVO get(Integer no) throws ServiceException {
@@ -112,19 +99,9 @@ public class NoticeServiceImpl implements NoticeService, InitializingBean{
 			throw new ServiceException(e);
 		} // try-catch
 	
-	} // modify
+	} // get
 
-	@Override
-	public Integer getTotal() throws ServiceException {
-		log.trace("getTotal() invoked.");
-		try {
-			return this.mapper.getTotal();
-		} catch(Exception e) {
-			throw new ServiceException(e);
-		} // try-catch
 	
-	} // getTotal
-
 	
 	
 } // end class

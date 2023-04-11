@@ -13,47 +13,46 @@
 
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
     <link rel="stylesheet" href="/resources/css/admin/common.css">
+    <!-- <link rel="stylesheet" href="/admin_page/css/notice/notice_reg.css"> -->
 
     <style>
     
-    span, li {
-            font-size: 16px;
+        .content {
+        font-size: 13px;
+        font-weight: 600;
+        font-family: "맑은 고딕",AppleGothic,Dotum,"돋움",sans-serif;
+        /* color: #000; */
+        padding: 0;
+        width : 800px;
+        height: 700px;
+        margin : auto;
     }
 
-
-    .content {
-            font-size: 16px;
-            font-weight: 600;
-            font-family: "맑은 고딕",AppleGothic,Dotum,"돋움",sans-serif;
-            /* color: #000; */
-            padding: 0;
-            width : 950px;
-            height: 700px;
-            margin : auto;
-    }
     .content h1 {
+        margin : 0 0 0 40px;
         padding-top : 20px;
     }
     
 
     .write {
-        width: 950px;
+        width: 700px;
         margin-bottom: 20px;
-        
     }
     .text_title {
-        width: 945px;
+        width: 612px;
         height: 30px;
         font-size: 20px;
     }
     textarea {
-        width: 940px;
+        width: 800px;
         height: 500px;
         font-size: 20px;
         font-weight: 700;
-        padding: 0px;
     }
 
+    form {
+        margin : 40px;
+    }
 
     button {
         float: right;
@@ -68,9 +67,8 @@
      }
 
     .ck-content {
-/*         width: 948px; */
-        height: 500px;
-        padding: 0px;
+        /* width: 600px; */
+        height: 300px;
     }
     </style>
 </head>
@@ -82,7 +80,7 @@
         <div class="state">
             <span class="login">admin님 로그인하였습니다</span>
             <span class="login">Ι</span>
-            <span class="login"><a href="/main">홈페이지</a></span>
+            <span class="login"><a href="#">홈페이지</a></span>
             <span class="login">Ι</span>
             <span class="login"><a href="#">로그아웃</a></span>
         </div>
@@ -99,34 +97,34 @@
             <nav> 메인페이지 </nav>
             <div class="menu1">
                 <ul id="menu2">
-                    <li><a href="/admin/product/register">상품등록</a></li>
-                    <li><a href="/admin/product/list">상품목록</a></li>
-                    <li><a href="/admin/notice/list">공지사항</a></li>
-                    <li><a href="/admin/faq/list">FAQ</a></li>
-                    <li><a href="/admin/member/list">회원관리</a></li>
-                    <li><a href="/admin/farm/list">거래처관리</a></li>
+                    <li><a href="#">상품등록</a></li>
+                    <li><a href="#">상품목록</a></li>
+                    <li><a href="#">공지사항</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">회원관리</a></li>
                 </ul>
             </div>   
             
     <!-- 메인 - 공지사항 글쓰기, 수정, 삭제 -->            
                  
             <div class="content">
+
                 <h2>공지사항 <span class="test">테스트</span></h2>
-                        
+        
                 <div class="write">
                     <form action="/admin/notice/modify" method="POST">
-
+                        
+                        <p>글번호 : <input type="text"  name="no" value="${notice.no}"  readonly></p>
+                        <p>작성자 : <input type="text" name="writer" value="admin"  readonly>
+				        </p>
 				        <input type="text" value="${notice.title}"  name="title" placeholder="제목" class="text_title"><br>
 				        <p>
-				        	<textarea name="content" id="notice_ct" placeholder="내용" >${notice.content}</textarea>
+				        	<textarea name="content" id="notice_ct" placeholder="내용" required>${notice.content}</textarea>
 				        </p>
         
                         <button type="submit" id="modifyBtn" >수정</button>
                         <button type="button" id="removeBtn" >삭제</button>
                         <button type="button" id="listBtn" >목록</button>
-                        
-                        <p><input type="hidden" name="no" value="${notice.no}"  readonly></p>
-                        <p><input type="hidden" name="writer" value="admin"  readonly></p>
                     </form>
                 </div>
 
@@ -154,7 +152,7 @@
 </script> 
 <script>
 	
-	/* 자바스트립트로 작성! */
+	// 자바스트립트로 작성!
 	var listBtn = document.querySelector('#listBtn');
 	
 	//목록 버튼을 눌러 목록으로 돌아가기
@@ -163,11 +161,10 @@
 		location.href='/admin/notice/list';
 	});
 
-	
-	
-	/* 게시물 삭제하기! */
     var removeBtn = document.querySelector('#removeBtn');
        
+
+     
     removeBtn.addEventListener('click', function(){
         console.log('removeBtn clicked ㅇ_<');
 
