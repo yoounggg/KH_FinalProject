@@ -56,9 +56,7 @@ public class MemberController { // 회원가입 페이지 호출
 	public void signupComplete() throws Exception{
 		log.trace("signupComplete() invoked 완료화면 get");
 				
-<<<<<<< HEAD
-	}
-=======
+
 	} // signupComplete
 	
 	
@@ -94,7 +92,7 @@ public class MemberController { // 회원가입 페이지 호출
 	    	session.invalidate(); // 세션파괴
 			
 		} // logoutPOST
->>>>>>> d7ec027248a908ec08a5cfe6ef475ca2bf662a27
+
 	
 } // end class
 

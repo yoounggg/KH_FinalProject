@@ -9,7 +9,7 @@
 
 	<!-- 이메일 중복 체크 -->
 	<select id="emailCheck" parameterType="String" resultType="int">
-		SELECT COUNT(EMAIL) FROM member WHERE EMAIL= #{memberMail}
+		SELECT COUNT(EMAIL) FROM member WHERE EMAIL= #{email}
 	</select>
 	
 </mapper>

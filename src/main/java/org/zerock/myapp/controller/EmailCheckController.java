@@ -24,10 +24,10 @@ public class EmailCheckController {
 	
 	@PostMapping("/infob")
 	@ResponseBody
-	public int emailCheck(@RequestParam("memberMail") String memberMail) {
-		log.trace("emailCheck ({}) invoked 이메일 중복확인", memberMail);
+	public int emailCheck(@RequestParam("email") String email) {
+		log.trace("emailCheck ({}) invoked 이메일 중복확인", email);
 		
-		int cnt = emailCheckService.emailCheck(memberMail);	
+		int cnt = emailCheckService.emailCheck(email);	
 		
 		log.trace("cnt : {} 이메일 중복확인 성공", cnt);
 		
