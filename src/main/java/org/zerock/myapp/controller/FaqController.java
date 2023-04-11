@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.myapp.domain.Criteria;
-import org.zerock.myapp.domain.NoticeDTO;
-import org.zerock.myapp.domain.NoticeVO;
+import org.zerock.myapp.domain.FaqDTO;
+import org.zerock.myapp.domain.FaqVO;
 import org.zerock.myapp.domain.PageDTO;
 import org.zerock.myapp.exception.ControllerException;
-import org.zerock.myapp.service.NoticeService;
+import org.zerock.myapp.service.FaqService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -30,22 +30,22 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @AllArgsConstructor
 
-@RequestMapping("/admin/notice")
+@RequestMapping("/admin/faq/*")
 @Controller
 
 // 아래 annotation의 배열({속성명1}, {속성명2}, {...})에 지정한
 // 모델 속성들은 자동으로 세션에도 저장하게 해주는 annotation
-@SessionAttributes({"notice", "noticeDTO"}) // String 타입의 배열을 인자로 받음!
+@SessionAttributes({"faq", "faqDTO"}) // String 타입의 배열을 인자로 받음!
 // 모델로 들어가는 속성 중에, 해당 이름을 가진 속성을 session scope에도 넣겠다는 의미!
-// session 속성을 건드리지 않고 /get 요청에서의 Notice를 인자로 받아서 session scope에 넣어줌!
+// session 속성을 건드리지 않고 /get 요청에서의 Faq를 인자로 받아서 session scope에 넣어줌!
 
-public class NoticeController {
+public class FaqController {
 
 //	@Setter(onMethod_=@Autowired)
 	// Spring Framework v4.3이후부터는, 아래와 같은 조건 시, 자동 주입:
 	// (1) 주입받을 필드가 오직 1개이고,
 	// (2) 이 필드를 매개변수로 가지는 생성자가 있다면! 자동 주입!
-	private NoticeService service;
+	private FaqService service;
 	
 	@GetMapping("/list")
 	public void list(Criteria cri, Model model) throws ControllerException {	// 게시판 전체 목록 조회 요청 처리 핸들러
@@ -58,7 +58,7 @@ public class NoticeController {
 		
 		try {
 			// 페이징처리된 현재 pageNum에 해당하는 게시글목록 받아옴
-			List<NoticeVO> list = this.service.getListPaging(cri);
+			List<FaqVO> list = this.service.getListPaging(cri);
 			model.addAttribute("list", list); // view로 날아갈 model 상자 안에 model 데이터를 담음
 			
 			
@@ -81,8 +81,8 @@ public class NoticeController {
 		log.trace("get({}, {}) invoked.", no, model);
 		
 		try {
-			NoticeVO vo = this.service.get(no);
-			model.addAttribute("notice", vo);
+			FaqVO vo = this.service.get(no);
+			model.addAttribute("faq", vo);
 		} catch (Exception e) {
 			throw new ControllerException(e);
 		} // try-catch
@@ -102,7 +102,7 @@ public class NoticeController {
 			
 			rttrs.addAttribute("result", (success)? "success" : "failure"); 
 			//성공했던 실패했든 그대로 있으면 안되고 이동시켜야 하기 때문에 리다이렉션 무조건 
-			return "redirect:/admin/notice/list"; // redirect 때문에 string으로 선언한듯
+			return "redirect:/admin/faq/list"; // redirect 때문에 string으로 선언한듯
 		}catch(Exception e) {
 			throw new ControllerException(e);
 		} // try catch
@@ -110,7 +110,7 @@ public class NoticeController {
 	
 	
 	@PostMapping("/modify")
-	public String modify(Criteria cri, NoticeDTO dto, RedirectAttributes rttrs) 
+	public String modify(Criteria cri, FaqDTO dto, RedirectAttributes rttrs) 
 			throws ControllerException {
 		
 		log.trace("modify({}, {}, {}) invoked.",cri, dto, rttrs);
@@ -122,7 +122,7 @@ public class NoticeController {
 			rttrs.addAttribute("result", (success)? "success" : "failure"); 
 			// KEY = 수정처리결과
 			
-			return "redirect:/admin/notice/list"; // 실패했든 성공했든 여기로 이동
+			return "redirect:/admin/faq/list"; // 실패했든 성공했든 여기로 이동
 		} catch (Exception e) {
 			throw new ControllerException(e);
 		} // try-catch
@@ -132,7 +132,7 @@ public class NoticeController {
 	
 	
 	@PostMapping("/register")
-	public String register(Criteria cri, NoticeDTO dto, RedirectAttributes rttrs) 
+	public String register(Criteria cri, FaqDTO dto, RedirectAttributes rttrs) 
 			throws ControllerException {
 		
 		log.trace("register({}, {}, {}) invoked.", cri, dto, rttrs);
@@ -146,7 +146,7 @@ public class NoticeController {
 			rttrs.addAttribute("result", (success)? "success" : "failure"); 
 			// KEY = 등록처리결과
 			
-			return "redirect:/admin/notice/list"; // 실패했든 성공했든 여기로 이동
+			return "redirect:/admin/faq/list"; // 실패했든 성공했든 여기로 이동
 		} catch (Exception e) {
 			throw new ControllerException(e);
 		} // try-catch
@@ -164,7 +164,7 @@ public class NoticeController {
 			HttpSession session,
 			HttpServletRequest req,
 			HttpServletResponse res,
-			@SessionAttribute("notice") NoticeVO vo
+			@SessionAttribute("Faq") FaqVO vo
 			) {
 		
 		log.trace("temp({}, {}, {}, {}) invoked.", session, req, res, vo);
@@ -172,18 +172,18 @@ public class NoticeController {
 	} // temp()
 	
 	
-	@ModelAttribute("NoticeDTO")
-	NoticeDTO createNoticeDTO() { // 이 메소드는 요청을 처리하는 핸들러 메소드가 아님!
+	@ModelAttribute("FaqDTO")
+	FaqDTO createFaqDTO() { // 이 메소드는 요청을 처리하는 핸들러 메소드가 아님!
 		
-		log.trace("createNoticeDTO() invoked.");
+		log.trace("createFaqDTO() invoked.");
 		
-		NoticeDTO dto = new NoticeDTO();
+		FaqDTO dto = new FaqDTO();
 		dto.setNo(1001);
 		dto.setTitle("TEST");
 		
 		return dto;
 		
-	} // createNoticeDTO()
+	} // createFaqDTO()
 	
 	@GetMapping("/register")
 	public void register() {

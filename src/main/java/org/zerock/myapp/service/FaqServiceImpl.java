@@ -6,10 +6,10 @@ import java.util.Objects;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
 import org.zerock.myapp.domain.Criteria;
-import org.zerock.myapp.domain.NoticeDTO;
-import org.zerock.myapp.domain.NoticeVO;
+import org.zerock.myapp.domain.FaqDTO;
+import org.zerock.myapp.domain.FaqVO;
 import org.zerock.myapp.exception.ServiceException;
-import org.zerock.myapp.mapper.NoticeMapper;
+import org.zerock.myapp.mapper.FaqMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.ToString;
@@ -19,16 +19,15 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @AllArgsConstructor
 
-@Service ("NoticeService")
-public class NoticeServiceImpl implements NoticeService, InitializingBean{
+@Service("FaqService")
+public class FaqServiceImpl implements FaqService, InitializingBean {
+	
+	private FaqMapper mapper;
 
-	private NoticeMapper mapper; // 영속성으로 등록한 매퍼를 가져와서 서비스랑 이어줌
 
 	@Override
-	public void afterPropertiesSet() throws Exception { 
-		// 빈 주입이 잘 됐는지 확인, 1회성 전처리
-		log.trace("afterPropertiesSet() invoked.");
-		// 빈(dao) 주입 잘 받았는지 확인해보기
+	public void afterPropertiesSet() throws Exception {
+		log.trace("afterPropertiesSet");
 		
 		try {
 			Objects.requireNonNull(this.mapper);
@@ -36,10 +35,11 @@ public class NoticeServiceImpl implements NoticeService, InitializingBean{
 			throw new ServiceException(e);
 		}
 		
-	} //afterPropertiesSet()
-
+	} // afterPropertiesSet
+	
+	
 	@Override
-	public List<NoticeVO> getList() throws ServiceException {
+	public List<FaqVO> getList() throws ServiceException {
 		log.trace("getList() invoked.");
 		
 		try {
@@ -47,12 +47,14 @@ public class NoticeServiceImpl implements NoticeService, InitializingBean{
 		} catch (Exception e) {
 			throw new ServiceException(e);
 		} // try-catch
+		
 
-	} // getList()
-
-
+	} //getList
+	
+	
+	
 	@Override
-	public List<NoticeVO> getListPaging(Criteria cri) throws ServiceException {
+	public List<FaqVO> getListPaging(Criteria cri) throws ServiceException {
 		
 		try {
 			return this.mapper.getListPaging(cri);
@@ -63,8 +65,11 @@ public class NoticeServiceImpl implements NoticeService, InitializingBean{
 	} // getListPaging
 	
 	
+	
+	
+
 	@Override
-	public NoticeVO get(Integer no) throws ServiceException {
+	public FaqVO get(Integer no) throws ServiceException {
 		log.trace("get({}) invoked.", no);
 		
 		try {
@@ -74,46 +79,51 @@ public class NoticeServiceImpl implements NoticeService, InitializingBean{
 		} // try-catch
 	
 	} // get
-
 	
+	
+
 	@Override
-	public Boolean register(NoticeDTO dto) throws ServiceException {
+	public Boolean register(FaqDTO dto) throws ServiceException {
 		log.trace("register({}) invoked.", dto);
 		
 		try {
 			return this.mapper.insert(dto) == 1;
-		} catch(Exception e) {
+		} catch (Exception e) {
 			throw new ServiceException(e);
 		} // try-catch
+		
+	} // register
 	
-	} // get
+	
 
-	
 	@Override
 	public Boolean remove(Integer no) throws ServiceException {
 		log.trace("remove({}) invoked.", no);
 		
 		try {
 			return this.mapper.delete(no) == 1;
-		} catch(Exception e) {
+		} catch (Exception e) {
 			throw new ServiceException(e);
 		} // try-catch
 		
-	} // remove()
-
+	} //remove
 	
+	
+
 	@Override
-	public Boolean modify(NoticeDTO dto) throws ServiceException {
+	public Boolean modify(FaqDTO dto) throws ServiceException {
 		log.trace("modify({}) invoked.", dto);
 		
 		try {
 			return this.mapper.update(dto) == 1;
-		} catch(Exception e) {
+		} catch (Exception e) {
 			throw new ServiceException(e);
 		} // try-catch
-	
+		
 	} // modify
-
+	
+	
+	
 	@Override
 	public Integer getTotal() throws ServiceException {
 		log.trace("getTotal() invoked.");
@@ -124,7 +134,8 @@ public class NoticeServiceImpl implements NoticeService, InitializingBean{
 		} // try-catch
 	
 	} // getTotal
+	
+	
 
-	
-	
+
 } // end class

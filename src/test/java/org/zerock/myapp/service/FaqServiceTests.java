@@ -17,8 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.zerock.myapp.domain.Criteria;
-import org.zerock.myapp.domain.NoticeDTO;
-import org.zerock.myapp.domain.NoticeVO;
+import org.zerock.myapp.domain.FaqDTO;
+import org.zerock.myapp.domain.FaqVO;
 import org.zerock.myapp.exception.ServiceException;
 
 import lombok.NoArgsConstructor;
@@ -33,10 +33,10 @@ import lombok.extern.log4j.Log4j2;
 
 @TestInstance(Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class NoticeServiceTests {
+public class FaqServiceTests {
 	
 	@Setter(onMethod_=@Autowired)
-	private NoticeService service;
+	private FaqService service;
 	
 	@BeforeAll
 	void beforeAll() {
@@ -51,7 +51,7 @@ public class NoticeServiceTests {
 	void testGetList() throws ServiceException {
 		log.trace("testGetList() invoked.");
 		
-		List<NoticeVO> list = this.service.getList();
+		List<FaqVO> list = this.service.getList();
 		assert list != null;
 		list.forEach(log::info);
 		
@@ -66,8 +66,8 @@ public class NoticeServiceTests {
 	void testGet() throws ServiceException {
 		log.trace("testGet() invoked.");
 	
-		int no = 6;
-		NoticeVO vo = this.service.get(no);
+		int no = 25;
+		FaqVO vo = this.service.get(no);
 		
 		assert vo != null;
 		log.info("\t+ vo : {}", vo);
@@ -83,9 +83,9 @@ public class NoticeServiceTests {
 	void testRegister() throws ServiceException {
 		log.trace("testRegister() invoked.");
 
-		NoticeDTO dto = new NoticeDTO();
+		FaqDTO dto = new FaqDTO();
 		dto.setTitle("<공지> 6월 둘째주 장원 이벤트 당첨자 발표!");
-		dto.setContent("<공지> 6월 둘째주 장원 이벤트 당첨자 발표!");
+		dto.setAnswer("<공지> 6월 둘째주 장원 이벤트 당첨자 발표!");
 		dto.setWriter("admin");
 		
 		boolean success = this.service.register(dto);
@@ -121,12 +121,12 @@ public class NoticeServiceTests {
 	void testModify() throws ServiceException {
 		log.trace("testModify() invoked.");
 		
-		NoticeVO vo32 = this.service.get(32);
+		FaqVO vo32 = this.service.get(32);
 		
-		NoticeDTO dto = new NoticeDTO();
+		FaqDTO dto = new FaqDTO();
 		dto.setNo(32);
 		dto.setTitle("'업데이트 테스트q'");
-		dto.setContent("'업데이트 테스트q'");
+		dto.setAnswer("'업데이트 테스트q'");
 		dto.setWriter("admin");
 		boolean success = this.service.modify(dto);
 		
@@ -146,7 +146,7 @@ public class NoticeServiceTests {
 		
 		Criteria cri = new Criteria();
 		
-		List<NoticeVO> list = this.service.getListPaging(cri);
+		List<FaqVO> list = this.service.getListPaging(cri);
 		assert list != null;
 		list.forEach(log::info);
 		

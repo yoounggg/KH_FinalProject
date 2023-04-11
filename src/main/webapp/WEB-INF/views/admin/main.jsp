@@ -17,12 +17,12 @@
         <div class="state">
             <span class="login">admin님 로그인하였습니다</span>
             <span class="login">Ι</span>
-            <span class="login"><a href="#">홈페이지</a></span>
+            <span class="login"><a href="/main">홈페이지</a></span>
             <span class="login">Ι</span>
             <span class="login"><a href="#">로그아웃</a></span>
         </div>
         <div>
-            <h1><img src="/css/admin/logo.png" id="logo" width="200"></h1> 
+            <h1><img src="/resources/css/admin/logo.png" id="logo" width="200"></h1> 
         </div>
         <h2 class="admin">관리자 페이지</h2>
         
@@ -34,11 +34,12 @@
             <nav></nav>
             <div class="menu1">
                 <ul id="menu2">
-                    <li><a href="#"><a href="#">상품등록</a></a></li>
-                    <li><a href="#"><a href="#">상품목록</a></a></li>
-                    <li><a href="notice/notice_list.html"><a href="#">공지사항</a></a></li>
-                    <li><a href="#"><a href="#">FAQ</a></a></li>
-                    <li><a href="#"><a href="#">회원관리</a></a></li>
+                    <li><a href="/admin/product/register">상품등록</a></li>
+                    <li><a href="/admin/product/list">상품목록</a></li>
+                    <li><a href="/admin/notice/list">공지사항</a></li>
+                    <li><a href="/admin/faq/list">FAQ</a></li>
+                    <li><a href="/admin/member/list">회원관리</a></li>
+                    <li><a href="/admin/member/list">거래처관리</a></li>
                 </ul>
             </div>
             

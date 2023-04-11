@@ -9,8 +9,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>공지사항 목록</title>
-    <!-- <link href="/admin_page/css/notice/notice_list.css" type="text/css" rel="stylesheet" /> -->
+    <title>거래처관리 목록</title>
     <link rel="stylesheet" href="/resources/css/admin/common.css">
 
     <style>
@@ -108,6 +107,10 @@
         font-size: 16px;
      }
      
+	.farm_button {
+     	margin-top : 20px;
+	}
+     
      
  
 	  .pageInfo{
@@ -125,7 +128,7 @@
 	  
 	 a:link {color:black; text-decoration: none;}
 	 a:visited {color:black; text-decoration: none;}
-	 a:hover {color:black; text-decoration: underline;}
+/* 	 a:hover {color:black; text-decoration: underline;} */
         
 
     </style>
@@ -144,7 +147,7 @@
         <span class="login"><a href="#">로그아웃</a></span>
     </div>
     <div>
-        <h1><img src="/resources/css/admin/logo.png" id="logo" width="200"></h1> 
+        <h1><a href="/admin/main"><img src="/resources/css/admin/logo.png" id="logo" width="200"><a/></h1> 
     </div>
     <h2 class="admin">관리자 페이지</h2>
     
@@ -169,23 +172,25 @@
                 
         <div class="content">
             <table>
-                <h2>공지사항 <span class="test">테스트</span></h2>
+                <h2>거래처관리 <span class="test">테스트</span></h2>
                 <!-- <a href="javascript:all_del()">전체선택 / 전체해제</a> -->
                 <thead>
 	                <tr>
 	                    <th><input type="checkbox" name="selectall" value="selectall" onclick="selectAll(this)"></th>
-	                    <th>번호</th>
-	                    <th>제목</th>
-	                    <th>작성날짜</th>
+	                    <th>농가번호</th>
+	                    <th>이름</th>
+	                    <th>사업자번호</th>
+	                    <th>전화번호</th>
 	                </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${list}" var="NoticeVO">
+                    <c:forEach items="${list}" var="FarmVO">
                         <tr>
                         	<td><input type="checkbox" name="item" onclick="checkSelectAll()" /></td>
-                            <td>${NoticeVO.no}</td>
-                            <td><a href="/admin/notice/get?no=${NoticeVO.no}">${NoticeVO.title}</a></td>
-                            <td>${NoticeVO.reg_date}</td>
+                            <td>${FarmVO.no}</td>
+                            <td><a href="/admin/farm/get?no=${FarmVO.no}">${FarmVO.name}</a></td>
+                            <td>${FarmVO.business_no}</td>
+                            <td>${FarmVO.tel}</td>
                         </tr>       
                     </c:forEach>    
                 </tbody>
@@ -204,7 +209,7 @@
 			            
 		            	<!-- 각 번호 페이지 버튼 -->
 		                <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-		                    <li class="pageInfo_btn "><a href="/admin/notice/list?pageNum=${num}&amount=${pageMaker.cri.amount}">${num}</a></li>
+		                    <li class="pageInfo_btn "><a href="/admin/farm/list?pageNum=${num}&amount=${pageMaker.cri.amount}">${num}</a></li>
 		                </c:forEach>
 		             
 			                
@@ -287,7 +292,7 @@
         var registerBtn = document.querySelector('#registerBtn');
 
         registerBtn.addEventListener('click', function () {
-            location = '/admin/notice/register';
+            location = '/admin/farm/register';
         }); // registerBtn
 
       //만약 결과값에 어떤 값이든 들어왔다면(null이 아니라면) -> 결과값을 alert창으로 띄운다.
@@ -309,7 +314,7 @@
 
 
             form.setAttribute('method', 'POST');
-            form.setAttribute('action', '/admin/notice/remove');
+            form.setAttribute('action', '/admin/farm/remove');
             form.submit();
 
         }); // removeBtn
