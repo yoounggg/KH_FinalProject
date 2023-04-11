@@ -18,10 +18,10 @@ public class IdCheckServiceImpl implements IdCheckService {
 	
 	// 아이디 중복체크
 	@Override
-	public int idCheck(String memberId) {
-		log.trace("id ({})invoked. 서비스 impl", memberId);
+	public int idCheck(String id) {
+		log.trace("id ({})invoked. 서비스 impl", id);
 		
-		int cnt = mapper.idCheck(memberId);
+		int cnt = mapper.idCheck(id);
 		
 		log.trace("cnt : {} invoked ", cnt);
 		

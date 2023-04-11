@@ -26,10 +26,10 @@ public class IdCheckController {
 	
 	@PostMapping("/infoa")
 	@ResponseBody
-	public int idCheck(@RequestParam("memberId") String memberId) {
-		log.trace("idCheck {} invoked. (중복확인)",memberId);
+	public int idCheck(@RequestParam("id") String id) {
+		log.trace("idCheck {} invoked. (중복확인)",id);
 		
-		int cnt= idCheckService.idCheck(memberId);
+		int cnt= idCheckService.idCheck(id);
 		
 		log.trace("cnt : {} (중복확인 성공)" , cnt);
 		

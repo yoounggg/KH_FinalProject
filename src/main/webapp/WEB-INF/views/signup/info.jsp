@@ -155,7 +155,7 @@
                             <input type="radio" name="gender" value="" id="선택안함" checked>선택안함
                         </div>
 
-                        <div id="birth_form" class="생년월일" name="bithDate">
+                        <div id="birth_form" class="생년월일" name="birthDate">
                             <label class="라벨">생년월일</label>
                             <span>
                                 <input type="text" class='YYYY' placeholder="YYYY"  onblur="validateYYYY(this)">

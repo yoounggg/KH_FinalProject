@@ -3,7 +3,6 @@ package org.zerock.myapp.service;
 import java.util.List;
 
 import org.zerock.myapp.domain.CartDTO;
-import org.zerock.myapp.domain.CartVO;
 import org.zerock.myapp.exception.ServiceException;
 
 public interface CartService { // 인터페이스
