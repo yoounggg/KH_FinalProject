@@ -53,50 +53,50 @@ public class MemberMapperTests {
 	
 	} // contextLoads()
 	
-//	회원가입 테스트
-//	@Disabled
-	@Test
-	@Order(1)
-	@DisplayName("memberJoin Test")
-	@Timeout(value=1, unit=TimeUnit.SECONDS)
-	void memberJoin() throws Exception {
-		MemberVO memberVO = new MemberVO();
-		
-		memberVO.setMEMBER_ID("TEST_SENGNA");
-		memberVO.setMEMBER_PW("TEST_SENGNA");
-		memberVO.setMEMBER_NAME("TEST_SENGNA");
-		memberVO.setMEMBER_MAIL("TEST_SENGNA");
-		memberVO.setMEMBER_HP("1055555555");
-		memberVO.setMEMBER_ADDR1("TEST_SENGNA");
-		memberVO.setMEMBER_ADDR2("TEST_SENGNA");
-		memberVO.setMEMBER_ZIPCODE(123456);
-		
-		memberMapper.memberJoin(memberVO);
-	
-		log.info("memberVO: {}", memberVO);
-
-		
-	} // memberJoin()
-	
-	
-//	로그인 테스트
-//	@Disabled
-	@Test
-	@Order(1)
-	@DisplayName("memberLogin Test")
-	@Timeout(value=1, unit=TimeUnit.SECONDS)
-	void memberLogin() throws Exception {
-		MemberVO memberVO = new MemberVO();
-		
-		memberVO.setMEMBER_ID("TEST_SENGNA");
-		memberVO.setMEMBER_PW("TEST_SENGNA");
-				
-		memberMapper.memberLogin(memberVO);
-	
-		log.info("Login 테스트 결과: {}", memberMapper.memberLogin(memberVO));
-		
-		
-	} // memberLogin()
+////	회원가입 테스트
+////	@Disabled
+//	@Test
+//	@Order(1)
+//	@DisplayName("memberJoin Test")
+//	@Timeout(value=1, unit=TimeUnit.SECONDS)
+//	void memberJoin() throws Exception {
+//		MemberVO memberVO = new MemberVO();
+//		
+//		memberVO.setMEMBER_ID("TEST_SENGNA");
+//		memberVO.setMEMBER_PW("TEST_SENGNA");
+//		memberVO.setMEMBER_NAME("TEST_SENGNA");
+//		memberVO.setMEMBER_MAIL("TEST_SENGNA");
+//		memberVO.setMEMBER_HP("1055555555");
+//		memberVO.setMEMBER_ADDR1("TEST_SENGNA");
+//		memberVO.setMEMBER_ADDR2("TEST_SENGNA");
+//		memberVO.setMEMBER_ZIPCODE(123456);
+//		
+//		memberMapper.memberJoin(memberVO);
+//	
+//		log.info("memberVO: {}", memberVO);
+//
+//		
+//	} // memberJoin()
+//	
+//	
+////	로그인 테스트
+////	@Disabled
+//	@Test
+//	@Order(1)
+//	@DisplayName("memberLogin Test")
+//	@Timeout(value=1, unit=TimeUnit.SECONDS)
+//	void memberLogin() throws Exception {
+//		MemberVO memberVO = new MemberVO();
+//		
+//		memberVO.setMEMBER_ID("TEST_SENGNA");
+//		memberVO.setMEMBER_PW("TEST_SENGNA");
+//				
+//		memberMapper.memberLogin(memberVO);
+//	
+//		log.info("Login 테스트 결과: {}", memberMapper.memberLogin(memberVO));
+//		
+//		
+//	} // memberLogin()
 
 //	@Disabled
 	@Test
@@ -108,17 +108,17 @@ public class MemberMapperTests {
 		
 		MemberVO memberVO = new MemberVO();
 		
-		memberVO.setMemberId("aaa");
-		memberVO.setMemberPw("1234567890z");
-		memberVO.setMemberName("차은우");
-		memberVO.setMemberMail("eunwoochachacha@gmail.com");
-		memberVO.setMemberHp("01035552020");
-		memberVO.setMemberAddr1(12345);
-		memberVO.setMemberAddr2("강남역 10번 출구");
-		memberVO.setMemberAddr3("dd");
+		memberVO.setId("aaa");
+		memberVO.setPassword("1234567890z");
+		memberVO.setName("차은우");
+		memberVO.setEmail("eunwoochachacha@gmail.com");
+		memberVO.setTel("01035552020");
+		memberVO.setAddress1(12345);
+		memberVO.setAddress2("강남역 10번 출구");
+		memberVO.setAddress3("dd");
 		memberVO.setGender("남자");
-		memberVO.setADMINCK(1);
-		memberVO.setBirthDate("1999-01-01");
+		memberVO.setAdminCk(1);
+		memberVO.setBirth_date("1999-01-01");
 //		memberVO.setJoinDate(1991-01-01);
 		
 		

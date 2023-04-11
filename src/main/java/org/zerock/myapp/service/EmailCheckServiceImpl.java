@@ -19,10 +19,10 @@ public class EmailCheckServiceImpl implements EmailCheckService {
 	
 	// 이메일 중복 확인
 	@Override
-	public int emailCheck(String memberMail) {
+	public int emailCheck(String email) {
 		log.trace("emailCheck () invoked. 이메일 중복 확인 ");
 		
-		int cnt = emailCheckMapper.emailCheck(memberMail);
+		int cnt = emailCheckMapper.emailCheck(email);
 		
 		log.trace("emailCheck () invoked. 이메일 중복 ㅇㅇㅇ ");
 		
