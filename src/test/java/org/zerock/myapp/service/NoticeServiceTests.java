@@ -16,7 +16,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.zerock.myapp.domain.Criteria;
 import org.zerock.myapp.domain.NoticeDTO;
 import org.zerock.myapp.domain.NoticeVO;
 import org.zerock.myapp.exception.ServiceException;
@@ -50,8 +49,9 @@ public class NoticeServiceTests {
 	@Timeout(value=2, unit=TimeUnit.SECONDS)
 	void testGetList() throws ServiceException {
 		log.trace("testGetList() invoked.");
-		
+	
 		List<NoticeVO> list = this.service.getList();
+		
 		assert list != null;
 		list.forEach(log::info);
 		
@@ -136,22 +136,4 @@ public class NoticeServiceTests {
 	
 	
 	
-//	@Disable
-	@Test
-	@Order(6)
-	@DisplayName("테스트 6 : getListPaging")
-	@Timeout(value=10, unit=TimeUnit.MINUTES)
-	void testGetListPaging() throws ServiceException {
-		log.trace("testGetListPaging() invoked.");
-		
-		Criteria cri = new Criteria();
-		
-		List<NoticeVO> list = this.service.getListPaging(cri);
-		assert list != null;
-		list.forEach(log::info);
-		
-		
-	} // testGetListPaging()
-	
-
 } // end class

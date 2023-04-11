@@ -13,64 +13,44 @@
 
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
     <link rel="stylesheet" href="/resources/css/admin/common.css">
+    <!-- <link rel="stylesheet" href="/admin_page/css/notice/notice_reg.css"> -->
 
     <style>
-    
-    span, li {
-            font-size: 16px;
-    }
-
-
-    .content {
-            font-size: 16px;
-            font-weight: 600;
-            font-family: "맑은 고딕",AppleGothic,Dotum,"돋움",sans-serif;
-            /* color: #000; */
-            padding: 0;
-            width : 950px;
-            height: 700px;
-            margin : auto;
-    }
-    .content h1 {
-        padding-top : 20px;
-    }
-    
 
     .write {
-        width: 950px;
+        width: 700px;
         margin-bottom: 20px;
-        
     }
     .text_title {
-        width: 945px;
+        width: 612px;
         height: 30px;
         font-size: 20px;
     }
     textarea {
-        width: 940px;
+        width: 800px;
         height: 500px;
         font-size: 20px;
         font-weight: 700;
-        padding: 0px;
     }
 
+    form {
+        margin : 40px;
+    }
 
     button {
         float: right;
-        margin-left : 5px;
-        margin-bottom : 100px;
+        margin-right: 65px;
+        font-size: 20px;
         font-weight: 800;
-        width: 75px;
+        width: 100px;
         height: 35px;
         background-color: rgb(175, 124, 213);
         border: 1px solid #ceced2;
-        font-size: 16px;
-     }
+    }
 
     .ck-content {
-/*         width: 948px; */
-        height: 500px;
-        padding: 0px;
+        /* width: 600px; */
+        height: 300px;
     }
     </style>
 </head>
@@ -82,12 +62,12 @@
         <div class="state">
             <span class="login">admin님 로그인하였습니다</span>
             <span class="login">Ι</span>
-            <span class="login"><a href="/main">홈페이지</a></span>
+            <span class="login"><a href="#">홈페이지</a></span>
             <span class="login">Ι</span>
             <span class="login"><a href="#">로그아웃</a></span>
         </div>
         <div>
-  	      <h1><img src="/resources/css/admin/logo.png" id="logo" width="200"></h1> 
+            <h1><img src="/admin/css/admin/logo.png" id="logo" width="200"></h1> 
         </div>
         <h2 class="admin">관리자 페이지</h2>
         
@@ -99,71 +79,69 @@
             <nav> 메인페이지 </nav>
             <div class="menu1">
                 <ul id="menu2">
-                    <li><a href="/admin/product/register">상품등록</a></li>
-                    <li><a href="/admin/product/list">상품목록</a></li>
-                    <li><a href="/admin/notice/list">공지사항</a></li>
-                    <li><a href="/admin/faq/list">FAQ</a></li>
-                    <li><a href="/admin/member/list">회원관리</a></li>
-                    <li><a href="/admin/farm/list">거래처관리</a></li>
+                    <li><a href="#">상품등록</a></li>
+                    <li><a href="#">상품목록</a></li>
+                    <li><a href="#">공지사항</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">회원관리</a></li>
                 </ul>
             </div>   
-            
+         </div>   
     <!-- 메인 - 공지사항 글쓰기, 수정, 삭제 -->            
                  
-            <div class="content">
-                <h2>공지사항 <span class="test">테스트</span></h2>
-                        
-                <div class="write">
-                    <form action="/admin/notice/register" method="POST">
-
-				        <input type="text" name="title" placeholder="제목" class="text_title"><br>
-				        <p>
-				        	<textarea name="content" id="notice_ct" placeholder="내용" ></textarea>
-				        </p>
-				        <p><input type="hidden" name="writer" value="admin"  readonly></p>
-        
-                        <button type="submit" id="registerBtn" >등록</button>
-                        <button type="button" id="listBtn" >목록</button>
-                        
-
-                    </form>
-                </div>
-
-            </div>
-
-        </div>
+	  	<div class="content">
+			<h2>공지사항 <span class="test">테스트</span></h2>
+	        <!-- 수정처리하려고 post -->
+	       <form action="/admin/notice/register" method="POST">
+	       
+	          <input type="text" name="title" placeholder="제목" class="text_title"><br>
+	          <p>
+	            <textarea name="content" id="notice_ct" placeholder="내용"></textarea>
+	          </p>
+	          <p>
+	          	<input type="text" name="writer" value="admin"  readonly>
+	          </p>
+	                       
+	       
+	       </form>
+	       
+	       	          
+	          <!-- 양식이 전송될 수 있게 submit -->
+	      	<div>
+	      		<button type="submit" id="submitBtn">등록</button>
+			    <button type="button" id="listBtn">목록</button>
+			</div>
+	    
+	    </div>
     </main>
 
+    
+    
 
 </body>
-<!-- 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.1/jquery-migrate.min.js"></script>
- -->
+
 <script>
 
+    	/* 위지윅 적용 */
+         ClassicEditor
+          .create(document.querySelector('#notice_ct'))
+          .catch(error=>{
+        console.error(error);
+        }); 
+    	
+ </script>
+ <script>   	
+    	
+    	/* 목록으로 돌아가기 버튼*/
+        var listBtn = document.querySelector('#listBtn');
 
-    /* 위지윅 적용 */
-        ClassicEditor
-            .create(document.querySelector('#notice_ct'))
-            .catch(error=>{
-                console.error(error);
-            });
 
-</script> 
-<script>
-	
-	/* 자바스트립트로 작성! */
-	var listBtn = document.querySelector('#listBtn');
-	
-	//목록 버튼을 눌러 목록으로 돌아가기
-	listBtn.addEventListener('click', function() {
-		console.log('listBtn clicked');
-		location.href="/admin/notice/list";
-	});
+        listBtn.addEventListener('click', function() {
+           console.log('listBtn clicked ㅇ_<');
+           location.href="/admin/notice/list";
 
-	
-
-</script>	
+        }); // .addEventListener
+        
+    </script> 	
     
 </html>

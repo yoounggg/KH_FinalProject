@@ -16,10 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.zerock.myapp.domain.Criteria;
 import org.zerock.myapp.domain.NoticeDTO;
 import org.zerock.myapp.domain.NoticeVO;
-import org.zerock.myapp.domain.PageDTO;
 import org.zerock.myapp.exception.ControllerException;
 import org.zerock.myapp.service.NoticeService;
 
@@ -48,30 +46,24 @@ public class NoticeController {
 	private NoticeService service;
 	
 	@GetMapping("/list")
-	public void list(Criteria cri, Model model) throws ControllerException {	// 게시판 전체 목록 조회 요청 처리 핸들러
+	public void list(Model model) throws ControllerException {	// 게시판 전체 목록 조회 요청 처리 핸들러
 		
-		log.trace("list({}, {}) invoked.", cri, model);
+		log.trace("list({}) invoked.", model);
 		
 		// 주입 잘 됐는지 확인용
 //		Objects.requireNonNull(this.service);
 //		log.info("\t+ this.service: {}", this.service);
 		
 		try {
-			// 페이징처리된 현재 pageNum에 해당하는 게시글목록 받아옴
-			List<NoticeVO> list = this.service.getListPaging(cri);
+			//step1. 페이징처리된 현재 currPage에 해당하는 게시글목록 받아옴
+			List<NoticeVO> list = this.service.getList();
 			model.addAttribute("list", list); // view로 날아갈 model 상자 안에 model 데이터를 담음
-			
-			
-			int total = this.service.getTotal();
-			PageDTO pageDTO = new PageDTO(cri, total);
-			model.addAttribute("pageMaker", pageDTO);
-			
 		} catch (Exception e) {
 			throw new ControllerException(e);
 		} // try-catch
 		
 	} // list()
-
+	
 	
 	@GetMapping({"/get", "/modify"})
 	public void get(@RequestParam("no") Integer no, Model model) throws ControllerException {
@@ -91,18 +83,18 @@ public class NoticeController {
 	
 	
 	@PostMapping("/remove")
-	public String remove(Criteria cri, Integer no, RedirectAttributes rttrs) 
+	public String remove(Integer no, RedirectAttributes rttrs) 
 			throws ControllerException {
 		
-		log.trace("remove({}, {}, {}) invoked.", cri, no, rttrs);
+		log.trace("remove({}, {}) invoked.", no, rttrs);
 		
 		try {
 			boolean success = this.service.remove(no); 
-		
+
 			
 			rttrs.addAttribute("result", (success)? "success" : "failure"); 
 			//성공했던 실패했든 그대로 있으면 안되고 이동시켜야 하기 때문에 리다이렉션 무조건 
-			return "redirect:/admin/notice/list"; // redirect 때문에 string으로 선언한듯
+			return "redirect:/notice/list"; // redirect 때문에 string으로 선언한듯
 		}catch(Exception e) {
 			throw new ControllerException(e);
 		} // try catch
@@ -110,15 +102,15 @@ public class NoticeController {
 	
 	
 	@PostMapping("/modify")
-	public String modify(Criteria cri, NoticeDTO dto, RedirectAttributes rttrs) 
+	public String modify(NoticeDTO dto, RedirectAttributes rttrs) 
 			throws ControllerException {
 		
-		log.trace("modify({}, {}, {}) invoked.",cri, dto, rttrs);
+		log.trace("modify({}, {}) invoked.",dto, rttrs);
 		
 		try {
 			boolean success = this.service.modify(dto);
 			log.info("\t: success: {}", success);
-			
+
 			rttrs.addAttribute("result", (success)? "success" : "failure"); 
 			// KEY = 수정처리결과
 			
@@ -130,17 +122,15 @@ public class NoticeController {
 	} // modify()
 	
 	
-	
 	@PostMapping("/register")
-	public String register(Criteria cri, NoticeDTO dto, RedirectAttributes rttrs) 
+	public String register(NoticeDTO dto, RedirectAttributes rttrs) 
 			throws ControllerException {
 		
-		log.trace("register({}, {}, {}) invoked.", cri, dto, rttrs);
+		log.trace("register({}, {}) invoked.", dto, rttrs);
 		
 		try {
 			boolean success = this.service.register(dto);
 			log.info("\t: success: {}", success);
-		
 
 			// 비지니스 요청 처리용 전송파라미터 전송처리
 			rttrs.addAttribute("result", (success)? "success" : "failure"); 
@@ -167,7 +157,7 @@ public class NoticeController {
 			@SessionAttribute("notice") NoticeVO vo
 			) {
 		
-		log.trace("temp({}, {}, {}, {}) invoked.", session, req, res, vo);
+		log.trace("temp({}, {}, {}) invoked.", session, req, res);
 		
 	} // temp()
 	
@@ -189,6 +179,5 @@ public class NoticeController {
 	public void register() {
 		log.trace("register() invoked.");
 	}
-	
 	
 } // end class
