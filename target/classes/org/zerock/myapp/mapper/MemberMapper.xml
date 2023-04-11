@@ -7,10 +7,10 @@
 <mapper namespace="org.zerock.myapp.mapper.MemberMapper">
 
 
-     <!-- 로그인: memberLogin -->
+     <!-- 로그인: memberLogin 
      <select id="memberLogin" resultType="org.zerock.myapp.domain.UserVO">
          SELECT MEMBER_ID, MEMBER_NAME, ADMINCK FROM MEMBER_TEST WHERE MEMBER_ID = #{MEMBER_ID} and MEMBER_PW = #{MEMBER_PW}
-     </select>
+     </select>-->
      
 	     <!-- 
 	     <select id="selectUser" resultType="org.zerock.myapp.domain.UserVO">
