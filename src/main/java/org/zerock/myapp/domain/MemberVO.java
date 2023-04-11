@@ -8,7 +8,7 @@ import oracle.sql.TIMESTAMP;
 public class MemberVO {
 
 
-	
+	//고쳐용
 	// 채영 웅ㅇ니꺼 VO
 	private String id;
 	private String password;
