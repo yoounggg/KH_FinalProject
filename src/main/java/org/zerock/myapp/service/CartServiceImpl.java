@@ -24,6 +24,7 @@ public class CartServiceImpl implements CartService {
 //		return false;
 //	}
 
+	//(채영)
 	@Override
 	public Integer addProductsInCart(CartDTO cartDTO) {
 		// 장바구니 등록 & 에러 시 0반환
