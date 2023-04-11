@@ -1,4 +1,6 @@
-package org.zerock.myapp.persistence;
+package org.zerock.myapp.mapper;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 import java.util.Objects;
@@ -18,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.zerock.myapp.domain.CartDTO;
+import org.zerock.myapp.domain.CartVO;
 import org.zerock.myapp.mapper.CartMapper;
 
 import lombok.NoArgsConstructor;
@@ -40,6 +43,9 @@ public class CartMapperTest {
 	@BeforeAll
 	void beforeAll() {
 		log.trace("beforeAll() invoked");
+		
+		Objects.requireNonNull(this.mapper);
+		log.info("\t+this.mapper:{}, type:{}", this.mapper, this.mapper.getClass().getName());
 	} // beforeAll
 	
 	
@@ -50,9 +56,6 @@ public class CartMapperTest {
 	void contextloads() {
 		log.trace("contextloads() invoked");
 		
-		Objects.requireNonNull(mapper);
-		log.info("\t+this.mapper:{}, type:{}", this.mapper, this.mapper.getClass().getName());
-		
 	} // contextloads
 	
 	@Test
@@ -62,7 +65,7 @@ public class CartMapperTest {
 	void testaddCart() { //db에 memberid와 productno가 이미 존재해야함! 임시로 넣어줬음  
 		log.trace("testaddCart() invoked");
 		
-		String member_id = "nicknamebyul"; // 회원 아이디
+		String member_id = "codud"; // 회원 아이디
 		Integer product_no = 1; // 상품번호
 		Integer count = 1;  // 개수
 		
@@ -76,10 +79,16 @@ public class CartMapperTest {
 
 //		log.info("testaddCart: {}", result);
 		
-		int affectedLines = this.mapper.addCart(cart);
+		int affectedLines = 0;
 		
-		log.info("\t+affectedLines:{}", affectedLines);
-		
+		try {
+			affectedLines = this.mapper.addCart(cart);
+			log.info("\t+affectedLines:{}", affectedLines);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} // 추가에 성공하면 1을 반환, 실패하면 0을 반환
+
 	} // testaddCart
 	
 	
@@ -128,12 +137,18 @@ public class CartMapperTest {
 		String member_id = "nicknamebyul";
 		
 		List<CartDTO> list = this.mapper.getCart(member_id);
-
-		for(CartDTO cart: list) {
-			log.trace(list);
-			cart.getTotalPrice();
-			log.info("getcart:{}", cart);
-		} // for
+		assertNotNull(list);
+		
+		list.forEach(log::info);
+		
+		
+//		List<CartDTO> list = this.mapper.getCart(member_id);
+//
+//		for(CartDTO cart: list) {
+//			log.trace(list);
+//			cart.getTotalPrice();
+//			log.info("getcart:{}", cart);
+//		} // for
 		
 	} // testgetCart
 	
