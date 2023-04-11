@@ -10,5 +10,6 @@ public interface AttachMapper {
 	public List<AttachImageVO> getAttachList(int bookId);
 	
 	// test 주석입니당.
+	// test 주석2
 
 } // end class
