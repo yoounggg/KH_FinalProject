@@ -1,0 +1,98 @@
+@charset "UTF-8";
+
+.content h1 {
+    margin : 0 0 0 40px;
+    padding-top : 20px;
+}
+
+table {
+    display: table;
+    width: 800px;
+    /* border :#000 1px solid; */
+    /* width: 100%; */
+    margin: 40px;
+    margin-bottom: 0px;
+    /* border-collapse: collapse; */
+    border-top: 4px solid #ceced2;
+}
+
+table th {
+    /* border :#000 1px solid; */
+    border-bottom: 1px solid #ceced2;
+    padding : 8px;
+}
+
+table td {
+    /* border :#000 1px solid; */
+    padding: 14px 10px 13px 10px;
+    border-bottom: 1px solid #ceced2;
+    text-align: center;
+    font-size: 13px;
+    
+}
+div button {
+    justify-content: center;
+    margin: auto;
+    vertical-align: middle;
+}
+
+.title {
+    text-align: left;
+}
+
+/* ====================== 페이지 이동 ======================= */
+.page {
+    margin-left: 250px;
+}
+
+.pagenation {
+    /* display: inline-block; */
+    text-align: center;
+    margin-right: 20%;
+    margin-bottom: 15px;
+}
+
+.pagenation ul {
+    text-align: center;
+    vertical-align: middle;
+    padding: 0px;
+    margin:0px;
+}
+
+.pagenation li {
+    /* border: 1px black solid; */
+    display: inline-block;
+    min-width: 30px;
+    vertical-align: middle;
+    text-decoration: none;
+    border: 1px solid #ceced2;
+    margin-bottom: 20px;
+}
+
+/* ======================수정,삭제======================= */
+
+.modify {
+    text-align: center;
+    margin-left: 34px;
+}
+
+.modify ul{     
+    padding-left: 60%;  
+    margin-top: 5px;     
+    margin-bottom: 0px;
+}
+
+
+.modify li {
+    /* border: 1px black solid; */
+    display: inline-block;
+    vertical-align: middle;
+    width: 60px;
+    height: 25px;
+    background-color: rgb(175, 124, 213);
+    text-decoration: none;
+    border: 1px solid #ceced2;
+    margin-bottom: 20px;
+    
+}
+
