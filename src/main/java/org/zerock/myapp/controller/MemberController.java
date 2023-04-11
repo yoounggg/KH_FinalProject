@@ -38,6 +38,7 @@ public class MemberController {
       
       return "redirect:/home";
       
+      // wntj테스틍 
       
       // test
       
