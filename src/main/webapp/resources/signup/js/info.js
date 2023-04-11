@@ -423,12 +423,12 @@ function openKakaoPostcode() {
 // 아이디 중복 확인
 
 function checkId(){
-    var memberId = $("#input_id").val();    // 아이디 입력값
+    var id = $("#input_id").val();    // 아이디 입력값
 	
     $.ajax({
         url:"/signup/infoa",
         type:"post",
-        data:{memberId : memberId},
+        data:{id : id},
         success:function(cnt){
             if(cnt == 0) {          // 0이면 사용가능 
                 popup_on2();
@@ -446,12 +446,12 @@ function checkId(){
 
 // 이메일 중복 확인
 function checkEmail() {
-    var memberMail = $("#input_email").val();       // 이메일 입력값
+    var email = $("#input_email").val();       // 이메일 입력값
     
     $.ajax({
         url:"/signup/infob",
         type: "post",
-        data:{memberMail : memberMail},
+        data:{email : email},
         success:function(cnt){
             if(cnt == 0){                   // 0이면 사용 가능
                 popup_on4();
@@ -468,12 +468,12 @@ function checkEmail() {
 
 // 휴대폰 번호 중복 검사 및 인증
 function checkHp(){
-    var memberHP = $("#input_hp").val();
+    var tel = $("#input_hp").val();
 
     $.ajax({
         url:"/signup/infoc",
         type: "post",
-        data:{memberHP : memberHP},
+        data:{tel : tel},
         success: function(cnt){
             if(cnt == 0){            // 0이면 사용 가능, 인증번호 전송
                 popup_on6();
