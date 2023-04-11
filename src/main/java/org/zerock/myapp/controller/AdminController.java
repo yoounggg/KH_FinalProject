@@ -24,6 +24,7 @@ public class AdminController {
 		return "admin/main";
 		
 		// 어드민 수정 테스트입니당~
+		// 다시수정할게용
 		
 	} // adminMain
 }
