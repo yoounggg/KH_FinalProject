@@ -38,6 +38,9 @@ public class MemberController {
       
       return "redirect:/home";
       
+      
+      // test
+      
    } // joinPOST()
    
 } // end class
