@@ -26,6 +26,7 @@ public class AdminController {
 		// 어드민 수정 테스트입니당~
 		// 다시수정할게용
 		// 졸리당
-		
+		// 테스트입니당당당
+		// 테스트예요 TT
 	} // adminMain
 }
