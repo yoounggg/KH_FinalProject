@@ -28,5 +28,6 @@ public class AdminController {
 		// 졸리당
 		// 테스트입니당당당
 		// 테스트예요 TT
+		// TEST
 	} // adminMain
 }
