@@ -9,8 +9,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>공지사항 목록</title>
-    <!-- <link href="/admin_page/css/notice/notice_list.css" type="text/css" rel="stylesheet" /> -->
+    <title>FAQ 목록</title>
     <link rel="stylesheet" href="/resources/css/admin/common.css">
 
     <style>
@@ -169,7 +168,7 @@
                 
         <div class="content">
             <table>
-                <h2>공지사항 <span class="test">테스트</span></h2>
+                <h2>FAQ <span class="test">테스트</span></h2>
                 <!-- <a href="javascript:all_del()">전체선택 / 전체해제</a> -->
                 <thead>
 	                <tr>
@@ -180,19 +179,19 @@
 	                </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${list}" var="NoticeVO">
+                    <c:forEach items="${list}" var="FaqVO">
                         <tr>
                         	<td><input type="checkbox" name="item" onclick="checkSelectAll()" /></td>
-                            <td>${NoticeVO.no}</td>
-                            <td><a href="/admin/notice/get?no=${NoticeVO.no}">${NoticeVO.title}</a></td>
-                            <td>${NoticeVO.reg_date}</td>
+                            <td>${FaqVO.no}</td>
+                            <td><a href="/admin/faq/get?no=${FaqVO.no}">${FaqVO.title}</a></td>
+                            <td>${FaqVO.reg_date}</td>
                         </tr>       
                     </c:forEach>    
                 </tbody>
             </table>
             
             
-<%-- 		<div class="pageInfo_wrap" >
+<%-- 			<div class="pageInfo_wrap" >
 			  <form id=moveForm method="get">
 			    <div class="pageInfo_area">
 			    	<ul id="pageInfo" class="pageInfo">
@@ -204,7 +203,7 @@
 			            
 		            	<!-- 각 번호 페이지 버튼 -->
 		                <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-		                    <li class="pageInfo_btn "><a href="/admin/notice/list?pageNum=${num}&amount=${pageMaker.cri.amount}">${num}</a></li>
+		                    <li class="pageInfo_btn "><a href="/admin/faq/list?pageNum=${num}&amount=${pageMaker.cri.amount}">${num}</a></li>
 		                </c:forEach>
 		             
 			                
@@ -287,7 +286,7 @@
         var registerBtn = document.querySelector('#registerBtn');
 
         registerBtn.addEventListener('click', function () {
-            location = '/admin/notice/register';
+            location = '/admin/faq/register';
         }); // registerBtn
 
       //만약 결과값에 어떤 값이든 들어왔다면(null이 아니라면) -> 결과값을 alert창으로 띄운다.
@@ -309,7 +308,7 @@
 
 
             form.setAttribute('method', 'POST');
-            form.setAttribute('action', '/admin/notice/remove');
+            form.setAttribute('action', '/admin/faq/remove');
             form.submit();
 
         }); // removeBtn

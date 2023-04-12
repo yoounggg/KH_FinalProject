@@ -9,9 +9,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>공지사항 수정</title>
+    <title>거래처관리 수정</title>
 
-    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
     <link rel="stylesheet" href="/resources/css/admin/common.css">
 
     <style>
@@ -66,12 +65,35 @@
         border: 1px solid #ceced2;
         font-size: 16px;
      }
+     
+    .farm_button {
+     	margin-top : 20px;
+	}
 
-    .ck-content {
-/*         width: 948px; */
-        height: 500px;
-        padding: 0px;
-    }
+    /* --------------------- 농가 상세 페이지 --------------------------------- */
+
+        .farm {
+            background-color: #f7f7f7;
+            text-align: center;
+            padding: 30px;
+
+        }
+
+        p {
+            display: inline-block;
+            font-size: 20px;
+
+            width: 150px;
+            height: 50px;
+
+        }
+
+        #info {
+            width: 600px;
+            height: 50px;
+            font-size: 20px;
+        }
+        
     </style>
 </head>
 
@@ -87,7 +109,7 @@
             <span class="login"><a href="#">로그아웃</a></span>
         </div>
         <div>
-            <h1><img src="/admin/css/admin/logo.png" id="logo" width="200"></h1> 
+  	      <h1><img src="/resources/css/admin/logo.png" id="logo" width="200"></h1> 
         </div>
         <h2 class="admin">관리자 페이지</h2>
         
@@ -111,22 +133,42 @@
     <!-- 메인 - 공지사항 글쓰기, 수정, 삭제 -->            
                  
             <div class="content">
-                <h2>공지사항 <span class="test">테스트</span></h2>
+                <h2>거래처관리 <span class="test">테스트</span></h2>
                         
                 <div class="write">
-                    <form action="/admin/notice/modify" method="POST">
+                    <form action="/admin/farm/modify" method="POST">
 
-				        <input type="text" value="${notice.title}"  name="title" placeholder="제목" class="text_title"><br>
-				        <p>
-				        	<textarea name="content" id="notice_ct" placeholder="내용" >${notice.content}</textarea>
-				        </p>
-        
-                        <button type="submit" id="modifyBtn" >수정</button>
-                        <button type="button" id="removeBtn" >삭제</button>
-                        <button type="button" id="listBtn" >목록</button>
-                        
-                        <p><input type="hidden" name="no" value="${notice.no}"  readonly></p>
-                        <p><input type="hidden" name="writer" value="admin"  readonly></p>
+	                    <div class="farm">
+	                    <h3>농가 정보</h3>
+	                    <br>
+	                    <br>
+	                    <br>
+	                        <p>농가 번호</p>
+	                        <input type="text" value="${farm.no}" name="no" id="info" readonly>
+	                        <br>
+	    
+	                        <p>농가 명</p>
+	                        <input type="text" value="${farm.name}" name="name" id="info" >
+	                        <br>
+	    
+	                        <p>사업자 번호</p>
+	                        <input type="text" value="${farm.business_no}" name="business_no" id="info">
+	                        <br>
+	    
+	                        <p>주소지</p>
+	                        <input type="text" value="${farm.location}" name="location" id="info">
+	                        <br>
+	    
+	                        <p>전화번호</p>
+	                        <input type="text" value="${farm.tel}" name="tel"  id="info">
+	                        <br>
+	                    </div>
+	                    <div class="farm_button">
+	                        <button type="submit" id="modifyBtn">수정</button>
+	                        <button type="button" id="removeBtn">삭제</button>
+	                        <button type="button" id="listBtn">목록</button>
+                    	</div>
+                    
                     </form>
                 </div>
 
@@ -137,21 +179,8 @@
 
 
 </body>
-<!-- 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.1/jquery-migrate.min.js"></script>
- -->
-<script>
 
 
-    /* 위지윅 적용 */
-        ClassicEditor
-            .create(document.querySelector('#notice_ct'))
-            .catch(error=>{
-                console.error(error);
-            });
-
-</script> 
 <script>
 	
 	/* 자바스트립트로 작성! */
@@ -160,7 +189,7 @@
 	//목록 버튼을 눌러 목록으로 돌아가기
 	listBtn.addEventListener('click', function() {
 		console.log('listBtn clicked');
-		location.href='/admin/notice/list';
+		location.href='/admin/farm/list';
 	});
 
 	
@@ -177,7 +206,7 @@
 
 
         form.setAttribute('method', 'POST');
-        form.setAttribute('action', '/admin/notice/remove');
+        form.setAttribute('action', '/admin/farm/remove');
         form.submit();
 
     });
