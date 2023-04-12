@@ -2,7 +2,9 @@ package org.zerock.myapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.zerock.myapp.domain.LoginDTO;
 import org.zerock.myapp.domain.MemberVO;
+import org.zerock.myapp.exception.ServiceException;
 import org.zerock.myapp.mapper.MemberMapper;
 
 import lombok.NoArgsConstructor;
@@ -28,6 +30,14 @@ public class MemberServiceImpl implements MemberService {
 			
 		log.trace("MemberVO : {} invoked", memberVO );
 	}
-
 	
+	// 세인 로그인
+	MemberMapper memberMapper;
+    @Override
+    public LoginDTO memberLogin(LoginDTO loginDTO) throws ServiceException {
+        
+        return memberMapper.memberLogin(loginDTO);
+        
+    } // memberLogin()
+ 
 } // end class
