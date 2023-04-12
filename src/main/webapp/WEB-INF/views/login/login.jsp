@@ -203,15 +203,20 @@
         </div>
     </footer>
     
+</body>
+
     <script>
 	    /* 셍나 로그인 버튼 클릭 메서드 */
 	    $(".signInButton").click(function(){
 	        
-	        alert("로그인 버튼 작동 성공이에요!");
+	        <!-- alert("로그인 버튼 작동 성공이에요!"); -->
+	        
+	        /* 로그인 메서드 서버 요청 */
+	        $("#login_form").attr("action", "/login/login");
+	        $("#login_form").submit();
 	        
 	    });
  
 	</script>
-</body>
 
 </html>
