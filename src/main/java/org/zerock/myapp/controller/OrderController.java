@@ -32,7 +32,7 @@ public class OrderController {
 	}; // orderPage
 	
 	
-	// 테스트
+	// 테스트123
 	@GetMapping("/{memberId}") // 주문페이지로 이동 mapping
 	public void orderPageGet(@PathVariable("memberId") String memberId, OrderPageDTO opd, Model model) {
 		
