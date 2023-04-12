@@ -11,5 +11,8 @@ public interface MemberService {
 	
 	// 로그인 셍나
     public LoginDTO memberLogin(LoginDTO loginDTO) throws ServiceException;
+    
+    // 주문자 정보 (찬돌)
+    public MemberVO getMemberInfo(String memberId) throws ServiceException;
 	
 } // end class
