@@ -422,24 +422,28 @@ function openKakaoPostcode() {
 
 // 아이디 중복 확인
 
-function checkId(){
+function checkId() {
     var id = $("#input_id").val();    // 아이디 입력값
-	
+
     $.ajax({
-        url:"/signup/infoa",
-        type:"post",
-        data:{id : id},
-        success:function(cnt){
-            if(cnt == 0) {          // 0이면 사용가능 
+        url: "/signup/infoa",
+        type: "post",
+        data: { id: id },
+        dataType: 'json',
+        success: function (cntId) {
+            if (cntId == 0) {          // 0이면 사용가능 
+                console.log(" 사용가능 ")
                 popup_on2();
-            } else {                // 1이면 중복
+
+            } else if (cntId == 1) {                // 1이면 중복
+                console.log(" 중복이래 ")
                 popup_on3();
                 $("#input_id").val("");  //중복시 초기화 
             }
         },
-        error: function(xhr, status, error) { // 에러 콜백 함수
-        console.error('AJAX 요청 실패:', status, error);
-    }
+        error: function (xhr, status, error) { // 에러 콜백 함수
+            console.error('AJAX 요청 실패:', status, error);
+        }
     });
 };
 
@@ -447,44 +451,48 @@ function checkId(){
 // 이메일 중복 확인
 function checkEmail() {
     var email = $("#input_email").val();       // 이메일 입력값
-    
+
     $.ajax({
-        url:"/signup/infob",
+        url: "/signup/infob",
         type: "post",
-        data:{email : email},
-        success:function(cnt){
-            if(cnt == 0){                   // 0이면 사용 가능
+        data: { email: email },
+        dataType: 'json',
+        success: function (cntEmail) {
+            if (cntEmail == 0) {                   // 0이면 사용 가능
                 popup_on4();
-            } else {                          // 1이면 이메일 중복
-                popup_on5();    
+            } else if (cntEmail == 1) {                          // 1이면 이메일 중복
+                popup_on5();
                 $("#input_email").val("");  // 중복시 이메일 입력창 초기화
             }
         },
-        error:function(xhr,status,error){ // 에러 콜백 함수
+        error: function (xhr, status, error) { // 에러 콜백 함수
             console.log("AJAX 요청 실패", status, error)
         }
     });
 };
 
+
 // 휴대폰 번호 중복 검사 및 인증
-function checkHp(){
+function checkHp() {
     var tel = $("#input_hp").val();
 
     $.ajax({
-        url:"/signup/infoc",
+        url: "/signup/infoc",
         type: "post",
-        data:{tel : tel},
-        success: function(cnt){
-            if(cnt == 0){            // 0이면 사용 가능, 인증번호 전송
+        data: { tel: tel },
+        dataType: 'json',
+        success: function (cntTel) {
+            if (cntTel == 0) {            // 0이면 사용 가능, 인증번호 전송
                 popup_on6();
-            } else {                  // 1이면 중복
+            } else if (cntTel == 1) {                  // 1이면 중복
                 popup_on7();
                 $("#input_hp").val(""); // 휴대폰 번호 창 초기화
             }
-
+        },
+        error: function (xhr, status, error) { // 에러 콜백 함수
+            console.log("AJAX 요청 실패", status, error)
         }
     });
-
 };
 
 
