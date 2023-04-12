@@ -25,10 +25,6 @@
 	<context:component-scan base-package="org.zerock.myapp.interceptor" />
 	<context:component-scan base-package="org.zerock.myapp.exception" />
 	
-	<!-- ======== 가상의 게시판 및 로그인 서비스에 대한 뷰 컨트롤러 설정 ======== -->
-	<view-controller 
-		path="/user/login" view-name="user/login" status-code="200" />
-	
 	<!-- path = request URI가 됨 -->
 	<view-controller 
 		path="/board/list" view-name="board/list" status-code="200" />
@@ -60,6 +56,10 @@
 	<!--  메인 -->
 	<view-controller path="/main" 	view-name="/main" 	status-code="200" />
 	
+	<!-- 로그인 -->
+	<view-controller path="/login" 	view-name="/login" 	status-code="200" />
+	
+	
 	<beans:bean
       id="multipartResolver"
       class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -74,49 +74,6 @@
 	
 	<!-- ============ Interceptor 설정 ============ -->
 	
-	<interceptors>
-	
-		<interceptor>
-			<!-- 와일드 카드 문자 (3개) : **, *, ? -->
-			<!-- 와일드카드
-				? : x = 1
-				* : x >= 0 -->
-			<mapping path="/sample/doA" />
 
-			<beans:ref bean="sampleInterceptor" />
-		</interceptor>
-		
-		<interceptor>
-			<mapping path="/sample/doA" />
-
-			<beans:ref bean="sampleInterceptor2" />
-		</interceptor>
-		
-		<interceptor>
-			<mapping path="/sample/doB" />
-
-			<beans:ref bean="sampleInterceptor3" />
-		</interceptor>
-		
-		<interceptor>
-			<mapping path="/board/*" />
-			<exclude-mapping path="/board/list" />
-			
-			<beans:ref bean="authInterceptor" />
-		</interceptor>
-		
-		<interceptor>
-			<mapping path="/user/logout" />
-			
-			<beans:ref bean="logoutInterceptor" />
-		</interceptor>
-		
-		<interceptor>
-			<mapping path="/user/loginPost" />
-			
-			<beans:ref bean="loginInterceptor" />
-		</interceptor>
-		
-	</interceptors>
 	
 </beans:beans>
