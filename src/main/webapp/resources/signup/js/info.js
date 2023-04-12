@@ -432,11 +432,9 @@ function checkId() {
         dataType: 'json',
         success: function (cntId) {
             if (cntId == 0) {          // 0이면 사용가능 
-                console.log(" 사용가능 ")
                 popup_on2();
 
             } else if (cntId == 1) {                // 1이면 중복
-                console.log(" 중복이래 ")
                 popup_on3();
                 $("#input_id").val("");  //중복시 초기화 
             }
