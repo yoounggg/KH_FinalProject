@@ -17,7 +17,6 @@ import lombok.extern.log4j.Log4j2;
 @Service
 public class MemberServiceImpl implements MemberService {
 	
-
 	// 혁규 회원가입
 	@Setter(onMethod_=@Autowired)
 	MemberMapper mapper;
@@ -33,11 +32,18 @@ public class MemberServiceImpl implements MemberService {
 	
 	// 세인 로그인
 	MemberMapper memberMapper;
-    @Override
-    public LoginDTO memberLogin(LoginDTO loginDTO) throws ServiceException {
-        
-        return memberMapper.memberLogin(loginDTO);
-        
-    } // memberLogin()
+	@Override
+	public LoginDTO memberLogin(LoginDTO loginDTO) throws ServiceException {
+		
+		return memberMapper.memberLogin(loginDTO);
+		
+	} // memberLogin()
+	
+	// MemberVO 객체 반환 하는 구현객체 생성 (찬돌)
+	@Override
+	public MemberVO getMemberInfo(String memberId) throws ServiceException {
+		
+		return memberMapper.getMemberInfo(memberId);
+	} // getMemberInfo    아 혁규형 MemberMapper 변수명 memberMapper로 해달라고오~!~!~!~
  
 } // end class

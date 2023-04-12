@@ -5,9 +5,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="org.zerock.myapp.mapper.OrderMapper">
- 		<select id="getProductsInfo">
- 			SELECT productId, productName, productPrice, productDiscount
+ 		<select id="getProductsInfo" resultType="org.zerock.myapp.domain.OrderPageItemDTO">
+ 			SELECT No, Name, Price, Discount
  			FROM product
- 			WHERE productId = #{productId}
+ 			WHERE No = #{No}
  		</select>
  </mapper>

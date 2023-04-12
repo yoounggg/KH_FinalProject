@@ -6,16 +6,17 @@ import lombok.Data;
 public class OrderPageItemDTO {
 	
 	/* view로부터 전달받을 값 */
-	private String productId;
+//	private String productId; // 이거 productId로 해야할지.. No로 해야할지..? -> View에서 오는값이니 productId해도될듯
+	private Integer productId; // 상품테이블에 Pk가 Number라서 Integer로 함
 	
 	private Integer productCount;
 
 	/* productId를 통해 DB에서 꺼내올 데이터 */
-	private String productName;			// 상품이름
+	private String Name;			// 상품이름 productName
 	
-	private Integer productPrice;
+	private Integer Price;			// 상품가격 productPrice
 	
-	private double productDiscount;
+	private double Discount;		// 할인 productDiscount
 	
 	/* 만들어 낼 값 */
 	private Integer salePrice; 			// 할인 가격
@@ -23,14 +24,14 @@ public class OrderPageItemDTO {
 	private Integer totalPrice;			// 총 가격
 	
 	public void initSaleTotal( ) {
-		this.salePrice = (int) (this.productPrice * (1-this.productDiscount));
-		this.totalPrice = this.salePrice*this.productPrice;
+		this.salePrice = (int) (this.Price * (1-this.Discount));
+		this.totalPrice = this.salePrice*this.Price;
 	} //initSaleTotal
 	
 	@Override
 	public String toString() {
-		return "OrderPageItemDTO [productId=" + productId + ", productCount=" + productCount + ", productName=" + productName
-				+ ", productPrice=" + productPrice + ", productDiscount=" + productDiscount + ", salePrice=" + salePrice
+		return "OrderPageItemDTO [productId=" + productId + ", productCount=" + productCount + ", productName=" + Name
+				+ ", productPrice=" + Price + ", productDiscount=" + Discount + ", salePrice=" + salePrice
 				+ ", totalPrice=" + totalPrice ;
 	}
 	
