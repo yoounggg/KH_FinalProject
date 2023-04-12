@@ -13,5 +13,8 @@ public interface MemberMapper {
 	// DTO 따로 생성해서 @Data 값 주고 사용하기
 	public LoginDTO memberLogin(LoginDTO loginDTO);
 	
+	// 주문자 주소 정보 (찬돌)
+	public MemberVO getMemberInfo(String ID); // memberId 가 테이블에 ID로 되어있고 String임
+	
 	
 } // end class
