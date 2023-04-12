@@ -83,5 +83,6 @@ public class LoginController {			// POJO
 		log.trace("dummyLogout() invoked.");
 	} // dummyLogout()
 	
+	// 코드 수정해서 테스트 돌리는 중
 	
 } // end class
