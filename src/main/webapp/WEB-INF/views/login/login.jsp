@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-
-
+    
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -13,16 +10,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOYAMOGA</title>
 
-    <link rel="stylesheet" href="/css/admin/main_login.css">
+    <link rel="stylesheet" href="/resources/css/Login_Main.css">
 
-    <link rel="shortcut icon" href="ico/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="ico/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/resources/ico/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/resources/ico/favicon.ico" type="image/x-icon">
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" /> -->
     <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,100,0,-25" /> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,100,1,-25" />
-
+	
+	<!-- 로그인 제이쿼리 by 셍나 -->
+	<script
+		src="https://code.jquery.com/jquery-3.4.1.js"
+		integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		crossorigin="anonymous">
+	</script>
+	
     <script src="https://kit.fontawesome.com/1fe7ba446e.js" crossorigin="anonymous"></script>
 
     <!-- slick: cdn 방식으로 css, js 가져오기 -->
@@ -31,7 +35,7 @@
     <script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     
     <!-- js가 위 jquery, slick script코드 보다 위에 나오면 적용이 안됨 -->
-    <script src="/js/main1.js"></script>
+    <script src="/resources//js/main1.js"></script>
 
 </head>
 
@@ -44,11 +48,11 @@
             </ul>
 
             <div class="container3">
-                <a href="main1.html"><img id="logo" src="/imgs/logo.png" alt="로고"></a>
+                <a href="main1.html"><img id="logo" src="/resources//imgs/logo.png" alt="로고"></a>
             <!-- action에는 jsp 파일인듯?/ GET방식 /  -->
                 <form class="search1" action="#" method="GET">
                     <input class="search-txt" type="text" placeholder=" 검색어를 입력해주세요!">    
-                    <button class="search-btn" type="submit"><img id="btn" src="/imgs/search.png" alt="메인검색버튼"></button>
+                    <button class="search-btn" type="submit"><img id="btn" src="/resources//imgs/search.png" alt="메인검색버튼"></button>
                     <!-- <input type="submit" value="fab fa-sistrix"></input> -->
                     <!-- <button type="button" class="btm_image" id="img_btn"><img  src="이미지경로"></button> -->
                 </form>    
@@ -96,13 +100,13 @@
 
         <div class="login_wrapper">
 
-            <form action="/login" method="post">
+            <form action="/login" id="login_form" method="post">
                 <div class="login_title">로그인</div>
 
                 <!-- 아이디 입력창 -->
                 <div class="id_class">
                     <label for="userId"></label>
-                    <input id="userId" type="text" name="userId" placeholder="아이디" required>
+                    <input id="userId" type="text" name="id" placeholder="아이디" required>
                 </div>
 
                 <!-- 비밀번호 입력창 -->
@@ -141,12 +145,12 @@
         
                 <div class="naverLogin"> <!-- 네이버로 로그인 -->
                     <button type="button" id="naverLoginButton">
-                        <img src="/imgs/logo/btnG_아이콘원형.png" height ="28px" width="28px" class="nimg">네이버로 로그인</button>
+                        <img src="/resources//imgs/btnG_완성형.png" class="nimg"></button>
                 </div>
 
                 <div class="kakaoLogin"> <!-- 카카오로 로그인 -->
                     <button type="button" id="kakaoLoginButton">
-                        <img src="/imgs/logo/kakaoLogin.png" height ="28px" width="28px" class="kimg">카카오로 로그인</button>
+                        <img src="/resources//imgs/kakao_login_large_narrow.png" class="kimg"></button>
                 </div>
         
             </div>
@@ -198,6 +202,16 @@
             </div>
         </div>
     </footer>
+    
+    <script>
+	    /* 셍나 로그인 버튼 클릭 메서드 */
+	    $(".signInButton").click(function(){
+	        
+	        alert("로그인 버튼 작동 성공이에요!");
+	        
+	    });
+ 
+	</script>
 </body>
 
 </html>
