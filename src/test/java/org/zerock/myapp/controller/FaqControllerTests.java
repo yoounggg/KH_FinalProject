@@ -20,16 +20,14 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MockMvcBuilder;
-import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
-import org.zerock.myapp.domain.NoticeVO;
+import org.zerock.myapp.domain.FaqVO;
 
-import lombok.Cleanup;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
@@ -46,7 +44,7 @@ import lombok.extern.log4j.Log4j2;
 
 @TestInstance(Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class NoticeControllerTests {
+public class FaqControllerTests {
 
 	@Setter(onMethod_= {@Autowired})
 	private WebApplicationContext ctx;
@@ -73,10 +71,12 @@ public class NoticeControllerTests {
 		MockMvc mockMvc = mockMvcBuilder.build();
 		
 		// BoardController의 /board/list, GET 핸들러 테스트
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/admin/notice/list");
+		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/admin/faq/list");
+		requestBuilder.param("pageNum", "2");
+		requestBuilder.param("amount", "10");
 		
 		// 이제 가상의 MVC 환경에서, BoardController에 요청 생성 및 전송
-		@Cleanup("clear") // Collection은 clear 메소드로 닫아야 함!
+//		@Cleanup("clear") // Collection은 clear 메소드로 닫아야 함!
 		ModelAndView modelAndView = mockMvc.perform(requestBuilder).andReturn().getModelAndView();
 		log.info("\t+ modelAndView : {}, type : {}", modelAndView.getViewName(), modelAndView.getClass().getName());
 		
@@ -95,8 +95,8 @@ public class NoticeControllerTests {
 		MockMvcBuilder mockMvcBuilder = MockMvcBuilders.webAppContextSetup(ctx);
 		MockMvc mockMvc = mockMvcBuilder.build();
 		
-		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/admin/notice/get");
-		requestBuilder.param("no", "51");
+		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/admin/faq/get");
+		requestBuilder.param("no", "25");
 		
 		ModelAndView modelAndView 
 		= mockMvc.perform(requestBuilder).andReturn().getModelAndView();
@@ -121,9 +121,9 @@ public class NoticeControllerTests {
 		MockMvc mockMvc = mockMvcBuilder.build();
 		
 //		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/board/get");
-		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/admin/notice/register");
-		requestBuilder.param("title", "테숫후");
-		requestBuilder.param("content", "ㄴㅇㄹ");
+		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/admin/faq/register");
+		requestBuilder.param("title", "꼮 어드민으로 제약했으면 이걸루해야되냐");
+		requestBuilder.param("answer", "bb");
 		requestBuilder.param("writer", "admin");
 		
 		ModelAndView modelAndView 
@@ -150,8 +150,8 @@ public class NoticeControllerTests {
 //		 ========= Step.1 4번 no 게시글을 상세 조회 =========
 		
 		MockHttpServletRequestBuilder requestBuilder 
-			= MockMvcRequestBuilders.get("/admin/notice/get");
-		requestBuilder.param("no", "4");
+			= MockMvcRequestBuilders.get("/admin/faq/get");
+		requestBuilder.param("no", "8");
 		
 		ModelAndView modelAndView 
 									= mockMvc.
@@ -165,7 +165,7 @@ public class NoticeControllerTests {
 		ModelMap model = modelAndView.getModelMap();
 		log.info("\t+ model: {}, type: {}", model, model.getClass().getName());
 		
-		NoticeVO vo = (NoticeVO) model.getAttribute("notice");
+		FaqVO vo = (FaqVO) model.getAttribute("faq");
 		log.info("\t+ vo: {}", vo);
 		
 //		 ========= Step.2 4번 no 게시글을 수정 =========
@@ -174,10 +174,10 @@ public class NoticeControllerTests {
 //		String content = vo.getContent();
 		String writer = vo.getWriter();
 		
-		requestBuilder = MockMvcRequestBuilders.post("/admin/notice/modify");
+		requestBuilder = MockMvcRequestBuilders.post("/admin/faq/modify");
 		requestBuilder.param("no", no.toString());
 		requestBuilder.param("title", "깩 테스트"); 	// 수정 항목 1
-		requestBuilder.param("content", "집보내조요");	// 수정 항목 1
+		requestBuilder.param("answer", "집보내조요");	// 수정 항목 1
 		requestBuilder.param("writer", writer);
 		
 		modelAndView 
@@ -205,8 +205,8 @@ public class NoticeControllerTests {
 		MockMvc mockMvc = mockMvcBuilder.build();
 		
 //		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/board/get");
-		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/admin/notice/remove");
-		requestBuilder.param("no", "32");
+		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/admin/faq/remove");
+		requestBuilder.param("no", "64");
 		
 		ModelAndView modelAndView 
 		= mockMvc.perform(requestBuilder).andReturn().getModelAndView();
@@ -219,4 +219,4 @@ public class NoticeControllerTests {
 	
 	
 	
-}
+} // end class

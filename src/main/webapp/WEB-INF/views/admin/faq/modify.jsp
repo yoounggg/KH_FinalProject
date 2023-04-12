@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>공지사항 수정</title>
+    <title>FAQ 수정</title>
 
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
     <link rel="stylesheet" href="/resources/css/admin/common.css">
@@ -87,7 +87,7 @@
             <span class="login"><a href="#">로그아웃</a></span>
         </div>
         <div>
-            <h1><img src="/admin/css/admin/logo.png" id="logo" width="200"></h1> 
+  	      <h1><img src="/resources/css/admin/logo.png" id="logo" width="200"></h1> 
         </div>
         <h2 class="admin">관리자 페이지</h2>
         
@@ -111,21 +111,21 @@
     <!-- 메인 - 공지사항 글쓰기, 수정, 삭제 -->            
                  
             <div class="content">
-                <h2>공지사항 <span class="test">테스트</span></h2>
+                <h2>FAQ <span class="test">테스트</span></h2>
                         
                 <div class="write">
-                    <form action="/admin/notice/modify" method="POST">
+                    <form action="/admin/faq/modify" method="POST">
 
-				        <input type="text" value="${notice.title}"  name="title" placeholder="제목" class="text_title"><br>
+				        <input type="text" value="${faq.title}"  name="title" placeholder="제목" class="text_title"><br>
 				        <p>
-				        	<textarea name="content" id="notice_ct" placeholder="내용" >${notice.content}</textarea>
+				        	<textarea name="answer" id="faq_ct" placeholder="내용" >${faq.answer}</textarea>
 				        </p>
         
                         <button type="submit" id="modifyBtn" >수정</button>
                         <button type="button" id="removeBtn" >삭제</button>
                         <button type="button" id="listBtn" >목록</button>
                         
-                        <p><input type="hidden" name="no" value="${notice.no}"  readonly></p>
+                        <p><input type="hidden" name="no" value="${faq.no}"  readonly></p>
                         <p><input type="hidden" name="writer" value="admin"  readonly></p>
                     </form>
                 </div>
@@ -146,7 +146,7 @@
 
     /* 위지윅 적용 */
         ClassicEditor
-            .create(document.querySelector('#notice_ct'))
+            .create(document.querySelector('#faq_ct'))
             .catch(error=>{
                 console.error(error);
             });
@@ -160,7 +160,7 @@
 	//목록 버튼을 눌러 목록으로 돌아가기
 	listBtn.addEventListener('click', function() {
 		console.log('listBtn clicked');
-		location.href='/admin/notice/list';
+		location.href='/admin/faq/list';
 	});
 
 	
@@ -177,7 +177,7 @@
 
 
         form.setAttribute('method', 'POST');
-        form.setAttribute('action', '/admin/notice/remove');
+        form.setAttribute('action', '/amdin/faq/remove');
         form.submit();
 
     });
