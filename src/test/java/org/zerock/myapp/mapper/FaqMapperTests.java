@@ -145,23 +145,23 @@ public class FaqMapperTests {
 	
 	
 //	@Disable
-//	@Test
-//	@Order(6)
-//	@DisplayName("GetListPaging")
-//	@Timeout(value=2, unit=TimeUnit.SECONDS)
-//	void testSelectGetListPaging() {
-//		log.trace("testGetListPaging() invoked.");
-//		
-//		Criteria cri = new Criteria();
-//		cri.setPageNum(1);
-//
-//		List<FaqVO> list = this.mapper.getListPaging(cri);
-//		assert list != null;
-//		list.forEach(log::info);
-//		
-//		
-//	} // testSelectTotalCount
-//	
+	@Test
+	@Order(6)
+	@DisplayName("GetListPaging")
+	@Timeout(value=60, unit=TimeUnit.SECONDS)
+	void testSelectGetListPaging() {
+		log.trace("testGetListPaging() invoked.");
+		
+		Criteria cri = new Criteria();
+		cri.setCurrPage(1);
+
+		List<FaqVO> list = this.mapper.getListPaging(cri);
+		assert list != null;
+		list.forEach(log::info);
+		
+		
+	} // testSelectTotalCount
+	
 	
 
 } // end class

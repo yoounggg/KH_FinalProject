@@ -253,8 +253,28 @@ li{ list-style-type: none;}
     border-bottom: 1px solid black;
 }
 
+/* .allcheckboxInput+ label{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border:1px solid black;
+    position: relative;
+} */
+
+/* .allcheckboxInput+ label::after{
+    content:'✔';
+    font-size: 15px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    top:0;
+    color: #11BC0D;
+  } */
 
 .allcheckbox>input{
+    /* display: none; */
     margin: 10px;
 }
 .allcheckbox>span{

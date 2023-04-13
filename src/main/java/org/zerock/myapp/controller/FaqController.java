@@ -62,8 +62,8 @@ public class FaqController {
 			model.addAttribute("list", list); // view로 날아갈 model 상자 안에 model 데이터를 담음
 			
 			
-			int total = this.service.getTotal();
-			PageDTO pageDTO = new PageDTO(cri, total);
+			int totalAmount = this.service.getTotal();
+			PageDTO pageDTO = new PageDTO(cri, totalAmount);
 			model.addAttribute("pageMaker", pageDTO);
 			
 		} catch (Exception e) {
