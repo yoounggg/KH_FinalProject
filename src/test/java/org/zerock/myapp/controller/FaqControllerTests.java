@@ -72,7 +72,7 @@ public class FaqControllerTests {
 		
 		// BoardController의 /board/list, GET 핸들러 테스트
 		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/admin/faq/list");
-		requestBuilder.param("pageNum", "2");
+		requestBuilder.param("currPage", "2");
 		requestBuilder.param("amount", "10");
 		
 		// 이제 가상의 MVC 환경에서, BoardController에 요청 생성 및 전송
@@ -121,9 +121,9 @@ public class FaqControllerTests {
 		MockMvc mockMvc = mockMvcBuilder.build();
 		
 //		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/board/get");
-		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/faq/register");
-		requestBuilder.param("title", "꼮 어드민으로 제약했으면 이걸루해야되냐");
-		requestBuilder.param("answer", "ㄱ시발");
+		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/admin/faq/register");
+		requestBuilder.param("title", "admin test");
+		requestBuilder.param("answer", "admin test");
 		requestBuilder.param("writer", "admin");
 		
 		ModelAndView modelAndView 
