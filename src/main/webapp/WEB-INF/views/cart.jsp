@@ -119,7 +119,9 @@
 			<div>
 				<!-- 체크박스 전체 여부 -->
 				<div class="allcheckbox">
-					<input type="checkbox" class="allcheckboxInput" checked="checked"><span>전체선택</span>	   
+					<input type="checkbox" class="allcheckboxInput" checked="checked">
+                    <!-- <label for="check1"></label>	  -->
+                    <span>전체선택</span>
                 </div>			
                 	
 				<table class="cart_table">		
