@@ -14,7 +14,7 @@ import lombok.extern.log4j.Log4j2;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-	//사람살려..
+	//채영 테스트
 	
 	/* 1. 관리자 페이지 이동 */
 	
