@@ -32,6 +32,10 @@ public interface FaqMapper {
 	/* FAQ 게시글 목록 조회(페이징 적용) */
 	public abstract List<FaqVO> getListPaging(Criteria cri);
 
+	/* 총 게시물 건수 반환 */
+	@Select("SELECT count(no) FROM FAQ WHERE no>0")
+	public abstract Integer TotalCount();
+	
 	/* 공지사항 게시글 총 갯수 */
 	public abstract Integer getTotal();
 	

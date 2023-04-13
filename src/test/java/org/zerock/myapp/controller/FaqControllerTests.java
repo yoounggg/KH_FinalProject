@@ -121,9 +121,9 @@ public class FaqControllerTests {
 		MockMvc mockMvc = mockMvcBuilder.build();
 		
 //		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/board/get");
-		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/admin/faq/register");
+		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/faq/register");
 		requestBuilder.param("title", "꼮 어드민으로 제약했으면 이걸루해야되냐");
-		requestBuilder.param("answer", "bb");
+		requestBuilder.param("answer", "ㄱ시발");
 		requestBuilder.param("writer", "admin");
 		
 		ModelAndView modelAndView 
