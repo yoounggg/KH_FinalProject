@@ -80,5 +80,5 @@ public class CartServiceImpl implements CartService, InitializingBean { // pojo 
       return list; // 카트에 값이 모두 세팅된 게 나옴
 
    } // getCart
-
+//채영수정222
 } // end class
