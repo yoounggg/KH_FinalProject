@@ -1,0 +1,169 @@
+@charset "utf-8";
+
+*{/* *이랑 body차이가 뭐지....... */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    min-width: 1026px;
+    height: 100vh;
+    min-height: 100%;
+    background-color: white;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* a, li태그 전체에 공통 적용 */
+a{ text-decoration: none;}
+
+li{ list-style-type: none;}
+
+/* --------------header-------------- */
+
+.container2{
+    padding: 0;
+    padding-top: 20px;
+    width: 80%;
+    margin: 0 auto; 
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+}
+
+.container2 li a{
+    width: 70px;
+    color: black;
+    font-size: 12px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+/* ------------------------------------------ */
+
+.container3{
+    padding: 10px 0 20px 0;
+    width: 80%;
+    /* height: 90px; */
+    margin: 0 auto;
+    position: relative;
+}
+
+#logo{
+    width: 150px;
+    height: 60px;
+    /* position: absolute; */
+    /* top: 10px; */
+    /* left: 20px; */
+
+}
+
+.search1{
+    position: absolute;
+    left: 50%; 
+    /* top: 10%; */
+    transform: translateX(-50%); 
+    /* align-items: center;  */
+    display: inline-block;
+    border: 5px solid #F9F9F4;
+    padding: 1px;
+    border-radius: 100px;
+
+    background-color: #F9F9F4;
+}
+
+.search1 .search-txt{
+    width: 300px;
+    /* height: 30px; */
+    border: none;
+    background-color: #F9F9F4;
+}
+
+.search1 .search-txt:focus{
+    border: none;
+    outline: none;
+/* 마우스 호버링 했을때 윤곽선 없애기 */
+}
+
+.search1 .search-btn{
+    height: 35px;
+    border: none;
+    background-color: #F9F9F4;
+    cursor: pointer;
+    /* font-family: FontAwesome; */
+}
+
+#btn{
+    width: 16px;
+    height: 16px;
+    border: none;
+    color: #F9F9F4;
+    background-color: #F9F9F4;
+}
+
+/* ----------------------nav--------------------- */
+
+.menu{
+    margin: 5px 0 20px 0;
+    background-color:#f9f9f4;
+}
+
+.container4{
+    padding: 0;
+    width: 80%;
+    /* height: 45px; */
+    margin: 0 auto;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+.container4 li{
+    /* 가로로 배열하면서 블록으로 하기 위해 */
+    display: inline-block;
+    width: 200px;
+
+    /* 가로로 중간 (세로로 중간까지 해야 글자가 정 가운데 올 듯) */
+    text-align: center;
+}
+
+.container4 li a{
+    height: 45px;
+    line-height: 45px;
+    font-size: 14px;
+    display: block;
+    color: black;
+}
+
+.fixedmenu{ /* 상단 메뉴 고정 -> jquery */  
+    width: 100%;
+    position: fixed;
+    top: 0px;
+}
+/* ------------------드롭다운메뉴-------------------- */
+
+/* .dropdown{
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content{
+    display: none;
+    position: absolute;
+    z-index: 1;
+}
+.dropdown-content a {
+    color: black;
+}
+.dropdown:hover .dropdown-content{
+    display: block;
+} */
+.dropdown-content{
+    display: none;
+}
+
+.dropdown-content2{
+    display: none;
+}
+

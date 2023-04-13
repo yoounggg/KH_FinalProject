@@ -1,0 +1,210 @@
+
+
+
+.wrapper {
+    margin: 0 auto;
+    width: 80%;
+    height: 100%;
+    margin-top: 5%;
+    margin-bottom: 10%;
+}
+
+.wrapper-input {
+    width: 800px;
+    border: none;
+    margin: 0 auto;
+    font-size: 18px;
+}
+
+.탑로고 {
+    text-align: center;
+
+}
+
+.정보 {
+    margin-left: 50px;
+}
+
+input,
+button {
+    border: none;
+}
+
+button {
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    font-size: 40px;
+    margin-top: 5%
+}
+
+.line {
+    width: 800px;
+    border: 4px solid #000000;
+    margin: 60px 0 30px 0;
+}
+
+.회원정보 {
+    width: 400px;
+    height: 50px;
+    border-radius: 10px;
+    text-indent: 20px;
+    background-color: rgba(228, 228, 228, 0.5);
+    margin: 10px 0 10px 0;
+}
+
+#addr {
+    background-color: #10bc0d;
+    width: 404px;
+    height: 52px;
+    color:white;
+    cursor: pointer;
+}
+
+.라벨 {
+    width: 150px;
+    display: inline-block;
+}
+
+
+
+.YYYY,
+.MM,
+.DD {
+    background-color: rgba(228, 228, 228, 0.5);
+    height: 30px;
+    width: 100px;
+    text-align: center;
+}
+
+.MM,
+.DD {
+    margin-left: 40px;
+}
+
+
+.인증 {
+    background-color: #b1b1b1;
+    height: 50px;
+    width: 130px;
+    border-radius: 10px;
+    margin-left: 20px;
+}
+
+.성별 {
+    margin: 50px 0 30px 0;
+}
+
+#여자 {
+    margin-left: 30px;
+}
+
+#선택안함 {
+    margin-left: 80px;
+}
+
+.생년월일 {
+    margin: 50px 0 30px 0;
+}
+
+.하단버튼 {
+    text-align: center;
+    margin-top: 150px;
+}
+
+.bottombtn{
+    color: white;
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+}
+
+
+#가입 {
+    display: inline-block;
+    height: 40px;
+    width: 150px;
+    background-color: #10bc0d;
+    margin-right: 40px;
+    cursor: pointer;
+    color: white;
+}
+
+
+
+#다음 {
+    display: inline-block;
+    height: 40px;
+    width: 150px;
+    background-color: #b1b1b1;
+    margin-left: 40px;
+    cursor:pointer;
+    
+}
+
+.popmenu3 {
+    display:none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 300px;
+    height: 200px;
+    text-align: center;
+    background: white;
+   
+}
+
+.popmenu3 p {
+    margin-top: 80px;
+}
+
+.exit3 {
+    position: fixed;
+    left: 50%;
+    bottom: 10px;
+    transform: translate(-50%,0);
+    width: 60px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    background: #10bc0d;
+    color: white;
+    cursor: pointer;
+}
+
+#addr2{
+    background-color:#cfcfcf;
+    font-weight: bold;
+}
+
+
+
+#post_num{
+    background-color: #d0d0d0;
+    height: 40px;
+    width: 150px;
+    border-radius: 10px;
+   margin-top: 30px;
+   font-weight: bold;
+}
+
+#postal_code{
+	display:none;
+}
+
+#addr_btn{
+    background-color: #b1b1b1;
+    height: 50px;
+    width: 130px;
+    border-radius: 10px;
+    margin-left: 20px;
+    color:white;
+    cursor: pointer;
+}
+
+#num_form, #detail_addr_form, #addr_form2 {
+    display:none;
+}
