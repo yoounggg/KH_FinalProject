@@ -66,8 +66,8 @@ public class CartMapperTest {
 		log.trace("testaddCart() invoked");
 		
 		String member_id = "codud"; // 회원 아이디
-		Integer product_no = 2; // 상품번호
-		Integer count = 1;  // 개수
+		Integer product_no = 3; // 상품번호
+		Integer count = 4;  // 개수
 		
 		CartDTO cart = new CartDTO();
 		cart.setMember_id(member_id);
@@ -133,10 +133,11 @@ public class CartMapperTest {
 	@Timeout(value = 1, unit=TimeUnit.MINUTES)
 	void testgetCart() { //
 		log.trace("testgetCart() invoked");
-		
-		String member_id = "nicknamebyul";
+
+		String member_id = "codud";
 		
 		List<CartDTO> list = this.mapper.getCart(member_id);
+//		List<CartVO> list = this.mapper.getCart(member_id);
 		assertNotNull(list);
 		
 		list.forEach(log::info);

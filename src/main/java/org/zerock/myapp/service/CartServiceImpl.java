@@ -7,8 +7,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zerock.myapp.domain.CartDTO;
-import org.zerock.myapp.domain.CartVO;
 import org.zerock.myapp.exception.ServiceException;
+import org.zerock.myapp.mapper.AttachMapper;
 import org.zerock.myapp.mapper.CartMapper;
 
 import lombok.NoArgsConstructor;
@@ -24,6 +24,10 @@ public class CartServiceImpl implements CartService, InitializingBean { // pojo 
    //cartmapper 객체의 메소드를 사용할거라서 의존성 주입
    @Setter(onMethod_= {@Autowired})
    private CartMapper mapper;
+   
+   //상품 리스트를 getcart할 때 상품 이미지도 불러오기 위해서 attachmapper 주입
+   @Setter(onMethod_= {@Autowired})
+   private AttachMapper attach;
 
    
    @Override
@@ -59,6 +63,7 @@ public class CartServiceImpl implements CartService, InitializingBean { // pojo 
       }
       
    } // addProductsInCart
+ 
    
    //2. 장바구니 정보 리스트  
    @Override
