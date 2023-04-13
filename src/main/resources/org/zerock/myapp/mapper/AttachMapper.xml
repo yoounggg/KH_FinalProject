@@ -8,7 +8,7 @@
 	
 		select *
 		from image 
-		where productId = #{productId}
+		where product_no = #{product_no}
 	
 	</select>  
 
