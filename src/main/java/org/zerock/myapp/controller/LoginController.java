@@ -39,5 +39,6 @@ public class LoginController {
         
     } // loginPost()
 	
+    // 세이니 테스트
 	
 } // end class
