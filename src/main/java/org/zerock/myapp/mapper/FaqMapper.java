@@ -34,7 +34,7 @@ public interface FaqMapper {
 
 	/* 총 게시물 건수 반환 */
 	@Select("SELECT count(no) FROM FAQ WHERE no>0")
-	public abstract Integer TotalCount();
+	public abstract Integer totalCount();
 	
 	/* 공지사항 게시글 총 갯수 */
 	public abstract Integer getTotal();

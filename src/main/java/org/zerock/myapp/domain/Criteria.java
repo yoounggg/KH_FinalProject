@@ -9,6 +9,7 @@ import lombok.extern.log4j.Log4j2;
 // 이 DTO는 페이징 처리와 관련된 전송파라미터만 수집용도
 @Log4j2
 @Data
+
 public class Criteria {
    private Integer currPage = 1;    //현재 페이지 번호
    private Integer amount =  10;   // 한 페이지당 보여줄 게시물 갯수(크기)
@@ -21,6 +22,11 @@ public class Criteria {
    // 검색조건이 기준정보로 역시 추가
    private String type;
    private String keyword;
+   
+   // [별이]스킵 할 게시물 수((currPage-1)* amount)
+   private Integer skip = 0;
+   
+   
    
    // 위의 모든 기준정보를 기반으로, Query String을 만들어 주는 메소드 추가
    public String getPagingUri() {
@@ -44,4 +50,22 @@ public class Criteria {
       return queryString;
    } //getPagingUri
    
+   
+   // [별이]원하는 currPage, 원하는 amount
+	public Criteria() {
+		this.currPage = currPage;
+		this.amount = amount;
+		this.skip = (currPage-1)*amount;
+	
+	} // criteria
+	
+	//[별이]원하는 currPage, 원하는 amount
+	public Criteria(int currPage, int amount) {
+		this.currPage = currPage;
+		this.amount = amount;
+		this.skip = (currPage-1)*amount;
+	
+	} 
+	
+
 } // end class
