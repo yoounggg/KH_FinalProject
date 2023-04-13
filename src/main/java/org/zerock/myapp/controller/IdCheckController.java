@@ -2,7 +2,6 @@ package org.zerock.myapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.zerock.myapp.service.IdCheckService;
 
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 
 @NoArgsConstructor
@@ -25,15 +25,15 @@ public class IdCheckController {
 	
 	
 	@PostMapping("/infoa")
-	@ResponseBody
-	public int idCheck(@RequestParam("id") String id) {
+	public @ResponseBody int idCheck(@RequestParam("id") String id) {
 		log.trace("idCheck {} invoked. (중복확인)",id);
 		
-		int cnt= idCheckService.idCheck(id);
+		int cntId= idCheckService.idCheck(id);
 		
-		log.trace("cnt : {} (중복확인 성공)" , cnt);
+		log.trace("cntId : {} (중복확인 성공)" , cntId);
 		
-		return cnt;
+		return cntId;
+		
 	} // id check
 
 	

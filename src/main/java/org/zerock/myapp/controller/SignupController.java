@@ -22,7 +22,7 @@ import lombok.extern.log4j.Log4j2;
 
 @RequestMapping("/signup") 
 @Controller
-public class MemberController { // 회원가입 페이지 호출
+public class SignupController { // 회원가입 페이지 호출
 	
 	
 	@Setter(onMethod_=@Autowired)

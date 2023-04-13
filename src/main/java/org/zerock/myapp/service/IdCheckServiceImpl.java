@@ -21,11 +21,11 @@ public class IdCheckServiceImpl implements IdCheckService {
 	public int idCheck(String id) {
 		log.trace("id ({})invoked. 서비스 impl", id);
 		
-		int cnt = mapper.idCheck(id);
+		int cntId = mapper.idCheck(id);
 		
-		log.trace("cnt : {} invoked ", cnt);
+		log.trace("cnt : {} invoked ", cntId);
 		
-		return cnt;
+		return cntId;
 	} // idCheck
 	
 	
