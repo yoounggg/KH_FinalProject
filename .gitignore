@@ -139,6 +139,4 @@ $RECYCLE.BIN/
 *.lnk
 
 
-src/main/webapp/META-INF/maven/org.zerock/MYMG/pom.properties
-
 # End of https://www.toptal.com/developers/gitignore/api/maven,eclipse,windows,java
