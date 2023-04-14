@@ -26,43 +26,43 @@ $(document).ready(function(){
   setTotalInfo();	
       
   /* 이미지 삽입 */
-//   $(".image_wrap").each(function(i, obj){
+  $(".image_wrap").each(function(i, obj){
       
-//     const bobj = $(obj);
+    const bobj = $(obj);
         
-//     if(bobj.data("product_no")){
-//       const uploadPath = bobj.data("path");
-//       const uuid = bobj.data("uuid");
-//       const fileName = bobj.data("filename");
+    if(bobj.data("product_no")){
+      const uploadPath = bobj.data("path");
+      const uuid = bobj.data("uuid");
+      const fileName = bobj.data("filename");
           
-//       const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+      const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
           
-//       $(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
-//     } else {
-//       $(this).find("img").attr('src', '/resources/img/goodsNoImage.png');
-//     }  
-//   });    
+      $(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
+    } else {
+      $(this).find("img").attr('src', '/resources/img/goodsNoImage.png');
+    }  
+  });    
 // });	
 
 
 /* 체크여부에따른 종합 정보 변화 */
    
-$(".individual_cart_checkbox").on("change", function(){
+$(".cartCheckbox").on("change", function(){
   /* 총 주문 정보 세팅(배송비, 총 가격, 물품 수) */
-  setTotalInfo($(".cart_info_td"));
+  setTotalInfo($(".cartinfo_td"));
 });
 
 /* 체크박스 전체 선택 */
 $(".allcheckboxInput").on("click", function(){
   /* 체크박스 체크/해제 */
   if($(".allcheckboxInput").prop("checked")){
-  $(".individual_cart_checkbox").attr("checked", true);
+  $(".cartCheckbox").prop("checked", true);
   } else{
-    $(".individual_cart_checkbox").attr("checked", false);
+    $(".cartCheckbox").prop("checked", false);
   }
       
 //   /* 총 주문 정보 세팅(배송비, 총 가격, 물품 수) */
-  setTotalInfo($(".cart_info_td"));	
+  setTotalInfo($(".cartinfo_td"));	
       
 });
 
@@ -70,16 +70,16 @@ $(".allcheckboxInput").on("click", function(){
 function setTotalInfo(){
       
   let totalPrice = 0;				// 총 가격
-  let deliveryPrice = 0;			// 배송비-> 3000원으로 고정시킬건데 상품이 0원일 때는 배송비 0워느로 해줘야해서 조건문 추가
+  let deliveryPrice = 0;			// 배송비-> 3000원으로 고정시킬건데 상품이 0원일 때는 배송비 0원으로 해줘야해서 조건문 추가
   let finalTotalPrice = 0; 		// 최종 가격(총 가격 + 배송비)
      
-     //cart_info_td 인 td 순회하는데 check되어 있는 상품만 total로 !!
-  $(".cart_info_td").each(function(index, element){ // each 메소드는 td객체가 존재하는 만큼 순회
+     //cartinfo_td 인 td 순회하는데 check되어 있는 상품만 total로 !!
+  $(".cartinfo_td").each(function(index, element){ // each 메소드는 td객체가 존재하는 만큼 순회
       //제이쿼리 find 메소드로 input 태그에 접근    
-    if($(element).find(".individual_cart_checkbox").is(":checked") === true){	//체크여부
+    if($(element).find(".cartCheckbox").is(":checked") === true){	//체크여부
       
     // 총 가격
-      totalPrice += parseInt($(element).find(".cartTotalPrice").val());
+      totalPrice += parseInt($(element).find(".cartTotalPriceInput").val());
    }
   });
 
@@ -106,35 +106,35 @@ function setTotalInfo(){
 
 
 /* 수량버튼 */
-// $(".plus_btn").on("click", function(){
-//   let quantity = $(this).parent("div").find("input").val();
-//   $(this).parent("div").find("input").val(++quantity);
-// });
+$(".plus_btn").on("click", function(){
+  let quantity = $(this).parent("div").find("input").val();
+  $(this).parent("div").find("input").val(++quantity);
+});
 
-// $(".minus_btn").on("click", function(){
-//   let quantity = $(this).parent("div").find("input").val();
-//   if(quantity > 1){
-//     $(this).parent("div").find("input").val(--quantity);		
-//   }
-// });
+$(".minus_btn").on("click", function(){
+  let quantity = $(this).parent("div").find("input").val();
+  if(quantity > 1){
+    $(this).parent("div").find("input").val(--quantity);		
+  }
+});
 
 // /* 수량 수정 버튼 */
-// $(".quantity_modify_btn").on("click", function(){
-//   let cartNo = $(this).data("cartid");
-//   let cartCount = $(this).parent("td").find("input").val();
-//   $(".update_cartId").val(cartNo);
-//   $(".update_cartCount").val(cartCount);
-//   $(".quantity_update_form").submit();
+$(".quantity_modify_btn").on("click", function(){
+  let no = $(this).data("no");
+  let count = $(this).parent("td").find("input").val();
+  $(".update_cartId").val(no);
+  $(".update_cartCount").val(count);
+  $(".quantity_update_form").submit();
       
-// });
+});
 
 // /* 장바구니 삭제 버튼 */
-// $(".delete_btn").on("click", function(e){
-//   e.preventDefault();
-//   const cartNo = $(this).data("cartid");
-//   $(".delete_cartId").val(cartNo);
-//   $(".quantity_delete_form").submit();
-// });
+$(".delete_btn").on("click", function(e){
+   e.preventDefault();
+   const cartNo = $(this).data("no");
+   $(".delete_cartNo").val(cartNo);
+   $(".quantity_delete_form").submit();
+});
     
       
 /* 주문 페이지 이동 */	
@@ -143,9 +143,9 @@ function setTotalInfo(){
 //   let form_contents ='';
 //   let orderNumber = 0;
       
-//   $(".cart_info_td").each(function(index, element){
+//   $(".cartinfo_td").each(function(index, element){
         
-//     if($(element).find(".individual_cart_checkbox").is(":checked") === true){	//체크여부
+//     if($(element).find(".cartCheckbox").is(":checked") === true){	//체크여부
           
 //       let bookId = $(element).find(".individual_bookId_input").val();
 //       let bookCount = $(element).find(".cartCount").val();

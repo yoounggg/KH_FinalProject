@@ -20,7 +20,7 @@ public interface CartMapper { // 인터페이스!!
 	
 //	카트 수량 수정 
 	public abstract Integer modifyCount(CartDTO cart); // 지정한 ROW의 수량 변경! 
-	//어떤 ROW인지 지정하기 위한 NO와 몇개로 변경할지에 대한 COUNT가 필요-> 두값을 한번에 가져오기 위해 CARTDTO 선언
+	//어떤 ROW인지 지정하기 위한 NO와 몇 개로 변경할지에 대한 COUNT가 필요-> 두 값을 한번에 가져오기 위해 CARTDTO 선언
 	
 //	카트 목록 확인
 //	public abstract List<CartVO> getCart(String member_id);
