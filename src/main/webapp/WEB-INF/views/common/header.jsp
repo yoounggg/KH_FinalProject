@@ -42,7 +42,7 @@
             </ul>
 
             <div class="container3">
-                <a href="main1.html"><img id="logo" src="../resources/imgs/logo.png" alt="로고"></a>
+                <a href="/main"><img id="logo" src="../resources/imgs/logo.png" alt="로고"></a>
             <!-- action에는 jsp 파일인듯?/ GET방식 /  -->
                 <form class="search1" action="#" method="GET">
                     <input class="search-txt" type="text" placeholder=" 검색어를 입력해주세요!">    

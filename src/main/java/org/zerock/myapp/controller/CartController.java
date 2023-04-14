@@ -23,7 +23,7 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @NoArgsConstructor
 
-@RequestMapping("") // base uri
+@RequestMapping("/cart") // base uri
 @Controller
 public class CartController {
 	
@@ -40,25 +40,27 @@ public class CartController {
 	
 	// 1. 장바구니 조회는 회원만 할 수 있으니까 member_id데이터를 얻기 위해 파라미터 추가
 	// 장바구니 데이터를 뷰에 넘길 때 model상자에 담아서 넘기기
-	@GetMapping("/cart") //@PathVariable("codud") 
+	@GetMapping("/main") // -> main지우고 {member_id}     //@PathVariable("codud") 
 	public String cartMainPage(String member_id, Model model) {
 		log.trace("cartPageGET() invoked(장바구니 메인 페이지로 이동)");
 		
 		Objects.requireNonNull(this.service);
 		log.info("\t+this.service:{}", this.service);
-		
+														//member_id
 		model.addAttribute("cartinfo", service.getCart("codud")); // cartinfo에 장바구니 정보 리스트 담기
 
 		return "cart";
 	} // cartMainPage
 	
-	
-	@PostMapping("/cart/add")
+	//2. 장바구니 상품 추가
+	@PostMapping("/add")
 	@ResponseBody // 화면을 반환하는 것이 아니라 데이터를 반환하는 것이기 떄문
 	public String addProductsInCart(CartDTO cart, HttpServletRequest request) throws ControllerException {
 										// 등록할 데이터 전달받아야 해서 DTO, 로그인 여부 확인하기 위해 SESSION 객체가 필요
 		
-		// 1. 로그인 체크
+		log.trace("addProductsInCart() invoked(장바구니 상품 추가/등록)");
+		
+		// (1) 로그인 체크
 //		HttpSession session = request.getSession();
 //		MemberVO vo = (MemberVO)session.getAttribute("member");
 //		if(vo == null) {
@@ -66,7 +68,7 @@ public class CartController {
 //		}
 		
 		
-		// 2. 카트 등록
+		// (2) 카트 등록
 		try {
 		int result = service.addProductsInCart(cart);
 		
@@ -77,4 +79,25 @@ public class CartController {
 		
 	} // addProductsInCartPOST
 
+	
+	//3. 장바구니 수량 수정
+	
+	@PostMapping("/update")
+	public String modifyCount(CartDTO cart) {
+		log.trace("modifyProductsInCart() invoked(장바구니 수량 변경)");
+		
+		service.modifyCount(cart);
+		
+		return "redirect:/cart/main"; // + cart.getMember_id();
+	} // modifyCount
+	
+	//4. 장바구니 삭제
+	@PostMapping("/delete")
+	public String deleteCart(Integer no) {
+		
+		log.trace("deleteCart() invoked(장바구니 수량 삭제)");
+		service.deleteCart(no);
+		return "redirect:/cart/main";
+	}
+	
 }
