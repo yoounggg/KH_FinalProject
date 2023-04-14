@@ -12,7 +12,7 @@ public class CartDTO { // maper 메서드에 필요한 장바구니 데이터를
 	private String member_id;
 	private Integer count;
 	
-	private Integer product_no; // ** product의 no (pk)를 fk로 가져옴
+	private Integer product_No; // ** product의 no (pk)를 fk로 가져옴
 //	private Date cartDate; // ORACLE에 아직 없음 필요하면 추가해야함
 	
 	//product TABLE
@@ -36,7 +36,7 @@ public class CartDTO { // maper 메서드에 필요한 장바구니 데이터를
 	
 	@Override
 	public String toString() { // 우선 + ", cartDate=" + cartDate  제외함 
-		return "CartDTO [no=" + no + ", member_id=" + member_id + ", product_no=" + product_no + ", count="
+		return "CartDTO [no=" + no + ", member_id=" + member_id + ", product_no=" + product_No + ", count="
 				+ count + ", name=" + name + ", price=" + price
 				+ ", discount_price=" + discount_price + ", totalPrice=" + totalPrice + ", imageList=" + imageList+"]";
 	} // toString

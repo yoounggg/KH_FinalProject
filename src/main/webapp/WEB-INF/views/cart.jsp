@@ -49,7 +49,7 @@
                 <c:if test = "${member == null}">
                     <li><a href="/user/login">로그인</a></li>
                     <li><a href="/signup/main">회원가입</a></li>
-                    <li><a href="/cart">장바구니</a></li>
+                    <li><a href="/cart/main">장바구니</a></li>
                     <!-- <li><a href="/cart/${member.member_id}">장바구니</a></li> -->
                 </c:if> 
                 
@@ -66,7 +66,7 @@
                     <!-- => 비동기 방식 로그아웃으로 변경 -->
                     <li><a id="logout_button">로그아웃</a></li>
                     <li><a href="/mypage">마이페이지</a></li>
-                    <li><a href="/cart">장바구니</a></li>
+                    <li><a href="/cart/main">장바구니</a></li>
                     <!-- 로그인이 되야 아래가 적용될듯? -->
                     <!-- <li><a href="/cart/${member.member_id}">장바구니</a></li> -->
                 </c:if>       
@@ -128,45 +128,45 @@
 					<tbody>
 						<c:forEach items="${cartinfo}" var="cartinfo">
 							<tr>
-								<td class="td_width_1 cart_info_td">
-									<input type="checkbox" class="individual_cart_checkbox checkboxinput" checked="checked">
-									<input type="hidden" class="individual_bookPrice_input" value="${cartinfo.price}">
-									<input type="hidden" class="individual_salePrice_input" value="${cartinfo.discount_price}">
-									<input type="hidden" class="cartCount" value="${cartinfo.count}">
-									<input type="hidden" class="cartTotalPrice" value="${cartinfo.discount_price * cartinfo.count}">
-									<input type="hidden" class="individual_bookId_input" value="${cartinfo.name}">
-									<!-- product_no 추가  -->
-									<input type="hidden" class="cartProductNo" value="${cartinfo.product_no}">									
+								<td class="td_1 cartinfo_td">
+									<input type="checkbox" class="cartCheckbox checkboxInput" checked="checked">
+									<input type="hidden" class="cartNo" value="${cartinfo.no}">
+									<input type="hidden" class="productPriceInput" value="${cartinfo.price}">
+									<input type="hidden" class="discountPriceInput" value="${cartinfo.discount_price}">
+									<input type="hidden" class="cartCountInput" value="${cartinfo.count}">
+									<input type="hidden" class="cartTotalPriceInput" value="${cartinfo.discount_price * cartinfo.count}">
+									<input type="hidden" class="productNameInput" value="${cartinfo.name}">
+									<input type="hidden" class="cartProductNoInput" value="${cartinfo.product_No}">									
 								</td>
 
-								<td class="td_width_2">
-									<div class="image_wrap" data-bookid="${cartinfo.imageList[0].product_no}" data-path="${cartinfo.imageList[0].uploadPath}" data-uuid="${cartinfo.imageList[0].uuid}" data-filename="${cartinfo.imageList[0].fileName}">
+								<td class="td_2">
+									<div class="image_wrap" data-product_no="${cartinfo.imageList[0].product_No}" data-path="${cartinfo.imageList[0].uploadPath}" data-uuid="${cartinfo.imageList[0].uuid}" data-filename="${cartinfo.imageList[0].fileName}">
 										<img>
 									</div>								
 								</td>
 
-								<td class="td_width_3">${cartinfo.name}</td>        
+								<td class="td_3">${cartinfo.name}</td>        
 
-								<td class="td_width_4 tablecenter">
+								<td class="td_4 tablecenter">
                                     <div class="tablecenter quantity_div">
                                         <input type="text" value="${cartinfo.count}" class="quantity_input">	
 										<button class="quantity_btn plus_btn">+</button>
 										<button class="quantity_btn minus_btn">-</button>
 									</div>
-                                    <div><a class="quantity_modify_btn" data-cartId="${cartinfo.no}">변경</a></div>
+                                    <a class="quantity_modify_btn" data-no="${cartinfo.no}">변경</a>
 								</td>
 
-                                <td class="td_width_4 price_td">
+                                <td class="td_4 price_td">
                                     상품금액 : <del><fmt:formatNumber value="${cartinfo.price}" pattern="#,### 원" /></del><br>
                                     할인금액 : <span class="red_color"><fmt:formatNumber value="${cartinfo.discount_price}" pattern="#,### 원" /></span><br>
                                 </td>
 
-								<td class="td_width_4 tablecenter">
+								<td class="td_4 tablecenter">
 									최종가격 : <fmt:formatNumber value="${cartinfo.discount_price * cartinfo.count}" pattern="#,### 원" />
 								</td>
 
-								<td class="td_width_4 tablecenter">
-									<button class="delete_btn" data-cartid="${cartinfo.no}">X</button>
+								<td class="td_4 tablecenter">
+									<button class="delete_btn" data-no="${cartinfo.no}">X</button>
 								</td>
 
 							</tr>
@@ -179,7 +179,7 @@
 			</div>
 
 			<!-- 가격 종합 -->
-			<div class="content_total_section">
+			<div class="contenttotal_section">
 				<table class="pricetotalwrap">
 					<tr>
                         <td><span>상품금액</span></td>
@@ -199,23 +199,25 @@
 			</div>
 
 			<!-- 구매 버튼 영역 -->
-			<div class="content_btn_section">
+			<div class="contentbtn_section">
 				<a class="order_btn">선택상품 주문하기</a>
-                <a class="shop_btn">쇼핑 계속하기</a>
+                <a href="/main" class="shop_btn">쇼핑 계속하기</a>
 			</div>
 			
 			<!-- 수량 조정 form -->
-			<!-- <form action="/cart/update" method="post" class="quantity_update_form">
-				<input type="hidden" name="cartId" class="update_cartId">
-				<input type="hidden" name="bookCount" class="update_cartCount">
-				<input type="hidden" name="memberId" value="${member.memberId}">
-			</form>	 -->
+			<form action="/cart/update" method="post" class="quantity_update_form">
+				<input type="hidden" name="no" class="update_cartId">
+				<input type="hidden" name="count" class="update_cartCount">
+				<input type="hidden" name="member_id" value="codud">
+														<!-- ${member.Id} -->
+			</form>
 			
 			<!-- 삭제 form -->
-			<!-- <form action="/cart/delete" method="post" class="quantity_delete_form">
-				<input type="hidden" name="cartId" class="delete_cartId">
-				<input type="hidden" name="memberId" value="${member.memberId}">
-			</form>		 -->
+			<form action="/cart/delete" method="post" class="quantity_delete_form">
+				<input type="hidden" name="no" class="delete_cartNo">
+				<input type="hidden" name="member_id" value="codud">
+													<!-- ${member.Id} -->
+			</form>
 
 			<!-- 주문 form -->
 			<!-- <form action="/order/${member.memberId}" method="get" class="order_form">

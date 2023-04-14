@@ -66,12 +66,12 @@ public class CartMapperTest {
 		log.trace("testaddCart() invoked");
 		
 		String member_id = "codud"; // 회원 아이디
-		Integer product_no = 3; // 상품번호
-		Integer count = 4;  // 개수
+		Integer product_No = 2; // 상품번호
+		Integer count = 10;  // 개수
 		
 		CartDTO cart = new CartDTO();
 		cart.setMember_id(member_id);
-		cart.setProduct_no(product_no);
+		cart.setProduct_No(product_No);
 		cart.setCount(count);
 		
 //		int result=0;
@@ -161,11 +161,11 @@ public class CartMapperTest {
 		log.trace("testcheckCart() invoked");
 		
 		String member_id = "nicknamebyul";
-		Integer product_no = 1;
+		Integer product_No = 1;
 		
 		CartDTO cart = new CartDTO();
 		cart.setMember_id(member_id);
-		cart.setProduct_no(product_no);
+		cart.setProduct_No(product_No);
 		
 		CartDTO affectedlines = this.mapper.checkCart(cart);
 		log.info("\t+affectedLines:{}", affectedlines);

@@ -10,7 +10,7 @@ public class CartVO {
 	
 	private Integer no; // <- cartNumber 
 	private String member_id;
-	private Integer product_no;
+	private Integer product_No;
 	private Integer count;
 
 }

@@ -52,7 +52,7 @@
     
     <!-- <mybatis-spring:scan base-package="org.zerock.myapp.mapper"/> 이 아래 있는 매퍼 인터페이스는 자동등록 시킵니다라는 것 -->
     <context:component-scan base-package="org.zerock.myapp.service" />
-   <mybatis-spring:scan base-package="org.zerock.myapp.mapper" />
+    <mybatis-spring:scan base-package="org.zerock.myapp.mapper" />
     <context:component-scan base-package="org.zerock.myapp.persistence" />
     <context:component-scan base-package="org.zerock.myapp.exception" />
 </beans>
