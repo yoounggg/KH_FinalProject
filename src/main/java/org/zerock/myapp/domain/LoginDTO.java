@@ -8,9 +8,7 @@ public class LoginDTO {
 	// 셍나 로그인 테스트용 DTO
 	private String id;
 	private String password;
-	
 	private String name;
-	
 	private Integer adminCk;
 
 	// remeberMe = check-box 

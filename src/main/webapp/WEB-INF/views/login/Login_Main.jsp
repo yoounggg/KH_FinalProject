@@ -17,10 +17,6 @@
 	<!-- 로그인 메인창 css -->
     <link rel="stylesheet" href="/resources/css/login/Login_Main.css">
 
-	<!-- 로그인 제이쿼리 by 셍나 -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.0/jquery-migrate.min.js"></script>
-
 </head>
 
 <body>
@@ -31,8 +27,9 @@
     <main>
 
         <div class="login_wrapper">
-
-            <form action="/login" id="login_form" method="post">
+			
+			<!-- <form action="/Login_Main" id="login_form" method="post"> -->
+            <form id="login_form" method="post">
                 <div class="login_title">로그인</div>
 
                 <!-- 아이디 입력창 -->
@@ -72,16 +69,19 @@
                 </div>
 
                 <!-- 로그인 버튼들 -->
-                <div class="signIn"> <!-- 로그인 버튼 -->
+                <!-- 로그인 버튼 -->
+                <div class="signIn">
                     <button type="button" id="signInButton">로그인</button>
                 </div>
         
-                <div class="naverLogin"> <!-- 네이버로 로그인 -->
+        		<!-- 네이버로 로그인 -->
+                <div class="naverLogin">
                     <button type="button" id="naverLoginButton">
                         <img src="/resources//imgs/btnG_완성형.png" class="nimg"></button>
                 </div>
 
-                <div class="kakaoLogin"> <!-- 카카오로 로그인 -->
+				<!-- 카카오로 로그인 -->
+                <div class="kakaoLogin">
                     <button type="button" id="kakaoLoginButton">
                         <img src="/resources//imgs/kakao_login_large_narrow.png" class="kimg"></button>
                 </div>
