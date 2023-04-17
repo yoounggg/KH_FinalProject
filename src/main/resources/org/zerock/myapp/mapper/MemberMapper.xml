@@ -6,21 +6,10 @@
 
 <mapper namespace="org.zerock.myapp.mapper.MemberMapper">
 
-
-     <!-- 로그인: memberLogin -->
-     <select id="memberLogin" resultType="org.zerock.myapp.domain.LoginDTO">
+     <!-- 셍나 로그인: memberLogin() -->
+     <select id="memberLogin" resultType="org.zerock.myapp.domain.MemberVO">
          SELECT ID, PASSWORD, ADMINCK FROM MEMBER WHERE ID = #{id} and PASSWORD = #{password}
      </select>
-     
-	     <!-- 
-	     <select id="selectUser" resultType="org.zerock.myapp.domain.UserVO">
-			SELECT * 
-			FROM tbl_user 
-			WHERE 
-				userid = #{userid} 
-				AND userpw = #{userpw}
-		</select>
-		-->
 	
 	<!-- 혁규 회원가입 -->
 	<!-- <insert id="memberSignup" >
