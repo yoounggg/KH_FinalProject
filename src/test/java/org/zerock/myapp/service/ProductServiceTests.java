@@ -50,71 +50,104 @@ public class ProductServiceTests {
 	} // beforeAll
 	
 //	@Disabled
+//	@Test
+//	@Order(1)
+//	@DisplayName("getListTest")
+//	@Timeout(value=1, unit=TimeUnit.SECONDS)
+//	void getListTest() throws ServiceException{
+//		log.trace("\t getListTest() invoked");
+//		
+//		Criteria cri = new Criteria();
+//		cri.setCurrPage(1);
+//		cri.setAmount(12);
+//		
+//		List<ProductVO> list = this.service.getList(cri);
+//		
+//		assertNotNull(list);
+//		list.forEach(log::info);
+//		
+//	} // getListTest
+//	
+////	@Disabled
+//	@Test
+//	@Order(2)
+//	@DisplayName("getRecodeCount")
+//	@Timeout(value=1, unit=TimeUnit.SECONDS)
+//	void getRecodeCount() throws ServiceException {
+//		log.trace("\t getRecodeCount() invoked");
+//		
+//		Integer tempNum = this.service.getRecodeCount();
+//		
+//		Objects.requireNonNull(tempNum);
+//		log.info("\t tempNum : {}", tempNum);
+//	} // getRecodeCount
+//	
+//	
+////	@Disabled
+//	@Test
+//	@Order(3)
+//	@DisplayName("getMenuOrder")
+//	@Timeout(value=1, unit=TimeUnit.SECONDS)
+//	void getMenuOrder() throws ServiceException {
+//		log.trace("\t getMenuOrder() invoked");
+//		
+//		Criteria cri = new Criteria();
+//		cri.setCurrPage(1);
+//		cri.setAmount(12);
+//		List<ProductVO> list = this.service.getOrder(cri);
+//		
+//		assert list != null;
+//		list.forEach(log::info);
+//	} // getMenuOrder
+//	
+//	
+////	@Disabled
+//	@Test
+//	@Order(4)
+//	@DisplayName("getProductDetail")
+//	@Timeout(value=1, unit=TimeUnit.SECONDS)
+//	void getProductDetail() throws ServiceException {
+//		log.trace("\t getProductDetail() invoked");
+//		
+//		Integer pno = 10;
+//		ProductDTO dto = this.service.getProductDetail(pno);
+//		
+//		Objects.requireNonNull(dto);
+//		log.info("\t dto : {}", dto);
+//		
+//	} // getProductDetail
+	
+//	@Disable
 	@Test
 	@Order(1)
-	@DisplayName("getListTest")
+	@DisplayName("테스트 1 : register")
 	@Timeout(value=1, unit=TimeUnit.SECONDS)
-	void getListTest() throws ServiceException{
-		log.trace("\t getListTest() invoked");
+	void register() throws ServiceException {
+		log.trace("register invoked.");
 		
-		Criteria cri = new Criteria();
-		cri.setCurrPage(1);
-		cri.setAmount(12);
+		ProductDTO dto = new ProductDTO();
+		dto.setCategory1("농가");
+		dto.setCategory2("국내외과일");
+		dto.setName("찬돌농장 고당도 프리미엄 샤인머스켓");
+		dto.setPrice(30000);
+		dto.setDiscount(10);
+		dto.setDiscount_price(27000);
+		dto.setWeight("2kg");
+		dto.setOrigin("국산(경상북도 안동시)");
+		dto.setStock(10);
+		dto.setFarm_no(1);
+		dto.setMain_image("main1");
+		dto.setSub_image1("sub1");
+		dto.setSub_image2("sub2");
+		dto.setSub_image3("sub3");
+		dto.setSub_image4("sub4");
+		dto.setContent("경상북도 안동시 예안면 상활지에서 생산한 탐스럽고 맛있는 샤인머스켓입니다. 달고 아삭한 식감을 가진 가족의 건강과 선물용으로 아주 좋은 상품입니다.");
+		dto.setContent_image("content_image1");
 		
-		List<ProductVO> list = this.service.getList(cri);
+		Boolean successs = this.service.register(dto);
+		log.info("affectedLines() invoked. {}", successs);
 		
-		assertNotNull(list);
-		list.forEach(log::info);
-		
-	} // getListTest
+	} // register
 	
-//	@Disabled
-	@Test
-	@Order(2)
-	@DisplayName("getRecodeCount")
-	@Timeout(value=1, unit=TimeUnit.SECONDS)
-	void getRecodeCount() throws ServiceException {
-		log.trace("\t getRecodeCount() invoked");
-		
-		Integer tempNum = this.service.getRecodeCount();
-		
-		Objects.requireNonNull(tempNum);
-		log.info("\t tempNum : {}", tempNum);
-	} // getRecodeCount
-	
-	
-//	@Disabled
-	@Test
-	@Order(3)
-	@DisplayName("getMenuOrder")
-	@Timeout(value=1, unit=TimeUnit.SECONDS)
-	void getMenuOrder() throws ServiceException {
-		log.trace("\t getMenuOrder() invoked");
-		
-		Criteria cri = new Criteria();
-		cri.setCurrPage(1);
-		cri.setAmount(12);
-		List<ProductVO> list = this.service.getOrder(cri);
-		
-		assert list != null;
-		list.forEach(log::info);
-	} // getMenuOrder
-	
-	
-//	@Disabled
-	@Test
-	@Order(4)
-	@DisplayName("getProductDetail")
-	@Timeout(value=1, unit=TimeUnit.SECONDS)
-	void getProductDetail() throws ServiceException {
-		log.trace("\t getProductDetail() invoked");
-		
-		Integer pno = 10;
-		ProductDTO dto = this.service.getProductDetail(pno);
-		
-		Objects.requireNonNull(dto);
-		log.info("\t dto : {}", dto);
-		
-	} // getProductDetail
 	
 } // end class

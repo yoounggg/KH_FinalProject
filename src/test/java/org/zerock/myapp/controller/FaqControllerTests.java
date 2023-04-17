@@ -176,8 +176,8 @@ public class FaqControllerTests {
 		
 		requestBuilder = MockMvcRequestBuilders.post("/admin/faq/modify");
 		requestBuilder.param("no", no.toString());
-		requestBuilder.param("title", "깩 테스트"); 	// 수정 항목 1
-		requestBuilder.param("answer", "집보내조요");	// 수정 항목 1
+		requestBuilder.param("title", "FaqController테스트"); 	// 수정 항목 1
+		requestBuilder.param("answer", "FaqController테스트");	// 수정 항목 1
 		requestBuilder.param("writer", writer);
 		
 		modelAndView 

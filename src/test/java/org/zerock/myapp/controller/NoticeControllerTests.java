@@ -122,8 +122,8 @@ public class NoticeControllerTests {
 		
 //		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/board/get");
 		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/admin/notice/register");
-		requestBuilder.param("title", "테숫후");
-		requestBuilder.param("content", "ㄴㅇㄹ");
+		requestBuilder.param("title", "NoticeController테스트");
+		requestBuilder.param("content", "NoticeController테스트");
 		requestBuilder.param("writer", "admin");
 		
 		ModelAndView modelAndView 
@@ -176,8 +176,8 @@ public class NoticeControllerTests {
 		
 		requestBuilder = MockMvcRequestBuilders.post("/admin/notice/modify");
 		requestBuilder.param("no", no.toString());
-		requestBuilder.param("title", "깩 테스트"); 	// 수정 항목 1
-		requestBuilder.param("content", "집보내조요");	// 수정 항목 1
+		requestBuilder.param("title", "NoticeController테스트2"); 	// 수정 항목 1
+		requestBuilder.param("content", "NoticeController테스트2");	// 수정 항목 1
 		requestBuilder.param("writer", writer);
 		
 		modelAndView 

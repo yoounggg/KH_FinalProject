@@ -13,10 +13,26 @@
   <select id="select" resultType="org.zerock.myapp.domain.NoticeVO">
     SELECT * FROM notice
     WHERE no = #{no}
-    <!-- 일단 번호로 시도! 차후에 아래 요구사항마다 검색했을 때 나오게끔 설정 할 예정 -->
-    <!-- title = ${title} or content = ${content} or writer = ${writer} -->
   </select>
+  
+  
+  <!-- 게시글 목록 조회 (페이징) -->
+	<select id="getListPaging" resultType="org.zerock.myapp.domain.NoticeVO">
+    <![CDATA[
+    
+		SELECT * 
+			FROM NOTICE
+			ORDER BY no DESC
+			OFFSET (#{currPage} - 1) * #{amount} ROWS
+			FETCH NEXT #{amount} ROWS ONLY
+	
+	]]>	
+ 	</select>
 
+	<!-- 게시물 총 갯수 -->
+	<select id="getTotal" resultType="int">
+	  	SELECT count(*) FROM NOTICE
+	</select>
 
   <!-- 게시글 삭제 -->
   <delete id="delete">

@@ -96,7 +96,7 @@ public class FarmControllerTests {
 		
 		//BoardController의 /board/list, GET 핸들러 테스트
 		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/admin/farm/list");
-		requestBuilder.param("pageNum", "2");
+		requestBuilder.param("currPage", "2");
 		requestBuilder.param("amount", "10");
 		
 		// 상위타입에 넣음

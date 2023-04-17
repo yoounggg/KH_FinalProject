@@ -30,21 +30,12 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @AllArgsConstructor
 
-@RequestMapping("/admin/notice")
+@RequestMapping("/admin/notice/*")
 @Controller
 
-// 아래 annotation의 배열({속성명1}, {속성명2}, {...})에 지정한
-// 모델 속성들은 자동으로 세션에도 저장하게 해주는 annotation
 @SessionAttributes({"notice", "noticeDTO"}) // String 타입의 배열을 인자로 받음!
-// 모델로 들어가는 속성 중에, 해당 이름을 가진 속성을 session scope에도 넣겠다는 의미!
-// session 속성을 건드리지 않고 /get 요청에서의 Notice를 인자로 받아서 session scope에 넣어줌!
-
 public class NoticeController {
 
-//	@Setter(onMethod_=@Autowired)
-	// Spring Framework v4.3이후부터는, 아래와 같은 조건 시, 자동 주입:
-	// (1) 주입받을 필드가 오직 1개이고,
-	// (2) 이 필드를 매개변수로 가지는 생성자가 있다면! 자동 주입!
 	private NoticeService service;
 	
 	@GetMapping("/list")
@@ -62,8 +53,8 @@ public class NoticeController {
 			model.addAttribute("list", list); // view로 날아갈 model 상자 안에 model 데이터를 담음
 			
 			
-			int total = this.service.getTotal();
-			PageDTO pageDTO = new PageDTO(cri, total);
+			int totalAmount = this.service.getTotal();
+			PageDTO pageDTO = new PageDTO(cri, totalAmount);
 			model.addAttribute("pageMaker", pageDTO);
 			
 		} catch (Exception e) {
@@ -130,7 +121,6 @@ public class NoticeController {
 	} // modify()
 	
 	
-	
 	@PostMapping("/register")
 	public String register(Criteria cri, NoticeDTO dto, RedirectAttributes rttrs) 
 			throws ControllerException {
@@ -153,12 +143,7 @@ public class NoticeController {
 		
 	} // register()
 	
-//	==============================================================================
-//	HttpSession, HttpServletRequest, HttpServletResponse 객체가 정말
-//	필요하면, DispatcherServlet에게 "달라!"라고 지정하면 "줍니다!"
-//	(주의사항) 하지만, 이 객체를 직접 핸들링하는 것은, 스프링에 반하는 행위입니다!
-//	-> 권장 X
-//	==============================================================================
+
 	@GetMapping("/temp")
 	void temp(
 			HttpSession session,
@@ -166,7 +151,7 @@ public class NoticeController {
 			HttpServletResponse res,
 			@SessionAttribute("notice") NoticeVO vo
 			) {
-		
+	
 		log.trace("temp({}, {}, {}, {}) invoked.", session, req, res, vo);
 		
 	} // temp()
@@ -188,7 +173,7 @@ public class NoticeController {
 	@GetMapping("/register")
 	public void register() {
 		log.trace("register() invoked.");
-	}
+	} //GetMapping()
 	
 	
 } // end class

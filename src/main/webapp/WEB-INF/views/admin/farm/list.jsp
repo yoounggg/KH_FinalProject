@@ -197,7 +197,7 @@
             </table>
             
             
-			<%-- <div class="pageInfo_wrap" >
+			<div class="pageInfo_wrap" >
 			  <form id=moveForm method="get">
 			    <div class="pageInfo_area">
 			    	<ul id="pageInfo" class="pageInfo">
@@ -209,11 +209,8 @@
 			            
 		            	<!-- 각 번호 페이지 버튼 -->
 		                <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-		                    <li class="pageInfo_btn "><a href="/admin/farm/list?pageNum=${num}&amount=${pageMaker.cri.amount}">${num}</a></li>
+		                    <li class="pageInfo_btn "><a href="/admin/farm/list?currPage=${num}&amount=${pageMaker.cri.amount}">${num}</a></li>
 		                </c:forEach>
-		             
-			                
-			            <a href="/notice/list?pageNum="${pageMaker.cri.num}"&amount="${pageMaker.cri.amount}"">
 			                
 			            <!-- 다음페이지 버튼 -->
 			            <c:if test="${pageMaker.next}">
@@ -229,11 +226,11 @@
 	                <button type="button" id="removeBtn">삭제</button>
 	            </div>
 
-			        <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+			        <input type="hidden" name="currPage" value="${pageMaker.cri.currPage }">
 			        <input type="hidden" name="amount" value="${pageMaker.cri.amount }">
 		        
             </form>
-           </div> --%>
+           </div>
         </div>
         
 
@@ -343,7 +340,7 @@
         /*$(".pageInfo a").on("click", function(e){
         	 
             e.preventDefault();
-            moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+            moveForm.find("input[name='currPage']").val($(this).attr("href"));
             moveForm.attr("action", "/notice/list");
             moveForm.submit();
             

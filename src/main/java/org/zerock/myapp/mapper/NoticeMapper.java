@@ -31,6 +31,10 @@ public interface NoticeMapper {
 	/* 공지사항 게시글 수정 */	
 	public abstract Integer update(NoticeDTO dto);	
 	
+	/* 총 게시물 건수 반환 */
+	@Select("SELECT count(no) FROM NOTICE WHERE no>0")
+	public abstract Integer totalCount();
+	
 	/* 공지사항 게시글 총 갯수 */
 	public abstract Integer getTotal();
 	
