@@ -72,7 +72,7 @@ public class FarmServiceTests {
 	void get() throws ServiceException {
 		log.trace("get() invoked.");
 		
-		int no = 16;
+		int no = 35;
 		FarmVO vo = this.service.get(no);
 		
 		assertNotNull(vo);

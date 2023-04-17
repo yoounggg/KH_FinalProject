@@ -10,9 +10,9 @@ import org.zerock.myapp.domain.ProductVO;
 public interface ProductMapper {
 
 	@Select("""
-			SELECT /* index_asc(product_list) */ pno, pname, content, image, price, discount, 
-			brandname, insert_ts, readcount, (price - (price * (discount / 100))) - mod(price - 
-			(price * (discount /100)), 10) as disprice 
+			SELECT /* index_asc(product_list) */ no, name, content, content_image, price, discount, 
+			brandname, reg_date, hit, (price - (price * (discount / 100))) - mod(price - 
+			(price * (discount /100)), 10) as discount_price 
 			FROM product_list OFFSET ( #{currPage} -1) * #{amount} ROWS FETCH NEXT #{amount} ROWS ONLY
 			""")
 	public abstract List<ProductVO> SelectAllList(Criteria cri);		// 전체목록 가져오기
@@ -24,6 +24,11 @@ public interface ProductMapper {
 	
 	public abstract ProductDTO SelectDetail(Integer pno);	// 상품 상세 조회
 	
+	
+//	==============================================================
+//	[별이]
+	/*  상품 등록 */
+	public abstract Integer insert(ProductDTO dto);
 	
 	
 } // end interface

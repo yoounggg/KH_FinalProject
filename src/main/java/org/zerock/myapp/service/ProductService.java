@@ -21,4 +21,12 @@ public interface ProductService {
 	// 4. 상품 상세 조회
 	public abstract ProductDTO getProductDetail(Integer pno) throws ServiceException;
 	
+	
+//	----------------------------------
+//	[별이 4/14]
+	
+	// 5. 상품 등록
+	public abstract Boolean register(ProductDTO dto) throws ServiceException;
+	
+
 } // end interface

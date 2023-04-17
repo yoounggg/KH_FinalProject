@@ -12,7 +12,7 @@ public interface FarmService {
 	/* 농가 거래처 전체 조회 */
 	public abstract List<FarmVO> getList() throws ServiceException;
 	
-	/* 농가 거래처 전체 조회(페이징0 */
+	/* 농가 거래처 전체 조회(페이징) */
 	public abstract List<FarmVO> getListPaging(Criteria cri) throws ServiceException;
 		
 	/* 농가 거래처 상세 조회 */
