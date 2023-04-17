@@ -1,21 +1,23 @@
 // 아이디 유효성 검사
 function id_btn() {
-    document.getElementById("id_confirm").style.backgroundColor = "#10bc0d"
-    document.querySelector("#id_confirm").disabled = false;             // 배경, 버튼 활성화
+    document.getElementById("id_confirm").style.backgroundColor = "#10bc0d";
+    document.querySelector("#id_confirm").disabled = false; // 배경, 버튼 활성화
 
-    const input_id = document.getElementById("input_id").value;
-    const isOk = /^(?=.*[a-zA-Z])[a-zA-Z0-9]{6,12}$/;                   //영문 or 영문숫자 6~12
+    const input_id = document.getElementById("input_id");
+    const value = input_id.value.toLowerCase(); // 입력된 값 소문자로 변환
 
-    if (isOk.test(input_id)) {
+    input_id.value = value; // 소문자로 변환된 값으로 변경
+
+    const isOk = /^(?=.*[a-z])[a-z0-9]{6,12}$/; // 영문 or 영문숫자 6~12, 소문자만 입력 가능
+
+    if (isOk.test(value)) {
         document.getElementById("id_input_con").style.display = "none";
     } else {
         document.getElementById("id_input_con").style.display = "block";
-
     }
 };
 
 // 아이디 중복 확인
-
 function checkId() {
     var id = $("#input_id").val();    // 아이디 입력값
     const isOk = /^(?=.*[a-zA-Z])[a-zA-Z0-9]{6,12}$/;                   //영문 or 영문숫자 6~12
@@ -44,8 +46,8 @@ function checkId() {
         document.getElementById("input_id").readOnly = "true";            // 아이디 입력창 읽기전용
         document.getElementById("id_confirm").disabled = "true";          // 중복확인 버튼 비활성화
         document.getElementById("id_confirm").style.backgroundColor = "#b1b1b1";
-        document.getElementById("input_id").addEventListener("keydown", function(event) {
-        event.preventDefault();     // 키보드 제한	//안먹힘...
+        document.getElementById("input_id").addEventListener("keydown", function (event) {
+            event.preventDefault();     // 키보드 제한	//안먹힘...
         });
 
     } else {
@@ -102,19 +104,21 @@ function name_input_con() {
 
 //이메일 유효성 검사
 function email_btn() {
-    document.getElementById("email_confirm").style.backgroundColor = "#10bc0d"
-    document.querySelector("#email_confirm").disabled = false;          // 배경, 버튼 활성화
+    document.getElementById("email_confirm").style.backgroundColor = "#10bc0d";
+    document.querySelector("#email_confirm").disabled = false; // 배경, 버튼 활성화
 
-    const emailInput = document.querySelector('#input_email').value;
+    const emailInput = document.querySelector('#input_email');
+    const value = emailInput.value.toLowerCase(); // 입력된 값 소문자로 변환
+
+    emailInput.value = value; // 소문자로 변환된 값으로 변경
+
     const emailCondition = document.querySelector('#email_input_con');
+    var isOk = /^[a-z0-9]+@[a-z0-9]+\.[a-z]{2,}$/; // 이메일 형식, 소문자만 입력 가능
 
-    var isOk = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/;         //이메일 형식
-
-    if (isOk.test(emailInput)) {
+    if (isOk.test(value)) {
         emailCondition.style.display = 'none'; // 조건 만족 시 안 보이도록 함
     } else {
         emailCondition.style.display = 'block';
-
     }
 };
 
@@ -146,8 +150,8 @@ function checkEmail() {
         document.getElementById("input_email").readOnly = "true";            // 이메일 입력창 읽기전용
         document.getElementById("email_confirm").disabled = "true";          // 중복확인 버튼 비활성화
         document.getElementById("email_confirm").style.backgroundColor = "#b1b1b1";
-        document.getElementById("input_email").addEventListener("keydown", function(event) {
-        event.preventDefault();     // 키보드 제한  //안먹힘...
+        document.getElementById("input_email").addEventListener("keydown", function (event) {
+            event.preventDefault();     // 키보드 제한  //안먹힘...
         });
     } else {
         popup_on1();
@@ -233,7 +237,7 @@ function smsSend() {
                 timer = setInterval(function () {
                     count--;
                     var minutes = Math.floor(count / 60);        // 분 계산
-                    var seconds = count % 60;                   // 초 계산
+                    var seconds = count % 60;                    // 초 계산
                     document.querySelector("#countdown").textContent = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;  // 카운트 다운 업데이트
                     if (count == 0) {  // 타이머 0일때
                         clearInterval(timer);  // 타이머 종료
@@ -337,26 +341,13 @@ function validateDD(input) {
 // 회원가입 기능
 
 $(document).ready(function () {
-    // const id = document.getElementById("input_id").value;             //아이디
-    // const pw = document.getElementById("input_pw").value;             //비밀번호
-    // const pw2 = document.getElementById("input_confirm_pw").value;    //비밀번호 혹인
-    // const name = document.getElementById("input_name").value;         //이름
-    // const email = document.getElementById("input_email").value;       //이메일
-    // const tel = document.getElementById("input_hp").value;            //휴대폰 번호
-    // const num = document.getElementById("input_num").value;           //인증번호
-    // const addr1 = document.getElementById("post_num").value;          //우편번호
-    // const addr2 = document.getElementById("addr2").value;             //주소
-    // const addr3 = document.getElementById("detail_addr").value;       //상세주소
-    
+
     const id_btn = document.getElementById("id_confirm");             //아이디 중복체크
     const email_btn = document.getElementById("email_confirm");       //이메일 중복체크
     const tel_btn = document.getElementById("hp_confirm");            //휴대폰 번호 인증
-    
 
-
-   
     $("#signup_btn").click(function () {
-       
+        
         const id = document.getElementById("input_id").value;             //아이디
         const pw = document.getElementById("input_pw").value;             //비밀번호
         const pw2 = document.getElementById("input_confirm_pw").value;    //비밀번호 혹인
@@ -369,102 +360,66 @@ $(document).ready(function () {
         const addr3 = document.getElementById("detail_addr").value;       //상세주소
 
 
-        if(id.trim() === ""){                          // 아이디 체크
-            console.log("아이디");
+        if (id.trim() === "") {                          // 아이디 체크
             popup_on12();
-            // document.getElementById("input_id").focus();  
-            
-        } else
-        
-        if(!id_btn.disabled){            // 아이디 중복확인 체크
-            console.log("중복");
+
+        } else if (!id_btn.disabled) {                  // 아이디 중복확인 체크
             popup_on21();
-            // id_btn.focus();
 
-        } else
-        
-        if(pw.trim() === ""){                   // 비밀번호 체크
-            console.log("비밀번호");
+        } else if (pw.trim() === "") {                   // 비밀번호 체크
             popup_on13();
-            // pw.focus();
-
-        }else
-        
-        if(pw2.trim() === ""){                  // 비밀번호 확인 체크 
+      
+        } else if (pw2.trim() === "") {                  // 비밀번호 확인 체크 
             popup_on14();
-            // pw2.focus();
             
-        }else
-        
-        if(pw2 != pw){                  // 비밀번호 확인 체크 
+        } else if (pw2 != pw) {                         // 비밀번호 확인 체크 
             popup_on24();
-            // pw2.focus();
-
-        }else
         
-        if(name.trim() === ""){                 // 이름 체크
+        } else if (name.trim() === "") {                 // 이름 체크
             popup_on15();
-            // name.focus();
 
-        }else
-        
-        if(email.trim() === ""){                // 이메일 체크
+        } else if (email.trim() === "") {                // 이메일 체크
             popup_on16();
-            // email.focus();
+    
+        } else if (!email_btn.disabled) {               // 이메일 중복확인 체크
+            popup_on22();    
 
-        }else
-        
-        if(!email_btn.disabled){         // 이메일 중복확인 체크
-            popup_on22();
-            // email_btn.focus();
+        } else if (tel.trim() === "") {                  // 휴대폰 번호 체크
+            popup_on17();         
 
-        }else
-        
-        if(tel.trim() === ""){                  // 휴대폰 번호 체크
-            popup_on17();
-            // tel_btn.focus();
-
-        }else
-        
-        if(!tel_btn.disabled){            // 휴대폰 인증 체크
+        } else if (!tel_btn.disabled) {                 // 휴대폰 인증 체크
             popup_on23();
-            // hp_btn.focus();
-
-        }else
-        
-        if(num.trim() === ""){                  // 인증번호 체크
+            
+        } else if (num.trim() === "") {                  // 인증번호 체크
             popup_on18();
-            // num.focus();
 
-        }else
-        
-        if(addr1.trim() === ""){                // 우편번호 체크
-            popup_on25();
-            // addr1.focus();
-
-        }else
-        
-        if(addr2.trim() === ""){                // 주소 체크
+        } else if (addr2.trim() === "") {                // 주소 체크
             popup_on19();
-            // addr2.focus();
 
-        }else
-        
-       if (addr3.trim() === ""){                // 상세 주소 체크
+        } else if (addr3.trim() === "") {                // 상세 주소 체크
             popup_on20();
-            // addr3.focus();
-
-        }else{
-
+        
+        } else {
             $("#signup").attr("action", "/signup/info");        //가입 성공
             $("#signup").submit();
 
         }
-        
     });
 });
 
+// const inputConditions = document.getElementsByClassName("입력조건");
 
+// let isInputValid = true;
+// for (let i = 0; i < inputConditions.length; i++) {
+//   if (inputConditions[i].style.display === "block") {
+//     isInputValid = false;
+//     break;
+//   }
+// }
+
+// if (!isInputValid) {
+//   popup_on1();
+// }
 
 
 // 팝업 1 조건에 맞게 입력해주세요
@@ -679,6 +634,7 @@ function popup_on12() {
 function exit12() {
     $(".popmenu12").hide();
     popup_blur12(false);
+    document.getElementById("input_id").focus();
 };
 
 function popup_blur12(chk) {
@@ -697,6 +653,7 @@ function popup_on13() {
 function exit13() {
     $(".popmenu13").hide();
     popup_blur13(false);
+     document.getElementById("input_pw").focus();
 };
 
 function popup_blur13(chk) {
@@ -715,6 +672,7 @@ function popup_on14() {
 function exit14() {
     $(".popmenu14").hide();
     popup_blur14(false);
+    document.getElementById("input_confirm_pw").focus();
 };
 
 function popup_blur14(chk) {
@@ -733,6 +691,7 @@ function popup_on15() {
 function exit15() {
     $(".popmenu15").hide();
     popup_blur15(false);
+    document.getElementById("input_name").focus();
 };
 
 function popup_blur15(chk) {
@@ -751,6 +710,7 @@ function popup_on16() {
 function exit16() {
     $(".popmenu16").hide();
     popup_blur16(false);
+    document.getElementById("input_email").focus();
 };
 
 function popup_blur16(chk) {
@@ -769,6 +729,7 @@ function popup_on17() {
 function exit17() {
     $(".popmenu17").hide();
     popup_blur17(false);
+    document.getElementById("input_hp").focus();
 };
 
 function popup_blur17(chk) {
@@ -787,6 +748,7 @@ function popup_on18() {
 function exit18() {
     $(".popmenu18").hide();
     popup_blur18(false);
+    document.getElementById("input_num").focus();
 };
 
 function popup_blur18(chk) {
@@ -805,6 +767,7 @@ function popup_on19() {
 function exit19() {
     $(".popmenu19").hide();
     popup_blur19(false);
+    document.getElementById("addr2").focus();
 };
 
 function popup_blur19(chk) {
@@ -824,6 +787,7 @@ function popup_on20() {
 function exit20() {
     $(".popmenu20").hide();
     popup_blur20(false);
+    document.getElementById("detail_addr").focus();
 };
 
 function popup_blur20(chk) {
@@ -842,6 +806,7 @@ function popup_on21() {
 function exit21() {
     $(".popmenu21").hide();
     popup_blur21(false);
+    document.getElementById("id_confirm").focus();
 };
 
 function popup_blur21(chk) {
@@ -860,6 +825,7 @@ function popup_on22() {
 function exit22() {
     $(".popmenu22").hide();
     popup_blur22(false);
+    document.getElementById("email_confirm").focus();
 };
 
 function popup_blur22(chk) {
@@ -878,6 +844,7 @@ function popup_on23() {
 function exit23() {
     $(".popmenu23").hide();
     popup_blur23(false);
+    document.getElementById("hp_confirm").focus();
 };
 
 function popup_blur23(chk) {
@@ -896,6 +863,7 @@ function popup_on24() {
 function exit24() {
     $(".popmenu24").hide();
     popup_blur24(false);
+    document.getElementById("input_confirm_pw").focus();
 };
 
 function popup_blur24(chk) {
