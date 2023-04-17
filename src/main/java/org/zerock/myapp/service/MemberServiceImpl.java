@@ -19,25 +19,23 @@ public class MemberServiceImpl implements MemberService {
 	
 	// 혁규 회원가입
 	@Setter(onMethod_=@Autowired)
-	MemberMapper mapper;
+	MemberMapper memberMapper;
 	
 	@Override
 	public void memberSignup(MemberVO memberVO) throws Exception{
 
 		log.trace("MemberVO : {} invoked", memberVO );
 			
-		mapper.memberSignup(memberVO);
+		memberMapper.memberSignup(memberVO);
 			
 		log.trace("MemberVO : {} invoked", memberVO );
 	}
 	
-	// 세인 로그인
-	MemberMapper memberMapper;
-	
+	// 세인 로그인	
 	@Override
 	public MemberVO memberLogin(LoginDTO loginDTO) throws ServiceException {
 		
-		return memberMapper.memberLogin(loginDTO);
+		return this.memberMapper.memberLogin(loginDTO);
 		
 	} // memberLogin()
 	
@@ -46,6 +44,6 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO getMemberInfo(String memberId) throws ServiceException {
 		
 		return memberMapper.getMemberInfo(memberId);
-	} // getMemberInfo    아 혁규형 MemberMapper 변수명 memberMapper로 해달라고오~!~!~!~
+	} // getMemberInfo
  
 } // end class
