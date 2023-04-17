@@ -337,16 +337,16 @@ function validateDD(input) {
 // 회원가입 기능
 
 $(document).ready(function () {
-    const id = document.getElementById("input_id").value;             //아이디
-    const pw = document.getElementById("input_pw").value;             //비밀번호
-    const pw2 = document.getElementById("input_confirm_pw").value;    //비밀번호 혹인
-    const name = document.getElementById("input_name").value;         //이름
-    const email = document.getElementById("input_email").value;       //이메일
-    const tel = document.getElementById("input_hp").value;            //휴대폰 번호
-    const num = document.getElementById("input_num").value;           //인증번호
-    const addr1 = document.getElementById("post_num").value;          //우편번호
-    const addr2 = document.getElementById("addr2").value;             //주소
-    const addr3 = document.getElementById("detail_addr").value;       //상세주소
+    // const id = document.getElementById("input_id").value;             //아이디
+    // const pw = document.getElementById("input_pw").value;             //비밀번호
+    // const pw2 = document.getElementById("input_confirm_pw").value;    //비밀번호 혹인
+    // const name = document.getElementById("input_name").value;         //이름
+    // const email = document.getElementById("input_email").value;       //이메일
+    // const tel = document.getElementById("input_hp").value;            //휴대폰 번호
+    // const num = document.getElementById("input_num").value;           //인증번호
+    // const addr1 = document.getElementById("post_num").value;          //우편번호
+    // const addr2 = document.getElementById("addr2").value;             //주소
+    // const addr3 = document.getElementById("detail_addr").value;       //상세주소
     
     const id_btn = document.getElementById("id_confirm");             //아이디 중복체크
     const email_btn = document.getElementById("email_confirm");       //이메일 중복체크
@@ -354,69 +354,113 @@ $(document).ready(function () {
     
 
 
+   
     $("#signup_btn").click(function () {
-        if(id === ""){                          // 아이디 체크
+       
+        const id = document.getElementById("input_id").value;             //아이디
+        const pw = document.getElementById("input_pw").value;             //비밀번호
+        const pw2 = document.getElementById("input_confirm_pw").value;    //비밀번호 혹인
+        const name = document.getElementById("input_name").value;         //이름
+        const email = document.getElementById("input_email").value;       //이메일
+        const tel = document.getElementById("input_hp").value;            //휴대폰 번호
+        const num = document.getElementById("input_num").value;           //인증번호
+        const addr1 = document.getElementById("post_num").value;          //우편번호
+        const addr2 = document.getElementById("addr2").value;             //주소
+        const addr3 = document.getElementById("detail_addr").value;       //상세주소
+
+
+        if(id.trim() === ""){                          // 아이디 체크
+            console.log("아이디");
             popup_on12();
-            id.focus();     
+            // document.getElementById("input_id").focus();  
             
-        } else if(!id_btn.disabled){            // 아이디 중복확인 체크
+        } else
+        
+        if(!id_btn.disabled){            // 아이디 중복확인 체크
+            console.log("중복");
             popup_on21();
-            id_btn.focus();
+            // id_btn.focus();
 
-        } else if(pw === ""){                   // 비밀번호 체크
+        } else
+        
+        if(pw.trim() === ""){                   // 비밀번호 체크
+            console.log("비밀번호");
             popup_on13();
-            pw.focus();
+            // pw.focus();
 
-        } else if(pw2 === ""){                  // 비밀번호 확인 체크 
+        }else
+        
+        if(pw2.trim() === ""){                  // 비밀번호 확인 체크 
             popup_on14();
-            pw2.focus();
+            // pw2.focus();
             
-        } else if(pw2 != pw){                  // 비밀번호 확인 체크 
+        }else
+        
+        if(pw2 != pw){                  // 비밀번호 확인 체크 
             popup_on24();
-            pw2.focus();
+            // pw2.focus();
 
-        } else if(name === ""){                 // 이름 체크
+        }else
+        
+        if(name.trim() === ""){                 // 이름 체크
             popup_on15();
-            name.focus();
+            // name.focus();
 
-        } else if(email === ""){                // 이메일 체크
+        }else
+        
+        if(email.trim() === ""){                // 이메일 체크
             popup_on16();
-            email.focus();
+            // email.focus();
 
-        } else if(!email_btn.disabled){         // 이메일 중복확인 체크
+        }else
+        
+        if(!email_btn.disabled){         // 이메일 중복확인 체크
             popup_on22();
-            email_btn.focus();
+            // email_btn.focus();
 
-        } else if(tel === ""){                  // 휴대폰 번호 체크
+        }else
+        
+        if(tel.trim() === ""){                  // 휴대폰 번호 체크
             popup_on17();
-            tel_btn.focus();
+            // tel_btn.focus();
 
-        } else if(!hp_btn.disabled){            // 휴대폰 인증 체크
+        }else
+        
+        if(!tel_btn.disabled){            // 휴대폰 인증 체크
             popup_on23();
-            hp_btn.focus();
+            // hp_btn.focus();
 
-        } else if(num === ""){                  // 인증번호 체크
+        }else
+        
+        if(num.trim() === ""){                  // 인증번호 체크
             popup_on18();
-            num.focus();
+            // num.focus();
 
-        } else if(addr1 === ""){                // 우편번호 체크
+        }else
+        
+        if(addr1.trim() === ""){                // 우편번호 체크
             popup_on25();
-            addr1.focus();
+            // addr1.focus();
 
-        } else if(addr2 === ""){                // 주소 체크
+        }else
+        
+        if(addr2.trim() === ""){                // 주소 체크
             popup_on19();
-            addr2.focus();
+            // addr2.focus();
 
-        } else if(addr3 === ""){                // 상세 주소 체크
+        }else
+        
+       if (addr3.trim() === ""){                // 상세 주소 체크
             popup_on20();
-            addr3.focus();
+            // addr3.focus();
 
-        } else {
+        }else{
 
-        $("#signup").attr("action", "/signup/info");        //가입 성공
-        $("#signup").submit();
+            $("#signup").attr("action", "/signup/info");        //가입 성공
+            $("#signup").submit();
 
         }
+        
     });
 });
 
@@ -855,6 +899,24 @@ function exit24() {
 };
 
 function popup_blur24(chk) {
+    if (chk === false)
+        $('#entire').css({ "opacity": "1", "pointer-events": "auto" });
+    else
+        $('#entire').css({ "opacity": "0.3", "pointer-events": "none" });
+};
+
+// 팝업 25 우편번호를 확인해주세요
+function popup_on25() {
+    $(".popmenu25").show();
+    popup_blur25(true);
+};
+
+function exit25() {
+    $(".popmenu25").hide();
+    popup_blur24(false);
+};
+
+function popup_blur25(chk) {
     if (chk === false)
         $('#entire').css({ "opacity": "1", "pointer-events": "auto" });
     else
