@@ -15,17 +15,11 @@
     <link rel="icon" href="/resources/ico/favicon.ico" type="image/x-icon">
     
 	<!-- 로그인 메인창 css -->
-    <link rel="stylesheet" href="/resources/login/css/Login_Main.css">
+    <link rel="stylesheet" href="/resources/css/login/Login_Main.css">
 
 	<!-- 로그인 제이쿼리 by 셍나 -->
-	<script
-		src="https://code.jquery.com/jquery-3.4.1.js"
-		integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-		crossorigin="anonymous">
-	</script>
-	
-	<!-- 로그인 메인창 js -->
-	<script src="../resources/login/js/Login_Main.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.0/jquery-migrate.min.js"></script>
 
 </head>
 
@@ -101,5 +95,9 @@
     <%@include file= "../common/footer.jsp" %>
     
 </body>
+
+	<!-- 이거 헤드에다가 넣으면 작동 XX 왜인지는 모르겠음 ㅠㅠ -->
+	<!-- 로그인 메인창 js -->
+	<script src="/resources/js/login/Login_Main.js"></script>
 
 </html>
