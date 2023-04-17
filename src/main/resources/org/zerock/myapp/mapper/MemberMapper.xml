@@ -7,12 +7,14 @@
 <mapper namespace="org.zerock.myapp.mapper.MemberMapper">
 
 	<!-- 셍나 로그인: memberLogin() -->
-	<select id="memberLogin" parameterType="org.zerock.myapp.domain.LoginDTO" resultType="org.zerock.myapp.domain.MemberVO">
-	    SELECT ID, PASSWORD
-	    FROM MEMBER 
+	<select id="memberLogin" resultType="org.zerock.myapp.domain.MemberVO">
+	    SELECT 
+	    	*
+	    FROM 
+	    	member 
 	    WHERE 
-	        ID = #{id} 
-	        AND PASSWORD = #{password}
+	        id = #{id} 
+	        AND password = #{password}
 	</select>
 
 	<!-- 혁규 회원가입 -->
