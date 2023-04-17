@@ -1,6 +1,6 @@
 package org.zerock.myapp.domain;
 
-import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -10,30 +10,35 @@ public class CartDTO { // maper 메서드에 필요한 장바구니 데이터를
 	//CART TABLE
 	private Integer no; // <- cartNumber 
 	private String member_id;
-	private Integer product_no;
 	private Integer count;
+	
+	private Integer product_No; // ** product의 no (pk)를 fk로 가져옴
 //	private Date cartDate; // ORACLE에 아직 없음 필요하면 추가해야함
 	
 	//product TABLE
 	private String name;
-	private Integer price;
-	private Integer discount_price;
+	private Integer price; // -> 상품 한 개의 원가 
+	private Integer discount_price; // -> 상품 한 개의 최종 가격
+	
+	
+	//상품 이미지
+	private List<AttachImageVO> imageList;
 	
 	//가격 계산 (cart_Count, price, discount_price-> 3개가 필요)
-	private Integer salePrice;
+//	private Integer salePrice;
 	private Integer totalPrice;
 	
 	//위에서 가격 있는 변수로 최종 가격 계산하는 메소드 ! 
 	public void initPrice() {
-		this.salePrice = (int)(this.price * (1 - this.discount_price));
-		this.totalPrice = this.salePrice*this.count;
+//		this.salePrice = (int)(this.price * (1 - this.discount_price));
+		this.totalPrice = this.discount_price*this.count;
 	}
 	
 	@Override
 	public String toString() { // 우선 + ", cartDate=" + cartDate  제외함 
-		return "CartDTO [no=" + no + ", member_id=" + member_id + ", product_no=" + product_no + ", count="
+		return "CartDTO [no=" + no + ", member_id=" + member_id + ", product_no=" + product_No + ", count="
 				+ count + ", name=" + name + ", price=" + price
-				+ ", discount_price=" + discount_price + ", salePrice=" + salePrice + ", totalPrice=" + totalPrice +"]";
+				+ ", discount_price=" + discount_price + ", totalPrice=" + totalPrice + ", imageList=" + imageList+"]";
 	} // toString
 	
 }

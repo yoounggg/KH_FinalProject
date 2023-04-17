@@ -19,10 +19,11 @@
 	<select id="getListPaging" resultType="org.zerock.myapp.domain.FarmVO">
 	  <![CDATA[
 	    
-			SELECT no, name, business_no, location, tel
-			FROM (select /*+INDEX_DESC(farm pk_farm) */ rownum as rn, no, name, business_no, location, tel
-				  FROM farm WHERE rownum <= #{pageNum} * #{amount} )
-			WHERE rn > (#{pageNum} -1) * #{amount}
+		SELECT * 
+			FROM FARM
+			ORDER BY no DESC
+			OFFSET (#{currPage} - 1) * #{amount} ROWS
+			FETCH NEXT #{amount} ROWS ONLY
 		
 		]]>	
 	</select>

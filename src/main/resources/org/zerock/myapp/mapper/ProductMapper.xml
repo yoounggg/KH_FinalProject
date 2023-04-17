@@ -22,4 +22,12 @@
         FROM product_list
         WHERE pno = #{pno}
     </select>
+    
+
+    <!-- [별이] 관리자페이지 상품 등록 -->
+    
+    <insert id="insert" >
+        INSERT INTO PRODUCT (category1, category2, name, price, discount, discount_price, weight, origin, stock, farm_no, main_image, sub_image1, sub_image2, sub_image3, sub_image4, content, content_image)
+      	VALUES (#{category1}, #{category2}, #{name}, #{price}, #{discount}, #{discount_price}, #{weight}, #{origin}, #{stock}, #{farm_no}, #{main_image}, #{sub_image1}, #{sub_image2}, #{sub_image3}, #{sub_image4}, #{content}, #{content_image})    
+    </insert>
 </mapper>

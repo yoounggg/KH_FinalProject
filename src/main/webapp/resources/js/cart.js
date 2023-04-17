@@ -1,6 +1,5 @@
 
 //상단 nav 메뉴 고정
-
 $(document).ready(function(){
     var menuOffset = $('.menu').offset();
     $(window).scroll(function(){
@@ -19,153 +18,150 @@ $(document).ready(function(){
       });
     });
 
-    $(document).ready(function(){
+
+//장바구니 메인
+$(document).ready(function(){
 	
-      /* 종합 정보 섹션 정보 삽입 */
-      setTotalInfo();	
+  /* 종합 정보 섹션 정보 삽입 */
+  setTotalInfo();	
       
-      /* 이미지 삽입 */
-      $(".image_wrap").each(function(i, obj){
+  /* 이미지 삽입 */
+  $(".image_wrap").each(function(i, obj){
       
-        const bobj = $(obj);
+    const bobj = $(obj);
         
-        if(bobj.data("bookid")){
-          const uploadPath = bobj.data("path");
-          const uuid = bobj.data("uuid");
-          const fileName = bobj.data("filename");
+    if(bobj.data("product_no")){
+      const uploadPath = bobj.data("path");
+      const uuid = bobj.data("uuid");
+      const fileName = bobj.data("filename");
           
-          const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+      const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
           
-          $(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
-        } else {
-          $(this).find("img").attr('src', '/resources/img/goodsNoImage.png');
-        }
-        
-      });
+      $(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
+    } else {
+      $(this).find("img").attr('src', '/resources/img/goodsNoImage.png');
+    }  
+  });    
+// });	
+
+
+/* 체크여부에따른 종합 정보 변화 */
+   
+$(".cartCheckbox").on("change", function(){
+  /* 총 주문 정보 세팅(배송비, 총 가격, 물품 수) */
+  setTotalInfo($(".cartinfo_td"));
+});
+
+/* 체크박스 전체 선택 */
+$(".allcheckboxInput").on("click", function(){
+  /* 체크박스 체크/해제 */
+  if($(".allcheckboxInput").prop("checked")){
+  $(".cartCheckbox").prop("checked", true);
+  } else{
+    $(".cartCheckbox").prop("checked", false);
+  }
       
+//   /* 총 주문 정보 세팅(배송비, 총 가격, 물품 수) */
+  setTotalInfo($(".cartinfo_td"));	
       
-    });	
-    /* 체크여부에따른 종합 정보 변화 */
-    $(".individual_cart_checkbox").on("change", function(){
-      /* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
-      setTotalInfo($(".cart_info_td"));
-    });
-    /* 체크박스 전체 선택 */
-    $(".all_check_input").on("click", function(){
-      /* 체크박스 체크/해제 */
-      if($(".all_check_input").prop("checked")){
-        $(".individual_cart_checkbox").attr("checked", true);
-      } else{
-        $(".individual_cart_checkbox").attr("checked", false);
-      }
+});
+
+/* 총 주문 정보 세팅(배송비, 총 가격, 물품 수) */
+function setTotalInfo(){
       
-      /* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
-      setTotalInfo($(".cart_info_td"));	
+  let totalPrice = 0;				// 총 가격
+  let deliveryPrice = 0;			// 배송비-> 3000원으로 고정시킬건데 상품이 0원일 때는 배송비 0원으로 해줘야해서 조건문 추가
+  let finalTotalPrice = 0; 		// 최종 가격(총 가격 + 배송비)
+     
+     //cartinfo_td 인 td 순회하는데 check되어 있는 상품만 total로 !!
+  $(".cartinfo_td").each(function(index, element){ // each 메소드는 td객체가 존재하는 만큼 순회
+      //제이쿼리 find 메소드로 input 태그에 접근    
+    if($(element).find(".cartCheckbox").is(":checked") === true){	//체크여부
       
-    });
-    /* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
-    function setTotalInfo(){
-      
-      let totalPrice = 0;				// 총 가격
-      let totalCount = 0;				// 총 갯수
-      let totalKind = 0;				// 총 종류
-      let totalPoint = 0;				// 총 마일리지
-      let deliveryPrice = 0;			// 배송비
-      let finalTotalPrice = 0; 		// 최종 가격(총 가격 + 배송비)
-      
-      $(".cart_info_td").each(function(index, element){
-        
-        if($(element).find(".individual_cart_checkbox").is(":checked") === true){	//체크여부
-          // 총 가격
-          totalPrice += parseInt($(element).find(".individual_totalPrice_input").val());
-          // 총 갯수
-          totalCount += parseInt($(element).find(".individual_bookCount_input").val());
-          // 총 종류
-          totalKind += 1;
-          // 총 마일리지
-          totalPoint += parseInt($(element).find(".individual_totalPoint_input").val());			
-        }
-      });
-      
-      
-      /* 배송비 결정 */
-      if(totalPrice >= 30000){
-        deliveryPrice = 0;
-      } else if(totalPrice == 0){
-        deliveryPrice = 0;
-      } else {
-        deliveryPrice = 3000;	
-      }
-      
-        finalTotalPrice = totalPrice + deliveryPrice;
-      
-      /* ※ 세자리 컴마 Javscript Number 객체의 toLocaleString() */
-      
-      // 총 가격
-      $(".totalPrice_span").text(totalPrice.toLocaleString());
-      // 총 갯수
-      $(".totalCount_span").text(totalCount);
-      // 총 종류
-      $(".totalKind_span").text(totalKind);
-      // 총 마일리지
-      $(".totalPoint_span").text(totalPoint.toLocaleString());
-      // 배송비
-      $(".delivery_price").text(deliveryPrice);	
-      // 최종 가격(총 가격 + 배송비)
-      $(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());		
+    // 총 가격
+      totalPrice += parseInt($(element).find(".cartTotalPriceInput").val());
+   }
+  });
+
+    //배송비
+    if(totalPrice == 0 ){
+      deliveryPrice = 0;
+    } else{
+      deliveryPrice = 3000;
     }
-    /* 수량버튼 */
-    $(".plus_btn").on("click", function(){
-      let quantity = $(this).parent("div").find("input").val();
-      $(this).parent("div").find("input").val(++quantity);
-    });
-    $(".minus_btn").on("click", function(){
-      let quantity = $(this).parent("div").find("input").val();
-      if(quantity > 1){
-        $(this).parent("div").find("input").val(--quantity);		
-      }
-    });
-    /* 수량 수정 버튼 */
-    $(".quantity_modify_btn").on("click", function(){
-      let cartId = $(this).data("cartid");
-      let bookCount = $(this).parent("td").find("input").val();
-      $(".update_cartId").val(cartId);
-      $(".update_bookCount").val(bookCount);
-      $(".quantity_update_form").submit();
       
-    });
-    /* 장바구니 삭제 버튼 */
-    $(".delete_btn").on("click", function(e){
-      e.preventDefault();
-      const cartId = $(this).data("cartid");
-      $(".delete_cartId").val(cartId);
-      $(".quantity_delete_form").submit();
-    });
+    //최종가격~!!!!!!!!!!!!
+    finalTotalPrice = totalPrice + deliveryPrice;
       
-    /* 주문 페이지 이동 */	
-    $(".order_btn").on("click", function(){
       
-      let form_contents ='';
-      let orderNumber = 0;
+    // 총 가격
+    $(".totalPrice_span").text(totalPrice.toLocaleString()); // toLocaleString은 숫자 세자리 마다 쉼표찍어줌
+    
+    // 배송비
+    $(".delivery_price").text(deliveryPrice);	
+    
+    // 최종 가격(총 가격 + 배송비)
+    $(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());		
+}
+
+
+/* 수량버튼 */
+$(".plus_btn").on("click", function(){
+  let quantity = $(this).parent("div").find("input").val();
+  $(this).parent("div").find("input").val(++quantity);
+});
+
+$(".minus_btn").on("click", function(){
+  let quantity = $(this).parent("div").find("input").val();
+  if(quantity > 1){
+    $(this).parent("div").find("input").val(--quantity);		
+  }
+});
+
+// /* 수량 수정 버튼 */
+$(".quantity_modify_btn").on("click", function(){
+  let no = $(this).data("no");
+  let count = $(this).parent("td").find("input").val();
+  $(".update_cartId").val(no);
+  $(".update_cartCount").val(count);
+  $(".quantity_update_form").submit();
       
-      $(".cart_info_td").each(function(index, element){
+});
+
+// /* 장바구니 삭제 버튼 */
+$(".delete_btn").on("click", function(e){
+   e.preventDefault();
+   const cartNo = $(this).data("no");
+   $(".delete_cartNo").val(cartNo);
+   $(".quantity_delete_form").submit();
+});
+    
+      
+/* 주문 페이지 이동 */	
+ $(".order_btn").on("click", function(){
+      
+   let form_contents =''; /* input태그 문자열값 저장할 변수 */
+   let orderNumber = 0;	  /* 	 */
+      
+   $(".cartinfo_td").each(function(index, element){ /* 상품데이터 저장된 input태그를 감싼 td태그 반복접근 */
         
-        if($(element).find(".individual_cart_checkbox").is(":checked") === true){	//체크여부
+     if($(element).find(".cartCheckbox").is(":checked") === true){	//체크여부
           
-          let bookId = $(element).find(".individual_bookId_input").val();
-          let bookCount = $(element).find(".individual_bookCount_input").val();
+		let productId = $(element).find(".cartProductNoInput").val(); /* input값에서 상품Id 가져옴 */
+        let productCount = $(element).find(".cartCountInput").val(); /* input값에서 상품count 가져옴 */ 
           
-          let bookId_input = "<input name='orders[" + orderNumber + "].bookId' type='hidden' value='" + bookId + "'>";
-          form_contents += bookId_input;
+       	let productId_input = "<input name='orders[" + orderNumber + "].productId' type='hidden' value='" + productId + "'>";
+       	form_contents += productId_input;
           
-          let bookCount_input = "<input name='orders[" + orderNumber + "].bookCount' type='hidden' value='" + bookCount + "'>";
-          form_contents += bookCount_input;
+       	let productCount_input = "<input name='orders[" + orderNumber + "].productCount' type='hidden' value='" + productCount + "'>";
+       	form_contents += productCount_input;
           
-          orderNumber += 1;
+       	orderNumber += 1;
           
-        }
-      });	
-      $(".order_form").html(form_contents);
-      $(".order_form").submit();
+     }
+   });	
+   $(".order_form").html(form_contents);
+   $(".order_form").submit();
       
-    });    
+  });    /* 주문 페이지 이동 */ 
+});

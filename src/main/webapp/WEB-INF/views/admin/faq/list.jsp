@@ -108,12 +108,17 @@
      }
      
      
+     .pageInfo_area {
+     	margin : auto;
+     }
  
-	  .pageInfo{
+	  #pageInfo{
 	    list-style : none;
 	    display: inline-block;
-	    margin: 50px 0 0 100px;      
+		vertical-align: middle;
 	  }
+	  
+	  
 	  .pageInfo li{
 	    float: left;
 	    font-size: 20px;
@@ -191,7 +196,7 @@
             </table>
             
             
-<%-- 			<div class="pageInfo_wrap" >
+			<div class="pageInfo_wrap" >
 			  <form id=moveForm method="get">
 			    <div class="pageInfo_area">
 			    	<ul id="pageInfo" class="pageInfo">
@@ -203,12 +208,9 @@
 			            
 		            	<!-- 각 번호 페이지 버튼 -->
 		                <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-		                    <li class="pageInfo_btn "><a href="/admin/faq/list?pageNum=${num}&amount=${pageMaker.cri.amount}">${num}</a></li>
+		                    <li class="pageInfo_btn "><a href="/admin/faq/list?currPage=${num}&amount=${pageMaker.cri.amount}">${num}</a></li>
 		                </c:forEach>
-		             
-			                
-			            <a href="/notice/list?pageNum="${pageMaker.cri.num}"&amount="${pageMaker.cri.amount}"">
-			                
+		             	                
 			            <!-- 다음페이지 버튼 -->
 			            <c:if test="${pageMaker.next}">
 			                <li class="pageInfo_btn next"><a href="${pageMaker.endPage + 1 }">Next</a></li>
@@ -223,11 +225,14 @@
 	                <button type="button" id="removeBtn">삭제</button>
 	            </div>
 
-			        <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+			        <input type="hidden" name="currPage" value="${pageMaker.cri.currPage }">
 			        <input type="hidden" name="amount" value="${pageMaker.cri.amount }">
 		        
             </form>
-           </div> --%>
+           </div>
+           
+           
+           
         </div>
         
 
@@ -314,37 +319,6 @@
         }); // removeBtn
         
  </script>
- <script>      
-     
- 	// 페이지 이동 번호가 동작!
- 	
-        /*  let moveForm = ${"#moveForm"}; 
-        
-         $(".move").on("click", function(e) {
-        	e.preventDefault();
-        	
-        	moveForm.append("<input type='hidden' name='no' value='"+(this).attr("href")"'>");
-/*         	moveForm.attr("action", "/notice/get");
-        	moveForm.submit(); */
-        	
-/*         	moveForm.setAttribute('method', 'POST');
-        	moveForm.setAttribute('action', '/notice/get');
-        	moveForm.submit();      	
-        	
-        });  */
-        
 
-        /*$(".pageInfo a").on("click", function(e){
-        	 
-            e.preventDefault();
-            moveForm.find("input[name='pageNum']").val($(this).attr("href"));
-            moveForm.attr("action", "/notice/list");
-            moveForm.submit();
-            
-        }); */
-        
-        
-
-</script>
 
 </html>

@@ -91,12 +91,12 @@ public class CartServiceTest {
 		
 		//3. 존재하는 id이나 카트에는 아직 없는 -> 1
 		String member_id = "a"; //존재하는 id
-		Integer product_no = 1;
+		Integer product_No = 1;
 		Integer count = 1;
 		
 		CartDTO dto = new CartDTO();
 		dto.setMember_id(member_id);
-		dto.setProduct_no(product_no);
+		dto.setProduct_No(product_No);
 		dto.setCount(count);
 		
 		Integer result = service.addProductsInCart(dto);

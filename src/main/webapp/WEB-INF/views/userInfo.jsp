@@ -13,32 +13,68 @@
     <!-- include favicon -->
     <%@include file="/WEB-INF/views/common/favicon.jsp" %>
 
-    <link rel="stylesheet" href="css/userInfo.css">
+    <link rel="stylesheet" href="/resources/css/userInfo.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
     <script src="https://kit.fontawesome.com/1fe7ba446e.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.0/jquery-migrate.min.js"></script>
 
-    <script src="js/userInfo.js"></script>
+	<!-- 카카오 주소 api -->
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+    <script src="/resources/js/userInfo.js"></script>
 </head>
 <body>
+     <div class="topBanner">
+        <div class="topbox">
+            <div class="topcontent">
+                    모두의 야채, 모두의 과일<br>
+                    싱싱한 농산물을 합리적인 가격에 제공하는 직거래 유통 마켓
+            </div>
+            <button type="button" class="topBannerBtn">X</button>
+        </div>
+    </div>
+
     <header>    
             <ul class="container2">
-                <li><a href="#">로그인</a></li>
-                <li><a href="#">회원가입</a></li>
-                <li><a href="#">장바구니</a></li>
+            
+            	<!--로그인 x--><!--로그인 성공하면 세션에 사용자 정보를 저장하는 model상자의 이름 뭐지? 우선 member로 기재-->
+                <c:if test = "${member == null}">
+                    <li><a href="/user/login">로그인</a></li>
+                    <li><a href="/signup/main">회원가입</a></li>
+                    <li><a href=/cart/main>장바구니</a></li>
+                    <!-- <li><a href="/cart/${member.member_id}">장바구니</a></li> -->
+                </c:if> 
+                
+                <!--로그인 O -->
+                <c:if test = "${member != null}">
+
+                        <!-- 관리자 계정 -->
+                        <c:if test="${member.adminCk = 1}">
+                            <li><a href="/admin/main">관리자 페이지</a></li>
+                        </c:if> 
+                        
+               		<li>${member.name}님 환영합니다.</li>
+                    <!-- <li><a href="/logout">로그아웃</a></li> -->
+                    <!-- => 비동기 방식 로그아웃으로 변경 -->
+                    <li><a id="logout_button">로그아웃</a></li>
+                    <li><a href="/mypage">마이페이지</a></li>
+                    <li><a href="/cart/main">장바구니</a></li>
+                    <!-- 로그인이 되야 아래가 적용될듯? -->
+                    <!-- <li><a href="/cart/${member.member_id}">장바구니</a></li> -->
+                    
+                </c:if>       
             </ul>
 
             <div class="container3">
-                <a href="main1.html"><img id="logo" src="imgs/logo.png" alt="로고"></a>
-            <!-- action에는 jsp 파일인듯?/ GET방식 /  -->
+                <a href="/main"><img id="logo" src="/resources/imgs/logo.png" alt="로고"></a>
+        
                 <form class="search1" action="#" method="GET">
                     <input class="search-txt" type="text" placeholder=" 검색어를 입력해주세요!">    
-                    <button class="search-btn" type="submit"><img id="btn" src="imgs/search.png" alt="메인검색버튼"></button>
-                    <!-- <input type="submit" value="fab fa-sistrix"></input> -->
-                    <!-- <button type="button" class="btm_image" id="img_btn"><img  src="이미지경로"></button> -->
-                </form>    
+                    <button class="search-btn" type="submit"><img id="btn" src="/resources/imgs/search.png" alt="메인검색버튼"></button>
+                </form>   
+                 
             </div>
     </header>
 
@@ -73,28 +109,30 @@
 <main>
     <aside>
         <ul class="box1">
-            <img src="imgs/profileimg.jpg" alt="프로필 사진">
-            <li class="small1"><a href="#">'최귤이'님</a></li>
-            <li class="small1"><a href="#"><i class="fab fa-whmcs"></i>
-           회원정보관리</a></li>
+            <img src="/resources/imgs/profileimg.jpg" alt="프로필 사진">
+            <li class="small1">최귤이 님</li>
+            <!-- <li class="small1">${member.name} 님</li> -->
+            <li class="small1"><a href="/mypage/userInfo"><i class="fab fa-whmcs"></i>회원정보관리</a></li>
         </ul>
 
         <ul class="box2">
-            <li class="small2 small3"><a href="#">정보수정</a></li>
+            <li class="small2 small3"><a href="/mypage/userInfo">정보수정</a></li>
             <li class="small2 small3"><a href="#">주문내역</a></li>
             <li class="small2"><a href="#">배송현황</a></li>
         </ul>
     </aside>
+    
     
     <div class="huiwon">
         <div class="sujeong1">
             <h2 id="sujeong2">회원정보수정</h2>
             <h6 id="sujeong3"><span class="red">*</span>필수 입력</h6>
         </div>
+        
         <table>
             <tr>
                 <th>&nbsp;아이디</th>
-                <td>dhcksehf</td>
+                <td>"$"{member.id}</td>
             </tr>
             <tr>
                 <th>&nbsp;현재 비밀번호</th>
@@ -113,7 +151,7 @@
             </tr>
             <tr>
                 <th>&nbsp;성명<span class="red">*</span></th>
-                <td><input type="text"></td>
+                <td><input type="text" value="${member.id}"></td>
             </tr>
             <tr class="specialtr">
                 <th class="th_height" rowspan="2">&nbsp;휴대전화<span class="red">*</span></th>
@@ -126,12 +164,12 @@
             </tr>
             <tr class="specialtr">
                 <th class="th_height" rowspan="2">&nbsp;주소<span class="red">*</span></th>
-                <td><input type="text" class="addrtr"></td>
+                <td><input type="text" class="addrInput1 addrtr" readonly = "readonly"></td>
                 <td><input type="button" value="우편번호 찾기" class="btntr"></td>
             </tr>
             <tr>
-                <td><input type="text" class="addrtr"></td>
-                <td><input type="text"></td>
+                <td><input type="text" class="addrInput2 addrtr" readonly = "readonly"></td>
+                <td><input type="text" class="addrInput3" readonly = "readonly"></td>
             </tr>
             <tr>
                 <th>&nbsp;이메일<span class="red">*</span></th>
@@ -150,15 +188,16 @@
             <tr>
                 <!-- 생년월일 변경 불가능 -->
                 <th>&nbsp;생년원일</th>
-                <td>YYYY/MM/DD</td>
+                <td>"$"{member.birth_date}</td>
             </tr>
         </table>
 
         <div class="btnset">
             <input class="userbtn1" type="button" value="정보수정">
-            <input class="userbtn2" type="button" value="메인으로">
+            <input class="userbtn2" type="button" value="메인으로" onClick="location.href='/main'">
             <input class="userbtn2" type="button" value="회원탈퇴">
         </div>    
+        
     </div>    
 </main>
 

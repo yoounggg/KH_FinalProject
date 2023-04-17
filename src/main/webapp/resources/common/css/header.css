@@ -1,6 +1,6 @@
-@charset "utf-8";
+@charset "UTF-8";
 
-*{/* *이랑 body차이가 뭐지....... */
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -16,15 +16,52 @@ body{
 }
 
 /* a, li태그 전체에 공통 적용 */
-a{ text-decoration: none;}
+a{ text-decoration: none; color: black;}
 
 li{ list-style-type: none;}
+
+/* ------------topbanner------------- */
+
+.topBanner{
+    width: 100%;
+    margin: 0;
+    padding: 0 0 10px 0;
+    /* position: absolute; */
+    background-color: #F9F9F4;
+    font-size: 16px;
+    /* text-align: center; */
+}
+.topbox{
+    width: 80%;
+    position: relative;
+    /* text-align: center; */
+    margin: 0 auto;
+}
+.topcontent{
+    padding: 10px 0 0 0;
+    width: 80%;
+    color: #11BC0D;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 auto;
+    /* vertical-align: middle; */
+}
+.topbox>button{
+    position: absolute;
+    top: 30px;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background-color: #F9F9F4;
+    border: none;
+    cursor: pointer;
+}
 
 /* --------------header-------------- */
 
 .container2{
     padding: 0;
-    padding-top: 20px;
+    padding-top: 50px;
     width: 80%;
     margin: 0 auto; 
 
@@ -44,7 +81,7 @@ li{ list-style-type: none;}
 /* ------------------------------------------ */
 
 .container3{
-    padding: 10px 0 20px 0;
+    padding: 10px 0 30px 0;
     width: 80%;
     /* height: 90px; */
     margin: 0 auto;
@@ -106,7 +143,7 @@ li{ list-style-type: none;}
 /* ----------------------nav--------------------- */
 
 .menu{
-    margin: 5px 0 20px 0;
+    margin: 0 0 20px 0;
     background-color:#f9f9f4;
 }
 
@@ -121,6 +158,8 @@ li{ list-style-type: none;}
     justify-content: space-between;
 }
 .container4 li{
+    margin: 0;
+    padding: 0;
     /* 가로로 배열하면서 블록으로 하기 위해 */
     display: inline-block;
     width: 200px;
@@ -130,11 +169,13 @@ li{ list-style-type: none;}
 }
 
 .container4 li a{
+    padding: 0 0 0 20px;
     height: 45px;
     line-height: 45px;
     font-size: 14px;
     display: block;
     color: black;
+    text-align: left;
 }
 
 .fixedmenu{ /* 상단 메뉴 고정 -> jquery */  
@@ -144,26 +185,47 @@ li{ list-style-type: none;}
 }
 /* ------------------드롭다운메뉴-------------------- */
 
-/* .dropdown{
-    position: relative;
-    display: inline-block;
-}
-.dropdown-content{
+.menu2{
+    width: 150px;
+    height: 407px;
+    border: 1px solid #909090;
+    background-color: white;
+    z-index: 98;
     display: none;
-    position: absolute;
-    z-index: 1;
 }
-.dropdown-content a {
-    color: black;
-}
-.dropdown:hover .dropdown-content{
+
+.menu2 li{ width: 148px; }
+
+.container4>li:hover .menu2{
     display: block;
-} */
-.dropdown-content{
+    position: absolute;
+}
+
+.container4>li:hover li:hover{
+    /* border-bottom: 0; */
+    background-color: #F9F9F4;
+    box-sizing: border-box;
+}
+
+.container4 li:hover .menu2>li ul{
     display: none;
 }
 
-.dropdown-content2{
-    display: none;
+.container4 li:hover .menu2>li:hover ul{
+    border: 1px solid #909090;
+    border-left: none;
+    width: 150px;
+    display: block;
+    position: absolute;
+    left: 149px;
+    top: -1px;
 }
-
+.container4 li:hover .menu2>li:hover ul li{
+    width: 148px;
+}
+.menu3{
+    height: 407px;
+    border-left: none;
+    background-color: white;
+    z-index: 99;
+}

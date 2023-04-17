@@ -253,8 +253,8 @@ li{ list-style-type: none;}
     border-bottom: 1px solid black;
 }
 
-
 .allcheckbox>input{
+    /* display: none; */
     margin: 10px;
 }
 .allcheckbox>span{
@@ -271,13 +271,13 @@ table{
 	text-align: center;
 }	
 
-.content_btn_section{
+.contentbtn_section{
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
 }
 
-.content_btn_section a{
+.contentbtn_section a{
   
     margin: 30px;
     border: 1px solid black;
@@ -305,19 +305,15 @@ th{
     padding: 2px 0;	 
 }
 
-.td_width_1{
+.td_1{
     width: 5%;
 }	 	 	 
-.td_width_2{
+.td_2{
     width: 10%;
 }	 	 
-.td_width_3{
+.td_3{
     width: 25%;
 }	 
-.td_width_4{
-    /* width: 15%; */
-}	
-
 .cart_table{
     width: 100%;
     font-size: 15px;
@@ -331,6 +327,7 @@ th{
 }
 .red_color{
     color : red;
+    font-weight: bold;
 }
 .green_color{
     color : green;
@@ -388,7 +385,8 @@ th{
     width: 50px;
     display: inline-block;
     padding: 3px 6px 2px;
-    margin-top: 3px;		
+    margin-top: 3px;	
+    cursor: pointer;	
 }
 .table_text_align_center{
     text-align: center;
@@ -398,12 +396,14 @@ th{
     border: white;
     background-color: white;
     color: black;	
+    cursor:pointer;
 }
 		
-.content_total_section{
-    padding: 20px 0 20px 0;	
+.contenttotal_section{
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+    padding: 30px 0 30px 0;	
     background-color: white;
-    border-bottom: 1px solid black;
 }		
 
 .pricetotalwrap{
@@ -412,19 +412,17 @@ th{
     /* padding: 10px 0 10px 0;	 */
 }
 .finalTotalPrice_span{
-    color: #854A72;
+    color: red;
     font-size: 17px;
     font-weight: bold;
 }
-.totalPoint_span{
-    font-size: 17px;
-    font-weight: bold;		
-}
+
 			
-.checkboxinput{
+.checkboxInput{
     width:20px;
     height:20px;
 }
+
 .all_check_input{
     margin: 18px 0 18px 18px;
 }		

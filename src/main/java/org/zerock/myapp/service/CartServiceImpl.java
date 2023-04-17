@@ -6,9 +6,10 @@ import java.util.Objects;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.zerock.myapp.domain.AttachImageVO;
 import org.zerock.myapp.domain.CartDTO;
-import org.zerock.myapp.domain.CartVO;
 import org.zerock.myapp.exception.ServiceException;
+import org.zerock.myapp.mapper.AttachMapper;
 import org.zerock.myapp.mapper.CartMapper;
 
 import lombok.NoArgsConstructor;
@@ -24,6 +25,10 @@ public class CartServiceImpl implements CartService, InitializingBean { // pojo 
    //cartmapper 객체의 메소드를 사용할거라서 의존성 주입
    @Setter(onMethod_= {@Autowired})
    private CartMapper mapper;
+   
+   //상품 리스트를 getcart할 때 상품 이미지도 불러오기 위해서 attachmapper 주입
+   @Setter(onMethod_= {@Autowired})
+   private AttachMapper attach;
 
    
    @Override
@@ -40,13 +45,12 @@ public class CartServiceImpl implements CartService, InitializingBean { // pojo 
    
    
    // ** 0 = 등록실패 / 1 = 등록 성공 / 2 = 등록된 데이터 존재 /5 = 로그인 필요 **
-   
-   //1. 장바구니에 상품추가
+   //1. 장바구니에 상품 추가
    @Override
    public Integer addProductsInCart(CartDTO cart) throws ServiceException { // 영속성에서는 addcart였음
       log.trace("addProductsInCart({}) invoked", cart);
       
-      CartDTO checkcart = mapper.checkCart(cart); // mapper의 checkcart() 메소드 활용! 
+      CartDTO checkcart = mapper.checkCart(cart); // mapper의 checkcart() 메소드 활용!
       
       if(checkcart != null) { // checkcart카트 확인해서 db에 이미 데이터가 존재하면 2를 반환
          return 2;
@@ -59,6 +63,7 @@ public class CartServiceImpl implements CartService, InitializingBean { // pojo 
       }
       
    } // addProductsInCart
+ 
    
    //2. 장바구니 정보 리스트  
    @Override
@@ -69,11 +74,38 @@ public class CartServiceImpl implements CartService, InitializingBean { // pojo 
       List<CartDTO> list = mapper.getCart(member_id);
       
       for(CartDTO cart : list) {
-         cart.initPrice();
+         cart.initPrice(); // 장바구니에 들어가는 종합 정보 초기화
+         
+         //attachimage 테이블 아직 없어서 오류나서 주석 처리
+//         Integer product_no = cart.getProduct_no(); // dto에서 getter메소드로 상품의 productno를 먼저 얻어서, 
+         
+//         List<AttachImageVO> cartimage = attach.getAttachList(product_no); // 얻은 productno로 attachmapper의 메소드 이용
+         
+//         cart.setImageList(cartimage); // dto의 setter메소드로 해당되는 이미지 얻기 
+         
       } // for
       
       return list; // 카트에 값이 모두 세팅된 게 나옴
 
    } // getCart
+   
+   
+   //3. 장바구니 수량 수정
+	@Override
+	public Integer modifyCount(CartDTO cart) {
+		log.trace("modifyProductsInCart({})invoked", cart);
+		
+		return mapper.modifyCount(cart);
+
+	}
+
+	//4. 장바구니 삭제
+	@Override
+	public Integer deleteCart(Integer no) {
+		log.trace("deleteCart({})invoked", no);
+		
+		return mapper.deleteCart(no)
+				;
+	} // getCart
 
 } // end class

@@ -19,10 +19,11 @@
  	<select id="getListPaging" resultType="org.zerock.myapp.domain.FaqVO">
     <![CDATA[
     
-		SELECT no, title, answer, writer, reg_date, update_date
-		FROM (select /*+INDEX_DESC(faq pk_faq) */ rownum as rn, no, title, answer, writer, reg_date, update_date
-			  FROM FAQ WHERE rownum <= #{pageNum} * #{amount} )
-		WHERE rn > (#{pageNum} -1) * #{amount}
+		SELECT * 
+			FROM FAQ
+			ORDER BY no DESC
+			OFFSET (#{currPage} - 1) * #{amount} ROWS
+			FETCH NEXT #{amount} ROWS ONLY
 	
 	]]>	
  	</select>

@@ -34,5 +34,9 @@ public interface FarmMapper {
 	/* 농가 업체 총 갯수 */
 	public abstract Integer getTotal();
 	
+	/* 총 게시물 건수 반환 */
+	@Select("SELECT count(no) FROM FARM WHERE no>0")
+	public abstract Integer totalCount();
+
 	
 }

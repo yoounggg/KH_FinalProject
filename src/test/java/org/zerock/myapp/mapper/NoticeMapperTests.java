@@ -44,15 +44,6 @@ public class NoticeMapperTests {
 	
 	} // beforeAll
 	
-//	@Disable
-//	@Test
-//	@Order(1)
-//	@DisplayName("contextLoads")
-//	@Timeout(value=1, unit=TimeUnit.SECONDS)
-//	void contextLoads() {
-//		log.trace("contextLoads() invoked.");
-//	} // contextLoads
-	
 	
 //	@Disable
 	@Test
@@ -87,6 +78,7 @@ public class NoticeMapperTests {
 		
 	} // select
 	
+	
 //	@Disable
 	@Test
 	@Order(3)
@@ -112,9 +104,9 @@ public class NoticeMapperTests {
 		log.trace("insert() invoked.");
 		
 		NoticeDTO dto = new NoticeDTO();
-		dto.setTitle("'<공지> 7월 둘째주 장원 이벤트 당첨자 발표!'");
-		dto.setContent("'<공지> 7월 둘째주 장원 이벤트 당첨자 발표!'");
-		dto.setWriter("'admin'");
+		dto.setTitle("<공지> 7월 둘째주 장원 이벤트 당첨자 발표!");
+		dto.setContent("<공지> 7월 둘째주 장원 이벤트 당첨자 발표!");
+		dto.setWriter("admin");
 		
 		int affectedLines = this.mapper.insert(dto);
 		

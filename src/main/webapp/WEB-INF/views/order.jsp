@@ -67,7 +67,7 @@
     </script>
 
 <script>
-    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+  
     function sample4_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -183,6 +183,12 @@
         </div>
     </nav>
 	<!-- ---------------------------------------------------------------------------- -->
+	<div>
+		${orderList}
+	</div>
+	<div>
+		${memberInfo}
+	</div>
 	
 <div class="wrapper">
 
@@ -233,16 +239,16 @@
 								</td>
 								<td class="상품정보">${ol.productName}</td>
 								<td class="products_table_price_td">
-									<fmt:formatNumber value="${ol.salePrice}" pattern="#,### 원" /> | 수량 ${ol.productCount}개
+									<fmt:formatNumber value="${ol.discount_price}" pattern="#,### 원" /> | 수량 ${ol.count}개
 									<br><fmt:formatNumber value="${ol.totalPrice}" pattern="#,### 원" />
-									<br>[<fmt:formatNumber value="${ol.totalPoint}" pattern="#,### 원" />P]
-									<input type="hidden" class="individual_productPrice_input" value="${ol.bookPrice}">
-									<input type="hidden" class="individual_salePrice_input" value="${ol.salePrice}">
-									<input type="hidden" class="individual_productCount_input" value="${ol.productCount}">
-									<input type="hidden" class="individual_totalPrice_input" value="${ol.salePrice * ol.productCount}">
+									<!-- <br>[<fmt:formatNumber value="${ol.totalPoint}" pattern="#,### 원" />P]  -->
+									<input type="hidden" class="individual_productPrice_input" value="${ol.price}">
+									<input type="hidden" class="individual_salePrice_input" value="${ol.discount_price}">
+									<input type="hidden" class="individual_productCount_input" value="${ol.count}">
+									<input type="hidden" class="individual_totalPrice_input" value="${ol.discount_price * ol.count}">
 								<!--	<input type="hidden" class="individual_point_input" value="${ol.point}">   포인트는 없음  -->
 									<input type="hidden" class="individual_totalPoint_input" value="${ol.totalPoint}">
-									<input type="hidden" class="individual_productId_input" value="${ol.productId}">
+									<input type="hidden" class="individual_productId_input" value="${ol.product_No}">
 								</td>
 							</tr>			
 						</c:forEach>
@@ -267,6 +273,7 @@
                 <!-- 이름 + 입력창 + 수정 버튼 -->
                 <div class="input_row">
                     <label for="name_title">이름</label>
+                    <div>${memberInfo.Name}</div>
                     <input type="text" id="name_input" name="name" placeholder="이름을 입력해주세요">
                     <button class="edit_button">수정</button>
                 </div>
@@ -274,6 +281,7 @@
                 <!-- 핸드폰 번호 + 입력창 + 수정 버튼 -->
                 <div class="input_row">
                     <label for="phone_title">핸드폰 번호</label>
+                    <div>${memberInfo.tel }</div>
                     <input type="tel" id="phone_input" name="phone" placeholder="핸드폰 번호를 입력해주세요">
                     <button class="edit_button">수정</button>
                 </div>
@@ -281,6 +289,7 @@
                 <!-- 이메일 + 입력창 -->
                 <div class="input_row">
                     <label for="email_title">이메일</label>
+                    <div>${memberInfo.email }</div>
                     <input type="email" id="email_input" name="email" placeholder="이메일을 입력해주세요">
                 </div>
 
@@ -358,6 +367,19 @@
         
             <!-- 이름, 핸드폰 번호, 이메일 위치 한 번에 조정하기 위해서 묶음 -->
             <div class="locate">
+            	<ul>
+            		<!-- 총 상품 가격 -->
+            		<li>
+            			<span id="정보">총 상품 가격</span>
+            			<span id="총상품가격">100000</span>원
+            		</li>
+            		<!--  할인 금액 -->
+            		<li>
+            			<span id="정보">할인금액</span>
+            			<span id="할인금액">1000</span>원
+            		</li>
+            	</ul>
+            
                 <!-- 총 상품 가격  -->
                 <div class="input_row">
                     <label for=name_title_r" id="정보">총 상품 가격 </label>

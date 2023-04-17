@@ -74,6 +74,13 @@
 	
 	<!-- ============ Interceptor 설정 ============ -->
 	
+	<!-- 장바구니 -> 로그인 상태여야 함 -->
+	<!-- <interceptors>
+		<interceptor>
+		<mapping path="/cart/main" /> -> 수정..
 
+		<beans:ref bean="cartInterceptor" />
+		</interceptor>
+	</interceptors> -->
 	
 </beans:beans>

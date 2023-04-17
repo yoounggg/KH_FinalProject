@@ -35,7 +35,7 @@ import lombok.extern.log4j.Log4j2;
 
 @TestInstance(Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class CartMapperTest {
+public class CartMapperTests {
 	
 	@Setter(onMethod_=@Autowired)
 	private CartMapper mapper; // CartMapper 타입이 빈이 등록
@@ -66,12 +66,12 @@ public class CartMapperTest {
 		log.trace("testaddCart() invoked");
 		
 		String member_id = "codud"; // 회원 아이디
-		Integer product_no = 2; // 상품번호
-		Integer count = 1;  // 개수
+		Integer product_No = 2; // 상품번호
+		Integer count = 10;  // 개수
 		
 		CartDTO cart = new CartDTO();
 		cart.setMember_id(member_id);
-		cart.setProduct_no(product_no);
+		cart.setProduct_No(product_No);
 		cart.setCount(count);
 		
 //		int result=0;
@@ -114,7 +114,7 @@ public class CartMapperTest {
 	void testmodifyCount() { //
 		log.trace("testmodifyCount() invoked");
 		
-		Integer no = 2; // 장바구니 안에서의 상품 번호(순서?)
+		Integer no = 2; // 장바구니 안에서의 상품 번호(순서)
 		Integer count = 5; // 바꾸고 싶은 상품 수량 입력
 		
 		CartDTO cart = new CartDTO();
@@ -133,10 +133,11 @@ public class CartMapperTest {
 	@Timeout(value = 1, unit=TimeUnit.MINUTES)
 	void testgetCart() { //
 		log.trace("testgetCart() invoked");
-		
-		String member_id = "nicknamebyul";
+
+		String member_id = "codud";
 		
 		List<CartDTO> list = this.mapper.getCart(member_id);
+//		List<CartVO> list = this.mapper.getCart(member_id);
 		assertNotNull(list);
 		
 		list.forEach(log::info);
@@ -160,11 +161,11 @@ public class CartMapperTest {
 		log.trace("testcheckCart() invoked");
 		
 		String member_id = "nicknamebyul";
-		Integer product_no = 1;
+		Integer product_No = 1;
 		
 		CartDTO cart = new CartDTO();
 		cart.setMember_id(member_id);
-		cart.setProduct_no(product_no);
+		cart.setProduct_No(product_No);
 		
 		CartDTO affectedlines = this.mapper.checkCart(cart);
 		log.info("\t+affectedLines:{}", affectedlines);

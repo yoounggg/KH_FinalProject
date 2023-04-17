@@ -14,4 +14,10 @@ public interface CartService { // 인터페이스
 	public List<CartDTO> getCart(String member_id);
 //	public List<CartVO> getCart(String member_id);
 	
+	// 3. 장바구니 수량 수정 (영속성에서 modifyCount(CartDTO cart))
+	public Integer modifyCount(CartDTO cart); 
+	
+	//4. 장바구니 삭제
+	public Integer deleteCart(Integer no); 
+	
 } // end interface

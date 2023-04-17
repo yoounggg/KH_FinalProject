@@ -7,6 +7,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zerock.myapp.domain.Criteria;
+import org.zerock.myapp.domain.NoticeDTO;
 import org.zerock.myapp.domain.ProductDTO;
 import org.zerock.myapp.domain.ProductVO;
 import org.zerock.myapp.exception.ServiceException;
@@ -89,5 +90,21 @@ public class ProductServiceImpl implements ProductService, InitializingBean{
 		} // try-catch
 		
 	} //getProductDetail
+
+//	==================================================
+//	[별이]
+	
+	@Override
+	public Boolean register(ProductDTO dto) throws ServiceException {
+		log.trace("register({}) invoked.", dto);
+			
+		try {
+			return this.mapper.insert(dto) == 1;
+		} catch(Exception e) {
+			throw new ServiceException(e);
+		} // try-catch
+		
+	} // register
+		
 
 } // end class
