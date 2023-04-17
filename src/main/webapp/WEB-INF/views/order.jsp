@@ -67,6 +67,14 @@
     </script>
 
 <script>
+
+	$(document).ready(function()) {
+		
+		/* 주문 조합 정보란 최신화 */	
+		setTotalinfo();
+		
+		
+	}
   
     function sample4_execDaumPostcode() {
         new daum.Postcode({
@@ -121,7 +129,53 @@
                 }
             }
         }).open();
-    }
+    } // 배송지 설정
+    
+    
+    // 총 주문 정보 세팅 (배송비, 총 가격, 물품 수, 종류)
+    function setTotalInfo() {
+    	
+    	let totalPrcie = 0;			// 총 가격
+    	let totalCount = 0;			// 총 갯수
+    	let totalKind = 0;			// 총 종류
+    	let delivery = 0;			// 배송비
+    	let finalTotalPrice = 0;	// 최종 가격 ( 총 가격 + 배송비)
+    
+    	$(".procuts_table_price_td").each(function(index, element) {
+    		// 총 가격
+    		totalPrice += parseInt($(element).find(".individual_totalPrice_input").val)
+    		// 총 갯수
+    		totalCount += parseInt($(element).find(".individual_productCount_input").val)
+    		// 총 종류
+    		totalKind += 1;
+    		
+    		// 배송비 결정
+    		if(totalPrice >= 30000) {
+    			delivery = 0;			// 총 가격이 3만원보다 크면 무료배송
+    		} else if (totalPrcie == 0) {
+    			delivery = 0;			// 총 가격이 0원이면 배송비도 0원이 맞다!
+    		} else {
+    			delivery = 3000;
+    		}
+    		
+    		finalTotalPrice = totalPrcie + delivery;   
+    		
+    		/* 값 삽입 */
+    		// 총 가격
+    		$(".총상품가격").text(totalPrice.toLocaleString());
+    		// 총 갯스
+    		$(".products_kind_div_count").text(totalCount);
+    		// 총 종류
+    		$(".products_kind_div_kind").text(totalKind);
+    		// 배송비
+    		$(".배송비1").text(delivery.toLocaleString());
+    		// 최종가격
+    		$(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());
+    		
+    	}); // 총 주문 정보 삽입
+    
+    } // setTotalinfo()
+    
 </script>
 	    
 </head>
@@ -245,7 +299,7 @@
 									<input type="hidden" class="individual_productPrice_input" value="${ol.price}">
 									<input type="hidden" class="individual_salePrice_input" value="${ol.discount_price}">
 									<input type="hidden" class="individual_productCount_input" value="${ol.count}">
-									<input type="hidden" class="individual_totalPrice_input" value="${ol.discount_price * ol.count}">
+									<input type="hidden" class="individual_totalPrice_input" value="${ol.discount_price * ol.count}">  <!-- 음.. 이거 좀 이상하네 -->
 								<!--	<input type="hidden" class="individual_point_input" value="${ol.point}">   포인트는 없음  -->
 									<input type="hidden" class="individual_totalPoint_input" value="${ol.totalPoint}">
 									<input type="hidden" class="individual_productId_input" value="${ol.product_No}">
@@ -378,34 +432,20 @@
             			<span id="정보">할인금액</span>
             			<span id="할인금액">1000</span>원
             		</li>
+            		<!-- 배송비 -->
+            		<li>
+            			<span id="정보">배송비</span>
+            			<span id="배송비1">1000</span>원
+            		</li>
+            		<!-- 총결제금액 -->
+            		<li class="pricae_total_lo">
+            			<strong id="price_span_label total_price_label]">총결제금액</strong>
+            			<strong id="총결제금액">
+            				<span id="total_rpice_red finalTotalPrice_span"></span>
+            						98000
+            			</strong>원
+            		</li>
             	</ul>
-            
-                <!-- 총 상품 가격  -->
-                <div class="input_row">
-                    <label for=name_title_r" id="정보">총 상품 가격 </label>
-                    <input type="text" id="총상품가격" name="총상품가격" placeholder="">
-
-                </div>
-
-                <!-- 할인금액 -->
-                <div class="input_row">
-                    <label for="name_title_r" id="정보">할인금액</label>
-                    <input type="text" id="할인금액" name="할인금액" placeholder="">
-
-                </div>
-
-                <!-- 배송비  -->
-                <div class="input_row">
-                    <label for="name_title_r" id="정보">배송비</label>
-                    <input type="text" id="배송비1" name="배송비1" placeholder="">
-                </div>
-                
-                <!-- 총결제금액 -->
-                <div class="input_row">
-                    <label for="name_title_r">총결제금액</label>
-                    <input type="text" id="총결제금액" name="총결제금액" placeholder="">
-                </div>
-        
             </div>
         </div> <!-- 결제 금액-->
 

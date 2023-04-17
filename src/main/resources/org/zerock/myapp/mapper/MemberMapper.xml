@@ -36,7 +36,7 @@
 	<select id="getMemberInfo" resultType="org.zerock.myapp.domain.MemberVO">
 		SELECT ID, Name, Mail, ADDRESS1, ADDRESS2, ADDRESS3
 		FROM Member
-		WHERE Id = #{Id}
+		WHERE Id = #{id}
 	</select>
 	
 
