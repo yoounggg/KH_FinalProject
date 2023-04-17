@@ -30,9 +30,6 @@
     <div id="entire">
 <%@include file= "../common/header.jsp" %>
 
-     
-
-        
             <div class='wrapper'>
 
                 <div class="탑로고">
@@ -124,8 +121,6 @@
                                 placeholder="인증번호를 입력해주세요">
                             <input form="num_from" type="submit" class='인증' id="num_confirm" value="인증하기" disabled>
                         </div>
-
-
 
                         <div id="addr_form">
                             <label class="라벨">주소<span id="필수빨강">*</span></label>
