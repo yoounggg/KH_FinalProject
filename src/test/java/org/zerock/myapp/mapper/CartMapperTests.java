@@ -35,7 +35,7 @@ import lombok.extern.log4j.Log4j2;
 
 @TestInstance(Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class CartMapperTest {
+public class CartMapperTests {
 	
 	@Setter(onMethod_=@Autowired)
 	private CartMapper mapper; // CartMapper 타입이 빈이 등록
@@ -114,7 +114,7 @@ public class CartMapperTest {
 	void testmodifyCount() { //
 		log.trace("testmodifyCount() invoked");
 		
-		Integer no = 2; // 장바구니 안에서의 상품 번호(순서?)
+		Integer no = 2; // 장바구니 안에서의 상품 번호(순서)
 		Integer count = 5; // 바꾸고 싶은 상품 수량 입력
 		
 		CartDTO cart = new CartDTO();

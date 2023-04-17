@@ -1,5 +1,4 @@
-@charset "UTF-8";
-
+@charset "utf-8";
 
 body{
     margin: 0;
@@ -176,17 +175,6 @@ th{
 
 /* ------header & footer -------*/
 
-body{
-    margin:0;
-    padding:0;
-    width: 100%;
-    height: 100vh;
-    box-sizing: border-box;
-    background-color: white;
-    /* 폰트바꾸기!!! */
-    font-family: 'Noto Sans KR', sans-serif;
-}
-
 /* a, li태그 전체에 공통 적용 */
 a { 
     text-decoration: none; 
@@ -198,7 +186,7 @@ li{
 
 /* --------------header-------------- */
 
-*{/* *이랑 body차이가 뭐지....... */
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -214,9 +202,46 @@ body{
 }
 
 /* a, li태그 전체에 공통 적용 */
-a{ text-decoration: none;}
+a{ text-decoration: none; color: black;}
 
 li{ list-style-type: none;}
+
+/* ------------topbanner------------- */
+
+.topBanner{
+    width: 100%;
+    margin: 0;
+    padding: 0 0 10px 0;
+    /* position: absolute; */
+    background-color: #F9F9F4;
+    font-size: 16px;
+    /* text-align: center; */
+}
+.topbox{
+    width: 80%;
+    position: relative;
+    /* text-align: center; */
+    margin: 0 auto;
+}
+.topcontent{
+    padding: 10px 0 0 0;
+    width: 80%;
+    color: #11BC0D;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 auto;
+    /* vertical-align: middle; */
+}
+.topbox>button{
+    position: absolute;
+    top: 30px;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background-color: #F9F9F4;
+    border: none;
+    cursor: pointer;
+}
 
 /* --------------header-------------- */
 
@@ -390,6 +415,7 @@ li{ list-style-type: none;}
     background-color: white;
     z-index: 99;
 }
+
 /* --------------footer------------------- */
 
 .yakgwan1{
