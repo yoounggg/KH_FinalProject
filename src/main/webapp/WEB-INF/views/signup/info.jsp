@@ -30,9 +30,6 @@
     <div id="entire">
 <%@include file= "../common/header.jsp" %>
 
-     
-
-        
             <div class='wrapper'>
 
                 <div class="탑로고">
@@ -127,8 +124,6 @@
                                 <input form="num_form" type="submit" class='인증' id="num_confirm" value="인증하기" onclick="num_compare()" disabled>
 
                         </div>
-
-
 
                         <div id="addr_form">
                             <label class="라벨">주소<span id="필수빨강">*</span></label>

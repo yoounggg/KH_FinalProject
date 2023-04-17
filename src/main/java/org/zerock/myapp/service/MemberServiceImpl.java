@@ -33,8 +33,9 @@ public class MemberServiceImpl implements MemberService {
 	
 	// 세인 로그인
 	MemberMapper memberMapper;
+	
 	@Override
-	public LoginDTO memberLogin(LoginDTO loginDTO) throws ServiceException {
+	public MemberVO memberLogin(LoginDTO loginDTO) throws ServiceException {
 		
 		return memberMapper.memberLogin(loginDTO);
 		
