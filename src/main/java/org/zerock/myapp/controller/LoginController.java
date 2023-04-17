@@ -35,7 +35,7 @@ public class LoginController {
 		log.trace("loginPage() invoked");
 		
 		// login 폴더에 login.jsp!
-		return "login/login";
+		return "login/Login_Main";
 		
 	} // loginPageGET()
 	

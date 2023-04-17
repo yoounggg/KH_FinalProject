@@ -10,28 +10,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOYAMOGA</title>
 
-	<!-- 로그인 메인창 css -->
-    <link rel="stylesheet" href="/resources/css/Login_Main.css">
-
 	<!-- 파비콘 -->
     <link rel="shortcut icon" href="/resources/ico/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/resources/ico/favicon.ico" type="image/x-icon">
-	
-	<!-- 로그인 js -->
-	
-	
+    
+	<!-- 로그인 메인창 css -->
+    <link rel="stylesheet" href="/resources/login/css/Login_Main.css">
+
 	<!-- 로그인 제이쿼리 by 셍나 -->
 	<script
 		src="https://code.jquery.com/jquery-3.4.1.js"
 		integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
 		crossorigin="anonymous">
 	</script>
+	
+	<!-- 로그인 메인창 js -->
+	<script src="../resources/login/js/Login_Main.js"></script>
 
 </head>
 
 <body>
-	
-	<div id="entire">
 
 	<!-- header -->
 	<%@include file= "../common/header.jsp" %>
@@ -79,6 +77,7 @@
 
                 </div>
 
+                <!-- 로그인 버튼들 -->
                 <div class="signIn"> <!-- 로그인 버튼 -->
                     <button type="button" id="signInButton">로그인</button>
                 </div>
@@ -93,28 +92,14 @@
                         <img src="/resources//imgs/kakao_login_large_narrow.png" class="kimg"></button>
                 </div>
         
-            </div>
-        </form>
+            </form>
+        </div>
+
     </main>
     
     <!-- footer -->
     <%@include file= "../common/footer.jsp" %>
     
-    </div>
 </body>
-    <script>
-	    /* 셍나 로그인 버튼 클릭 메서드 */
-	    $(".signInButton").click(function(){
-	        
-	        alert("로그인 버튼 작동 성공이에요!");
-	        
-	        <!--
-	        /* 로그인 메서드 서버 요청 */
-	        $("#login_form").attr("action", "/login/login");
-	        $("#login_form").submit(); -->
-	        
-	    });
- 
-	</script>
 
 </html>
