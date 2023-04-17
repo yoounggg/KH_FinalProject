@@ -23,14 +23,14 @@
 		-->
 	
 	<!-- 혁규 회원가입 -->
-	<insert id="memberSignup" >
+	<!-- <insert id="memberSignup" >
 	  INSERT INTO member (
 	  	ID, PASSWORD, NAME, EMAIL, TEL, ADDRESS1, ADDRESS2, ADDRESS3, GENDER, SINGUP_DATE, BIRTH_DATE, ADMINCK)
 	  VALUES (
 	  	#{id}, #{password}, #{name}, #{email}, #{tel}, #{address1}, #{address2}, #{address3},
 	  	#{gender,jdbcType=VARCHAR}, #{signup_date,jdbcType=TIMESTAMP}, #{birth_date,jdbcType=VARCHAR}, #{adminCk}
 	  )
-	</insert>
+	</insert> -->
 	
 	<!-- 주문자 정보(찬돌) -->
 	<select id="getMemberInfo" resultType="org.zerock.myapp.domain.MemberVO">
