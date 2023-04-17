@@ -9,14 +9,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../resources/signup/css/complete.css">
+    <link rel="stylesheet" href="../resources/css/signup/signup_complete.css">
      <%@include file="/WEB-INF/views/common/favicon.jsp" %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.1/jquery-migrate.min.js"></script>
-    <script src="../resources/signup/js/complete.js"></script>
+    <script src="../resources/js/signup/signup_complete.js"></script>
     
 
-    <title>Document</title>
+    <title>MOYAMOGA</title>
 </head>
 
 

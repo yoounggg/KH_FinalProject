@@ -10,10 +10,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../resources/signup/css/info.css">
+    <link rel="stylesheet" href="../resources/css/signup/signup_info.css">
      <%@include file="/WEB-INF/views/common/favicon.jsp" %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script src="../resources/signup/js/info.js"></script>
+    <script src="../resources/js/signup/signup_info.js"></script>
      <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
      
      <%@page import="java.util.Date" %>
