@@ -18,7 +18,7 @@
      
      <%@page import="java.util.Date" %>
 
-<%@page import="java.text.SimpleDateFormat" %>
+	<%@page import="java.text.SimpleDateFormat" %>
 
     <title>MOYAMOGA</title>
 
@@ -51,13 +51,13 @@
                     <div class='line'></div>
 
                     <div class="정보">
-                    <form action="" id="signup" method="post" autocomplete="off">
+                    <form action="#" id="signup" method="post" autocomplete="off">
 
                         <div>
                             <label class="라벨">아이디<span id="필수빨강">*</span></label>
 
                             <input type="text" class='회원정보' id="input_id" name="id" method="post" onkeyup="id_btn();"
-                                placeholder="아이디를 입력해주세요" autofocus required>
+                                placeholder="아이디를 입력해주세요" autofocus>
 
                             <input form="id_form" type="submit" class='인증' id="id_confirm" value="중복확인"
                                 onclick="checkId();" disabled>
@@ -163,7 +163,7 @@
                         </div>
 
                         <div class="하단버튼">
-                            <button type="submit" class='가입하기' id="signup_btn">가입하기</button>
+                            <button type="button" class='가입하기' id="signup_btn">가입하기</button>
 
                             <div>
                                 <a id="다음에" href="agreement"><span class="이전단계">이전단계</span></a>
