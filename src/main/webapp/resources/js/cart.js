@@ -138,30 +138,30 @@ $(".delete_btn").on("click", function(e){
     
       
 /* 주문 페이지 이동 */	
-// $(".order_btn").on("click", function(){
+ $(".order_btn").on("click", function(){
       
-//   let form_contents ='';
-//   let orderNumber = 0;
+   let form_contents =''; /* input태그 문자열값 저장할 변수 */
+   let orderNumber = 0;	  /* 	 */
       
-//   $(".cartinfo_td").each(function(index, element){
+   $(".cartinfo_td").each(function(index, element){ /* 상품데이터 저장된 input태그를 감싼 td태그 반복접근 */
         
-//     if($(element).find(".cartCheckbox").is(":checked") === true){	//체크여부
+     if($(element).find(".cartCheckbox").is(":checked") === true){	//체크여부
           
-//       let bookId = $(element).find(".individual_bookId_input").val();
-//       let bookCount = $(element).find(".cartCount").val();
+		let productId = $(element).find(".cartProductNoInput").val(); /* input값에서 상품Id 가져옴 */
+        let productCount = $(element).find(".cartCountInput").val(); /* input값에서 상품count 가져옴 */ 
           
-//       let bookId_input = "<input name='orders[" + orderNumber + "].bookId' type='hidden' value='" + bookId + "'>";
-//       form_contents += bookId_input;
+       	let productId_input = "<input name='orders[" + orderNumber + "].productId' type='hidden' value='" + productId + "'>";
+       	form_contents += productId_input;
           
-//       let bookCount_input = "<input name='orders[" + orderNumber + "].bookCount' type='hidden' value='" + bookCount + "'>";
-//       form_contents += bookCount_input;
+       	let productCount_input = "<input name='orders[" + orderNumber + "].productCount' type='hidden' value='" + productCount + "'>";
+       	form_contents += productCount_input;
           
-//       orderNumber += 1;
+       	orderNumber += 1;
           
-//     }
-//   });	
-//   $(".order_form").html(form_contents);
-//   $(".order_form").submit();
+     }
+   });	
+   $(".order_form").html(form_contents);
+   $(".order_form").submit();
       
-//  });    
+  });    /* 주문 페이지 이동 */ 
 });

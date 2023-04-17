@@ -220,8 +220,8 @@
 			</form>
 
 			<!-- 주문 form -->
-			<!-- <form action="/order/${member.memberId}" method="get" class="order_form">
-			</form>													 -->
+			<form action="/order/${member.memberId}" method="get" class="order_form">
+			</form>													
 		</div>
     </main>
 <!-- ==========================footer========================= -->
