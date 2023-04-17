@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.myapp.domain.LoginDTO;
 import org.zerock.myapp.domain.MemberVO;
 import org.zerock.myapp.service.MemberService;
+import org.springframework.ui.Model;
 
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -41,7 +42,7 @@ public class LoginController {
     public String loginPost(
     		HttpServletRequest request, 
     		LoginDTO loginDTO,
-//    		MemberVO memberVO,
+    		Model model,
     		RedirectAttributes rttr
     ) throws Exception {
 
@@ -54,9 +55,7 @@ public class LoginController {
        
         if(m_vo == null) {                                // 일치하지 않는 아이디, 비밀번호 입력 경우
             
-            int result = 0;
-            
-            rttr.addFlashAttribute("result", result);
+        	rttr.addAttribute("result", "Login Failed");
             return "redirect:/login/Login_Main";
             
         } // if
