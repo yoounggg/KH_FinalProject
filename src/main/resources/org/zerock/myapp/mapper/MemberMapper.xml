@@ -27,10 +27,10 @@
 	
 	<!-- 주문자 정보(찬돌) -->
 	<select id="getMemberInfo" resultType="org.zerock.myapp.domain.MemberVO">
-		SELECT ID, Name, Mail, ADDRESS1, ADDRESS2, ADDRESS3
+		SELECT ID, Name, email, ADDRESS1, ADDRESS2, ADDRESS3
 		FROM Member
 		WHERE Id = #{id}
-	</select>
-	
+	</select> 
+
 
 </mapper>
