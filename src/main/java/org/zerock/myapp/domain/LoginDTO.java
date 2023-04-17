@@ -9,7 +9,7 @@ public class LoginDTO {
 	private String id;
 	private String password;
 //	private String name;
-	private Integer adminCk;
+//	private Integer adminCk;
 
 	// rememberMe = check-box
 	// -> check-box가 켜져있는지 꺼져있는지만 보기! = boolean 타입으로
