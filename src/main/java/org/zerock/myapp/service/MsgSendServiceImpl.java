@@ -30,8 +30,6 @@ public class MsgSendServiceImpl implements MsgSendService {
 			params.put("text", "MYMG 인증번호는 " +" [ " + randomNumber + "] " + " 입니다. 인증시간 안에 입력해주세요.");
 			params.put("app_version", "test app 1.2");
 			
-		
-			
 			try {
 				
 				for (String key : params.keySet()) {
