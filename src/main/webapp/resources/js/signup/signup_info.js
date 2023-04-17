@@ -168,7 +168,7 @@ function hp_btn() {
     const input_hp = document.getElementById("input_hp");
     const hp_input_con = document.getElementById("hp_input_con");
 
-    const isOk = /^\d{10,11}$/;
+    const isOk = /^01([016789])(\d{3,4})(\d{4})$/;
 
     if (isOk.test(input_hp.value)) {
         hp_input_con.style.display = "none";
@@ -184,6 +184,11 @@ var random_num = "";
 
 function checkHp() {
     var tel = $("#input_hp").val();
+    const isOk = /^01([016789])(\d{3,4})(\d{4})$/;
+
+    if(!isOk.test(tel)){
+        popup_on25();
+    }else{
 
     $.ajax({
         url: "/signup/infoc",
@@ -207,7 +212,7 @@ function checkHp() {
         }
     });
 };
-
+};
 var timer;
 
 function smsSend() {
@@ -232,7 +237,7 @@ function smsSend() {
                 console.log("인증번호 : " + random_num);
 
                 // 타이머 시작
-                var count = 10;  // 180초
+                var count = 180;  // 180초
 
                 timer = setInterval(function () {
                     count--;
@@ -359,6 +364,8 @@ $(document).ready(function () {
         const addr2 = document.getElementById("addr2").value;             //주소
         const addr3 = document.getElementById("detail_addr").value;       //상세주소
 
+        const isOkPw = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,16}$/;    //대소문자 구분 숫자8~16     
+        const isOkName = /^[a-zA-Z가-힣]{2,20}$/;       //한글 영어 2~20자
 
         if (id.trim() === "") {                          // 아이디 체크
             popup_on12();
@@ -368,8 +375,11 @@ $(document).ready(function () {
 
         } else if (pw.trim() === "") {                   // 비밀번호 체크
             popup_on13();
-      
-        } else if (pw2.trim() === "") {                  // 비밀번호 확인 체크 
+
+        } else if(!isOkPw.test(pw)){                     // 비밀번호 유효성 체크
+            popup_on1();
+        }
+         else if (pw2.trim() === "") {                  // 비밀번호 확인 체크 
             popup_on14();
             
         } else if (pw2 != pw) {                         // 비밀번호 확인 체크 
@@ -378,6 +388,9 @@ $(document).ready(function () {
         } else if (name.trim() === "") {                 // 이름 체크
             popup_on15();
 
+        } else if(!isOkName.test(name)){                   // 이름 유효성 체크
+            popup_on1();
+        
         } else if (email.trim() === "") {                // 이메일 체크
             popup_on16();
     
@@ -407,19 +420,6 @@ $(document).ready(function () {
     });
 });
 
-// const inputConditions = document.getElementsByClassName("입력조건");
-
-// let isInputValid = true;
-// for (let i = 0; i < inputConditions.length; i++) {
-//   if (inputConditions[i].style.display === "block") {
-//     isInputValid = false;
-//     break;
-//   }
-// }
-
-// if (!isInputValid) {
-//   popup_on1();
-// }
 
 
 // 팝업 1 조건에 맞게 입력해주세요
@@ -873,7 +873,7 @@ function popup_blur24(chk) {
         $('#entire').css({ "opacity": "0.3", "pointer-events": "none" });
 };
 
-// 팝업 25 우편번호를 확인해주세요
+// 팝업 25 휴대폰 번호 형식에 맞게 입력해주세요
 function popup_on25() {
     $(".popmenu25").show();
     popup_blur25(true);

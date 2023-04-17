@@ -308,7 +308,7 @@
 	</div>
 
      <div class="popmenu25" id="common_pop">
-        <p>우편번호를 확인해주세요</p>
+        <p>휴대폰 번호 형식에 맞게 입력해주세요</p>
         <input type="button" class="exit25" id="common_btn" onclick="exit25()" value="확인">
 	</div>
 </body>
