@@ -34,4 +34,6 @@ public class EmailCheckController {
 		return cntEmail;
 	} // emailCheck
 	
+	// 테스트용~
+	
 } // end class

@@ -20,6 +20,7 @@ public class MemberServiceImpl implements MemberService {
 	// 혁규 회원가입
 	@Setter(onMethod_=@Autowired)
 	MemberMapper mapper;
+	
 	@Override
 	public void memberSignup(MemberVO memberVO) throws Exception{
 
