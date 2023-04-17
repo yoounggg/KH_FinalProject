@@ -43,6 +43,11 @@
                     <label for="password"></label>
                     <input id="password" type="password" name="password" placeholder="비밀번호" required>
                 </div>
+                
+                <!-- adminCK 확인 -->
+                <div class="adminCk_class">
+                	<input type="hidden" name="adminCk" value="${member.adminCk}">
+                </div>
 
                 <!-- 아이디 저장, 자동 로그인, 아이디 찾기, 비밀번호 찾기 -->
                 <div class="login_box">

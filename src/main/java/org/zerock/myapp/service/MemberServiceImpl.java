@@ -17,10 +17,10 @@ import lombok.extern.log4j.Log4j2;
 @Service
 public class MemberServiceImpl implements MemberService {
 	
-	// 혁규 회원가입
 	@Setter(onMethod_=@Autowired)
 	MemberMapper memberMapper;
 	
+	// 혁규 회원가입
 	@Override
 	public void memberSignup(MemberVO memberVO) throws Exception{
 
@@ -29,15 +29,26 @@ public class MemberServiceImpl implements MemberService {
 		memberMapper.memberSignup(memberVO);
 			
 		log.trace("MemberVO : {} invoked", memberVO );
-	}
+		
+	} // memberSignup()
+	
+//	------------------------------------------------------------
 	
 	// 세인 로그인	
 	@Override
 	public MemberVO memberLogin(LoginDTO loginDTO) throws ServiceException {
+		log.trace("memberLogin({}) invoked.", loginDTO);
 		
-		return this.memberMapper.memberLogin(loginDTO);
+		try {
+			return this.memberMapper.memberLogin(loginDTO);
+		} catch(Exception e) {
+			throw new ServiceException(e);
+		} // try-catch
 		
 	} // memberLogin()
+
+
+//	------------------------------------------------------------
 	
 	// MemberVO 객체 반환 하는 구현객체 생성 (찬돌)
 	@Override
