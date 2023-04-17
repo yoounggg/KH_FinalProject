@@ -9,10 +9,10 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="../resources/help/css/privacy.css">
+    <link rel="stylesheet" href="../resources/css/help/help_privacy.css">
       <%@include file="/WEB-INF/views/common/favicon.jsp" %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>moyamoga</title>
+    <title>MOYAMOGA</title>
 </head>
 
 <body>
