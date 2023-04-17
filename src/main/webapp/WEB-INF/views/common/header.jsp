@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -10,78 +10,102 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOYAMOGA</title>
+    
+    <!-- include favicon -->
+    <%@include file="/WEB-INF/views/common/favicon.jsp" %>
 
-    <link rel="stylesheet" href="../resources/common/css/header.css">
-
-    <link rel="shortcut icon" href="ico/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="ico/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/resources/css/main.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" /> -->
-    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,100,0,-25" /> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,100,1,-25" />
 
     <script src="https://kit.fontawesome.com/1fe7ba446e.js" crossorigin="anonymous"></script>
 
     <!-- slick: cdn 방식으로 css, js 가져오기 -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>			
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.0/jquery-migrate.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     
-    <!-- js가 위 jquery, slick script코드 보다 위에 나오면 적용이 안됨 -->
- 
+    <!-- js가 위 jquery, slick코드 보다 위에 나오면 적용이 안됨 -->
+    <script src="/resources/js/main.js"></script>
 
 </head>
 
 <body>
+
+    <div class="topBanner">
+        <div class="topbox">
+            <div class="topcontent">
+                    모두의 야채, 모두의 과일<br>
+                    싱싱한 농산물을 합리적인 가격에 제공하는 직거래 유통 마켓
+            </div>
+            <button type="button" class="topBannerBtn">X</button>
+        </div>
+    </div>
+
     <header>    
             <ul class="container2">
-                <li><a href="#">로그인</a></li>
-                <li><a href="#">회원가입</a></li>
-                <li><a href="#">장바구니</a></li>
+            
+            	<!--로그인 x--><!--로그인 성공하면 세션에 사용자 정보를 저장하는 model상자의 이름 뭐지? 우선 member로 기재-->
+                <c:if test = "${member == null}">
+                    <li><a href="/user/login">로그인</a></li>
+                    <li><a href="/signup/main">회원가입</a></li>
+                    <li><a href=/cart/main>장바구니</a></li>
+                    <!-- <li><a href="/cart/${member.member_id}">장바구니</a></li> -->
+                </c:if> 
+                
+                <!--로그인 O -->
+                <c:if test = "${member != null}">
+
+                        <!-- 관리자 계정 -->
+                        <c:if test="${member.adminCk = 1}">
+                            <li><a href="/admin/main">관리자 페이지</a></li>
+                        </c:if> 
+                        
+               		<li>${member.name}님 환영합니다.</li>
+                    <!-- <li><a href="/logout">로그아웃</a></li> -->
+                    <!-- => 비동기 방식 로그아웃으로 변경 -->
+                    <li><a id="logout_button">로그아웃</a></li>
+                    <li><a href="/mypage">마이페이지</a></li>
+                    <li><a href="/cart/main">장바구니</a></li>
+                    <!-- 로그인이 되야 아래가 적용될듯? -->
+                    <!-- <li><a href="/cart/${member.member_id}">장바구니</a></li> -->
+                    
+                </c:if>       
             </ul>
 
             <div class="container3">
-                <a href="/main"><img id="logo" src="../resources/imgs/logo.png" alt="로고"></a>
+                <a href="/main"><img id="logo" src="/resources/imgs/logo.png" alt="로고"></a>
             <!-- action에는 jsp 파일인듯?/ GET방식 /  -->
                 <form class="search1" action="#" method="GET">
                     <input class="search-txt" type="text" placeholder=" 검색어를 입력해주세요!">    
-                    <button class="search-btn" type="submit"><img id="btn" src="../resources/imgs/search.png" alt="메인검색버튼"></button>
-                    <!-- <input type="submit" value="fab fa-sistrix"></input> -->
-                    <!-- <button type="button" class="btm_image" id="img_btn"><img  src="이미지경로"></button> -->
-                </form>    
+                    <button class="search-btn" type="submit"><img id="btn" src="/resources/imgs/search.png" alt="메인검색버튼"></button>
+                </form>   
+                 
             </div>
     </header>
 
     <nav> 
         <div class="menu">
             <ul class="container4">
-                <!-- <div class="dropdown"> -->
-
                 <li><a href="#"><i class="fas fa-bars"> 전체 카테고리</i></a>
-                    <div class="dropdown-content">
-                        <ul>
-                            <li>
-                                <!-- 마우스 가져다 댔을 떄 strong -->
-                                <strong><a href="#">농산 &nbsp &nbsp &nbsp &nbsp &nbsp > </a></strong>
-                                <div class="dropdown-content2">
-                                    <ul>
-                                        <li><a href="#">전체보기</a></li>
-                                        <li><a href="#">오늘과일채소</a></li>
-                                        <li><a href="#">국내외과일</a></li>
-                                        <li><a href="#">친환경유기농채소</a></li>
-                                        <li><a href="#">우리땅채소</a></li>
-                                        <li><a href="#">채소/샐러드</a></li>  
-                                        <li><a href="#">주곡/잡곡</a></li> 
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>    
-                    </div>
-
-                </li>
-                <!-- </div> -->
-                
+                    <ul class="menu2">
+                        <li><a href="#">농산 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > </a>
+                            <ul class="menu3">
+                                <li><a href="#">전체보기</a></li>
+                                <li><a href="#">오늘과일채소</a></li>
+                                <li><a href="#">국내외과일</a></li>
+                                <li><a href="#">친환경유기농채소</a></li>
+                                <li><a href="#">우리땅채소</a></li>
+                                <li><a href="#">채소/샐러드</a></li>
+                                <li><a href="#">주곡/잡곡</a></li>
+                                <li><a href="#">오늘의 특가</a></li>
+                                <li><a href="#">신상품</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 <li><a href="#">오늘의 특가</a></li>
                 <li><a href="#">신상품</a></li>
                 <li><a href="#">고객센터</a></li>
