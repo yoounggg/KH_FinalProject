@@ -26,7 +26,6 @@
 			data : formData,
 			type : 'POST',
 			dataType : 'json';
-			
 		});
 		
 		
