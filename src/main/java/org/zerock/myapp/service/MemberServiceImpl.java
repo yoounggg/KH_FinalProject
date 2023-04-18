@@ -40,7 +40,7 @@ public class MemberServiceImpl implements MemberService {
 		
 	} // memberLogin()
 	
-	// MemberVO 객체 반환 하는 구현객체 생성 (찬돌)
+	// MemberDTO 객체 반환 하는 구현객체 생성 (찬돌)
 	@Override
 	public MemberDTO getMemberInfo(String memberId) throws ServiceException {
 		

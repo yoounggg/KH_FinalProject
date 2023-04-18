@@ -6,7 +6,6 @@ import oracle.sql.TIMESTAMP;
 
 //@Data
 @Value
-@AllArgsConstructor
 public class MemberVO {
 
 	private String id;

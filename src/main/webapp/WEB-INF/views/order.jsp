@@ -285,18 +285,18 @@
 								<td>
 									<!-- 이미지 <td>-->
 								</td>
-								<td class="상품정보">${ol.productName}</td>
+								<td class="상품정보">${ol.Name}</td>
 								<td class="products_table_price_td">
-									<fmt:formatNumber value="${ol.discount_price}" pattern="#,### 원" /> | 수량 ${ol.count}개
+									<fmt:formatNumber value="${ol.Discount}" pattern="#,### 원" /> | 수량 ${ol.productCount}개
 									<br><fmt:formatNumber value="${ol.totalPrice}" pattern="#,### 원" />
 									<!-- <br>[<fmt:formatNumber value="${ol.totalPoint}" pattern="#,### 원" />P]  -->
-									<input type="hidden" class="individual_productPrice_input" value="${ol.price}">
-									<input type="hidden" class="individual_salePrice_input" value="${ol.discount_price}">
-									<input type="hidden" class="individual_productCount_input" value="${ol.count}">
-									<input type="hidden" class="individual_totalPrice_input" value="${ol.discount_price * ol.count}">  <!-- 음.. 이거 좀 이상하네 -->
+									<input type="hidden" class="individual_productPrice_input" value="${ol.Price}">
+									<input type="hidden" class="individual_salePrice_input" value="${ol.Discount}">
+									<input type="hidden" class="individual_productCount_input" value="${ol.productCount}">
+									<input type="hidden" class="individual_totalPrice_input" value="${ol.Discount * ol.productCount}">  <!-- 음.. 이거 좀 이상하네 -->
 								<!--	<input type="hidden" class="individual_point_input" value="${ol.point}">   포인트는 없음  -->
-									<input type="hidden" class="individual_totalPoint_input" value="${ol.totalPoint}">
-									<input type="hidden" class="individual_productId_input" value="${ol.product_No}">
+								<!-- 	<input type="hidden" class="individual_totalPoint_input" value="${ol.totalPoint}"> -->
+									<input type="hidden" class="individual_productId_input" value="${ol.productId}">
 								</td>
 							</tr>			
 						</c:forEach>
