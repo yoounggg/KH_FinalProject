@@ -1,7 +1,6 @@
 package org.zerock.myapp.mapper;
 
 import org.zerock.myapp.domain.MemberDTO;
-import org.zerock.myapp.domain.MemberVO;
 
 public interface MemberMapper {
 
