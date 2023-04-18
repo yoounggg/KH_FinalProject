@@ -10,7 +10,7 @@ public interface MemberService {
 	public void memberSignup(MemberVO memberVO) throws Exception;
 	
 	// 로그인 셍나
-    public MemberVO memberLogin(MemberDTO memberDTO) throws ServiceException;
+    public MemberDTO memberLogin(MemberDTO memberDTO) throws ServiceException;
     
     // 주문자 정보 (찬돌)
 //    public MemberVO getMemberInfo(String memberId) throws ServiceException;

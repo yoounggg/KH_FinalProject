@@ -36,7 +36,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	// 세인 로그인	
 	@Override
-	public MemberVO memberLogin(MemberDTO memberDTO) throws ServiceException {
+	public MemberDTO memberLogin(MemberDTO memberDTO) throws ServiceException {
 		log.trace("memberLogin({}) invoked.", memberDTO);
 		
 		try {

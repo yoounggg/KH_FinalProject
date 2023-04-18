@@ -7,7 +7,7 @@
 	<mapper namespace="org.zerock.myapp.mapper.MemberMapper">
 	
 		<!-- 셍나 로그인: memberLogin() -->
-		<select id="memberLogin" resultType="org.zerock.myapp.domain.MemberVO">
+		<select id="memberLogin" resultType="org.zerock.myapp.domain.MemberDTO">
 		    SELECT 
 		    	ID, PASSWORD, ADMINCK
 		    FROM 

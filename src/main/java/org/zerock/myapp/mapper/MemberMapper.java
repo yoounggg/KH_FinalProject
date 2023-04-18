@@ -11,10 +11,9 @@ public interface MemberMapper {
 	// 로그인
 	// MemberVO로 하면 MemberVO 어노테이션 @Value라서 객체 생성이 안댐!
 	// DTO 따로 생성해서 @Data 값 주고 사용하기
-	public MemberVO memberLogin(MemberDTO memberDTO);
+	public MemberDTO memberLogin(MemberDTO memberDTO);
 	
 	// 주문자 주소 정보 (찬돌)
 	public MemberVO getMemberInfo(String memberId); // memberId 가 테이블에 ID로 되어있고 String임
-	
 	
 } // end class
