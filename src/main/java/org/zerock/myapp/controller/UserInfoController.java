@@ -16,7 +16,7 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @NoArgsConstructor
 
-@RequestMapping("/mypage")
+@RequestMapping("/mypage/userInfo/*")
 @Controller
 public class UserInfoController {
 	
@@ -24,8 +24,8 @@ public class UserInfoController {
 	private UserInfoService service;
 	
 	
-	@GetMapping("/userInfo")
-	public String userInfoMain() {
+	@GetMapping("/main")
+	public String userInfoMain() { // 메인페이지 보려고
 		
 		return "userInfo";
 	}
