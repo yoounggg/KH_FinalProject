@@ -1,5 +1,6 @@
 package org.zerock.myapp.mapper;
 
+import org.zerock.myapp.domain.LoginDTO;
 import org.zerock.myapp.domain.MemberDTO;
 import org.zerock.myapp.domain.MemberVO;
 
@@ -14,6 +15,6 @@ public interface MemberMapper {
 	public MemberDTO memberLogin(MemberDTO memberDTO);
 	
 	// 주문자 주소 정보 (찬돌)
-	public MemberVO getMemberInfo(String ID); // memberId 가 테이블에 ID로 되어있고 String임
+	public MemberDTO getMemberInfo(String ID); // memberId 가 테이블에 ID로 되어있고 String임
 	
 } // end class
