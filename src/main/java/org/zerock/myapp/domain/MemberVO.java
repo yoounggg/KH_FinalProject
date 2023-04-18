@@ -16,8 +16,8 @@ public class MemberVO {
 	private String address2;
 	private String address3;
 	private String gender;
+	private TIMESTAMP signup_date;
 	private String birth_date;
 	private Integer adminCk;
-	private TIMESTAMP signup_date;
 	
 } // end class

@@ -13,7 +13,6 @@ public interface MemberService {
     public MemberVO memberLogin(MemberDTO memberDTO) throws ServiceException;
     
     // 주문자 정보 (찬돌)
-//    public MemberVO getMemberInfo(String memberId) throws ServiceException;
-    public MemberVO getMemberInfo(String id) throws ServiceException;
+    public MemberVO getMemberInfo(String memberId) throws ServiceException;
 	
 } // end class
