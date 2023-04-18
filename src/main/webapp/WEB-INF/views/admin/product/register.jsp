@@ -372,7 +372,7 @@
 	                        </div>
 	                        <div class="box3">
 	                            <input type="file" name="main_image"  id="main_image" style="height:30px";>
-	                            <div id="image_result">
+	                            <div id="uploadResult">
 	                            	<div id="result_card">
 		                            	<div class="imgDeleteBtn">x</div>
 		                            	<img src ="/product/display?fileName=test.jpg">
@@ -628,7 +628,20 @@ $("input[name='price']").on("change", function(){
 	function showUploadImage(uploadResultArr) {
 		/* 전달 받은 데이터 검증 */
 		if(!uploadResultArr || uploadResultArr.length == 0){return}
-	}
+		
+		let uploadResult = $("#uploadResult");
+		let obj = uploadResultArr[0];		
+		let str = "";		
+		let fileCallPath = obj.uploadPath.replace(/\\/g, '/') + "/s_" + obj.uuid + "_" + obj.fileName;
+		
+		str += "<div id='result_card'>";
+		str += "<img src = '/display?fileName="+ fileCallPath"'>";
+		str += "<div class='imgDeleteBtn'>x</div>";
+		str += "</div>";
+		
+		uploadResult.append(str);
+		
+	} //showUploadImage
 		 
 		
 </script>
