@@ -1,5 +1,4 @@
-package org.zerock.myapp.domain;
-
+B
 import lombok.Data;
 
 @Data
@@ -23,7 +22,7 @@ public class OrderPageItemDTO {
 	
 	private Integer totalPrice;			// 총 가격
 	
-	public void initSaleTotal() {
+	public void initSaleTotal( ) {
 		this.salePrice = (int) (this.Price * (1-this.Discount));
 		this.totalPrice = this.salePrice*this.Price;
 	} //initSaleTotal

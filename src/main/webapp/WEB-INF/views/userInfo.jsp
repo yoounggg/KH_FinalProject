@@ -110,8 +110,7 @@
     <aside>
         <ul class="box1">
             <img src="/resources/imgs/profileimg.jpg" alt="프로필 사진">
-            <li class="small1">최귤이 님</li>
-            <!-- <li class="small1">${member.name} 님</li> -->
+            <li class="small1">"$"{member.name} 님</li>
             <li class="small1"><a href="/mypage/userInfo"><i class="fab fa-whmcs"></i>회원정보관리</a></li>
         </ul>
 
@@ -128,30 +127,32 @@
             <h2 id="sujeong2">회원정보수정</h2>
             <h6 id="sujeong3"><span class="red">*</span>필수 입력</h6>
         </div>
-        
+       
+        <form action="update" method="post">
+        <input type = "hidden" name="id" value="{member.id}" />
         <table>
             <tr>
                 <th>&nbsp;아이디</th>
-                <td>"$"{member.id}</td>
+                <td><input type="text" value="{member.id}" readonly>"$"{member.id}</td>
             </tr>
             <tr>
                 <th>&nbsp;현재 비밀번호</th>
-                <td><input type="text"></td>
+                <td><input type="password" value=""></td>
                 <td class="sletter">&nbsp;*비밀번호를 입력해 주세요.</td>
             </tr>
             <tr>
                 <th>&nbsp;신규 비밀번호<span class="red">*</span></th>
-                <td><input type="text"></td>
+                <td><input type="password" value=""></td>
                 <td class="sletter" colspan="2">&nbsp;*영문, 숫자 조합 6~15자리로 비밀번호를 입력해주세요.</td>
             </tr>
             <tr>
                 <th>&nbsp;신규 비밀번호 확인<span class="red">*</span></th>
-                <td><input type="text"></td>
+                <td><input type="password" value=""></td>
                 <td class="sletter" colspan="2">&nbsp;*비밀번호 확인을 위해 한 번 더 입력해 주세요.</td>
             </tr>
             <tr>
                 <th>&nbsp;성명<span class="red">*</span></th>
-                <td><input type="text" value="${member.id}"></td>
+                <td><input type="text" value="{member.name}" readonly>"$"{member.name}</td>
             </tr>
             <tr class="specialtr">
                 <th class="th_height" rowspan="2">&nbsp;휴대전화<span class="red">*</span></th>
@@ -163,25 +164,28 @@
                 <td><input type="button" value="확인" class="btntr"></td>
             </tr>
             <tr class="specialtr">
-                <th class="th_height" rowspan="2">&nbsp;주소<span class="red">*</span></th>
-                <td><input type="text" class="addrInput1 addrtr" readonly = "readonly"></td>
-                <td><input type="button" value="우편번호 찾기" class="btntr"></td>
+                <th class="th_height2" rowspan="3">&nbsp;주소<span class="red">*</span></th>
+                <td><input type="text" class="addrInput1 addrtr" readonly = "readonly" id="sample6_postcode"></td>
+                <td><input type="button" value="우편번호 찾기" class="btntr" onclick="kakaoAdress()"></td>
+            </tr>
+ 			<tr class="addr_tr">
+                <td colspan="2"><input type="text" id="sample6_address" class="addrwidth"></td>
             </tr>
             <tr>
-                <td><input type="text" class="addrInput2 addrtr" readonly = "readonly"></td>
-                <td><input type="text" class="addrInput3" readonly = "readonly"></td>
+                <td><input type="text" class="addrInput2" id="sample6_detailAddress"></td>
             </tr>
             <tr>
                 <th>&nbsp;이메일<span class="red">*</span></th>
-                <td><input type="text"></td>
+                <td><input type="text" value="{member.email}" readonly>"$"{member.email}</td>
             </tr>
             <tr>
                 <!-- 성별 변경 불가능 -->
-                <th><form action="#" method="get">&nbsp;성별</form></th>
+                <!-- <form action="#" method="get">-->
+                <th>&nbsp;성별</form></th>
                 <td class="radio">
-                    <input type="radio" name="성별" value="남자">남자&nbsp;
-                    <input type="radio" name="성별" value="여자">여자&nbsp;
-                    <input type="radio" name="성별" value="선택안함" checked>선택안함
+                    <input type="radio" name="성별" value="남자" ${member.gender eq '남자' ? 'checked' : ''} />남자&nbsp;
+                    <input type="radio" name="성별" value="여자" ${member.gender eq '여자' ? 'checked' : ''} />여자&nbsp;
+                    <input type="radio" name="성별" value="선택안함" ${member.gender eq '선택안함' ? 'checked' : ''} checked>선택안함
                 </td>
                 </form>
             </tr>
@@ -193,9 +197,9 @@
         </table>
 
         <div class="btnset">
-            <input class="userbtn1" type="button" value="정보수정">
+            <input class="userbtn1" type="submit" value="정보수정">
             <input class="userbtn2" type="button" value="메인으로" onClick="location.href='/main'">
-            <input class="userbtn2" type="button" value="회원탈퇴">
+            <button class="userbtn2" type="button" onClick="removeMember();">회원탈퇴</button>
         </div>    
         
     </div>    

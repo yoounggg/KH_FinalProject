@@ -33,7 +33,7 @@ import lombok.extern.log4j.Log4j2;
 
 @TestInstance(Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class CartServiceTest {
+public class CartServiceTests {
 	
 	@Setter(onMethod_=@Autowired)
 	private CartService service;
