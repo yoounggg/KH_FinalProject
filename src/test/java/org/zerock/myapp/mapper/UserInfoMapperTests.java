@@ -1,7 +1,5 @@
 package org.zerock.myapp.mapper;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -19,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.zerock.myapp.domain.MemberDTO;
-import org.zerock.myapp.domain.MemberVO;
 
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -57,61 +54,20 @@ public class UserInfoMapperTests {
 	
 	@Test
 	@Order(2)
-	@DisplayName("테스트1: 회원상세조회")
+	@DisplayName("테스트1: 비밀번호 변경")
 	@Timeout(value = 1, unit=TimeUnit.MINUTES)
-	void testselect() {
-		log.trace("testselect() invoked");
-		
-		String id = "nicknamebyul";
-		
+	void testchangepw() {
+		log.trace("testchangepw() invoked");
+
 		MemberDTO dto = new MemberDTO();
-		dto.setId(id);
+		dto.setId("'codud'"); // 문자열로 인식하기 위해서 큰 따옴표 안에 작은 따옴표 적기
+		dto.setPassword("123456");
 		
-		MemberDTO affectedlines = this.mapper.select(id);
+		int affectedLines = this.mapper.changePw(dto);
 		
-		log.info("\t+ affectedlines : {}", affectedlines);
+		log.info("\t+affectedLines:{}", affectedLines);
 		
-	} // testselect
-	
-	@Test
-	@Order(3)
-	@DisplayName("테스트2: 회원정보수정")
-	@Timeout(value = 1, unit=TimeUnit.MINUTES)
-	void testupdate() {
-		log.trace("testupdate() invoked");
-		
-//		String id = "nicknamebyul";
-		
-		MemberDTO dto = new MemberDTO();
-		dto.setId("nicknamebyul");
-		dto.setPassword("1994");
-		dto.setName("규리규리");
-		dto.setEmail("GURY@NAVER.COM");
-		dto.setTel("010-1994-1994");
-		dto.setAddress1(12345);
-		dto.setAddress2("여어어억삼도오옹");
-		dto.setAddress3("고오옹시워어엉ㄴ");
-	
-		int affectedlines = this.mapper.update(dto);
-		
-		log.info("\t+ affectedlines : {}", affectedlines);
-		
-	} // testupdate
-	
-	@Test
-	@Order(4)
-	@DisplayName("테스트3: 회원삭제")
-	@Timeout(value = 1, unit=TimeUnit.MINUTES)
-	void testdelete() {
-		log.trace("testdelete() invoked");
-		
-		String id = "sengna";
-	
-		int affectedlines = this.mapper.delete(id);
-		
-		log.info("\t+ affectedlines : {}", affectedlines);
-		
-	} // testdelete
+	} // testchangepw
 	
 
 } // end UserInfoMapperTests

@@ -28,7 +28,7 @@ aside{
     position: relative;
     left:-100px;
     /* 왜 밑으로 안가지..? */
-    /*z-index: 97; */
+    z-index: 97; 
 }
 aside>ul{
     margin: 0;
@@ -171,14 +171,7 @@ th{
     line-height: 65px;
 }
 
-.th_height2{
-    line-height: 100px;
-}
-.addr_tr{
-    border-bottom: none;
-}
 
-.addrwidth{width:390px;}
 
 /* ------header & footer -------*/
 
@@ -383,6 +376,7 @@ li{ list-style-type: none;}
     height: 407px;
     border: 1px solid #909090;
     background-color: white;
+    z-index: 98;
     display: none;
 }
 
@@ -419,10 +413,8 @@ li{ list-style-type: none;}
     height: 407px;
     border-left: none;
     background-color: white;
-   /* z-index: 99; */
+    z-index: 99;
 }
-
-.menu{z-index:99; !important }
 
 /* --------------footer------------------- */
 
