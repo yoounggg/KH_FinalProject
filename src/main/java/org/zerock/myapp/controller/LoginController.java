@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.zerock.myapp.domain.LoginDTO;
+import org.zerock.myapp.domain.MemberDTO;
 import org.zerock.myapp.domain.MemberVO;
 import org.zerock.myapp.service.MemberService;
 
@@ -38,15 +38,15 @@ public class LoginController {
 	
 	// 테스트용
     @PostMapping("/main")
-    public String loginPost(LoginDTO loginDTO, MemberVO memberVO, HttpServletRequest request, RedirectAttributes rttr
+    public String loginPost(MemberDTO memberDTO, HttpServletRequest request, RedirectAttributes rttr
     ) throws Exception {
 
         log.trace("memberLogin 메소드에 진입하였습니다.");
 //        log.info("전달된 데이터는 {}입니다.", memberVO);
-        log.info("전달된 데이터는 {}입니다.", loginDTO);
+        log.info("전달된 데이터는 {}입니다.", memberDTO);
         
         HttpSession session = request.getSession();
-        MemberVO m_vo = memberService.memberLogin(loginDTO);
+        MemberVO m_vo = memberService.memberLogin(memberDTO);
         log.info("\t+ m_vo: {}", m_vo);
 
         if(m_vo == null) {                                // 일치하지 않는 아이디, 비밀번호 입력 경우

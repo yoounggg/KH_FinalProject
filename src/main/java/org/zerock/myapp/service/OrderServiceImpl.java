@@ -44,7 +44,7 @@ public class OrderServiceImpl implements OrderService {
 		
 		return result;
 		
-	}
+	} // getProductsInfo()
 
 //	@Override
 //	public List<OrderPageItemDTO> getCartItemsByMemberId(String memberId) throws ServiceException {
