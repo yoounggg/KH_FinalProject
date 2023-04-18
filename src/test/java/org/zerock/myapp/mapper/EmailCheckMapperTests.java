@@ -29,10 +29,10 @@ import lombok.extern.log4j.Log4j2;
 
 @TestInstance(Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class IdCheckMapperTests {
+public class EmailCheckMapperTests {
 
 	@Setter(onMethod_ = @Autowired)
-	private IdCheckMapper mapper;
+	private EmailCheckMapper mapper;
 
 	@BeforeAll
 	void beforeAll() {
@@ -46,16 +46,16 @@ public class IdCheckMapperTests {
 
 //	@Disabled
 	@Test
-	@DisplayName("testIdCheck")
+	@DisplayName("testEmailCheck")
 	@Order(1)
 	@Timeout(value = 1, unit = TimeUnit.MINUTES)
-	public void testIdCheck() {
-		log.trace("testIdCheck () invoked.");
+	public void testEmailCheck() {
+		log.trace("testEmailCheck () invoked.");
 		
-		String id = "moyamoga";
-		int checkId = mapper.idCheck(id);			// 중복됐으면 1 리턴 아니면 0
+		String email = "pig5@naver.com";
+		int checkEmail = mapper.emailCheck(email);			// 중복됐으면 1 리턴 아니면 0
 
-		log.trace("checkId : {} ", checkId);
-	} // testIdCheck
+		log.trace("checkEmail : {} ", checkEmail);
+	} // testEmailCheck
 
 } // end class
