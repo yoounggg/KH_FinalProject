@@ -29,10 +29,10 @@ public class OrderServiceImpl implements OrderService {
 		
 		for(OrderPageItemDTO ord : orders) {	// 장바구니 페이지(Veiw)에서 전달 받은 정보 List객체의 수 만큼 반복해주는 for문 작성
 			//  상품 정보를 만들어내는 OrderMapper의 getProductsInfo() 메서드를 호출 , productsInfo 변수에 저장
-			OrderPageItemDTO productsInfo = orderMapper.getProductsInfo(ord.getProduct_No());
+			OrderPageItemDTO productsInfo = orderMapper.getProductsInfo(ord.getProductId());
 			
 			//현재의 productsInfo 변수에 있는 상품 정보 객체는 productCount에 대한 정보는 없기 때문에 뷰로부터 전달받은 productCount 값을 대입
-			productsInfo.setCount(ord.getCount());
+			productsInfo.setProductCount(ord.getProductCount());
 			
 			//OrderPageItemDTO객체에 만들어 둔 initSaleTotal() 메서드를 호출하여 그 값들을 세팅
 			productsInfo.initSaleTotal();

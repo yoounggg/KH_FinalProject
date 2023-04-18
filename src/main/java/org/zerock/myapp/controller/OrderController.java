@@ -29,19 +29,19 @@ public class OrderController {
 	@Autowired
 	private MemberService memberService;
 	
-//	@GetMapping("/orderpage")			// 주문페이지 이동 mapping 임시
-//	public String orderPage() {
-//		log.trace("payPage() invoked");
-//	
-//		return "order";
-//	}; // orderPage
+	@GetMapping("/orderpage")			// 주문페이지 이동 mapping 임시
+	public String orderPage() {
+		log.trace("payPage() invoked");
+	
+		return "order";
+	}; // orderPage
 	
 	
 	// 테스트123
-	@GetMapping("/orderpage") // 주문페이지로 이동 mapping
-	public String orderPageGet(String id, OrderPageDTO opd, Model model) throws ServiceException {
+	@GetMapping("/{memberId}") // 주문페이지로 이동 mapping
+	public String orderPageGet(@PathVariable("memberId") String memberId, OrderPageDTO opd, Model model) throws ServiceException {
 		
-		log.trace("memberId : " + id);
+		log.trace("memberId : " + memberId);
 		log.trace("orders : " + opd.getOrders());
 		
 		if(opd == null) {
@@ -56,11 +56,13 @@ public class OrderController {
 		// Service 메서드를 호출하여 반환받은 값들을 View단으로 전송
 		
 		model.addAttribute("orderList", orderService.getProductsInfo(opd.getOrders()));
-		model.addAttribute("memberInfo", memberService.getMemberInfo(id));
+		model.addAttribute("memberInfo", memberService.getMemberInfo(memberId));
 		
 		return "order";
 		
 	} // orderPageGet
 
+	
+	// 찬석이 수정합니당123dddd
 	
 }

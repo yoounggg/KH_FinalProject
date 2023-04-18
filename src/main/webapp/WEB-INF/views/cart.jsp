@@ -200,7 +200,7 @@
 
 			<!-- 구매 버튼 영역 -->
 			<div class="contentbtn_section">
-				<a href="/order/orderpage" class="order_btn">선택상품 주문하기</a>
+				<a class="order_btn">선택상품 주문하기</a>
                 <a href="/main" class="shop_btn">쇼핑 계속하기</a>
 			</div>
 			
@@ -220,8 +220,7 @@
 			</form>
 
 			<!-- 주문 form -->
-			<!-- /order/${member.memberId} -->
-			<form action="/order/orderpage" method="get" class="order_form">
+			<form action="/order/${member.memberId}" method="get" class="order_form">
 			</form>													
 		</div>
     </main>
