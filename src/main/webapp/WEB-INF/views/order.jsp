@@ -287,13 +287,13 @@
 								</td>
 								<td class="상품정보">${ol.Name}</td>
 								<td class="products_table_price_td">
-									<fmt:formatNumber value="${ol.Discount}" pattern="#,### 원" /> | 수량 ${ol.productCount}개
+									<fmt:formatNumber value="${ol.Discount}" pattern="#,### 원" /> | 수량 ${ol.ProductCount}개
 									<br><fmt:formatNumber value="${ol.totalPrice}" pattern="#,### 원" />
 									<!-- <br>[<fmt:formatNumber value="${ol.totalPoint}" pattern="#,### 원" />P]  -->
 									<input type="hidden" class="individual_productPrice_input" value="${ol.Price}">
 									<input type="hidden" class="individual_salePrice_input" value="${ol.Discount}">
-									<input type="hidden" class="individual_productCount_input" value="${ol.productCount}">
-									<input type="hidden" class="individual_totalPrice_input" value="${ol.Discount * ol.productCount}">  <!-- 음.. 이거 좀 이상하네 -->
+									<input type="hidden" class="individual_productCount_input" value="${ol.ProductCount}">
+									<input type="hidden" class="individual_totalPrice_input" value="${ol.Discount * ol.ProductCount}">  <!-- 음.. 이거 좀 이상하네 -->
 								<!--	<input type="hidden" class="individual_point_input" value="${ol.point}">   포인트는 없음  -->
 								<!-- 	<input type="hidden" class="individual_totalPoint_input" value="${ol.totalPoint}"> -->
 									<input type="hidden" class="individual_productId_input" value="${ol.productId}">
@@ -320,25 +320,22 @@
 
                 <!-- 이름 + 입력창 + 수정 버튼 -->
                 <div class="input_row">
-                    <label for="name_title">이름</label>
-                    <div>${memberInfo.name}</div>   <!-- MemberDTO에서 Name이아니라 name으로 소문자로 되어있음 -->
-                    <input type="text" id="name_input" name="name" placeholder="이름을 입력해주세요">
+                    <label for="name_title">이름</label>   <!-- MemberDTO에서 Name이아니라 name으로 소문자로 되어있음 -->
+                    <input type="text" id="name_input" name="name" value="${memberInfo.name}">
                     <button class="edit_button">수정</button>
                 </div>
 
                 <!-- 핸드폰 번호 + 입력창 + 수정 버튼 -->
                 <div class="input_row">
                     <label for="phone_title">핸드폰 번호</label>
-                    <div>${memberInfo.tel }</div>
-                    <input type="tel" id="phone_input" name="phone" placeholder="핸드폰 번호를 입력해주세요">
+                    <input type="tel" id="phone_input" name="phone" value="${memberInfo.tel}">
                     <button class="edit_button">수정</button>
                 </div>
 
                 <!-- 이메일 + 입력창 -->
                 <div class="input_row">
                     <label for="email_title">이메일</label>
-                    <div>${memberInfo.email }</div>
-                    <input type="email" id="email_input" name="email" placeholder="이메일을 입력해주세요">
+                    <input type="email" id="email_input" name="email" value="${memberInfo.email}">
                 </div>
 
             </div>
