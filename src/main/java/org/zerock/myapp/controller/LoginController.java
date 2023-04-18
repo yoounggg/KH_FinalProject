@@ -41,7 +41,6 @@ public class LoginController {
     ) throws Exception {
 
         log.trace("memberLogin 메소드에 진입하였습니다.");
-//        log.info("전달된 데이터는 {}입니다.", memberVO);
         log.info("전달된 데이터는 {}입니다.", memberDTO);
         
         HttpSession session = request.getSession();
@@ -56,7 +55,7 @@ public class LoginController {
             rttr.addFlashAttribute("result", m_dto);
             log.info("m_dto: {}", m_dto);
             
-            // 로그인 폼에 계속 남아있음
+            // 로그인 실패 시 로그인 폼에 계속 남아있음
             return "login/Login_Main";
             
         } else {											// 일치하는 아이디, 비밀번호 입력
@@ -66,7 +65,7 @@ public class LoginController {
                 session.setAttribute("member", m_dto); // 회원 정보를 세션에 저장
                 log.info("m_dto: {}", m_dto);
         	
-        	// 메인 화면으로 돌아감
+        	// 로그인 성공 시 메인 화면으로 돌아감
         	return "redirect:/main";
         
         } // if-else

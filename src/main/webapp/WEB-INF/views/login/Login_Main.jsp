@@ -44,9 +44,9 @@
                     <input id="password" type="password" name="password" placeholder="비밀번호" required>
                 </div>
                 
-                <!-- adminCK 확인 -->
-                <div class="adminCk_class">
-                	<input type="hidden" name="adminCk" value="${member.adminCk}">
+                <!-- 로그인 실패 시 띄우는 알림 문구 -->
+                <div class = "login_fail">
+                	ID 또는 비밀번호를 잘못 입력하셨습니다.
                 </div>
 
                 <!-- 아이디 저장, 자동 로그인, 아이디 찾기, 비밀번호 찾기 -->
