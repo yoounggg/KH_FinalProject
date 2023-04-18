@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.myapp.domain.MemberDTO;
-import org.zerock.myapp.domain.MemberVO;
 import org.zerock.myapp.service.MemberService;
 
 import lombok.NoArgsConstructor;
@@ -46,28 +45,31 @@ public class LoginController {
         log.info("전달된 데이터는 {}입니다.", memberDTO);
         
         HttpSession session = request.getSession();
-        MemberVO m_vo = memberService.memberLogin(memberDTO);
-        log.info("\t+ m_vo: {}", m_vo);
+        MemberDTO m_dto = memberService.memberLogin(memberDTO);
+        
+        log.info("\t+ m_dto: {}", m_dto);
 
-        if(m_vo == null) {                                // 일치하지 않는 아이디, 비밀번호 입력 경우
+        if(m_dto == null) {                                // 일치하지 않는 아이디, 비밀번호 입력
             
-            log.info("실패 m_vo=id and password: {}", m_vo);
+            log.info("실패: m_dto = id and password: {}", m_dto);
         	
-            rttr.addFlashAttribute("result", m_vo);
+            rttr.addFlashAttribute("result", m_dto);
+            log.info("m_dto: {}", m_dto);
+            
             // 로그인 폼에 계속 남아있음
             return "login/Login_Main";
             
-        } else {
+        } else {											// 일치하는 아이디, 비밀번호 입력
         	
-        	log.info("성공 m_vo=id and password: {}", m_vo);
+        	log.info("성공: m_dto = id and password: {}", m_dto);
         	
-                session.setAttribute("member", m_vo); // 일반 회원 정보를 세션에 저장
-                log.info("m_vo: {}", m_vo);
+                session.setAttribute("member", m_dto); // 일반 회원 정보를 세션에 저장
+                log.info("m_dto: {}", m_dto);
         	
         	// 메인 화면으로 돌아감
-        	return "redirect:/main";
+        	return "main";
         
-        }
+        } // if-else
         
     } // loginPost()
 	

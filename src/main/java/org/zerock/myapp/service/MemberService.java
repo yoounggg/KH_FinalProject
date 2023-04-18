@@ -1,6 +1,5 @@
 package org.zerock.myapp.service;
 
-import org.zerock.myapp.domain.LoginDTO;
 import org.zerock.myapp.domain.MemberDTO;
 import org.zerock.myapp.domain.MemberVO;
 import org.zerock.myapp.exception.ServiceException;
