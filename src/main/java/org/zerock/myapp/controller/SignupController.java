@@ -32,7 +32,9 @@ public class SignupController { // 회원가입 페이지 호출
 //	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Setter(onMethod_=@Autowired)
-	private MemberService memberservice;
+	private MemberService memberService;		
+	
+	
 	
 	//회원가입 페이지로 이동만!
 	@GetMapping("/info")
@@ -43,13 +45,15 @@ public class SignupController { // 회원가입 페이지 호출
 	} // joinGET
 	
 	
-	//회원가입 서비스로 가는 메소드(POST) 들어가야 함
+	
+	
+//	//회원가입 서비스로 가는 메소드(POST) 들어가야 함
 //	@PostMapping("/info")
 //	public String signupPOST(MemberDTO memberDTO) throws Exception {
 //		log.trace("signupPOST() invoked(회원가입 서비스 실행)");
 //		
 //		//회원가입 서비스 실행
-//		memberservice.memberSignup(memberDTO);
+//		memberService.memberSignup(memberDTO);
 //		
 //		log.trace("memberPOST : {} invoked 성공", memberDTO);
 //		
@@ -57,25 +61,32 @@ public class SignupController { // 회원가입 페이지 호출
 //		
 //	} // signupPOST
 	
+	//회원가입 비밀번호 암호화 적용
 	
-//	회원가입 비밀번호 암호화 적용    
-//	@PostMapping("/info")
-//	public String signupPOST(MemberDTO memberDTO) throws Exception {
-//		log.trace("signupPOST() invoked(회원가입 서비스 실행)");
-//	      
-//		String beforePw ="";
-//		String encodePw ="";
-//	      
-//		beforePw = memberDTO.getPassword();      // 비밀번호 가져오기
-//		encodePw = bCryptPasswordEncoder.encode(beforePw);   // 비밀번호 인코딩
-//		memberDTO.setPassword(encodePw);         // 인코딩된 비밀번호 집어넣기
-//	      
-//		memberservice.memberSignup(memberDTO);
-//	      
-//		return "redirect:/signup/complete";
-//	      
-//	} // signupPOST
+//	@Setter(onMethod_=@Autowired)
+//	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	@PostMapping("/info")
+	public String signupPOST(MemberDTO memberDTO) throws Exception {
+		log.trace("signupPOST() invoked(회원가입 서비스 실행)");
+		
+		String beforePw ="";
+		String encodePw ="";
+		
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		
+		beforePw = memberDTO.getPassword();		// 비밀번호 가져오기
+		encodePw = bCryptPasswordEncoder.encode(beforePw);	// 비밀번호 인코딩
+		memberDTO.setPassword(encodePw);			// 인코딩된 비밀번호 집어넣기
+		
+		memberService.memberSignup(memberDTO);
+	
 
+		
+		return "redirect:/signup/complete";
+		
+	} // signupPOST
+	
 	
 	@GetMapping("/complete")
 	public void signupComplete() throws Exception{
