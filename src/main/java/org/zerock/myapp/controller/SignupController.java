@@ -4,13 +4,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.zerock.myapp.domain.MemberVO;
+import org.zerock.myapp.domain.MemberDTO;
 import org.zerock.myapp.service.MemberService;
 
 import lombok.NoArgsConstructor;
@@ -22,8 +24,12 @@ import lombok.extern.log4j.Log4j2;
 
 @RequestMapping("/signup") 
 @Controller
+@Service
 public class SignupController { // 회원가입 페이지 호출
 	
+	
+//	@Autowired
+//	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Setter(onMethod_=@Autowired)
 	private MemberService memberservice;
@@ -38,20 +44,39 @@ public class SignupController { // 회원가입 페이지 호출
 	
 	
 	//회원가입 서비스로 가는 메소드(POST) 들어가야 함
-	@PostMapping("/info")
-	public String signupPOST(MemberVO memberVO) throws Exception {
-		log.trace("signupPOST() invoked(회원가입 서비스 실행)");
-		
-		//회원가입 서비스 실행
-		memberservice.memberSignup(memberVO);
-		
-		log.trace("memberPOST : {} invoked 성공", memberVO);
-		
-		return "redirect:/signup/complete";
-		
-	} // signupPOST
+//	@PostMapping("/info")
+//	public String signupPOST(MemberDTO memberDTO) throws Exception {
+//		log.trace("signupPOST() invoked(회원가입 서비스 실행)");
+//		
+//		//회원가입 서비스 실행
+//		memberservice.memberSignup(memberDTO);
+//		
+//		log.trace("memberPOST : {} invoked 성공", memberDTO);
+//		
+//		return "redirect:/signup/complete";
+//		
+//	} // signupPOST
 	
+	
+//	회원가입 비밀번호 암호화 적용    
+//	@PostMapping("/info")
+//	public String signupPOST(MemberDTO memberDTO) throws Exception {
+//		log.trace("signupPOST() invoked(회원가입 서비스 실행)");
+//	      
+//		String beforePw ="";
+//		String encodePw ="";
+//	      
+//		beforePw = memberDTO.getPassword();      // 비밀번호 가져오기
+//		encodePw = bCryptPasswordEncoder.encode(beforePw);   // 비밀번호 인코딩
+//		memberDTO.setPassword(encodePw);         // 인코딩된 비밀번호 집어넣기
+//	      
+//		memberservice.memberSignup(memberDTO);
+//	      
+//		return "redirect:/signup/complete";
+//	      
+//	} // signupPOST
 
+	
 	@GetMapping("/complete")
 	public void signupComplete() throws Exception{
 		log.trace("signupComplete() invoked 완료화면 get");
