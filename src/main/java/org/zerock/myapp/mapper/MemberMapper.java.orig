@@ -1,6 +1,9 @@
 package org.zerock.myapp.mapper;
 
+<<<<<<< HEAD
 import org.zerock.myapp.domain.LoginDTO;
+=======
+>>>>>>> 298ec874f64ecc4b9961c2859d0c17abb1387b72
 import org.zerock.myapp.domain.MemberDTO;
 import org.zerock.myapp.domain.MemberVO;
 
