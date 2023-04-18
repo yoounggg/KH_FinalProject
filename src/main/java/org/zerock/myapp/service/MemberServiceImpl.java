@@ -3,6 +3,7 @@ package org.zerock.myapp.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zerock.myapp.domain.LoginDTO;
+import org.zerock.myapp.domain.MemberDTO;
 import org.zerock.myapp.domain.MemberVO;
 import org.zerock.myapp.exception.ServiceException;
 import org.zerock.myapp.mapper.MemberMapper;
@@ -41,7 +42,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	// MemberVO 객체 반환 하는 구현객체 생성 (찬돌)
 	@Override
-	public MemberVO getMemberInfo(String memberId) throws ServiceException {
+	public MemberDTO getMemberInfo(String memberId) throws ServiceException {
 		
 		return memberMapper.getMemberInfo(memberId);
 	} // getMemberInfo

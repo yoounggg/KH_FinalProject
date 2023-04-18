@@ -237,12 +237,6 @@
         </div>
     </nav>
 	<!-- ---------------------------------------------------------------------------- -->
-	<div>
-		${orderList}
-	</div>
-	<div>
-		${memberInfo}
-	</div>
 	
 <div class="wrapper">
 
@@ -327,7 +321,7 @@
                 <!-- 이름 + 입력창 + 수정 버튼 -->
                 <div class="input_row">
                     <label for="name_title">이름</label>
-                    <div>${memberInfo.Name}</div>
+                    <div>${memberInfo.name}</div>   <!-- MemberDTO에서 Name이아니라 name으로 소문자로 되어있음 -->
                     <input type="text" id="name_input" name="name" placeholder="이름을 입력해주세요">
                     <button class="edit_button">수정</button>
                 </div>
