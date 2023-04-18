@@ -67,7 +67,7 @@ public class LoginController {
                 log.info("m_dto: {}", m_dto);
         	
         	// 메인 화면으로 돌아감
-        	return "main";
+        	return "redirect:/main";
         
         } // if-else
         
