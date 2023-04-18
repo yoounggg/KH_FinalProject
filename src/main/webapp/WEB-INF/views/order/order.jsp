@@ -17,14 +17,13 @@
     <link rel="shortcut icon" href="/resources/ico/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/resources/ico/favicon.ico" type="image/x-icon">
     
-    <script src="/resources/js/main1.js"></script>
+    <script src="/resources/js/order/order.js"></script>
     
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-
-    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    
+	
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
     <script>
         var IMP = window.IMP; 
         IMP.init("imp35647012"); 
@@ -41,7 +40,7 @@
                 buyer_tel : '010-1234-5678',
                 buyer_addr : '서울특별시 강남구 삼성동',
                 buyer_postcode : '123-456'
-            }, function (rsp) { 
+            }, function (rsp) { // callback
                 if (rsp.success) {
                     console.log(rsp);
                 } else {
@@ -50,107 +49,6 @@
             });
         }
     </script>
-
-<script>
-
-	$(document).ready(function()) {
-			
-		setTotalinfo();
-		
-		
-	}
-  
-    function sample4_execDaumPostcode() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-
-                var roadAddr = data.roadAddress; 
-                var extraRoadAddr = ''; 
-
-                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                    extraRoadAddr += data.bname;
-                }
-
-                if(data.buildingName !== '' && data.apartment === 'Y'){
-                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-
-                if(extraRoadAddr !== ''){
-                    extraRoadAddr = ' (' + extraRoadAddr + ')';
-                }
-
-                document.getElementById('address_input_r').value = data.zonecode; 
-                document.getElementById("address_input2_r").value = roadAddr; 
-                document.getElementById("address_input3_r").value = data.jibunAddress; 
-
-                if(roadAddr !== ''){
-                    document.getElementById("sample4_extraAddress").value = extraRoadAddr;
-                } else {
-                    document.getElementById("sample4_extraAddress").value = '';
-                }
-
-                var guideTextBox = document.getElementById("guide");
-
-                if(data.autoRoadAddress) {
-                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-                    guideTextBox.style.display = 'block';
-
-                } else if(data.autoJibunAddress) {
-                    var expJibunAddr = data.autoJibunAddress;
-                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-                    guideTextBox.style.display = 'block';
-                } else {
-                    guideTextBox.innerHTML = '';
-                    guideTextBox.style.display = 'none';
-                }
-            }
-        }).open();
-    } 
-    
-    
-    function setTotalInfo() {
-    	
-    	let totalPrcie = 0;			
-    	let totalCount = 0;			
-    	let totalKind = 0;			
-    	let delivery = 0;			
-    	let finalTotalPrice = 0;	
-    
-    	$(".procuts_table_price_td").each(function(index, element) {
-
-    		totalPrice += parseInt($(element).find(".individual_totalPrice_input").val)
-
-    		totalCount += parseInt($(element).find(".individual_productCount_input").val)
-
-    		totalKind += 1;
-    		
-
-    		if(totalPrice >= 30000) {
-    			delivery = 0;			
-    		} else if (totalPrcie == 0) {
-    			delivery = 0;			
-    		} else {
-    			delivery = 3000;
-    		}
-    		
-    		finalTotalPrice = totalPrcie + delivery;   
-    		
-    		$(".총상품가격").text(totalPrice.toLocaleString());
-    	
-    		$(".products_kind_div_count").text(totalCount);
-    	
-    		$(".products_kind_div_kind").text(totalKind);
-    	
-    		$(".배송비1").text(delivery.toLocaleString());
-    
-    		$(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());
-    		
-    	}); 
-    
-    } 
-    
-</script>
 	    
 </head>
 <body>
@@ -198,17 +96,15 @@
 						<c:if test="${not empty orderList}">
 							<c:forEach items="${orderList}" var="ol">
 								<tr>
-									<td>
-
-									</td>
-									<td class="상품정보">${ol.Name}</td>
+									<td></td>
+									<td class="상품정보">${ol.name}</td>
 									<td class="products_table_price_td">
-										<fmt:formatNumber value="${ol.Discount}" pattern="#,### 원" /> | 수량 ${ol.productCount}개
+										<fmt:formatNumber value="${ol.price}" pattern="#,### 원" /> | 수량 ${ol.productCount}개
 										<br><fmt:formatNumber value="${ol.totalPrice}" pattern="#,### 원" />
-										<input type="hidden" class="individual_productPrice_input" value="${ol.Price}">
-										<input type="hidden" class="individual_salePrice_input" value="${ol.Discount}">
+										<input type="hidden" class="individual_productPrice_input" value="${ol.price}">
+										<input type="hidden" class="individual_salePrice_input" value="${ol.discount}">
 										<input type="hidden" class="individual_productCount_input" value="${ol.productCount}">
-										<input type="hidden" class="individual_totalPrice_input" value="${ol.Discount * ol.productCount}"> 
+										<input type="hidden" class="individual_totalPrice_input" value="${ol.discount * ol.productCount}"> 
 										<input type="hidden" class="individual_productId_input" value="${ol.productId}">
 									</td>
 								</tr>			
@@ -344,8 +240,7 @@
             </div>
         </div> 
 
-         <button onclick="requestPay()" class="결제팝업">결제하기</button> 
-
+		 <button onclick="requestPay()" class="결제팝업" >결제하기</button>
     </div>
 
 
@@ -368,4 +263,5 @@
 	<%@include file= "../common/footer.jsp" %>
 
 </body>
+
 </html>
