@@ -66,7 +66,7 @@ public class CartMapperTests {
 		log.trace("testaddCart() invoked");
 		
 		String member_id = "codud"; // 회원 아이디
-		Integer product_No = 2; // 상품번호
+		Integer product_No = 1; // 상품번호
 		Integer count = 10;  // 개수
 		
 		CartDTO cart = new CartDTO();

@@ -76,11 +76,9 @@ public class CartServiceImpl implements CartService, InitializingBean { // pojo 
       for(CartDTO cart : list) {
          cart.initPrice(); // 장바구니에 들어가는 종합 정보 초기화
          
-         //attachimage 테이블 아직 없어서 오류나서 주석 처리
-//         Integer product_no = cart.getProduct_no(); // dto에서 getter메소드로 상품의 productno를 먼저 얻어서, 
-         
-//         List<AttachImageVO> cartimage = attach.getAttachList(product_no); // 얻은 productno로 attachmapper의 메소드 이용
-         
+         //** attachimage 테이블 아직 없어서 오류나서 주석 처리
+//         Integer product_no = cart.getProduct_no(); // dto에서 getter메소드로 상품의 productno를 먼저 얻어서,          
+//         List<AttachImageVO> cartimage = attach.getAttachList(product_no); // 얻은 productno로 attachmapper의 메소드 이용         
 //         cart.setImageList(cartimage); // dto의 setter메소드로 해당되는 이미지 얻기 
          
       } // for
