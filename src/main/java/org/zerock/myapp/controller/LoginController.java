@@ -26,14 +26,14 @@ public class LoginController {
 	private MemberService memberService;
 
 	// 단순 로그인 화면으로 진입
-	@GetMapping("")
-	public String loginPageGET() {
+	@GetMapping("/main")
+	public String loginGet() {
 		
-		log.trace("loginPage() invoked");
-		
-		return "login/Login_Main";
-		
-	} // loginPageGET()
+	    log.trace("loginPage() invoked");
+	    
+	    return "login/Login_Main";
+	    
+	} // loginGet()
 	
 	// 로그인 기능 구현
     @PostMapping("/main")
@@ -52,18 +52,19 @@ public class LoginController {
             
             log.info("실패: m_dto = id and password: {}", m_dto);
         	
-            rttr.addFlashAttribute("result", m_dto);
-            log.info("m_dto: {}", m_dto);
+            // RedirectAttributes에 담길 데이터 
+            // 실패를 의미하는 데이터를 로그인 실패 시 저장
+            int result = 0;
+            rttr.addFlashAttribute("result", result);
             
             // 로그인 실패 시 로그인 폼에 계속 남아있음
-            return "login/Login_Main";
+            return "redirect:/login/main";
             
         } else {											// 일치하는 아이디, 비밀번호 입력
         	
         	log.info("성공: m_dto = id and password: {}", m_dto);
         	
-                session.setAttribute("member", m_dto); // 회원 정보를 세션에 저장
-                log.info("m_dto: {}", m_dto);
+            session.setAttribute("member", m_dto); // 회원 정보를 세션에 저장
         	
         	// 로그인 성공 시 메인 화면으로 돌아감
         	return "redirect:/main";
