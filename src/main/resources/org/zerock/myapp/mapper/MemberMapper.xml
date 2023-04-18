@@ -13,7 +13,7 @@
 		    FROM 
 		    	member 
 		    WHERE 
-		        Id = #{id} 
+		        ID = #{id} 
 		        AND PASSWORD = #{password}
 		</select>
 	
