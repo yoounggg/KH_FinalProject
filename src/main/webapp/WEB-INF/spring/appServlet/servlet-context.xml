@@ -59,6 +59,8 @@
 	<!-- 로그인 -->
 	<view-controller path="/login" 	view-name="/login" 	status-code="200" />
 	
+	<!-- 암호화 -->
+	<beans:bean id="bCryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></beans:bean>
 	
 	<beans:bean
       id="multipartResolver"

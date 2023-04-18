@@ -59,4 +59,5 @@ public class OrderMapperTests {
 	    // 예를 들어, product.getName(), product.getPrice() 등을 확인하는 코드를 작성할 수 있습니다.
 
 	} // TestGetProductsInfo
+	
 } // end class
