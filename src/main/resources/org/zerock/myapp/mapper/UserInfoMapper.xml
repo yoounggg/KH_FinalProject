@@ -6,25 +6,8 @@
 	
 <mapper namespace="org.zerock.myapp.mapper.UserInfoMapper">
 
-	<!-- 회원 상세 조회 -->
-	<select id="select" resultType="org.zerock.myapp.domain.MemberDTO">
- 		SELECT * 
- 		FROM MEMBER
- 		WHERE id = #{id}
- 	</select>
-	
-	<!-- 회원 상세 업데이트 -->
-	<update id="update">
-	    UPDATE member 
-	    SET password = #{password}, name = #{name}, email = #{email}, tel = #{tel}, address1 = #{address1}, 
-	    address2 = #{address2}, address3 = #{address3}
-	    WHERE id = #{id}
+	<update id="changePw">
+	    UPDATE member SET password = ${password} WHERE id = ${id}
 	</update>
-	
-	<!-- 회원 탈퇴 -->
- 	<delete id="delete">
- 		DELETE FROM member
- 		WHERE id = #{id}
- 	</delete>
 
 </mapper>

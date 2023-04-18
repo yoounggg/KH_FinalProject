@@ -192,6 +192,7 @@ li{ list-style-type: none;}
     height: 407px;
     border: 1px solid #909090;
     background-color: white;
+    z-index: 98;
     display: none;
 }
 
@@ -228,9 +229,10 @@ li{ list-style-type: none;}
     height: 407px;
     border-left: none;
     background-color: white;
-   /* z-index: 99; */
+    z-index: 99;
 }
 
+<<<<<<< HEAD
 .menu{
 	position: relative;
 	z-index:99 !important; 
@@ -407,6 +409,8 @@ th{
 
 .addrwidth{width:390px;}
 
+=======
+>>>>>>> 4b96ec622fda680931d28045e8f97268d8c64cba
 /* --------------footer------------------- */
 
 .yakgwan1{
