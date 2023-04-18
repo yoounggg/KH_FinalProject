@@ -6,7 +6,7 @@ import org.zerock.myapp.domain.MemberVO;
 public interface MemberMapper {
 
 	// 회원 가입  혁규
-	public void memberSignup(MemberVO memberVO);
+	public void memberSignup(MemberDTO memberDTO);
 
 	// 로그인
 	// MemberVO로 하면 MemberVO 어노테이션 @Value라서 객체 생성이 안댐!
