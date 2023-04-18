@@ -50,7 +50,7 @@
             
             	<!--로그인 x--><!--로그인 성공하면 세션에 사용자 정보를 저장하는 model상자의 이름 뭐지? 우선 member로 기재-->
                 <c:if test = "${member == null}">
-                    <li><a href="/login/Login_Main">로그인</a></li>
+                    <li><a href="/login/main">로그인</a></li>
                     <li><a href="/signup/main">회원가입</a></li>
                     <li><a href=/cart/main>장바구니</a></li>
                 </c:if> 

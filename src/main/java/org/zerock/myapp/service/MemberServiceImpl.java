@@ -2,7 +2,7 @@ package org.zerock.myapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.zerock.myapp.domain.LoginDTO;
+import org.zerock.myapp.domain.MemberDTO;
 import org.zerock.myapp.domain.MemberVO;
 import org.zerock.myapp.exception.ServiceException;
 import org.zerock.myapp.mapper.MemberMapper;
@@ -36,23 +36,22 @@ public class MemberServiceImpl implements MemberService {
 	
 	// 세인 로그인	
 	@Override
-	public MemberVO memberLogin(LoginDTO loginDTO) throws ServiceException {
-		log.trace("memberLogin({}) invoked.", loginDTO);
+	public MemberDTO memberLogin(MemberDTO memberDTO) throws ServiceException {
+		log.trace("memberLogin({}) invoked.", memberDTO);
 		
 		try {
-			return this.memberMapper.memberLogin(loginDTO);
+			return this.memberMapper.memberLogin(memberDTO);
 		} catch(Exception e) {
 			throw new ServiceException(e);
-		} // try-catch
+		} // try-catch	
 		
 	} // memberLogin()
 
-
 //	------------------------------------------------------------
 	
-	// MemberVO 객체 반환 하는 구현객체 생성 (찬돌)
+	// MemberDTO 객체 반환 하는 구현객체 생성 (찬돌)
 	@Override
-	public MemberVO getMemberInfo(String memberId) throws ServiceException {
+	public MemberDTO getMemberInfo(String memberId) throws ServiceException {
 		
 		return memberMapper.getMemberInfo(memberId);
 	} // getMemberInfo

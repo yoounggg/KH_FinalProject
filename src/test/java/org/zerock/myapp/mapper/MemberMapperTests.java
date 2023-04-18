@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.zerock.myapp.domain.LoginDTO;
+import org.zerock.myapp.domain.MemberDTO;
 
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -87,15 +87,14 @@ public class MemberMapperTests {
 	@Timeout(value=1, unit=TimeUnit.SECONDS)
 	void memberLogin() throws Exception {
 		
-		LoginDTO loginDTO = new LoginDTO();
+		MemberDTO memberDTO = new MemberDTO();
 		
-		loginDTO.setId("chachan");
-		loginDTO.setPassword("1");
+		memberDTO.setId("se");
+		memberDTO.setPassword("se");
 				
-		memberMapper.memberLogin(loginDTO);
+		memberMapper.memberLogin(memberDTO);
 	
-		log.info("Login 테스트 결과: {}", memberMapper.memberLogin(loginDTO));
-		
+		log.info("Login 테스트 결과: {}", memberMapper.memberLogin(memberDTO));
 		
 	} // memberLogin()
 

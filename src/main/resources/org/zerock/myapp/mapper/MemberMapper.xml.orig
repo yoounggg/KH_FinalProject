@@ -6,6 +6,17 @@
 
 	<mapper namespace="org.zerock.myapp.mapper.MemberMapper">
 	
+<<<<<<< HEAD
+	<!-- 주문자 정보(찬돌) -->
+	<select id="getMemberInfo" resultType="org.zerock.myapp.domain.MemberDTO">
+		SELECT ID, NAME, TEL, EMAIL, ADDRESS1, ADDRESS2, ADDRESS3
+		FROM Member
+		WHERE Id = #{id}
+	</select> 
+
+
+</mapper>
+=======
 		<!-- 셍나 로그인: memberLogin() -->
 		<select id="memberLogin" resultType="org.zerock.myapp.domain.MemberDTO">
 		    SELECT 
@@ -28,11 +39,11 @@
 		</insert>
 		
 		<!-- 주문자 정보(찬돌) -->
-		<select id="getMemberInfo" resultType="org.zerock.myapp.domain.MemberDTO">
-			SELECT ID, NAME, TEL, EMAIL, ADDRESS1, ADDRESS2, ADDRESS3
+		<select id="getMemberInfo" resultType="org.zerock.myapp.domain.MemberVO">
+			SELECT ID, Name, email, ADDRESS1, ADDRESS2, ADDRESS3
 			FROM Member
 			WHERE Id = #{id}
 		</select> 
 	
 	</mapper>
-
+>>>>>>> 298ec874f64ecc4b9961c2859d0c17abb1387b72
