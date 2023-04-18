@@ -38,8 +38,8 @@ public class OrderController {
 	
 	
 	// 테스트123
-	@GetMapping("/{memberId}") // 주문페이지로 이동 mapping
-	public String orderPageGet(@PathVariable("memberId") String memberId, OrderPageDTO opd, Model model) throws ServiceException {
+	@GetMapping("/{id}") // 주문페이지로 이동 mapping
+	public String orderPageGet(@PathVariable("id") String memberId, OrderPageDTO opd, Model model) throws ServiceException {
 		
 		log.trace("memberId : " + memberId);
 		log.trace("orders : " + opd.getOrders());
@@ -58,7 +58,7 @@ public class OrderController {
 		model.addAttribute("orderList", orderService.getProductsInfo(opd.getOrders()));
 		model.addAttribute("memberInfo", memberService.getMemberInfo(memberId));
 		
-		return "order";
+		return "order/order";
 		
 	} // orderPageGet
 

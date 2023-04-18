@@ -25,6 +25,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
+import org.zerock.myapp.service.MemberService;
+import org.zerock.myapp.service.OrderService;
 
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -61,6 +63,7 @@ public class OrderControllerTests {
 		assertNotNull(this.ctx);
 		log.info("\t+ this.ctx: {}", this.ctx);
 		
+		//
 	} // beforeAll()
 	
 	//@Display
@@ -70,16 +73,21 @@ public class OrderControllerTests {
     @Timeout(value=2, unit=TimeUnit.SECONDS)
     void testOrderController() throws Exception {
     	
+    	// mockMvc를 만들 공장 생성,  WebApplicationContext를 설정하여 MockMvcBuilder를 빌드
 		MockMvcBuilder mockMvcBuilder = MockMvcBuilders.webAppContextSetup(ctx);
 		MockMvc mockMvc = mockMvcBuilder.build();
 		
+		 // MockMvcRequestBuilders 클래스의 get() 메소드를 이용하여 GET 요청을 생성, memberId 변수를 전달
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/order/{memberId}", "codud");
         
+		// mockMvc.perform() 메소드를 이용하여 요청을 실행하고, ModelAndView 객체를 반환
 		ModelAndView modelAndView = mockMvc.perform(requestBuilder).andReturn().getModelAndView();
 		
 		log.info("\t+ viewName: {}, type: {}", 
 				modelAndView.getViewName(), modelAndView.getClass().getName());
 		
     } // testOrderController
+    
+
 
 } // endclass
