@@ -8,7 +8,7 @@ public class OrderPageItemDTO {
 	
 	/* view로부터 전달받을 값 */
 //	private String productId; // 이거 productId로 해야할지.. No로 해야할지..? -> View에서 오는값이니 productId해도될듯
-	private String productId; // 상품테이블에 Pk가 Number라서 Integer로 함
+	private Integer productId; // 상품테이블에 Pk가 Number라서 Integer로 함
 	
 	private Integer productCount;
 
