@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zerock.myapp.domain.OrderPageItemDTO;
+import org.zerock.myapp.exception.ServiceException;
 import org.zerock.myapp.mapper.OrderMapper;
 
 import lombok.NoArgsConstructor;
@@ -22,7 +23,7 @@ public class OrderServiceImpl implements OrderService {
 	private OrderMapper orderMapper;	//orderMapper 주입
 
 	@Override
-	public List<OrderPageItemDTO> getProductsInfo(List<OrderPageItemDTO> orders) {
+	public List<OrderPageItemDTO> getProductsInfo(List<OrderPageItemDTO> orders) throws ServiceException {
 
 		List<OrderPageItemDTO> result = new ArrayList<OrderPageItemDTO>();
 		
@@ -36,13 +37,21 @@ public class OrderServiceImpl implements OrderService {
 			//OrderPageItemDTO객체에 만들어 둔 initSaleTotal() 메서드를 호출하여 그 값들을 세팅
 			productsInfo.initSaleTotal();
 			
-			//List객체인 reuslt에 요소로 추가
+			//List객체인 reuslt에	 요소로 추가
 			result.add(productsInfo);
 		
 		} // for
 		
 		return result;
 		
-	} // getProductsInfo
+	}
+
+//	@Override
+//	public List<OrderPageItemDTO> getCartItemsByMemberId(String memberId) throws ServiceException {
+//		
+//	
+//	    return cartItems;
+//
+//	} // getProductsInfo
 
 }// end class

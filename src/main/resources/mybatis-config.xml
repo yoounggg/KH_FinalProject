@@ -8,7 +8,6 @@
 <configuration>
 
 	<mappers>
-		<mapper resource="mappers/UserMapper.xml" />
 		<mapper resource="org/zerock/myapp/mapper/MemberMapper.xml" />
 	</mappers>
 

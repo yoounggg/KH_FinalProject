@@ -10,15 +10,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../resources/signup/css/info.css">
+    <link rel="stylesheet" href="../resources/css/signup/signup_info.css">
      <%@include file="/WEB-INF/views/common/favicon.jsp" %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script src="../resources/signup/js/info.js"></script>
+    <script src="../resources/js/signup/signup_info.js"></script>
      <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
      
      <%@page import="java.util.Date" %>
 
-<%@page import="java.text.SimpleDateFormat" %>
+	<%@page import="java.text.SimpleDateFormat" %>
 
     <title>MOYAMOGA</title>
 
@@ -30,9 +30,6 @@
     <div id="entire">
 <%@include file= "../common/header.jsp" %>
 
-     
-
-        
             <div class='wrapper'>
 
                 <div class="탑로고">
@@ -54,7 +51,7 @@
                     <div class='line'></div>
 
                     <div class="정보">
-                    <form action="/signup/info" id="signup" method="post" autocomplete="off">
+                    <form action="#" id="signup" method="post" autocomplete="off">
 
                         <div>
                             <label class="라벨">아이디<span id="필수빨강">*</span></label>
@@ -109,7 +106,7 @@
                             <label class="라벨">휴대폰 번호<span id="필수빨강">*</span></label>
 
                             <input type="text" class='회원정보' id="input_hp" name="tel" method="post" onkeyup="hp_btn();"
-                                placeholder="휴대폰 번호를 입력해주세요">
+                                placeholder="휴대폰 번호를 입력해주세요" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
 
                             <input form="hp_form" type="submit" class='인증' id="hp_confirm" value="휴대폰인증"
                                 onclick="checkHp();" disabled>
@@ -120,12 +117,13 @@
                         <div id="num_form">
                             <label class="라벨">인증번호 입력<span id="필수빨강">*</span></label>
 
-                            <input type="text" class='회원정보' id="input_num" method="post" oninput="num_btn()"
+                            <input type="text" class='회원정보' id="input_num"  method="post" oninput="num_btn()"
                                 placeholder="인증번호를 입력해주세요">
-                            <input form="num_from" type="submit" class='인증' id="num_confirm" value="인증하기" disabled>
+                                <span id="countdown">3:00</span>
+                                
+                                <input form="num_form" type="submit" class='인증' id="num_confirm" value="인증하기" onclick="num_compare()" disabled>
+
                         </div>
-
-
 
                         <div id="addr_form">
                             <label class="라벨">주소<span id="필수빨강">*</span></label>
@@ -158,14 +156,14 @@
                         <div id="birth_form" class="생년월일" name="birth_date">
                             <label class="라벨">생년월일</label>
                             <span>
-                                <input type="text" class='YYYY' placeholder="YYYY"  onblur="validateYYYY(this)">
-                                <input type="text" class='MM' placeholder="MM"  onblur="validateMM(this)">
-                                <input type="text" class='DD' placeholder="DD"  onblur="validateDD(this)">
+                                <input type="text" class='YYYY' placeholder="YYYY"  onblur="validateYYYY(this)" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                <input type="text" class='MM' placeholder="MM"  onblur="validateMM(this)" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                <input type="text" class='DD' placeholder="DD"  onblur="validateDD(this)" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                             </span>
                         </div>
 
                         <div class="하단버튼">
-                            <button type="submit" class='가입하기'>가입하기</button>
+                            <button type="button" class='가입하기' id="signup_btn">가입하기</button>
 
                             <div>
                                 <a id="다음에" href="agreement"><span class="이전단계">이전단계</span></a>
@@ -245,8 +243,73 @@
     </div>
 
     <div class="popmenu12" id="common_pop">
-        <p>필수 정보를 입력해주세요</p>
+        <p>아이디를 입력해주세요</p>
         <input type="button" class="exit12" id="common_btn" onclick="exit12()" value="확인">
+	</div>
+
+    <div class="popmenu13" id="common_pop">
+        <p>비밀번호를 입력해주세요</p>
+        <input type="button" class="exit13" id="common_btn" onclick="exit13()" value="확인">
+	</div>
+    
+    <div class="popmenu14" id="common_pop">
+        <p>비밀번호를 한 번 더 입력해주세요</p>
+        <input type="button" class="exit14" id="common_btn" onclick="exit14()" value="확인">
+	</div>
+
+    <div class="popmenu15" id="common_pop">
+        <p>이름을 입력해주세요</p>
+        <input type="button" class="exit15" id="common_btn" onclick="exit15()" value="확인">
+	</div>
+
+    <div class="popmenu16" id="common_pop">
+        <p>이메일을 입력해주세요</p>
+        <input type="button" class="exit16" id="common_btn" onclick="exit16()" value="확인">
+	</div>
+
+    <div class="popmenu17" id="common_pop">
+        <p>휴대폰 번호를 입력해주세요</p>
+        <input type="button" class="exit17" id="common_btn" onclick="exit17()" value="확인">
+	</div>
+
+    <div class="popmenu18" id="common_pop">
+        <p>인증번호를 입력해주세요</p>
+        <input type="button" class="exit18" id="common_btn" onclick="exit18()" value="확인">
+	</div>
+
+    <div class="popmenu19" id="common_pop">
+        <p>주소를 입력해주세요</p>
+        <input type="button" class="exit19" id="common_btn" onclick="exit19()" value="확인">
+	</div>
+
+    <div class="popmenu20" id="common_pop">
+        <p>상세 주소를 입력해주세요</p>
+        <input type="button" class="exit20" id="common_btn" onclick="exit20()" value="확인">
+	</div>
+
+    <div class="popmenu21" id="common_pop">
+        <p>아이디 중복확인을 해주세요</p>
+        <input type="button" class="exit21" id="common_btn" onclick="exit21()" value="확인">
+	</div>
+
+    <div class="popmenu22" id="common_pop">
+        <p>이메일 중복확인을 해주세요</p>
+        <input type="button" class="exit22" id="common_btn" onclick="exit22()" value="확인">
+	</div>
+
+    <div class="popmenu23" id="common_pop">
+        <p>휴대폰 인증을 해주세요</p>
+        <input type="button" class="exit23" id="common_btn" onclick="exit23()" value="확인">
+	</div>
+
+    <div class="popmenu24" id="common_pop">
+        <p>비밀 번호가 서로 다릅니다</p>
+        <input type="button" class="exit24" id="common_btn" onclick="exit24()" value="확인">
+	</div>
+
+     <div class="popmenu25" id="common_pop">
+        <p>휴대폰 번호 형식에 맞게 입력해주세요</p>
+        <input type="button" class="exit25" id="common_btn" onclick="exit25()" value="확인">
 	</div>
 </body>
 

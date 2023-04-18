@@ -5,9 +5,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.myapp.domain.LoginDTO;
 import org.zerock.myapp.domain.MemberVO;
@@ -25,38 +25,49 @@ public class LoginController {
 	
 	@Autowired
 	private MemberService memberService;
-	
+
 	// 단순 로그인 화면으로 진입
-	@RequestMapping(value="", method = RequestMethod.GET)
+	@GetMapping("")
 	public String loginPageGET() {
 		
 		log.trace("loginPage() invoked");
 		
-		// login 폴더에 login.jsp!
-		return "login/login";
+		return "login/Login_Main";
 		
 	} // loginPageGET()
 	
 	// 테스트용
-    @PostMapping(value="")
-    public String loginPost(
-    		HttpServletRequest request, 
-    		LoginDTO loginDTO, RedirectAttributes rttr
+    @PostMapping("/main")
+    public String loginPost(LoginDTO loginDTO, MemberVO memberVO, HttpServletRequest request, RedirectAttributes rttr
     ) throws Exception {
 
-//        log.trace("memberLogin 메소드에 진입하였습니다.");
-//        log.info("전달된 데이터는 {}입니다.", loginDTO);
+        log.trace("memberLogin 메소드에 진입하였습니다.");
+//        log.info("전달된 데이터는 {}입니다.", memberVO);
+        log.info("전달된 데이터는 {}입니다.", loginDTO);
         
-    	// 세션 생성
         HttpSession session = request.getSession();
+        MemberVO m_vo = memberService.memberLogin(loginDTO);
+        log.info("\t+ m_vo: {}", m_vo);
+
+        if(m_vo == null) {                                // 일치하지 않는 아이디, 비밀번호 입력 경우
+            
+            log.info("실패 m_vo=id and password: {}", m_vo);
+        	
+            rttr.addFlashAttribute("result", m_vo);
+            // 로그인 폼에 계속 남아있음
+            return "login/Login_Main";
+            
+        } else {
+        	
+        	log.info("성공 m_vo=id and password: {}", m_vo);
+        	
+                session.setAttribute("member", m_vo); // 일반 회원 정보를 세션에 저장
+                log.info("m_vo: {}", m_vo);
+        	
+        	// 메인 화면으로 돌아감
+        	return "redirect:/main";
         
-        // 서버로부터 전달 받은 인자값으로 loginDTO를 사용,
-        // memberLogin 메소드로 초기화 -> 메소드 요청 이후 MemberMapper의 쿼리가 실행
-        // -> 쿼리 실행 결과값이 담긴 LoginDTO 값을 login_Dto에 저장!
-        // 변수명 수정해야 함@@@@
-        LoginDTO login_Dto = memberService.memberLogin(loginDTO);
-       
-        return null;
+        }
         
     } // loginPost()
 	

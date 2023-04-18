@@ -1,5 +1,7 @@
 package org.zerock.myapp.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,6 +44,14 @@ public class OrderController {
 		log.trace("memberId : " + id);
 		log.trace("orders : " + opd.getOrders());
 		
+		if(opd == null) {
+			opd = new OrderPageDTO();
+		}
+
+		// opd.getOrders()가 null인 경우, 새로운 ArrayList를 생성하여 opd에 저장합니다.
+		if(opd.getOrders() == null) {
+			opd.setOrders(new ArrayList<>());
+		}
 		// Model객체의 addAttribute 메서드를 사용하여 상품정보, 회원정보를 만들어 내는\
 		// Service 메서드를 호출하여 반환받은 값들을 View단으로 전송
 		
