@@ -9,11 +9,11 @@
 		<!-- 셍나 로그인: memberLogin() -->
 		<select id="memberLogin" resultType="org.zerock.myapp.domain.MemberDTO">
 		    SELECT 
-		    	ID, PASSWORD, ADMINCK
+		    	*
 		    FROM 
 		    	member 
 		    WHERE 
-		        ID = #{id} 
+		        Id = #{id} 
 		        AND PASSWORD = #{password}
 		</select>
 	

@@ -3,6 +3,7 @@ package org.zerock.myapp.controller;
 import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.zerock.myapp.domain.CartDTO;
+import org.zerock.myapp.domain.MemberVO;
 import org.zerock.myapp.exception.ControllerException;
 import org.zerock.myapp.service.CartService;
 
@@ -40,15 +42,15 @@ public class CartController {
 	
 	// 1. 장바구니 조회는 회원만 할 수 있으니까 member_id데이터를 얻기 위해 파라미터 추가
 	// 장바구니 데이터를 뷰에 넘길 때 model상자에 담아서 넘기기
-	@GetMapping("/main") // -> main지우고 {member_id}     //@PathVariable("codud") 
-	public String cartMainPage(String member_id, Model model) {
+	@GetMapping("/{member_id}") // -> main지우고 {member_id}     //@PathVariable("codud") 
+	public String cartMainPage(@PathVariable("member_id") String member_id, Model model) {
 		log.trace("cartPageGET() invoked(장바구니 메인 페이지로 이동)");
 		
 		Objects.requireNonNull(this.service);
 		log.info("\t+this.service:{}", this.service);
-														//member_id
-		model.addAttribute("cartinfo", service.getCart("codud")); // cartinfo에 장바구니 정보 리스트 담기
 
+		model.addAttribute("cartInfo", service.getCart(member_id));
+		
 		return "cart";
 	} // cartMainPage
 	
@@ -61,11 +63,11 @@ public class CartController {
 		log.trace("addProductsInCart() invoked(장바구니 상품 추가/등록)");
 		
 		// (1) 로그인 체크
-//		HttpSession session = request.getSession();
-//		MemberVO vo = (MemberVO)session.getAttribute("member");
-//		if(vo == null) {
-//			return "5"; // 멤버 아니면 5반환 -> 로그인 필요함!
-//		}
+		HttpSession session = request.getSession();
+		MemberVO vo = (MemberVO)session.getAttribute("member");
+		if(vo == null) {
+			return "5"; // 멤버 아니면 5반환 -> 로그인 필요함!
+		}
 		
 		
 		// (2) 카트 등록
@@ -81,23 +83,23 @@ public class CartController {
 
 	
 	//3. 장바구니 수량 수정
-	
 	@PostMapping("/update")
 	public String modifyCount(CartDTO cart) {
 		log.trace("modifyProductsInCart() invoked(장바구니 수량 변경)");
 		
 		service.modifyCount(cart);
 		
-		return "redirect:/cart/main"; // + cart.getMember_id();
+		return "redirect:/cart/" + cart.getMember_id();
 	} // modifyCount
+	
 	
 	//4. 장바구니 삭제
 	@PostMapping("/delete")
-	public String deleteCart(Integer no) {
+	public String deleteCart(CartDTO cart) {
 		
 		log.trace("deleteCart() invoked(장바구니 수량 삭제)");
-		service.deleteCart(no);
-		return "redirect:/cart/main";
+		service.deleteCart(cart.getNo());
+		return "redirect:/cart/" + cart.getMember_id();
 	}
 	
 }

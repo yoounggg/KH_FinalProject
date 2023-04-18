@@ -35,7 +35,7 @@ public class LoginController {
 		
 	} // loginPageGET()
 	
-	// 테스트용
+	// 로그인 기능 구현
     @PostMapping("/main")
     public String loginPost(MemberDTO memberDTO, HttpServletRequest request, RedirectAttributes rttr
     ) throws Exception {
@@ -63,7 +63,7 @@ public class LoginController {
         	
         	log.info("성공: m_dto = id and password: {}", m_dto);
         	
-                session.setAttribute("member", m_dto); // 일반 회원 정보를 세션에 저장
+                session.setAttribute("member", m_dto); // 회원 정보를 세션에 저장
                 log.info("m_dto: {}", m_dto);
         	
         	// 메인 화면으로 돌아감
