@@ -1,189 +1,5 @@
 @charset "utf-8";
 
-body{
-    margin: 0;
-    width: 100%;
-    font-family: 'Noto Sans KR', sans-serif;
-}
-
-a{ text-decoration: none; }
-
-li{ list-style-type: none;}
-
-/* -----정렬------ */
-main{
-    padding: 100px;
-    width: 60%;
-    margin: 0 auto;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
-}
-
-/* ---------aside------- */
-aside{
-    display: flex;
-    flex-flow: column wrap;
-    /* margin: 0 auto; */
-    position: relative;
-    left:-100px;
-    /* 왜 밑으로 안가지..? */
-    z-index: 97; 
-}
-aside>ul{
-    margin: 0;
-    padding: 0;
-    width: 150px;
-    display: inline-block;
-    border: 1px solid black;
-    text-align: center;
-}
-aside>ul>li>a{
-    color: black;
-}
-aside>ul>li>a:hover{
-    text-decoration: underline;
-}
-.box1{
-    height: 160px;
-    border-bottom: none;
-    font-size: 11px;
-    background-color: #EFEFEF;
-}
-.box1>img{
-    padding-top: 10px;
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    object-position: top;
-    border-radius: 50%;
-}
-.small1{
-    padding: 1px;
-}
-.box2{
-    height: 210px;
-    font-size: 14px;
-}
-.small2{
-    padding: 25px;
-}
-.small3{
-    border-bottom: 1px solid black;
-}
-
-/* -----------테이블------------ */
-
-/* .huiwon{ */
-    /* width: 100px;
-    height: 500px; */
-    /* width: 500px; */
-    /* position: relative; */
-    /* right: 10px; */
-    /* left: 100px; */
-/* } */
-
-.sujeong1{
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    border-bottom: 1px solid black;
-}
-#sujeong2{
-    padding: 10px;
-    margin:0;
-}
-.red{
-    color: red;
-}
-
-table{
-    width: 700px;
-    /* height: 800px; */
-    border-collapse: collapse;
-}
-tr{
-    border-bottom: 1px solid black;
-}
-.specialtr{
-    border-bottom: none;
-}
-th{
-    width: 200px;
-    height: 50px;
-    font-size: 14px;
-    text-align: left;
-}
-.sletter{
-    font-size: 11px;
-    font-weight: lighter;
-}
-.addrtr{
-    width: 165px;
-    height: 18px;
-    border: 1px solid black;
-    background-color: #EFEFEF;
-}
-.btnset{
-    padding: 30px;
-    text-align: center;
-}
-.btntr{
-    width: 70px;
-    height: 20px;
-    padding: 1px;
-    border-radius: 5px;
-    border: 1px solid #909090;
-    background-color: #909090;
-    color: white;
-    font-size: 10px;
-    cursor: pointer;
-}
-.userbtn1{
-    margin: 5px;
-    width: 150px;
-    height: 40px;
-    border-radius: 10px;
-    color: white;
-    background-color: #11BC0D;
-    border: 1px solid #11BC0D;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-}
-.userbtn2{
-    margin: 5px;
-    width: 150px;
-    height: 40px;
-    border-radius: 10px;
-    background-color: white;
-    border: 1px solid black;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-} 
-
-.radio{
-    font-size: 13px;
-}
-
-.th_height{
-    line-height: 65px;
-}
-
-
-
-/* ------header & footer -------*/
-
-/* a, li태그 전체에 공통 적용 */
-a { 
-    text-decoration: none; 
-}
-
-li{
-    list-style-type: none;
-}
-
 /* --------------header-------------- */
 
 *{
@@ -376,7 +192,6 @@ li{ list-style-type: none;}
     height: 407px;
     border: 1px solid #909090;
     background-color: white;
-    z-index: 98;
     display: none;
 }
 
@@ -413,8 +228,184 @@ li{ list-style-type: none;}
     height: 407px;
     border-left: none;
     background-color: white;
-    z-index: 99;
+   /* z-index: 99; */
 }
+
+.menu{
+	position: relative;
+	z-index:99 !important; 
+	}
+
+
+/* -----정렬------ */
+main{
+    padding: 100px;
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+}
+
+/* ---------aside------- */
+aside{
+    display: flex;
+    flex-flow: column wrap;
+    /* margin: 0 auto; */
+    position: relative;
+    left:-100px;
+    /* 왜 밑으로 안가지..? */
+    z-index: 97;
+}
+aside>ul{
+    margin: 0;
+    padding: 0;
+    width: 150px;
+    display: inline-block;
+    border: 1px solid black;
+    text-align: center;
+}
+aside>ul>li>a{
+    color: black;
+}
+aside>ul>li>a:hover{
+    text-decoration: underline;
+}
+.box1{
+    height: 160px;
+    border-bottom: none;
+    font-size: 11px;
+    background-color: #EFEFEF;
+}
+.box1>img{
+    padding-top: 10px;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 50%;
+}
+.small1{
+    padding: 1px;
+}
+.box2{
+    height: 210px;
+    font-size: 14px;
+}
+.small2{
+    padding: 25px;
+}
+.small3{
+    border-bottom: 1px solid black;
+}
+
+/* -----------테이블------------ */
+
+/* .huiwon{ */
+    /* width: 100px;
+    height: 500px; */
+    /* width: 500px; */
+    /* position: relative; */
+    /* right: 10px; */
+    /* left: 100px; */
+/* } */
+
+.sujeong1{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+}
+#sujeong2{
+    padding: 10px;
+    margin:0;
+}
+.red{
+    color: red;
+}
+
+table{
+    width: 700px;
+    /* height: 800px; */
+    border-collapse: collapse;
+}
+tr{
+    border-bottom: 1px solid black;
+}
+.specialtr{
+    border-bottom: none;
+}
+th{
+    width: 200px;
+    height: 50px;
+    font-size: 14px;
+    text-align: left;
+}
+.sletter{
+    font-size: 11px;
+    font-weight: lighter;
+}
+.addrtr{
+    width: 165px;
+    height: 18px;
+    border: 1px solid black;
+    background-color: #EFEFEF;
+}
+.btnset{
+    padding: 30px;
+    text-align: center;
+}
+.btntr{
+    width: 70px;
+    height: 20px;
+    padding: 1px;
+    border-radius: 5px;
+    border: 1px solid #909090;
+    background-color: #909090;
+    color: white;
+    font-size: 10px;
+    cursor: pointer;
+}
+.userbtn1{
+    margin: 5px;
+    width: 150px;
+    height: 40px;
+    border-radius: 10px;
+    color: white;
+    background-color: #11BC0D;
+    border: 1px solid #11BC0D;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.userbtn2{
+    margin: 5px;
+    width: 150px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: white;
+    border: 1px solid black;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+} 
+
+.radio{
+    font-size: 13px;
+}
+
+.th_height{
+    line-height: 65px;
+}
+
+.th_height2{
+    line-height: 100px;
+}
+.addr_tr{
+    border-bottom: none;
+}
+
+.addrwidth{width:390px;}
 
 /* --------------footer------------------- */
 
