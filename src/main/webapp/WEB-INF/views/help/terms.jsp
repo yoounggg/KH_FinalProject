@@ -17,6 +17,7 @@
 
 <body>
 <%@include file= "../common/header.jsp" %>
+<main>
     <div class="wrapper">
 
         <h1>모야모과 약관</h1>
@@ -432,6 +433,7 @@
 
 ② 종전의 약관은 이 약관으로 대체됩니다.</pre>
     </div>
+</main>    
     <%@include file= "../common/footer.jsp" %>
 </body>
 

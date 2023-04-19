@@ -17,6 +17,7 @@
 
 <body>
 <%@include file= "../common/header.jsp" %>
+<main>
     <div class="wrapper">
 
         <h1>모야모과 약관</h1>
@@ -28,6 +29,7 @@
         </div>
 
         <pre id="content">
+
 제 1장 총칙
 
 
@@ -231,6 +233,7 @@
 현 개인정보보호정책은 2023년 5 월 1 일에 개정되었으며 정부의 정책 또는 보안기술의 변경에 따라 내용의 추가·삭제 및 수정이 있을 시에는 개정 최소 10 일 전부터 홈페이지의 ' 공지 ' 란을 통해 고지할 것입니다.</pre>
 
     </div>
+</main>    
     <%@include file= "../common/footer.jsp" %>
 </body>
 

@@ -10,15 +10,29 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @NoArgsConstructor
 
-@RequestMapping("/main") // base uri
+@RequestMapping("") // base uri
 @Controller // 이 클래스는 컨트롤러임
 public class MainController { // 홈페이지 기본기능 요청 관리
 	
-	@RequestMapping(value="", method = RequestMethod.GET)
-	public String mainPageGET() { // 단순히 메인 페이지 입장
-		log.trace("mainPage() invoked");
+	@RequestMapping(value="/main", method = RequestMethod.GET)
+	public String mainPage() { // 단순히 메인 페이지 입장
+		log.trace("mainPage() invoked(모야모과 메인 페이지)");
 		
 		return "main";
-	} // mainPageGET
+	} // mainPage
+	
+	@RequestMapping(value="/terms", method = RequestMethod.GET)
+	public String termsPage() { 
+		log.trace("termsPage() invoked(약관 및 정책)");
+		
+		return "terms";
+	} // termsPage
+	
+	@RequestMapping(value="/privacy", method = RequestMethod.GET)
+	public String privacyPage() { 
+		log.trace("privacyPage() invoked(개인정보 취급방침)");
+		
+		return "privacy";
+	} // privacyPage
 
-}
+} // end class
