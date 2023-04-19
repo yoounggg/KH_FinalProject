@@ -69,8 +69,13 @@ function kakaoAdress(){
 	}).open();
 }
 
-//회원탈퇴 버튼
+//회원 정보 수정 버튼
+$(".modifyUserDetails").on("click", function(){
+	let 
+})
 
+
+//회원탈퇴 버튼
 function removeMember(){
 	if(window.confirm("탈퇴하시겠습니까?")){
 		location.href = "/??";

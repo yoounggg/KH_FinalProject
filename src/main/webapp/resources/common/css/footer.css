@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-*{/* *이랑 body차이가 뭐지....... */
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -71,12 +71,12 @@ li{ list-style-type: none;}
 }
 
 #com_address{
-    padding: 30px 10px 50px 20px;
+    padding: 80px 10px 90px 20px;
     font-size: 14px;
 }
 
 #custom_notice{
-    padding: 30px 20px 50px 10px;
+    padding: 80px 20px 90px 10px;
     font-size: 14px;
 }
 

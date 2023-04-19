@@ -72,7 +72,7 @@ li{ list-style-type: none;}
     justify-content: flex-end;
 }
 
-.container2 li a{
+.container2 li a, .container2 li{
     width: 70px;
     color: black;
     font-size: 12px;
@@ -80,10 +80,20 @@ li{ list-style-type: none;}
     flex-flow: row wrap;
     justify-content: space-around;
 }
+#container2_name{
+	width: 150px;
+	}
+	
+#main_adminpage{
+	font-weight:bold;
+	width: 150px;
+	color: white;
+	background-color: #11BC0D;
+}	
 /* ------------------------------------------ */
 
 .container3{
-    padding: 10px 0 30px 0;
+    padding: 40px 0 50px 0;
     width: 80%;
     /* height: 90px; */
     margin: 0 auto;
@@ -243,16 +253,16 @@ main{
 }
 
 /* ---------aside------- */
-aside{
+.userinfoAside{
     display: flex;
     flex-flow: column wrap;
-    /* margin: 0 auto; */
+    margin: 0 auto; 
     position: relative;
     left:-100px;
     /* 왜 밑으로 안가지..? */
     z-index: 97;
 }
-aside>ul{
+.userinfoAside>ul{
     margin: 0;
     padding: 0;
     width: 150px;
@@ -260,10 +270,10 @@ aside>ul{
     border: 1px solid black;
     text-align: center;
 }
-aside>ul>li>a{
+.userinfoAside>ul>li>a{
     color: black;
 }
-aside>ul>li>a:hover{
+.userinfoAside>ul>li>a:hover{
     text-decoration: underline;
 }
 .box1{
@@ -403,7 +413,6 @@ th{
 .addrwidth{width:390px;}
 
 /* --------------footer------------------- */
-
 .yakgwan1{
     border-top: 1px solid black;
     border-bottom: 1px solid black;
@@ -451,12 +460,12 @@ th{
 }
 
 #com_address{
-    padding: 30px 10px 50px 20px;
+    padding: 80px 10px 90px 20px;
     font-size: 14px;
 }
 
 #custom_notice{
-    padding: 30px 20px 50px 10px;
+    padding: 80px 20px 90px 10px;
     font-size: 14px;
 }
 

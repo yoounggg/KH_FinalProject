@@ -1,20 +1,22 @@
-.wrapper {
-	width: 810px;
-	height: 100%;
-	margin: 0 auto;
+@charset "UTF-8";
+
+body{
+     width: 100%;
+     min-width: 1026px;
+     height: 100vh;
+     min-height: 100%;
+     background-color: white;
+     font-family: 'Noto Sans KR', sans-serif;
+}
+    
+.wrapper{
+    width: 810px;
+    height: 100%;
+    margin: 0 auto;
 }
 
 #box {
 	font-size: 0;
-}
-
-body {
-	width: 100%;
-	min-width: 1026px;
-	height: 100vh;
-	min-height: 100%;
-	background-color: white;
-	font-family: 'Noto Sans KR', sans-serif;
 }
 
 h1 {
