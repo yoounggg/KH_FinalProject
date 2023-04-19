@@ -17,4 +17,5 @@ public class MemberDTO {
 	private TIMESTAMP signup_date;
 	private String birth_date;
 	private Integer adminCk;
-}
+	
+} // end class

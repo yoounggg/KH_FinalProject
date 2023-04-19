@@ -24,16 +24,16 @@ public class OrderPageItemDTO {
 	
 	private Integer totalPrice;			// 총 가격
 	
-	public void initSaleTotal( ) {
-		this.salePrice = (int) (this.Price * (1-this.Discount));
-		this.totalPrice = this.salePrice*this.Price;
+	public void initSaleTotal() {
+		this.salePrice = (int) (this.Price * (1 - this.Discount));
+		this.totalPrice = this.salePrice * this.productCount;
 	} //initSaleTotal
 	
 	@Override
 	public String toString() {
 		return "OrderPageItemDTO [productId=" + productId + ", productCount=" + productCount + ", productName=" + Name
 				+ ", productPrice=" + Price + ", productDiscount=" + Discount + ", salePrice=" + salePrice
-				+ ", totalPrice=" + totalPrice ;
+				+ ", totalPrice=" + totalPrice;
 	}
 	
 } // endclass

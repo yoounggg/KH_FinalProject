@@ -53,8 +53,8 @@ public class MemberMapperTests {
 	
 	} // contextLoads()
 	
-////	회원가입 테스트
-////	@Disabled
+//	혁규 회원가입 테스트
+//	@Disabled
 //	@Test
 //	@Order(1)
 //	@DisplayName("memberJoin Test")
@@ -77,9 +77,9 @@ public class MemberMapperTests {
 //
 //		
 //	} // memberJoin()
-//	
-//	
-//	로그인 테스트
+	
+	
+//	셍나 로그인 테스트
 //	@Disabled
 	@Test
 	@Order(1)
@@ -98,6 +98,7 @@ public class MemberMapperTests {
 		
 	} // memberLogin()
 
+// 혁규 테스트
 //	@Disabled
 //	@Test
 //	@Order(1)

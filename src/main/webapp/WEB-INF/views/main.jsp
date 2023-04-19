@@ -50,9 +50,9 @@
             
             	<!--로그인 x--><!--로그인 성공하면 세션에 사용자 정보를 저장하는 model상자의 이름 뭐지? 우선 member로 기재-->
                 <c:if test = "${member == null}">
-                    <li><a href="/login">로그인</a></li>
+                    <li><a href="/login/main">로그인</a></li>
                     <li><a href="/signup/main">회원가입</a></li>
-                    <li><a href=/cart/main>장바구니</a></li>
+                    <li><a href="/cart/${member.id}">장바구니</a></li>
                 </c:if> 
                 
                 <!--로그인 O -->
@@ -60,14 +60,13 @@
 
                         <!-- 관리자 계정 -->
                         <c:if test="${member.adminCk == 1}">
-                            <li><a href="/admin/main">관리자 페이지</a></li>
+                            <li><a href="/admin/main">관리자</a></li>
                         </c:if> 
-                        
-               		<li>${member.name}님 환영합니다.</li>
-                    <!-- <li><a href="/logout">로그아웃</a></li> -->
+                    <c:out value="${member.name}"></c:out>   
+                    <li>님 환영합니다.</li> 
+                    <li><a href="/logout">로그아웃</a></li>
                     <!-- => 비동기 방식 로그아웃으로 변경 -->
-                    <li><a id="logout_button">로그아웃</a></li>
-                    <li><a href="/mypage">마이페이지</a></li>
+                    <li><a href="/mypage/userInfo">마이페이지</a></li>
                     <li><a href="/cart/${member.id}">장바구니</a></li>
                     
                 </c:if>       
@@ -153,23 +152,23 @@
         <div class="minititle">오늘의 특가</div>
         <div class="container5">
             <div class="thumbnail">
-                <a href="#"><img src="imgs/tangerine.jpg" alt="특가1"></a>
+                <a href="#"><img src="/resources/imgs/tangerine.jpg" alt="특가1"></a>
                 <a href="#">[금주의 특가] 유어스펙 귤이네 귤</a>
                 <span><span class="dis_Green">28%</span>&nbsp; 12,600원</span>
                 
             </div>
             <div class="thumbnail">
-                <a href="#"><img src="imgs/spinach.jpg" alt="특가2"></a>
+                <a href="#"><img src="/resources/imgs/spinach.jpg" alt="특가2"></a>
                 <a href="#">[금주의 특가] 찬돌이네 시금치</a>
                 <span><span class="dis_Green">28%</span>&nbsp; 12,600원</span>
             </div>
             <div class="thumbnail">
-                <a href="#"><img src="imgs/tomato.jpg" alt="특가3"></a>
+                <a href="#"><img src="/resources/imgs/tomato.jpg" alt="특가3"></a>
                 <a href="#">[금주의 특가] 유기농 토마토</a>
                 <span><span class="dis_Green">28%</span>&nbsp; 12,600원</span>
             </div>
             <div class="thumbnail">
-                <a href="#"><img src="imgs/green_bean.jpg" alt="특가4"></a>
+                <a href="#"><img src="/resources/imgs/green_bean.jpg" alt="특가4"></a>
                 <a href="#">[금주의 특가] 갓 수확한 그린빈</a>
                 <span><span class="dis_Green">28%</span>&nbsp; 12,600원</span>
             </div>
@@ -198,22 +197,22 @@
         <div class="minititle">신상품</div>
         <div class="container6">
             <div class="thumbnail">
-                <a href="#"><img src="imgs/kiwi.jpg" alt="신상품1"></a>
+                <a href="#"><img src="/resources/imgs/kiwi.jpg" alt="신상품1"></a>
                 <a href="#">[금주의 신상품] 제주 참다래 키위</a>
                 <span><span class="dis_Green">28%</span>&nbsp; 12,600원</span>
             </div>
             <div class="thumbnail">
-                <a href="#"><img src="imgs/potato.jpg" alt="신상품2"></a>
+                <a href="#"><img src="/resources/imgs/potato.jpg" alt="신상품2"></a>
                 <a href="#">[금주의 신상품] 맛있는 햇감자</a>
                 <span><span class="dis_Green">28%</span>&nbsp; 12,600원</span>
             </div>
             <div class="thumbnail">
-                <a href="#"><img src="imgs/rice.jpg" alt="신상품3"></a>
+                <a href="#"><img src="/resources/imgs/rice.jpg" alt="신상품3"></a>
                 <a href="#">[금주의 신상품] 올해 수확한 햅쌀</a>
                 <span><span class="dis_Green">28%</span>&nbsp; 12,600원</span>
             </div>
             <div class="thumbnail">
-                <a href="#"><img src="imgs/onion.jpg" alt="신상품4"></a>
+                <a href="#"><img src="/resources/imgs/onion.jpg" alt="신상품4"></a>
                 <a href="#">[금주의 신상품] 튼실한 양파</a>
                 <span><span class="dis_Green">28%</span>&nbsp; 12,600원</span>
             </div>
@@ -225,9 +224,9 @@
             <div id="choikun1">
                 <div id="choikun2">
                     <div>최근 본 상품</div>
-                        <img src="imgs/sample.jpg" alt="최근1">
-                        <img src="imgs/sample.jpg" alt="최근2">
-                        <img src="imgs/sample.jpg" alt="최근3">
+                        <img src="/resources/imgs/sample.jpg" alt="최근1">
+                        <img src="/resources/imgs/sample.jpg" alt="최근2">
+                        <img src="/resources/imgs/sample.jpg" alt="최근3">
                 </div>    
                 <input id="topbtn" type="button" name="TOP" value="TOP">
             </div> 
