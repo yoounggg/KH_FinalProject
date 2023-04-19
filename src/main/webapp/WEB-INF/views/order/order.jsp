@@ -30,7 +30,7 @@
     
         function requestPay() {
             IMP.request_pay({
-                pg : 'kcp.{INIBillTst}',
+                pg : 'kcp.{MIIiasTest}',
                 pay_method : 'card',
                 merchant_uid: "57008833-33004", 
                 name : '당근 10kg',
@@ -48,6 +48,15 @@
                 }
             });
         }
+    </script>
+    
+    <script>
+	    $(document).ready(function(){
+	    	
+	    	/* 주문 조합정보란 최신화 */
+	    	setTotalInfo();
+	    	
+	    });    
     </script>
 	    
 </head>
@@ -102,9 +111,10 @@
 										<fmt:formatNumber value="${ol.price}" pattern="#,### 원" /> | 수량 ${ol.productCount}개
 										<br><fmt:formatNumber value="${ol.totalPrice}" pattern="#,### 원" />
 										<input type="hidden" class="individual_productPrice_input" value="${ol.price}">
-										<input type="hidden" class="individual_salePrice_input" value="${ol.discount}">
+										
 										<input type="hidden" class="individual_productCount_input" value="${ol.productCount}">
-										<input type="hidden" class="individual_totalPrice_input" value="${ol.discount * ol.productCount}"> 
+										<input type="hidden" class="individual_totalPrice_input" value="${ol.productCount * ol.price}">
+										<input type="hidden" class="individual_salePrice_input" value="${ol.salePrice}"> 
 										<input type="hidden" class="individual_productId_input" value="${ol.productId}">
 									</td>
 								</tr>			
@@ -216,24 +226,28 @@
             	
             		<li>
             			<span id="정보">총 상품 가격</span>
-            			<span id="총상품가격">100000</span>원
+            			<span class="totalPrice_span">100000</span>원
             		</li>
             	
             		<li>
             			<span id="정보">할인금액</span>
             			<span id="할인금액">1000</span>원
             		</li>
+            		
+            		<li>
+            			<span class="price_span_label">할인금액</span>
+						<span class="salePrice_span"></span>원
+            		</li>
             	
             		<li>
             			<span id="정보">배송비</span>
-            			<span id="배송비1">1000</span>원
+            			<span class="delivery_price_span">1000</span>원
             		</li>
             	
             		<li class="pricae_total_lo">
-            			<strong id="price_span_label total_price_label]">총결제금액</strong>
-            			<strong id="총결제금액">
-            				<span id="total_rpice_red finalTotalPrice_span"></span>
-            						98000
+            			<strong class="price_span_label total_price_label]">총결제금액</strong>
+            			<strong class="strong_red">
+            				<span class="finalTotalPrice_span"></span>
             			</strong>원
             		</li>
             	</ul>

@@ -17,17 +17,25 @@ public class OrderPageItemDTO {
 	
 	private Integer price;			// 상품가격 productPrice
 	
-	private double discount;		// 할인 productDiscount
+	//private double discount;		// 할인 productDiscount
+	private Integer discount;        // 할인 금액 productDiscount
 	
 	/* 만들어 낼 값 */
 	private Integer salePrice; 			// 할인 가격
+
+	private Integer discountedPrice;
 	
 	private Integer totalPrice;			// 총 가격
+
 	
 	
 	public void initSaleTotal() {
 		this.totalPrice = this.productCount * this.price;
-	    this.salePrice = (int) (this.totalPrice * (1 - this.discount));
+	    // this.salePrice = (int) (this.totalPrice * (1 - this.discount));
+//		this.salePrice = (int) (this.price * (1 - this.discount / 100.0) * this.productCount);
+//	    this.salePrice = this.discount * this.productCount;
+		this.discountedPrice = (int) (totalPrice * (1 - this.discount / 100.0));
+		this.salePrice = totalPrice - discountedPrice;
 	} //initSaleTotal
 	
 	@Override

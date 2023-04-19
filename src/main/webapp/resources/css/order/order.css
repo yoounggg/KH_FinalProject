@@ -471,10 +471,10 @@ li{ list-style-type: none;}
 }
 
 /* input 태그 위치 한번에 설정 */
-#총상품가격,
+.totalPrice_span,
 #할인금액,
-#배송비1,
-#총결제금액 {
+.delivery_price_span,
+.strong_red {
     width: 100px;
     height: 25px;
     /* border: 1px solid black; */
@@ -482,7 +482,7 @@ li{ list-style-type: none;}
     padding-top:10px;
 }
 
-#총상품가격{
+.totalPrice_span {
     margin-left: 38px;
     width: 300px;
 }
@@ -491,12 +491,12 @@ li{ list-style-type: none;}
     margin-top:10px;
     width: 300px;
 }
-#배송비1 {
+.delivery_price_span {
     margin-left: 77px;
     margin-top:10px;
     width: 300px;
 }
-#총결제금액 {
+.strong_red {
     margin-left: 47px;
     margin-top:10px;
     width: 300px;
