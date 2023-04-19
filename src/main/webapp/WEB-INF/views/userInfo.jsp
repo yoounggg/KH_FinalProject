@@ -216,6 +216,7 @@
 <script>
 function goform(){
 	$('#userUpdateForm').attr("action",'/mypage/userInfo/update').submit();
-}
+} // goform
+
 </script>
 </html>

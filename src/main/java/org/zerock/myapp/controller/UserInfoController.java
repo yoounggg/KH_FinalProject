@@ -87,7 +87,7 @@ public class UserInfoController {
 	
 	@GetMapping("/update") //-> 상세조회화면도 get 해야함
 	public void updateUser() {
-		log.trace("updateUser() invoked.");
+		log.trace("updateUser() invoked.(회원정보수정)");
 	} // updateUser
 	
 	
