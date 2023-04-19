@@ -34,8 +34,7 @@
                 회원 가입이 완료되었습니다</h1>
 
            <div id="bottombtn">
-                <!-- <input type="button" class='메인으로' value="메인으로"> -->
-                <a id="가입하기" href="mymg/main"><span class="toMain">메인으로</span></a>
+                <a id="가입하기" href="/login"><span class="toMain">로그인하기</span></a>
             </div>
         </div>
     </section>

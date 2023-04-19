@@ -31,15 +31,19 @@
 
                 <div class="signupbutton">
                      <a class="일반회원가입" href="/signup/agreement"><span id="일반"> 일반 회원가입</span></a>
-                    <button type="button" class='소셜회원가입'>
-                        <img class='소셜아이콘' src="../resources/imgs/navericon.png"><span class="pp"> 네이버 회원가입 </span></button>
+                    
+                     <a type="button" class='소셜회원가입'>
+                        <img class='소셜아이콘' src="../resources/imgs/navericon.png"><span class="pp"> 네이버 회원가입 </span>
+                     </a>
 
-                    <button type="button" class='소셜회원가입'>
-                        <img class='소셜아이콘' src='../resources/imgs/kakaoicon.png'><span class="pp"> 카카오 회원가입 </span></button>
-                
+                    <a type="button" href="https://kauth.kakao.com/oauth/authorize?client_id=4728fdda1dcf6b1dcbc098a9a7ece445&
+                    redirect_uri=https://localhost:8080/signup/mainc&response_type=code" class='소셜회원가입'>
+                        <img class='소셜아이콘' src='../resources/imgs/kakaoicon.png'><span class="pp"> 카카오 회원가입 </span>
+                    </a>
+                        
             </div>
 
-            <div class='로그인'><a href="#">이미 아이디가 있다면? 로그인 하기></a></div>
+            <div class='로그인'><a href="/login/main">이미 아이디가 있다면? 로그인 하기></a></div>
         </div>
 
   
