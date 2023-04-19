@@ -9,60 +9,11 @@
       http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-   <!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
    
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
    
-   <!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-   <resources mapping="/resources/**" location="/resources/" />
-
-<<<<<<< HEAD
-   <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-   <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-      <beans:property name="prefix" value="/WEB-INF/views/" />
-      <beans:property name="suffix" value=".jsp" />
-   </beans:bean>
-   
-   <context:component-scan base-package="org.zerock.myapp.controller" />
-   <context:component-scan base-package="org.zerock.myapp.interceptor" />
-   <context:component-scan base-package="org.zerock.myapp.exception" />
-   
-   <!-- path = request URI가 됨 -->
-   <view-controller 
-      path="/board/list" view-name="board/list" status-code="200" />
-   <view-controller 
-      path="/board/register" view-name="board/register" status-code="200" />
-   <view-controller 
-      path="/board/get" view-name="board/get" status-code="200" />
-   <view-controller 
-      path="/board/modify" view-name="board/modify" status-code="200" />
-   <view-controller 
-      path="/board/remove" view-name="board/remove" status-code="200" />
-      
-      
-   <!-- 벼리 -->
-   <view-controller path="/notice/list"     view-name="notice/list"       status-code="200" />
-   <view-controller path="/notice/get"    view-name="notice/get"          status-code="200" />
-   <view-controller path="/notice/register" view-name="notice/register"    status-code="200" />
-   <view-controller path="/notice/modify"     view-name="notice/modify"    status-code="200" />
-   <view-controller path="/notice/remove"     view-name="notice/remove"    status-code="200" />
-   
-   <!-- 회원가입 -->
-   <view-controller path="/signup/agreement"       view-name="/signup/agreement"       status-code="200" />
-   <view-controller path="/signup/info"          view-name="/signup/info"          status-code="200" />
-   <view-controller path="/signup/addinfo"       view-name="/signup/addinfo"       status-code="200" />
-   <view-controller path="/signup/complete"       view-name="/signup/complete"       status-code="200" />
-   <view-controller path="/signup/socialComplete"    view-name="/signup/socialComplete"    status-code="200" />
-   <view-controller path="/signup/main"          view-name="/signup/main"          status-code="200" />
-   
-   <!--  메인 -->
-   <view-controller path="/main"    view-name="/main"    status-code="200" />
-   
-   <!-- 로그인 -->
-   <view-controller path="/login"    view-name="/login"    status-code="200" />
-   
-   
-   <beans:bean
-=======
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
@@ -71,11 +22,11 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
+   
 	<context:component-scan base-package="org.zerock.myapp.controller" />
 	<context:component-scan base-package="org.zerock.myapp.interceptor" />
 	<context:component-scan base-package="org.zerock.myapp.exception" />
-	
+   
 	<!-- path = request URI가 됨 -->
 	<view-controller 
 		path="/board/list" view-name="board/list" status-code="200" />
@@ -87,34 +38,33 @@
 		path="/board/modify" view-name="board/modify" status-code="200" />
 	<view-controller 
 		path="/board/remove" view-name="board/remove" status-code="200" />
-		
-		
+      
+      
 	<!-- 벼리 -->
-	<view-controller path="/notice/list"  	view-name="notice/list" 		status-code="200" />
-	<view-controller path="/notice/get" 	view-name="notice/get" 			status-code="200" />
-	<view-controller path="/notice/register" view-name="notice/register" 	status-code="200" />
-	<view-controller path="/notice/modify"  	view-name="notice/modify" 	status-code="200" />
-	<view-controller path="/notice/remove"  	view-name="notice/remove" 	status-code="200" />
-	
-	<!-- 회원가입 -->
-	<view-controller path="/signup/agreement" 		view-name="/signup/agreement" 		status-code="200" />
-	<view-controller path="/signup/info" 			view-name="/signup/info" 			status-code="200" />
-	<view-controller path="/signup/addinfo" 		view-name="/signup/addinfo" 		status-code="200" />
-	<view-controller path="/signup/complete" 		view-name="/signup/complete" 		status-code="200" />
-	<view-controller path="/signup/socialComplete" 	view-name="/signup/socialComplete" 	status-code="200" />
-	<view-controller path="/signup/main" 			view-name="/signup/main" 			status-code="200" />
-	
+	<view-controller path="/notice/list"     view-name="notice/list"       status-code="200" />
+	<view-controller path="/notice/get"    view-name="notice/get"          status-code="200" />
+	<view-controller path="/notice/register" view-name="notice/register"    status-code="200" />
+	<view-controller path="/notice/modify"     view-name="notice/modify"    status-code="200" />
+	<view-controller path="/notice/remove"     view-name="notice/remove"    status-code="200" />
+   
+   	<!-- 회원가입 -->
+   	<view-controller path="/signup/agreement"       view-name="/signup/agreement"       status-code="200" />
+	<view-controller path="/signup/info"          view-name="/signup/info"          status-code="200" />
+	<view-controller path="/signup/addinfo"       view-name="/signup/addinfo"       status-code="200" />
+	<view-controller path="/signup/complete"       view-name="/signup/complete"       status-code="200" />
+	<view-controller path="/signup/socialComplete"    view-name="/signup/socialComplete"    status-code="200" />
+	<view-controller path="/signup/main"          view-name="/signup/main"          status-code="200" />
+   
 	<!--  메인 -->
-	<view-controller path="/main" 	view-name="/main" 	status-code="200" />
-	
+	<view-controller path="/main"    view-name="/main"    status-code="200" />
+   
 	<!-- 로그인 -->
-	<view-controller path="/login" 	view-name="/login" 	status-code="200" />
-	
-	<!-- 암호화 -->
+	<view-controller path="/login"    view-name="/login"    status-code="200" />
+   
+  	<!-- 암호화 -->
 	<beans:bean id="bCryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></beans:bean>
-	
-	<beans:bean
->>>>>>> 02539f7523aea5ff3801d8bed975ffea4bdf81f0
+   
+   	<beans:bean
       id="multipartResolver"
       class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
       <beans:property name="defaultEncoding" value="UTF-8" />
@@ -123,21 +73,17 @@
       <beans:property name="maxUploadSizePerFile" value="2097152" />
       <beans:property name="preserveFilename" value="true" />
       <beans:property name="uploadTempDir" value="file:/C:/tmp/" />
-   </beans:bean>
+	</beans:bean>
    
+	<!-- ============ Interceptor 설정 ============ -->
    
-   <!-- ============ Interceptor 설정 ============ -->
-   
-   <!-- 장바구니 -> 로그인 상태여야 함 -->
-   <!-- <interceptors>
-      <interceptor>
-      <mapping path="/cart/main" /> -> 수정..
+	<!-- 장바구니 -> 로그인 상태여야 함 -->
+	<!-- <interceptors>
+			<interceptor>
+				<mapping path="/cart/main" /> -> 수정..
 
-      <beans:ref bean="cartInterceptor" />
-      </interceptor>
-   </interceptors> -->
-   
-   
-   
+				<beans:ref bean="cartInterceptor" />
+			</interceptor>
+		</interceptors> -->
    
 </beans:beans>
