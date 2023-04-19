@@ -8,9 +8,9 @@
 최종적으로 다른 상품 정보들이 작성된 뒤 '등록 버튼'을 눌렀을 때 '업로드 된 이미지'의 정보가 DB에 저장되도록 하는 방식 -->
 	<select id="getAttachList" resultType="org.zerock.myapp.domain.AttachImageVO">
 	
-		select *
-		from image 
-		where product_no = #{product_no}
+		SELECT *
+		FROM MYMG_IMAGE
+		WHERE product_no = #{product_no}
 	
 	</select>  
 

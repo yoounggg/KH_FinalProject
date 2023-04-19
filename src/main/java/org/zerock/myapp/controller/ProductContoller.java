@@ -11,17 +11,20 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.zerock.myapp.domain.AttachImageVO;
 import org.zerock.myapp.domain.Criteria;
 import org.zerock.myapp.domain.PageDTO;
 import org.zerock.myapp.domain.ProductDTO;
 import org.zerock.myapp.domain.ProductVO;
 import org.zerock.myapp.exception.ControllerException;
+import org.zerock.myapp.service.AttachService;
 import org.zerock.myapp.service.ProductService;
 
 import lombok.NoArgsConstructor;
@@ -37,6 +40,9 @@ public class ProductContoller {
 	
 	@Setter(onMethod_= { @Autowired})
 	private ProductService service;
+	
+	@Setter(onMethod_= { @Autowired})
+	private AttachService aservice;
 	
 	@GetMapping("/list")
 	public void list(@Param("amount") Integer amount, Criteria cri, Model model) throws ControllerException {
@@ -113,6 +119,22 @@ public class ProductContoller {
 		return result;
 		
 	} // ResponseEntity
+	
+	
+	/* [별이] 이미지 정보 반환 - AttachController */
+	@GetMapping(value="/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<List<AttachImageVO>> getAttachList(Integer product_no) throws ControllerException {
+		
+		log.info("getAttachList({}) invoked.", product_no);
+
+		try {
+			List<AttachImageVO> list = this.aservice.getAttachList(product_no);
+			return new ResponseEntity<List<AttachImageVO>>(aservice.getAttachList(product_no), HttpStatus.OK);
+		} catch (Exception e) {
+			throw new ControllerException(e);
+		} // try-catch
+		
+	} //  ResponseEntity
 	
 	
 	

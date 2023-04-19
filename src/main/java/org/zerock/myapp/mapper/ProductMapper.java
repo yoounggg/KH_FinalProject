@@ -3,6 +3,8 @@ package org.zerock.myapp.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
+import org.zerock.myapp.domain.AttachImageVO;
+import org.zerock.myapp.domain.CategoryVO;
 import org.zerock.myapp.domain.Criteria;
 import org.zerock.myapp.domain.ProductDTO;
 import org.zerock.myapp.domain.ProductVO;
@@ -30,6 +32,11 @@ public interface ProductMapper {
 	/*  상품 등록 */
 	public abstract Integer insert(ProductDTO dto);
 	
+	/* 상품 이미지 등록*/
+	public abstract Integer imageInsert(AttachImageVO vo);
+	
+	/* 카테고리 리스트 */
+	public abstract List<CategoryVO> cateList();
 	
 } // end interface
 

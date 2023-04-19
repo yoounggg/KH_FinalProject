@@ -74,8 +74,7 @@ public class AdminControllerTests {
 		MockMvc mockMvc = mockMvcBuilder.build();
 		
 		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/admin/product/register");
-			requestBuilder.param("category1", "농가");
-			requestBuilder.param("category2", "국내외과일");
+			requestBuilder.param("category", "test");
 			requestBuilder.param("name", "채영농장 스테비아 방울토마토");
 			requestBuilder.param("price", "10000");
 			requestBuilder.param("discount", "20");

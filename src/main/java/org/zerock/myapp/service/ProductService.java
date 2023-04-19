@@ -2,6 +2,7 @@ package org.zerock.myapp.service;
 
 import java.util.List;
 
+import org.zerock.myapp.domain.CategoryVO;
 import org.zerock.myapp.domain.Criteria;
 import org.zerock.myapp.domain.ProductDTO;
 import org.zerock.myapp.domain.ProductVO;
@@ -28,5 +29,9 @@ public interface ProductService {
 	// 5. 상품 등록
 	public abstract Boolean register(ProductDTO dto) throws ServiceException;
 	
+	// 6. 카테고리 등록
+	public abstract List<CategoryVO> getCateList() throws ServiceException;
 
+	
+	
 } // end interface

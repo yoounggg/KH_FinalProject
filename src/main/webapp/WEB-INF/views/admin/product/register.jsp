@@ -196,6 +196,15 @@
 	    display: block;
 	    cursor: pointer;
 	}
+	
+	#result_card img{
+		max-width : 100%;
+		height : auto;
+		display : block;
+		padding: 5px;
+		margin-top: 10px;
+		margin : auto;
+	}
         
 
     </style>
@@ -245,12 +254,11 @@
 
 	                    <div class="box1">
 	                        <div class="box2">
-	                            <p>카테고리1</p>
+	                            <p>대분류</p>
 	                        </div>
 	                        <div class="box3">
 	                            <select name="category1">
-	                                <option value="">선택하기</option>
-	                                <option value="${product.category1}">농가</option>
+	                                <option selected value="none">선택하기</option>
 	                            </select>
 	                        </div>                      
 	                    </div>
@@ -259,19 +267,11 @@
 
 	                    <div class="box1">
 	                        <div class="box2">
-	                            <p>카테고리2</p>
+	                            <p>중분류</p>
 	                        </div>
 	                        <div class="box3">
 	                            <select name="category2">
-	                                <option value="">선택하기</option>
-	                                <option value="${product.category2}">오늘의과일채소</option>
-	                                <option value="${product.category2}">국내외과일</option>
-	                                <option value="${product.category2}">친환경유기농채소</option>
-	                                <option value="${product.category2}">우리땅채소</option>
-	                                <option value="${product.category2}">채소/샐러드</option>
-	                                <option value="${product.category2}">주곡/잡곡</option>
-	                                <option value="${product.category2}">오늘의특가</option>
-	                                <option value="${product.category2}">신상품</option>
+	                                <option selected value="none">선택하기</option>
 	    
 	                            </select>
 	                        </div>                      
@@ -373,10 +373,10 @@
 	                        <div class="box3">
 	                            <input type="file" name="main_image"  id="main_image" style="height:30px";>
 	                            <div id="uploadResult">
-	                            	<div id="result_card">
+<!-- 	                            <div id="result_card">
 		                            	<div class="imgDeleteBtn">x</div>
 		                            	<img src ="/product/display?fileName=test.jpg">
-	                            	</div>
+	                            	</div> -->
 	                            </div>
 	                        </div>         
 	                    </div>
@@ -432,12 +432,14 @@
 	                    </div>
 	                    <br>
 	
-	                    <div class="box1">
-	                        <div class="box2">
+	                    <div class="form_section">
+	                        <div class="form_section_title">
 	                            <p>상세정보내용 이미지</p>
 	                        </div>
-	                        <div class="box3">
-	                            <input type="text"  name="content_image"  id="info">
+	                        <div class="form_section_image">
+	                            <div id="uploadResult">
+	                            	
+	                            </div>
 	                        </div>         
 	                    </div>
 	                    <br>
@@ -467,36 +469,7 @@
 //  ================== 1. 버튼을 클릭하면 이동함. =============================
 
 	
-		// 글 작성!!
-        var registerBtn = document.querySelector('#registerBtn');
 
-        registerBtn.addEventListener('click', function () {
-            location = '/admin/farm/register';
-        }); // registerBtn
-
-      //만약 결과값에 어떤 값이든 들어왔다면(null이 아니라면) -> 결과값을 alert창으로 띄운다.
-      
-        var result = "${param.result}";
-        if(result != null && result != "") {        
-            alert('result: ' + result);
-        } // if
-        
-        
-        
-		// 글 삭제!!
-        removeBtn.addEventListener('click', function(){
-            console.log('removeBtn clicked ㅇ_<');
-
-            //form 태그를 조작해서 삭제요청을 전송! 
-            var form = document.querySelector('form');
-            console.log(form.constructor.prototype);
-
-
-            form.setAttribute('method', 'POST');
-            form.setAttribute('action', '/admin/farm/remove');
-            form.submit();
-
-        }); // removeBtn
         
 </script>
 <script>
@@ -552,19 +525,78 @@ $("input[name='price']").on("change", function(){
 });
 
 </script>
-
+<script>	
+	
+	
+	// 2. 파일 사이즈, 종류 제한
+	let regex = new RegExp("(.*?)\.(jpg|png|jpeg)$");
+	let maxSize = 1048576;	// 1MB
+	
+	function fileCheck (fileName, fileSize) {
+		
+		// 파일 사이즈 제한
+		if(fileSize >= maxSize) {
+			alert("파일 사이즈 초과");
+			return false;
+		} // if
+		
+		// 파일 종류 제한
+		if(!regex.test(fileName)) {
+			alert("해당 종류의 파일은 업로드 할 수 없습니다.");
+			return false;
+		}
+		
+		return true;
+		
+	} //  fileCheck
+</script>
+<script>
+	
+	/* 이미지 출력 */
+	function showUploadImage(uploadResultArr){
+	
+		/* 전달받은 데이터 검증 */
+		if(!uploadResultArr || uploadResultArr.length == 0){return}
+		
+		let uploadResult = $("#uploadResult");
+		
+		let obj = uploadResultArr[0];
+		
+		let str = "";
+		
+		let fileCallPath = encodeURIComponent(obj.uploadPath.replace(/\\/g, '/') + "/s_" + obj.uuid + "_" + obj.fileName);
+		
+		str += "<div id='result_card'>";
+		str += "<img src='/product/display?fileName=" + fileCallPath +"'>";
+		str += "<div class='imgDeleteBtn' data-file='"+ fileCallPath+"'>x</div>";
+		str += "<input type='hidden' name='imageList[0].fileName' value='"+ obj.fileName+"'>";
+		str += "<input type='hidden' name='imageList[0].uuid' value='"+ obj.uuid+"'>";
+		str += "<input type='hidden' name='imageList[0].uploadPath' value='"+ obj.uploadPath+"'>";
+		str += "</div>";		
+		
+		uploadResult.append(str);
+	
+	}
+		
+</script>
 <script>
 //================== 4. 이미지 업로드 =============================
  	
 	/* 1. 이미지  업로드 */
 	$("input[type='file']").on("change", function(e) {
 		
+		/* 이미지 존재 시 삭제 */
+		if($(".imgDeleteBtn").length > 0) {
+			deleteFile();
+		}
+		
+		
 		let formData = new FormData();
 		let fileInput = $('input[name="main_image"]');
 		let fileList = fileInput[0].files;
 		let fileObj = fileList[0];
 		
-/* 		if(!fileCheck(fileObj.name, fileObj.size)) {
+ 		/*if(!fileCheck(fileObj.name, fileObj.size)) {
 			return false;
 		} */
 			
@@ -599,51 +631,115 @@ $("input[name='price']").on("change", function(){
 		
 		
 	});
-	
-	
-	
-	// 2. 파일 사이즈, 종류 제한
-	let regex = new RegExp("(.*?)\.(jpg|png|jpeg)$");
-	let maxSize = 1048576;	// 1MB
-	
-	function fileCheck (fileName, fileSize) {
-		
-		// 파일 사이즈 제한
-		if(fileSize >= maxSize) {
-			alert("파일 사이즈 초과");
-			return false;
-		} // if
-		
-		// 파일 종류 제한
-		if(!regex.test(fileName)) {
-			alert("해당 종류의 파일은 업로드 할 수 없습니다.");
-			return false;
-		}
-		
-		return true;
-		
-	} //  fileCheck
-	
-	/* 이미지 출력 */
-	function showUploadImage(uploadResultArr) {
-		/* 전달 받은 데이터 검증 */
-		if(!uploadResultArr || uploadResultArr.length == 0){return}
-		
-		let uploadResult = $("#uploadResult");
-		let obj = uploadResultArr[0];		
-		let str = "";		
-		let fileCallPath = obj.uploadPath.replace(/\\/g, '/') + "/s_" + obj.uuid + "_" + obj.fileName;
-		
-		str += "<div id='result_card'>";
-		str += "<img src = '/display?fileName="+ fileCallPath"'>";
-		str += "<div class='imgDeleteBtn'>x</div>";
-		str += "</div>";
-		
-		uploadResult.append(str);
-		
-	} //showUploadImage
-		 
-		
 </script>
-<!-- <script src="/resources/js/admin/register.js"></script> -->
+<script>
+	
+	/* 이미지 삭제 버튼 동작 */
+	$("#uploadResult").on("click", ".imgDeleteBtn", function(e){
+		
+		deleteFile();
+		
+	});
+	
+
+	/* 파일 삭제 메서드 */
+	function deleteFile(){
+		
+		let targetFile = $(".imgDeleteBtn").data("file");
+		
+		let targetDiv = $("#result_card");
+		
+		$.ajax({
+			url: '/admin/deleteFile',
+			data : {fileName : targetFile},
+			dataType : 'text',
+			type : 'POST',
+			success : function(result){
+				console.log(result);
+				
+				targetDiv.remove();
+				$("input[type='file']").val("");
+				
+			},
+			error : function(result){
+				console.log(result);
+				
+				alert("파일을 삭제하지 못하였습니다.")
+			}
+		});
+	}
+	
+	
+	
+</script>
+<script>
+	/* 카테고리 구현 */
+/* 	$(document).ready(function() {
+		console.log('${cateList}');
+		
+	}); */
+	
+	/* 카테고리 */
+	let cateList = JSON.parse('${cateList}');
+	
+	let cate1Array = new Array();
+	let cate2Array = new Array();
+	let cate1Obj = new Object();
+	let cate2Obj = new Object();
+	
+	let cateSelect1 = $(".category1");
+	let cateSelect2 = $(".category2");
+	
+	/* 카테고리 배열 초기화 메서드 */
+	function makeCateArray(obj, array, cateList, tier) {
+		
+		for(let i = 0; i <cateList.length; i++) {
+			if(cateList[i].tier === tier) {
+				obj = new Object();
+				
+				obj.name = cateList[i].name;
+				obj.code = cateList[i].code;
+				obj.parent = cateList[i].parent;
+				
+				array.push(obj);
+				
+			} //if
+			
+		}// for
+		
+	}
+	
+	/* 배열 초기화 */
+	makeCateArray(cate1Obj, cate1Array, cateList, 1);
+	makeCateArray(cate2Obj, cate2Array, cateList, 2);
+	
+/* 	$(document).ready(function() {
+		
+		console.log(cate1Array);
+		console.log(cate2Array);
+	}); */
+	
+	
+	/* 대분류 태그 */
+	for(let i = 0; i<cate1Array.length; i++) {
+		cateSelect1.append("<option value='"+cate1Array[i].code+"'>"+cate1Array[i].name+"</option>");
+	} // for
+	
+	
+	/* 중분류 태그 */
+	$(cateSelect1).on("change",function() {
+		let selectVal1 = $(this).find("option:selected").val();
+		
+		cateSelect2.children().remove();
+		cateSelect2.append("<option value='none'>선택</option>")
+		
+		for(let i=0; i < category2Array.length; i++) {
+			if(selectVal1 === cate2Array[i].parent) {
+				cateSelect2.append("<option value='"+cate2Array[i].code+"'>"+cate2Array[i].name+"</option>")
+			} //if
+		} // for
+	
+	}); // end
+
+</script>
 </html>
