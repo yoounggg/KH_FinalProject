@@ -32,12 +32,11 @@
                 <div class="signupbutton">
                      <a class="일반회원가입" href="/signup/agreement"><span id="일반"> 일반 회원가입</span></a>
                     
-                     <a type="button" class='소셜회원가입'>
+                     <a class='소셜회원가입'>
                         <img class='소셜아이콘' src="../resources/imgs/navericon.png"><span class="pp"> 네이버 회원가입 </span>
                      </a>
 
-                    <a type="button" href="https://kauth.kakao.com/oauth/authorize?client_id=4728fdda1dcf6b1dcbc098a9a7ece445&
-                    redirect_uri=https://localhost:8080/signup/mainc&response_type=code" class='소셜회원가입'>
+                    <a href="https://kauth.kakao.com/oauth/authorize?client_id=4728fdda1dcf6b1dcbc098a9a7ece445&redirect_uri=https://localhost:8080/signup/kakao/callback&response_type=code" class='소셜회원가입'>
                         <img class='소셜아이콘' src='../resources/imgs/kakaoicon.png'><span class="pp"> 카카오 회원가입 </span>
                     </a>
                         

@@ -8,7 +8,7 @@
 	
 		<!-- 셍나 로그인: memberLogin() -->
 		<!-- 암호화 미적용 -->
-		<select id="memberLogin" resultType="org.zerock.myapp.domain.MemberDTO">
+		<!-- <select id="memberLogin" resultType="org.zerock.myapp.domain.MemberDTO">
 		    SELECT 
 		    	*
 		    FROM 
@@ -16,8 +16,8 @@
 		    WHERE 
 		        ID = #{id}
 		        AND PASSWORD = #{password}
-		</select>
-		<!-- 암호화 적용
+		</select> -->
+		<!-- 암호화 적용 -->
 		<select id="memberLogin" resultType="org.zerock.myapp.domain.MemberDTO">
 		    SELECT 
 		    	ID, PASSWORD, NAME, ADMINCK
@@ -25,7 +25,7 @@
 		    	member 
 		    WHERE 
 		        ID = #{id} 
-		</select>  -->
+		</select>
 	
 		<!-- 혁규 회원가입 -->
 		<insert id="memberSignup" >
