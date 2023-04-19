@@ -281,7 +281,13 @@
 		    <artifactId>spring-security-config</artifactId>
 		    <version>6.0.2</version>
 		</dependency>
-
+		
+	<!-- ================= 찬돌 결제 API ================= -->	
+		<dependency>
+		    <groupId>com.github.iamport</groupId>
+		    <artifactId>iamport-rest-client-java</artifactId>
+		    <version>0.2.22</version>
+		</dependency>
 		
    </dependencies>
 

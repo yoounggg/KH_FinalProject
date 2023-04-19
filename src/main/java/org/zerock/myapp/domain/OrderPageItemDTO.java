@@ -13,26 +13,35 @@ public class OrderPageItemDTO {
 	private Integer productCount;
 
 	/* productId를 통해 DB에서 꺼내올 데이터 */
-	private String Name;			// 상품이름 productName
+	private String name;			// 상품이름 productName
 	
-	private Integer Price;			// 상품가격 productPrice
+	private Integer price;			// 상품가격 productPrice
 	
-	private double Discount;		// 할인 productDiscount
+	//private double discount;		// 할인 productDiscount
+	private Integer discount;        // 할인 금액 productDiscount
 	
 	/* 만들어 낼 값 */
 	private Integer salePrice; 			// 할인 가격
+
+	private Integer discountedPrice;
 	
 	private Integer totalPrice;			// 총 가격
+
+	
 	
 	public void initSaleTotal() {
-		this.salePrice = (int) (this.Price * (1 - this.Discount));
-		this.totalPrice = this.salePrice * this.productCount;
+		this.totalPrice = this.productCount * this.price;
+	    // this.salePrice = (int) (this.totalPrice * (1 - this.discount));
+//		this.salePrice = (int) (this.price * (1 - this.discount / 100.0) * this.productCount);
+//	    this.salePrice = this.discount * this.productCount;
+		this.discountedPrice = (int) (totalPrice * (1 - this.discount / 100.0));
+		this.salePrice = totalPrice - discountedPrice;
 	} //initSaleTotal
 	
 	@Override
 	public String toString() {
-		return "OrderPageItemDTO [productId=" + productId + ", productCount=" + productCount + ", productName=" + Name
-				+ ", productPrice=" + Price + ", productDiscount=" + Discount + ", salePrice=" + salePrice
+		return "OrderPageItemDTO [productId=" + productId + ", productCount=" + productCount + ", productName=" + name
+				+ ", productPrice=" + price + ", productDiscount=" + discount + ", salePrice=" + salePrice
 				+ ", totalPrice=" + totalPrice;
 	}
 	
