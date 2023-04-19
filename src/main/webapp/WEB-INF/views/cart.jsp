@@ -149,34 +149,6 @@
 		</div>
     </main>
 <!-- ==========================footer========================= -->
-    <footer>
-        <div class="yakgwan1">
-            <div class="yakgwan2">
-                <li><a href="#">고객센터</a></li>
-                <li><a href="#">약관 및 정책</a></li>
-                <li><a id="gaein" href="#">개인정보 취급방침</a></li>
-            </div>
-        </div>
-
-        <div class="bottom1">
-            <div class="bottom2">
-                <div id="com_address">
-                    <p id="jusik">(주)모야모과</p>
-                    <p class="gray">강남지원 1관 : 서울특별시 강남구 테헤란로14길 6 남도빌딩<br>
-                        상호: 주식회사 모야모과 대표자:요셉킴 사업자등록번호: 123-45-67891<br>
-                        통신판매업신고번호: 제2023-서울강남-0208</p>
-                    <p></p>
-                    <p class="gray">Copyright ⓒ MOYAMOGA Corp. All Rights Reserved.</p>
-                </div>
-                <div id="custom_notice">
-                    <p id="gogaek">고객센터 <span id="phnum">1588-1234</span></p>
-                    <p></p>
-                    <p class="gray">평일 07:00~18:00 / 토, 일요일 09:00~12:00<br>
-                        점심시간 12:00~13:00</p>
-                    <a href="#">고객센터 바로가기 ></a>
-                </div>
-            </div>
-        </div>
-    </footer>
+   <%@include file= "../views/common/footer.jsp" %>
 </body>
 </html>

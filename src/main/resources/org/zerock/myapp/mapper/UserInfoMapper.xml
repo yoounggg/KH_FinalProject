@@ -16,7 +16,7 @@
 	<!-- 회원 상세 업데이트 -->
 	<update id="update">
 	    UPDATE member 
-	    SET password = #{password}, name = #{name}, email = #{email}, tel = #{tel}, address1 = #{address1}, 
+	    SET password = #{password}, name = #{name}, tel = #{tel}, address1 = #{address1}, 
 	    address2 = #{address2}, address3 = #{address3}
 	    WHERE id = #{id}
 	</update>

@@ -60,13 +60,12 @@
 
                         <!-- 관리자 계정 -->
                         <c:if test="${member.adminCk == 1}">
-                            <li><a href="/admin/main">관리자</a></li>
-                        </c:if> 
-                    <c:out value="${member.name}"></c:out>   
-                    <li>님 환영합니다.</li> 
+                            <li id="main_adminpage"><a href="/admin/main" id="main_adminpage">*관리자 페이지 click!</a></li>
+                        </c:if>  
+                    <li id="container2_name">${member.name}님 환영합니다 ^o^</li> 
                     <li><a href="/logout">로그아웃</a></li>
                     <!-- => 비동기 방식 로그아웃으로 변경 -->
-                    <li><a href="/mypage/userInfo">마이페이지</a></li>
+                    <li><a href="/mypage/userInfo/${member.id}">마이페이지</a></li>
                     <li><a href="/cart/${member.id}">장바구니</a></li>
                     
                 </c:if>       
@@ -237,8 +236,8 @@
         <div class="yakgwan1">
             <div class="yakgwan2">
                 <li><a href="#">고객센터</a></li>
-                <li><a href="#">약관 및 정책</a></li>
-                <li><a id="gaein" href="#">개인정보 취급방침</a></li>
+                <li><a href="/help/terms">약관 및 정책</a></li>
+                <li><a id="gaein" href="/help/privacy">개인정보 취급방침</a></li>
             </div>
         </div>
 

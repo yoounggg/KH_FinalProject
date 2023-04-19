@@ -58,15 +58,14 @@
                 <!--로그인 O -->
                 <c:if test = "${member != null}">
 
-                        <!-- 관리자 계정 -->
+                         <!-- 관리자 계정 -->
                         <c:if test="${member.adminCk == 1}">
-                            <li><a href="/admin/main">관리자 페이지</a></li>
-                        </c:if> 
-                        
-               		  <li><c:out value="${member.name}">님 환영합니다.</c:out></li> 
+                            <li id="main_adminpage"><a href="/admin/main" id="main_adminpage">*관리자 페이지 click!</a></li>
+                        </c:if>  
+                    <li id="container2_name">${member.name}님 환영합니다 ^o^</li> 
                     <li><a href="/logout">로그아웃</a></li>
                     <!-- => 비동기 방식 로그아웃으로 변경 -->
-                    <li><a href="/mypage/userInfo">마이페이지</a></li>
+                    <li><a href="/mypage/userInfo/main">마이페이지</a></li>
                     <li><a href="/cart/${member.id}">장바구니</a></li>
                     
                 </c:if>       

@@ -163,5 +163,5 @@ $(".delete_btn").on("click", function(e){
    $(".order_form").html(form_contents);
    $(".order_form").submit();
       
-  });    /* 주문 페이지 이동 */ 
+  });  
 });
