@@ -34,8 +34,6 @@ public class SignupController { // 회원가입 페이지 호출
 	@Setter(onMethod_=@Autowired)
 	private MemberService memberService;		
 	
-	
-	
 	//회원가입 페이지로 이동만!
 	@GetMapping("/info")
 	public void signupGET() {
