@@ -70,7 +70,7 @@
                             <input type="password" class='회원정보' id="input_pw" name="password" method="post" oninput="pw_input_con()"
                                 placeholder="비밀번호를 입력해주세요">
 
-                            <div class='입력조건' id="pw_input_con">대/소문자 구분, 숫자 8~16자</div>
+                            <div class='입력조건' id="pw_input_con">대문자/소문자/숫자 필수, 8~16자</div>
                         </div>
 
                         <div>

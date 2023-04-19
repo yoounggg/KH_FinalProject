@@ -76,11 +76,14 @@ public class SignupController { // 회원가입 페이지 호출
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 		
 		beforePw = memberDTO.getPassword();		// 비밀번호 가져오기
-		encodePw = bCryptPasswordEncoder.encode(beforePw);	// 비밀번호 인코딩
-		memberDTO.setPassword(encodePw);			// 인코딩된 비밀번호 집어넣기
+		log.trace("beforePw : {}", beforePw);
 		
+		encodePw = bCryptPasswordEncoder.encode(beforePw);	// 비밀번호 인코딩
+		log.trace("encodePw : {}", encodePw);
+		
+		memberDTO.setPassword(encodePw);			// 인코딩된 비밀번호 집어넣기
 		memberService.memberSignup(memberDTO);
-	
+		log.trace("memberService : {} invoked.", memberDTO);
 
 		
 		return "redirect:/signup/complete";
