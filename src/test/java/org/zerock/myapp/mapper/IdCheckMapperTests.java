@@ -51,8 +51,11 @@ public class IdCheckMapperTests {
 	@Timeout(value = 1, unit = TimeUnit.MINUTES)
 	public void testIdCheck() {
 		log.trace("testIdCheck () invoked.");
+		
+		String id = "moyamoga";
+		int checkId = mapper.idCheck(id);			// 중복됐으면 1 리턴 아니면 0
 
-
+		log.trace("checkId : {} ", checkId);
 	} // testIdCheck
 
 } // end class

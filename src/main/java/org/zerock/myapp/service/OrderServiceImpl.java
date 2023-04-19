@@ -25,7 +25,7 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public List<OrderPageItemDTO> getProductsInfo(List<OrderPageItemDTO> orders) throws ServiceException {
 
-		List<OrderPageItemDTO> result = new ArrayList<OrderPageItemDTO>();
+		List<OrderPageItemDTO> result = new ArrayList<OrderPageItemDTO>();	// 반환해야될 타입이 List니 List로 객체 생성
 		
 		for(OrderPageItemDTO ord : orders) {	// 장바구니 페이지(Veiw)에서 전달 받은 정보 List객체의 수 만큼 반복해주는 for문 작성
 			//  상품 정보를 만들어내는 OrderMapper의 getProductsInfo() 메서드를 호출 , productsInfo 변수에 저장

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
 <!DOCTYPE html>
 <html lang="ko">
@@ -44,10 +45,12 @@
                     <input id="password" type="password" name="password" placeholder="비밀번호" required>
                 </div>
                 
-                <!-- adminCK 확인 -->
-                <div class="adminCk_class">
-                	<input type="hidden" name="adminCk" value="${member.adminCk}">
-                </div>
+                <!-- 로그인 실패 시 띄우는 알림 문구 -->
+                <c:if test = "${result == 0}">
+	                <div class = "login_fail">
+	                	ID 또는 비밀번호를 잘못 입력하셨습니다.
+	                </div>
+	            </c:if>
 
                 <!-- 아이디 저장, 자동 로그인, 아이디 찾기, 비밀번호 찾기 -->
                 <div class="login_box">

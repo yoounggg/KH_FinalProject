@@ -6,8 +6,10 @@
   
  <mapper namespace="org.zerock.myapp.mapper.OrderMapper">
  		<select id="getProductsInfo" resultType="org.zerock.myapp.domain.OrderPageItemDTO">
- 			SELECT No, Name, Price, Discount
+ 			SELECT *
  			FROM product
  			WHERE No = #{No}
  		</select>
  </mapper>
+ 
+ <!-- SELECT No, Name, Price, Discount  -->

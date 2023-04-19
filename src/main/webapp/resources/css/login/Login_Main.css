@@ -144,21 +144,6 @@ li{ list-style-type: none;}
 }
 /* ------------------드롭다운메뉴-------------------- */
 
-/* .dropdown{
-    position: relative;
-    display: inline-block;
-}
-.dropdown-content{
-    display: none;
-    position: absolute;
-    z-index: 1;
-}
-.dropdown-content a {
-    color: black;
-}
-.dropdown:hover .dropdown-content{
-    display: block;
-} */
 .dropdown-content{
     display: none;
 }
@@ -219,6 +204,16 @@ button {
     width: 20%;
     position:relative;
     left: 40%;
+}
+
+/* 로그인 실패 시 띄우는 문구! */
+.login_fail {
+    font-weight: 500;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    color : red;
 }
 
 /* 아이디 저장, 자동 로그인, 아이디 찾기, 비밀번호 찾기 */

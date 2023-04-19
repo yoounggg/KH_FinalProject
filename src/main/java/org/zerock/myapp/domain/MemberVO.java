@@ -1,10 +1,8 @@
 package org.zerock.myapp.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Value;
 import oracle.sql.TIMESTAMP;
 
-//@Data
 @Value
 public class MemberVO {
 

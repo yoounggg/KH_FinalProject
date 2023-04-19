@@ -7,7 +7,7 @@ import org.zerock.myapp.exception.ServiceException;
 public interface MemberService {
 	
 	// 회원가입 혁규
-	public void memberSignup(MemberVO memberVO) throws Exception;
+	public void memberSignup(MemberDTO memberDTO) throws Exception;
 	
 	// 로그인 셍나
     public MemberDTO memberLogin(MemberDTO memberDTO) throws ServiceException;

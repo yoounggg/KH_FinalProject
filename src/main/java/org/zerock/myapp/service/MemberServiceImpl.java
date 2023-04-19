@@ -3,7 +3,6 @@ package org.zerock.myapp.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zerock.myapp.domain.MemberDTO;
-import org.zerock.myapp.domain.MemberVO;
 import org.zerock.myapp.exception.ServiceException;
 import org.zerock.myapp.mapper.MemberMapper;
 
@@ -22,13 +21,13 @@ public class MemberServiceImpl implements MemberService {
 	
 	// 혁규 회원가입
 	@Override
-	public void memberSignup(MemberVO memberVO) throws Exception{
+	public void memberSignup(MemberDTO memberDTO) throws Exception{
 
-		log.trace("MemberVO : {} invoked", memberVO );
+		log.trace("MemberDTO : {} invoked", memberDTO );
 			
-		memberMapper.memberSignup(memberVO);
+		memberMapper.memberSignup(memberDTO);
 			
-		log.trace("MemberVO : {} invoked", memberVO );
+		log.trace("MemberDTO : {} invoked", memberDTO );
 		
 	} // memberSignup()
 	
