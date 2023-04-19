@@ -719,7 +719,6 @@ $("input[name='price']").on("change", function(){
 		console.log(cate2Array);
 	}); */
 	
-	
 	/* 대분류 태그 */
 	for(let i = 0; i<cate1Array.length; i++) {
 		cateSelect1.append("<option value='"+cate1Array[i].code+"'>"+cate1Array[i].name+"</option>");
