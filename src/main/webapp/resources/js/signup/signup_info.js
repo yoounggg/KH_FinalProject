@@ -32,10 +32,18 @@ function checkId() {
             success: function (cntId) {
                 if (cntId == 0) {          // 0이면 사용가능 
                     popup_on2();
+                    document.getElementById("input_id").readOnly = "true";            // 아이디 입력창 읽기전용
+                    document.getElementById("id_confirm").disabled = "true";          // 중복확인 버튼 비활성화
+                    document.getElementById("id_confirm").style.backgroundColor = "#b1b1b1";	// 배경 변경
+                    console.log("aaaaa");
 
                 } else if (cntId == 1) {                // 1이면 중복
                     popup_on3();
-                    $("#input_id").val("");  //중복시 초기화 
+                    $("#input_id").val("");  //중복시 초기화
+                    document.getElementById("input_id").readOnly = "false";            // 아이디 입력창 읽기전용
+                    document.getElementById("id_confirm").disabled = "false";          // 중복확인 버튼 비활성화
+                    document.getElementById("id_confirm").style.backgroundColor = "#10bc0d";	// 배경 변경
+                    console.log("qlqlqll");
                 }
             },
             error: function (xhr, status, error) { // 에러 콜백 함수
@@ -43,12 +51,7 @@ function checkId() {
             }
         });
 
-        document.getElementById("input_id").readOnly = "true";            // 아이디 입력창 읽기전용
-        document.getElementById("id_confirm").disabled = "true";          // 중복확인 버튼 비활성화
-        document.getElementById("id_confirm").style.backgroundColor = "#b1b1b1";
-        document.getElementById("input_id").addEventListener("keydown", function (event) {
-            event.preventDefault();     // 키보드 제한	//안먹힘...
-        });
+       
 
     } else {
         popup_on1();
@@ -135,7 +138,7 @@ function checkEmail() {
             data: { email: email },
             dataType: 'json',
             success: function (cntEmail) {
-                if (cntEmail == 0) {                   // 0이면 사용 가능
+                if (cntEmail == 0) {                   				 // 0이면 사용 가능
                     popup_on4();
                 } else if (cntEmail == 1) {                          // 1이면 이메일 중복
                     popup_on5();
