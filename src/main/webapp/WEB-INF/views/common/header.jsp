@@ -48,7 +48,8 @@
     <header>    
             <ul class="container2">
             
-            	<!--로그인 x--><!--로그인 성공하면 세션에 사용자 정보를 저장하는 model상자의 이름 뭐지? 우선 member로 기재-->
+            	<!--로그인 x-->
+            	<!--로그인 성공하면 세션에 사용자 정보를 저장하는 model 상자의 이름 = member로 기재-->
                 <c:if test = "${member == null}">
                     <li><a href="/login/main">로그인</a></li>
                     <li><a href="/signup/main">회원가입</a></li>
@@ -58,14 +59,13 @@
                 <!--로그인 O -->
                 <c:if test = "${member != null}">
 
-                         <!-- 관리자 계정 -->
+                        <!-- 관리자 계정 -->
                         <c:if test="${member.adminCk == 1}">
                             <li id="main_adminpage"><a href="/admin/main" id="main_adminpage">*관리자 페이지 click!</a></li>
                         </c:if>  
                     <li id="container2_name">${member.name}님 환영합니다 ^o^</li> 
-                    <li><a href="/logout">로그아웃</a></li>
-                    <!-- => 비동기 방식 로그아웃으로 변경 -->
-                    <li><a href="/mypage/userInfo/main">마이페이지</a></li>
+                    <li><a id="gnb_logout" href="/login/logout">로그아웃</a></li>
+                    <li><a href="/mypage/userInfo/${member.id}">마이페이지</a></li>
                     <li><a href="/cart/${member.id}">장바구니</a></li>
                     
                 </c:if>       
@@ -107,8 +107,6 @@
             </ul>
         </div>
     </nav>
-
-   
 </body>
 
 </html>

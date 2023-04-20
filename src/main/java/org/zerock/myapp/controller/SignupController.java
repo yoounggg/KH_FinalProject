@@ -42,9 +42,6 @@ public class SignupController { // 회원가입 페이지 호출
 		
 	} // joinGET
 	
-	
-	
-	
 //	//회원가입 서비스로 가는 메소드(POST) 들어가야 함
 //	@PostMapping("/info")
 //	public String signupPOST(MemberDTO memberDTO) throws Exception {
@@ -95,41 +92,6 @@ public class SignupController { // 회원가입 페이지 호출
 				
 
 	} // signupComplete
-	
-	
-	//로그인 페이지로 이동만!
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public void loginGET() {
-		log.trace("loginGET() invoked(로그인 페이지로 이동)");
-		
-	} // loginGET
-	
-	// 메인페이지에 있는 로그아웃을 작동할 수 있게 하는 메서드 (세션에 저장된 사용자 정보를 지울수 있게 해줘야 함)
-		//수업시간에는 인증인가할 때 logincontroller에 dummylogout했었는데 .. 우선 logout 버튼 누르면 세션파괴하고 다시 메인으로 돌아오는 것만
-//	    @RequestMapping(value="/logout", method=RequestMethod.GET) // main.jsp에서 a태그에 경로로 /logout으로 줌, a태그의 요청은 GET임
-//	    public String logoutMainGET(HttpServletRequest request) throws Exception{ // 세션스콥이므로 HttpServletRequest타입 사용
-//	    	log.trace("logoutMainGET() invoked(로그아웃 서비스 실행)");
-//	    	
-//	    	HttpSession session = request.getSession();
-//	    	
-//	    	session.invalidate(); // 세션파괴
-//	    	
-//	    	return "redirect: /main";
-//	    } // logoutMainGET
-		
-//		==> 비동기식 로그아웃으로 바꿔서 다시 메소드 작성!
-		
-		@RequestMapping(value = "/logout", method = RequestMethod.POST)
-		@ResponseBody // ajax를 통해서 서버에 요청하는 방식이라서 해당 메서드에 반드시 이 어노테이션을 붙여야 함
-		public void logoutPOST(HttpServletRequest request) throws Exception{
-			log.trace("logoutMainGET() invoked(로그아웃 서비스 실행)");
-			
-			HttpSession session = request.getSession();
-	    	
-	    	session.invalidate(); // 세션파괴
-			
-		} // logoutPOST
-
 	
 } // end class
 

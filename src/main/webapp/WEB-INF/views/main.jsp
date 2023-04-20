@@ -64,8 +64,7 @@
                             <li id="main_adminpage"><a href="/admin/main" id="main_adminpage">*관리자 페이지 click!</a></li>
                         </c:if>  
                     <li id="container2_name">${member.name}님 환영합니다 ^o^</li> 
-                    <li><a href="/login/logout">로그아웃</a></li>
-                    <!-- => 비동기 방식 로그아웃으로 변경 -->
+                    <li><a id="gnb_logout" href="/login/logout">로그아웃</a></li>
                     <li><a href="/mypage/userInfo/${member.id}">마이페이지</a></li>
                     <li><a href="/cart/${member.id}">장바구니</a></li>
                     
@@ -262,6 +261,10 @@
             </div>
         </div>
     </footer>
+    
+    <!-- 세인이..비동기식 로그아웃 js 불러오려면 여기다 넣어야지만 불러와짐 흑흑,, -->
+    <script src="/resources/js/main.js"></script>
+    
 </body>
 
 </html>

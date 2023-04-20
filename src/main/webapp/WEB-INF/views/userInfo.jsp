@@ -54,7 +54,7 @@
                             <li id="main_adminpage"><a href="/admin/main" id="main_adminpage">*관리자 페이지 click!</a></li>
                         </c:if>  
                     <li id="container2_name">${member.name}님 환영합니다 ^o^</li> 
-                    <li><a href="/logout">로그아웃</a></li>
+                    <li><a href="/login/logout">로그아웃</a></li>
                     <!-- => 비동기 방식 로그아웃으로 변경 -->
                     <li><a href="/mypage/userInfo/${member.id}">마이페이지</a></li>
                     <li><a href="/cart/${member.id}">장바구니</a></li>
@@ -214,9 +214,21 @@
 </body>
 
 <script>
+// 비동기식 로그아웃!
+$("#gnb_logout").click(function() {
+	alert("로그아웃 버튼 활성화")
+	$.ajax({
+		type:"POST",
+		url:"/login/logout",
+		success:function(data){
+			alert("비동기식 로그아웃 성공 ㅜㅜㅜㅜㅜㅜ");
+			document.location.reload();
+		}
+	}); // ajax
+});
+
 function goform(){
 	$('#userUpdateForm').attr("action",'/mypage/userInfo/update').submit();
 } // goform
-
 </script>
 </html>
