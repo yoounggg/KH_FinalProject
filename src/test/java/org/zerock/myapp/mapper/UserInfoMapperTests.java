@@ -62,7 +62,7 @@ public class UserInfoMapperTests {
 	void testselect() {
 		log.trace("testselect() invoked");
 		
-		String id = "nicknamebyul";
+		String id = "mymgadmin";
 		
 		MemberDTO dto = new MemberDTO();
 		dto.setId(id);
@@ -79,18 +79,15 @@ public class UserInfoMapperTests {
 	@Timeout(value = 1, unit=TimeUnit.MINUTES)
 	void testupdate() {
 		log.trace("testupdate() invoked");
-		
-//		String id = "nicknamebyul";
-		
+	    
 		MemberDTO dto = new MemberDTO();
-		dto.setId("nicknamebyul");
-		dto.setPassword("1994");
-		dto.setName("규리규리");
-		dto.setEmail("GURY@NAVER.COM");
-		dto.setTel("010-1994-1994");
+		dto.setId("mymgadmin");
+		dto.setName("admin");
+		dto.setTel("01012345678");
 		dto.setAddress1(12345);
-		dto.setAddress2("여어어억삼도오옹");
-		dto.setAddress3("고오옹시워어엉ㄴ");
+		dto.setAddress2("관리자");
+		dto.setAddress3("관리자");
+		dto.setGender("여자");
 	
 		int affectedlines = this.mapper.update(dto);
 		
@@ -105,7 +102,7 @@ public class UserInfoMapperTests {
 	void testdelete() {
 		log.trace("testdelete() invoked");
 		
-		String id = "sengna";
+		String id = "admin";
 	
 		int affectedlines = this.mapper.delete(id);
 		

@@ -105,13 +105,14 @@ public class LoginController {
     // session 작업 필요하기 때문에 HttpServletRequest 타입의 매개변수 작성이 필요함!
     @GetMapping("/logout")
 	public String logoutGet(
-			HttpServletRequest request
+//			HttpServletRequest request
+			HttpSession session
 	) throws Exception {
 		
-	    log.trace("logoutPage() invoked");
+	    log.trace("logoutPage({}) invoked", session);
 	    
 	    // 세션 제거(member) 작업이 필요하기 때문에, HttpSession 타입의 session 변수 및 초기화 진행!
-	    HttpSession session = request.getSession();
+//	    HttpSession session = request.getSession();
 	    
 	    // 세션 제거에는 invalidate()와 removeAttribute() 두 가지의 메소드 사용 가능!
 	    // invalidate() = This method is used to invalidate the entire session.

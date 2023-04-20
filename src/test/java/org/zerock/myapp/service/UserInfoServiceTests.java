@@ -73,17 +73,14 @@ public class UserInfoServiceTests {
 	void testupdateUser() throws ServiceException{
 		log.trace("testupdateUser() invoked");
 		
-//		MemberDTO userid = this.service.userDetail("dfkda");
-		
 		MemberDTO dto = new MemberDTO();
-		dto.setId("dfkda");
-		dto.setPassword("1994");
-		dto.setName("최귤이");
-		dto.setEmail("byul2@naver.com");
-		dto.setTel("010-1003-1994");
-		dto.setAddress1(12345);
-		dto.setAddress2("역삼동");
-		dto.setAddress3("고오오오시워어언");
+		dto.setId("nicknamebyul");
+		dto.setName("최규리");
+		dto.setTel("01011112222");
+		dto.setAddress1(11111);
+		dto.setAddress2("경기도 수원시");
+		dto.setAddress3("영통");
+		dto.setGender("여자");
 		
 		Boolean success = this.service.updateUser(dto);
 		
@@ -97,7 +94,7 @@ public class UserInfoServiceTests {
 	void testudeleteUser() throws ServiceException{
 		log.trace("testudeleteUser() invoked");
 		
-		String id = "fjidas";
+		String id = "dfadfd";
 
 		Boolean success = this.service.deleteUser(id);
 		

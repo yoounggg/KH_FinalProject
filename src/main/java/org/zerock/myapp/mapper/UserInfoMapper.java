@@ -1,7 +1,7 @@
 package org.zerock.myapp.mapper;
 
+import org.apache.ibatis.session.SqlSession;
 import org.zerock.myapp.domain.MemberDTO;
-import org.zerock.myapp.domain.MemberVO;
 
 public interface UserInfoMapper {
 
@@ -12,9 +12,11 @@ public interface UserInfoMapper {
 	
 	//2. 회원 정보 수정
 	public abstract Integer update(MemberDTO dto);
-	
+//	public abstract MemberDTO update(MemberDTO dto);
+
 	//3. 회원 삭제 == 탈퇴
+//	public abstract MemberDTO delete(MemberDTO dto);
+//	public abstract MemberDTO delete(String id);
 	public abstract Integer delete(String id);
-	
 	
 } // end interface
