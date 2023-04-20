@@ -13,11 +13,11 @@
  		WHERE id = #{id}
  	</select>
 	
-	<!-- 회원 상세 업데이트 -->
+	<!-- 회원 상세 업데이트(비밀번호 제외) -->
 	<update id="update">
 	    UPDATE member 
-	    SET password = #{password}, name = #{name}, tel = #{tel}, address1 = #{address1}, 
-	    address2 = #{address2}, address3 = #{address3}
+	    SET name = #{name}, tel = #{tel}, address1 = #{address1}, 
+	    address2 = #{address2}, address3 = #{address3}, gender = #{gender}
 	    WHERE id = #{id}
 	</update>
 	

@@ -48,9 +48,9 @@ public class UserInfoServiceImpl implements UserInfoService, InitializingBean  {
 
 	} // userDetail
 
-	@Override // 수정
+	@Override // 수정 (비밀번호 제외)
 	public Boolean updateUser(MemberDTO dto) throws ServiceException {
-		log.trace("updateUser() invoked.");
+		log.trace("updateUser({}) invoked.", dto);
 		
 		try {
 			return this.mapper.update(dto) == 1;
@@ -60,9 +60,20 @@ public class UserInfoServiceImpl implements UserInfoService, InitializingBean  {
 
 	} // updateUser
 
-	@Override // 삭제
+//	@Override // 삭제
+//	public MemberDTO deleteUser(String id) throws ServiceException {
+//		log.trace("delete({}) invoked.", id);
+//		
+//		try {
+//			return this.mapper.delete(id);
+//		}catch(Exception e) {
+//			throw new ServiceException(e);
+//		} // try-catch
+//
+//	} // deleteUser
+	@Override
 	public Boolean deleteUser(String id) throws ServiceException {
-		log.trace("delete() invoked.");
+		log.trace("delete({}) invoked.", id);
 		
 		try {
 			return this.mapper.delete(id) == 1;

@@ -1,11 +1,16 @@
 package org.zerock.myapp.controller;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.myapp.domain.MemberDTO;
@@ -27,6 +32,7 @@ public class UserInfoController {
 	
 	@Setter(onMethod_=@Autowired) // 서비스 주입
 	private UserInfoService service;
+	
 	
 //	@GetMapping("/userInfo")
 //	public String userDetail(String id) throws ControllerException{
@@ -52,23 +58,8 @@ public class UserInfoController {
 //		return "userInfo";
 	} // userDetail
 	
-//	@GetMapping("/{id}") -> 모델을 없애니까 회원 상세에 회원 정보가 딸려오지 않음..
-//	public String userDetail(@PathVariable("id") String id) throws ControllerException {
-//		log.trace("userDetail({},{}) invoked.", id);
-//
-//		try {
-//			MemberDTO dto = this.service.userDetail(id);
-//			
-//			return "userInfo";
-//			
-//		} catch (ServiceException e) {
-//			throw new ControllerException(e);
-//		} // try-catch
-////		return "userInfo";
-//	} // userDetail
 	
-	
-	//2. 회원 정보 수정
+	//2. 회원 정보 수정	(비밀번호 제외)
 	@PostMapping("/update")
 	public String updateUser(MemberDTO dto, RedirectAttributes rttrs) throws ControllerException {
 		log.trace("updateUser({},{}) invoked.", dto, rttrs);
@@ -85,13 +76,144 @@ public class UserInfoController {
 		} // try-with
 	} // updateUser
 	
+	
 	@GetMapping("/update") //-> 상세조회화면도 get 해야함
 	public void updateUser() {
 		log.trace("updateUser() invoked.(회원정보수정)");
 	} // updateUser
 	
 	
+//	===========================================================================
 	//3. 회원 정보 삭제
+	
+//	@GetMapping("/delete")
+//	public String deleteUser(MemberDTO dto, HttpSession session, RedirectAttributes rttrs) throws ControllerException {
+//	    log.trace("deleteUser({}) invoked", dto);
+//
+//	    MemberDTO mdto = (MemberDTO) session.getAttribute("details");
+//	    // 세션에서 id 얻고
+//	    String id = mdto.getId();
+//	    // MemberDTO에 담긴 id 얻고
+//	    String dto_id = dto.getId();
+//	    // 두개가 같지 않으면
+//	    if (!(id.equals(dto_id))) {
+//	        rttrs.addFlashAttribute("msg", false);
+//	        return "redirect:/mypage/userInfo/{id}";
+//	    }
+//	    // 두개가 같으면
+//	    try {
+//	        this.service.deleteUser(dto_id);
+//	    } catch (ServiceException e) {
+//	        // TODO Auto-generated catch block
+//	        e.printStackTrace();
+//	    }
+//	    session.invalidate();
+//	    return "redirect:/main";
+//	}
+	
+	@GetMapping("/{id}/delete") // -> 이렇게 하니까 화면에서만 사라짐..
+	public String deleteUser(String id) throws ControllerException{
+		log.trace("deleteUser({}) invoked", id);
+		
+		try {
+			boolean success = this.service.deleteUser(id);
+			log.info("\t+success:{}", success);
+			
+//			rttrs.addAttribute("result", (success)? "success" : "failure");
+			
+			return "main"; // 탈퇴하면 메인으로 
+		} catch(Exception e) {
+			throw new ControllerException(e);
+		} // try-catch
+	} // deleteUser()
+	
+	
+//	public String deleteUser(String id, RedirectAttributes rttrs) throws ControllerException{
+//		log.trace("deleteUser({}, {}) invoked", id, rttrs);
+//		
+//		try {
+//			boolean success = this.service.deleteUser(id);
+//			log.info("\t+success:{}", success);
+//			
+//			rttrs.addAttribute("result", (success)? "success" : "failure");
+//			
+//			return "redirect:/main"; // 탈퇴하면 메인으로 
+//		} catch(Exception e) {
+//			throw new ControllerException(e);
+//		} // try-catch
+//	} // deleteUser()
+	
+	
+		
+//	@GetMapping("/delete") // 탈퇴 버튼을 통해서 실행되기 때문에 무조건 get (post는 폼에서 post를 지정해줘야 함)
+//	public String deleteUser(){
+//		log.trace("deleteUser() invoked");
+//
+//		return "main";
+//	} // deleteUser()
+	
+	
+//	@PostMapping("/delete")
+//	public String deleteUser(MemberDTO dto, HttpSession session, RedirectAttributes rttrs) throws ControllerException{
+////	public String deleteUser(String id, Model model) throws ControllerException, ServiceException{
+////	public String deleteUser(@RequestBody Map<String, String> requestBody, HttpSession session, RedirectAttributes rttrs) throws ControllerException{
+//		log.trace("deleteUser({}, {}) invoked", dto, session, rttrs);
+//
+////		String id = requestBody.get("id");
+////		MemberDTO dto = new MemberDTO();
+////		dto.setId(id);
+////		MemberDTO mdto = (MemberDTO) session.getAttribute("member");
+////	    // 세션에서 id 얻고
+////	    String member_id = mdto.getId();
+////	    // 두 개가 같지 않으면
+////	    if (!member_id.equals(id)) {
+////	        rttrs.addFlashAttribute("msg", false);
+////	        return "redirect:/mypage/userInfo/{id}";
+////	    }
+////
+////	    try {
+////	        this.service.deleteUser(id);
+////	    } catch (ServiceException e) {
+////	        // TODO Auto-generated catch block
+////	        e.printStackTrace();
+////	    }
+////	    session.invalidate();
+////	    return "redirect:/main";
+//		
+//		
+//		
+//		MemberDTO mdto = (MemberDTO) session.getAttribute("details");
+//		//세션에서 id 얻고
+//		String id = mdto.getId();
+//		//MemberDTO에 담긴 id 얻고
+//		String dto_id = dto.getId();
+//		//두개가 같지 않으면 
+//		if(!(id.equals(dto_id))) {
+//			rttrs.addFlashAttribute("msg", false);
+//			return "redirect:/mypage/userInfo/{id}"; // 다시 회원 정보 수정페이지로 
+//		}
+//		//두개가 같으면
+//		try {
+//			this.service.deleteUser(dto);
+//		} catch (ServiceException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		session.invalidate();
+//		return "redirect:/main";
+//		
+//		
+////		MemberDTO dto = this.service.userDetail(id);
+////		model.addAttribute("deletedetails", dto); // 모델 == details
+////		String deleteid = dto.getId();
+////		
+////		this.service.deleteUser(deleteid);
+////		return "redirect:/login/logout";
+//
+//		
+//	}
+	
+	
 	
 
 

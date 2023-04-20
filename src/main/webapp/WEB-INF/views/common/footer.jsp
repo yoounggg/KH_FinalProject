@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOYAMOGA</title>
 
-    <link rel="stylesheet" href="../resources/common/css/footer.css">
+    <link rel="stylesheet" href="/resources/common/css/footer.css">
 
     <link rel="shortcut icon" href="ico/favicon.ico" type="image/x-icon">
     <link rel="icon" href="ico/favicon.ico" type="image/x-icon">
