@@ -1,3 +1,17 @@
+// 비동기식 로그아웃!
+$("#gnb_logout").click(function() {
+	// alert("로그아웃 버튼 활성화")
+		$.ajax({
+    		type:"POST",
+    		url:"/login/logout",
+    		success:function(data){
+    			// alert("비동기식 로그아웃 성공 ㅜㅜㅜㅜㅜㅜ");
+    			document.location.reload();
+    	}
+    }); // ajax
+});
+    
+//=====================================================================
 
 //top banner
 $(document).ready(function(){
@@ -84,17 +98,5 @@ $(document).ready(function(){
 });
     
 //==================================================
-
-//비동기식 로그아웃 
-$('#logout_button').click(function(){
-	//alert("로그아웃 버튼 작동"); // -> 메세지 뜨는지 확인해보기
-	$.ajax({
-		type:"POST", // POST방식
-		url:"/logout",
-		success:function(data){
-			alert("로그아웃 되었습니다!");
-			document.location.reload();
-		}
-	}); // ajax
-}); 
+    
     

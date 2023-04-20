@@ -30,7 +30,7 @@
         <div class="login_wrapper">
 			
 			<!-- <form action="/Login_Main" id="login_form" method="post"> -->
-            <form id="login_form" method="post">
+            <form id="login_form" action="/login" method="post">
                 <div class="login_title">로그인</div>
 
                 <!-- 아이디 입력창 -->
@@ -63,8 +63,8 @@
 
                     <!-- 자동 로그인 체크박스 -->
                     <div class="autoLogin">
-                        <input type="checkbox" id="autoLogin" name="autoLogin" value="off">
-                        <label for="autoLogin2">자동 로그인</label>
+                        <input type="checkbox" id="rememberMe" name="remember-me" value="true">
+                        <label for="autoLogin">자동 로그인</label>
                     </div>
                     
                     <!-- 아이디 비밀번호 찾기 -->
