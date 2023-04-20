@@ -150,5 +150,9 @@
     </main>
 <!-- ==========================footer========================= -->
    <%@include file= "../views/common/footer.jsp" %>
+   
+    <!-- 세인이..비동기식 로그아웃 js 불러오려면 여기다 넣어야지만 불러와짐 흑흑,, -->
+    <script src="/resources/js/main.js"></script>
+
 </body>
 </html>

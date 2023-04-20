@@ -4,11 +4,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.myapp.domain.MemberDTO;
 import org.zerock.myapp.service.MemberService;
@@ -36,7 +38,6 @@ public class LoginController {
 	    return "login/Login_Main";
 	    
 	} // loginGet()
-	
     
 //	--------------------------------------------------------
 	
@@ -102,7 +103,7 @@ public class LoginController {
     
     // 로그아웃 -> a 태그의 요청은 GET 방식이기 때문에 GET Mapping!
     // session 작업 필요하기 때문에 HttpServletRequest 타입의 매개변수 작성이 필요함!
-	@GetMapping("/logout")
+    @GetMapping("/logout")
 	public String logoutGet(
 //			HttpServletRequest request
 			HttpSession session
@@ -117,14 +118,40 @@ public class LoginController {
 	    // invalidate() = This method is used to invalidate the entire session.
 	    // Once a session is invalidated, it can no longer be used, and a new session needs to be created for any further interaction between the client and the server
 	    // removeAttribute() = This method is used to remove a specific attribute from the session, can remove a single attribute by specifying its name as an argument
-//	    session.invalidate();
-	    session.removeAttribute("member");
+	    session.invalidate();
+//	    session.removeAttribute("member");
 	    
 	    return "redirect:/main";	// 로그아웃 시 메인으로 이동!
 	    
 	} // logoutGet()
 	
+	// 로그아웃 -> 비동기 방식
+    @Async
+	@PostMapping("/logout")
+	@ResponseBody
+	public void logoutPost(HttpServletRequest request) throws Exception {
+		
+		log.info("비동기방식 로그아웃 메소드인 logoutPost()에 진입하였습니다.");
+		
+		// session 초기화
+		HttpSession session = request.getSession();
+		
+		// 전체 세션 제거
+		session.invalidate();
+		
+	} // logoutPost()
+	
 } // end class
+
+
+
+
+
+
+
+
+
+
 
 //	--------------------------------------------------------
 
