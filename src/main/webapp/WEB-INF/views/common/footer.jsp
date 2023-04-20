@@ -35,8 +35,6 @@
 
 <body>
 
-   
-
     <footer>
         <div class="yakgwan1">
             <div class="yakgwan2">
