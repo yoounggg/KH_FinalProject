@@ -1,7 +1,12 @@
 package org.zerock.myapp.controller;
 
+import java.util.Map;
+
+import org.apache.maven.model.Model;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.zerock.myapp.service.KakaoService;
 
@@ -11,9 +16,11 @@ import lombok.extern.log4j.Log4j2;
 @AllArgsConstructor
 @Log4j2
 
-
+//@RequestMapping("/signup")
 @Controller
 public class KakaoController {
+	
+	@Autowired
 	private KakaoService kakaoService;
 	
 	@GetMapping("/signup/main")
@@ -24,21 +31,26 @@ public class KakaoController {
     }
 
     @GetMapping("/signup/kakao")
-    public void kakaoLogin() throws Throwable {
+    public String kakaoLogin() throws Throwable {
     	log.trace("kakaoLogin() invoked");
-        // 카카오 로그인 처리
+        
+    	return "kakaoCI/login";
     }
 
     @GetMapping("/signup/kakao/callback")
-    public String kakaoLoginCallback(@RequestParam String code) throws Throwable {
-    	log.trace("code : {} invoked",  code);
+    public String kakaoLoginCallback(@RequestParam String code, Model model) throws Throwable {
+    	log.trace(" code : {} invoked",  code);
     	
-    	String kakaoToken = kakaoService.getAccessToken(code);
+    	String access_token = kakaoService.getAccessToken(code);
     	
-    	log.trace("kakaoToken : {} invoked", kakaoToken);
+    	Map<String, Object> userinfo = kakaoService.getUserInfo(access_token);
+    	
+    	log.trace("access_token :  invoked", access_token);
+    	log.trace("userinfo : ",userinfo.toString());	// 사업자 필요
     	
         // 카카오 로그인 후 추가 정보 입력 페이지로 이동
         return "redirect:/signup/addinfo";
+//    	return "/signup/addinfo";
     }
 
     @GetMapping("/signup/addinfo")

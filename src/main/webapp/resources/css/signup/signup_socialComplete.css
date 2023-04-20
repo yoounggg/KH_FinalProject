@@ -10,11 +10,11 @@
 h1 {
     font-size: 35px;
     text-align: center;
-    margin: 10% 0 5% 0;
+    margin: 10% 0 10% 0;
 }
 
 
-.toMain {
+.toLogin {
     display: flex;
     justify-content: center;
     align-items: center;
