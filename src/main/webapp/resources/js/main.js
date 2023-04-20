@@ -1,15 +1,15 @@
- 	// 비동기식 로그아웃!
-    $("#gnb_logout").click(function() {
-    	alert("로그아웃 버튼 활성화")
-    	$.ajax({
+// 비동기식 로그아웃!
+$("#gnb_logout").click(function() {
+	// alert("로그아웃 버튼 활성화")
+		$.ajax({
     		type:"POST",
     		url:"/login/logout",
     		success:function(data){
-    			alert("비동기식 로그아웃 성공 ㅜㅜㅜㅜㅜㅜ");
+    			// alert("비동기식 로그아웃 성공 ㅜㅜㅜㅜㅜㅜ");
     			document.location.reload();
-    		}
-    	}); // ajax
-    });
+    	}
+    }); // ajax
+});
     
 //=====================================================================
 
