@@ -19,10 +19,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.zerock.myapp.domain.AttachImageVO;
 import org.zerock.myapp.domain.Criteria;
 import org.zerock.myapp.domain.ProductDTO;
 import org.zerock.myapp.domain.ProductVO;
 import org.zerock.myapp.exception.ControllerException;
+import org.zerock.myapp.exception.ServiceException;
+import org.zerock.myapp.service.AttachService;
 import org.zerock.myapp.service.ProductService;
 
 import lombok.NoArgsConstructor;
@@ -46,6 +49,9 @@ public class ProductControllerTests {
 	
 	@Setter(onMethod_= { @Autowired})
 	private ProductService service;
+	
+	@Setter(onMethod_= { @Autowired})
+	private AttachService aservice;
 	
 	@BeforeAll
 	void beforeAll() {
@@ -128,4 +134,24 @@ public class ProductControllerTests {
 			throw new ControllerException(e);
 		} // try-catch
 	} // testGetProductDetail
+	
+	
+//	@Disable
+	@Test
+	@Order(5)
+	@DisplayName("테스트 5 : testGetAttachList")
+	@Timeout(value=2, unit=TimeUnit.SECONDS)
+	void testGetAttachList() throws ControllerException, ServiceException {
+		log.trace("testGetAttachList() invoked.");
+		
+		int product_no = 60;
+		List<AttachImageVO> list = this.aservice.getAttachList(product_no);
+		assert list != null;
+		list.forEach(log::info);
+		
+	} // testGetAttachList
+	
+	
+	
+	
 } // end class

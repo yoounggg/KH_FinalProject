@@ -1,6 +1,7 @@
 package org.zerock.myapp.domain;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import lombok.Value;
 
@@ -15,12 +16,8 @@ public class ProductVO {
 	/* 상품 번호(자동부여됨)*/
 	private Integer no;			
 	
-	
-	/* 상품 카테고리 대분류 - 농산 */	
-	private String category1;
-	
-	/* 상품 카테고리 중분류 - 농산 - */	
-	private String category2;
+	/* 상품 카테고리 */	
+	private String category;
 	
 //	[별이-04/13]pname->name으로 수정함
 	/* 상품 이름*/
@@ -80,5 +77,10 @@ public class ProductVO {
 	private Integer hit;
 //	====================================================================
 //	====================================================================    
+	
+//	[별이-04/18]필드 추가함
+	
+	/* 이미지 정보 */
+	private List<AttachImageVO> imageList;
 	
 } // end class

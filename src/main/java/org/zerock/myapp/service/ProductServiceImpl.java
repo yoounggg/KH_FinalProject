@@ -6,8 +6,9 @@ import java.util.Objects;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.zerock.myapp.domain.AttachImageVO;
+import org.zerock.myapp.domain.CategoryVO;
 import org.zerock.myapp.domain.Criteria;
-import org.zerock.myapp.domain.NoticeDTO;
 import org.zerock.myapp.domain.ProductDTO;
 import org.zerock.myapp.domain.ProductVO;
 import org.zerock.myapp.exception.ServiceException;
@@ -94,17 +95,43 @@ public class ProductServiceImpl implements ProductService, InitializingBean{
 //	==================================================
 //	[별이]
 	
+	/* 상품 등록 */
 	@Override
 	public Boolean register(ProductDTO dto) throws ServiceException {
-		log.trace("register({}) invoked.", dto);
-			
+	    log.trace("register({}) invoked.", dto);
+
+	    try {
+	        // 상품 등록
+	        boolean isInserted = mapper.insert(dto) == 1;
+
+	        if (isInserted == true) {
+	            // 이미지 등록
+	            for (AttachImageVO attach : dto.getImageList()) {
+	                attach.setProduct_no(dto.getNo());
+	                mapper.imageInsert(attach);
+	            }
+	        }
+
+	        return isInserted;
+	    } catch (Exception e) {
+	        throw new ServiceException(e);
+	    } // try-catch
+	    
+	} // register
+
+	
+	/* 카테고리 등록 */
+	@Override
+	public List<CategoryVO> getCateList() throws ServiceException {
+		log.trace("getCateList() invoked.");
+		
 		try {
-			return this.mapper.insert(dto) == 1;
+			return this.mapper.cateList();
 		} catch(Exception e) {
 			throw new ServiceException(e);
 		} // try-catch
-		
-	} // register
+	
+	} // getCateList
 		
 
 } // end class

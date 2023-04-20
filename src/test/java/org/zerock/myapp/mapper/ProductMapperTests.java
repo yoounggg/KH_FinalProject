@@ -2,6 +2,7 @@ package org.zerock.myapp.mapper;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -15,8 +16,12 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.web.multipart.MultipartFile;
+import org.zerock.myapp.domain.AttachImageVO;
+import org.zerock.myapp.domain.CategoryVO;
 import org.zerock.myapp.domain.ProductDTO;
 
 import lombok.NoArgsConstructor;
@@ -35,6 +40,7 @@ public class ProductMapperTests {
 
 	@Setter(onMethod_= { @Autowired })
 	private ProductMapper mapper;
+
 	
 	@BeforeAll
 	void beforeAll() {
@@ -107,26 +113,69 @@ public class ProductMapperTests {
 		log.trace("insert invoked().");
 		
 			ProductDTO dto = new ProductDTO();
-			dto.setCategory1("농가");
-			dto.setCategory2("국내외과일");
-			dto.setName("찬돌농장 고당도 프리미엄 샤인머스켓");
-			dto.setPrice(30000);
+			dto.setCategory("test");
+			dto.setName("감차빵dq");
+			dto.setPrice(3000);
 			dto.setDiscount(10);
-			dto.setDiscount_price(27000);
-			dto.setWeight("2kg");
-			dto.setOrigin("국산(경상북도 안동시)");
+			dto.setDiscount_price(2700);
+			dto.setWeight("2kgqd");
+			dto.setOrigin("국산(강원도 춘천시q)");
 			dto.setStock(10);
 			dto.setFarm_no(1);
-			dto.setMain_image("main1");
-			dto.setSub_image1("sub1");
-			dto.setSub_image2("sub2");
-			dto.setSub_image3("sub3");
-			dto.setSub_image4("sub4");
-			dto.setContent("경상북도 안동시 예안면 상활지에서 생산한 탐스럽고 맛있는 샤인머스켓입니다. 달고 아삭한 식감을 가진 가족의 건강과 선물용으로 아주 좋은 상품입니다.");
-			dto.setContent_image("content_image1");
+			dto.setMain_image("test");
+			
+			dto.setContent("먹고말테야.");
+			dto.setContent_image("cowntent_image1");
+			
+			log.trace("Before ProductDTO : " + dto);
 			
 			int affectedLines = this.mapper.insert(dto);
 			log.info("affectedLines() invoked. {}", affectedLines);
 		
+			log.trace("After ProductDTO : " + dto);
+			
 	} // insert
-}
+	
+	
+//	@Disable
+	@Test
+	@Order(5)
+	@DisplayName("테스트 : insertImage")
+	@Timeout(value=1, unit=TimeUnit.SECONDS)
+	void imageInsert() {
+		log.trace("imageInsert invoked() - 이미지 경로 등록");
+		
+		AttachImageVO vo = new AttachImageVO();
+		
+		vo.setProduct_no(43);
+		vo.setFileName("test");
+		vo.setUploadPath("test");
+		vo.setUuid("test2");
+		
+		int affectedLines = this.mapper.imageInsert(vo);
+		log.info("affectedLines() invoked. {}", affectedLines);
+
+		
+	} // imageInsert
+	
+	
+//	@Disable
+	@Test
+	@Order(6)
+	@DisplayName("테스트 : cateList")
+	@Timeout(value=1, unit=TimeUnit.SECONDS)
+	void cateList() {
+		log.trace("cateList invoked() - 카테고리 등록");
+		
+		List<CategoryVO> list = this.mapper.cateList();
+		assertNotNull(list);
+		
+		list.forEach(log::info);
+		
+		
+	} // cateList
+	
+	
+	
+
+} // end class
