@@ -9,12 +9,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../resources/css/signup/signup_addinfo.css">
-     <%@include file="/WEB-INF/views/common/favicon.jsp" %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.1/jquery-migrate.min.js"></script>
-    <script src="../resources/js/signup/js/signup_addinfo.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+
+	<%@include file="/WEB-INF/views/common/favicon.jsp"%>
+	<link rel="stylesheet" href="../resources/css/signup/signup_addinfo.css">
+    <script src="../resources/js/signup/js/signup_addinfo.js"></script>
 
     <title>MOYAMOGA</title>
 
