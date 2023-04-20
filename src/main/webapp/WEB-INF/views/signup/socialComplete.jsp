@@ -34,7 +34,7 @@
                 회원 가입이 완료되었습니다</h1>
 
            <div id="bottombtn">
-                <a id="가입하기" href="/login"><span class="toMain">로그인하기</span></a>
+                <a id="가입하기" href="/login/main"><span class="toLogin">로그인하기</span></a>
             </div>
         </div>
     </section>
