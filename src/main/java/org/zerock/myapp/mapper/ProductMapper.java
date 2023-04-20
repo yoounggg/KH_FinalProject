@@ -38,5 +38,7 @@ public interface ProductMapper {
 	/* 카테고리 리스트 */
 	public abstract List<CategoryVO> cateList();
 	
+	
+	
 } // end interface
 

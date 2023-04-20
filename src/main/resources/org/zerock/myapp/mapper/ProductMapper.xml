@@ -50,4 +50,23 @@
 		SELECT * FROM category ORDER BY code
 	</select> 
     
+
+	<!-- 상품 이미지 다른방법 등록 -->
+	<insert id="itemMainFile">
+	
+		INSERT INTO MYMG_IMAGE2 (no , img_name , string_name , img_size , product_no)
+		VALUES(
+		(SELECT NVL(MAX(no), 0) + 1 FROM MYMG_IMAGE2), #{img_name}, #{string_name} , #{img_size} , #{product_no}
+		)
+	</insert>
+    
+    <update id="mainImage">
+		UPDATE product SET main_image = #{main_image} WHERE product_no = #{product_no}
+	</update>
+	
+	<update id="subImage">
+		UPDATE product SET sub_image = #{sub_image} WHERE product_no = #{product_no}
+	</update>
+	
+	
 </mapper>

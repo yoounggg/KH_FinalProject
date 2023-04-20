@@ -3,6 +3,8 @@ package org.zerock.myapp.domain;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 //[별이-04/13] 이거 Data 아닌가용 VO랑 바뀐 것 같아서 둘이 바꿔놓겠습니다~

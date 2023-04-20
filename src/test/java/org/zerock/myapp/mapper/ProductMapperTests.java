@@ -16,8 +16,10 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.web.multipart.MultipartFile;
 import org.zerock.myapp.domain.AttachImageVO;
 import org.zerock.myapp.domain.CategoryVO;
 import org.zerock.myapp.domain.ProductDTO;
@@ -120,11 +122,8 @@ public class ProductMapperTests {
 			dto.setOrigin("국산(강원도 춘천시q)");
 			dto.setStock(10);
 			dto.setFarm_no(1);
-			dto.setMain_image("mainw1.jpg");
-			dto.setSub_image1("sudbq1");
-			dto.setSub_image2("sudbw2");
-			dto.setSub_image3("sudbq3");
-			dto.setSub_image4("sudbq4");
+			dto.setMain_image("test");
+			
 			dto.setContent("먹고말테야.");
 			dto.setContent_image("cowntent_image1");
 			
