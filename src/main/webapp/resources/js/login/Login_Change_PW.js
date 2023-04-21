@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
             verificationInput.setAttribute("type", "text");
             verificationInput.setAttribute("placeholder", "인증번호를 입력해주세요.");
             verificationInput.setAttribute("required", "");
+            verificationInput.classList.add("verification-input");
 
             var countDown = document.createElement("div");
             countDown.classList.add("countdown");
