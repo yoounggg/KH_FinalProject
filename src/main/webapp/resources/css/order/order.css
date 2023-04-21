@@ -180,7 +180,7 @@ li{ list-style-type: none;}
     align-items: left;
     /* justify-content: center; */
     margin-top: 90px;
-    height: 1500px;
+    height: 1100px;
 }
 
 /* ---------------- 구매자 정보 ---------------- */
@@ -189,58 +189,20 @@ li{ list-style-type: none;}
     margin-bottom: 20px;
     margin-left: 210px;
     font-size: 20px;
+    font-weight: bold;
 }
 
 .주문상품 { /*  */
     padding:10px;
-}
-
-/*  ======================= vampa============================= */
-
-
-
-.주문상품정보{
-	margin-top:30px;
-}
-.products_kind_div{
-	font-size: 25px;
-    line-height: 35px;
     font-weight: bold;
 }
-.products_subject_table{
-	font-size: 14px;
-    line-height: 20px;
-    width: 20%;
-    text-align: center; 
-}
-.products_subject_table th{
-	text-align: center;
-    color: #333;
-    border-bottom: 1px solid #e7e7e7;
-    border-top: 2px solid #3084d9;
-    background: #f4f9fd;
-    padding: 2px 0;	 
-}
-.products_table{
-	font-size: 14px;
-	line-height: 20px;
-	border-bottom: 1px solid #e7e7e7;
-}
 
-.products_table tr{
-	height: 110px;
-}
-.goods_table_price_td{
-	text-align: center;
-}
-
-
-
-/*  ======================= vampa============================= */
+/*  ======================= 주문상품 정보 ============================= */
 
 .orderProducts_div{
-	margin-top:30px;
-    font-weight: bold;
+    margin-bottom: 20px;
+    margin-left: 6px;
+    font-size: 20px;
 }
 .products_kind_div{
 	font-size: 20px;
@@ -252,23 +214,23 @@ li{ list-style-type: none;}
 	font-size: 14px;
     line-height: 20px;
     width: 70%;
-    margin-left: 200px;
+    margin-left: 193px;
     text-align: center; 
 }
 .products_subject_table th{
 	text-align: center;
-    color: #333;
-    border-bottom: 1px solid #e7e7e7;
-    border-top: 2px solid #11BC0D;
-    background: #f4f9fd;
+    border-bottom: 1px solid ;
+    border-top: 2px solid;
+   /* background: #f4f9fd; */
     padding: 2px 0;	 
     margin-left: 200px;
 }
 .products_table{
 	font-size: 14px;
 	line-height: 20px;
-	border-bottom: 1px solid #e7e7e7;
-    margin-left: 600px;
+    width: 70%;
+	border-bottom: 1px solid;
+    margin-left: 210px;
 }
 
 .products_table tr{
@@ -281,30 +243,6 @@ li{ list-style-type: none;}
 }
 
 /*===============================================================*/
-
-
-
-/* .주문상품정보 { 
-    display: flex;
-    flex-direction: row;  flex container안의 내부 flex 아이템들 방향 배치, 왼쪽끝 오른쪽끝
-    justify-content: space-between;
-    align-items: center; 수직 방향으로 중앙에 위치
-
-    margin-left: 250px;
-    height: 130px;
-    width: 60%;
-    margin-bottom: 40px;
-
-     border:1px solid black; 
-} */
-
-/*.주문상품이미지 {
-    width: 90px;
-    height: 90px;
-    border: 1px solid black;
-    padding-left:10px;
-    padding-top:10px;
-} */
 
 
 /* 구매자 정보 구역 나누기 위한 div 태그 */
@@ -377,6 +315,23 @@ li{ list-style-type: none;}
     margin-left: 200px;
     font-size: 20px;
     font-weight: bold;
+    display: flex;
+}
+
+.addressInfo_button_div{
+	display: flex; /* 가로 정렬 */
+}
+
+.address_btn_address_btn_1,
+.address_btn_address_btn_2 {
+    font-size: bold;
+    width: 70px;
+    margin-left: 10px;
+    border: none;
+    background-color: #11BC0D; /* 초록색으로 변경 */
+    color: #fff; /* 하얀글씨로 변경 */
+    cursor: pointer;
+    border-radius: 5px; /* 모서리 둥글게 조정 */
 }
 
 /* 구분선 */
@@ -468,11 +423,12 @@ li{ list-style-type: none;}
     margin-bottom: 20px;
     margin-left: 200px;
     font-size: 20px;
+    font-weight: bold;
 }
 
 /* input 태그 위치 한번에 설정 */
 .totalPrice_span,
-#할인금액,
+.salePrice_span,
 .delivery_price_span,
 .strong_red {
     width: 100px;
@@ -486,8 +442,8 @@ li{ list-style-type: none;}
     margin-left: 38px;
     width: 300px;
 }
-#할인금액 {
-    margin-left: 62px;
+.salePrice_span {
+    margin-left: 62px; 
     margin-top:10px;
     width: 300px;
 }
@@ -500,6 +456,7 @@ li{ list-style-type: none;}
     margin-left: 47px;
     margin-top:10px;
     width: 300px;
+    color: red;
 }
 
 .결제팝업 {

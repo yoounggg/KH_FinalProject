@@ -72,7 +72,7 @@
         </div>
 
        
-        <div class="주문상품">
+        <div class="OrderProducts">
 
             <hr class="separator">
 
@@ -86,7 +86,7 @@
 					<colgroup>
 						<col width="15%">
 						<col width="45%">
-						<col width="40%">
+						<col width="30%">
 					</colgroup>
 					<tbody>
 						<tr>
@@ -98,9 +98,9 @@
 				</table>
 				<table class="products_table">
 					<colgroup>
-						<col width="15%">
-						<col width="45%">
-						<col width="40%">
+						<col width="25%">
+						<col width="25%">
+						<col width="30%">
 					</colgroup>
 					<tbody>
 						<c:if test="${not empty orderList}">
@@ -111,8 +111,7 @@
 									<td class="products_table_price_td">
 										<fmt:formatNumber value="${ol.price}" pattern="#,### 원" /> | 수량 ${ol.productCount}개
 										<br><fmt:formatNumber value="${ol.totalPrice}" pattern="#,### 원" />
-										<input type="hidden" class="individual_productPrice_input" value="${ol.price}">
-										
+										<input type="hidden" class="individual_productPrice_input" value="${ol.price}">		
 										<input type="hidden" class="individual_productCount_input" value="${ol.productCount}">
 										<input type="hidden" class="individual_totalPrice_input" value="${ol.productCount * ol.price}">
 										<input type="hidden" class="individual_salePrice_input" value="${ol.salePrice}"> 
@@ -134,47 +133,19 @@
 
         </div>
 
-        
-        <div class="구매자정보">
-
-            <div class="buyer_info">구매자 정보</div>
-
-            <hr class="separator">
-
-            <div class="locate">
-
-                <div class="input_row">
-                    <label for="name_title">이름</label>   
-                    <input type="text" id="name_input" name="name" value="${memberInfo.name}">
-                    <button class="edit_button">수정</button>
-                </div>
-
-                <div class="input_row">
-                    <label for="phone_title">핸드폰 번호</label>
-                    <input type="tel" id="phone_input" name="phone" value="${memberInfo.tel}">
-                    <button class="edit_button">수정</button>
-                </div>
-
-                <div class="input_row">
-                    <label for="email_title">이메일</label>
-                    <input type="email" id="email_input" name="email" value="${memberInfo.email}">
-                </div>
-
-            </div>
-        </div>
-
         <div class="받는사람 정보">
 
-            <div class="receiver_info">받는사람 정보</div>
-            
-			<div class="addressInfo_button_div">
-			  <button class="address_btn address_btn_1" onclick="showAddress('1')">직접 입력</button>
-			  <button class="address_btn address_btn_2" onclick="showAddress('2')">기존 주소</button>
-			</div>
+            <div class="receiver_info">받는사람 정보
+                
+	            <div class="addressInfo_button_div">
+				  <button class="address_btn_address_btn_1" onclick="showAddress('1')">직접 입력</button>
+				  <button class="address_btn_address_btn_2" onclick="showAddress('2')">기존 주소</button>
+				</div>
+            </div>
 
             <hr class="separator">
 
-            <div class="locate">
+           <!-- <div class="locate">  --> 
             
 				<div class="locate address_btn address_btn_1">
 					<div class="input_row2">
@@ -194,12 +165,12 @@
 	                  	<div></div>
 	                  	<input type="text" id="address_input3_r"" placeholder="ㅇㅇㅇㅇ">
 	                    <div></div>
-	                  <input type="text" id="address_input4_r" placeholder="상세주소">
+	                  	<!-- <input  type="text" id="address_input4_r" value="상세주소">   -->
 	                </div>
 	
 	                <div class="input_row2">
 	                    <label for="phone_title_r">연락처</label>
-	                    <input type="phone" id="phone_input_r" name="phone" placeholder="${memberInfo.tel}">
+	                    <input type="phone" id="phone_input_r" name="phone" placeholder="000-0000-0000">
 	                </div>
 	                       
 				</div>
@@ -224,7 +195,7 @@
 		                  	<div></div>
 		                  	<input type="text" id="address_input3_r" value="${memberInfo.address3}">
 		                    <div></div>
-		                  <input  type="text" id="address_input4_r" value="상세주소">
+		                  	<!-- <input  type="text" id="address_input4_r" value="상세주소">   -->
 		                </div>
 		
 		                <div class="input_row2">
@@ -236,23 +207,27 @@
 				
 				</div>
 				
-				<div class="input_row2">
-	                    <label for="request_title_r">배송 요청사항</label>
-	
-	                    <select name='selbox' id="배송요청사항" onchange="selectMemo(this)">
-	                        <option value='' selected id="선택">--------------------- 선택 ---------------------</option>
-	                        <option value='부재시, 연락 바랍니다.'>부재시, 연락 바랍니다.</option>
-	                        <option value='부재시, 무인 택배함 보관 후 연락바랍니다.'>부재시, 무인 택배함 보관 후 연락바랍니다.</option>
-	                        <option value='부재시, 경비실에 맡겨주세요.'>부재시, 경비실에 맡겨주세요.</option>
-	                        <option value="직접입력">직접입력</option>
-	                    </select>
-	                    <br>
-	
-	                <input id="selboxDirect" type="text" placeholder="직접 입력하세요" style="display: none;">     
-	                
-	              </div>    
+				<div class="locate">
+				
+					<div class="input_row2">
+		                    <label for="request_title_r">배송 요청사항</label>
+		
+		                    <select name='selbox' id="배송요청사항" onchange="selectMemo(this)">
+		                        <option value='' selected id="선택">--------------------- 선택 ---------------------</option>
+		                        <option value='부재시, 연락 바랍니다.'>부재시, 연락 바랍니다.</option>
+		                        <option value='부재시, 무인 택배함 보관 후 연락바랍니다.'>부재시, 무인 택배함 보관 후 연락바랍니다.</option>
+		                        <option value='부재시, 경비실에 맡겨주세요.'>부재시, 경비실에 맡겨주세요.</option>
+		                        <option value="직접입력">직접입력</option>
+		                    </select>
+		                    <br>
+		
+		                <input id="selboxDirect" type="text" placeholder="직접 입력하세요" style="display: none;">     
+		                
+		              </div> 
+	              
+	              </div>   
 
-            </div>
+          <!--  </div> -->
             
         </div>
 
@@ -264,29 +239,21 @@
 
             <div class="locate">
             	<ul>
-            	
             		<li>
             			<span id="정보">총 상품 가격</span>
             			<span class="totalPrice_span">100000</span>원
-            		</li>
-            	
+            		</li>         		
             		<li>
             			<span id="정보">할인금액</span>
-            			<span id="할인금액">1000</span>원
-            		</li>
-            		
-            		<li>
-            			<span class="price_span_label">할인금액</span>
 						<span class="salePrice_span"></span>원
             		</li>
-            	
             		<li>
             			<span id="정보">배송비</span>
             			<span class="delivery_price_span">1000</span>원
             		</li>
             	
             		<li class="pricae_total_lo">
-            			<strong class="price_span_label total_price_label]">총결제금액</strong>
+            			<strong class="price_span_label total_price_label">총결제금액</strong>
             			<strong class="strong_red">
             				<span class="finalTotalPrice_span"></span>
             			</strong>원

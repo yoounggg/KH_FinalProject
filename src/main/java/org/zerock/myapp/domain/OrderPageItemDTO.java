@@ -21,22 +21,20 @@ public class OrderPageItemDTO {
 	private Integer discount;        // 할인 금액 productDiscount
 	
 	/* 만들어 낼 값 */
-	private Integer salePrice; 			// 할인 가격
+	private Integer salePrice; 			// 할인될 가격
 
-	private Integer discountedPrice;
+	private Integer discountedPrice;	// 할인된 가격
 	
 	private Integer totalPrice;			// 총 가격
 
 	
 	
 	public void initSaleTotal() {
-		this.totalPrice = this.productCount * this.price;
-	    // this.salePrice = (int) (this.totalPrice * (1 - this.discount));
-//		this.salePrice = (int) (this.price * (1 - this.discount / 100.0) * this.productCount);
-//	    this.salePrice = this.discount * this.productCount;
-		this.discountedPrice = (int) (totalPrice * (1 - this.discount / 100.0));
-		this.salePrice = totalPrice - discountedPrice;
-	} //initSaleTotal
+	    this.totalPrice = this.productCount * this.price;
+	    double discountRate = this.discount / 100.0; // 할인율을 백분율로 변환
+	    this.discountedPrice = (int) (totalPrice * (1 - discountRate));
+	    this.salePrice = totalPrice - discountedPrice;
+	} //initSaleTotal()
 	
 	@Override
 	public String toString() {
