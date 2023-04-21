@@ -15,7 +15,7 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 
 @Controller
-@RequestMapping("/signup")
+//@RequestMapping("/signup")
 
 @Log4j2
 @NoArgsConstructor
@@ -24,13 +24,13 @@ public class HpCheckController {
 	@Setter(onMethod_ = { @Autowired })
 	HpCheckService hpCheckService;
 
-	@PostMapping("/infoc")
+	@PostMapping("/signup/infoc")
 	public @ResponseBody int hpCheck(@RequestParam("tel") String tel) {
 		log.trace("tel invoked 핸드폰 중복확인", tel);
 
 		int cntTel = hpCheckService.hpCheck(tel);
 
-		log.trace("tel invoked 핸드폰 중복확인ㅇㅇㅇ", cntTel);
+		log.trace("cntTel : {} invoked 핸드폰 중복확인", cntTel);
 
 		return cntTel;
 		
@@ -39,7 +39,7 @@ public class HpCheckController {
 	@Setter(onMethod_ = { @Autowired })
 	MsgSendService msgCheckService;
 	
-	@GetMapping("/info/telCheck")
+	@GetMapping("/signup/info/telCheck")
 	public @ResponseBody String msgSend(@RequestParam("tel") String userPhoneNumber) {	//문자 보내기
 		int randomNumber = (int)((Math.random() * 8999 ) + 1000 );			// 난수 1000 ~ 9999
 		
