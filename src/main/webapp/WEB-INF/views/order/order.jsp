@@ -13,24 +13,24 @@
     <title>MOYAMOGA</title>
     
  	<link rel="stylesheet" href="/resources/css/order/order.css">
+ 	    <script src="/resources/js/order/order.js"></script>
 
     <link rel="shortcut icon" href="/resources/ico/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/resources/ico/favicon.ico" type="image/x-icon">
     
-    <script src="/resources/js/order/order.js"></script>
-    
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	
-
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-    <script>
-        var IMP = window.IMP; 
-        IMP.init("imp35647012"); 
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
     
-        function requestPay() {
+    <script>
+
+    function requestPay() {
+	    const IMP = window.IMP;
+	    IMP.init("imp11157675"); 
+
             IMP.request_pay({
-                pg : 'kcp.{MIIiasTest}',
+                pg : 'html5_inicis',
                 pay_method : 'card',
                 merchant_uid: "57008833-33004", 
                 name : '당근 10kg',
@@ -47,8 +47,9 @@
                     console.log(rsp);
                 }
             });
-        }
-    </script>
+    }
+
+	</script>
     
     <script>
 	    $(document).ready(function(){
@@ -165,51 +166,91 @@
         <div class="받는사람 정보">
 
             <div class="receiver_info">받는사람 정보</div>
+            
+			<div class="addressInfo_button_div">
+			  <button class="address_btn address_btn_1" onclick="showAddress('1')">직접 입력</button>
+			  <button class="address_btn address_btn_2" onclick="showAddress('2')">기존 주소</button>
+			</div>
 
             <hr class="separator">
 
             <div class="locate">
+            
+				<div class="locate address_btn address_btn_1">
+					<div class="input_row2">
+	                    <label for="name_title_r">이름</label>
+	                    <input type="text" id="name_input_r" name="name" placeholder="이름을 입력하세요">
+	                </div>
+	
+	                <div class="input_row2">
+	                    <label for="address_title_r">주소</label>
+						
+						<input class="selectAdressee" value="F" type="hidden">
+						<input type="text" id="address_input_r" placeholder="우편번호">
+	                    <input type="button" onclick="sample4_execDaumPostcode()" value="주소입력" class="address_button" ><br>
+	                    <div></div>
+	                    <input type="text" id="address_input2_r" placeholder="ㅇㅇㅇㅇ">
+	
+	                  	<div></div>
+	                  	<input type="text" id="address_input3_r"" placeholder="ㅇㅇㅇㅇ">
+	                    <div></div>
+	                  <input type="text" id="address_input4_r" placeholder="상세주소">
+	                </div>
+	
+	                <div class="input_row2">
+	                    <label for="phone_title_r">연락처</label>
+	                    <input type="phone" id="phone_input_r" name="phone" placeholder="${memberInfo.tel}">
+	                </div>
+	                       
+				</div>
+				
+				<div class="address_btn_2_wrap" style="display: none;">
 
-                <div class="input_row2">
-                    <label for="name_title_r">이름</label>
-                    <input type="text" id="name_input_r" name="name" placeholder="이름을 입력해주세요">
-                </div>
-
-                <div class="input_row2">
-                    <label for="address_title_r">주소</label>
-
-					<input type="text" id="address_input_r" placeholder="우편번호">
-                    <input type="button" onclick="sample4_execDaumPostcode()" value="주소입력" class="address_button" ><br>
-                    <div></div>
-                    <input type="text" id="address_input2_r" placeholder="도로명주소">
-
-                  	<div></div>
-                  	<input type="text" id="address_input3_r"" placeholder="지번주소">
-                    <div></div>
-                  <input type="text" id="address_input3_r" placeholder="상세주소">
-
-                </div>
-
-                <div class="input_row2">
-                    <label for="phone_title_r">연락처</label>
-                    <input type="phone" id="phone_input_r" name="phone" placeholder="연락처를 입력해주세요">
-                </div>
-
-
-                <div class="input_row2">
-                    <label for="request_title_r">배송 요청사항</label>
-
-                    <select name='selbox' id="배송요청사항" onchange="selectMemo(this)">
-                        <option value='' selected id="선택">--------------------- 선택 ---------------------</option>
-                        <option value='부재시, 연락 바랍니다.'>부재시, 연락 바랍니다.</option>
-                        <option value='부재시, 무인 택배함 보관 후 연락바랍니다.'>부재시, 무인 택배함 보관 후 연락바랍니다.</option>
-                        <option value='부재시, 경비실에 맡겨주세요.'>부재시, 경비실에 맡겨주세요.</option>
-                        <option value="직접입력">직접입력</option>
-                    </select>
-                    <br>
-
-                <input id="selboxDirect" type="text" placeholder="직접 입력하세요" style="display: none;">     
-                </div>           
+						<div class="locate address_btn address_btn_2">
+						<div class="input_row2">
+		                    <label for="name_title_r">이름</label>
+		                    <input type="text" id="name_input_r" name="name" value="${memberInfo.name}">
+		                </div>
+		
+		                <div class="input_row2">
+		                    <label for="address_title_r">주소</label>
+							
+							<input class="selectAdressee" value="T" type="hidden">
+							<input type="text" id="address_input_r" value="${memberInfo.address1}">
+		                    <input type="button" onclick="sample4_execDaumPostcode()" value="주소입력" class="address_button" ><br>
+		                    <div></div>
+		                    <input type="text" id="address_input2_r" value="${memberInfo.address2}">
+		
+		                  	<div></div>
+		                  	<input type="text" id="address_input3_r" value="${memberInfo.address3}">
+		                    <div></div>
+		                  <input  type="text" id="address_input4_r" value="상세주소">
+		                </div>
+		
+		                <div class="input_row2">
+		                    <label for="phone_title_r">연락처</label>
+		                    <input type="phone" id="phone_input_r" name="phone" value="${memberInfo.tel}">
+		                </div>    
+		                      
+					</div>
+				
+				</div>
+				
+				<div class="input_row2">
+	                    <label for="request_title_r">배송 요청사항</label>
+	
+	                    <select name='selbox' id="배송요청사항" onchange="selectMemo(this)">
+	                        <option value='' selected id="선택">--------------------- 선택 ---------------------</option>
+	                        <option value='부재시, 연락 바랍니다.'>부재시, 연락 바랍니다.</option>
+	                        <option value='부재시, 무인 택배함 보관 후 연락바랍니다.'>부재시, 무인 택배함 보관 후 연락바랍니다.</option>
+	                        <option value='부재시, 경비실에 맡겨주세요.'>부재시, 경비실에 맡겨주세요.</option>
+	                        <option value="직접입력">직접입력</option>
+	                    </select>
+	                    <br>
+	
+	                <input id="selboxDirect" type="text" placeholder="직접 입력하세요" style="display: none;">     
+	                
+	              </div>    
 
             </div>
             
@@ -256,8 +297,6 @@
 
 		 <button onclick="requestPay()" class="결제팝업" >결제하기</button>
     </div>
-
-
 
     <aside>
         <div class="container7">

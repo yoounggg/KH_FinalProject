@@ -1,4 +1,3 @@
-
 function selectMemo(select) {       // 배송요청사항 직접입력
     var TTT1 = document.getElementById("selboxDirect");
 
@@ -142,3 +141,32 @@ function calculatetotal() {
     		
     	}); 
     }
+    
+    /* ============================== 주소 입력란 버튼 동작 (숨김, 동작) =========================================== */
+       
+  function showAddress(className) {
+        // 모든 .addressInfo_input_div를 숨긴다
+        $(".addressInfo_input_div").hide();
+        // 클래스 이름에 해당하는 .addressInfo_input_div를 보여준다
+        $(".addressInfo_input_div_" + className).show();
+        if (className === "1") {
+        	// 직접 입력 버튼을 클릭한 경우
+        	// .address_btn_2_wrap를 숨긴다
+        	$(".address_btn_2_wrap").hide();
+        	// .locate.address_btn.address_btn_1를 보여준다
+        	$(".locate.address_btn.address_btn_1").show();
+        	// 기존 주소 버튼을 보여준다
+        	$(".locate.address_btn.address_btn_2").show();
+        	//$(".address_btn_2_wrap").show();
+        } else if (className === "2") {
+          	// 기존 주소 버튼을 클릭한 경우
+          	// .address_btn_2_wrap를 보여준다
+          	$(".address_btn_2_wrap").show();
+          	// .locate.address_btn.address_btn_1를 숨긴다
+         	$(".locate.address_btn.address_btn_1").hide();
+        }
+    	    // 모든 .selectAdressee를 false로 설정
+    	    $(".selectAdressee").val("F");
+    	    // 해당하는 .addressInfo_input_div의 .selectAdressee를 true로 설정
+    	    $(".addressInfo_input_div_" + className).find(".selectAdressee").val("T");
+      }
