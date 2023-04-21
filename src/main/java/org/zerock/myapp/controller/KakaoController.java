@@ -45,7 +45,7 @@ public class KakaoController {
     	
     	Map<String, Object> userinfo = kakaoService.getUserInfo(access_token);
     	
-    	log.trace("access_token :  invoked", access_token);
+    	log.trace("access_token : {}  invoked", access_token);
     	log.trace("userinfo : ",userinfo.toString());	// 사업자 필요
     	
         // 카카오 로그인 후 추가 정보 입력 페이지로 이동

@@ -24,9 +24,10 @@ public class HpCheckServiceImpl implements HpCheckService {
 
 		int cntTel = hpCheckMapper.hpCheck(tel);
 
-		log.trace("hpCheck () invoked. 핸드폰 중복 ㅇㅇㅇ ");
+		log.trace("cntTel : {} invoked. 핸드폰 중복 ", tel);
 
 		return cntTel;
-	}
+		
+	} // hpCheck
 
-}
+} // end class
