@@ -132,6 +132,34 @@
             </div>
 
         </div>
+        
+        <div class="구매자정보">
+
+            <div class="buyer_info">구매자 정보</div>
+
+            <hr class="separator">
+
+            <div class="locate">
+
+                <div class="input_row">
+                    <label for="name_title">이름</label>   
+                    <input type="text" id="name_input" name="name" value="${memberInfo.name}">
+                    <button class="edit_button">수정</button>
+                </div>
+
+                <div class="input_row">
+                    <label for="phone_title">핸드폰 번호</label>
+                    <input type="tel" id="phone_input" name="phone" value="${memberInfo.tel}">
+                    <button class="edit_button">수정</button>
+                </div>
+
+                <div class="input_row">
+                    <label for="email_title">이메일</label>
+                    <input type="email" id="email_input" name="email" value="${memberInfo.email}">
+                </div>
+
+            </div>
+        </div>
 
         <div class="받는사람 정보">
 
