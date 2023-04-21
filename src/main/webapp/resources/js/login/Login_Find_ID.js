@@ -64,13 +64,3 @@ function switchForm(showFormId, hideFormId, activeBtn) {
         activeBtn.previousElementSibling.classList.remove("find_id_active");
     }
 }
-
-// 이메일 유효성 검사
-function validateEmail(input) {
-    var regex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-    if (regex.test(input.value)) {
-        input.setCustomValidity("");
-    } else {
-        input.setCustomValidity("올바른 이메일 주소 형식을 입력해주세요.");
-    }
-}

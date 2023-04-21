@@ -28,20 +28,21 @@ public class LoginController {
 	@Autowired
 	private MemberService memberService;
 
+//	>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 로그인 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 	
-	// 단순 로그인 화면으로 진입
+	// # 단순 로그인 화면으로 진입
 	@GetMapping("/main")
 	public String loginGet() {
 		
-	    log.trace("loginPage() invoked");
+	    log.trace("단순 로그인 화면으로 진입했습니다. loginPage() invoked");
 	    
 	    return "login/Login_Main";
 	    
 	} // loginGet()
-    
-//	--------------------------------------------------------
 	
-	// 로그인 기능 구현 - 암호화 이후!!
+//	---------------------
+	
+	// # 로그인 기능 구현 - 암호화 이후!!
     @PostMapping("/main")
     public String loginPost(
     		MemberDTO memberDTO, HttpServletRequest request, RedirectAttributes rttr
@@ -101,7 +102,9 @@ public class LoginController {
     } // loginPost()
     
     
-    // 로그아웃 -> a 태그의 요청은 GET 방식이기 때문에 GET Mapping!
+//	>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 로그아웃 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    
+    // # 로그아웃 -> a 태그의 요청은 GET 방식이기 때문에 GET Mapping!
     // session 작업 필요하기 때문에 HttpServletRequest 타입의 매개변수 작성이 필요함!
     @GetMapping("/logout")
 	public String logoutGet(
@@ -115,9 +118,9 @@ public class LoginController {
 //	    HttpSession session = request.getSession();
 	    
 	    // 세션 제거에는 invalidate()와 removeAttribute() 두 가지의 메소드 사용 가능!
-	    // invalidate() = This method is used to invalidate the entire session.
+	    // & invalidate() = This method is used to invalidate the entire session.
 	    // Once a session is invalidated, it can no longer be used, and a new session needs to be created for any further interaction between the client and the server
-	    // removeAttribute() = This method is used to remove a specific attribute from the session, can remove a single attribute by specifying its name as an argument
+	    // & removeAttribute() = This method is used to remove a specific attribute from the session, can remove a single attribute by specifying its name as an argument
 	    session.invalidate();
 //	    session.removeAttribute("member");
 	    
@@ -125,7 +128,9 @@ public class LoginController {
 	    
 	} // logoutGet()
 	
-	// 로그아웃 -> 비동기 방식
+//	---------------------
+    
+	// # 로그아웃 -> 비동기 방식
     @Async
 	@PostMapping("/logout")
 	@ResponseBody
@@ -140,7 +145,33 @@ public class LoginController {
 		session.invalidate();
 		
 	} // logoutPost()
+    
+    
+//	>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 아이디 찾기 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    
+	// # 단순 아이디 찾기 화면으로 진입
+	@GetMapping("/findid")
+	public String idGet() {
+		
+	    log.trace("단순 아이디 찾기 화면으로 진입했습니다. idGet() invoked");
+	    
+	    return "login/Login_Find_ID";
+	    
+	} // idGet()
 	
+	
+//	>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 비밀번호 변경 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+	
+	// # 단순 비밀번호 변경 화면으로 진입
+	@GetMapping("/changepw")
+	public String pwGet() {
+		
+	    log.trace("단순 비밀번호 변경 화면으로 진입했습니다. pwGet() invoked");
+	    
+	    return "login/Login_Change_PW";
+	    
+	} // pwGet()
+    
 } // end class
 
 

@@ -70,7 +70,7 @@
                     <!-- 아이디 비밀번호 찾기 -->
                     <span class="finding">
                         <li>
-                            <a href="#" class="find_id">아이디 찾기</a><span>|</span> <a href="#" class="find_pw">비밀번호 찾기</a>
+                            <a href="/login/findid" class="find_id">아이디 찾기</a><span>|</span> <a href="/login/changepw" class="change_pw">비밀번호 변경</a>
                         </li>
                     </span>
 
