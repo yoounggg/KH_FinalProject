@@ -293,21 +293,6 @@
 		 <button onclick="requestPay()" class="결제팝업" >결제하기</button>
     </div>
 
-    <aside>
-        <div class="container7">
-            <div id="choikun1">
-                <div id="choikun2">
-                    <div>최근 본 상품</div>
-                        <img src="imgs/sample.jpg" alt="최근1">
-                        <img src="imgs/sample.jpg" alt="최근2">
-                        <img src="imgs/sample.jpg" alt="최근3">
-                </div>    
-                <input id="topbtn" type="button" name="TOP" value="TOP">
-            </div> 
-        </div>
-    </aside>
-
-
 	<%@include file= "../common/footer.jsp" %>
 
 </body>
