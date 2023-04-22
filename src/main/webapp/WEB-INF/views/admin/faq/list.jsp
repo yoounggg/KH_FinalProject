@@ -184,7 +184,7 @@
 	                </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${list}" var="FaqVO">
+                    <c:forEach items="${faqList}" var="FaqVO">
                         <tr>
                         	<td><input type="checkbox" name="item" onclick="checkSelectAll()" /></td>
                             <td>${FaqVO.no}</td>

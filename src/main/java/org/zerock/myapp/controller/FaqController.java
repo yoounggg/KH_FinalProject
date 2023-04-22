@@ -59,7 +59,7 @@ public class FaqController {
 		try {
 			// 페이징처리된 현재 pageNum에 해당하는 게시글목록 받아옴
 			List<FaqVO> list = this.service.getListPaging(cri);
-			model.addAttribute("list", list); // view로 날아갈 model 상자 안에 model 데이터를 담음
+			model.addAttribute("faqList", list); // view로 날아갈 model 상자 안에 model 데이터를 담음
 			
 			
 			int totalAmount = this.service.getTotal();
