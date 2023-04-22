@@ -55,7 +55,7 @@ public class UserInfoController {
 		} catch (ServiceException e) {
 			throw new ControllerException(e);
 		} // try-catch
-//		return "userInfo";
+
 	} // userDetail
 	
 	
@@ -111,17 +111,20 @@ public class UserInfoController {
 //	    return "redirect:/main";
 //	}
 	
-	@GetMapping("/{id}/delete") // -> 이렇게 하니까 화면에서만 사라짐..
-	public String deleteUser(String id) throws ControllerException{
-		log.trace("deleteUser({}) invoked", id);
+//	@PostMapping("/delete")
+//	public String deleteUser(String id, RedirectAttributes rttrs) throws ControllerException{
+		
+	@GetMapping("/{id}/delete")
+	public String deleteUser(@PathVariable("id") String id, RedirectAttributes rttrs) throws ControllerException{
+		log.trace("deleteUser({}, {}) invoked", id, rttrs);
 		
 		try {
 			boolean success = this.service.deleteUser(id);
 			log.info("\t+success:{}", success);
 			
-//			rttrs.addAttribute("result", (success)? "success" : "failure");
+			rttrs.addAttribute("result", (success)? "success" : "failure");
 			
-			return "main"; // 탈퇴하면 메인으로 
+			return "redirect:/login/logout"; // 탈퇴하면 로그아웃 해야만 함
 		} catch(Exception e) {
 			throw new ControllerException(e);
 		} // try-catch

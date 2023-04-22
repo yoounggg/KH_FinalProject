@@ -105,13 +105,13 @@
         <ul class="box1">
             <img src="/resources/imgs/profileimg.jpg" alt="프로필 사진">
             <li class="small1">${details.name} 님</li>
-            <li class="small1"><a href="/mypage/userInfo/main"><i class="fab fa-whmcs"></i>회원정보관리</a></li>
+            <li class="small1"><a href="/mypage/userInfo/${member.id}"><i class="fab fa-whmcs"></i>회원정보관리</a></li>
         </ul>
 
         <ul class="box2">
-            <li class="small2 small3"><a href="/mypage/userInfo/main">정보수정</a></li>
-            <li class="small2 small3"><a href="/mypage/?">주문내역</a></li>
-            <li class="small2"><a href="/mypage/?">배송현황</a></li>
+            <li class="small2 small3 small4"><a href="/mypage/userInfo/${member.id}">정보수정</a></li>
+            <li class="small2 small3 small4"><a href="/mypage/?">주문내역</a></li>
+            <li class="small2 small5"><a href="/mypage/?">배송현황</a></li>
         </ul>
     </aside>
     
@@ -151,18 +151,19 @@
                 
                 <tr>
                     <th>&nbsp;성명<span class="red">*</span></th>
-                    <td><input type="text" name="name" value="${details.name}"></td>
+                    <td><input type="text" name="name" value="${details.name}" required></td>
                 </tr>
                 
                 <tr class="specialtr">
                     <th class="th_height" rowspan="2">&nbsp;휴대전화<span class="red">*</span></th>
-                    <td><input type="text"></td>
-                    <td><input type="button" value="휴대폰 인증" class="btntr">&nbsp;<input type="button" value="재발송" class="btntr"></td>
+                    <td><input type="text" id="tel" name="tel" value="${details.tel}" placeholder="전화번호를 입력하세요" required></td>
+                    <td><input type="button" value="휴대폰 인증" id="telCk" class="btntr"></td>
                 </tr>
                 
                 <tr>
-                    <td><input type="text" name="tel" value="${details.tel}"></td>
+                    <td><input type="text" id="tel2" name="tel2" placeholder="인증번호를 입력하세요"></td>
                     <td><input type="button" value="확인" class="btntr"></td>
+                    <input type="hidden" id="telDoubleChk">
                 </tr>
                 
                 <tr class="specialtr">
@@ -172,7 +173,7 @@
                 </tr>
                 
                 <tr class="addr_tr">
-                    <td colspan="2"><input type="text" name="address2" value="${details.address2}" id="sample6_address" class="addrwidth"></td>
+                    <td colspan="2"><input type="text" name="address2" value="${details.address2}" id="sample6_address" class="addrwidth" required></td>
                 </tr>
                 
                 <tr>
@@ -186,7 +187,6 @@
                 </tr>
                 
                 <tr>
-                    <!-- 성별 변경 불가능 -->
                     <th>&nbsp;성별</th>
                     <td class="radio">
                         <input type="radio" name="gender" value="남자" ${details.gender eq '남자' ? 'checked' : ''} >남자&nbsp;
@@ -205,7 +205,7 @@
 	            <button class="userbtn1" type="submit" class="modifyUserDetails" onClick="goform()">정보수정</button>
 	            <input class="userbtn2" type="button" value="메인으로" onClick="location.href='/main'">
 	            <button class="userbtn2" type="button" onClick="deleteUser('${details.id}')">회원탈퇴</button>
-	            <!-- <input class="userbtn2" type="button" value="회원탈퇴" onClick="deleteUser()">  -->
+	            <!-- <button class="userbtn2" type="button" onClick="deleteUser()">회원탈퇴</button>  -->
 	        </div>     
 		</form>               
     </div>    
@@ -216,11 +216,11 @@
 </body>
 
 <script>
+//회원탈퇴 버튼
 function deleteUser(id){
 if(window.confirm("탈퇴하시겠습니다?")){
 	location.href = "/mypage/userInfo/"+ id+ "/delete";
-}
-
+	}
 };
 </script>
 

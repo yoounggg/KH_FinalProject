@@ -111,15 +111,10 @@ function confirmNewPw(){
 //회원 정보 수정 form-> submit
 function goform(){
 	$('#userUpdateForm').attr("action",'/mypage/userInfo/update').submit();
-} // goform
+}; // goform
 
-
-//회원탈퇴 버튼
-//function deleteUser(id){
-//	if(window.confirm("탈퇴하시겠습니다?")){
-//		location.href = "/mypage/userInfo/"+id+ "/delete";
-//}
-
-//}
+//휴대폰 번호 인증
+var code2 = "";
+$("")
 
       
