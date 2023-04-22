@@ -103,7 +103,7 @@
                     </ul>
                 <li><a href="#">오늘의 특가</a></li>
                 <li><a href="#">신상품</a></li>
-                <li><a href="#">고객센터</a></li>
+                <li><a href="/help/main">고객센터</a></li>
             </ul>
         </div>
     </nav>
