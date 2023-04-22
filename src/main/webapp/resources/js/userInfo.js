@@ -109,12 +109,49 @@ function confirmNewPw(){
 
 
 //회원 정보 수정 form-> submit
-function goform(){
-	$('#userUpdateForm').attr("action",'/mypage/userInfo/update').submit();
-}; // goform
+// function goform(){
+// 	$('#userUpdateForm').attr("action",'/mypage/userInfo/update').submit();
+// }; // goform
 
-//휴대폰 번호 인증
-var code2 = "";
-$("")
+// //휴대폰 번호 인증
+// var code2 = "";
+// $("#telCk").click(function(id){
+// 	alert("인증번호가 발송되었습니다. \n휴대폰에서 인증번호를 확인해주세요.");
+// 	var phone = $("#tel").val();
+// 	$.ajax({
+// 		type: "GET",
+// 		url:"/mypage/userInfo/"+id+"/phoneCheck?tel="+tel,
+// 		cache: false,
+// 		success:function(data){
+// 			if(data == "error"){
+// 				alert("휴대폰 번호가 올바르지 않습니다.")
+// 				$(".successTelCk").text("유효한 번호를 입력해주세요.");
+// 				$(".successTelCk").css("color", "red");
+// 				$("#tel").attr("autofocus", true);
+// 			} else {
+// 				$("#tel2").attr("disabled", false);
+// 				$("tel2Chk").css("display", "inline-block");
+// 				$(".successTelCk").text("인증번호를 입력한 뒤 본인인증을 눌러주세요.");
+// 				$(".successTelCk").css("color", "green");
+// 				$("#tel").attr("readonly", true);
+// 				code2 = data;
+// 			} // else
+// 		} // function
+// 	}); // ajax
+// }); // function
 
+// //휴대폰 인증번호 대조
+// $("#tel2").click(function(){
+// 	if($("#tel2").val() == code2){
+// 		$(".successTelCk").text("인증번호가 일치합니다.");
+// 		$(".successTelCk").css("color", "green");
+// 		$("#telDoubleChk").val("true");
+// 		$("#tel2").attr("disabled", true);
+// 	} else{
+// 		$(".successTelCk").text("인증번호가 일치하지 않습니다. 확인해주시기 바랍니다");
+// 		$(".successTelCk").css("color", "red");
+// 		$("#telDoubleChk").val("false");
+// 		$(this).attr("autofocus", true);
+// 	}
+// });
       
