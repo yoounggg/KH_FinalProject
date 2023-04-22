@@ -59,6 +59,7 @@ public class LoginController {
         
         // 암호화 전의 암호 (제출 받은 암호 임시 저장 용도)
         String origin_pw = "";
+        
         // 암호화 이후 암호 (인코딩 된 암호 임시 저장 용도)
         String encoded_pw = "";
 
@@ -72,10 +73,14 @@ public class LoginController {
         if(m_dto != null) {				// 일치하는 아이디가 존재할 경우
         	
         	origin_pw = memberDTO.getPassword();	// 사용자가 입력한 비밀번호
+        	log.trace("origin_pw = memberDTO.getPassword() = {}", memberDTO.getPassword());
         	encoded_pw = m_dto.getPassword();       // DB에 저장된 인코딩 된! 비밀번호
+        	log.trace("encoded_pw = m_dto.getPassword() = {}", memberDTO.getPassword());
         	
         	// 비밀번호 일치 여부 판단을 위한 if문 작성
         	if(true == bCryptPasswordEncoder.matches(origin_pw, encoded_pw)) {	// BCryptPasswordEncoder의 .matches()로 비밀번호 일치 여부 판단
+        		
+        		log.trace("비밀번호 일치 여부 판단을 위한 if문에 들어왔습니다.");
                  
         		m_dto.setPassword("");		// 인코딩된 비밀번호의 정보를 지워줌
         		session.setAttribute("member", m_dto);	// member 세션에 사용자 정보 저장
@@ -173,15 +178,6 @@ public class LoginController {
 	} // pwGet()
     
 } // end class
-
-
-
-
-
-
-
-
-
 
 
 //	--------------------------------------------------------
