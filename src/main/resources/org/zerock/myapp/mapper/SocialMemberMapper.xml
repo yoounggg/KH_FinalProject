@@ -6,21 +6,19 @@
 
 <mapper namespace="org.zerock.myapp.mapper.SocialMemberMapper">
 
-
 	<!-- 혁규 카카오 회원가입 -->
 	<insert id="kakaoSignup" parameterType="java.util.HashMap">
 		INSERT INTO social_member
 		(
-		ID, EMAIL, profile) VALUES (
-		#{id}, #{profile}, #{email}
+		ID, EMAIL, profile, properties) VALUES (
+		#{id}, #{email}, #{profile, jdbcType=VARCHAR}, #{properties, jdbcType=VARCHAR}
 		)
 	</insert>
 
-	<select id="kakao" parameterType="java.util.HashMap">
+	<select id="kakaoLogin" parameterType="java.util.HashMap">
 
 		select * from social_member where id={id} and email=#{email}
 
 	</select>
 
 </mapper>
-

@@ -15,5 +15,7 @@ public class SocialMemberDTO {
 	private String bith_year;
 	private String bith_month;
 	private String bith_day;
+	private String nickname;
+	private String properties;
 	
 } // end class

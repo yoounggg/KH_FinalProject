@@ -6,4 +6,6 @@ public interface SocialMemberMapper {
 
 	public void kakaoSignup(SocialMemberDTO socialMemberDTO);
 	
+	public SocialMemberDTO kakaoLogin(SocialMemberDTO socialMemberDTO);
+    
 } // end interface
