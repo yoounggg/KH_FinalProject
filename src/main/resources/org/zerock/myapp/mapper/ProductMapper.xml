@@ -34,8 +34,8 @@
     	</selectKey>
     
         INSERT
-        INTO PRODUCT (category, name, price, discount, discount_price, weight, origin, stock, farm_no, main_image, sub_image1, sub_image2, sub_image3, sub_image4, content, content_image)
-      	VALUES (#{category}, #{name}, #{price}, #{discount}, #{discount_price}, #{weight}, #{origin}, #{stock}, #{farm_no}, #{main_image}, #{sub_image1}, #{sub_image2}, #{sub_image3}, #{sub_image4}, #{content}, #{content_image})    
+        INTO PRODUCT (category, name, price, discount, discount_price, weight, origin, stock, farm_no, main_image, main_image2, sub_image1, sub_image2, sub_image3, sub_image4, content, content_image)
+      	VALUES (#{category}, #{name}, #{price}, #{discount}, #{discount_price}, #{weight}, #{origin}, #{stock}, #{farm_no}, #{main_image}, #{main_image2}, #{sub_image1}, #{sub_image2}, #{sub_image3}, #{sub_image4}, #{content}, #{content_image})    
     </insert>
 	
 	<!-- 상품 이미지 등록 -->
