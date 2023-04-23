@@ -105,13 +105,13 @@
         <ul class="box1">
             <img src="/resources/imgs/profileimg.jpg" alt="프로필 사진">
             <li class="small1">${details.name} 님</li>
-            <li class="small1"><a href="/mypage/userInfo/main"><i class="fab fa-whmcs"></i>회원정보관리</a></li>
+            <li class="small1"><a href="/mypage/userInfo/${member.id}"><i class="fab fa-whmcs"></i>회원정보관리</a></li>
         </ul>
 
         <ul class="box2">
-            <li class="small2 small3"><a href="/mypage/userInfo/main">정보수정</a></li>
-            <li class="small2 small3"><a href="/mypage/?">주문내역</a></li>
-            <li class="small2"><a href="/mypage/?">배송현황</a></li>
+            <li class="small2 small3 small4"><a href="/mypage/userInfo/${member.id}">정보수정</a></li>
+            <li class="small2 small3 small4"><a href="/mypage/?">주문내역</a></li>
+            <li class="small2 small5"><a href="/mypage/?">배송현황</a></li>
         </ul>
     </aside>
     
@@ -151,18 +151,27 @@
                 
                 <tr>
                     <th>&nbsp;성명<span class="red">*</span></th>
-                    <td><input type="text" name="name" value="${details.name}"></td>
+                    <td><input type="text" name="name" value="${details.name}" required></td>
                 </tr>
                 
                 <tr class="specialtr">
-                    <th class="th_height" rowspan="2">&nbsp;휴대전화<span class="red">*</span></th>
-                    <td><input type="text"></td>
-                    <td><input type="button" value="휴대폰 인증" class="btntr">&nbsp;<input type="button" value="재발송" class="btntr"></td>
+                    <th class="th_height" rowspan="3" >&nbsp;휴대전화<span class="red">*</span></th>
+                    <td><input type="text" id="tel" name="tel" value="${details.tel}" required></td>
+                    <td><span id="telCk" class="btntr">휴대폰 인증</span></td>
+                    <!-- <input type="button" value="휴대폰 인증" id="telCk" class="btntr"> -->
                 </tr>
                 
+                <tr class="specialtr">
+                    <td><input type="text" id="tel2" name="tel2" placeholder="인증번호를 입력하세요" disabled required></td>
+                    <td><span id="tel2Chk" class="btntr" >본인인증</span></td>
+                    <!-- <input type="button" id="tel2Chk" class="btntr" value="확인" > -->
+                  	<!-- <span class="successTelCk">휴대폰 번호 입력후 인증번호 보내기를 해주세요.</span>  -->
+                    
+                    <input type="hidden" id="telDoubleChk">
+                    <!-- <p class="tip">최초 가입시에만 사용하고 있습니다.</p>  -->
+                </tr>
                 <tr>
-                    <td><input type="text" name="tel" value="${details.tel}"></td>
-                    <td><input type="button" value="확인" class="btntr"></td>
+                	<td><span class="successTelCk">휴대폰 번호 입력후 인증번호 보내기를 해주세요.</span></td>
                 </tr>
                 
                 <tr class="specialtr">
@@ -172,7 +181,7 @@
                 </tr>
                 
                 <tr class="addr_tr">
-                    <td colspan="2"><input type="text" name="address2" value="${details.address2}" id="sample6_address" class="addrwidth"></td>
+                    <td colspan="2"><input type="text" name="address2" value="${details.address2}" id="sample6_address" class="addrwidth" readonly = "readonly"></td>
                 </tr>
                 
                 <tr>
@@ -186,7 +195,6 @@
                 </tr>
                 
                 <tr>
-                    <!-- 성별 변경 불가능 -->
                     <th>&nbsp;성별</th>
                     <td class="radio">
                         <input type="radio" name="gender" value="남자" ${details.gender eq '남자' ? 'checked' : ''} >남자&nbsp;
@@ -205,7 +213,7 @@
 	            <button class="userbtn1" type="submit" class="modifyUserDetails" onClick="goform()">정보수정</button>
 	            <input class="userbtn2" type="button" value="메인으로" onClick="location.href='/main'">
 	            <button class="userbtn2" type="button" onClick="deleteUser('${details.id}')">회원탈퇴</button>
-	            <!-- <input class="userbtn2" type="button" value="회원탈퇴" onClick="deleteUser()">  -->
+	            <!-- <button class="userbtn2" type="button" onClick="deleteUser()">회원탈퇴</button>  -->
 	        </div>     
 		</form>               
     </div>    
@@ -216,12 +224,55 @@
 </body>
 
 <script>
+//회원탈퇴 버튼
 function deleteUser(id){
 if(window.confirm("탈퇴하시겠습니다?")){
 	location.href = "/mypage/userInfo/"+ id+ "/delete";
-}
-
+	}
 };
+
+//휴대폰 번호 인증
+var code2 = "";
+$('#telCk').click(function({id}){
+	alert("인증번호가 발송되었습니다. \n휴대폰에서 인증번호를 확인해주세요.");
+	var phone = $('#tel').val();
+	$.ajax({
+		type: "GET",
+		url:"/mypage/userInfo/"+'${id}'+"/phoneCheck?tel="+'${tel}',
+		cache: false,
+		success:function(data){
+			if(data == "error"){
+				alert("휴대폰 번호가 올바르지 않습니다.")
+				$('.successTelCk').text("유효한 번호를 입력해주세요.");
+				$('.successTelCk').css("color", "red");
+				$('#tel').attr("autofocus", true);
+			} else {
+				$('#tel2').attr("disabled", false);
+				$('#tel2Chk').css("display", "inline-block");
+				$('.successTelCk').text("인증번호를 입력한 뒤 본인인증을 눌러주세요.");
+				$('.successTelCk').css("color", "green");
+				$('#tel').attr("readonly", true);
+				code2 = data;
+			} // else
+		} // function
+	}); // ajax
+}); // function
+
+//휴대폰 인증번호 대조
+$('#tel2').click(function(){
+	if($('#tel2').val() == code2){
+		$('.successTelCk').text("인증번호가 일치합니다.");
+		$('.successTelCk').css("color", "green");
+		$('#telDoubleChk').val("true");
+		$('tel2').attr("disabled", true);
+	} else{
+		$('.successTelCk').text("인증번호가 일치하지 않습니다. 확인해주시기 바랍니다");
+		$('.successTelCk').css("color", "red");
+		$('#telDoubleChk').val("false");
+		$(this).attr("autofocus", true);
+	}
+});
+   
 </script>
 
 </html>

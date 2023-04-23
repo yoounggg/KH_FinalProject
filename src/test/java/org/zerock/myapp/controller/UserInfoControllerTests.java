@@ -35,7 +35,6 @@ import lombok.extern.log4j.Log4j2;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations= {
-//		"file:src/main/webapp/spring/**/*.xml",
 		"file:src/main/webapp/**/spring/**/root-*.xml",
 		"file:src/main/webapp/**/spring/**/servlet-*.xml"
 })
@@ -62,7 +61,7 @@ public class UserInfoControllerTests {
 	
 	@Test
 	@Order(1)
-	@DisplayName("테스트: 회원탈퇴 해주세요,,,,")
+	@DisplayName("테스트: 회원탈퇴")
 	@Timeout(value=60, unit=TimeUnit.SECONDS)
 	void testdeleteUser() throws Exception{
 		log.trace("testdeleteUser() invoked.");
@@ -70,8 +69,8 @@ public class UserInfoControllerTests {
 		MockMvcBuilder mockMvcBuilder = MockMvcBuilders.webAppContextSetup(ctx); 
 		MockMvc mockMvc = mockMvcBuilder.build();
 		
-		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/mypage/userInfo/delete");
-		requestBuilder.param("id", "aknomkd");
+		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/mypage/userInfo/{id}/delete");
+		requestBuilder.param("id", "coduddl");
 
 		ModelAndView modelAndView = 
 				mockMvc.
