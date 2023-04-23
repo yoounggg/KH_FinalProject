@@ -46,8 +46,11 @@ public class ProductDTO {
 	/* 상품 재고 수량 */	
 	private Integer stock;
 	
-	/* 상품 메인 썸네일 이미지 */
+	/* 상품 메인 이미지 */
 	private String main_image;
+	
+	/* 상품 메인 썸네일 이미지 */
+	private String main_image2;
 	
 //	[별이-04/13]subimage->sub_image1,2,3,4으로 수정함
 	/* 상품 메인 서브 썸네일 이미지 */	
@@ -88,7 +91,7 @@ public class ProductDTO {
 	@Override
 	public String toString() {
 		return "ProductDTO [category="+category+", name="+name+", price="+price+", discount="+discount+", discount_price="+discount_price+" ,weight="
-				+weight+", origin="+origin+", stock="+stock+", farm_no="+farm_no+", main_image"+main_image+", sub_image1="+sub_image1+", sub_image2="+sub_image2+", sub_image3="+sub_image3+", sub_image4="+sub_image4+
+				+weight+", origin="+origin+", stock="+stock+", farm_no="+farm_no+", main_image"+main_image+", main_image2"+main_image2+", sub_image1="+sub_image1+", sub_image2="+sub_image2+", sub_image3="+sub_image3+", sub_image4="+sub_image4+
 				", content="+content+", content_image="+content_image+ ", imageList="+imageList+"]";
 	} // toString
 	

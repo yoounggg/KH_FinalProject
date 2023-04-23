@@ -6,9 +6,12 @@ import org.apache.maven.model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.zerock.myapp.domain.SocialMemberDTO;
 import org.zerock.myapp.service.KakaoService;
+import org.zerock.myapp.service.SocialMemberService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -16,46 +19,71 @@ import lombok.extern.log4j.Log4j2;
 @AllArgsConstructor
 @Log4j2
 
-//@RequestMapping("/signup")
 @Controller
 public class KakaoController {
-	
+
 	@Autowired
 	private KakaoService kakaoService;
-	
+	@Autowired
+	private SocialMemberService socialMemberService;
+
 	@GetMapping("/signup/main")
-    public String signupMain() {
-	log.trace("signupMain invoked");
+	public String signupMain() {
+		log.trace("signupMain invoked");
+
+		return "signup/main";
+
+	} // signupMain
+
+	@GetMapping("/signup/kakao/callback")
+	public String kakaoLoginCallback(@RequestParam String code, Model model) throws Throwable {
+
+		log.trace(" code : {} invoked", code);
+
+		String access_token = kakaoService.getAccessToken(code);
+
+		Map<String, Object> userinfo = kakaoService.getUserInfo(access_token);
+
+		log.trace("access_token : {}  invoked", access_token);
+
+		// SocialMemberDTO 객체 생성 후, Kakao API로부터 얻은 사용자 정보를 DTO에 저장합니다.
+		SocialMemberDTO socialMemberDTO = new SocialMemberDTO();
+		socialMemberDTO.setId((String) userinfo.get("id"));
+		socialMemberDTO.setEmail((String) userinfo.get("email"));
+		socialMemberDTO.setProfile_nickname((String) userinfo.get("profile"));
+		socialMemberDTO.setNickname((String) userinfo.get("nickname"));
 		
-        return "signup/main";
-    }
+		// SocialMemberDTO 객체를 이용하여 회원가입을 진행합니다.
+		socialMemberService.kakaoSignup(socialMemberDTO);
 
-    @GetMapping("/signup/kakao")
-    public String kakaoLogin() throws Throwable {
-    	log.trace("kakaoLogin() invoked");
-        
-    	return "kakaoCI/login";
-    }
+		// 카카오 로그인 후 추가 정보 입력 페이지로 이동
+		return "redirect:/signup/addinfo";
 
-    @GetMapping("/signup/kakao/callback")
-    public String kakaoLoginCallback(@RequestParam String code, Model model) throws Throwable {
-    	log.trace(" code : {} invoked",  code);
-    	
-    	String access_token = kakaoService.getAccessToken(code);
-    	
-    	Map<String, Object> userinfo = kakaoService.getUserInfo(access_token);
-    	
-    	log.trace("access_token :  invoked", access_token);
-    	log.trace("userinfo : ",userinfo.toString());	// 사업자 필요
-    	
-        // 카카오 로그인 후 추가 정보 입력 페이지로 이동
-        return "redirect:/signup/addinfo";
-//    	return "/signup/addinfo";
-    }
-
-    @GetMapping("/signup/addinfo")
-    public void addInfo() throws Throwable {
-        // 추가 정보 입력 처리
-    }
+	} // kakaoLoginCallback
 	
+	@GetMapping("/signup/addinfo")
+	public String addInfoGet() throws Exception{
+		log.trace("addInfo invoked");
+		
+		return "/signup/addinfo";
+	} //addInfoGet
+	
+	@PostMapping("/signup/addinfo")
+	public String addInfo(SocialMemberDTO socialMemberDTO) throws Throwable {
+		log.trace("signupAddinfo() invoked(회원가입 서비스 실행)");
+
+		socialMemberService.kakaoSignupAddInfo(socialMemberDTO);
+		
+		log.trace("memberPOST : {} invoked 성공",socialMemberDTO);
+		
+		return "redirect:/signup/socialComplete";
+	} // addInfo
+
+
+	@GetMapping("/complete")
+	public void signupComplete() throws Exception{
+		log.trace("signupComplete() invoked 완료화면 get");
+				
+
+	} // signupComplete
 } // end class

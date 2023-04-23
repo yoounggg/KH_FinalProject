@@ -65,8 +65,8 @@ public class CartMapperTests {
 	void testaddCart() { //db에 memberid와 productno가 이미 존재해야함! 임시로 넣어줬음  
 		log.trace("testaddCart() invoked");
 		
-		String member_id = "codud"; // 회원 아이디
-		Integer product_No = 1; // 상품번호
+		String member_id = "codud123"; // 회원 아이디
+		Integer product_No = 23; // 상품번호
 		Integer count = 10;  // 개수
 		
 		CartDTO cart = new CartDTO();
@@ -99,7 +99,7 @@ public class CartMapperTests {
 	void testdeleteCart() { //
 		log.trace("testdeleteCart() invoked");
 		
-		Integer no = 25;
+		Integer no = 46;
 		
 		int affectedLines = this.mapper.deleteCart(no);
 		

@@ -34,5 +34,14 @@ public class MainController { // 홈페이지 기본기능 요청 관리
 		
 		return "privacy";
 	} // privacyPage
+	
+//	=============================================================
+//	[별이] help 메인 추가
+	@RequestMapping(value="/help/main", method = RequestMethod.GET)
+	public String help() { 
+		log.trace("help() invoked(고객센터 메인 진입)");
+		
+		return "/help/main";
+	} // privacyPage
 
 } // end class
