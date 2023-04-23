@@ -1,21 +1,19 @@
 package org.zerock.myapp.controller;
 
-import java.util.Map;
-
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.myapp.domain.MemberDTO;
 import org.zerock.myapp.exception.ControllerException;
 import org.zerock.myapp.exception.ServiceException;
+import org.zerock.myapp.service.MsgSendService;
 import org.zerock.myapp.service.UserInfoService;
 
 import lombok.NoArgsConstructor;
@@ -33,13 +31,9 @@ public class UserInfoController {
 	@Setter(onMethod_=@Autowired) // 서비스 주입
 	private UserInfoService service;
 	
-	
-//	@GetMapping("/userInfo")
-//	public String userDetail(String id) throws ControllerException{
-//		log.trace("userDetail({})invoked", id);
-//		
-//		return "userInfo";
-//	}
+	@Setter(onMethod_=@Autowired) // 핸드폰 인증 서비스 주입
+	private MsgSendService msgservice;
+
 	
 	//1. 회원상세조회
 	@GetMapping("/{id}")
@@ -55,11 +49,12 @@ public class UserInfoController {
 		} catch (ServiceException e) {
 			throw new ControllerException(e);
 		} // try-catch
-//		return "userInfo";
+
 	} // userDetail
 	
-	
+//	===========================================================================	
 	//2. 회원 정보 수정	(비밀번호 제외)
+	
 	@PostMapping("/update")
 	public String updateUser(MemberDTO dto, RedirectAttributes rttrs) throws ControllerException {
 		log.trace("updateUser({},{}) invoked.", dto, rttrs);
@@ -82,76 +77,43 @@ public class UserInfoController {
 		log.trace("updateUser() invoked.(회원정보수정)");
 	} // updateUser
 	
+//	===========================================================================
+	//3. 휴대폰 인증
+	
+	@GetMapping("/{id}/phoneCheck")
+	public @ResponseBody String sendSMS(@RequestParam("tel") String userPhoneNumber) { // 휴대폰 문자 보내기
+		int randomNumber = (int)((Math.random()*(9999-1000+1))+1000); // 난수 생성
+		
+		msgservice.msgSend(userPhoneNumber, randomNumber);
+		
+		return Integer.toString(randomNumber);
+	} // sendSMS
+	
+	
 	
 //	===========================================================================
-	//3. 회원 정보 삭제
-	
-//	@GetMapping("/delete")
-//	public String deleteUser(MemberDTO dto, HttpSession session, RedirectAttributes rttrs) throws ControllerException {
-//	    log.trace("deleteUser({}) invoked", dto);
-//
-//	    MemberDTO mdto = (MemberDTO) session.getAttribute("details");
-//	    // 세션에서 id 얻고
-//	    String id = mdto.getId();
-//	    // MemberDTO에 담긴 id 얻고
-//	    String dto_id = dto.getId();
-//	    // 두개가 같지 않으면
-//	    if (!(id.equals(dto_id))) {
-//	        rttrs.addFlashAttribute("msg", false);
-//	        return "redirect:/mypage/userInfo/{id}";
-//	    }
-//	    // 두개가 같으면
-//	    try {
-//	        this.service.deleteUser(dto_id);
-//	    } catch (ServiceException e) {
-//	        // TODO Auto-generated catch block
-//	        e.printStackTrace();
-//	    }
-//	    session.invalidate();
-//	    return "redirect:/main";
-//	}
-	
-	@GetMapping("/{id}/delete") // -> 이렇게 하니까 화면에서만 사라짐..
-	public String deleteUser(String id) throws ControllerException{
-		log.trace("deleteUser({}) invoked", id);
+	//4. 회원 정보 삭제
+		
+	@GetMapping("/{id}/delete")
+	public String deleteUser(@PathVariable("id") String id, RedirectAttributes rttrs) throws ControllerException{
+		log.trace("deleteUser({}, {}) invoked", id, rttrs);
 		
 		try {
 			boolean success = this.service.deleteUser(id);
 			log.info("\t+success:{}", success);
 			
-//			rttrs.addAttribute("result", (success)? "success" : "failure");
+			rttrs.addAttribute("result", (success)? "success" : "failure");
 			
-			return "main"; // 탈퇴하면 메인으로 
+			return "redirect:/login/logout"; // 탈퇴하면 로그아웃 해야만 함
 		} catch(Exception e) {
 			throw new ControllerException(e);
 		} // try-catch
 	} // deleteUser()
 	
 	
-//	public String deleteUser(String id, RedirectAttributes rttrs) throws ControllerException{
-//		log.trace("deleteUser({}, {}) invoked", id, rttrs);
-//		
-//		try {
-//			boolean success = this.service.deleteUser(id);
-//			log.info("\t+success:{}", success);
-//			
-//			rttrs.addAttribute("result", (success)? "success" : "failure");
-//			
-//			return "redirect:/main"; // 탈퇴하면 메인으로 
-//		} catch(Exception e) {
-//			throw new ControllerException(e);
-//		} // try-catch
-//	} // deleteUser()
+
 	
-	
-		
-//	@GetMapping("/delete") // 탈퇴 버튼을 통해서 실행되기 때문에 무조건 get (post는 폼에서 post를 지정해줘야 함)
-//	public String deleteUser(){
-//		log.trace("deleteUser() invoked");
-//
-//		return "main";
-//	} // deleteUser()
-	
+
 	
 //	@PostMapping("/delete")
 //	public String deleteUser(MemberDTO dto, HttpSession session, RedirectAttributes rttrs) throws ControllerException{
