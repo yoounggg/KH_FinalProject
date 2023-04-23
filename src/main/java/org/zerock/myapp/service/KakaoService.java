@@ -8,4 +8,5 @@ public interface KakaoService {
 	public String getAccessToken(String code) throws Throwable;
 		
 	public Map<String, Object> getUserInfo(String access_token) throws Throwable;
+	
 } // end interface

@@ -23,8 +23,10 @@ public class MsgSendServiceImpl implements MsgSendService {
 			Message coolsms = new Message(api_key , api_secret);
 			
 			HashMap<String, String> params = new HashMap<String, String>();
-//			params.put("to", userPhoneNumber);			// 수신 번호
-			params.put("to", "회원의 번호");			// 수신 번호
+      
+			params.put("to", userPhoneNumber);			// 수신 번호
+//			params.put("to", "오오오오오");			// 수신 번호
+
 			params.put("from", "01035552200");			// 발신 번호
 			params.put("type", "SMS");
 			params.put("text", "MYMG 인증번호는 " +" [ " + randomNumber + "] " + " 입니다. 인증시간 안에 입력해주세요.");

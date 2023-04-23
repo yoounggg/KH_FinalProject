@@ -35,12 +35,12 @@ function checkId() {
                     document.getElementById("input_id").readOnly = "true";            // 아이디 입력창 읽기전용
                     document.getElementById("id_confirm").disabled = "true";          // 중복확인 버튼 비활성화
                     document.getElementById("id_confirm").style.backgroundColor = "#b1b1b1";	// 배경 변경
-                   
+
 
                 } else if (cntId == 1) {                // 1이면 중복
                     popup_on3();
                     $("#input_id").val("");  //중복시 초기화
-                
+
                 }
             },
             error: function (xhr, status, error) { // 에러 콜백 함수
@@ -48,7 +48,7 @@ function checkId() {
             }
         });
 
-       
+
 
     } else {
         popup_on1();
@@ -153,9 +153,9 @@ function checkEmail() {
             }
         });
 
-       
-       
-        
+
+
+
     } else {
         popup_on1();
     }
@@ -189,32 +189,32 @@ function checkHp() {
     var tel = $("#input_hp").val();
     const isOk = /^01([016789])(\d{3,4})(\d{4})$/;
 
-    if(!isOk.test(tel)){
+    if (!isOk.test(tel)) {
         popup_on25();
-    }else{
+    } else {
 
-    $.ajax({
-        url: "/signup/infoc",
-        type: "post",
-        data: { tel: tel },
-        dataType: 'json',
-        success: function (cntTel) {
-            if (cntTel == 0) {            // 0이면 사용 가능한 번호
-                popup_on6();                // 인증번호가 전송되었습니다. 팝업
-                console.log(cntTel);
-                smsSend();                  // 문자 전송함수
+        $.ajax({
+            url: "/signup/infoc",
+            type: "post",
+            data: { tel: tel },
+            dataType: 'json',
+            success: function (cntTel) {
+                if (cntTel == 0) {            // 0이면 사용 가능한 번호
+                    popup_on6();                // 인증번호가 전송되었습니다. 팝업
+                    console.log(cntTel);
+                    smsSend();                  // 문자 전송함수
 
-            } else if (cntTel == 1) {                  // 1이면 중복된 번호
-                console.log(cntTel);
-                popup_on7();
-                $("#input_hp").val(""); // 휴대폰 번호 창 초기화
+                } else if (cntTel == 1) {                  // 1이면 중복된 번호
+                    console.log(cntTel);
+                    popup_on7();
+                    $("#input_hp").val(""); // 휴대폰 번호 창 초기화
+                }
+            },
+            error: function (xhr, status, error) { // 에러 콜백 함수
+                console.log("AJAX 요청 실패", status, error)
             }
-        },
-        error: function (xhr, status, error) { // 에러 콜백 함수
-            console.log("AJAX 요청 실패", status, error)
-        }
-    });
-};
+        });
+    };
 };
 var timer;
 
@@ -294,7 +294,6 @@ window.onload = function () {
 function openKakaoPostcode() {
     //카카오 주소
     new daum.Postcode({
-
         oncomplete: function (data) { //선택시 입력값 세팅
             document.getElementById("addr_form").style.display = "none";	// 주소 검색창 안보이게
             document.getElementById("addr_form2").style.display = "block";
@@ -355,7 +354,7 @@ $(document).ready(function () {
     const tel_btn = document.getElementById("hp_confirm");            //휴대폰 번호 인증
 
     $("#signup_btn").click(function () {
-        
+
         const id = document.getElementById("input_id").value;             //아이디
         const pw = document.getElementById("input_pw").value;             //비밀번호
         const pw2 = document.getElementById("input_confirm_pw").value;    //비밀번호 혹인
@@ -379,33 +378,33 @@ $(document).ready(function () {
         } else if (pw.trim() === "") {                   // 비밀번호 체크
             popup_on13();
 
-        } else if(!isOkPw.test(pw)){                     // 비밀번호 유효성 체크
+        } else if (!isOkPw.test(pw)) {                     // 비밀번호 유효성 체크
             popup_on1();
         }
-         else if (pw2.trim() === "") {                  // 비밀번호 확인 체크 
+        else if (pw2.trim() === "") {                  // 비밀번호 확인 체크 
             popup_on14();
-            
+
         } else if (pw2 != pw) {                         // 비밀번호 확인 체크 
             popup_on24();
-        
+
         } else if (name.trim() === "") {                 // 이름 체크
             popup_on15();
 
-        } else if(!isOkName.test(name)){                   // 이름 유효성 체크
+        } else if (!isOkName.test(name)) {                   // 이름 유효성 체크
             popup_on1();
-        
+
         } else if (email.trim() === "") {                // 이메일 체크
             popup_on16();
-    
+
         } else if (!email_btn.disabled) {               // 이메일 중복확인 체크
-            popup_on22();    
+            popup_on22();
 
         } else if (tel.trim() === "") {                  // 휴대폰 번호 체크
-            popup_on17();         
+            popup_on17();
 
         } else if (!tel_btn.disabled) {                 // 휴대폰 인증 체크
             popup_on23();
-            
+
         } else if (num.trim() === "") {                  // 인증번호 체크
             popup_on18();
 
@@ -414,7 +413,7 @@ $(document).ready(function () {
 
         } else if (addr3.trim() === "") {                // 상세 주소 체크
             popup_on20();
-        
+
         } else {
             $("#signup").attr("action", "/signup/info");        //가입 성공
             $("#signup").submit();
@@ -656,7 +655,7 @@ function popup_on13() {
 function exit13() {
     $(".popmenu13").hide();
     popup_blur13(false);
-     document.getElementById("input_pw").focus();
+    document.getElementById("input_pw").focus();
 };
 
 function popup_blur13(chk) {
