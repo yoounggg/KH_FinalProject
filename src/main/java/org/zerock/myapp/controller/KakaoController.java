@@ -6,6 +6,8 @@ import org.apache.maven.model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.zerock.myapp.domain.SocialMemberDTO;
 import org.zerock.myapp.service.KakaoService;
@@ -17,7 +19,6 @@ import lombok.extern.log4j.Log4j2;
 @AllArgsConstructor
 @Log4j2
 
-//@RequestMapping("/signup")
 @Controller
 public class KakaoController {
 
@@ -49,8 +50,9 @@ public class KakaoController {
 		SocialMemberDTO socialMemberDTO = new SocialMemberDTO();
 		socialMemberDTO.setId((String) userinfo.get("id"));
 		socialMemberDTO.setEmail((String) userinfo.get("email"));
-		socialMemberDTO.setProfile((String) userinfo.get("profile"));
-
+		socialMemberDTO.setProfile_nickname((String) userinfo.get("profile"));
+		socialMemberDTO.setNickname((String) userinfo.get("nickname"));
+		
 		// SocialMemberDTO 객체를 이용하여 회원가입을 진행합니다.
 		socialMemberService.kakaoSignup(socialMemberDTO);
 
@@ -58,11 +60,30 @@ public class KakaoController {
 		return "redirect:/signup/addinfo";
 
 	} // kakaoLoginCallback
-
+	
 	@GetMapping("/signup/addinfo")
-	public void addInfo() throws Throwable {
-		// 추가 정보 입력 처리
+	public String addInfoGet() throws Exception{
+		log.trace("addInfo invoked");
+		
+		return "/signup/addinfo";
+	} //addInfoGet
+	
+	@PostMapping("/signup/addinfo")
+	public String addInfo(SocialMemberDTO socialMemberDTO) throws Throwable {
+		log.trace("signupAddinfo() invoked(회원가입 서비스 실행)");
 
+		socialMemberService.kakaoSignupAddInfo(socialMemberDTO);
+		
+		log.trace("memberPOST : {} invoked 성공",socialMemberDTO);
+		
+		return "redirect:/signup/socialComplete";
 	} // addInfo
 
+
+	@GetMapping("/complete")
+	public void signupComplete() throws Exception{
+		log.trace("signupComplete() invoked 완료화면 get");
+				
+
+	} // signupComplete
 } // end class
