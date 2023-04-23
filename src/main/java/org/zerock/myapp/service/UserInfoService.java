@@ -12,7 +12,10 @@ public interface UserInfoService {
 	//2.회원 정보 수정 (UPDATE) (비밀번호 제외)
 	public abstract Boolean updateUser(MemberDTO dto) throws ServiceException;
 	
-	//3.회원 삭제 (DELETE)
+	//3. 휴대폰 인증 
+//	public abstract void certifiedPhoneNumber(String userPhoneNumber, int randomNumber);
+	
+	//4.회원 삭제 (DELETE)
 //	public abstract MemberDTO deleteUser(MemberDTO dto) throws ServiceException;
 //	public abstract MemberDTO deleteUser(String id) throws ServiceException;
 	public abstract Boolean deleteUser(String id) throws ServiceException;

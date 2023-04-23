@@ -6,18 +6,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.json.simple.JSONObject;
-
 import org.springframework.stereotype.Service;
-
-
 
 import lombok.extern.log4j.Log4j2;
 
@@ -46,7 +42,7 @@ public class KakaoServiceImpl implements KakaoService {
 			StringBuilder sb = new StringBuilder();
 			sb.append("grant_type=authorization_code");
 			sb.append("&client_id=4728fdda1dcf6b1dcbc098a9a7ece445");
-								  
+
 			sb.append("&redirect_uri=http://localhost:8080/signup/kakao/callback");
 			sb.append("&code=" + code);
 			bw.write(sb.toString());
@@ -90,85 +86,48 @@ public class KakaoServiceImpl implements KakaoService {
 
 	} // getReturnAccessToken
 
-	public Map<String, Object> getUserInfo(String access_token) throws IOException{
+	public Map<String, Object> getUserInfo(String access_token) throws IOException {
 		String reqUrl = "https://kapi.kakao.com/v2/user/me";
 		Map<String, Object> result = new HashMap<>();
-		
+
 		try {
 			URL url = new URL(reqUrl);
-			
-			   HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-	           urlConnection.setRequestProperty("Authorization", "Bearer " + access_token);
-	           urlConnection.setRequestMethod("GET");
-	           
-	           int responseCode = urlConnection.getResponseCode();
-	           log.trace("responseCode : {}", responseCode);
-	           
-	           BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-	           String line = "";
-	            String res = "";
-	            while((line=br.readLine())!=null)
-	            {
-	                res+=line;
-	            } // while
-	            log.trace("res : {}", res);
-	            
-	            
-	            JSONParser parser = new JSONParser();
-	            JSONObject obj = (JSONObject) parser.parse(res);
-	            JSONObject kakao_account = (JSONObject) obj.get("kakao_account");
-	            JSONObject properties = (JSONObject) obj.get("properties");
 
+			HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+			urlConnection.setRequestProperty("Authorization", "Bearer " + access_token);
+			urlConnection.setRequestMethod("GET");
 
-	            String id = obj.get("id").toString();
-	            String nickname = properties.get("nickname").toString();
-	            String age_range = kakao_account.get("age_range").toString();
+			int responseCode = urlConnection.getResponseCode();
+			log.trace("responseCode : {}", responseCode);
 
-	            result.put("id", id);
-	            result.put("nickname", nickname);
-	            result.put("age_range", age_range);
+			BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+			String line = "";
+			String res = "";
+			while ((line = br.readLine()) != null) {
+				res += line;
+			} // while
+			log.trace("res : {}", res);
 
-	            br.close();
-				} catch (IOException | ParseException e) {
-					e.printStackTrace();
-				} // try-catch
+			JSONParser parser = new JSONParser();
+			JSONObject obj = (JSONObject) parser.parse(res);
+			JSONObject kakao_account = (JSONObject) obj.get("kakao_account");
+			JSONObject properties = (JSONObject) obj.get("properties");
+
+			String id = obj.get("id").toString();
+			String nickname = properties.get("nickname").toString();
+			String email = kakao_account.get("email").toString();
+
+			result.put("id", id);
+			result.put("nickname", nickname);
+			result.put("email", email);
+
+			br.close();
+		} catch (IOException | ParseException e) {
+			e.printStackTrace();
+		} // try-catch
 		
-			return result;
+		return result;
+		
 	} // getUserInfo
-	
-	 public String getAgreementInfo(String access_token) {
-	        String result = "";
-	        String reqUri = "https://kapi.kakao.com/v2/user/scopes";
-	        try{
-	            URL url = new URL(reqUri);
-	            HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
-	            urlConnection.setRequestMethod("GET");
-	            urlConnection.setRequestProperty("Authorization", "Bearer "+access_token);
-
-	            BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-	            String line = "";
-	            while((line=br.readLine())!=null)
-	            {
-	                result+=line;
-	            }
-
-	            int responseCode = urlConnection.getResponseCode();
-	            log.trace("responseCode : {} ", responseCode);
-
-	            // result is json format
-	            br.close();
-
-	        } catch (MalformedURLException e) {
-	            e.printStackTrace();
-	        } catch (ProtocolException e) {
-	            e.printStackTrace();
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
-	        return result;
-	    
-
-
-	} //getAgreementInfo
 
 } // end class

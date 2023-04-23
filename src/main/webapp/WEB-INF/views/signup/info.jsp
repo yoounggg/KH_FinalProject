@@ -146,6 +146,9 @@
                             <input type="text" class='회원정보' id="detail_addr" name="address3" placeholder="상세주소를 입력해주세요">
                         </div>
 
+
+
+                        
                         <div id="gender_form" class="성별" name="gender">
                             <label class="라벨">성별</label>
                             <input type="radio" name="gender" value="남자" id="남자">남자
@@ -166,7 +169,7 @@
                             <button type="button" class='가입하기' id="signup_btn">가입하기</button>
 
                             <div>
-                                <a id="다음에" href="agreement"><span class="이전단계">이전단계</span></a>
+                                <a href="agreement"><span class="이전단계">이전단계</span></a>
                             </div>
                             
                         </div>

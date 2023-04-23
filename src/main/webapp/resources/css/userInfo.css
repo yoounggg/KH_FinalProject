@@ -263,11 +263,11 @@ main{
     z-index: 97;
 }
 .userinfoAside>ul{
-    margin: 0;
-    padding: 0;
+    /*margin: 0;*/
+    /*padding: 0;*/
     width: 150px;
     display: inline-block;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     text-align: center;
 }
 .userinfoAside>ul>li>a{
@@ -278,12 +278,13 @@ main{
 }
 .box1{
     height: 160px;
-    border-bottom: none;
+    padding-top: 10px;
+    border: 1px solid black;
     font-size: 11px;
     background-color: #EFEFEF;
 }
 .box1>img{
-    padding-top: 10px;
+    /* padding-top: 10px; */
     width: 100px;
     height: 100px;
     object-fit: cover;
@@ -298,12 +299,21 @@ main{
     font-size: 14px;
 }
 .small2{
+	/*border: 1px solid black; */
     padding: 25px;
 }
 .small3{
     border-bottom: 1px solid black;
 }
-
+.small4{
+	border-right: 1px solid black;
+	border-left: 1px solid black;
+}
+.small5{
+	border-right: 1px solid black;
+	border-left: 1px solid black;
+	border-bottom: 1px solid black;
+}
 /* -----------테이블------------ */
 
 /* .huiwon{ */
@@ -411,6 +421,8 @@ th{
 }
 
 .addrwidth{width:390px;}
+
+.successTelCk{font-size:12px;}
 
 /* --------------footer------------------- */
 .yakgwan1{
