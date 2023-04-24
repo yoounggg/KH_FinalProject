@@ -5,39 +5,27 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.zerock.myapp.mapper.SocialMemberMapper">
-
-	<!-- 혁규 카카오 회원가입 -->
 	<insert id="kakaoSignup" parameterType="java.util.HashMap">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-         SELECT #{id} FROM social_member
-    </selectKey>
-
-    INSERT INTO social_member
-    (
-    ID, EMAIL, profile, properties) VALUES (
-    #{id}, #{email}, #{profile_nickname, jdbcType=VARCHAR}, #{properties, jdbcType=VARCHAR}
-    )
-</insert>
-
-	<insert id="kakaoSignupAddInfo" >
-    	<selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
-          	SELECT #{id} FROM social_member
-    	</selectKey>
-    
-    	INSERT INTO social_member
-    	(
-    	ID, ADDRESS1, ADDRESS2, ADDRESS3, GENDER, BIRTH_YEAR, BIRTH_MONTH, BIRTH_DAY ) VALUES (
-    	#{id}, #{address1,jdbcType=VARCHAR}, #{address2,jdbcType=VARCHAR}, #{address3,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
-    	#{birth_year,jdbcType=VARCHAR}, #{birth_month,jdbcType=VARCHAR}, #{birth_day,jdbcType=VARCHAR}
-    	)
+		
+		<selectKey keyProperty="member_no" order="BEFORE"
+			resultType="java.lang.Integer">
+			SELECT social_member_seq.nextval FROM dual
+		</selectKey>
+		
+		INSERT INTO social_member (MEMBER_NO, ID, EMAIL, SOCIAL_TYPE)
+		VALUES (#{member_no, jdbcType=INTEGER}, #{id, jdbcType=VARCHAR}, #{email, jdbcType=VARCHAR}, 'KAKAO')
 	</insert>
-	
-	
 
-	<select id="kakaoLogin" parameterType="java.util.HashMap">
+	<update id="kakaoSignupAddInfo">
+		update social_member set
+		address1 = #{address1},
+		address2 = #{address2},
+		address3 = #{address3},
+		gender = #{gender},
+		birth_year = #{birth_year} ,
+		birth_month =#{birth_month} ,
+		birth_day = #{birth_day}
+	</update>
 
-		select * from social_member where id={id} and email=#{email}
-
-	</select>
 
 </mapper>

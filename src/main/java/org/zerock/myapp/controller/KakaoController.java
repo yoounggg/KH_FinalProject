@@ -50,8 +50,8 @@ public class KakaoController {
 		SocialMemberDTO socialMemberDTO = new SocialMemberDTO();
 		socialMemberDTO.setId((String) userinfo.get("id"));
 		socialMemberDTO.setEmail((String) userinfo.get("email"));
-		socialMemberDTO.setProfile_nickname((String) userinfo.get("profile"));
-		socialMemberDTO.setNickname((String) userinfo.get("nickname"));
+//		socialMemberDTO.setProfile((String) userinfo.get("profile"));
+//		socialMemberDTO.setNickname((String) userinfo.get("nickname"));
 		
 		// SocialMemberDTO 객체를 이용하여 회원가입을 진행합니다.
 		socialMemberService.kakaoSignup(socialMemberDTO);

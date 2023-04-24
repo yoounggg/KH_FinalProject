@@ -4,19 +4,17 @@ import lombok.Data;
 
 @Data
 public class SocialMemberDTO {
-
+	
+	private Integer member_no;
 	private String id;
-	private String profile_nickname;
 	private String email;
-	private String nickname;
-	private String properties;
-
+	private String social_type;
 	private Integer address1;
 	private String address2;
 	private String address3;
 	private String gender;
-	private String birth_year;
-	private String birth_month;
-	private String birth_day;
+	private Integer birth_year;
+	private Integer birth_month;
+	private Integer birth_day;
 	
 } // end class
