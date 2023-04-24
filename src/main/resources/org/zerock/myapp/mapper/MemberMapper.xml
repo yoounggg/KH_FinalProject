@@ -28,13 +28,13 @@
 		</select>
 		
 		<!-- 셍나 아이디 찾기 : 휴대폰 인증 (이름, 전화번호) -->
-		<select id="findIdP" resultType="org.zerock.myapp.domain.MemberDTO">
-			SELECT
-				ID
-			FROM
-				MEMBER
-			WHERE
-				NAME = #{name}
+		<select id="idCheck" parameterType="String" resultType="int">
+			SELECT 
+				COUNT(*) 
+			FROM 
+				member 
+			WHERE 
+				NAME = #{name} 
 				AND TEL = #{tel}
 		</select>
 		

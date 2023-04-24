@@ -14,7 +14,6 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 
 @Controller
-//@RequestMapping("/signup")
 
 @Log4j2
 @NoArgsConstructor
@@ -46,15 +45,10 @@ public class HpCheckController {
 		
 		log.trace("userPhoneNumber : {} , ramdomNumber : {}  " , userPhoneNumber, randomNumber );
 		
-		
 		return Integer.toString(randomNumber);
+		
 	} // msgSend
 	
 //	========================================================================================================================
 	
-//	@PostMapping("/login/findid")
-//	@ResponseBody
-//	public int 
-	
-
 } // end class

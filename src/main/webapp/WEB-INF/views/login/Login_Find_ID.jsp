@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="/resources/css/login/Login_Find_ID.css">
     
 	<!-- 아이디 찾기 메인창 js -->
-    <script src="/resources/js/login/Login_Find_ID.js"></script>
+    <!-- <script src="/resources/js/login/Login_Find_ID.js"></script>  -->
 
 </head>
 
@@ -43,25 +43,42 @@
 
                     <!-- 아이디 찾기 wrap -->
 				    <ul class="find_id_wrap">
-                            <!-- 휴대폰 인증 버튼 -->
-				            <li id="find_id_p_btn" class="find_id_active">휴대폰 인증</li>
+						<!-- 휴대폰 인증 버튼 -->
+				        <li id="find_id_p_btn" class="find_id_active">휴대폰 인증</li>
 
-                            <!-- 이메일 인증 버튼 -->
-				            <li id="find_id_e_btn">이메일 인증</li>
+                        <!-- 이메일 인증 버튼 -->
+				        <li id="find_id_e_btn">이메일 인증</li>
 				    </ul>
                     
                     <!-- 아이디 찾기 - 핸드폰 번호 인증 -->
 				    <form id="find_id_p_form" class="find_id_form">
 				        <input type="text"class="find_id_p_input" placeholder="이름을 입력해주세요." required>
 				        <input type="tel" placeholder="휴대폰 번호를 입력해주세요." required>
-            			<button type="submit" class="val_button">인증번호 발송</button>
+            			
+						<button type="button" class="findid_button_p">아이디 찾기</button>
+            			<!-- 아이디 찾기 버튼 클릭 이후 생기는 입력창 -->
+            			<div class="p_verification" style="display: none;">
+                        	<input type="text" class="p_verification_input" placeholder="인증번호를 입력해주세요." required>
+                        	<!-- 확인 버튼 -->
+                        	<button type="button" class="p_verify_button">확인</button>
+                    	</div>
 				    </form>
 
                     <!-- 아이디 찾기 - 이메일 인증 -->
 			        <form id="find_id_e_form" class="find_id_form" style="display: none;">
-			            <input type="text" class="find_id_p_input" placeholder="이름을 입력해주세요." required>
+			            <input type="text" class="find_id_e_input" placeholder="이름을 입력해주세요." required>
+			            <!-- 
+			            <input type="hidden" name ="name" data-name="${db_name}" id="checkDbName">
+			            -->
 			            <input type="email" placeholder="이메일 주소를 입력해주세요." required>
-			            <button type="submit" class="val_button">인증번호 발송</button>
+			            
+						<button type="button" class="findid_button_e">아이디 찾기</button>
+			            <!-- 아이디 찾기 버튼 클릭 이후 생기는 입력창 -->
+			            <div class="e_verification" style="display: none;">
+                        	<input type="text" class="e_verification_input" placeholder="인증번호를 입력해주세요." required>
+                        	<!-- 확인 버튼 -->
+                        	<button type="button" class="e_verify_button">확인</button>
+                    	</div>
 			        </form>
 
     			</div>
@@ -76,7 +93,6 @@
 	<!-- DOM이 완전히 로드되지 않은 상태에서 스크립트가 실행되는 것을 막기 위해 아래에다가 위치시키기! -->
     <!-- 아이디 찾기 메인창 js -->
     <script src="/resources/js/login/Login_Find_ID.js"></script>
-    
 </body>
 
 </html>

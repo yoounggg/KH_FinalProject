@@ -14,19 +14,19 @@ import lombok.extern.log4j.Log4j2;
 public class IdCheckServiceImpl implements IdCheckService {
 
 	@Autowired
-	IdCheckMapper mapper;
+	IdCheckMapper idCheckMapper;
 	
 	// 아이디 중복체크
 	@Override
 	public int idCheck(String id) {
 		log.trace("id ({})invoked. 서비스 impl", id);
 		
-		int cntId = mapper.idCheck(id);
+		int cntId = idCheckMapper.idCheck(id);
 		
 		log.trace("cnt : {} invoked ", cntId);
 		
 		return cntId;
+		
 	} // idCheck
-	
 	
 } // end class

@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-*{/* *이랑 body차이가 뭐지....... */
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -85,7 +85,10 @@ flex-grow 속성 값은 양의 정수 또는 0이며,
 }
 
 /* 입력창 속성 */
-input[type="text"].find_id_p_input, /* 수정 완! */
+input[type="text"].find_id_p_input,
+input[type="text"].find_id_e_input,
+input[type="text"].p_verification_input,
+input[type="text"].e_verification_input,
 input[type="tel"],
 input[type="email"] {
     width: 100%;
@@ -99,12 +102,16 @@ input[type="email"] {
 
 /* 이거 수정해야지 검색창 뚱대지 안댐 -ㅇ- */
 /* 수정 완! */
-input[type="text"].find_id_p_input {
+input[type="text"].find_id_p_input,
+input[type="text"].find_id_e_input,
+input[type="text"].p_verification_input,
+input[type="text"].e_verification_input {
     margin: 30px 0 8px;
 }
 
 /* 인증번호 발송 버튼 */
-button.val_button {
+button.findid_button_p,
+button.findid_button_e {
     width: 100%;
     background-color: #11BC0D;
     color: white;
@@ -118,7 +125,50 @@ button.val_button {
 }
 
 /* 인증번호 발송 버튼 hover 효과 */
-button.val_button:hover {
+button.findid_button_p:hover,
+button.findid_button_e:hover {
+    opacity: 0.8;
+}
+
+/* 확인 버튼 */
+button.p_verify_button,
+button.e_verify_button {
+    width: 100%;
+    background-color: #11BC0D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* 확인 버튼 hover 효과 */
+button.p_verify_button:hover,
+button.e_verify_button:hover {
+    opacity: 0.8;
+}
+
+
+/* 인증번호 발송 이후 생기는 확인 버튼 */
+button.re_val_button {
+    width: 100%;
+    background-color: #11BC0D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* 확인 버튼 hover 효과 */
+button.re_val_button:hover {
     opacity: 0.8;
 }
 
@@ -131,14 +181,3 @@ button.val_button:hover {
     margin-bottom: 10px;
     font-size: 13px;
 }
-
-/* 인증번호 입력창 스타일 */
-.verification-input {
-    width: 100%;
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    margin-top: 20px;
-}
-

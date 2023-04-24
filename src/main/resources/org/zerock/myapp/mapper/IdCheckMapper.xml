@@ -6,7 +6,6 @@
 
 <mapper namespace="org.zerock.myapp.mapper.IdCheckMapper">
 
-
 	<!-- 아이디 중복 체크 -->
 	<select id="idCheck" parameterType="String" resultType="int">
 		SELECT COUNT(ID) FROM member WHERE ID= #{id}
