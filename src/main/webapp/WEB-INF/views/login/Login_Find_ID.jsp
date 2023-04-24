@@ -73,6 +73,10 @@
     <!-- footer -->
     <%@include file= "../common/footer.jsp" %>
     
+	<!-- DOM이 완전히 로드되지 않은 상태에서 스크립트가 실행되는 것을 막기 위해 아래에다가 위치시키기! -->
+    <!-- 아이디 찾기 메인창 js -->
+    <script src="/resources/js/login/Login_Find_ID.js"></script>
+    
 </body>
 
 </html>

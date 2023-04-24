@@ -26,7 +26,29 @@
 		    WHERE 
 		        ID = #{id} 
 		</select>
-	
+		
+		<!-- 셍나 아이디 찾기 : 휴대폰 인증 (이름, 전화번호) -->
+		<select id="findIdP" resultType="org.zerock.myapp.domain.MemberDTO">
+			SELECT
+				ID
+			FROM
+				MEMBER
+			WHERE
+				NAME = #{name}
+				AND TEL = #{tel}
+		</select>
+		
+		<!-- 셍나 아이디 찾기 : 이메일 인증 (이름, 이메일) -->
+		<select id="findIdE" resultType="org.zerock.myapp.domain.MemberDTO">
+			SELECT
+				ID
+			FROM
+				MEMBER
+			WHERE
+				NAME = #{name}
+				AND EMAIL = #{email}
+		</select>
+
 		<!-- 혁규 회원가입 -->
 		<insert id="memberSignup" >
 		  INSERT INTO member (
