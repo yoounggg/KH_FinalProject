@@ -194,11 +194,11 @@ h2{
             padding : 8px;
         }
 
-        table td {
-            padding: 14px 10px 13px 10px;
+        .notice_detail {
+            padding-top: 10px;
             border-bottom: 1px solid #ceced2;
-            text-align: center;
-            font-size: 13px;
+            font-size: 16px;
+            min-height: 500px;
             
         }
 
@@ -222,13 +222,6 @@ h2{
             /* font-weight: 700; */
             /* text-align: center; */
         }
-
-        h1, p {
-            padding: 2px;
-            margin: 0;
-            color: #4f4f4f;
-        }
-
 
         .helf_box2 {
             /* display: inline-block; */
@@ -263,7 +256,7 @@ h2{
        /* =================================================== */
        
        
-       	        .content_list {
+		.content_list {
             border-top: none;
         }
 
@@ -273,31 +266,27 @@ h2{
             margin-bottom: 0px;
         }
 
-        table th {
+        th {
             border-bottom: 1px solid #ceced2;
             padding : 8px;
-            font-size: large;
+            font-size: 22px;
+            font-weight: 700;
+            width: 740px;
+            height: 100px;
         }
-
-        table td {
-            padding: 14px 10px 13px 10px;
-            border-bottom: 1px solid #ceced2;
-            text-align: center;
-            font-size: large;
-
-            height: 500px;
-            
-        }
+        
 
         .title {
             text-align: left;
         }
 
         h4 {
-            text-align: center;
+           text-align: center;
+           color: white;
         }
 
-        button {
+        #listBtn {
+           margin: 15px;
            width: 200px;
            height: 50px;
            border: none;
@@ -305,3 +294,9 @@ h2{
            color: white;
            font-size: large;
         }
+        
+        #Btn {
+        	color: white;
+        }
+        
+        
