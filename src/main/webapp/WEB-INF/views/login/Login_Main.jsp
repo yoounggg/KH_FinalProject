@@ -31,7 +31,6 @@
 
             <div class="login_container">
 			
-                <!-- <form action="/Login_Main" id="login_form" method="post"> -->
                 <form id="login_form" action="/login" method="post">
                     <div class="login_title">로그인</div>
 

@@ -112,11 +112,8 @@ $(document).ready(function () {
 	});
 	
 	// 휴대폰 인증 - 확인 버튼 클릭 이벤트
-	$(".p_verify_button").click(function () {
-		// 휴대폰 인증 확인 버튼 클릭 이벤트를 여기에 작성하시면 됩니다.
-		
-		num_compare();
-		
+	$(".p_verify_button").on("click", function() {
+	  num_compare();
 	});
 
 // ======================================================
@@ -179,52 +176,55 @@ $(document).ready(function () {
 var timer;
 
 function smsSend() {
-    var tel = $("#tel").val();
-    // 문자 전송
-    $.ajax({
-        type: "get",
-        url: "/login/findid/telCheck?tel=" + tel,
-        cache: false,
-        success: function (randomNumber) {
-            if (randomNumber == "error") {
-                //에러 떴을때
-                ;;
-            } else {
-                console.log("문자전송")
-               
-                random_num = randomNumber;                                      // 난수 저장
+  var tel = $("#tel").val();
 
-                console.log("인증번호 : " + random_num);
+  // 문자 전송
+  $.ajax({
+    type: "get",
+    url: "/login/findid/telCheck?tel=" + tel,
+    cache: false,
+    success: function (randomNumber) {
+      if (randomNumber == "error") {
+        //에러 떴을때
+        ;;
+      } else {
+        console.log("문자전송")
 
-                // 타이머 시작
-                var count = 180;  // 180초
+        var random_num = randomNumber; // 지역 변수로 변경
 
-                timer = setInterval(function () {
-                    count--;
-                    var minutes = Math.floor(count / 60);        // 분 계산
-                    var seconds = count % 60;                    // 초 계산
-                    document.querySelector("#countdown").textContent = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;  // 카운트 다운 업데이트
-                    if (count == 0) {  // 타이머 0일때
-                        clearInterval(timer);  // 타이머 종료
-                        document.querySelector("#input_hp").readOnly = false;     // 휴대폰 번호 입력창 읽기전용 풀기
-                        document.querySelector("#hp_confirm").disabled = false;  // 인증하기 버튼 활성화
-                        document.querySelector("#hp_confirm").style.backgroundColor = "#10bc0d";
-                        popup_on9();  // 인증시간이 만료되었습니다.
-                        document.getElementById("num_form").style.display = "none";  // 인증번호 입력창 숨김
-                        document.getElementById("input_num").value = "";             // 인증번호 값 초기화
-                    }
-                }, 1000);  // 1초마다 타이머 작동
-            }
-        }
-    });
-};
+        console.log("인증번호 : " + random_num);
+
+        // 타이머 시작
+        var count = 180; // 180초
+
+        timer = setInterval(function () {
+          count--;
+          var minutes = Math.floor(count / 60); // 분 계산
+          var seconds = count % 60; // 초 계산
+          document.querySelector("#countdown").textContent = minutes + ":" + (seconds < 10 ? "0" : "") + seconds; // 카운트 다운 업데이트
+          if (count == 0) {
+            // 타이머 0일때
+            clearInterval(timer); // 타이머 종료
+            document.querySelector("#input_hp").readOnly = false; // 휴대폰 번호 입력창 읽기전용 풀기
+            document.querySelector("#hp_confirm").disabled = false; // 인증하기 버튼 활성화
+            document.querySelector("#hp_confirm").style.backgroundColor = "#10bc0d";
+            popup_on9(); // 인증시간이 만료되었습니다.
+            document.getElementById("num_form").style.display = "none"; // 인증번호 입력창 숨김
+            document.getElementById("input_num").value = ""; // 인증번호 값 초기화
+          }
+        }, 1000); // 1초마다 타이머 작동
+
+        return random_num; // 난수 반환
+      }
+    },
+  });
+}
 
 function num_compare() {
-    if ($("#p_verification_input").val() == random_num) {           // 입력된 값과 난수 값 같다면
-        alert("인증번호가 일치합니다.");                                   // 인증되었습니다.
-        clearInterval(timer);                           // 타이머 멈춤
-
-    } else if ($("#p_verification_input").val() != random_num) {   // 다르다면
-        alert("인증번호가 일치하지 않습니다.");                                      // 인증번호가 틀렸습니다.
+    if ($("#p_verification_input").val() == random_num) {           
+        alert("인증번호가 일치합니다.");                                   
+        clearInterval(timer);                           
+    } else if ($("#p_verification_input").val() != random_num) {   
+        alert("인증번호가 일치하지 않습니다.");                                      
     }
 };
