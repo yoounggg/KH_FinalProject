@@ -21,36 +21,102 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+  <!--  <script src="https://cdn.iamport.kr/v1/iamport.js"></script> -->
     
-    <script>
+ <!--<script>
+ function requestPay() {
+	  const IMP = window.IMP;
+	  IMP.init("imp11157675");
 
-    function requestPay() {
-	    const IMP = window.IMP;
-	    IMP.init("imp11157675"); 
+	  var productId = $(".individual_productId_input").val();
+	  var productName = $(".individual_productName_input").val();
+	  var price = parseFloat($(".finalTotalPrice_span").text().replace(',', ''));
+	  var email = $("#email_input").val();
+	  var name = $("#name_input").val();
+	  var tel = $("#phone_input").val();
+	  var addr = $(".memberAddress2").val() + " " +  $(".memberAddress3").val();
+	  var postcode = $(".memberAddress1").val();
+	  var merchant_uid = new Date().getTime().toString();
+	  var uid = '';
 
-            IMP.request_pay({
-                pg : 'html5_inicis',
-                pay_method : 'card',
-                merchant_uid: "57008833-33004", 
-                name : '당근 10kg',
-                amount : 1004,
-                buyer_email : 'Iamport@chai.finance',
-                buyer_name : '포트원 기술지원팀',
-                buyer_tel : '010-1234-5678',
-                buyer_addr : '서울특별시 강남구 삼성동',
-                buyer_postcode : '123-456'
-            }, function (rsp) { // callback
-                if (rsp.success) {
-                    console.log(rsp);
-                } else {
-                    console.log(rsp);
-                }
-            });
-    }
+	  IMP.request_pay({
+	    pg: 'html5_inicis',
+	    pay_method: 'card',
+	    merchant_uid: merchant_uid,
+	    name: productName,
+	    amount: price,
+	    buyer_email: email,
+	    buyer_name: name,
+	    buyer_tel: tel,
+	    buyer_addr: addr,
+	    buyer_postcode: postcode
+	  }, function(rsp) { // callback
+	    if (rsp.success) {
+	      console.log(rsp);
+	      var dto = {
+	        productId: productId,
+	        productName: productName,
+	        price: price,
+	        email: email,
+	        name: name,
+	        tel: tel,
+	        addr: addr,
+	        postcode: postcode,
+	        merchantUid: merchant_uid,
+	        uid: uid
+	      };
+	      $.ajax({
+	        url: '/order',
+	        method: 'POST',
+	        data: dto,
+	        success: function(data) {
+	          console.log(data);
+	          window.location.href = "/order/orderSuccess";
+	        },
+	        error: function(xhr, status, error) {
+	          console.log(xhr);
+	        }
+	      });
+	    } else {
+	      console.log(rsp);
+	    }
+	  });
+	}
+</script>  -->
 
+	<script>
+	
+	$(document).ready(function() {
+		$(".order_btn").on("click", function() {
+		  /* 주소 정보 & 받는이*/
+		  $(".locate_addressInfo").each(function(i, obj) {
+		    if ($(obj).find(".selectAdressee").val() == 'T') {
+		      $("input[name='addressee']").val($(obj).find(".name_input_r").val());
+		      $("input[name='memberAddr1']").val($(obj).find(".address_input_r").val());
+		      $("input[name='memberAddr2']").val($(obj).find(".address_input2_r").val());
+		      $("input[name='memberAddr3']").val($(obj).find(".address_input3_r").val());
+		    }
+		  });
+		
+		/* 상품정보 */
+		let form_contents = '';
+		$(".products_table_price_td").each(function(index, element) {
+		  let productId = $(element).find(".individual_productId_input").val();
+		  let productCount = $(element).find(".individual_productCount_input").val();
+		  let productId_input = "<input name='orders[" + index + "].productId' type='hidden' value='" + productId + "'>";
+		  form_contents += productId_input + "\n";
+		  let productCount_input = "<input name='orders[" + index + "].productCount' type='hidden' value='" + productCount + "'>";
+		  form_contents += productCount_input + "\n";
+		});
+		$(".order_form").append(form_contents);
+		
+		  /* 주문 양식 제출 */
+		  $(".order_form").submit();
+		}); 
+	});
+	
 	</script>
-    
+ 
     <script>
 	    $(document).ready(function(){
 	    	
@@ -111,6 +177,7 @@
 									<td class="products_table_price_td">
 										<fmt:formatNumber value="${ol.price}" pattern="#,### 원" /> | 수량 ${ol.productCount}개
 										<br><fmt:formatNumber value="${ol.totalPrice}" pattern="#,### 원" />
+										<input type="hidden" class="individual_productName_input" value="${ol.name}">
 										<input type="hidden" class="individual_productPrice_input" value="${ol.price}">		
 										<input type="hidden" class="individual_productCount_input" value="${ol.productCount}">
 										<input type="hidden" class="individual_totalPrice_input" value="${ol.productCount * ol.price}">
@@ -174,24 +241,24 @@
             <hr class="separator">
 
            <!-- <div class="locate">  --> 
-            
+           <div class="locate_addressInfo">
 				<div class="locate address_btn address_btn_1">
 					<div class="input_row2">
 	                    <label for="name_title_r">이름</label>
-	                    <input type="text" id="name_input_r" name="name" placeholder="이름을 입력하세요">
+	                    <input type="text" class="name_input_r" name="name" placeholder="이름을 입력하세요">
 	                </div>
 	
 	                <div class="input_row2">
 	                    <label for="address_title_r">주소</label>
 						
 						<input class="selectAdressee" value="F" type="hidden">
-						<input type="text" id="address_input_r" placeholder="우편번호">
+						<input type="text" class="address_input_r" placeholder="우편번호">
 	                    <input type="button" onclick="sample4_execDaumPostcode()" value="주소입력" class="address_button" ><br>
 	                    <div></div>
-	                    <input type="text" id="address_input2_r" placeholder="ㅇㅇㅇㅇ">
+	                    <input type="text" class="address_input2_r" placeholder="ㅇㅇㅇㅇ">
 	
 	                  	<div></div>
-	                  	<input type="text" id="address_input3_r"" placeholder="ㅇㅇㅇㅇ">
+	                  	<input type="text" class="address_input3_r" placeholder="ㅇㅇㅇㅇ">
 	                    <div></div>
 	                  	<!-- <input  type="text" id="address_input4_r" value="상세주소">   -->
 	                </div>
@@ -199,29 +266,28 @@
 	                <div class="input_row2">
 	                    <label for="phone_title_r">연락처</label>
 	                    <input type="phone" id="phone_input_r" name="phone" placeholder="000-0000-0000">
-	                </div>
-	                       
+	                </div>    
 				</div>
 				
 				<div class="address_btn_2_wrap" style="display: none;">
-
-						<div class="locate address_btn address_btn_2">
+				
+					<div class="locate address_btn address_btn_2">
 						<div class="input_row2">
 		                    <label for="name_title_r">이름</label>
-		                    <input type="text" id="name_input_r" name="name" value="${memberInfo.name}">
+		                    <input type="text" class="name_input_r" name="name" value="${memberInfo.name}">
 		                </div>
 		
 		                <div class="input_row2">
 		                    <label for="address_title_r">주소</label>
 							
 							<input class="selectAdressee" value="T" type="hidden">
-							<input type="text" id="address_input_r" value="${memberInfo.address1}">
+							<input type="text" class="address_input_r" value="${memberInfo.address1}">
 		                    <input type="button" onclick="sample4_execDaumPostcode()" value="주소입력" class="address_button" ><br>
 		                    <div></div>
-		                    <input type="text" id="address_input2_r" value="${memberInfo.address2}">
+		                    <input type="text" class="address_input2_r" value="${memberInfo.address2}">
 		
 		                  	<div></div>
-		                  	<input type="text" id="address_input3_r" value="${memberInfo.address3}">
+		                  	<input type="text" class="address_input3_r" value="${memberInfo.address3}">
 		                    <div></div>
 		                  	<!-- <input  type="text" id="address_input4_r" value="상세주소">   -->
 		                </div>
@@ -234,28 +300,23 @@
 					</div>
 				
 				</div>
-				
-				<div class="locate">
-				
-					<div class="input_row2">
-		                    <label for="request_title_r">배송 요청사항</label>
-		
-		                    <select name='selbox' id="배송요청사항" onchange="selectMemo(this)">
-		                        <option value='' selected id="선택">--------------------- 선택 ---------------------</option>
-		                        <option value='부재시, 연락 바랍니다.'>부재시, 연락 바랍니다.</option>
-		                        <option value='부재시, 무인 택배함 보관 후 연락바랍니다.'>부재시, 무인 택배함 보관 후 연락바랍니다.</option>
-		                        <option value='부재시, 경비실에 맡겨주세요.'>부재시, 경비실에 맡겨주세요.</option>
-		                        <option value="직접입력">직접입력</option>
-		                    </select>
-		                    <br>
-		
-		                <input id="selboxDirect" type="text" placeholder="직접 입력하세요" style="display: none;">     
-		                
-		              </div> 
-	              
-	              </div>   
 
-          <!--  </div> -->
+				<div class="input_row2">
+					<label for="request_title_r">배송 요청사항</label> <select name='selbox'
+						id="배송요청사항" onchange="selectMemo(this)">
+						<option value='' selected id="선택">---------------------
+							선택 ---------------------</option>
+						<option value='부재시, 연락 바랍니다.'>부재시, 연락 바랍니다.</option>
+						<option value='부재시, 무인 택배함 보관 후 연락바랍니다.'>부재시, 무인 택배함 보관 후
+							연락바랍니다.</option>
+						<option value='부재시, 경비실에 맡겨주세요.'>부재시, 경비실에 맡겨주세요.</option>
+						<option value="직접입력">직접입력</option>
+					</select> <br> <input id="selboxDirect" type="text"
+						placeholder="직접 입력하세요" style="display: none;">
+
+				</div>
+
+			</div> 
             
         </div>
 
@@ -269,7 +330,7 @@
             	<ul>
             		<li>
             			<span id="정보">총 상품 가격</span>
-            			<span class="totalPrice_span">100000</span>원
+            			<span class="totalPrice_span"></span>원
             		</li>         		
             		<li>
             			<span id="정보">할인금액</span>
@@ -277,7 +338,7 @@
             		</li>
             		<li>
             			<span id="정보">배송비</span>
-            			<span class="delivery_price_span">1000</span>원
+            			<span class="delivery_price_span"></span>원 
             		</li>
             	
             		<li class="pricae_total_lo">
@@ -288,9 +349,21 @@
             		</li>
             	</ul>
             </div>
-        </div> 
+        </div>
+        
 
-		 <button onclick="requestPay()" class="결제팝업" >결제하기</button>
+         <form class="order_form" action="/order" method="post">
+  
+        	<input name="memberId" value="${member.id}" type="hidden">
+       
+        	<input name="addressee" type="hidden">
+        	<input name="memberAddr1" type="hidden">
+        	<input name="memberAddr2" type="hidden">
+        	<input name="memberAddr3" type="hidden">
+        	
+         </form>
+
+		 <button class="order_btn" >결제하기</button>
     </div>
 
 	<%@include file= "../common/footer.jsp" %>
