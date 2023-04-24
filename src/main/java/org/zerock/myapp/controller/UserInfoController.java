@@ -1,11 +1,15 @@
 package org.zerock.myapp.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,6 +37,7 @@ public class UserInfoController {
 	
 	@Setter(onMethod_=@Autowired) // 핸드폰 인증 서비스 주입
 	private MsgSendService msgservice;
+
 
 	
 	//1. 회원상세조회
@@ -89,10 +94,52 @@ public class UserInfoController {
 		return Integer.toString(randomNumber);
 	} // sendSMS
 	
+//	===========================================================================
+	//4. 비밀번호 변경
+	
+	//4-1. 기존비밀번호와 일치하는지 확인
+
+	@PostMapping("/{id}/checkPw")
+	public @ResponseBody String checkPw(@RequestParam("password") String password, @PathVariable("id") String id, Model model) throws Exception{
+		log.info("checkPw({}, {}) invoked", password, id);
+		
+		String result = "";
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
+		MemberDTO dto = this.service.userDetail(id);
+		log.info("dto({})", dto);
+//		model.addAttribute("details", dto); // 모델 == details
+		
+//		MemberDTO dto = (MemberDTO) session.getAttribute("details");
+//		log.info("DB 회원의 비밀번호:" + dto.getPassword());
+//		log.info("form에서 받아온 비밀번호: " + password);
+	
+		log.info("password:({})", password, "getPassword({})", dto.getPassword());
+		if(encoder.matches(password, dto.getPassword())) {
+			result = "true";
+
+		}else {
+			result = "false";
+
+		} // if else
+		return result;
+		
+	} // checkPw
+	
+	//4-2 새로운 비밀번호 변경
+//	@PostMapping("/{id}/changePw")
+//	public String changePw(@RequestBody MemberDTO dto, HttpSession session) throws Exception{
+//		log.info("비밀번호 변경 요청");
+//		
+//		pwservice.modifyPw(dto);
+//		
+//		MemberDTO changeUser = new MemberDTO();
+//		changeUser.set
+//	}
 	
 	
 //	===========================================================================
-	//4. 회원 정보 삭제
+	//5. 회원 정보 삭제
 		
 	@GetMapping("/{id}/delete")
 	public String deleteUser(@PathVariable("id") String id, RedirectAttributes rttrs) throws ControllerException{
