@@ -10,6 +10,12 @@
  			FROM product
  			WHERE No = #{No}
  		</select>
+ 		
+ 		<select id="getOrderInfo" resultType="org.zerock.myapp.domain.OrderItemDTO">
+			SELECT productId, price, discount
+			FROM product
+			WHERE no = #{no}
+		</select>
  </mapper>
  
  <!-- SELECT No, Name, Price, Discount  -->

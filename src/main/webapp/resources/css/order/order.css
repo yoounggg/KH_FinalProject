@@ -359,14 +359,14 @@ li{ list-style-type: none;}
 }
 
 /* 이름 입력창 위치 조정 */
-#name_input_r {
+.name_input_r {
     width:250px;
     margin-left: 90px;
     margin-bottom: 10px;
 }
 
 /* 주소입력 버튼 속성 */
-.address_button {
+#address_button {
     font-size: bold;
     width: 70px;
     padding: 5px;
@@ -378,18 +378,18 @@ li{ list-style-type: none;}
 }
 
 /* 주소 입력창 위치 조정 */
-#address_input_r {
+.address_input_r {
     margin-left: 90px;
 }
 /* 주소 입력창 위치 조정 */
-#address_input2_r {
+.address_input2_r {
     width:250px;
     margin-left: 125px;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 /* 주소 입력창 위치 조정 */
-#address_input3_r {
+.address_input3_r {
     /* width:250px; */
     margin-left: 125px;
     margin-bottom: 10px;
@@ -459,93 +459,21 @@ li{ list-style-type: none;}
     color: red;
 }
 
-.결제팝업 {
+.order_btn {
     background-color:#10bc0d;
     color:white;
     border: white;
     height:51px;
     width:180px;
     border-radius:5px;
-    margin-top: 90px;
+    margin-top: 120px;
     margin-left: 45%;
+    margin-bottom: 180px;
 }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* --------------aside--------------- */
-
-aside{
-    position: absolute;
-    top: 800px;
-    right: 20px;
-    bottom: -100%;
-}
-
-.container7{
-    position: sticky;
-    /* width: calc(80%+10px); */
-    top: 50%;
-    transform: translateY(-50%);
-
-    /* left: 50%; */
-    /* left: calc(80% + 10px);
-    top: 0; */
-}
-#choikun1{
-    /* position: absolute; */
-    /* right: -600px; */
-    /* top: 280px; */
-    width: 80px;
-    height: 220px;
-    border-radius: 20px;
-    background-color: #F9F9F4;
-    font-size: 12px;
-}
-
-#choikun2{
-    margin: 0 0 20px 0;
-    padding: 15px 0 10px 0;
-    text-align: center;
-}
-
-#choikun1 img{
-    width: 50px;
-    height: 50px;
-    padding: 5px;
-    border-radius: 70%;
-}
-
-#topbtn{
-    height: 30px;
-    width: 80px;
-    border: 1px solid #11BC0D;
-    border-radius: 20px;
-    background-color: #11BC0D;
-    color: white;
-    font-weight: bold;
-    font-size: 15px;
-}
 
 /* --------------footer------------------- */
 

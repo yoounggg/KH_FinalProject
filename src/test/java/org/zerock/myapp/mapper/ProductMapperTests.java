@@ -114,17 +114,17 @@ public class ProductMapperTests {
 		
 			ProductDTO dto = new ProductDTO();
 			dto.setCategory("test");
-			dto.setName("감차빵dq");
-			dto.setPrice(3000);
+			dto.setName("셍나네 병아리");
+			dto.setPrice(10);
 			dto.setDiscount(10);
-			dto.setDiscount_price(2700);
+			dto.setDiscount_price(1);
 			dto.setWeight("2kgqd");
-			dto.setOrigin("국산(강원도 춘천시q)");
+			dto.setOrigin("국산(서울특별시 송파구)");
 			dto.setStock(10);
 			dto.setFarm_no(1);
 			dto.setMain_image("test");
 			
-			dto.setContent("먹고말테야.");
+			dto.setContent("노오란맛.");
 			dto.setContent_image("cowntent_image1");
 			
 			log.trace("Before ProductDTO : " + dto);

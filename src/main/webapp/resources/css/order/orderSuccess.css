@@ -1,0 +1,321 @@
+@charset "utf-8";
+
+/* 주문완료창 전체를 묶는 태그 */
+.wrapper {
+    height: 1200px;
+}
+
+/* 주문완료 타이틀 속성 */
+.주문완료 {
+    font-size: 25px;
+    top: 90px;
+    left: 10%;
+    position:relative;
+    /* font-size: 20px; */
+    font-weight: bold;
+}
+.line {
+    width: 80%;
+    border:1px solid black;
+    top:100px;
+    left: 10%;
+    position:relative;
+
+}
+/* 주문완료 안내문 */
+.인사 {
+    font-size: 25px;
+    text-align: center;
+    color: #11BC0D;
+    width: 70%;
+    height: 250px;
+    /* border: solid 1px black; */
+    top: 130px;
+    left: 14%;
+    position:relative;
+    font-weight: bold;
+
+    margin-top: 100px;
+}
+/* 주문내역 타이틀*/
+.주문내역 {
+    font-size: 25px;
+    top: 200px;
+    left: 10%;
+    position:relative;
+    font-weight: bold;
+}
+/* 주문내역 박스 위치 조정 */
+.주문내역박스 {
+    width: 80%;
+    /* border:1px solid black; */
+    top:220px;
+    left: 135px;
+    position:relative;
+}
+.line2 {
+    width: 80%;
+    border:1px solid black;
+    top:210px;
+    left: 10%;
+    position:relative;
+}
+/* .주문내역1 {
+    top: 260px;
+    left: 14%;
+    width: 280px;
+    position:relative;
+
+    border:1px solid black;
+} */
+/* 주문내역 박스 전체 위치 조정*/
+.주문내역박스 {
+    display: flex;
+    justify-content: space-between; /* flex container 내부의 flex 아이템들을 수평 방향으로 정렬 */
+    align-items: flex-start; /* flex container 내부의 flex 아이템들을 수직 방향으로 정렬 */
+    margin-top: 20px;
+}
+
+/*왼쪽 주문자정보*/
+.left-box {
+    padding: 15px;
+    border: 1px solid black;
+    width: 40%;
+    margin-left: 80px;
+}
+
+/*오른쪽 결제정보*/
+.right-box {
+    padding: 15px;
+    border: 1px solid black;
+    width: 40%;
+    margin-right: 80px;
+}
+
+/* */
+.input-box {
+    display: flex; /* 이거 뭔데...? 한번만에 가로정렬됨!*/ /*container 내부의 item들이 수평 방향으로 배치*/
+    margin-bottom: 10px;
+}
+
+/* 박스 내부의 name 입력창 크기를 조절해야함  수정 필요!!!!! */
+.input-box > .name {
+    /* width: 30px; */
+}
+/* 박스 내부의 주소 입력창 3개 사이 간격을 조정해야함 수정 필요!!!!! */
+#address1 {
+    margin-bottom: 0px;
+}
+/* 2번째 주소 입력창 크기,위치 조정 */
+#address2 {
+    width: 300px;
+    margin-left: 135px;
+    margin-bottom: 10px;
+    height: 30px;
+}
+/* 박스 내부의 label 간격 조정 */
+.input-box label {
+    display: inline-block;
+    width: 100px;
+    margin-left: 20px;
+}
+/* 박스 내부의 입령창 크기 조정 */
+.input-box input,
+.input-box textarea {
+    width: 300px;
+    margin-left: 15px;
+    height: 30px;
+}
+.delivery {
+    margin-bottom : 0px; /* 안 먹히는듯..? */
+}
+
+/* 상품 정보 박스 내부의 가격표시되는 부분 위치 조정 */
+.price-box {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    margin-bottom: 10px;
+}
+
+.price-value {
+    margin-right: 40px;
+}
+
+/* 상품 정보 박스 내부의 label 위치 조정 */
+.price-label {
+    margin-left: 40px;
+}
+
+.total .price-value {
+    color: red;
+}
+
+/* 버튼 위치, 색상, 크기 조정 */
+.쇼핑계속하기 {
+    background-color:#10bc0d;
+    color:white;
+    border: white;
+    height:51px;
+    width:180px;
+    border-radius:5px;
+    margin-top: 380px;
+    margin-left: 44%;
+    font-weight: bold;
+    font-size: 17px;
+    /* position: relative; */
+    cursor: pointer;
+}
+
+
+
+/* 채영 */
+
+*{/* *이랑 body차이가 뭐지....... */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    min-width: 1026px;
+    height: 100vh;
+    min-height: 100%;
+    background-color: white;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* a, li태그 전체에 공통 적용 */
+a{ text-decoration: none;}
+
+li{ list-style-type: none;}
+
+/* --------------header-------------- */
+
+.container2{
+    padding: 0;
+    padding-top: 20px;
+    width: 80%;
+    margin: 0 auto; 
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+}
+
+.container2 li a{
+    width: 70px;
+    color: black;
+    font-size: 12px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+/* ------------------------------------------ */
+
+.container3{
+    padding: 10px 0 20px 0;
+    width: 80%;
+    /* height: 90px; */
+    margin: 0 auto;
+    position: relative;
+}
+
+#logo{
+    width: 150px;
+    height: 60px;
+    /* position: absolute; */
+    /* top: 10px; */
+    /* left: 20px; */
+
+}
+
+.search1{
+    position: absolute;
+    left: 50%; 
+    /* top: 10%; */
+    transform: translateX(-50%); 
+    /* align-items: center;  */
+    display: inline-block;
+    border: 5px solid #F9F9F4;
+    padding: 1px;
+    border-radius: 100px;
+
+    background-color: #F9F9F4;
+}
+
+.search1 .search-txt{
+    width: 300px;
+    /* height: 30px; */
+    border: none;
+    background-color: #F9F9F4;
+}
+
+.search1 .search-txt:focus{
+    border: none;
+    outline: none;
+/* 마우스 호버링 했을때 윤곽선 없애기 */
+}
+
+.search1 .search-btn{
+    height: 35px;
+    border: none;
+    background-color: #F9F9F4;
+    cursor: pointer;
+    /* font-family: FontAwesome; */
+}
+
+#btn{
+    width: 16px;
+    height: 16px;
+    border: none;
+    color: #F9F9F4;
+    background-color: #F9F9F4;
+}
+
+/* ----------------------nav--------------------- */
+
+.menu{
+    margin: 5px 0 20px 0;
+    background-color:#f9f9f4;
+}
+
+.container4{
+    padding: 0;
+    width: 80%;
+    /* height: 45px; */
+    margin: 0 auto;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+.container4 li{
+    /* 가로로 배열하면서 블록으로 하기 위해 */
+    display: inline-block;
+    width: 200px;
+
+    /* 가로로 중간 (세로로 중간까지 해야 글자가 정 가운데 올 듯) */
+    text-align: center;
+}
+
+.container4 li a{
+    height: 45px;
+    line-height: 45px;
+    font-size: 14px;
+    display: block;
+    color: black;
+}
+
+.fixedmenu{ /* 상단 메뉴 고정 -> jquery */  
+    width: 100%;
+    position: fixed;
+    top: 0px;
+}
+
+.dropdown-content2{
+    display: none;
+}
+
+
