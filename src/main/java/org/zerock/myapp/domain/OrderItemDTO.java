@@ -9,7 +9,7 @@ import lombok.extern.log4j.Log4j2;
 
 @Data
 public class OrderItemDTO {
-	
+	// product 테이블의 DTO??    // 하나의 주문상품정보를 담음
 	private String orderId; // 주문번호
 	private Integer productId; // 상품 번호
 	private Integer productCount; // 주문 수량
