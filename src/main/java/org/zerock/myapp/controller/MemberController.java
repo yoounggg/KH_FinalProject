@@ -2,11 +2,13 @@ package org.zerock.myapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.zerock.myapp.service.MemberService;
+import org.zerock.myapp.service.MsgSendService;
 
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,6 +27,10 @@ public class MemberController {
 	@Setter(onMethod_=@Autowired)
 	private MemberService memberService;
 	
+	// 아이디 찾기 휴대폰 인증 번호 받기!
+	@Setter(onMethod_ = { @Autowired })
+	MsgSendService msgCheckService;
+	
 	// 아이디 찾기 - DB에 회원 정보(이름, 전화번호) 존재하는 지 확인
 	@PostMapping("/findid/idCheck")
 	public @ResponseBody int idCheck(@RequestParam("name") String name, @RequestParam("tel") String tel) throws Exception {
@@ -36,6 +42,19 @@ public class MemberController {
 		
 		return cntIdCheck;
 		
-	} // id check
+	} // idCheck()
+	
+	@GetMapping("/findid/telCheck")
+	public @ResponseBody String msgSend(@RequestParam("tel") String userPhoneNumber) {	//문자 보내기
+		int randomNumber = (int)((Math.random() * 8999 ) + 1000 );			// 난수 1000 ~ 9999
+		
+		msgCheckService.msgSend(userPhoneNumber, randomNumber);
+		
+		log.trace("userPhoneNumber : {} , ramdomNumber : {}  " , userPhoneNumber, randomNumber );
+		
+		return Integer.toString(randomNumber);
+		
+	} // msgSend()
+	
 
 } // end class

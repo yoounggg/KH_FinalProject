@@ -265,7 +265,7 @@ $('#tel2').click(function(){
 		$('.successTelCk').css("color", "green");
 		$('#telDoubleChk').val("true");
 		$('tel2').attr("disabled", true);
-	} else{
+	} else {
 		$('.successTelCk').text("인증번호가 일치하지 않습니다. 확인해주시기 바랍니다");
 		$('.successTelCk').css("color", "red");
 		$('#telDoubleChk').val("false");
