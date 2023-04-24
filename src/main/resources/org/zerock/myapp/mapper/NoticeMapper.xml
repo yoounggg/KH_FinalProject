@@ -11,7 +11,7 @@
 
   <!-- 게시글 조건 조회 -->
   <select id="select" resultType="org.zerock.myapp.domain.NoticeVO">
-    SELECT * FROM notice
+    SELECT * FROM NOTICE
     WHERE no = #{no}
   </select>
   
