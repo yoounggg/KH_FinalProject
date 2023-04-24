@@ -69,7 +69,7 @@ $(document).ready(function () {
     // 2) 해당 전화번호로 인증 번호 발송 및 번호 비교
     
 	// 인증번호 발송 버튼 클릭 이벤트
-	var validate_num = "";
+	var random_num = "";
 	$(".send_verification_button_p").click(function () {
 	
 	    alert("인증번호가 발송되었습니다. \n인증번호를 확인해주세요.");
@@ -98,10 +98,8 @@ $(document).ready(function () {
 	                        $("#timer").html(timer + "초");
 	                        timer--;
 	                    } else {
-	                        clearInterval(countdown);
-	                        $("#timer").html("인증시간이 초과되었습니다. 다시 시도해주세요.");
 	                        $(".send_verification_button_p").prop('disabled', false);
-	                        validate_num = "";
+	                        random_num = "";
 	                    }
 	                }, 1000);
 	                // 타이머 끝
@@ -109,11 +107,6 @@ $(document).ready(function () {
 	        } // function
 	    });
 	
-	});
-	
-	// 휴대폰 인증 - 확인 버튼 클릭 이벤트
-	$(".p_verify_button").on("click", function() {
-	  num_compare();
 	});
 
 // ======================================================
@@ -174,6 +167,7 @@ $(document).ready(function () {
 });
 
 var timer;
+var random_num = "";
 
 function smsSend() {
   var tel = $("#tel").val();
@@ -194,27 +188,8 @@ function smsSend() {
 
         console.log("인증번호 : " + random_num);
 
-        // 타이머 시작
-        var count = 180; // 180초
-
-        timer = setInterval(function () {
-          count--;
-          var minutes = Math.floor(count / 60); // 분 계산
-          var seconds = count % 60; // 초 계산
-          document.querySelector("#countdown").textContent = minutes + ":" + (seconds < 10 ? "0" : "") + seconds; // 카운트 다운 업데이트
-          if (count == 0) {
-            // 타이머 0일때
-            clearInterval(timer); // 타이머 종료
-            document.querySelector("#input_hp").readOnly = false; // 휴대폰 번호 입력창 읽기전용 풀기
-            document.querySelector("#hp_confirm").disabled = false; // 인증하기 버튼 활성화
-            document.querySelector("#hp_confirm").style.backgroundColor = "#10bc0d";
-            popup_on9(); // 인증시간이 만료되었습니다.
-            document.getElementById("num_form").style.display = "none"; // 인증번호 입력창 숨김
-            document.getElementById("input_num").value = ""; // 인증번호 값 초기화
-          }
-        }, 1000); // 1초마다 타이머 작동
-
         return random_num; // 난수 반환
+        
       }
     },
   });
@@ -228,3 +203,8 @@ function num_compare() {
         alert("인증번호가 일치하지 않습니다.");                                      
     }
 };
+
+// 휴대폰 인증 - 확인 버튼 클릭 이벤트
+	$(".p_verify_button").on("click", function() {
+	  num_compare();
+	});
