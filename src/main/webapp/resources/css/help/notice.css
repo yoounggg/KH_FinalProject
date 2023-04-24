@@ -197,3 +197,17 @@ table td {
 .title {
 	text-align: left;
 }
+
+	  .pageInfo{
+	    list-style : none;
+	    display: inline-block;
+	    margin: 50px 0 0 100px;      
+	  }
+	  .pageInfo li{
+	    float: left;
+	    font-size: 20px;
+	    margin-left: 18px;
+	    padding: 7px;
+	    font-weight: 500;
+	  }
+	  
