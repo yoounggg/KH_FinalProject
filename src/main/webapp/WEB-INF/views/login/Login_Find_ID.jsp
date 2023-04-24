@@ -59,6 +59,7 @@
 						
 						<!-- 아이디 찾기 성공 이후 인증번호 발송 버튼으로 변경 -->
 						<button type="button" class="send_verification_button_p" style="display:none">인증번호 발송</button>
+						
             			<!-- 아이디 찾기 버튼 클릭 이후 생기는 입력창 -->
             			<div class="p_verification" style="display: none;">
                         	<input type="text" class="p_verification_input" placeholder="인증번호를 입력해주세요." required>

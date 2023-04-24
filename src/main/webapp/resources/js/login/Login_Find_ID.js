@@ -16,12 +16,7 @@ $(document).ready(function () {
         $("#find_id_p_form").css("display", "none");
     });
 
-// ======================================================
     // 아이디 찾기 - 휴대폰 인증 ajax
-    
-    // 1) 아이디 중복 검사
-    // 휴대폰 인증 (아이디 찾기 버튼) 클릭 이벤트 - 이름, 전화번호로 아이디 중복 검사 실행
-    // 아이디 존재하는 경우에 인증이 가능함.
     $(".findid_button_p").click(function (event) {
 
         event.preventDefault();
@@ -29,182 +24,111 @@ $(document).ready(function () {
         var name = $("#find_id_p_form input[type=text]").val();
         var tel = $("#find_id_p_form input[type=tel]").val();
 
-        // 사용자가 입력창에 값을 모두 입력해야만 함!
         if (!name || !tel) {
             alert("입력값을 모두 입력해주세요.");
             return;
-        } // if
+        }
 
-        // 입력값이 존재하면 ajax로 서버에 전송
         $.ajax({
-            url: "/login/findid/idCheck", // 서버의 경로
-            type: "POST", // POST 방식으로 전송
+            url: "/login/findid/idCheck",
+            type: "POST",
             data: {
                 name: name,
                 tel: tel
             },
             dataType: 'json',
             success: function (cntIdCheck) {
-                console.log(cntIdCheck);
+                cntIdCheck = parseInt(cntIdCheck);
 
-                cntIdCheck = parseInt(cntIdCheck); // 숫자형으로 변환
-
-                if (cntIdCheck === 1) {    // 이름, 전화번호 존재! -> MemberMapper.xml의 idCheck()를 통해 1 반환함 = 아이디가 존재함
-                    // 성공했을 경우
+                if (cntIdCheck === 1) {
                     $(".p_verification").css("display", "block");
                     alert("회원정보를 확인했습니다. 휴대폰 번호 인증을 진행해주세요.")
                     $(".findid_button_p").hide();
                     $(".send_verification_button_p").show();
                 } else {
-                    // 실패했을 경우
                     alert("회원정보를 찾지 못했습니다. 다시 확인해주세요.");
-                } // else
-            }, // success
+                }
+            },
             error: function (request, status, error) {
                 console.log("code = " + request.status + " message = " + request.responseText + " error = " + error);
-            } // error
-        }); // ajax
-    }); // click
-    
-    // 2) 해당 전화번호로 인증 번호 발송 및 번호 비교
-    
-	// 인증번호 발송 버튼 클릭 이벤트
-	var random_num = "";
-	$(".send_verification_button_p").click(function () {
-	
-	    alert("인증번호가 발송되었습니다. \n인증번호를 확인해주세요.");
+            }
+        });
+    });
 
-	    smsSend();                  // 인증 번호 전송함수 실행
-	
-	    var phone = $('#tel').val();
-	
-	    $.ajax({
-	        type: "GET",
-	        url: "/login/findid/telCheck?tel=" + tel,
-	        cache: false,
-	        success: function (randomNumber) {
-	            if (randomNumber == "error") {
-	                //에러 떴을때
-	                ;;
-	            } else {
-	                console.log("문자전송")
-	                random_num = randomNumber;                                      // 난수 저장
-	                console.log("인증번호 : " + random_num);
-	
-	                // 타이머 시작
-	                var timer = 180;
-	                var countdown = setInterval(function () {
-	                    if (timer > 0) {
-	                        $("#timer").html(timer + "초");
-	                        timer--;
-	                    } else {
-	                        $(".send_verification_button_p").prop('disabled', false);
-	                        random_num = "";
-	                    }
-	                }, 1000);
-	                // 타이머 끝
-	            } // else
-	        } // function
-	    });
-	
-	});
+    var random_num = "";
 
-// ======================================================
+    $(".send_verification_button_p").click(function () {
+        alert("인증번호를 인증번호 입력창에 입력해주세요.");
 
-    // 이메일 인증 (아이디 찾기 버튼) 클릭 이벤트 - 이름, 이메일로 아이디 중복 검사 실행
-    // 아이디 존재하는 경우에 인증이 가능함.
-	$(".findid_button_e").click(function (event) {
+        // 인증번호 입력창을 표시하도록 변경
+        $(".p_verification").css("display", "block");
 
-		event.preventDefault();
+        clearInterval(timerInterval);
+        timeLeft = 180;
 
-		var name = $("#find_id_e_form input[type=text]").val();
-		var email = $("#find_id_e_form input[type=email]").val();
+        // 아래에서 smsSend() 함수 호출을 추가
+        smsSend();
 
-		// 사용자가 입력창에 값을 모두 입력해야만 함!
-		if (!name || !email) {
-			alert("입력값을 모두 입력해주세요.");
-		return;
-		} // if
+        timerInterval = setInterval(function() {
+            timeLeft--;
 
-		// 입력값이 존재하면 ajax로 서버에 전송
-		$.ajax({
-			url: "/login/findid/idCheck", // 서버의 경로
-			type: "POST", // POST 방식으로 전송
-			data: {
-				name: name,
-				email: email
-			},
-			dataType: 'json',
-			success: function (cntIdCheck) {
-				console.log(cntIdCheck);
+            var minutes = Math.floor(timeLeft / 60);
+            var seconds = timeLeft % 60;
 
-				cntIdCheck = parseInt(cntIdCheck); // 숫자형으로 변환
+            var timerElement = document.createElement('div');
+            timerElement.classList.add('timer');
 
-				if (cntIdCheck === 1) {    // 이름, 이메일 존재! -> MemberMapper.xml의 idCheck()를 통해 1 반환함 = 아이디가 존재함
-				// 성공했을 경우
- 					$(".e_verification").css("display", "block");
-					alert("회원정보를 확인했습니다. 이메일 인증을 진행해주세요.");
-				} else {
-				// 실패했을 경우
-					alert("회원정보를 찾지 못했습니다. 다시 확인해주세요.");
- 				} // else
-			}, // success
-			error: function (request, status, error) {
-				console.log("code = " + request.status + " message = " + request.responseText + " error = " + error);
-			} // error
-		}); // ajax
-	}); // click
+            timerElement.innerHTML = minutes + "분 " + seconds + "초";
 
-	// 인증번호 발송 버튼 클릭 이벤트
-	$(".send_verification_button_e").click(function () {
-		// 이메일 인증 발송 버튼 클릭 이벤트를 여기에 작성하시면 됩니다.
-	});
+            var verificationElement = document.querySelector('.p_verification');
+            if (verificationElement) {
+                if (verificationElement.querySelector('.timer')) {
+                    verificationElement.removeChild(verificationElement.querySelector('.timer'));
+                }
+                verificationElement.appendChild(timerElement);
+            }
 
-	// 이메일 인증 - 확인 버튼 클릭 이벤트
-	$(".e_verify_button").click(function () {
-		// 이메일 인증 확인 버튼 클릭 이벤트를 여기에 작성하시면 됩니다.
-	});
-});
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+            }
+        }, 1000);
+    });
 
-var timer;
-var random_num = "";
 
-function smsSend() {
-  var tel = $("#tel").val();
+    function smsSend() {
+        var tel = $("#tel").val();
 
-  // 문자 전송
-  $.ajax({
-    type: "get",
-    url: "/login/findid/telCheck?tel=" + tel,
-    cache: false,
-    success: function (randomNumber) {
-      if (randomNumber == "error") {
-        //에러 떴을때
-        ;;
-      } else {
-        console.log("문자전송")
+        $.ajax({
+            type: "get",
+            url: "/login/findid/telCheck?tel=" + tel,
+            cache: false,
+            success: function (randomNumber) {
+                if (randomNumber == "error") {
+                } else {
+                    console.log("문자전송")
 
-        var random_num = randomNumber; // 지역 변수로 변경
+                    random_num = randomNumber;
 
-        console.log("인증번호 : " + random_num);
+                    console.log("인증번호 : " + random_num);
 
-        return random_num; // 난수 반환
-        
-      }
-    },
-  });
-}
-
-function num_compare() {
-    if ($("#p_verification_input").val() == random_num) {           
-        alert("인증번호가 일치합니다.");                                   
-        clearInterval(timer);                           
-    } else if ($("#p_verification_input").val() != random_num) {   
-        alert("인증번호가 일치하지 않습니다.");                                      
+                    return random_num;
+                }
+            },
+        });
     }
-};
 
-// 휴대폰 인증 - 확인 버튼 클릭 이벤트
-	$(".p_verify_button").on("click", function() {
-	  num_compare();
-	});
+    function num_compare() {
+        if ($("#p_verification_input").val() == random_num) {           
+            alert("인증번호가 일치합니다.");                                   
+            clearInterval(timer);                           
+        } else if ($("#p_verification_input").val() != random_num) {   
+            alert("인증번호가 일치하지 않습니다.");                                      
+        }
+    };
+
+    // 휴대폰 인증 - 확인 버튼 클릭 이벤트
+    $(".p_verify_button").on("click", function() {
+        num_compare();
+    });
+
+});
