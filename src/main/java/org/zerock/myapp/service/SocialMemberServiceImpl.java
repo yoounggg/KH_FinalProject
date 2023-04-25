@@ -2,8 +2,7 @@ package org.zerock.myapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.zerock.myapp.domain.SocialMemberDTO;
+import org.zerock.myapp.domain.MemberDTO;
 import org.zerock.myapp.mapper.SocialMemberMapper;
 
 import lombok.extern.log4j.Log4j2;
@@ -16,21 +15,21 @@ public class SocialMemberServiceImpl implements SocialMemberService {
 	private SocialMemberMapper socialMemberMapper;
 	
 	@Override
-	public void kakaoSignup(SocialMemberDTO socialMemberDTO) throws Exception {
-		socialMemberMapper.kakaoSignup(socialMemberDTO);
+	public void kakaoSignup(MemberDTO memberDTO) throws Exception {
+		socialMemberMapper.kakaoSignup(memberDTO);
 		log.trace("kakaoSignup invoked");
 		
 	} // kakaoSignup
 	
 	@Override
-	public void kakaoSignupAddInfo(SocialMemberDTO socialMemberDTO) throws Exception{
+	public void kakaoSignupAddInfo(MemberDTO socialMemberDTO) throws Exception{
 		socialMemberMapper.kakaoSignupAddInfo(socialMemberDTO);
 		log.trace("kakaoSignupAddInfo invoked");
 		
 	} // kakaoSignupAddInfo
 
 	@Override
-	public SocialMemberDTO kakaoLogin(SocialMemberDTO socialMemberDTO) throws Exception {
+	public MemberDTO kakaoLogin(MemberDTO socialMemberDTO) throws Exception {
 		log.trace("kakaoLogin invoked");
 		
 		return socialMemberMapper.kakaoLogin(socialMemberDTO);
