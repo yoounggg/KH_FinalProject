@@ -13,17 +13,14 @@
     <!-- include favicon -->
     <%@include file="/WEB-INF/views/common/favicon.jsp" %>
 
-    <link rel="stylesheet" href="/resources/css/userInfo.css">
+    <link rel="stylesheet" href="/resources/css/modifypw.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
     <script src="https://kit.fontawesome.com/1fe7ba446e.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.0/jquery-migrate.min.js"></script>
 
-	<!-- 카카오 주소 api -->
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
-    <script src="/resources/js/userInfo.js"></script>
+    <script src="/resources/js/modifypw.js"></script>
 </head>
 <body>
     <body>
@@ -104,7 +101,7 @@
     <aside class="userinfoAside">
         <ul class="box1">
             <img src="/resources/imgs/profileimg.jpg" alt="프로필 사진">
-            <li class="small1">${details.name} 님</li>
+            <li class="small1">${member.name} 님</li>
             <li class="small1"><a href="/mypage/userInfo/${member.id}"><i class="fab fa-whmcs"></i>회원정보관리</a></li>
         </ul>
 
@@ -119,18 +116,13 @@
     
     <div class="huiwon">
         <div class="sujeong1">
-            <h2 id="sujeong2">회원정보수정</h2>
+            <h2 id="sujeong2">비밀번호 변경</h2>
             <h6 id="sujeong3"><span class="red">*</span>필수 입력</h6>
         </div>
         
         <!-- form 태그 -->
-        <form action="/mypage/userInfo/update" method="POST" name="userUpdateForm" id="userUpdateForm">
+        <form action="/mypage/userInfo/update" method="POST" name="userPwUpdateForm" id="userPwUpdateForm">
             <table>
-                <tr>
-                    <th>&nbsp;아이디</th>
-                    <td><input type="text" name="id" value="${details.id}" readonly></td>
-                </tr>
-                
                 <tr>
                     <th>&nbsp;현재 비밀번호<span class="red">*</span></th> 
                     <td><input type="password" name ="password" required></td>
@@ -139,86 +131,24 @@
                     <!-- <td class="sletter">&nbsp;*기존 비밀번호를 입력해 주세요.</td>  -->   
                 </tr>
                 
-                <!-- <tr>
+                <tr>
                     <th>&nbsp;신규 비밀번호<span class="red">*</span></th>
                     <td><input type="password" id="newPw" onchange="newPwforDetails()"></td>
                     <td class="sletter" colspan="2">&nbsp;*대/소문자 구분, 숫자 8~16자리로 입력해주세요.</td>
-                </tr> -->
+                </tr>
                 
-                <!-- <tr>
+                <tr>
                     <th>&nbsp;신규 비밀번호 확인<span class="red">*</span></th>
                     <td><input type="password" id="checkNewPw" name="checkedNewPw" onchange="confirmNewPw()"></td>
-                    <td><span id="newpwChk" class="btntr">변경하기</span></td> -->
-                    <!-- <td class="sletter" colspan="2">&nbsp;*비밀번호 확인을 위해 한 번 더 입력해 주세요.</td> -->
-                <!-- </tr> -->
-                
-                <tr>
-                    <th>&nbsp;성명<span class="red">*</span></th>
-                    <td><input type="text" name="name" value="${details.name}" required></td>
-                </tr>
-                
-                <tr class="specialtr">
-                    <th class="th_height" rowspan="3" >&nbsp;휴대전화<span class="red">*</span></th>
-                    <td><input type="text" id="tel" name="tel" value="${details.tel}" required></td>
-                    <td><span id="telCk" class="btntr">휴대폰 인증</span></td>
-                    <!-- <input type="button" value="휴대폰 인증" id="telCk" class="btntr"> -->
-                </tr>
-                
-                <tr class="specialtr">
-                    <td><input type="text" id="tel2" name="tel2" placeholder="인증번호를 입력하세요" disabled required></td>
-                    <td><span id="tel2Chk" class="btntr" >본인인증</span></td>
-                    <!-- <input type="button" id="tel2Chk" class="btntr" value="확인" > -->
-                  	<!-- <span class="successTelCk">휴대폰 번호 입력후 인증번호 보내기를 해주세요.</span>  -->
-                    
-                    <input type="hidden" id="telDoubleChk">
-                    <!-- <p class="tip">최초 가입시에만 사용하고 있습니다.</p>  -->
-                </tr>
-                <tr>
-                	<td><span class="successTelCk">휴대폰 번호 입력후 인증번호 보내기를 해주세요.</span></td>
-                </tr>
-                
-                <tr class="specialtr">
-                    <th class="th_height2" rowspan="3">&nbsp;주소<span class="red">*</span></th>
-                    <td><input type="text"  name="address1" value="${details.address1}" class="addrInput1 addrtr" readonly = "readonly" id="sample6_postcode"></td>
-                    <td><input type="button" value="우편번호 찾기" class="btntr" onclick="kakaoAdress()"></td>
-                </tr>
-                
-                <tr class="addr_tr">
-                    <td colspan="2"><input type="text" name="address2" value="${details.address2}" id="sample6_address" class="addrwidth" readonly = "readonly"></td>
-                </tr>
-                
-                <tr>
-                    <td><input type="text" name="address3" value="${details.address3}"class="addrInput2" id="sample6_detailAddress"></td>
-                </tr>
-                
-                <tr>
-                    <!-- 이메일 변경 불가능 -->
-                    <th>&nbsp;이메일</th>
-                    <td><input type="text" name="email" value="${details.email}" readonly></td>
-                </tr>
-                
-                <tr>
-                    <th>&nbsp;성별</th>
-                    <td class="radio">
-                        <input type="radio" name="gender" value="남자" ${details.gender eq '남자' ? 'checked' : ''} >남자&nbsp;
-                        <input type="radio" name="gender" value="여자" ${details.gender eq '여자' ? 'checked' : ''} >여자&nbsp;
-                        <input type="radio" name="gender" value="선택안함" ${details.gender eq '선택안함' ? 'checked' : ''} >선택안함
-                    </td>
-                </tr>
-                <tr>
-                    <!-- 생년월일 변경 불가능 -->
-                    <th>&nbsp;생년원일</th>
-                    <td><input type="text" value="${details.birth_year}, ${details.birth_month}, ${details.birth_day}" readonly></td>
-                    <!--<td><input type="text" name="birth_month" value="${details.birth_month}" readonly></td>-->
-                    <!--<td><input type="text" name="birth_day" value="${details.birth_day}" readonly></td>-->
-                </tr>
+                    <!-- <td><span id="newpwChk" class="btntr">변경하기</span></td> -->
+                    <!-- <td class="sletter" colspan="2">&nbsp;*비밀번호 확인을 위해 한 번 더 입력해 주세요.</td>-->
+                </tr> 
             </table>
 				
 	        <div class="btnset">
-	            <button class="userbtn1" type="submit" class="modifyUserDetails" onClick="goform()">정보수정</button>
+	        <span id="newpwChk" class="btntr">변경하기</span>
+	            <!-- <button class="userbtn1" type="submit" class="modifyPwDetails" onClick="goform()">비밀번호 변경</button> -->
 	            <input class="userbtn2" type="button" value="메인으로" onClick="location.href='/main'">
-	            <button class="userbtn2" type="button" onClick="deleteUser('${details.id}')">회원탈퇴</button>
-	            <!-- <button class="userbtn2" type="button" onClick="deleteUser()">회원탈퇴</button>  -->
 	        </div>     
 		</form>               
     </div>    
@@ -229,55 +159,6 @@
 </body>
 
 <script>
-//회원탈퇴 버튼
-function deleteUser(id){
-if(window.confirm("탈퇴하시겠습니다?")){
-	location.href = "/mypage/userInfo/"+ id+ "/delete";
-	}
-};
-
-//휴대폰 번호 인증
-var code2 = "";
-$('#telCk').click(function({id}){
-	alert("인증번호가 발송되었습니다. \n휴대폰에서 인증번호를 확인해주세요.");
-	var phone = $('#tel').val();
-	$.ajax({
-		type: 'GET',
-		url:'/mypage/userInfo/'+'${id}'+'/phoneCheck?tel='+'${tel}',
-		cache: false,
-		success:function(data){
-			if(data == 'error'){
-				alert("휴대폰 번호가 올바르지 않습니다.")
-				$('.successTelCk').text("유효한 번호를 입력해주세요.");
-				$('.successTelCk').css("color", "red");
-				$('#tel').attr("autofocus", true);
-			} else {
-				$('#tel2').attr("disabled", false);
-				$('#tel2Chk').css("display", "inline-block");
-				$('.successTelCk').text("인증번호를 입력한 뒤 본인인증을 눌러주세요.");
-				$('.successTelCk').css("color", "green");
-				$('#tel').attr("readonly", true);
-				code2 = data;
-			} // else
-		} // function
-	}); // ajax
-}); // function
-
-//휴대폰 인증번호 대조
-$('#tel2Chk').click(function(){
-	if($('#tel2').val() == code2){
-		$('.successTelCk').text("인증번호가 일치합니다.");
-		$('.successTelCk').css("color", "green");
-		$('#telDoubleChk').val("true");
-		$('tel2').attr("disabled", true);
-	} else{
-		$('.successTelCk').text("인증번호가 일치하지 않습니다. 확인해주시기 바랍니다");
-		$('.successTelCk').css("color", "red");
-		$('#telDoubleChk').val("false");
-		$(this).attr("autofocus", true);
-	}
-});
-
 // 현재 비밀번호 확인
 $('#pwChk').click(function({id}) {
     $.ajax({
@@ -289,9 +170,6 @@ $('#pwChk').click(function({id}) {
         	'X-HTTP-Method-Override' : 'POST'
         	},
         dataType: 'json',
-        //data: {password: $('input[name=password]').val()}, 
-        //data: password,
-        //datatype: "json",
         success: function(result) {
             console.log(result);
             if (result == true ) {
@@ -305,6 +183,29 @@ $('#pwChk').click(function({id}) {
         }
     });
 }); // function
+
+//새로운 비밀번호로 변경
+$('#newpwChk').click(function({id}){
+	$.ajax({
+		type: 'POST',
+		url: '/mypage/userInfo/' + '${id}' + '/changePw',
+        contentType: 'application/json',
+        headers: { 
+        	'X-HTTP-Method-Override' : 'POST'
+        	},
+        data: JSON.stringify({password: $('input[name=checkedNewPw]').val()}),
+        dataType: 'json',
+        success:function(result){
+        	console.log("result: " + result);
+        	if(result == 'success'){
+        		alert("비밀번호가 변경되었습니다.");
+        	} else {
+        		alert("비밀번호 입력을 다시 시도하세요.");
+        	} // if-else
+        } // function		
+	});
+});
+
 
    
 </script>

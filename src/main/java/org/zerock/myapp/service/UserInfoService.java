@@ -20,4 +20,6 @@ public interface UserInfoService {
 //	public abstract MemberDTO deleteUser(String id) throws ServiceException;
 	public abstract Boolean deleteUser(String id) throws ServiceException;
 
+	//5. 새로운 비밀번호로 변경
+	public abstract Boolean modifyPw(MemberDTO dto) throws ServiceException; 
 }
