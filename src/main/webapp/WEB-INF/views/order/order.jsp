@@ -354,12 +354,12 @@
 
          <form class="order_form" action="/order" method="post">
   
-        	<input name="memberId" value="${member.id}" type="hidden">
+        	<input name="memberId" value="${memberInfo.id}" type="hidden"> <!--  member. memberInfo. 둘 중 뭘 써야할까.. -->
        
-        	<input name="addressee" type="hidden">
+        	<input name="addressee" type="hidden" >
         	<input name="memberAddr1" type="hidden">
         	<input name="memberAddr2" type="hidden">
-        	<input name="memberAddr3" type="hidden">
+        	<input name="memberAddr3" type="hidden" >
         	
          </form>
 
