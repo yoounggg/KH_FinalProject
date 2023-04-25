@@ -7,8 +7,7 @@
 <mapper namespace="org.zerock.myapp.mapper.SocialMemberMapper">
 	<insert id="kakaoSignup" parameterType="java.util.HashMap">
 
-		<selectKey keyProperty="no" order="BEFORE"
-			resultType="java.lang.Integer">
+		<selectKey keyProperty="no" order="BEFORE" resultType="java.lang.Integer">
 			SELECT "MYMG"."ISEQ$$_99524".nextval FROM dual
 		</selectKey>
 
@@ -18,9 +17,8 @@
 	</insert>
 
 	<update id="kakaoSignupAddInfo"
-		parameterType="org.zerock.myapp.domain.SocialMemberDTO">
-		<selectKey keyProperty="no" order="BEFORE"
-			resultType="java.lang.Integer">
+		parameterType="org.zerock.myapp.domain.MemberDTO">
+		<selectKey keyProperty="no" order="BEFORE" resultType="java.lang.Integer">
 			SELECT "MYMG"."ISEQ$$_99524".currval FROM dual
 		</selectKey>
 		update member set

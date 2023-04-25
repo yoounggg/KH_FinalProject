@@ -6,10 +6,9 @@ import org.apache.maven.model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.zerock.myapp.domain.SocialMemberDTO;
+import org.zerock.myapp.domain.MemberDTO;
 import org.zerock.myapp.service.KakaoService;
 import org.zerock.myapp.service.SocialMemberService;
 
@@ -47,14 +46,15 @@ public class KakaoController {
 		log.trace("access_token : {}  invoked", access_token);
 
 		// SocialMemberDTO 객체 생성 후 API로부터 얻은 사용자 정보를 DTO에 저장
-		SocialMemberDTO socialMemberDTO = new SocialMemberDTO();
-		socialMemberDTO.setId((String) userinfo.get("id"));
-		socialMemberDTO.setEmail((String) userinfo.get("email"));
+		MemberDTO memberDTO = new MemberDTO();
+		
+		memberDTO.setId((String) userinfo.get("id"));
+		memberDTO.setEmail((String) userinfo.get("email"));
 //		socialMemberDTO.setProfile((String) userinfo.get("profile"));
 //		socialMemberDTO.setNickname((String) userinfo.get("nickname"));
 		
 		// SocialMemberDTO 객체를 이용하여 회원가입을 진행합니다.
-		socialMemberService.kakaoSignup(socialMemberDTO);
+		socialMemberService.kakaoSignup(memberDTO);
 
 		// 카카오 로그인 후 추가 정보 입력 페이지로 이동
 		return "redirect:/signup/addinfo";
@@ -69,12 +69,12 @@ public class KakaoController {
 	} //addInfoGet
 	
 	@PostMapping("/signup/addinfo")
-	public String addInfo(SocialMemberDTO socialMemberDTO) throws Throwable {
+	public String addInfo(MemberDTO memberDTO) throws Throwable {
 		log.trace("signupAddinfo() invoked(회원가입 서비스 실행)");
 
-		socialMemberService.kakaoSignupAddInfo(socialMemberDTO);
+		socialMemberService.kakaoSignupAddInfo(memberDTO);
 		
-		log.trace("memberPOST : {} invoked 성공",socialMemberDTO);
+		log.trace("memberPOST : {} invoked 성공",memberDTO);
 		
 		return "redirect:/signup/socialComplete";
 	} // addInfo
