@@ -52,10 +52,12 @@
 		<!-- 혁규 회원가입 -->
 		<insert id="memberSignup" >
 		  INSERT INTO member (
-		  	ID, PASSWORD, NAME, EMAIL, TEL, ADDRESS1, ADDRESS2, ADDRESS3, GENDER, SIGNUP_DATE, BIRTH_DATE, ADMINCK)
+		  	ID, PASSWORD, NAME, EMAIL, TEL, ADDRESS1, ADDRESS2, ADDRESS3, GENDER, SIGNUP_DATE, BIRTH_YEAR, BIRTH_MONTH, BIRTH_DAY, SOCIAL_TYPE, ADMINCK)
 		  VALUES (
-		  	#{id,jdbcType=NULL}, #{password,jdbcType=NULL}, #{name}, #{email}, #{tel}, #{address1, jdbcType=NULL}, #{address2}, #{address3},
-		  	#{gender,jdbcType=VARCHAR}, #{signup_date,jdbcType=TIMESTAMP}, #{birth_date,jdbcType=VARCHAR}, #{adminCk}
+		  	#{id,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{name}, #{email}, #{tel}, #{address1, jdbcType=INTEGER}, 
+		  	#{address2,jdbcType=VARCHAR}, #{address3,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
+		  	#{signup_date,jdbcType=TIMESTAMP}, #{birth_year,jdbcType=INTEGER}, #{birth_month, jdbcType=INTEGER},
+			#{birth_day, jdbcType=INTEGER}, 'None', #{adminCk}
 		  )
 		</insert>
 		

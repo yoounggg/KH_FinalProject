@@ -25,11 +25,11 @@ public class MsgSendServiceImpl implements MsgSendService {
 			HashMap<String, String> params = new HashMap<String, String>();
       
 //			params.put("to", userPhoneNumber);			// 수신 번호
-			params.put("to", "오오오오오");			// 수신 번호
+			params.put("to", "수신번호");			// 수신 번호
 
 			params.put("from", "01035552200");			// 발신 번호
 			params.put("type", "SMS");
-			params.put("text", "MYMG 인증번호는 " +" [ " + randomNumber + "] " + " 입니다. 인증시간 안에 입력해주세요.");
+			params.put("text", "MYMG 인증번호는 " +"[" + randomNumber + "]" + " 입니다. 제한시간 안에 입력해주세요.");
 			params.put("app_version", "test app 1.2");
 			
 			try {

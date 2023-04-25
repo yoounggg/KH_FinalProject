@@ -15,7 +15,11 @@ public class MemberDTO {
 	private String address3;
 	private String gender;
 	private TIMESTAMP signup_date;
-	private String birth_date;
+	private Integer birth_year;
+	private Integer birth_month;
+	private Integer birth_day;
+	private String social_type;
 	private Integer adminCk;
+	private Integer no;
 	
 } // end class

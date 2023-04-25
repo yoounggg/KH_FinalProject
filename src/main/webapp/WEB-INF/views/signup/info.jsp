@@ -156,12 +156,12 @@
                             <input type="radio" name="gender" value="" id="선택안함" checked>선택안함
                         </div>
 
-                        <div id="birth_form" class="생년월일" name="birth_date">
+                        <div id="birth_form" class="생년월일" >
                             <label class="라벨">생년월일</label>
                             <span>
-                                <input type="text" class='YYYY' placeholder="YYYY"  onblur="validateYYYY(this)" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-                                <input type="text" class='MM' placeholder="MM"  onblur="validateMM(this)" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-                                <input type="text" class='DD' placeholder="DD"  onblur="validateDD(this)" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                <input type="text" class='YYYY' placeholder="YYYY" name="birth_year"  onblur="validateYYYY(this)" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                <input type="text" class='MM' placeholder="MM" name="birth_month"  onblur="validateMM(this)" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                <input type="text" class='DD' placeholder="DD" name="birth_day"  onblur="validateDD(this)" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                             </span>
                         </div>
 

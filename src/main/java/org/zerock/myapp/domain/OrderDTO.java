@@ -8,10 +8,12 @@ import lombok.Data;
 @Data
 public class OrderDTO {
 	
-	private String orderId; // 주문번호
+	//private String orderId; // 주문번호			-> MYMG_ORDER 테이블의 No 컬럼 인가..?
+	private Integer no; // 주문번호			-> MYMG_ORDER 테이블의 No 컬럼 인가..?
 	private String addressee; // 배송 받는사람
 	private String memberId; // 주문 회원 아이디
-	private String memberAddr1; // 우편번호
+//	private String memberAddr1; // 우편번호
+	private Integer memberAddr1; // 우편번호
 	private String memberAddr2; // 회원 주소
 	private String memberAddr3; // 회원 상세주소
 	private String orderState; // 주문 상태
@@ -38,7 +40,7 @@ public class OrderDTO {
 	        } else {
 				delivery = 3000;
 			}
-		// 최종 비용(상품 비용 + 배송비) 
+		// 최종 비용(상품 비용 + 배송비) -> 흠.. 할인가격 넣어줘야하나.. 나중에 출력해보고 다시 보자!
 			orderFinalSalePrice = orderSalePrice + delivery;
 	}
  
