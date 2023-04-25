@@ -47,43 +47,43 @@ public class KakaoController {
 
 		// SocialMemberDTO 객체 생성 후 API로부터 얻은 사용자 정보를 DTO에 저장
 		MemberDTO memberDTO = new MemberDTO();
-		
+
 		memberDTO.setId((String) userinfo.get("id"));
 		memberDTO.setEmail((String) userinfo.get("email"));
-//		socialMemberDTO.setProfile((String) userinfo.get("profile"));
-//		socialMemberDTO.setNickname((String) userinfo.get("nickname"));
-		
-		// SocialMemberDTO 객체를 이용하여 회원가입을 진행합니다.
-		socialMemberService.kakaoSignup(memberDTO);
 
-		// 카카오 로그인 후 추가 정보 입력 페이지로 이동
-		return "redirect:/signup/addinfo";
+		// 회원가입 여부 확인
+		boolean isMember = socialMemberService.kakaoSignup(memberDTO);
 
+		if (isMember) {
+			// 중복된 아이디나 이메일이 있으면 로그인을 시킴
+			return "redirect:/login";
+		} else {
+			// 카카오 로그인 후 추가 정보 입력 페이지로 이동
+			return "redirect:/signup/addinfo";
+		}
 	} // kakaoLoginCallback
-	
+
 	@GetMapping("/signup/addinfo")
-	public String addInfoGet() throws Exception{
+	public String addInfoGet() throws Exception {
 		log.trace("addInfo invoked");
-		
+
 		return "/signup/addinfo";
-	} //addInfoGet
-	
+	} // addInfoGet
+
 	@PostMapping("/signup/addinfo")
 	public String addInfo(MemberDTO memberDTO) throws Throwable {
 		log.trace("signupAddinfo() invoked(회원가입 서비스 실행)");
 
 		socialMemberService.kakaoSignupAddInfo(memberDTO);
-		
-		log.trace("memberPOST : {} invoked 성공",memberDTO);
-		
+
+		log.trace("memberPOST : {} invoked 성공", memberDTO);
+
 		return "redirect:/signup/socialComplete";
 	} // addInfo
 
-
 	@GetMapping("/complete")
-	public void signupComplete() throws Exception{
+	public void signupComplete() throws Exception {
 		log.trace("signupComplete() invoked 완료화면 get");
-				
 
 	} // signupComplete
 } // end class
