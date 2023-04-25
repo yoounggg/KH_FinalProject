@@ -57,4 +57,5 @@
     <context:component-scan base-package="org.zerock.myapp.exception" />
     <context:component-scan base-package="org.zerock.myapp.controller" />
     <context:component-scan base-package="org.zerock.myapp.utils" />
+    <context:component-scan base-package="org.zerock.myapp.domain" />
 </beans>

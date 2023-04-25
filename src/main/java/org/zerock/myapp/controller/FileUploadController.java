@@ -26,8 +26,17 @@ public class FileUploadController { // pojo
    } //uploadPage
    
    @PostMapping("/doit")
-   public void processMultipart(@RequestParam("files") List<MultipartFile> files) {
-      log.trace("processMultiPart({}) invoked", files);
+   public void processMultipart(
+		   @RequestParam("main_image") List<MultipartFile> main_image,
+		   @RequestParam("main_image2") List<MultipartFile> main_image2,
+		   @RequestParam("sub_image1") List<MultipartFile> sub_image1,
+		   @RequestParam("sub_image2") List<MultipartFile> sub_image2,
+		   @RequestParam("sub_image3") List<MultipartFile> sub_image3,
+		   @RequestParam("sub_image4") List<MultipartFile> sub_image4,
+		   @RequestParam("content_image") List<MultipartFile> content_image
+		   
+		   ) {
+      log.trace("processMultiPart({}, {}, {}, {}, {}, {}, {}) invoked", main_image, main_image2, sub_image1, sub_image2, sub_image3, sub_image4, content_image);
 
    } // processMultipart
    

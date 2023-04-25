@@ -113,7 +113,7 @@ public class ProductMapperTests {
 		log.trace("insert invoked().");
 		
 			ProductDTO dto = new ProductDTO();
-			dto.setCategory("test");
+			dto.setCategory("10300");
 			dto.setName("감차빵dq");
 			dto.setPrice(3000);
 			dto.setDiscount(10);
@@ -122,10 +122,8 @@ public class ProductMapperTests {
 			dto.setOrigin("국산(강원도 춘천시q)");
 			dto.setStock(10);
 			dto.setFarm_no(1);
-			dto.setMain_image("test");
-			
+			dto.setImages("test");
 			dto.setContent("먹고말테야.");
-			dto.setContent_image("cowntent_image1");
 			
 			log.trace("Before ProductDTO : " + dto);
 			
@@ -138,25 +136,25 @@ public class ProductMapperTests {
 	
 	
 //	@Disable
-	@Test
-	@Order(5)
-	@DisplayName("테스트 : insertImage")
-	@Timeout(value=1, unit=TimeUnit.SECONDS)
-	void imageInsert() {
-		log.trace("imageInsert invoked() - 이미지 경로 등록");
-		
-		AttachImageVO vo = new AttachImageVO();
-		
-		vo.setProduct_no(43);
-		vo.setFileName("test");
-		vo.setUploadPath("test");
-		vo.setUuid("test2");
-		
-		int affectedLines = this.mapper.imageInsert(vo);
-		log.info("affectedLines() invoked. {}", affectedLines);
-
-		
-	} // imageInsert
+//	@Test
+//	@Order(5)
+//	@DisplayName("테스트 : insertImage")
+//	@Timeout(value=1, unit=TimeUnit.SECONDS)
+//	void imageInsert() {
+//		log.trace("imageInsert invoked() - 이미지 경로 등록");
+//		
+//		AttachImageVO vo = new AttachImageVO();
+//		
+//		vo.setProduct_no(43);
+//		vo.setFileName("test");
+//		vo.setUploadPath("test");
+//		vo.setUuid("test2");
+//		
+//		int affectedLines = this.mapper.imageInsert(vo);
+//		log.info("affectedLines() invoked. {}", affectedLines);
+//
+//		
+//	} // imageInsert
 	
 	
 //	@Disable

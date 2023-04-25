@@ -18,17 +18,6 @@
 	span, li {
     font-size: 16px;
 	}
-
-
-	.content {
-	    font-size: 13px;
-	    font-weight: 600;
-	    font-family: "맑은 고딕",AppleGothic,Dotum,"돋움",sans-serif;
-	    padding: 0;
-	    width : 950px;
-	    height: 700px;
-	    margin : auto;
-	}
 	
 	.content h1 {
 	    padding-top : 20px;
@@ -36,24 +25,20 @@
 
     table {
         display: table;
-        width: 950px;
+        width: 780px;
         margin-bottom: 0px;
-        /* border-collapse: collapse; */
         border-top: 4px solid #ceced2;
     }
 
     table th {
-        /* border :#000 1px solid; */
         border-bottom: 1px solid #ceced2;
         padding : 8px;
     }
 
     table td {
-        /* border :#000 1px solid; */
         padding: 14px 10px 13px 10px;
         border-bottom: 1px solid #ceced2;
         text-align: center;
-        font-size: 16px;
         
     }
 

@@ -249,7 +249,7 @@
         <div class="content">
             <h2>상품등록 <span class="test">테스트</span></h2>
             <div class="write">
-                <form action="/admin/product/register" method="POST" enctype="multipart/form-data">
+                <form action="/admin/product/register" method="post" enctype="multipart/form-data">
                     <div class="product">
 
                        <div class="box1">
@@ -367,53 +367,81 @@
                        <input type="hidden"  name="farm_no"  id="info">
                        
                        <div class="box1">
-                       	   <div class="box2">
+                             <div class="box2">
                                <p>메인 이미지</p>
                            </div>
                            <div class="box3">
-						  	<input type="file" multiple id="main_image1" name="file" />
-								<div class="select_main_image1"><img src="" /></div>
-												 
-									<script>
-										$("#main_image1").change(function(){
-											if(this.files && this.files[0]) {
-																  
-												var reader = new FileReader;
-																	  
-												reader.onload = function(data) {
-													$(".select_main_image1 img").attr("src", data.target.result).width(300);        
-												}
-												reader.readAsDataURL(this.files[0]);
-											}
-										});
-									</script>
-									<%= request.getRealPath("/") %>
-                       		</div>
-						</div>
-   						<br>
+                       <input type="file" id="info" name="files" />
+                        <div class="select_main_image"><img src="" /></div>
+                                     
+                           <script>
+                              $("#main_image").change(function(){
+                                 if(this.files && this.files[0]) {
+                                                  
+                                    var reader = new FileReader;
+                                                     
+                                    reader.onload = function(data) {
+                                       $(".select_main_image img").attr("src", data.target.result).width(200);        
+                                    }
+                                    reader.readAsDataURL(this.files[0]);
+                                 }
+                              });
+                           </script>
+                           <%= request.getRealPath("/") %>
+                             </div>
+                  </div>
+                     <br>
+                     
+                     
+                     <div class="box1">
+                             <div class="box2">
+                               <p>메인(썸네일) 이미지</p>
+                           </div>
+                           <div class="box3">
+                       <input type="file" id="info" name="files" />
+                        <div class="select_main_image2"><img src="" /></div>
+                                     
+                           <script>
+                              $("#main_image2").change(function(){
+                                 if(this.files && this.files[0]) {
+                                                  
+                                    var reader = new FileReader;
+                                                     
+                                    reader.onload = function(data) {
+                                       $(".select_main_image2 img").attr("src", data.target.result).width(200);        
+                                    }
+                                    reader.readAsDataURL(this.files[0]);
+                                 }
+                              });
+                           </script>
+                           <%= request.getRealPath("/") %>
+                             </div>
+                  </div>
+                     <br>
+                     
    
                        <div class="box1">
                            <div class="box2">
                                <p>서브 이미지1</p>
                            </div>
                            <div class="box3">
-						  	<input type="file" id="sub_image1" name="file" />
-								<div class="select_sub_image1"><img src="" /></div>
-												 
-									<script>
-										$("#sub_image1").change(function(){
-											if(this.files && this.files[0]) {
-																  
-												var reader = new FileReader;
-																	  
-												reader.onload = function(data) {
-													$(".select_sub_image1 img").attr("src", data.target.result).width(300);        
-												}
-												reader.readAsDataURL(this.files[0]);
-											}
-										});
-									</script>
-                       		</div>
+                       <input type="file" id="info" name="files" />
+                        <div class="select_sub_image1"><img src="" /></div>
+                                     
+                           <script>
+                              $("#sub_image1").change(function(){
+                                 if(this.files && this.files[0]) {
+                                                  
+                                    var reader = new FileReader;
+                                                     
+                                    reader.onload = function(data) {
+                                       $(".select_sub_image1 img").attr("src", data.target.result).width(200);        
+                                    }
+                                    reader.readAsDataURL(this.files[0]);
+                                 }
+                              });
+                           </script>
+                             </div>
                        </div>
                        <br>
                    
@@ -423,23 +451,23 @@
                                <p>서브 이미지2</p>
                            </div>
                            <div class="box3">
-						  	<input type="file" id="sub_image2" name="file" />
-								<div class="select_sub_image2"><img src="" /></div>
-												 
-									<script>
-										$("#sub_image2").change(function(){
-											if(this.files && this.files[0]) {
-																  
-												var reader = new FileReader;
-																	  
-												reader.onload = function(data) {
-													$(".select_sub_image2 img").attr("src", data.target.result).width(300);        
-												}
-												reader.readAsDataURL(this.files[0]);
-											}
-										});
-									</script>
-                       		</div>             
+                       <input type="file" id="info" name="files" />
+                        <div class="select_sub_image2"><img src="" /></div>
+                                     
+                           <script>
+                              $("#sub_image2").change(function(){
+                                 if(this.files && this.files[0]) {
+                                                  
+                                    var reader = new FileReader;
+                                                     
+                                    reader.onload = function(data) {
+                                       $(".select_sub_image2 img").attr("src", data.target.result).width(200);        
+                                    }
+                                    reader.readAsDataURL(this.files[0]);
+                                 }
+                              });
+                           </script>
+                             </div>             
                        </div>
                        <br>
                        
@@ -448,23 +476,24 @@
                            <div class="box2">
                                <p>서브 이미지3</p>
                            <div class="box3">
-						  	<input type="file" id="sub_image3" name="file" />
-								<div class="select_sub_image3"><img src="" /></div>
-												 
-									<script>
-										$("#sub_image3").change(function(){
-											if(this.files && this.files[0]) {
-																  
-												var reader = new FileReader;
-																	  
-												reader.onload = function(data) {
-													$(".select_sub_image3 img").attr("src", data.target.result).width(300);        
-												}
-												reader.readAsDataURL(this.files[0]);
-											}
-										});
-									</script>
-                       		</div>           
+                       <input type="file" id="info" name="files" />
+                        <div class="select_sub_image3"><img src="" /></div>
+                                     
+                           <script>
+                              $("#sub_image3").change(function(){
+                                 if(this.files && this.files[0]) {
+                                                  
+                                    var reader = new FileReader;
+                                                     
+                                    reader.onload = function(data) {
+                                       $(".select_sub_image3 img").attr("src", data.target.result).width(200);        
+                                    }
+                                    reader.readAsDataURL(this.files[0]);
+                                 }
+                              });
+                           </script>
+                             </div>           
+                       </div>
                        </div>
                        <br>
    
@@ -474,23 +503,23 @@
                                <p>서브 이미지4</p>
                            </div>
                            <div class="box3">
-						  	<input type="file" id="sub_image4" name="file" />
-								<div class="select_sub_image4"><img src="" /></div>
-												 
-									<script>
-										$("#sub_image4").change(function(){
-											if(this.files && this.files[0]) {
-																  
-												var reader = new FileReader;
-																	  
-												reader.onload = function(data) {
-													$(".select_sub_image4 img").attr("src", data.target.result).width(300);        
-												}
-												reader.readAsDataURL(this.files[0]);
-											}
-										});
-									</script>
-                       		</div>
+                       <input type="file" id="info" name="files" />
+                        <div class="select_sub_image4"><img src="" /></div>
+                                     
+                           <script>
+                              $("#sub_image4").change(function(){
+                                 if(this.files && this.files[0]) {
+                                                  
+                                    var reader = new FileReader;
+                                                     
+                                    reader.onload = function(data) {
+                                       $(".select_sub_image4 img").attr("src", data.target.result).width(200);        
+                                    }
+                                    reader.readAsDataURL(this.files[0]);
+                                 }
+                              });
+                           </script>
+                             </div>
                        </div>
                        <br>
    
@@ -510,29 +539,29 @@
                                <p>상세정보내용 이미지</p>
                            </div>
                            <div class="box3">
-						  	<input type="file" id="content_image" name="file" />
-								<div class="select_content_image"><img src="" /></div>
-												 
-									<script>
-										$("#content_image").change(function(){
-											if(this.files && this.files[0]) {
-																  
-												var reader = new FileReader;
-																	  
-												reader.onload = function(data) {
-													$(".select_content_image img").attr("src", data.target.result).width(300);        
-												}
-												reader.readAsDataURL(this.files[0]);
-											}
-										});
-									</script>
-                       		</div>
+                       <input type="file" id="info" name="files" />
+                        <div class="select_content_image"><img src="" /></div>
+                                     
+                           <script>
+                              $("#content_image").change(function(){
+                                 if(this.files && this.files[0]) {
+                                                  
+                                    var reader = new FileReader;
+                                                     
+                                    reader.onload = function(data) {
+                                       $(".select_content_image img").attr("src", data.target.result).width(200);        
+                                    }
+                                    reader.readAsDataURL(this.files[0]);
+                                 }
+                              });
+                           </script>
+                             </div>
                        </div>
                        <br>
 
 
                        <div class="product_button">
-                           <button type="submit" id="modifyBtn">등록</button>
+                           <button type="submit" id="registerBtn">등록</button>
                            <button type="button" id="listBtn">목록</button>
                        </div>
                     </div>
@@ -553,13 +582,13 @@
 
 <script>   
 //  ================== 1. 버튼을 클릭하면 이동함. =============================
-/*    var listBtn = document.querySelector('#listBtn');
+    var listBtn = document.querySelector('#listBtn');
    
    //목록 버튼을 눌러 목록으로 돌아가기
    listBtn.addEventListener('click', function() {
       console.log('listBtn clicked');
       location.href='/admin/farm/list';
-   }); */
+   });
    
 
         
@@ -580,9 +609,8 @@
 <script>
 //================== 3. 상품 할인율 설정 =============================
 
-// 상품 가격-할인 순으로 입력했을 때
 $("#discount").on("propertychange change keyup paste input", function(){
-   
+
    let userInput = $("#discount"); 
    let discountInput = $("input[name='calc']"); 
    
@@ -590,13 +618,18 @@ $("#discount").on("propertychange change keyup paste input", function(){
    let sendDiscountRate = discountRate / 100;               // 서버에 전송할 할인값
    let goodsPrice = $("input[name='price']").val();         // 원가
    let discountPrice = goodsPrice * (1 - sendDiscountRate);      // 할인가격
-    
+
+   // 총 할인 가격을 10원 단위까지만 표시
+   discountPrice = Math.floor(discountPrice / 10) * 10; 
+
    $(".discount_price").html(discountPrice);
    discountInput.val(sendDiscountRate);
-   
+
    $("input[name='discount_price']").attr('value',discountPrice);
-   
+
 });
+
+
 
 
 
@@ -611,9 +644,14 @@ $("input[name='price']").on("change", function(){
    let goodsPrice = $("input[name='price']").val();         // 원가
    let discountPrice = goodsPrice * (1 - sendDiscountRate);   // 할인가격
    
-   $(".discount_price").html(discountPrice);                  // 값이 보여짐(실제 Value값에 할당되진 않음)
-   $("input[name='discount_price']").attr('value',discountPrice);   // 실제로는 여기로 값이 들어감.
-   
+   // 총 할인 가격을 10원 단위까지만 표시
+   discountPrice = Math.floor(discountPrice / 10) * 10; 
+
+   $(".discount_price").html(discountPrice);
+   discountInput.val(sendDiscountRate);
+
+   $("input[name='discount_price']").attr('value',discountPrice);
+
 });
    
 </script>
