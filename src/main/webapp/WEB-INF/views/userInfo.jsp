@@ -276,19 +276,27 @@ $('#tel2Chk').click(function(){
 
 // 현재 비밀번호 확인
 
-$('#pwChk').click(function() {
+$('#pwChk').click(function({id}) {
     $.ajax({
         type: 'POST',
         url: '/mypage/userInfo/' + '${id}' + '/checkPw',
-        data: JSON.stringify({name: $('input[name=password]').val()}),
+        data: JSON.stringify({password: $('input[name=password]').val()}),
+        contentType: 'application/json',
+        headers: { 
+        	'X-HTTP-Method-Override' : 'POST'
+        	},
+        //data: {password: $('input[name=password]').val()}, 
+        dataType: 'json',
+        //data: password,
+        //datatype: "json",
         success: function(result) {
             console.log(result);
-            if (result == 'true') {
+            if (result == true ) {
                 alert("비밀번호가 일치합니다");
-            } else {
+            } else if(result == false){
                 alert("비밀번호가 불일치합니다. \n다시 입력해주세요.");
-            }
-        },
+            } // else-if
+        }, // success
         error: function(error) {
             console.log("error: " + error);
         }
