@@ -1,8 +1,10 @@
 package org.zerock.myapp.controller;
 
-import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -100,30 +102,35 @@ public class UserInfoController {
 	//4-1. 기존비밀번호와 일치하는지 확인
 
 	@PostMapping("/{id}/checkPw")
-	public @ResponseBody String checkPw(@RequestParam("password") String password, @PathVariable("id") String id, Model model) throws Exception{
-		log.info("checkPw({}, {}) invoked", password, id);
+//	public @ResponseBody String checkPw(@RequestBody String password, @PathVariable("id") String id, Model model) throws Exception{
+//	public @ResponseBody String checkPw(@RequestBody Map<String, String> request, @PathVariable("id") String id, Model model) throws Exception{
+	public ResponseEntity<String> checkPw(@RequestBody Map<String, String> request, @PathVariable("id") String id) throws Exception {	
+	
+	log.info("checkPw({}, {}) invoked", request.get("password"), id);
 		
 		String result = "";
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		
 		MemberDTO dto = this.service.userDetail(id);
 		log.info("dto({})", dto);
-//		model.addAttribute("details", dto); // 모델 == details
 		
-//		MemberDTO dto = (MemberDTO) session.getAttribute("details");
-//		log.info("DB 회원의 비밀번호:" + dto.getPassword());
-//		log.info("form에서 받아온 비밀번호: " + password);
-	
-		log.info("password:({})", password, "getPassword({})", dto.getPassword());
-		if(encoder.matches(password, dto.getPassword())) {
+		log.info("DB 회원의 비밀번호:" + dto.getPassword());
+		log.info("form에서 받아온 비밀번호: " + request.get("password"));
+		
+		
+		if(passwordEncoder.matches(request.get("password"), dto.getPassword())) {
+			log.info("result({}, {})", request.get("password"),dto.getPassword() );
 			result = "true";
+//			return ResponseEntity.status(HttpStatus.OK).body("true");
 
 		}else {
+			log.info("result({}, {})", request.get("password"), dto.getPassword());
+//			return ResponseEntity.status(HttpStatus.OK).body("false");
 			result = "false";
 
 		} // if else
-		return result;
-		
+//		return result;
+		return ResponseEntity.ok(result);
 	} // checkPw
 	
 	//4-2 새로운 비밀번호 변경
