@@ -46,7 +46,7 @@ public class KakaoController {
 
 		log.trace("access_token : {}  invoked", access_token);
 
-		// SocialMemberDTO 객체 생성 후, Kakao API로부터 얻은 사용자 정보를 DTO에 저장합니다.
+		// SocialMemberDTO 객체 생성 후 API로부터 얻은 사용자 정보를 DTO에 저장
 		SocialMemberDTO socialMemberDTO = new SocialMemberDTO();
 		socialMemberDTO.setId((String) userinfo.get("id"));
 		socialMemberDTO.setEmail((String) userinfo.get("email"));

@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class SocialMemberDTO {
 	
-	private Integer member_no;
+	private Integer no;
 	private String id;
 	private String email;
 	private String social_type;
