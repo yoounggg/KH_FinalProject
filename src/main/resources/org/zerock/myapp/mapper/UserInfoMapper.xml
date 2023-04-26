@@ -21,6 +21,12 @@
 	    WHERE id = #{id}
 	</update>
 	
+	<update id="modifyPw">
+		UPDATE member
+		SET password = #{password}
+		WHERE id = #{id}
+	</update>
+	
 	<!-- 회원 탈퇴 -->
  	<delete id="delete">
  		DELETE FROM member
