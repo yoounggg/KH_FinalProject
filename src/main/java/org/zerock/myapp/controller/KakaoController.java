@@ -47,19 +47,23 @@ public class KakaoController {
 
 		// SocialMemberDTO 객체 생성 후 API로부터 얻은 사용자 정보를 DTO에 저장
 		MemberDTO memberDTO = new MemberDTO();
-
 		memberDTO.setId((String) userinfo.get("id"));
 		memberDTO.setEmail((String) userinfo.get("email"));
 
 		// 회원가입 여부 확인
-		boolean isMember = socialMemberService.kakaoSignup(memberDTO);
+		boolean isMember = socialMemberService.isMember(memberDTO);
 
-		if (isMember) {
-			// 중복된 아이디나 이메일이 있으면 로그인을 시킴
-			return "redirect:/login";
-		} else {
+		if (isMember == false) {
+
 			// 카카오 로그인 후 추가 정보 입력 페이지로 이동
+			log.trace("===============================insert====================================");
+			socialMemberService.insert(memberDTO);
 			return "redirect:/signup/addinfo";
+		} else {
+			log.trace("========================" + isMember + "==========================");
+			// 중복된 아이디나 이메일이 있으면 로그인을 시킴
+			log.trace("===============================login====================================");
+			return "redirect:/login";
 		}
 	} // kakaoLoginCallback
 

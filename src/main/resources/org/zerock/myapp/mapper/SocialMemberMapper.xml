@@ -8,14 +8,10 @@
 
 <mapper namespace="org.zerock.myapp.mapper.SocialMemberMapper">
 
-<!-- id로 회원정보 조회 -->
-	<select id="findById" parameterType="String" resultType="org.zerock.myapp.domain.MemberDTO">
-		SELECT * FROM member WHERE id = #{id}
-	</select>
 
-<!-- email로 회원정보 조회 -->
-	<select id="findByEmail" parameterType="String" resultType="org.zerock.myapp.domain.MemberDTO">
-		SELECT * FROM member WHERE email = #{email}
+<!-- email id로 회원정보 조회 -->
+	<select id="idEmailCheck" parameterType="String" resultType="org.zerock.myapp.domain.MemberDTO">
+		SELECT * FROM member WHERE email = #{email} OR id = #{id}
 	</select>
 
 <!-- 회원가입 -->

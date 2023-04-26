@@ -10,4 +10,5 @@ public interface KakaoService {
 	//user 정보 가져오기
 	public Map<String, Object> getUserInfo(String access_token) throws Throwable;
 	
+	
 } // end interface

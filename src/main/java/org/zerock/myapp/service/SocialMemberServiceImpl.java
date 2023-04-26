@@ -15,81 +15,33 @@ public class SocialMemberServiceImpl implements SocialMemberService {
 	private SocialMemberMapper socialMemberMapper;
 
 	@Override
-	public boolean kakaoSignup(MemberDTO memberDTO) throws Exception {
-		boolean result = false;
+	public boolean isMember(MemberDTO memberDTO) throws Exception {
+		// member 테이블에서 id 또는 email이 일치하는 데이터가 있는지 조회
+		MemberDTO member = socialMemberMapper.idEmailCheck(memberDTO.getId(), memberDTO.getEmail());
 
-//		socialMemberMapper.kakaoSignup(memberDTO);
-		log.trace("kakaoSignup invoked");
+		return member != null; // null이 아니면 중복이므로 true 반환
 
-		// id 중복 체크
+	} // isMember
 
-		if (socialMemberMapper.findById(memberDTO.getId()) != null) {
-			result = true;
+	@Override
+	public MemberDTO idEmailCheck(String id, String email) throws Exception {
+		log.trace("readByIdOrEmail invoked");
 
-		} // if
+		return socialMemberMapper.idEmailCheck(id, email);
+	} // idEmailCheck
 
-		// email 중복 체크
-		if (socialMemberMapper.findByEmail(memberDTO.getEmail()) != null) {
-			result = true;
+	@Override
+	public void insert(MemberDTO memberDTO) throws Exception {
+		log.trace("insert invoked");
 
-		} // if
-
-		// 중복된 아이디나 이메일이 없다면 회원가입 수행
-		if (!result) {
-			socialMemberMapper.insert(memberDTO);
-			result = true;
-		} // if
-
-		return result;
-
-	} // kakaoSignup
+		socialMemberMapper.insert(memberDTO);
+	} // insert
 
 	@Override
 	public void kakaoSignupAddInfo(MemberDTO memberDTO) throws Exception {
 		log.trace("kakaoSignupAddInfo invoked");
 
 		socialMemberMapper.kakaoSignupAddInfo(memberDTO);
-		
 
 	} // kakaoSignupAddInfo
-
-	@Override
-	public int checkId(String id) throws Exception {
-		log.trace("checkId invoked");
-
-		return socialMemberMapper.checkId(id);
-		
-	} // checkId
-
-	@Override
-	public int checkEmail(String email) throws Exception {
-		log.trace("checkEmail invoked");
-		
-		return socialMemberMapper.checkEmail(email);
-		
-	} // checkEmail
-
-	@Override
-	public MemberDTO findById(String id) throws Exception {
-		log.trace("findById invoked");
-		
-		return socialMemberMapper.findById(id);
-		
-	} //findById
-
-	@Override
-	public MemberDTO findByEmail(String email) throws Exception {
-		log.trace("findByEmail invoked");
-		
-		return socialMemberMapper.findByEmail(email);
-		
-	} // findByEmail
-
-	@Override
-	public void insert(MemberDTO memberDTO) throws Exception {
-		log.trace("insert invoked");
-		
-		socialMemberMapper.insert(memberDTO);
-	} // insert
-	
 } // end class
