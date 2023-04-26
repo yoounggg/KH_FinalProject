@@ -14,5 +14,5 @@ public interface SocialMemberMapper {
 
 	// 중복 확인
 	public MemberDTO idEmailCheck(String id, String email) throws Exception;
-	
+
 } // end interface
