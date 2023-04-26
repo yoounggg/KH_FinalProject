@@ -23,6 +23,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.zerock.myapp.domain.OrderDTO;
 import org.zerock.myapp.domain.OrderItemDTO;
 import org.zerock.myapp.domain.OrderPageItemDTO;
+import org.zerock.myapp.domain.ProductDTO;
 
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -70,8 +71,8 @@ public class OrderMapperTests {
 	@DisplayName(" test: TestGetOrderInfoTest()")
 	@Timeout(value = 1, unit=TimeUnit.MINUTES)
 	void TestGetOrderInfo() {
-		OrderItemDTO orderInfo = orderMapper.getOrderInfo(61);
-		
+		OrderItemDTO orderInfo = orderMapper.getOrderInfo(10);  	// 주문 상품 정보 담는 mapper(주문처리) 
+																	// 타입을 하나의 주문상품을 담는 OrderItemDTO로 줌
 		log.trace(" orderInfo : {} " + orderInfo);
 	} // TestGetOrderInfoTest()
 	
@@ -80,27 +81,28 @@ public class OrderMapperTests {
 	@Order(3)
 	@DisplayName(" test: TestEnrollOrder()")
 	@Timeout(value = 1, unit=TimeUnit.MINUTES)
-	void TestEnrollOrder() {
+	void TestEnrollOrder() {										// MYMG_ORDER 테이블에 주문 등록 테이블
 		
-		OrderDTO ord = new OrderDTO();
+		OrderDTO ord = new OrderDTO();								// 여러개의 주문을 받을 수 있으니 OrderDTO로 선언
 		List<OrderItemDTO> orders = new ArrayList();
 		
-		OrderItemDTO order1 = new OrderItemDTO();
+		OrderItemDTO order1 = new OrderItemDTO();					// 하나의 상품을 담음
 		
-		order1.setProductId(61);
-		order1.setProductCount(4);
+		order1.setProduct_no(10);
+		order1.setCount(4);
 		order1.setPrice(100);
 		order1.setDiscount(10);
 		order1.initSaleTotal();
 		
-		ord.setOrders(orders);
+		ord.setOrders(orders);										// 상품을 OrderDTO(상품 여러개)에 넣음
 		
-		ord.setNo(1);				// 주문번호
-		ord.setAddressee("찬돌");	// 주문받는사람
-		ord.setMemberId("chandoll");// 주문자
-		ord.setMemberAddr1(2023);
-		ord.setMemberAddr2("서울 특별시 영등포구 대림동");
-		ord.setMemberAddr3("지하철 10번출구");
+//		ord.setNo(1);				// 주문번호			
+		ord.setReceiver_name("찬돌");	// 주문받는사람				// MYMG_ORDER 테이블에 넣어야하니까 필드명을 테이블의 컬럼명과 맞춰야 에러가 안남
+		ord.setMember_id("chandoll");// 주문자
+		ord.setReceiver_address1(2023);
+		ord.setReceiver_address2("서울 특별시 영등포구 대림동");
+		ord.setReceiver_address3("지하철 10번출구");
+		ord.setReceiver_tel(12345678);
 		ord.setOrderState("배송준비");
 		ord.getOrderPriceInfo();
 		
@@ -109,16 +111,17 @@ public class OrderMapperTests {
 	
 	//@Disabled
 	@Test
-	@Order(3)
+	@Order(4)
 	@DisplayName(" test: TestEnrollOrderItemTest()")
 	@Timeout(value = 1, unit=TimeUnit.MINUTES)
-	void TestEnrollOrderItemTest() {
+	void TestEnrollOrderItemTest() {			// ORDER_LIST 테이블에 주문 상품 등록 테이블
 		
 		OrderItemDTO oid = new OrderItemDTO();
 		
-		oid.setNo(1);
-		oid.setProductId(61);
-		oid.setProductCount(4);
+//		oid.setNo(1);
+		oid.setOrder_no(1);
+		oid.setProduct_no(10);
+		oid.setCount(4);
 		oid.setPrice(100);
 		oid.setDiscount(10);
 		
@@ -128,5 +131,20 @@ public class OrderMapperTests {
 		
 	} // TestGetOrderInfoTest()
 	
+	//@Disabled
+	@Test
+	@Order(5)
+	@DisplayName(" test: TestdeductStock()")
+	@Timeout(value = 1, unit=TimeUnit.MINUTES)
+	void TestdeductStock() {				// 상품 재고 변경
+		
+		ProductDTO product = new ProductDTO();
+		
+		product.setNo(10);
+		product.setStock(1);
+		
+		orderMapper.deductStock(product);
+		
+	} // TestdeductStock() 
 	
 } // end class

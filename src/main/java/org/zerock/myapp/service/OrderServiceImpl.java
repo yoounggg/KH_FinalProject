@@ -5,9 +5,16 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.zerock.myapp.domain.MemberDTO;
+import org.zerock.myapp.domain.OrderDTO;
+import org.zerock.myapp.domain.OrderItemDTO;
 import org.zerock.myapp.domain.OrderPageItemDTO;
 import org.zerock.myapp.exception.ServiceException;
+import org.zerock.myapp.mapper.CartMapper;
+import org.zerock.myapp.mapper.MemberMapper;
 import org.zerock.myapp.mapper.OrderMapper;
+import org.zerock.myapp.mapper.ProductMapper;
 
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,9 +25,19 @@ import lombok.extern.log4j.Log4j2;
 
 @Service
 public class OrderServiceImpl implements OrderService {
-	
+
 	@Setter(onMethod_=@Autowired)
 	private OrderMapper orderMapper;	//orderMapper 주입
+	
+	@Setter(onMethod_=@Autowired)
+	private MemberMapper memberMapper;
+	
+	@Setter(onMethod_=@Autowired)
+	private CartMapper cartMapper;
+	
+	@Setter(onMethod_=@Autowired)
+	private ProductMapper productMapper;
+	
 
 	@Override
 	public List<OrderPageItemDTO> getProductsInfo(List<OrderPageItemDTO> orders) throws ServiceException {
@@ -45,5 +62,55 @@ public class OrderServiceImpl implements OrderService {
 		return result;
 		
 	} // getProductsInfo()
+	
+	@Override
+	@Transactional // Service는 여러 쿼리를 처리하게 되므로 하나의 단위로 처리하도록 단위처리 어노테이션 추가
+	public void order(OrderDTO odt) {
+		
+	// 사용할 데이터를 가져오자
+		
+		/* 회원 정보 */
+		MemberDTO member = memberMapper.getMemberInfo(odt.getMember_id());
+		
+		/* 주문 정보 */
+		List<OrderItemDTO> orders = new ArrayList<>();
+		for(OrderItemDTO oit : odt.getOrders()) {
+			OrderItemDTO orderItem = orderMapper.getOrderInfo(oit.getProduct_no());
+			
+			// 수량
+			orderItem.setCount(oit.getCount());
+			// 기본정보
+			orderItem.initSaleTotal();
+			// List 객체 추가
+			orders.add(orderItem);
+		}
+		/* orderDTO 세팅 */
+		odt.setOrders(orders);
+		odt.getOrderPriceInfo(); // 음..? 비용,배송비,최종비용
+		
+		
+	// DB 주문, 주문상품(배송정보) 넣기 
+		
+		/* orderId만들기 및 OrderDTO 객체를 orderId에 저장 */
+//		Date date = new Date();
+//		SimpleDateFormat format = new SimpleDateFormat("_yyyyMMddmm");
+//		String orderId = member.getId() + format.format(date);
+//		odt.setNo(orderId);
+//		=======================================> 음.. orderId 우리는 pk로 자동으로 들어가게 해놔서 안만들어도..?
+		
+		/* DB넣기 */
+		orderMapper.enrollOrder(odt);        // MYMG_ORDER 등록
+		for(OrderItemDTO oit : odt.getOrders()) {		//ORDER_LIST 등록
+//				oit.setOrder_no();  // 흠. .자동생성 되니 안만들어도..?
+				orderMapper.enrollOrderItem(oit);
+		}
+		
+		/* 재고 차감 */
+		for(OrderItemDTO oit : odt.getOrders()) {
+//			productDTO product = productMapper.get
+		}
+		
+		
+	} // order
 
 }// end class
