@@ -356,7 +356,7 @@ $(document).ready(function () {
 
         const id = document.getElementById("input_id").value;             //아이디
         const pw = document.getElementById("input_pw").value;             //비밀번호
-        const pw2 = document.getElementById("input_confirm_pw").value;    //비밀번호 혹인
+        const pw2 = document.getElementById("input_confirm_pw").value;    //비밀번호 확인
         const name = document.getElementById("input_name").value;         //이름
         const email = document.getElementById("input_email").value;       //이메일
         const tel = document.getElementById("input_hp").value;            //휴대폰 번호
@@ -366,51 +366,51 @@ $(document).ready(function () {
         const addr3 = document.getElementById("detail_addr").value;       //상세주소
 
         const isOkPw = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,16}$/;    //대소문자 구분 숫자8~16     
-        const isOkName = /^[a-zA-Z가-힣]{2,20}$/;       //한글 영어 2~20자
+        const isOkName = /^[a-zA-Z가-힣]{2,20}$/;        //한글 영어 2~20자
 
-        if (id.trim() === "") {                          // 아이디 체크
+        if (id.trim() === "") {                         // 아이디 체크
             popup_on12();
 
         } else if (!id_btn.disabled) {                  // 아이디 중복확인 체크
             popup_on21();
 
-        } else if (pw.trim() === "") {                   // 비밀번호 체크
+        } else if (pw.trim() === "") {                  // 비밀번호 체크
             popup_on13();
 
-        } else if (!isOkPw.test(pw)) {                     // 비밀번호 유효성 체크
+        } else if (!isOkPw.test(pw)) {                  // 비밀번호 유효성 체크
             popup_on1();
         }
-        else if (pw2.trim() === "") {                  // 비밀번호 확인 체크 
+        else if (pw2.trim() === "") {                   // 비밀번호 확인 체크 
             popup_on14();
 
         } else if (pw2 != pw) {                         // 비밀번호 확인 체크 
             popup_on24();
 
-        } else if (name.trim() === "") {                 // 이름 체크
+        } else if (name.trim() === "") {                // 이름 체크
             popup_on15();
 
-        } else if (!isOkName.test(name)) {                   // 이름 유효성 체크
+        } else if (!isOkName.test(name)) {              // 이름 유효성 체크
             popup_on1();
 
-        } else if (email.trim() === "") {                // 이메일 체크
+        } else if (email.trim() === "") {               // 이메일 체크
             popup_on16();
 
         } else if (!email_btn.disabled) {               // 이메일 중복확인 체크
             popup_on22();
 
-        } else if (tel.trim() === "") {                  // 휴대폰 번호 체크
+        } else if (tel.trim() === "") {                 // 휴대폰 번호 체크
             popup_on17();
 
         } else if (!tel_btn.disabled) {                 // 휴대폰 인증 체크
             popup_on23();
 
-        } else if (num.trim() === "") {                  // 인증번호 체크
+        } else if (num.trim() === "") {                 // 인증번호 체크
             popup_on18();
 
-        } else if (addr2.trim() === "") {                // 주소 체크
+        } else if (addr2.trim() === "") {               // 주소 체크
             popup_on19();
 
-        } else if (addr3.trim() === "") {                // 상세 주소 체크
+        } else if (addr3.trim() === "") {               // 상세 주소 체크
             popup_on20();
 
         } else {
