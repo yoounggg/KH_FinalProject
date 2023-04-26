@@ -20,5 +20,6 @@ public class MemberVO {
 	private Integer birth_day;
 	private String social_type;
 	private Integer adminCk;
+	private Integer no;
 	
 } // end class
