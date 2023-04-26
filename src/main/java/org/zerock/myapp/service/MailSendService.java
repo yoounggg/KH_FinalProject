@@ -11,22 +11,32 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MailSendService {
-	
-    @Autowired   //context-mail에서 빈 등록했기 때문에 주입받을 수 있다. Spring에서 제공하는 MailSender. 
+
+    @Autowired
     private JavaMailSenderImpl mailSender;
-    
-    private String getKey(int size) {
-        return "622354";  //6개 숫자 랜덤 만들어보세요
-    }
-    public String sendAuthMail(String mail)  throws MessagingException{
-        String authKey = getKey(6);
-        MimeMessage mailMessage = mailSender.createMimeMessage();
-        String mailContent = "인증번호:   "+authKey ;     //보낼 메시지 
-            mailMessage.setSubject("창희가보내는 이메일", "utf-8"); 
-            mailMessage.setText(mailContent, "utf-8", "html");  
-            mailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(mail));
-            mailSender.send(mailMessage);
+
+    private String authKey() {
+    	
+        int randomNum = (int) (Math.random() * 900000) + 100000; // 100000 ~ 999999 사이의 난수 생성
         
-          return authKey;
-    }
-}
+        return String.valueOf(randomNum);
+        
+    } // authKey()
+
+    public String sendAuthMail(String mail) throws MessagingException {
+    	
+        String authKey = authKey();
+        
+        MimeMessage mailMessage = mailSender.createMimeMessage();
+        String mailContent = "MYMG 아이디 찾기 인증 번호: " + authKey; // 보낼 메시지
+
+        mailMessage.setSubject("셍나가 보내는 이메일", "utf-8");
+        mailMessage.setText(mailContent, "utf-8", "html");
+        mailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(mail));
+        mailSender.send(mailMessage);
+
+        return authKey;
+        
+    } // sendAuthMail
+    
+} // end class
