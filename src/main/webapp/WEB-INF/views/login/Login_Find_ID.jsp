@@ -62,9 +62,9 @@
 						
             			<!-- 아이디 찾기 버튼 클릭 이후 생기는 입력창 -->
             			<div class="p_verification" style="display: none;">
-                        	<input type="text" class="p_verification_input" placeholder="인증번호를 입력해주세요." required>
+                        	<input style="display:none" type="text" id="p_verification_input" class="p_verification_input" placeholder="인증번호를 입력해주세요." required>
                         	<!-- 확인 버튼 -->
-                        	<button type="button" class="p_verify_button">확인</button>
+                        	<button style="display:none" type="button" class="p_verify_button">확인</button>
                     	</div>
 				    </form>
 

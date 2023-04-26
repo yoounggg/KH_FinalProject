@@ -29,7 +29,9 @@ public class MemberController {
 	
 	// 아이디 찾기 휴대폰 인증 번호 받기!
 	@Setter(onMethod_ = { @Autowired })
-	MsgSendService msgCheckService;
+	MsgSendService msgSendService;
+	
+//	------------------------------------------------
 	
 	// 아이디 찾기 - DB에 회원 정보(이름, 전화번호) 존재하는 지 확인
 	@PostMapping("/findid/idCheck")
@@ -44,12 +46,14 @@ public class MemberController {
 		
 	} // idCheck()
 	
+//	------------------------------------------------
+	
 	// 아이디 찾기 - 핸드폰 번호 인증
 	@GetMapping("/findid/telCheck")
-	public @ResponseBody String msgSend(@RequestParam("tel") String userPhoneNumber) {	//문자 보내기
+	public @ResponseBody String sendSMS(@RequestParam("tel") String userPhoneNumber) {	//문자 보내기
 		int randomNumber = (int)((Math.random() * 8999 ) + 1000 );			// 난수 1000 ~ 9999
 		
-		msgCheckService.msgSend(userPhoneNumber, randomNumber);
+		msgSendService.msgSend(userPhoneNumber, randomNumber);
 		
 		log.trace("userPhoneNumber : {} , ramdomNumber : {}  " , userPhoneNumber, randomNumber );
 		
@@ -57,5 +61,4 @@ public class MemberController {
 		
 	} // msgSend()
 	
-
 } // end class
