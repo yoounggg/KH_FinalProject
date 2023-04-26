@@ -74,7 +74,7 @@
 		</insert>
 		
 		<!-- 주문자 정보(찬돌) -->
-		<select id="getMemberInfo" resultType="org.zerock.myapp.domain.MemberDTO">
+		<select id="getMemberInfo" parameterType="String" resultType="org.zerock.myapp.domain.MemberDTO">
 			SELECT ID, NAME, TEL, EMAIL, ADDRESS1, ADDRESS2, ADDRESS3
 			FROM Member
 			WHERE Id = #{id}

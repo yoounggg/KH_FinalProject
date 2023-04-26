@@ -88,7 +88,7 @@ public class OrderMapperTests {
 		
 		OrderItemDTO order1 = new OrderItemDTO();					// 하나의 상품을 담음
 		
-		order1.setProduct_no(10);
+		order1.setProduct_no(81);
 		order1.setCount(4);
 		order1.setPrice(100);
 		order1.setDiscount(10);
@@ -141,7 +141,7 @@ public class OrderMapperTests {
 		ProductDTO product = new ProductDTO();
 		
 		product.setNo(10);
-		product.setStock(1);
+		product.setStock(10);
 		
 		orderMapper.deductStock(product);
 		
