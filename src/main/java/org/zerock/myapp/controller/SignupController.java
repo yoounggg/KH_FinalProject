@@ -56,8 +56,8 @@ public class SignupController { // 회원가입 페이지 호출
 //		
 //	} // signupPOST
 	
-	//회원가입 비밀번호 암호화 적용
 	
+//회원가입 비밀번호 암호화 적용	
 //	@Setter(onMethod_=@Autowired)
 //	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
