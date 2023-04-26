@@ -74,4 +74,30 @@ function goform(){
 	$('#userUpdateForm').attr("action",'/mypage/userInfo/update').submit();
 }; // goform
 
+//필수입력값 안넣었을 때 경고창
+function checkInput(){
+	let inputs = document.userUpdateForm;
+	if(!inputs.password.value){
+		alert("현재 비밀번호를 입력하세요.");
+		return false;
+	}
+	if(!inputs.name.value){
+		alert("성명을 입력하세요.");
+		return false;
+	}
+	if(!inputs.tel.value){
+		alert("휴대폰 번호를 입력하세요.");
+		return false;
+	}
+	if(!inputs.address1.value){
+		alert("주소를 입력하세요.");
+		return false;
+	}
+	if(!inputs.address2.value){
+		alert("주소를 입력하세요.");
+		return false;
+	}
+} // checkInput
+
+
       

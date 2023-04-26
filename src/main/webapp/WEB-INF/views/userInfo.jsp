@@ -124,7 +124,7 @@
         </div>
         
         <!-- form 태그 -->
-        <form action="/mypage/userInfo/update" method="POST" name="userUpdateForm" id="userUpdateForm">
+        <form action="/mypage/userInfo/update" method="POST" name="userUpdateForm" id="userUpdateForm" onsubmit="checkInput()">
             <table>
                 <tr>
                     <th>&nbsp;아이디</th>
@@ -133,25 +133,10 @@
                 
                 <tr>
                     <th>&nbsp;현재 비밀번호<span class="red">*</span></th> 
-                    <td><input type="password" name ="password" required></td>
-                    <!-- <input type="hidden" name = "password" data-password="${details.password}" id="checkOringinPw" >  -->
+                    <td><input type="password" name ="password"></td>              
                     <td><span id="pwChk" class="btntr">확인</span></td>
-                    <!-- <td class="sletter">&nbsp;*기존 비밀번호를 입력해 주세요.</td>  -->   
                 </tr>
-                
-                <!-- <tr>
-                    <th>&nbsp;신규 비밀번호<span class="red">*</span></th>
-                    <td><input type="password" id="newPw" onchange="newPwforDetails()"></td>
-                    <td class="sletter" colspan="2">&nbsp;*대/소문자 구분, 숫자 8~16자리로 입력해주세요.</td>
-                </tr> -->
-                
-                <!-- <tr>
-                    <th>&nbsp;신규 비밀번호 확인<span class="red">*</span></th>
-                    <td><input type="password" id="checkNewPw" name="checkedNewPw" onchange="confirmNewPw()"></td>
-                    <td><span id="newpwChk" class="btntr">변경하기</span></td> -->
-                    <!-- <td class="sletter" colspan="2">&nbsp;*비밀번호 확인을 위해 한 번 더 입력해 주세요.</td> -->
-                <!-- </tr> -->
-                
+
                 <tr>
                     <th>&nbsp;성명<span class="red">*</span></th>
                     <td><input type="text" name="name" value="${details.name}" required></td>
@@ -161,14 +146,11 @@
                     <th class="th_height" rowspan="3" >&nbsp;휴대전화<span class="red">*</span></th>
                     <td><input type="text" id="tel" name="tel" value="${details.tel}" required></td>
                     <td><span id="telCk" class="btntr">휴대폰 인증</span></td>
-                    <!-- <input type="button" value="휴대폰 인증" id="telCk" class="btntr"> -->
                 </tr>
                 
                 <tr class="specialtr">
                     <td><input type="text" id="tel2" name="tel2" placeholder="인증번호를 입력하세요" disabled required></td>
-                    <td><span id="tel2Chk" class="btntr" >본인인증</span></td>
-                    <!-- <input type="button" id="tel2Chk" class="btntr" value="확인" > -->
-                  	<!-- <span class="successTelCk">휴대폰 번호 입력후 인증번호 보내기를 해주세요.</span>  -->
+                    <td><span id="tel2Chk" class="btntr" >본인인증</span></td>               
                     
                     <input type="hidden" id="telDoubleChk">
                     <!-- <p class="tip">최초 가입시에만 사용하고 있습니다.</p>  -->
@@ -208,17 +190,14 @@
                 <tr>
                     <!-- 생년월일 변경 불가능 -->
                     <th>&nbsp;생년월일</th>
-                    <td><input type="text" value="${details.birth_year}, ${details.birth_month}, ${details.birth_day}" readonly></td>
-                    <!--<td><input type="text" name="birth_month" value="${details.birth_month}" readonly></td>-->
-                    <!--<td><input type="text" name="birth_day" value="${details.birth_day}" readonly></td>-->
+                    <td><input type="text" value="${details.birth_year}, ${details.birth_month}, ${details.birth_day}" readonly></td>                
                 </tr>
             </table>
 				
 	        <div class="btnset">
 	            <button class="userbtn1" type="submit" class="modifyUserDetails" onClick="goform()">정보수정</button>
 	            <input class="userbtn2" type="button" value="메인으로" onClick="location.href='/main'">
-	            <button class="userbtn2" type="button" onClick="deleteUser('${details.id}')">회원탈퇴</button>
-	            <!-- <button class="userbtn2" type="button" onClick="deleteUser()">회원탈퇴</button>  -->
+	            <button class="userbtn2" type="button" onClick="deleteUser('${details.id}')">회원탈퇴</button>	           
 	        </div>     
 		</form>               
     </div>    

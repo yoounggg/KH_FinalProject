@@ -120,8 +120,6 @@ public class UserInfoController {
 	//4-1. 기존비밀번호와 일치하는지 확인
 
 		@PostMapping("/{id}/checkPw")
-//		public @ResponseBody String checkPw(@RequestBody String password, @PathVariable("id") String id, Model model) throws Exception{
-//		public @ResponseBody String checkPw(@RequestBody Map<String, String> request, @PathVariable("id") String id, Model model) throws Exception{
 		public ResponseEntity<String> checkPw(@RequestBody Map<String, String> request, @PathVariable("id") String id) throws Exception {	
 		
 		log.info("checkPw({}, {}) invoked", request.get("password"), id);
@@ -139,19 +137,18 @@ public class UserInfoController {
 			if(passwordEncoder.matches(request.get("password"), dto.getPassword())) {
 				log.info("result({}, {})", request.get("password"),dto.getPassword() );
 				result = "true";
-//				return ResponseEntity.status(HttpStatus.OK).body("true");
 
 			}else {
 				log.info("result({}, {})", request.get("password"), dto.getPassword());
-//				return ResponseEntity.status(HttpStatus.OK).body("false");
 				result = "false";
 
 			} // if else
-//			return result;
+
 			return ResponseEntity.ok(result);
 		} // checkPw
 		
-		
+//		public @ResponseBody String checkPw(@RequestBody String password, @PathVariable("id") String id, Model model) throws Exception{
+//		public @ResponseBody String checkPw(@RequestBody Map<String, String> request, @PathVariable("id") String id, Model model) throws Exception{
 		
 		
 //	===========================================================================	
@@ -159,8 +156,8 @@ public class UserInfoController {
 	//5. 비밀번호 변경
 	
 	@GetMapping("/{id}/changePw")
-	public String modifypw(@PathVariable("id") String id) {
-		log.info("modiftpw() invoked(비밀번호 변경 페이지)");
+	public String changePw(@PathVariable("id") String id) {
+		log.info("changePw() invoked(비밀번호 변경 페이지)");
 		
 		return "modifypw";
 	} // modifypw
@@ -168,10 +165,8 @@ public class UserInfoController {
 	
 	//4-2 새로운 비밀번호 변경
 	@PostMapping("/{id}/changedPw")
-	public ResponseEntity<Boolean> changePw(@RequestBody Map<String, String> request, MemberDTO dto, @PathVariable("id") String id, RedirectAttributes rttrs) throws Exception{
-		log.info("changePw({},{}) invoked (비밀번호 변경 요청)", request.get("password"), id);
-		
-		//String result = "";
+	public ResponseEntity<Boolean> modifyPw(@RequestBody Map<String, String> request, MemberDTO dto, @PathVariable("id") String id, RedirectAttributes rttrs) throws Exception{
+		log.info("modifyPw({},{}) invoked (비밀번호 변경 요청)", request.get("password"), id);
 		
 		//인코딩 전 새로받은 비번
 		String securePw = "";
@@ -190,39 +185,15 @@ public class UserInfoController {
 		
 		try {
 			boolean success = this.service.modifyPw(dto);
-			log.info("\t+success:{}", success);
-			
-			//rttrs.addAttribute("result", (success)? "true" : "false");
-		
+			log.info("\t+success:{}", success);		
 			log.info(success);
+			
 			return ResponseEntity.ok(success);
 		}catch(Exception e) {
 			throw new ControllerException(e);
 		} // try-with
 		
-		
-		
-		
-		
-//		//비번 변경하기 
-//		service.modifyPw(dto);
-//		log.info("dto({})", dto);
-//		
-//		//memberdto에 세션 다시 담음?
-//		MemberDTO changeUser = new MemberDTO();
-//		changeUser.setId(dto.getId());
-//		
-//		//사용자 정보를 조회해서 user에 담기
-//		changeUser = this.service.userDetail(id);
-//		session.setAttribute("changeddetails", changeUser); // 모델 == changeddetails
-//		log.info("회원정보: " + changeUser);
-//		
-//		return "success";
-		
-	}
-	
-
-
+	} // changePw
 	
 
 //===================================================================================================	
