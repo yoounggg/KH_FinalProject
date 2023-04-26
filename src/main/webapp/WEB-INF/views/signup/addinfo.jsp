@@ -1,23 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 
+
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="ko">
 
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.1/jquery-migrate.min.js"></script>
-        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
-
+        <link rel="stylesheet" href="../resources/css/signup/signup_addinfo.css">
         <%@include file="/WEB-INF/views/common/favicon.jsp" %>
-            <link rel="stylesheet" href="../resources/css/signup/signup_addinfo.css">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
             <script src="../resources/js/signup/signup_addinfo.js"></script>
+            <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-            <title>MOYAMOGA</title>
+            <%@page import="java.util.Date" %>
+
+                <%@page import="java.text.SimpleDateFormat" %>
+
+                    <title>MOYAMOGA</title>
+
 
     </head>
 
@@ -27,20 +30,58 @@
             <%@include file="../common/header.jsp" %>
 
                 <div class='wrapper'>
+
                     <div class="탑로고">
                         <img id="logo" src="../resources/imgs/logo.png">
                     </div>
+                   
 
-                    <h1>추가정보 입력</h1>
+                    <h1>추가 정보</h1>
 
                     <div class="wrapper-input">
+                        <div class='필수입력'><span id="필수빨강">*</span> 필수 입력</div>
+
                         <div class='line'></div>
 
                         <div class="정보">
                             <form action="#" id="signup" method="post" autocomplete="off">
 
+                                <div>
+                                    <label class="라벨">이름<span id="필수빨강">*</span></label>
+
+                                    <input type="text" class='회원정보' id="input_name" name="name" method="post"
+                                        oninput="name_input_con()" placeholder="이름을 입력해주세요" autofocus>
+
+                                    <div class='입력조건' id="name_input_con">한글 또는 영문 2~20자</div>
+                                </div>
+
+                                <div>
+                                    <label class="라벨">휴대폰 번호<span id="필수빨강">*</span></label>
+
+                                    <input type="text" class='회원정보' id="input_hp" name="tel" method="post"
+                                        onkeyup="hp_btn();" placeholder="휴대폰 번호를 입력해주세요"
+                                        onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+
+                                    <input form="hp_form" type="submit" class='인증' id="hp_confirm" value="휴대폰인증"
+                                        onclick="checkHp();" disabled>
+
+                                    <div class='입력조건' id="hp_input_con">숫자만 입력해 주세요</div>
+                                </div>
+
+                                <div id="num_form">
+                                    <label class="라벨">인증번호 입력<span id="필수빨강">*</span></label>
+
+                                    <input type="text" class='회원정보' id="input_num" method="post" oninput="num_btn()"
+                                        placeholder="인증번호를 입력해주세요">
+                                    <span id="countdown">3:00</span>
+
+                                    <input form="num_form" type="submit" class='인증' id="num_confirm" value="인증하기"
+                                        onclick="num_compare()" disabled>
+
+                                </div>
+
                                 <div id="addr_form">
-                                    <label class="라벨">주소</label>
+                                    <label class="라벨">주소<span id="필수빨강">*</span></label>
                                     <input form="addr_form" type="submit" class='회원정보' id="addr" value="주소검색">
                                 </div>
 
@@ -50,20 +91,18 @@
                                 </div>
 
                                 <div id="addr_form2">
-                                    <label class="라벨">주소</label>
+                                    <label class="라벨">주소<span id="필수빨강">*</span></label>
                                     <input type="text" class='회원정보' id="addr2" name="address2" readonly>
                                     <input type="button" id="addr_btn" value="재검색">
                                 </div>
 
-                                <div id="detail_addr_form">
-                                    <label class="라벨">상세주소</label>
+                                <div id=detail_addr_form>
+                                    <label class="라벨">상세주소<span id="필수빨강">*</span></label>
                                     <input type="text" class='회원정보' id="detail_addr" name="address3"
                                         placeholder="상세주소를 입력해주세요">
                                 </div>
 
-
-
-                                <div id="gender_form" class="성별">
+                                <div id="gender_form" class="성별" name="gender">
                                     <label class="라벨">성별</label>
                                     <input type="radio" name="gender" value="남자" id="남자">남자
                                     <input type="radio" name="gender" value="여자" id="여자">여자
@@ -85,26 +124,95 @@
                                     </span>
                                 </div>
 
-                                <div class="하단버튼">
-                                    <button type="button" class='가입하기' id="signup_btn">가입하기</button>
+                                <div class="btm_btn">
+                                    <button type="button" class='join' id="signup_btn">가입하기</button>
+
                                     <div>
-                                        <a href="socialComplete"><span class="다음에">다음에 입력</span></a>
+                                        <a href="/signup/socialComplete"><span class="next">다음에 입력</span></a>
                                     </div>
+
                                 </div>
+                                <% SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); String
+                                    currentDate=dateFormat.format(new Date()); %>
+
+                                    <input type="hidden" name="signup_date" value="<%= currentDate %>">
+                                    <input type="hidden" name="adminCk" value="0">
                             </form>
                         </div>
                     </div>
-
-
-
-                    <%@include file="../common/footer.jsp" %>
                 </div>
-        </div>
-        <div class="popmenu3">
-            <p>날짜 형식에 맞게 입력해주세요</p>
-            <input type="button" class="exit3" onclick="exit3()" value="확인">
+
+                <%@include file="../common/footer.jsp" %>
+
         </div>
 
+
+
+        <!-- 팝업 -->
+        <div class="popmenu1" id="common_pop">
+            <p>조건에 맞게 입력해주세요</p>
+            <input type="button" class="exit1" id="common_btn" onclick="exit1()" value="확인">
+        </div>
+
+        <div class="popmenu6" id="common_pop">
+            <p>인증번호가 전송되었습니다</p>
+            <input type="button" class="exit6" id="common_btn" onclick="exit6()" value="확인">
+        </div>
+
+        <div class="popmenu7" id="common_pop">
+            <p>중복된 번호입니다</p>
+            <input type="button" class="exit7" id="common_btn" onclick="exit7()" value="확인">
+        </div>
+
+        <div class="popmenu8" id="common_pop">
+            <p>인증번호가 틀렸습니다</p>
+            <input type="button" class="exit8" id="common_btn" onclick="exit8()" value="확인">
+        </div>
+
+        <div class="popmenu9" id="common_pop">
+            <p>인증시간이 만료되었습니다</p>
+            <input type="button" class="exit9" id="common_btn" onclick="exit9()" value="확인">
+        </div>
+
+        <div class="popmenu10" id="common_pop">
+            <p>인증되었습니다</p>
+            <input type="button" class="exit10" id="common_btn" onclick="exit10()" value="확인">
+        </div>
+
+        <div class="popmenu11" id="common_pop">
+            <p>날짜형식에 맞게 입력해주세요</p>
+            <input type="button" class="exit11" id="common_btn" onclick="exit11()" value="확인">
+        </div>
+
+        <div class="popmenu15" id="common_pop">
+            <p>이름을 입력해주세요</p>
+            <input type="button" class="exit15" id="common_btn" onclick="exit15()" value="확인">
+        </div>
+
+        <div class="popmenu17" id="common_pop">
+            <p>휴대폰 번호를 입력해주세요</p>
+            <input type="button" class="exit17" id="common_btn" onclick="exit17()" value="확인">
+        </div>
+
+        <div class="popmenu18" id="common_pop">
+            <p>인증번호를 입력해주세요</p>
+            <input type="button" class="exit18" id="common_btn" onclick="exit18()" value="확인">
+        </div>
+
+        <div class="popmenu19" id="common_pop">
+            <p>주소를 입력해주세요</p>
+            <input type="button" class="exit19" id="common_btn" onclick="exit19()" value="확인">
+        </div>
+
+        <div class="popmenu20" id="common_pop">
+            <p>상세 주소를 입력해주세요</p>
+            <input type="button" class="exit20" id="common_btn" onclick="exit20()" value="확인">
+        </div>
+
+        <div class="popmenu23" id="common_pop">
+            <p>휴대폰 인증을 해주세요</p>
+            <input type="button" class="exit23" id="common_btn" onclick="exit23()" value="확인">
+        </div>
 
     </body>
 
