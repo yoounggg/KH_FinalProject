@@ -185,20 +185,19 @@ h2{
 
         table {
             display: table;
-            width: 760px;
-            margin-bottom: 0px;
+            margin: 0px;
+            border-collapse: collapse;
         }
 
         table th {
-            border-bottom: 1px solid #ceced2;
-            padding : 8px;
+            padding: 8px;
+    		border-bottom: 1px solid #ceced2;
         }
 
         table td {
             padding: 14px 10px 13px 10px;
-            border-bottom: 1px solid #ceced2;
-            text-align: center;
             font-size: 13px;
+            border-bottom: 1px solid #ceced2;
             
         }
 
@@ -223,9 +222,10 @@ h2{
             /* text-align: center; */
         }
 
-        h1, p {
+        p {
             padding: 2px;
             margin: 0;
+            font-size:14px;
             color: #4f4f4f;
         }
 
@@ -260,59 +260,44 @@ h2{
             color: #fff;
         }
 
-       /* =================================================== */
-       
-       
-               input[id*="answer"] {
-            display: none;
-        }
+      /*   ================================================ */
+      
+	#delivery-btn {
+		background-color: #11BC0D;
+		color: #F9F9F4;
+		width: 375px;
+	    height: 40px;
+	    border: none;
+	}
+	
+	#refund-btn {
+		background-color: #F9F9F4;
+		color: black;
+		width: 375px;
+	    height: 40px;
+	    border: none;
+	}
+	
 
-        input[id*="answer"] + label {
-            display: block;
-            padding: 20px;
-            border-bottom: 1px solid #ceced2;
-            font-weight: 700;
-            cursor: pointer;
-            position: relative;
-            font-size: 14px;
-        }
-
-        input[id*="answer"] + label em {
-            position: absolute;
-            top: 50%;
-            right: 10px;
-            width: 30px;
-            height: 30px;
-            margin-top: -15px;
-            display: inline-block;
-        }
-
-        input[id*="answer"] + label + div {
-            max-height: 0;
-            transition: all 0.01s;
-            overflow: hidden;
-            background-color: rgb(244, 244, 244);
-        }
-
-        input[id*="answer"] + label + div p {
-            display: inline-block;
-            padding: 20px;
-        }
-
-        input[id*="answer"]:checked + label + div {max-height:800px} 
-
-        input[id*="answer"]:checked + label + em {background-position:0 -30px;} 
+    tbody {
+    	border: 1px solid #ceced2;
+    }
         
-        
-      .pageInfo{
-	    list-style : none;
-	    display: inline-block;
-	    margin: 50px 0 0 100px;      
-	  }
-	  .pageInfo li{
-	    float: left;
-	    font-size: 20px;
-	    margin-left: 18px;
-	    padding: 7px;
-	    font-weight: 500;
-	  }
+    th {
+        margin: 10px;
+        background-color: #ededed;
+        width: 150px;
+        height: 40px;
+    }
+
+    
+    h3 {
+    	font-size:18px;
+    }
+	
+	.info_boxs table tbody td {
+	    padding: 15px;
+	    line-height: 20px;
+	    border-bottom: solid 1px #e5e5e5;
+	}
+	

@@ -2,12 +2,16 @@ package org.zerock.myapp.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.zerock.myapp.domain.OrderDTO;
 import org.zerock.myapp.domain.OrderPageDTO;
 import org.zerock.myapp.exception.ServiceException;
 import org.zerock.myapp.service.MemberService;
@@ -36,6 +40,13 @@ public class OrderController {
 		return "order";
 	}; // orderPage
 	
+	@GetMapping("/orderSuccess")			
+	public String orderPage1() {
+		log.trace("payPage() invoked");
+	
+		return "order/orderSuccess";
+	}; // orderPage
+	
 	
 	// 테스트123
 	@GetMapping("/{id}") // 주문페이지로 이동 mapping
@@ -46,7 +57,8 @@ public class OrderController {
 		
 		if(opd == null) {
 			opd = new OrderPageDTO();
-		}
+		} 	// opd가 null일 때는 새로운 객체를 생성하고, 그렇지 않을 때는 이미 생성된 객체를 그대로 사용
+			// null인 경우에도 객체를 사용할 수 있도록 보장하며, 객체를 여러 번 생성하지 않아도 되어
 
 		// opd.getOrders()가 null인 경우, 새로운 ArrayList를 생성하여 opd에 저장합니다.
 		if(opd.getOrders() == null) {
@@ -62,7 +74,13 @@ public class OrderController {
 		
 	} // orderPageGet
 
+	@PostMapping("")
+	public String orderPagePost(OrderDTO dto, HttpServletRequest request) {
+		
+		log.trace("\t+ dto : {}", dto);
 	
-	// 찬석이 수정합니당123dddd
+		return "redirect:order/orderSuccess";
 	
-}
+	} // orderPagePost
+	
+} // endclass

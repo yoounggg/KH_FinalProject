@@ -5,7 +5,7 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class OrderPageDTO {
+public class OrderPageDTO { //OrderPageItemDTO의 객체를 요소로 가지는 List타입의 변수를 가질 클래스
 	
 	private List<OrderPageItemDTO> orders;	//주문 페이지에서 보여지는 각 주문 아이템들의 정보를 가져옴
 

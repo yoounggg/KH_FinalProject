@@ -14,7 +14,7 @@
 	<!-- include favicon -->
     <%@include file="/WEB-INF/views/common/favicon.jsp" %>
     
-    <link rel="stylesheet" href="/resources/css/help/faq.css">
+    <link rel="stylesheet" href="/resources/css/help/get.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,100,1,-25" />
@@ -68,21 +68,26 @@
                 <!-- 중간 - 게시물 -->
                 <div class="content_wrap">
                         <h2>공지사항 <span class="test">새로운 소식들을 확인하세요</span></h2>
-
+						<form>
                         <div class="content_list">
 			                <table>
+			                	<p><input type="hidden" name="no" value="${notice.no}"></p>
 								<tr>
-									<th>${NoticeVO.title}</th>
+									<th><h3>${notice.title}</h3></th>
 								</tr>
 								<tr>
-									<td>${NoticeVO.content}</td>
+									<td>
+										<div class="notice_detail">${notice.content}</div>
+									</td>
 								</tr>                               
 							</table>
 		
-							<h4><button type="button">전체보기</button></h4>
+							<h4><button id="listBtn"><a href="/help/notice" id="Btn">전체보기</a></button></h4>
 		
 						</div>
+						</form>
 	    		</div>
+        </div>
         </div>
     </main>
     <!-- ==========================footer========================= -->

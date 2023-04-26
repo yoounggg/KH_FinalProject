@@ -119,13 +119,14 @@ function calculatetotal() {
         if(totalPrice >= 30000) {           // 총 가격이 3만원 이상이면 배송비 무료
             delivery = 0;           
         } else if (totalPrice == 0) {       
-            delivery = 0;           
+           delivery = 0;           
         } else {                            // 아니면 3000원 배송비 부담
             delivery = 3000;
         }
         
 
         finalTotalPrice = totalPrice + delivery - totalDiscount;    // 최종 가격 : 총 가격 + 배송비 - 할인가격
+
     		
     		/* 값 삽입 */
     		// 총 가격
@@ -170,3 +171,7 @@ function calculatetotal() {
     	    // 해당하는 .addressInfo_input_div의 .selectAdressee를 true로 설정
     	    $(".addressInfo_input_div_" + className).find(".selectAdressee").val("T");
       }
+      
+    /* ============================== 주문하기(데이터 전송) =========================================== */
+
+

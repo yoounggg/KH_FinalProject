@@ -56,7 +56,6 @@ function checkId() {
     }
 };
 
-
 // 비밀번호 유효성 검사
 function pw_input_con() {
     const passwordInput = document.querySelector('#input_pw');

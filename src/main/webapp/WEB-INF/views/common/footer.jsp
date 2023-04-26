@@ -38,7 +38,7 @@
     <footer>
         <div class="yakgwan1">
             <div class="yakgwan2">
-                <li><a href="#">고객센터</a></li>
+                <li><a href="/help/main">고객센터</a></li>
                 <li><a href="/help/terms">약관 및 정책</a></li>
                 <li><a id="gaein" href="/help/privacy">개인정보 취급방침</a></li>
             </div>

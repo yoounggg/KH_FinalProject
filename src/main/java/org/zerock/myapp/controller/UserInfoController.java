@@ -1,11 +1,18 @@
 package org.zerock.myapp.controller;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -58,7 +65,7 @@ public class UserInfoController {
 	@PostMapping("/update")
 	public String updateUser(MemberDTO dto, RedirectAttributes rttrs) throws ControllerException {
 		log.trace("updateUser({},{}) invoked.", dto, rttrs);
-		
+
 		try {
 			boolean success = this.service.updateUser(dto);
 			log.info("\t+success:{}", success);
@@ -70,7 +77,6 @@ public class UserInfoController {
 			throw new ControllerException(e);
 		} // try-with
 	} // updateUser
-	
 	
 	@GetMapping("/update") //-> 상세조회화면도 get 해야함
 	public void updateUser() {
@@ -87,8 +93,8 @@ public class UserInfoController {
 		msgservice.msgSend(userPhoneNumber, randomNumber);
 		
 		return Integer.toString(randomNumber);
+		
 	} // sendSMS
-	
 	
 	
 //	===========================================================================
@@ -110,11 +116,113 @@ public class UserInfoController {
 		} // try-catch
 	} // deleteUser()
 	
+//	===========================================================================	
+	//4-1. 기존비밀번호와 일치하는지 확인
+
+		@PostMapping("/{id}/checkPw")
+//		public @ResponseBody String checkPw(@RequestBody String password, @PathVariable("id") String id, Model model) throws Exception{
+//		public @ResponseBody String checkPw(@RequestBody Map<String, String> request, @PathVariable("id") String id, Model model) throws Exception{
+		public ResponseEntity<String> checkPw(@RequestBody Map<String, String> request, @PathVariable("id") String id) throws Exception {	
+		
+		log.info("checkPw({}, {}) invoked", request.get("password"), id);
+			
+			String result = "";
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			
+			MemberDTO dto = this.service.userDetail(id);
+			log.info("dto({})", dto);
+			
+			log.info("DB 회원의 비밀번호:" + dto.getPassword());
+			log.info("form에서 받아온 비밀번호: " + request.get("password"));
+			
+			
+			if(passwordEncoder.matches(request.get("password"), dto.getPassword())) {
+				log.info("result({}, {})", request.get("password"),dto.getPassword() );
+				result = "true";
+//				return ResponseEntity.status(HttpStatus.OK).body("true");
+
+			}else {
+				log.info("result({}, {})", request.get("password"), dto.getPassword());
+//				return ResponseEntity.status(HttpStatus.OK).body("false");
+				result = "false";
+
+			} // if else
+//			return result;
+			return ResponseEntity.ok(result);
+		} // checkPw
+		
+		
+		
+		
+//	===========================================================================	
+//	===========================================================================
+	//5. 비밀번호 변경
 	
+	@GetMapping("/{id}/changePw")
+	public String modifypw(@PathVariable("id") String id) {
+		log.info("modiftpw() invoked(비밀번호 변경 페이지)");
+		
+		return "modifypw";
+	} // modifypw
+	
+	
+	//4-2 새로운 비밀번호 변경
+	@PostMapping("/{id}/changePw")
+	public String changePw(@RequestBody Map<String, String> request, MemberDTO dto, @PathVariable("id") String id, RedirectAttributes rttrs) throws Exception{
+		log.info("changePw({},{}) invoked (비밀번호 변경 요청)", request.get("password"), id);
+
+		//인코딩 전 새로받은 비번
+		String securePw = "";
+		String password = request.get("password");
+		log.info(request.get("password"));
+		log.info(password);
+		
+		//인코딩
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		securePw = encoder.encode(password);
+		log.info("암호화 후 새 비번: " + securePw);
+		
+//		session.setAttribute(password, securePw);
+		dto.setPassword(securePw); // 인코딩된 비번 집어넣기
+		log.info("dto({}) ", dto);
+		
+		try {
+			boolean success = this.service.modifyPw(dto);
+			log.info("\t+success:{}", success);
+			
+			rttrs.addAttribute("result", (success)? "success" : "failure");
+			
+			return "redirect:/mypage/userInfo/" + dto.getId();
+		}catch(Exception e) {
+			throw new ControllerException(e);
+		} // try-with
+		
+		
+		
+		
+		
+//		//비번 변경하기 
+//		service.modifyPw(dto);
+//		log.info("dto({})", dto);
+//		
+//		//memberdto에 세션 다시 담음?
+//		MemberDTO changeUser = new MemberDTO();
+//		changeUser.setId(dto.getId());
+//		
+//		//사용자 정보를 조회해서 user에 담기
+//		changeUser = this.service.userDetail(id);
+//		session.setAttribute("changeddetails", changeUser); // 모델 == changeddetails
+//		log.info("회원정보: " + changeUser);
+//		
+//		return "success";
+		
+	}
+	
+
 
 	
 
-	
+//===================================================================================================	
 //	@PostMapping("/delete")
 //	public String deleteUser(MemberDTO dto, HttpSession session, RedirectAttributes rttrs) throws ControllerException{
 ////	public String deleteUser(String id, Model model) throws ControllerException, ServiceException{
