@@ -1,4 +1,4 @@
-@charset "utf-8";
+@charset "UTF-8";
 
 /* --------------header-------------- */
 
@@ -314,16 +314,8 @@ main{
 	border-left: 1px solid black;
 	border-bottom: 1px solid black;
 }
-/* -----------테이블------------ */
 
-/* .huiwon{ */
-    /* width: 100px;
-    height: 500px; */
-    /* width: 500px; */
-    /* position: relative; */
-    /* right: 10px; */
-    /* left: 100px; */
-/* } */
+/* -----------테이블------------ */
 
 .sujeong1{
     display: flex;
@@ -360,12 +352,7 @@ th{
     font-size: 11px;
     font-weight: lighter;
 }
-.addrtr{
-    width: 165px;
-    height: 18px;
-    border: 1px solid black;
-    background-color: #EFEFEF;
-}
+
 .btnset{
     padding: 30px;
     text-align: center;
@@ -405,10 +392,6 @@ th{
     cursor: pointer;
 } 
 
-.radio{
-    font-size: 13px;
-}
-
 .th_height{
     line-height: 65px;
 }
@@ -416,12 +399,3 @@ th{
 .th_height2{
     line-height: 100px;
 }
-.addr_tr{
-    border-bottom: none;
-}
-
-.addrwidth{width:390px;}
-
-.successTelCk{font-size:12px;}
-
-/* --------------footer------------------- */

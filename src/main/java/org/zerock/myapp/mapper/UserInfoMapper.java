@@ -19,4 +19,8 @@ public interface UserInfoMapper {
 //	public abstract MemberDTO delete(String id);
 	public abstract Integer delete(String id);
 	
+	//4. 비번 변경
+	public abstract Integer modifyPw(MemberDTO dto);
+	 
+	
 } // end interface
