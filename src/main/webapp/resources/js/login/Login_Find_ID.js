@@ -66,32 +66,32 @@ $(document).ready(function () {
         $(".p_verification_input").css("display", "block");
         $(".p_verify_button").css("display", "block");
 		
-		var phone = $('#p_verification_input[type=text]').val();
+		var phone = $("#tel").val();
 		
-		$.ajax({
-		type: 'GET',
-		url:'/login/findid/telCheck/' +'${tel}',
-		cache: false,
-		success:function(data){
-			if(data == 'error'){
-				alert("휴대폰 번호가 올바르지 않습니다.")
-				$('#p_verification_input').attr("autofocus", true);
-			} else {
-				$('#p_verification_input').attr("readonly", true);
-				val_num = data;
-			} // if-else
-			
-		} // success:fn()
+        $.ajax({
+            type: 'GET',
+            url:'/login/findid/telCheck' + phone,
+            data: {tel: phone},
+            cache: false,
+            success:function(data){
+                if(data == 'error'){
+                    alert("휴대폰 번호가 올바르지 않습니다.")
+                    $('#p_verification_input').attr("autofocus", true);
+                } else {
+                    $('#p_verification_input').attr("readonly", true);
+                    val_num = data;
+                } // if-else
+            } // success:fn()
+        }); // ajax
+    });
 	
-	}); // ajax
-	
-	//휴대폰 인증번호 대조
-	$('.p_verify_button').click(function(){
-		if($('.send_verification_button_p').val() == val_num){
-			alert("인증번호가 일치합니다.")
-		} else {
-			alert("인증번호가 일치하지 않습니다.")
-		}
-	});
+    // 휴대폰 인증번호 대조
+    $('.p_verify_button').click(function(){
+        if($('.p_verification_input').val() == val_num){
+            alert("인증번호가 일치합니다.")
+        } else {
+            alert("인증번호가 일치하지 않습니다.")
+        }
+    });
     
 });
