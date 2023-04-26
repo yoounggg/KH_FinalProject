@@ -2,6 +2,7 @@ $(document).ready(function () {
 
     // 휴대폰 인증 버튼을 클릭했을 때
     $("#find_id_p_btn").click(function () {
+		// 버튼 스타일 및 폼의 display 변경
         $(this).addClass("find_id_active");
         $("#find_id_e_btn").removeClass("find_id_active");
         $("#find_id_p_form").css("display", "block");
@@ -10,6 +11,7 @@ $(document).ready(function () {
 
     // 이메일 인증 버튼을 클릭했을 때
     $("#find_id_e_btn").click(function () {
+		// 버튼 스타일 및 폼의 display 변경
         $(this).addClass("find_id_active");
         $("#find_id_p_btn").removeClass("find_id_active");
         $("#find_id_e_form").css("display", "block");
@@ -18,11 +20,14 @@ $(document).ready(function () {
 
 // -----------------------------------------------------
 
-    // 아이디 찾기 - 휴대폰 인증 ajax
+    /* 아이디 찾기 - 휴대폰 인증 ajax 구현 */
+    // 아이디 찾기 버튼 클릭
     $(".findid_button_p").click(function (event) {
-
+		
+		// 페이지 새로고침 방지
         event.preventDefault();
 
+		// 사용자 입력값 받기 및 입력값 확인
         var name = $("#find_id_p_form input[type=text]").val();
         var tel = $("#find_id_p_form input[type=tel]").val();
 	
@@ -32,7 +37,7 @@ $(document).ready(function () {
             return;
         }
 
-		// DB에 회원 정보가 존재하는지 확인
+		// DB에 회원 정보가 존재하는지 확인하는 ajax 요청!
         $.ajax({
             url: "/login/findid/idCheck",
             type: "POST",
@@ -60,16 +65,17 @@ $(document).ready(function () {
     });
 
 	// 인증 번호 발송 버튼 클릭 이벤트
-	var val_num = "";
+	var val_num = ""; // 인증번호를 저장할 변수
     $(".send_verification_button_p").click(function () {
         alert("인증번호를 인증번호 입력창에 입력해주세요.");
-
+        
         // 인증 번호 발송 버튼 클릭 이후 인증번호 입력창, 확인 버튼을 표시하도록 변경
         $(".p_verification_input").css("display", "block");
         $(".p_verify_button").css("display", "block");
 		
 		var phone = $("#tel").val();
 		
+		// // 인증번호 발송을 위한 ajax 요청
         $.ajax({
             type: 'GET',
             url:'/login/findid/telCheck' + phone,
@@ -103,6 +109,7 @@ $(document).ready(function () {
 	    var name = $("#find_id_p_form input[type=text]").val();
 	    var tel = $("#find_id_p_form input[type=tel]").val();
 	    
+	    // 사용자 이름과 휴대폰 번호를 이용해 찾은 아이디를 표시하는 ajax 요청
 	    $.ajax({
 	        url: '/login/findid/result',
 	        type: 'POST',
@@ -121,6 +128,7 @@ $(document).ready(function () {
 	            console.error(error);
 	        }
 	    });
+	    
 	}); // 확인 버튼 클릭 fn()
 	
 // -----------------------------------------------------
