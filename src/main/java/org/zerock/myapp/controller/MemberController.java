@@ -1,5 +1,6 @@
 package org.zerock.myapp.controller;
 
+//import org.apache.maven.model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,8 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-import org.zerock.myapp.exception.ServiceException;
+import org.zerock.myapp.mapper.MemberMapper;
 import org.zerock.myapp.service.MemberService;
 import org.zerock.myapp.service.MsgSendService;
 
@@ -26,7 +26,6 @@ public class MemberController {
 	// 각각 인증 방식으로는 휴대폰 인증과 이메일 인증이 존재함
 	
 	// 아이디 찾기 - 이름이랑 전화번호로 회원 정보가 존재하는지 확인
-	// 아이디 찾기 - 결과 반환
 	@Setter(onMethod_=@Autowired)
 	private MemberService memberService;
 	
@@ -34,7 +33,10 @@ public class MemberController {
 	@Setter(onMethod_ = { @Autowired })
 	MsgSendService msgSendService;
 	
-//	------------------------------------------------
+	// 아이디 찾기 - 결과 반환
+	@Autowired
+	private MemberMapper memberMapper;
+
 	
 	// 아이디 찾기 - DB에 회원 정보(이름, 전화번호) 존재하는 지 확인
 	@PostMapping("/findid/idCheck")
@@ -66,19 +68,15 @@ public class MemberController {
 	
 //	-----------------------------------------------
 	
-	// 결과 반환
+	// 아이디 찾기 결과 반환
 	@PostMapping("/findid/result")
-	public ModelAndView findIdResult(@RequestParam("name") String name, @RequestParam("tel") String tel) throws ServiceException {
-	    log.trace("아이디 찾기의 결과는: {} 입니다.");
+	@ResponseBody
+	public String findIdResult(@RequestParam("name") String name, @RequestParam("tel") String tel) {
 
-	    String foundId = memberService.findIdResult(name, tel);
+	    String foundId = memberMapper.findIdResult(name, tel);
 	    
-	    ModelAndView modelAndView = new ModelAndView("Login_Find_ID_Result");
-	    
-	    modelAndView.addObject("foundId", foundId);
-
-	    return modelAndView;
-	    
+	    return foundId;
+	
 	} // findIdResult()
 	
 } // end class
