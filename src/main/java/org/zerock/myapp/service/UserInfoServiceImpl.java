@@ -81,7 +81,7 @@ public class UserInfoServiceImpl implements UserInfoService, InitializingBean  {
 		log.trace("modifyPw({}) invoked.", dto);
 		
 		try {
-			return this.mapper.modifyPw(dto) == 1;
+			return this.mapper.updatePw(dto) == 1;
 		}catch(Exception e) {
 			throw new ServiceException(e);
 		} // try-catch

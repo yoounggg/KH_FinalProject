@@ -207,7 +207,7 @@
                 </tr>
                 <tr>
                     <!-- 생년월일 변경 불가능 -->
-                    <th>&nbsp;생년원일</th>
+                    <th>&nbsp;생년월일</th>
                     <td><input type="text" value="${details.birth_year}, ${details.birth_month}, ${details.birth_day}" readonly></td>
                     <!--<td><input type="text" name="birth_month" value="${details.birth_month}" readonly></td>-->
                     <!--<td><input type="text" name="birth_day" value="${details.birth_day}" readonly></td>-->

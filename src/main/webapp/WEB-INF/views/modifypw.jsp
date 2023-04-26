@@ -121,7 +121,7 @@
         </div>
         
         <!-- form 태그 -->
-        <form action="/mypage/userInfo/update" method="POST" name="userPwUpdateForm" id="userPwUpdateForm">
+        <form>
             <table>
                 <tr>
                     <th>&nbsp;현재 비밀번호<span class="red">*</span></th> 
@@ -140,14 +140,13 @@
                 <tr>
                     <th>&nbsp;신규 비밀번호 확인<span class="red">*</span></th>
                     <td><input type="password" id="checkNewPw" name="checkedNewPw" onchange="confirmNewPw()"></td>
-                    <!-- <td><span id="newpwChk" class="btntr">변경하기</span></td> -->
                     <!-- <td class="sletter" colspan="2">&nbsp;*비밀번호 확인을 위해 한 번 더 입력해 주세요.</td>-->
                 </tr> 
             </table>
 				
 	        <div class="btnset">
-	        <span id="newpwChk" class="btntr">변경하기</span>
-	            <!-- <button class="userbtn1" type="submit" class="modifyPwDetails" onClick="goform()">비밀번호 변경</button> -->
+	        	<input type="button" id="newpwChk" class="userbtn1" value="변경하기" >
+	            <!-- <button class="userbtn1" type="submit" class="modifyPwDetails" onClick="goform2()">비밀번호 변경</button> -->
 	            <input class="userbtn2" type="button" value="메인으로" onClick="location.href='/main'">
 	        </div>     
 		</form>               
@@ -188,21 +187,26 @@ $('#pwChk').click(function({id}) {
 $('#newpwChk').click(function({id}){
 	$.ajax({
 		type: 'POST',
-		url: '/mypage/userInfo/' + '${id}' + '/changePw',
+		url: '/mypage/userInfo/' + '${id}' + '/changedPw',
         contentType: 'application/json',
         headers: { 
         	'X-HTTP-Method-Override' : 'POST'
         	},
         data: JSON.stringify({password: $('input[name=checkedNewPw]').val()}),
         dataType: 'json',
-        success:function(result){
-        	console.log("result: " + result);
-        	if(result == 'success'){
-        		alert("비밀번호가 변경되었습니다.");
-        	} else {
-        		alert("비밀번호 입력을 다시 시도하세요.");
-        	} // if-else
-        } // function		
+        success:function(success){
+        console.log(success);
+	        if(success == true){
+	       	alert("비밀번호가 변경되었습니다.");
+	       	location.href = '/main';
+	        } else if(success == false){
+	        alert("비밀번호 입력을 다시 시도하세요.");
+	        location.href = '/main';
+	        } // if-else
+        }, // success		
+        error: function(error) {
+            console.log("error: " + error);
+        }
 	});
 });
 

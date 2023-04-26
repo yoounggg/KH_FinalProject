@@ -166,10 +166,12 @@ public class UserInfoController {
 	
 	
 	//4-2 새로운 비밀번호 변경
-	@PostMapping("/{id}/changePw")
-	public String changePw(@RequestBody Map<String, String> request, MemberDTO dto, @PathVariable("id") String id, RedirectAttributes rttrs) throws Exception{
+	@PostMapping("/{id}/changedPw")
+	public ResponseEntity<Boolean> changePw(@RequestBody Map<String, String> request, MemberDTO dto, @PathVariable("id") String id, RedirectAttributes rttrs) throws Exception{
 		log.info("changePw({},{}) invoked (비밀번호 변경 요청)", request.get("password"), id);
-
+		
+		//String result = "";
+		
 		//인코딩 전 새로받은 비번
 		String securePw = "";
 		String password = request.get("password");
@@ -189,9 +191,10 @@ public class UserInfoController {
 			boolean success = this.service.modifyPw(dto);
 			log.info("\t+success:{}", success);
 			
-			rttrs.addAttribute("result", (success)? "success" : "failure");
-			
-			return "redirect:/mypage/userInfo/" + dto.getId();
+			//rttrs.addAttribute("result", (success)? "true" : "false");
+		
+			log.info(success);
+			return ResponseEntity.ok(success);
 		}catch(Exception e) {
 			throw new ControllerException(e);
 		} // try-with

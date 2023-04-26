@@ -55,9 +55,3 @@ $(document).ready(function(){
  		alert("비밀번호가 불일치합니다")
  	} // if-else
  }; //  confirmNewPw
-
-
-//회원 정보 수정 form-> submit
-function goform(){
-	$('#modifyPwDetails').attr("action",'/mypage/userInfo/'+ '${id}' + '/changePw').submit();
-}; // goform

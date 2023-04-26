@@ -369,6 +369,7 @@ th{
     cursor: pointer;
 }
 .userbtn1{
+	display: inline-block;
     margin: 5px;
     width: 150px;
     height: 40px;

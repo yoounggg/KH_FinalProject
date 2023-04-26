@@ -20,7 +20,7 @@ public interface UserInfoMapper {
 	public abstract Integer delete(String id);
 	
 	//4. 비번 변경
-	public abstract Integer modifyPw(MemberDTO dto);
+	public abstract Integer updatePw(MemberDTO dto);
 	 
 	
 } // end interface
