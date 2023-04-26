@@ -16,13 +16,11 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.web.multipart.MultipartFile;
-import org.zerock.myapp.domain.AttachImageVO;
 import org.zerock.myapp.domain.CategoryVO;
 import org.zerock.myapp.domain.ProductDTO;
+import org.zerock.myapp.domain.ProductVO;
 
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -32,7 +30,7 @@ import lombok.extern.log4j.Log4j2;
 @NoArgsConstructor
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations="file:src/main/webapp/WEB-INF/**/root-*.xml")
+@ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/**/root-context.xml")
 
 @TestInstance(Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -45,31 +43,36 @@ public class ProductMapperTests {
 	@BeforeAll
 	void beforeAll() {
 		log.trace("\t beforeAll() invoked");
-		
-		assertNotNull(this.mapper);
-		log.info("\t this.mapper {}", this.mapper);
 	} // beforeAll
 	
 //	@Disabled
-//	@Test
-//	@Order(1)
-//	@DisplayName("testGetList")
-//	@Timeout(value=1, unit=TimeUnit.SECONDS)
-//	void testGetList() {
-//		log.trace("\t testGetList() invoked");
-//		
-//		Criteria cri = new Criteria();
-//		cri.setAmount(12);
-//		cri.setCurrPage(1);
-//	
-//		List<ProductVO> list = this.mapper.SelectAllList(cri);
-//		
-//		assert list != null;
-//		list.forEach(log::info);
-//		
-//	} // testGetMapper
-//	
-////	@Disabled
+	@Test
+	@Order(1)
+	@DisplayName("테스트 1 : contextLoads")
+	@Timeout(value=1, unit=TimeUnit.SECONDS)
+	void contextLoads() {
+		log.trace("contextLoads() invoked");
+		
+	} // testGetMapper
+	
+//	@Disabled
+	@Test
+	@Order(1)
+	@DisplayName("테스트 1 : selectAll")
+	@Timeout(value=60, unit=TimeUnit.SECONDS)
+	void selectAll() {
+		log.trace("selectAll() invoked");
+		
+		List<ProductVO> list = this.mapper.selectAll();
+		
+		assert list != null;
+		log.info("select() invoked.");
+		
+	} // testGetMapper
+
+	
+	
+//	@Disabled
 //	@Test
 //	@Order(2)
 //	@DisplayName("testGetMenuOrder")
@@ -111,26 +114,28 @@ public class ProductMapperTests {
 	@Timeout(value=1, unit=TimeUnit.SECONDS)
 	void insert() {
 		log.trace("insert invoked().");
-		
-			ProductDTO dto = new ProductDTO();
-			dto.setCategory("10300");
-			dto.setName("감차빵dq");
-			dto.setPrice(3000);
-			dto.setDiscount(10);
-			dto.setDiscount_price(2700);
-			dto.setWeight("2kgqd");
-			dto.setOrigin("국산(강원도 춘천시q)");
+
+		ProductDTO dto = new ProductDTO();
+        	dto.setCategory("10300");
+        	dto.setName("젭할");
+        	dto.setPrice(15000);
+			dto.setDiscount(50);
+			dto.setDiscount_price(7500);
+			dto.setWeight("500g");
+			dto.setOrigin("국산");
 			dto.setStock(10);
 			dto.setFarm_no(1);
-			dto.setImages("test");
-			dto.setContent("먹고말테야.");
-			
-			log.trace("Before ProductDTO : " + dto);
+			dto.setMain_image("Main_image");
+			dto.setMain_image2("Main_image2");
+			dto.setSub_image1("Sub_image1");
+			dto.setSub_image2("Sub_image2");
+			dto.setSub_image3("Sub_image3");
+			dto.setSub_image4("Subn_image4");
+			dto.setContent("갸아아아아아악");
+			dto.setContent_image("Content_image");
 			
 			int affectedLines = this.mapper.insert(dto);
 			log.info("affectedLines() invoked. {}", affectedLines);
-		
-			log.trace("After ProductDTO : " + dto);
 			
 	} // insert
 	

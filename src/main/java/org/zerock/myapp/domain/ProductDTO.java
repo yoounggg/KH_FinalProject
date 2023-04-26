@@ -7,16 +7,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 
-//[별이-04/13] 이거 Data 아닌가용 VO랑 바뀐 것 같아서 둘이 바꿔놓겠습니다~
+
 @Component
 @Data
 
 public class ProductDTO {
 
+//  [별이-04/13]수정
    
-//   [별이-04/13]데이터베이스랑 이름 좀 다시 맞췄어요~~
-   
-//   [별이-04/13]pno->no로 수정함
    /* 상품 번호(자동부여됨)*/
    private Integer no;         
    
@@ -49,8 +47,8 @@ public class ProductDTO {
    private Integer stock;
    
    /* 상품 메인 이미지 */
-   private String main_image;
    private MultipartFile files;
+   private String main_image;
    
    /* 상품 메인 썸네일 이미지 */
    private String main_image2;
@@ -65,8 +63,7 @@ public class ProductDTO {
 //   [별이-04/13]insert_ts->reg_date으로 수정함
    /* 상품 등록 날짜 */
    private Timestamp reg_date;
-   
-   
+     
    /* 상품 내용*/
    private String content;
    

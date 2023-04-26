@@ -29,7 +29,7 @@ public interface ProductMapper {
 //	[별이]
 	
 	/* 상품 전체 조회 */
-	@Select("SELECT /*+ index_desc(Product) */ * FROM PRODUCT")
+	@Select("SELECT * FROM PRODUCT ORDER BY NO DESC")
 	public abstract List<ProductVO> selectAll();
 	
 	//-------------------------- XML 매핑 방식 ------------------------------//

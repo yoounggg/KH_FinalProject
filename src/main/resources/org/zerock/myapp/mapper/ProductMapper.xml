@@ -29,7 +29,7 @@
     <!-- [별이] 관리자페이지 상품 등록 -->
     
     <!-- 상품 상세 조회 -->
-	<select id="select" resultType="org.zerock.myapp.domain.ProductDTO">
+	<select id="select" resultType="org.zerock.myapp.domain.ProductVO">
 		SELECT * FROM PRODUCT
 		WHERE no = #{no}
 	</select>
@@ -55,7 +55,23 @@
 		UPDATE
         	PRODUCT (category, name, price, discount, discount_price, weight, origin, stock, farm_no, main_image, main_image2, sub_image1, sub_image2, sub_image3, sub_image4, content, content_image)
         SET 
-        	(#{category}, #{name}, #{price}, #{discount}, #{discount_price}, #{weight}, #{origin}, #{stock}, #{farm_no}, #{main_image}, #{main_image2}, #{sub_image1}, #{sub_image2}, #{sub_image3}, #{sub_image4}, #{content}, #{content_image})    
+        	category = #{category}, 
+        	name = #{name}, 
+        	price = #{price}, 
+        	discount = #{discount}, 
+        	discount_price = #{discount_price}, 
+        	weight = #{weight}, 
+        	origin= #{origin}, 
+        	stock = #{stock}, 
+        	farm_no = #{farm_no}, 
+        	main_image = #{main_image}, 
+        	main_image2 = #{main_image2}, 
+        	sub_image1 = #{sub_image1}, 
+        	sub_image2 = #{sub_image2}, 
+        	sub_image3 = #{sub_image3}, 
+        	sub_image4 = #{sub_image4}, 
+        	content = #{content}, 
+        	content_image = #{content_image}   
 		WHERE
 			no = #{no}
 	</update>

@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.myapp.domain.CategoryVO;
+import org.zerock.myapp.domain.Criteria;
+import org.zerock.myapp.domain.NoticeVO;
+import org.zerock.myapp.domain.PageDTO;
 import org.zerock.myapp.domain.ProductDTO;
 import org.zerock.myapp.exception.AException;
 import org.zerock.myapp.exception.ControllerException;
@@ -66,6 +69,36 @@ public class AdminController {
    
    
 //   =========================== 상품 ===========================
+   
+// [별이] 메소드 추가
+//  상품 목록
+//	@GetMapping("/product/list")
+//	public void list(Criteria cri, Model model) throws ControllerException {	// 게시판 전체 목록 조회 요청 처리 핸들러
+//		
+//		log.trace("list({}, {}) invoked.", cri, model);
+//		
+//		// 주입 잘 됐는지 확인용
+////		Objects.requireNonNull(this.service);
+////		log.info("\t+ this.service: {}", this.service);
+//		
+//		try {
+//			// 페이징처리된 현재 pageNum에 해당하는 게시글목록 받아옴
+//			List<NoticeVO> list = this.service.getListPaging(cri);
+//			model.addAttribute("list", list); // view로 날아갈 model 상자 안에 model 데이터를 담음
+//			
+//			
+//			int totalAmount = this.service.getTotal();
+//			PageDTO pageDTO = new PageDTO(cri, totalAmount);
+//			model.addAttribute("pageMaker", pageDTO);
+//			
+//		} catch (Exception e) {
+//			throw new ControllerException(e);
+//		} // try-catch
+//		
+//	} // list()
+   
+
+   
    
 //   [별이] 메소드 추가
    @GetMapping("/product/register")

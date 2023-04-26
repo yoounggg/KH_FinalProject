@@ -10,6 +10,34 @@
  			FROM product
  			WHERE No = #{No}
  		</select>
+ 		
+ 		<select id="getOrderInfo" resultType="org.zerock.myapp.domain.OrderItemDTO">
+			SELECT no, price, discount
+			FROM product
+			WHERE no = #{no}
+		</select>
+		
+		<select id="enrollOrder" resultType="org.zerock.myapp.domain.OrderDTO">
+			INSERT INTO MYMG_ORDER(no, member_id, receiver_name, receiver_address1, receiver_address2, receiver_address3, receiver_tel, delivery_cost, delivery_state, order_date)
+			VALUES (#{no}, #{member_id}, #{receiver_name}, #{receiver_address1}, #{receiver_address2}, #{receiver_address3}, #{receiver_tel}, #{delivery_cost}, '배송준비' ) 
+		</select>
+		
+		<select id="enrollOrderItem">
+			INSERT INTO ORDER_LIST(no, order_no, product_no, count, price, discount)
+			VALUES (#{no}, #{order_no}, #{product_no}, #{count}, #{price}, #{discount})
+		</select>
+		
+		<select id="deductStcok">
+			UPDATE product
+			set stock = #{productStock}
+			WHERE no = #{no}
+		</select>
+
+		<select id="deleteOrderCart">
+			DELETE FROM cart
+			WHERE  member_id = #{member_id} AND product_id = #{product_id}
+		</select>
+		
  </mapper>
  
  <!-- SELECT No, Name, Price, Discount  -->

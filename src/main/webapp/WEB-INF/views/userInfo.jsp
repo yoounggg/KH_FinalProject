@@ -131,10 +131,11 @@
                 </tr>
                 
                 <tr>
-                    <th>&nbsp;현재 비밀번호</th>
-                    <td><input type="password" id="originPw" onchange="checkPw()" ></td>
-                    <input type="hidden" name = "password" data-password="${details.password}" id="checkOringinPw" >
-                    <td class="sletter">&nbsp;*기존 비밀번호를 입력해 주세요.</td>         
+                    <th>&nbsp;현재 비밀번호</th> 
+                    <td><input type="password" name ="password" ></td>
+                    <!-- <input type="hidden" name = "password" data-password="${details.password}" id="checkOringinPw" >  -->
+                    <td><span id="pwChk" class="btntr">확인</span></td>
+                    <!-- <td class="sletter">&nbsp;*기존 비밀번호를 입력해 주세요.</td>  -->   
                 </tr>
                 
                 <tr>
@@ -237,11 +238,11 @@ $('#telCk').click(function({id}){
 	alert("인증번호가 발송되었습니다. \n휴대폰에서 인증번호를 확인해주세요.");
 	var phone = $('#tel').val();
 	$.ajax({
-		type: "GET",
-		url:"/mypage/userInfo/"+'${id}'+"/phoneCheck?tel="+'${tel}',
+		type: 'GET',
+		url:'/mypage/userInfo/'+'${id}'+'/phoneCheck?tel='+'${tel}',
 		cache: false,
 		success:function(data){
-			if(data == "error"){
+			if(data == 'error'){
 				alert("휴대폰 번호가 올바르지 않습니다.")
 				$('.successTelCk').text("유효한 번호를 입력해주세요.");
 				$('.successTelCk').css("color", "red");
@@ -259,7 +260,7 @@ $('#telCk').click(function({id}){
 }); // function
 
 //휴대폰 인증번호 대조
-$('#tel2').click(function(){
+$('#tel2Chk').click(function(){
 	if($('#tel2').val() == code2){
 		$('.successTelCk').text("인증번호가 일치합니다.");
 		$('.successTelCk').css("color", "green");
@@ -272,6 +273,39 @@ $('#tel2').click(function(){
 		$(this).attr("autofocus", true);
 	}
 });
+
+// 현재 비밀번호 확인
+
+$('#pwChk').click(function({id}) {
+    $.ajax({
+        type: 'POST',
+        url: '/mypage/userInfo/' + '${id}' + '/checkPw',
+        data: JSON.stringify({password: $('input[name=password]').val()}),
+        contentType: 'application/json',
+        headers: { 
+        	'X-HTTP-Method-Override' : 'POST'
+        	},
+        //data: {password: $('input[name=password]').val()}, 
+        dataType: 'json',
+        //data: password,
+        //datatype: "json",
+        success: function(result) {
+            console.log(result);
+            if (result == true ) {
+                alert("비밀번호가 일치합니다");
+            } else if(result == false){
+                alert("비밀번호가 불일치합니다. \n다시 입력해주세요.");
+            } // else-if
+        }, // success
+        error: function(error) {
+            console.log("error: " + error);
+        }
+    });
+});
+
+
+
+
    
 </script>
 
