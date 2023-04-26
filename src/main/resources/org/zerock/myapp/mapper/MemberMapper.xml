@@ -28,20 +28,32 @@
 		</select>
 		
 		<!-- 셍나 아이디 찾기 : 휴대폰 인증 (이름, 전화번호) -->
+		<!-- COUNT로 1 반환 = 회원정보가 존재한다는 뜻 -->
 		<select id="idCheck" parameterType="String" resultType="int">
 			SELECT 
 				COUNT(*) 
 			FROM 
-				member 
+				MEMBER
 			WHERE 
 				NAME = #{name} 
 				AND TEL = #{tel}
 		</select>
 		
+		<!-- 셍나 아이디 찾기 : 결과 -->
+		<select id="findIdResult" parameterType="String" resultType="String">
+			SELECT
+				ID
+			FROM
+				MEMBER
+			WHERE 
+				NAME = #{name} 
+				AND TEL = #{tel}	
+		</select>
+		
 		<!-- 셍나 아이디 찾기 : 이메일 인증 (이름, 이메일) -->
 		<select id="findIdE" resultType="org.zerock.myapp.domain.MemberDTO">
 			SELECT
-				ID
+				COUNT(*)
 			FROM
 				MEMBER
 			WHERE

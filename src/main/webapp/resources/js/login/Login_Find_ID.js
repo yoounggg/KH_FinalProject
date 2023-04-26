@@ -83,15 +83,16 @@ $(document).ready(function () {
                 } // if-else
             } // success:fn()
         }); // ajax
-    });
+    }); // 인증 번호 발송 버튼 클릭 fn()
 	
     // 휴대폰 인증번호 대조
     $('.p_verify_button').click(function(){
         if($('.p_verification_input').val() == val_num){
             alert("인증번호가 일치합니다.")
+            
         } else {
-            alert("인증번호가 일치하지 않습니다.")
-        }
-    });
+            alert("인증번호가 일치하지 않습니다. 인증 절차를 다시 시도해주세요.")
+        } // if-else
+    }); // 휴대폰 인증 번호 대조 fn()
     
 });

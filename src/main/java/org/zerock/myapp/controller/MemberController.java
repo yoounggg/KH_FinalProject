@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.zerock.myapp.exception.ServiceException;
 import org.zerock.myapp.service.MemberService;
 import org.zerock.myapp.service.MsgSendService;
 
@@ -23,11 +24,12 @@ public class MemberController {
 	// 아이디 찾기, 비밀번호 변경을 위한 컨트롤러
 	// 각각 인증 방식으로는 휴대폰 인증과 이메일 인증이 존재함
 	
-	// 아이디 찾기
+	// 아이디 찾기 - 이름이랑 전화번호로 회원 정보가 존재하는지 확인
+	// 아이디 찾기 - 결과 반환
 	@Setter(onMethod_=@Autowired)
 	private MemberService memberService;
 	
-	// 아이디 찾기 휴대폰 인증 번호 받기!
+	// 아이디 찾기 - 휴대폰 인증 번호!
 	@Setter(onMethod_ = { @Autowired })
 	MsgSendService msgSendService;
 	
@@ -60,5 +62,20 @@ public class MemberController {
 		return Integer.toString(randomNumber);
 		
 	} // msgSend()
+	
+//	-----------------------------------------------
+	
+	// 결과 반환
+	@GetMapping("/findid/result")
+	public @ResponseBody String findIdResult(@RequestParam("name") String name, @RequestParam("tel") String tel) 
+			throws ServiceException {	//문자 보내기
+		
+		log.trace("아이디 찾기의 결과는: {} 입니다.");
+		
+		String result = memberService.findIdResult(name, tel);
+		
+		return result;
+		
+	} // findIdResult
 	
 } // end class
