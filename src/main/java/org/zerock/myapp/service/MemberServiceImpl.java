@@ -48,8 +48,10 @@ public class MemberServiceImpl implements MemberService {
 		} // try-catch	
 		
 	} // memberLogin()
+	
+//	------------------------------------------------------------
 
-	// 셍나 휴대폰 인증 - 아이디 찾기
+	// 셍나 휴대폰 인증 - 아이디 존재하는지 찾기
 	@Override
 	public int idCheck(String name, String tel) {
 	

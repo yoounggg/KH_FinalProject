@@ -44,6 +44,7 @@ public class MemberController {
 		
 	} // idCheck()
 	
+	// 아이디 찾기 - 핸드폰 번호 인증
 	@GetMapping("/findid/telCheck")
 	public @ResponseBody String msgSend(@RequestParam("tel") String userPhoneNumber) {	//문자 보내기
 		int randomNumber = (int)((Math.random() * 8999 ) + 1000 );			// 난수 1000 ~ 9999
