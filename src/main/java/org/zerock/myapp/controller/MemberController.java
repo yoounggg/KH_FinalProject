@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.zerock.myapp.exception.ServiceException;
 import org.zerock.myapp.service.MemberService;
 import org.zerock.myapp.service.MsgSendService;
@@ -52,8 +53,8 @@ public class MemberController {
 	
 	// 아이디 찾기 - 핸드폰 번호 인증
 	@GetMapping("/findid/telCheck")
-	public @ResponseBody String sendSMS(@RequestParam("tel") String userPhoneNumber) {	//문자 보내기
-		int randomNumber = (int)((Math.random() * 8999 ) + 1000 );			// 난수 1000 ~ 9999
+	public @ResponseBody String sendSMS(@RequestParam("tel") String userPhoneNumber) {				// 문자 보내기
+		int randomNumber = (int)((Math.random() * 8999 ) + 1000 );									// 난수 1000 ~ 9999 생성
 		
 		msgSendService.msgSend(userPhoneNumber, randomNumber);
 		
@@ -66,16 +67,18 @@ public class MemberController {
 //	-----------------------------------------------
 	
 	// 결과 반환
-	@GetMapping("/findid/result")
-	public @ResponseBody String findIdResult(@RequestParam("name") String name, @RequestParam("tel") String tel) 
-			throws ServiceException {	//문자 보내기
-		
-		log.trace("아이디 찾기의 결과는: {} 입니다.");
-		
-		String result = memberService.findIdResult(name, tel);
-		
-		return result;
-		
-	} // findIdResult
+	@PostMapping("/findid/result")
+	public ModelAndView findIdResult(@RequestParam("name") String name, @RequestParam("tel") String tel) throws ServiceException {
+	    log.trace("아이디 찾기의 결과는: {} 입니다.");
+
+	    String foundId = memberService.findIdResult(name, tel);
+	    
+	    ModelAndView modelAndView = new ModelAndView("Login_Find_ID_Result");
+	    
+	    modelAndView.addObject("foundId", foundId);
+
+	    return modelAndView;
+	    
+	} // findIdResult()
 	
 } // end class

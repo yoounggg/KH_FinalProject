@@ -85,6 +85,7 @@ public class MemberServiceImpl implements MemberService {
 	public MemberDTO getMemberInfo(String memberId) throws ServiceException {
 		
 		return memberMapper.getMemberInfo(memberId);
+		
 	} // getMemberInfo
  
 } // end class

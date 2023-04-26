@@ -44,7 +44,7 @@ $(document).ready(function () {
 
                 if (cntIdCheck === 1) {
                     $(".p_verification").css("display", "block");
-                    alert("회원정보를 확인했습니다. 휴대폰 번호 인증을 진행해주세요.")
+                    alert("회원정보를 확인했습니다. \n인증번호 발송 버튼을 눌러, 휴대폰 번호 인증을 진행해주세요.")
                     $(".findid_button_p").hide();
                     $(".send_verification_button_p").show();
                 } else {
@@ -89,10 +89,34 @@ $(document).ready(function () {
     $('.p_verify_button').click(function(){
         if($('.p_verification_input').val() == val_num){
             alert("인증번호가 일치합니다.")
-            
+            $(".p_verify_button").hide();
+            $(".p_verify_button_result").show();
         } else {
             alert("인증번호가 일치하지 않습니다. 인증 절차를 다시 시도해주세요.")
         } // if-else
     }); // 휴대폰 인증 번호 대조 fn()
+    
+    // 확인 버튼 클릭
+	$('.p_verify_button_result').click(function(){
+	    var name = $("#find_id_p_form input[type=text]").val();
+	    var tel = $("#find_id_p_form input[type=tel]").val();
+	        
+	    $.ajax({
+	        url: '/login/findid/result',
+	        type: 'POST',
+	        data: {
+	            name: name, // 찾을 이름 값
+	            tel: tel // 찾을 전화번호 값
+	        },
+	        success: function(idResult) {
+	            $("#foundId").html(idResult); // 결과 값을 보여줄 영역에 결과 값을 설정
+	            $("#find_id_p_form").css("display", "none"); // 아이디 찾기 - 휴대폰 인증 폼을 숨김
+	            $("#find_id_result_form").css("display", "block"); // 아이디 찾기 - 결과 폼을 보여줌
+	        },
+	        error: function(xhr, status, error) {
+	            console.error(error);
+	        }
+	    });
+	});
     
 });

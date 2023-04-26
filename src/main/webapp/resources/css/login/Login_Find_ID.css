@@ -136,7 +136,8 @@ button.send_verification_button_e:hover {
 
 /* 확인 버튼 */
 button.p_verify_button,
-button.e_verify_button {
+button.e_verify_button,
+button.p_verify_button_result {
     width: 100%;
     background-color: #11BC0D;
     color: white;
