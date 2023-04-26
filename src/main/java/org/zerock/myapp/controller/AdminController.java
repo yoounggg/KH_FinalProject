@@ -3,25 +3,23 @@ package org.zerock.myapp.controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URLDecoder;
-import java.nio.file.Files;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.zerock.myapp.domain.AttachImageVO;
 import org.zerock.myapp.domain.CategoryVO;
+import org.zerock.myapp.domain.Criteria;
+import org.zerock.myapp.domain.NoticeVO;
+import org.zerock.myapp.domain.PageDTO;
 import org.zerock.myapp.domain.ProductDTO;
 import org.zerock.myapp.exception.AException;
 import org.zerock.myapp.exception.ControllerException;
@@ -33,10 +31,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import net.coobird.thumbnailator.Thumbnails;
 
 @Log4j2
 @AllArgsConstructor
+
+@Component
 
 @Controller
 @RequestMapping("/admin/*")
@@ -44,6 +43,7 @@ public class AdminController {
    
    
    private ProductService service;
+   private ProductDTO dto;
    
    //채영 테스트
    
@@ -69,6 +69,36 @@ public class AdminController {
    
    
 //   =========================== 상품 ===========================
+   
+// [별이] 메소드 추가
+//  상품 목록
+//	@GetMapping("/product/list")
+//	public void list(Criteria cri, Model model) throws ControllerException {	// 게시판 전체 목록 조회 요청 처리 핸들러
+//		
+//		log.trace("list({}, {}) invoked.", cri, model);
+//		
+//		// 주입 잘 됐는지 확인용
+////		Objects.requireNonNull(this.service);
+////		log.info("\t+ this.service: {}", this.service);
+//		
+//		try {
+//			// 페이징처리된 현재 pageNum에 해당하는 게시글목록 받아옴
+//			List<NoticeVO> list = this.service.getListPaging(cri);
+//			model.addAttribute("list", list); // view로 날아갈 model 상자 안에 model 데이터를 담음
+//			
+//			
+//			int totalAmount = this.service.getTotal();
+//			PageDTO pageDTO = new PageDTO(cri, totalAmount);
+//			model.addAttribute("pageMaker", pageDTO);
+//			
+//		} catch (Exception e) {
+//			throw new ControllerException(e);
+//		} // try-catch
+//		
+//	} // list()
+   
+
+   
    
 //   [별이] 메소드 추가
    @GetMapping("/product/register")
@@ -97,144 +127,89 @@ public class AdminController {
    
    
    @PostMapping("/product/register")
-   public String register(ProductDTO dto, RedirectAttributes rttrs) 
-         throws ControllerException {
-      
-         log.trace("register({}, {}) invoked. (관리자 페이지 상품 등록-POST)", dto, rttrs);
-      
-         try {
-            boolean success = this.service.register(dto);
-            log.info("\t: success: {}", success);
+   public String processMultipart(@RequestParam("files") List<MultipartFile> files, ProductDTO dto, RedirectAttributes rttrs) throws ControllerException {
+      log.trace("processMultiPart({}) invoked", files);
+      try {
+          
+            files.forEach( f-> {
+               log.info("\t+1.Name:{}", f.getName());
+               log.info("\t+2.originalfilename:{}", f.getOriginalFilename());
+               log.info("\t+3.Contenttype:{}", f.getContentType());
+               log.info("\t+4.Size:{}", f.getSize());
+               log.info("\t ---------------------------");
+               
+               if(!"".equals(f.getOriginalFilename())) {
+                  
+                  //방법1
+                  try {
+                     f.transferTo(new File("C:/app/2023/eclipse/workspace/jee-2022-06/mymg_admin/src/main/webapp/resources/product/" +f.getOriginalFilename()));
+                     for (int i = 0; i < files.size(); i++) {
+                    	    MultipartFile file = files.get(i);
+                    	    String filename = file.getOriginalFilename();
 
-            // 비지니스 요청 처리용 전송파라미터 전송처리
-            rttrs.addAttribute("result", (success)? "success" : "failure"); 
-            // KEY = 등록처리결과
+                    	    // 각 파일의 이름에 따라 DTO 객체의 필드 설정
+                    	    switch (i) {
+                    	        case 0:
+                    	            dto.setMain_image(filename);
+                    	            break;
+                    	        case 1:
+                    	            dto.setMain_image2(filename);
+                    	            break;
+                    	        case 2:
+                    	            dto.setSub_image1(filename);
+                    	            break;
+                    	        case 3:
+                    	            dto.setSub_image2(filename);
+                    	            break;
+                    	        case 4:
+                    	            dto.setSub_image3(filename);
+                    	            break;
+                    	        case 5:
+                    	            dto.setSub_image4(filename);
+                    	            break;
+                    	        case 6:
+                    	            dto.setContent_image(filename);
+                    	            break;
+                    	        default:
+                    	            break;
+                    	    }
+                    	}
+                  } catch(IOException e) {
+                     e.printStackTrace();
+                  } // try catch
+                  
+               } // if
+            }); // .forEach
             
-            return "redirect:/admin/main"; // 실패했든 성공했든 여기로 이동
-         } catch (Exception e) {
-            throw new ControllerException(e);
-         } // try-catch
-      
-   } // register-post
+                 boolean success = this.service.register(dto);
+                 log.info("\t: success: {}", success);
+
+                 // 비지니스 요청 처리용 전송파라미터 전송처리
+                 rttrs.addAttribute("result", (success)? "success" : "failure"); 
+                 // KEY = 등록처리결과
+
+                 return "redirect:/admin/main"; // 실패했든 성공했든 여기로 이동
+
+            } catch (Exception e) {
+               throw new ControllerException(e);
+            } // try-catch
+         
+      } // register-post
+
    
    
    
-   /* [별이 4/17] 첨부 파일 업로드용 컨트롤러 */
-   @PostMapping(value="/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-   public ResponseEntity<List<AttachImageVO>> uploadAjaxActionPOST(MultipartFile[] main_image) throws ControllerException {
-      
-      log.info("uploadAjaxActionPOST......");
-      
-      
-      /* 이미지 파일 체크 */
-      for(MultipartFile multipartFile: main_image) {
-         
-         File checkfile = new File(multipartFile.getOriginalFilename());
-         String type = null;
-         
-         try {
-            type = Files.probeContentType(checkfile.toPath());
-            log.info("MIME TYPE : "+ type);
-         } catch (IOException e) {
-            throw new ControllerException(e);
-         } // try-catch
-         
-         if(!type.startsWith("image")) {
-            
-            List<AttachImageVO> list = null;
-            return new ResponseEntity<>(list, HttpStatus.BAD_REQUEST);
-            
-         } // if
-         
-      } // for
-      
-      String uploadFolder = "C:\\upload";
-      
-      /* 날짜 폴더 경로 */
-      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-      Date date = new Date();
-      String str = sdf.format(date);
-      String datePath = str.replace("-", File.separator);
-      
-      /* 폴더 생성 */
-      File uploadPath = new File(uploadFolder, datePath);
-      
-      if(uploadPath.exists() == false) {
-         uploadPath.mkdirs();
-      }
-      
-      /* 이미지 정보 담는 객체 */
-      List<AttachImageVO> list = new ArrayList();
-      
-      /* 향상된 for */
-      for(MultipartFile multipartFile : main_image) {
-         log.info("==================================================");
-         log.info("파일 이름 : " + multipartFile.getOriginalFilename());
-         log.info("파일 타입 : " + multipartFile.getContentType());
-         log.info("파일 크기 : " + multipartFile.getSize());
-         
-         /* 이미지 정보 객체 */
-         AttachImageVO vo = new AttachImageVO();
-         
-         /* 파일 이름 */
-         String uploadFileName = multipartFile.getOriginalFilename();
-         vo.setFileName(uploadFileName);
-         vo.setUploadPath(datePath);
-         
-         /* uuid 적용 파일 이름 - 각 파일이 저장될 때 고유한 이름을 갖도록 함*/
-         String uuid = UUID.randomUUID().toString();
-         uploadFileName = uuid + "_" + uploadFileName;
-         vo.setUuid(uuid);
-         
-         /* 파일 위치, 파일 이름을 합친 File 객체 */
-         File saveFile = new File(uploadPath, uploadFileName);
-         
-         /* 파일 저장 */
-         try {
-            multipartFile.transferTo(saveFile);
-            
-            /* 썸네일 이미지 저장 */
-            File sub_image1 = new File(uploadPath, "s_" + uploadFileName);
-            File sub_image2 = new File(uploadPath, "s_" + uploadFileName);
-            File sub_image3 = new File(uploadPath, "s_" + uploadFileName);
-            File sub_image4 = new File(uploadPath, "s_" + uploadFileName);
-            
-            File thumnailFile = new File(uploadPath, "s_" + uploadFileName); 
-            
-               Thumbnails.of(saveFile)
-               .size(160, 160)
-               .toFile(sub_image1);
-               
-               
-               Thumbnails.of(saveFile)
-               .size(160, 160)
-               .toFile(sub_image2);
-               
-               
-               Thumbnails.of(saveFile)
-               .size(160, 160)
-               .toFile(sub_image3);
-               
-               
-               Thumbnails.of(saveFile)
-               .size(160, 160)
-               .toFile(sub_image4);
-            
-         } catch(Exception e) {
-            throw new ControllerException(e);
-         } // try-catch
-         
-         list.add(vo);
-         
-      } // for
-      
-      ResponseEntity<List<AttachImageVO>> result = new ResponseEntity<List<AttachImageVO>>(list, HttpStatus.OK);
-      
-      return result;
-      
-   } //uploadAjaxActionPOST
    
    
+   
+   
+   
+   
+   
+   
+   
+   
+ 
    /* 이미지 삭제 */
    @PostMapping("/deleteFile")
    public ResponseEntity<String> deleteFile(String fileName) {

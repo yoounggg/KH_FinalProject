@@ -106,10 +106,10 @@ public class ProductServiceImpl implements ProductService, InitializingBean{
 
 	        if (isInserted == true) {
 	            // 이미지 등록
-	            for (AttachImageVO attach : dto.getImageList()) {
-	                attach.setProduct_no(dto.getNo());
-	                mapper.imageInsert(attach);
-	            }
+//	            for (AttachImageVO attach : dto.getImageList()) {
+//	                attach.setProduct_no(dto.getNo());
+//					/* mapper.imageInsert(attach); */
+//	            }
 	        }
 
 	        return isInserted;
