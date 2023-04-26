@@ -13,7 +13,9 @@ import java.util.Map;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.zerock.myapp.mapper.SocialMemberMapper;
 
 import lombok.extern.log4j.Log4j2;
 //
@@ -21,6 +23,9 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class KakaoServiceImpl implements KakaoService {
 
+	@Autowired
+	private SocialMemberMapper socialMemberMapper;
+	
 	@Override
 	public String getAccessToken(String code) throws IOException, org.json.simple.parser.ParseException {
 		String access_token = "";
@@ -130,4 +135,5 @@ public class KakaoServiceImpl implements KakaoService {
 		
 	} // getUserInfo
 
+	
 } // end class

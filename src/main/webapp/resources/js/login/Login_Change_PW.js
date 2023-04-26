@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             this.remove();
 
-            var timeLeft = 5; // change the time limit to 5 seconds for testing purposes
+            var timeLeft = 180;
             var timer = setInterval(function() {
                 if (timeLeft <= 0) {
                     clearInterval(timer);

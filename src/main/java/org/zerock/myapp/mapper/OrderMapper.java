@@ -4,7 +4,7 @@ import org.zerock.myapp.domain.CartDTO;
 import org.zerock.myapp.domain.OrderDTO;
 import org.zerock.myapp.domain.OrderItemDTO;
 import org.zerock.myapp.domain.OrderPageItemDTO;
-import org.zerock.myapp.domain.ProductVO;
+import org.zerock.myapp.domain.ProductDTO;
 
 public interface OrderMapper {
 	
@@ -21,7 +21,7 @@ public interface OrderMapper {
 	public Integer enrollOrderItem(OrderItemDTO orid);
 	
 	// 회원이 주문한 상품의 개수만큼 '상품 재고'를 차감
-	public Integer deductStock(ProductVO product);
+	public Integer deductStock(ProductDTO product);
 	
 	// 주문완료시 장바구니 상품 정보 삭제
 	public Integer deleteOrderCart(CartDTO dto);

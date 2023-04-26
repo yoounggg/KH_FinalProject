@@ -1,5 +1,6 @@
 package org.zerock.myapp.service;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zerock.myapp.domain.MemberDTO;
@@ -18,6 +19,9 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Setter(onMethod_=@Autowired)
 	MemberMapper memberMapper;
+	
+	@Setter(onMethod_=@Autowired)
+	MsgSendService msgSendService;
 	
 	// 혁규 회원가입
 	@Override
@@ -45,7 +49,35 @@ public class MemberServiceImpl implements MemberService {
 		} // try-catch	
 		
 	} // memberLogin()
+	
+//	------------------------------------------------------------
 
+	// 셍나 휴대폰 인증 - 아이디 존재하는지 찾기
+	@Override
+	public int idCheck(String name, String tel) {
+	
+		log.trace("셍나: 휴대폰 인증을 위한 idCheck({}, {})가 활성화 되었습니다.", name, tel);
+		
+		int cntIdCheck = memberMapper.idCheck(name, tel);
+		
+		return cntIdCheck;
+		
+	} // idCheck()
+	
+	// 셍나 휴대폰 인증 - 아이디 찾기 결과 반환
+	@Override
+	public String findIdResult(String name, String tel) {
+		
+		log.trace("셍나: 아이디 찾기 결과 반환을 위한 ({}, {})가 활성화 되었습니다.", name, tel);
+		
+		String idResult = memberMapper.findIdResult(name, tel);
+		
+		log.trace("findIdResult의 결과인 idResult의 값은: {}입니다.", idResult);
+		
+		return idResult;
+		
+	} // findIdResult()
+	
 //	------------------------------------------------------------
 	
 	// MemberDTO 객체 반환 하는 구현객체 생성 (찬돌)
@@ -53,6 +85,7 @@ public class MemberServiceImpl implements MemberService {
 	public MemberDTO getMemberInfo(String memberId) throws ServiceException {
 		
 		return memberMapper.getMemberInfo(memberId);
+		
 	} // getMemberInfo
  
 } // end class

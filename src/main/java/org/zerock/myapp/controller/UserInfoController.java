@@ -93,6 +93,7 @@ public class UserInfoController {
 		msgservice.msgSend(userPhoneNumber, randomNumber);
 		
 		return Integer.toString(randomNumber);
+		
 	} // sendSMS
 	
 	

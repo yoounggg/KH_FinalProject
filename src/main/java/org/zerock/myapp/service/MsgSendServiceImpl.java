@@ -47,7 +47,6 @@ public class MsgSendServiceImpl implements MsgSendService {
 				
 			} // try-catch
 			
-			
 		} // msgSend
 	
 

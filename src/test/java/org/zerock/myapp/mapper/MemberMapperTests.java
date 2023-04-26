@@ -78,26 +78,6 @@ public class MemberMapperTests {
 //		
 //	} // memberJoin()
 	
-	
-//	셍나 로그인 테스트
-//	@Disabled
-	@Test
-	@Order(1)
-	@DisplayName("memberLogin Test")
-	@Timeout(value=1, unit=TimeUnit.SECONDS)
-	void memberLogin() throws Exception {
-		
-		MemberDTO memberDTO = new MemberDTO();
-		
-		memberDTO.setId("se");
-		memberDTO.setPassword("se");
-				
-		memberMapper.memberLogin(memberDTO);
-	
-		log.info("Login 테스트 결과: {}", memberMapper.memberLogin(memberDTO));
-		
-	} // memberLogin()
-
 // 혁규 테스트
 //	@Disabled
 //	@Test
@@ -121,9 +101,48 @@ public class MemberMapperTests {
 //		memberVO.setAdminCk(1);
 //		memberVO.setBirth_date("1999-01-01");
 //		memberVO.setJoinDate(1991-01-01);
-		
+	
 //		memberMapper.memberSignup(memberVO);
-		
+	
 //	} // memberSignup
+	
+//	셍나 로그인 테스트
+//	@Disabled
+	@Test
+	@Order(1)
+	@DisplayName("memberLogin Test")
+	@Timeout(value=1, unit=TimeUnit.SECONDS)
+	void memberLogin() throws Exception {
+		
+		MemberDTO memberDTO = new MemberDTO();
+		
+		memberDTO.setId("jeonseinoo");
+		memberDTO.setPassword("Jeonsein1216");
+				
+		memberMapper.memberLogin(memberDTO);
+	
+		log.info("Login 테스트 결과: {}", memberMapper.memberLogin(memberDTO));
+		
+	} // memberLogin()
+
+//	셍나 로그인 테스트
+//	@Disabled
+	@Test
+	@Order(2)
+	@DisplayName("findIdResult Test")
+	@Timeout(value=1, unit=TimeUnit.SECONDS)
+	void findIdResult() throws Exception {
+		
+		MemberDTO memberDTO = new MemberDTO();
+		
+		memberDTO.setName("전셍나");
+		memberDTO.setTel("01019971216");
+				
+	    // memberMapper.findIdResult에 memberDTO의 이름과 전화번호 값을 전달합니다.
+	    memberMapper.findIdResult(memberDTO.getName(), memberDTO.getTel());
+
+	    log.info("findIdResult 테스트 결과: {}", memberMapper.findIdResult(memberDTO.getName(), memberDTO.getTel()));
+		
+	} // findIdResult()
 	
 } // end class
