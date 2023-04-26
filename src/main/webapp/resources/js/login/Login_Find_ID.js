@@ -16,6 +16,8 @@ $(document).ready(function () {
         $("#find_id_p_form").css("display", "none");
     });
 
+// -----------------------------------------------------
+
     // 아이디 찾기 - 휴대폰 인증 ajax
     $(".findid_button_p").click(function (event) {
 
@@ -100,7 +102,7 @@ $(document).ready(function () {
 	$('.p_verify_button_result').click(function(){
 	    var name = $("#find_id_p_form input[type=text]").val();
 	    var tel = $("#find_id_p_form input[type=tel]").val();
-	        
+	    
 	    $.ajax({
 	        url: '/login/findid/result',
 	        type: 'POST',
@@ -108,13 +110,19 @@ $(document).ready(function () {
 	            name: name, // 찾을 이름 값
 	            tel: tel // 찾을 전화번호 값
 	        },
+	        dataType: 'text',
 	        success: function(idResult) {
-	            $("#foundId").html(idResult); // 결과 값을 보여줄 영역에 결과 값을 설정
+	            // 결과 값을 보여줄 영역에 결과 값을 설정 (예: 알림창, 팝업, 모달 등)
+	            alert("찾은 아이디: " + idResult);
+	            $(".p_verify_button_result").hide();
+	            // 기존 아이디 찾기 폼 다 숨기고 로그인 하러 가기 버튼 만들기
 	        },
 	        error: function(xhr, status, error) {
 	            console.error(error);
 	        }
 	    });
-	});
+	}); // 확인 버튼 클릭 fn()
+	
+// -----------------------------------------------------
     
 });
