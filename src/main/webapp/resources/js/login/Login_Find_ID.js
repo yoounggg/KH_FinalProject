@@ -110,8 +110,6 @@ $(document).ready(function () {
 	        },
 	        success: function(idResult) {
 	            $("#foundId").html(idResult); // 결과 값을 보여줄 영역에 결과 값을 설정
-	            $("#find_id_p_form").css("display", "none"); // 아이디 찾기 - 휴대폰 인증 폼을 숨김
-	            $("#find_id_result_form").css("display", "block"); // 아이디 찾기 - 결과 폼을 보여줌
 	        },
 	        error: function(xhr, status, error) {
 	            console.error(error);

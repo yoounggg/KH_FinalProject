@@ -68,11 +68,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public String findIdResult(String name, String tel) {
 		
-		log.trace("셍나: 아이디 찾기 결과 반환을 위한 ({}, {})가 활성화 되었습니다.", name, tel);
+		log.trace("아이디 찾기 결과 반환을 위한 ({}, {})가 활성화 되었습니다.", name, tel);
 		
 		String idResult = memberMapper.findIdResult(name, tel);
 		
-		log.trace("findIdResult의 결과인 idResult의 값은: {}입니다.", idResult);
+		log.trace("findIdResult()의 결과인 idResult의 값은: {}입니다.", idResult);
 		
 		return idResult;
 		

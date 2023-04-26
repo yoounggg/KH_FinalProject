@@ -69,13 +69,13 @@ public class MemberController {
 	// 결과 반환
 	@PostMapping("/findid/result")
 	public ModelAndView findIdResult(@RequestParam("name") String name, @RequestParam("tel") String tel) throws ServiceException {
-	    log.trace("아이디 찾기의 결과는: {} 입니다.");
 
 	    String foundId = memberService.findIdResult(name, tel);
 	    
-	    ModelAndView modelAndView = new ModelAndView("Login_Find_ID_Result");
+	    ModelAndView modelAndView = new ModelAndView();
 	    
 	    modelAndView.addObject("foundId", foundId);
+	    modelAndView.setViewName("/WEB-INF/views/login/Login_Find_ID_Result.jsp");
 
 	    return modelAndView;
 	    
