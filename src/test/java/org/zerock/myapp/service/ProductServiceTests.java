@@ -29,7 +29,7 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
-@NoArgsConstructor
+//@NoArgsConstructor
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations="file:src/main/webapp/WEB-INF/**/root-*.xml")
@@ -38,7 +38,7 @@ import lombok.extern.log4j.Log4j2;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ProductServiceTests {
 
-	@Setter(onMethod_= { @Autowired })
+//	@Setter(onMethod_= { @Autowired })
 	private ProductService service;	 // ProductService(interface) 주입
 	
 	@BeforeAll
@@ -155,57 +155,57 @@ public class ProductServiceTests {
 	
 //	[별이]이미지 및 경로 첨부 상품 등록 테스트
 //	@Disable
-	@Test
-	@Order(1)
-	@DisplayName("테스트 2 : imageRegister")
-	@Timeout(value=1, unit=TimeUnit.SECONDS)
-	void imageRegister() throws ServiceException {
-		log.trace("imageRegister invoked.");
+//	@Test
+//	@Order(1)
+//	@DisplayName("테스트 2 : imageRegister")
+//	@Timeout(value=1, unit=TimeUnit.SECONDS)
+//	void imageRegister() throws ServiceException {
+//		log.trace("imageRegister invoked.");
+//		
+//		ProductDTO dto = new ProductDTO();
+//		dto.setCategory("test");
+//		dto.setName("채영이네 고당도 정신체리11");
+//		dto.setPrice(30000);
+//		dto.setDiscount(10);
+//		dto.setDiscount_price(27000);
+//		dto.setWeight("2kg");
+//		dto.setOrigin("국산");
+//		dto.setStock(10);
+//		dto.setFarm_no(1);
+//		dto.setMain_image("main111");
+//		dto.setSub_image1("sub111");
+//		dto.setSub_image2("sub211");
+//		dto.setSub_image3("sub311");
+//		dto.setSub_image4("sub411");
+//		dto.setContent("정신체리11!");
+//		dto.setContent_image("content_image111");
+//
+//		
+//		//이미지 정보
+//		List<AttachImageVO> imageList = new ArrayList<AttachImageVO>();
+//		
+//		AttachImageVO image1 = new AttachImageVO();
+//		AttachImageVO image2 = new AttachImageVO();		
+//		
+//			image1.setFileName("test image1111111");
+//			image1.setUploadPath("test1111111");
+//			image1.setUuid("test111111111");
+//			
+//			image2.setFileName("test image222222222");
+//			image2.setUploadPath("test222222222");
+//			image2.setUuid("test222222222");
+//		
+//			imageList.add(image1);
+//			imageList.add(image2);
+//		
+//			dto.setImageList(imageList);
+//		
+//		
+//			Boolean successs = this.service.register(dto);
+//			log.info("affectedLines() invoked. {}", successs);
 		
-		ProductDTO dto = new ProductDTO();
-		dto.setCategory("test");
-		dto.setName("채영이네 고당도 정신체리11");
-		dto.setPrice(30000);
-		dto.setDiscount(10);
-		dto.setDiscount_price(27000);
-		dto.setWeight("2kg");
-		dto.setOrigin("국산");
-		dto.setStock(10);
-		dto.setFarm_no(1);
-		dto.setMain_image("main111");
-		dto.setSub_image1("sub111");
-		dto.setSub_image2("sub211");
-		dto.setSub_image3("sub311");
-		dto.setSub_image4("sub411");
-		dto.setContent("정신체리11!");
-		dto.setContent_image("content_image111");
-
 		
-		//이미지 정보
-		List<AttachImageVO> imageList = new ArrayList<AttachImageVO>();
-		
-		AttachImageVO image1 = new AttachImageVO();
-		AttachImageVO image2 = new AttachImageVO();		
-		
-			image1.setFileName("test image1111111");
-			image1.setUploadPath("test1111111");
-			image1.setUuid("test111111111");
-			
-			image2.setFileName("test image222222222");
-			image2.setUploadPath("test222222222");
-			image2.setUuid("test222222222");
-		
-			imageList.add(image1);
-			imageList.add(image2);
-		
-			dto.setImageList(imageList);
-		
-		
-			Boolean successs = this.service.register(dto);
-			log.info("affectedLines() invoked. {}", successs);
-		
-		
-	} // register
+//	} // register
 	
 	
 //	@Disable

@@ -17,7 +17,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.zerock.myapp.domain.AttachImageVO;
 import org.zerock.myapp.domain.Criteria;
 import org.zerock.myapp.domain.PageDTO;
@@ -96,45 +99,6 @@ public class ProductContoller {
 		} // try-catch
 	} // info
 	
-	
-	/* [별이] 이미지는 모든 곳에서 접근이 가능하도록! */
-	@GetMapping("/display")
-	public ResponseEntity<byte[]> getImage(String fileName) {
-		
-		log.info("getImage()................."+fileName);
-		
-		File file = new File("c:\\upload\\"+fileName);
-		
-		ResponseEntity<byte[]> result = null;
-		
-		try {
-			HttpHeaders header = new HttpHeaders();
-			header.add("Content-type", Files.probeContentType(file.toPath()));
-			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		} // try-catch
-		
-		return result;
-		
-	} // ResponseEntity
-	
-	
-	/* [별이] 이미지 정보 반환 - AttachController */
-	@GetMapping(value="/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<List<AttachImageVO>> getAttachList(Integer product_no) throws ControllerException {
-		
-		log.info("getAttachList({}) invoked.", product_no);
-
-		try {
-			List<AttachImageVO> list = this.aservice.getAttachList(product_no);
-			return new ResponseEntity<List<AttachImageVO>>(aservice.getAttachList(product_no), HttpStatus.OK);
-		} catch (Exception e) {
-			throw new ControllerException(e);
-		} // try-catch
-		
-	} //  ResponseEntity
 	
 	
 	

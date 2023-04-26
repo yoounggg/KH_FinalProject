@@ -262,19 +262,20 @@ h2{
 
       /*   ================================================ */
       
-      	button {
-		width: 375px;
-	    height: 40px;
-	    border: none;
-	}
 	#delivery-btn {
 		background-color: #11BC0D;
 		color: #F9F9F4;
+		width: 375px;
+	    height: 40px;
+	    border: none;
 	}
 	
 	#refund-btn {
 		background-color: #F9F9F4;
 		color: black;
+		width: 375px;
+	    height: 40px;
+	    border: none;
 	}
 	
 
@@ -299,3 +300,4 @@ h2{
 	    line-height: 20px;
 	    border-bottom: solid 1px #e5e5e5;
 	}
+	

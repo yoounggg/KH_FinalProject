@@ -17,19 +17,19 @@
 			WHERE no = #{no}
 		</select>
 		
-		<select id="enrollOrder" resultType="org.zerock.myapp.domain.OrderDTO">
-			INSERT INTO MYMG_ORDER(no, member_id, receiver_name, receiver_address1, receiver_address2, receiver_address3, receiver_tel, delivery_cost, delivery_state, order_date)
-			VALUES (#{no}, #{member_id}, #{receiver_name}, #{receiver_address1}, #{receiver_address2}, #{receiver_address3}, #{receiver_tel}, #{delivery_cost}, '배송준비' ) 
+		<select id="enrollOrder" resultType="org.zerock.myapp.domain.OrderDTO">		<!-- no 제외 -->
+			INSERT INTO MYMG_ORDER( member_id, receiver_name, receiver_address1, receiver_address2, receiver_address3, receiver_tel, delivery_cost, delivery_state)
+			VALUES ( #{member_id}, #{receiver_name}, #{receiver_address1}, #{receiver_address2}, #{receiver_address3}, #{receiver_tel}, #{delivery_cost}, '배송준비' ) 
 		</select>
 		
-		<select id="enrollOrderItem">
-			INSERT INTO ORDER_LIST(no, order_no, product_no, count, price, discount)
-			VALUES (#{no}, #{order_no}, #{product_no}, #{count}, #{price}, #{discount})
+		<select id="enrollOrderItem"> <!-- no 제외 -->
+			INSERT INTO ORDER_LIST(order_no, product_no, count, price, discount)
+			VALUES (#{order_no}, #{product_no}, #{count}, #{price}, #{discount})
 		</select>
 		
-		<select id="deductStcok">
+		<select id="deductStock" resultType="org.zerock.myapp.domain.ProductDTO">
 			UPDATE product
-			set stock = #{productStock}
+			set stock = #{stock}
 			WHERE no = #{no}
 		</select>
 
