@@ -1,67 +1,122 @@
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("find_id_p_btn").addEventListener("click", function() {
-        switchForm("find_id_p_form", "find_id_e_form", this);
+$(document).ready(function () {
+
+    // 휴대폰 인증 버튼을 클릭했을 때
+    $("#find_id_p_btn").click(function () {
+        $(this).addClass("find_id_active");
+        $("#find_id_e_btn").removeClass("find_id_active");
+        $("#find_id_p_form").css("display", "block");
+        $("#find_id_e_form").css("display", "none");
     });
 
-    document.getElementById("find_id_e_btn").addEventListener("click", function() {
-        switchForm("find_id_e_form", "find_id_p_form", this);
+    // 이메일 인증 버튼을 클릭했을 때
+    $("#find_id_e_btn").click(function () {
+        $(this).addClass("find_id_active");
+        $("#find_id_p_btn").removeClass("find_id_active");
+        $("#find_id_e_form").css("display", "block");
+        $("#find_id_p_form").css("display", "none");
     });
 
-    document.querySelectorAll(".find_id_form .val_button").forEach(function(btn) {
-        btn.addEventListener("click", function(e) {
-            e.preventDefault();
-            var form = this.closest("form");
+    // 아이디 찾기 - 휴대폰 인증 ajax
+    $(".findid_button_p").click(function (event) {
 
-            var verificationInput = document.createElement("input");
-            verificationInput.setAttribute("type", "text");
-            verificationInput.setAttribute("placeholder", "인증번호를 입력해주세요.");
-            verificationInput.setAttribute("required", "");
-            verificationInput.classList.add("verification-input");
+        event.preventDefault();
 
-            var countDown = document.createElement("div");
-            countDown.classList.add("countdown");
+        var name = $("#find_id_p_form input[type=text]").val();
+        var tel = $("#find_id_p_form input[type=tel]").val();
+	
+		// 사용자가 입력값을 모두 입력할 수 있도록, 입력값이 하나라도 없는 경우에는 알람
+        if (!name || !tel) {
+            alert("입력값을 모두 입력해주세요.");
+            return;
+        }
 
-            var countdownWrapper = document.createElement("div");
-            countdownWrapper.classList.add("countdown-wrapper");
-            countdownWrapper.appendChild(verificationInput);
-            countdownWrapper.appendChild(countDown);
+		// DB에 회원 정보가 존재하는지 확인
+        $.ajax({
+            url: "/login/findid/idCheck",
+            type: "POST",
+            data: {
+                name: name,
+                tel: tel
+            },
+            dataType: 'json',
+            success: function (cntIdCheck) {
+                cntIdCheck = parseInt(cntIdCheck);
 
-            form.insertBefore(countdownWrapper, this);
-
-            var confirmButton = document.createElement("button");
-            confirmButton.setAttribute("type", "submit");
-            confirmButton.textContent = "확인";
-            confirmButton.classList.add("val_button");
-
-            form.insertBefore(confirmButton, this);
-
-            this.remove();
-
-            var timeLeft = 5; // change the time limit to 5 seconds for testing purposes
-            var timer = setInterval(function() {
-                if (timeLeft <= 0) {
-                    clearInterval(timer);
-                    countDown.textContent = "인증번호의 유효 시간이 만료되었습니다.";
-                    confirmButton.classList.remove("re_val_button");
-                    confirmButton.classList.add("val_button");
-                    confirmButton.textContent = "인증번호 재발송";
+                if (cntIdCheck === 1) {
+                    $(".p_verification").css("display", "block");
+                    alert("회원정보를 확인했습니다. \n인증번호 발송 버튼을 눌러, 휴대폰 번호 인증을 진행해주세요.")
+                    $(".findid_button_p").hide();
+                    $(".send_verification_button_p").show();
                 } else {
-                    countDown.textContent = "남은 시간: " + timeLeft + "초";
-                    timeLeft--;
+                    alert("회원정보를 찾지 못했습니다. 다시 확인해주세요.");
                 }
-            }, 1000);
+            },
+            error: function (request, status, error) {
+                console.log("code = " + request.status + " message = " + request.responseText + " error = " + error);
+            }
         });
     });
+
+	// 인증 번호 발송 버튼 클릭 이벤트
+	var val_num = "";
+    $(".send_verification_button_p").click(function () {
+        alert("인증번호를 인증번호 입력창에 입력해주세요.");
+
+        // 인증 번호 발송 버튼 클릭 이후 인증번호 입력창, 확인 버튼을 표시하도록 변경
+        $(".p_verification_input").css("display", "block");
+        $(".p_verify_button").css("display", "block");
+		
+		var phone = $("#tel").val();
+		
+        $.ajax({
+            type: 'GET',
+            url:'/login/findid/telCheck' + phone,
+            data: {tel: phone},
+            cache: false,
+            success:function(data){
+                if(data == 'error'){
+                    alert("휴대폰 번호가 올바르지 않습니다.")
+                    $('#p_verification_input').attr("autofocus", true);
+                } else {
+                    $('#p_verification_input').attr("readonly", true);
+                    val_num = data;
+                } // if-else
+            } // success:fn()
+        }); // ajax
+    }); // 인증 번호 발송 버튼 클릭 fn()
+	
+    // 휴대폰 인증번호 대조
+    $('.p_verify_button').click(function(){
+        if($('.p_verification_input').val() == val_num){
+            alert("인증번호가 일치합니다.")
+            $(".p_verify_button").hide();
+            $(".p_verify_button_result").show();
+        } else {
+            alert("인증번호가 일치하지 않습니다. 인증 절차를 다시 시도해주세요.")
+        } // if-else
+    }); // 휴대폰 인증 번호 대조 fn()
+    
+    // 확인 버튼 클릭
+	$('.p_verify_button_result').click(function(){
+	    var name = $("#find_id_p_form input[type=text]").val();
+	    var tel = $("#find_id_p_form input[type=tel]").val();
+	        
+	    $.ajax({
+	        url: '/login/findid/result',
+	        type: 'POST',
+	        data: {
+	            name: name, // 찾을 이름 값
+	            tel: tel // 찾을 전화번호 값
+	        },
+	        success: function(idResult) {
+	            $("#foundId").html(idResult); // 결과 값을 보여줄 영역에 결과 값을 설정
+	            $("#find_id_p_form").css("display", "none"); // 아이디 찾기 - 휴대폰 인증 폼을 숨김
+	            $("#find_id_result_form").css("display", "block"); // 아이디 찾기 - 결과 폼을 보여줌
+	        },
+	        error: function(xhr, status, error) {
+	            console.error(error);
+	        }
+	    });
+	});
+    
 });
-
-function switchForm(showFormId, hideFormId, activeBtn) {
-    document.getElementById(showFormId).style.display = "block";
-    document.getElementById(hideFormId).style.display = "none";
-
-    activeBtn.classList.add("find_id_active");
-    if (activeBtn.nextElementSibling) {
-        activeBtn.nextElementSibling.classList.remove("find_id_active");
-    } else {
-        activeBtn.previousElementSibling.classList.remove("find_id_active");
-    }
-}
