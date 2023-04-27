@@ -48,7 +48,7 @@ public class MemberControllerTests {
 	@Timeout(value=5, unit=TimeUnit.MINUTES)
     public void mailSendTest() throws Exception{
         
-        String subject = "셍나는 뚠둔, 오늘도 뚠뚠, 열심히~ 테스트 하네~";
+        String subject = "뚠뚠..?";
         String content = "이메일 인증 구현을 위한 컨트롤러 테스트 중입니다!";
         String from = "dhcksehf1@naver.com";
         String to = "jeonseino.o@gmail.com";

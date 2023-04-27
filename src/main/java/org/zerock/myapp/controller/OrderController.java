@@ -79,7 +79,7 @@ public class OrderController {
 
 	@PostMapping("")
 	public String orderPagePost(OrderDTO dto, HttpServletRequest request) {
-		
+		//@RequestBody
 		log.trace("\t+ dto : {}", dto);
 		
 		orderService.order(dto);
