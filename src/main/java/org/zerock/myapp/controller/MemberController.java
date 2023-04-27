@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.zerock.myapp.mapper.MemberMapper;
@@ -105,15 +104,19 @@ public class MemberController {
 		
 	} // idCheck_e()
 	
-
-	@RequestMapping(value = "/sendMail", method = RequestMethod.GET)
-	public void mailCheckGET(String email) throws Exception {
+	// [이메일] 아이디 찾기 - 이메일 전송
+	@GetMapping("/findid/sendMail")
+	@ResponseBody
+	// 사용자가 입력한 이메일 주소를 매개 변수로 받는 mailCheck()
+	public String mailCheck(@RequestParam("email") String email) throws Exception {
+//	public void mailCheck(@PathVariable("email") String email) throws Exception {
 		
+		// 인증 번호를 위한 6자리 랜덤 난수 생성
 		int randomNum = (int) ( Math.random() * 900000 ) + 100000;
 		
-		log.info("이메일 데이터의 전송을 확인합니다. 인증번호: {}", randomNum);
+		log.info("=생성된 인증번호: {}", randomNum);
 		
-        /* 이메일 보내기 */
+        /* 이메일 보내기 - 이메일 데이터 설정! */
         String setFrom = "dhcksehf1@naver.com";
         String setTo = email;
         String setTitle = "[MYMG] 아이디 찾기 인증을 위한 이메일입니다.";
@@ -123,28 +126,34 @@ public class MemberController {
             
             // JavaMailSenderImpl 객체인 mailSender에서
             // MIME 타입의 이메일 메시지를 생성! -> MimeMessage 객체 반환
-            MimeMessage message = javaMailSender.createMimeMessage();
+            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
             
-            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+            // MimeMessageHelper로 이메일 메세지 구성!
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true, "utf-8");
+            
             // 보내는 사람
-            helper.setFrom(setFrom);
+            mimeMessageHelper.setFrom(setFrom);
             // 받는 사람
-            helper.setTo(setTo);
+            mimeMessageHelper.setTo(setTo);
             // 이메일 제목
-            helper.setSubject(setTitle);
+            mimeMessageHelper.setSubject(setTitle);
             // 이메일 본문
-            helper.setText(setContent,true);
+            mimeMessageHelper.setText(setContent,true);
             
             // 보내는 메소드
-            javaMailSender.send(message);
+            javaMailSender.send(mimeMessage);
             
         } catch(Exception e) {
         	
             e.printStackTrace();
 
 		} // try-catch
+        
+        String authKey = Integer.toString(randomNum);
+        
+        return authKey;
 		
-	} // mailCheckGET()
+	} // mailCheck()
 	
 	
 	// [이메일] 아이디 찾기 인증 결과 반환
