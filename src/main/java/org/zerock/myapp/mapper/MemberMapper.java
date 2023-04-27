@@ -19,8 +19,11 @@ public interface MemberMapper {
 	// [셍나] 아이디 찾기 - 휴대폰 인증 - 결과
 	public String findIdResult(@Param("name")String name, @Param("tel")String tel);
 	
-	// [셍나] 아이디 찾기 - 이메일 인증 - 결과
+	// [셍나] 아이디 찾기 - 이메일 인증 (이름과 이메일로 사용자 정보가 존재하는지 확인)
 	public int idCheck_e(@Param("name")String name, @Param("email")String email);
+	
+	// [셍나] 아이디 찾기 - 이메일 인증 - 결과
+	public String findIdResult_e(@Param("name")String name, @Param("email")String email);
 	
 	// 주문자 주소 정보 (찬돌)
 	public MemberDTO getMemberInfo(String id); // memberId 가 테이블에 ID로 되어있고 String임

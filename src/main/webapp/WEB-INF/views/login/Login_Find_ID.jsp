@@ -89,7 +89,7 @@
 			            <!-- 아이디 찾기 버튼 클릭 이후 생기는 입력창 -->
 			            <div class="e_verification" style="display: none;">
 			            	<!-- 인증번호 입력창 -->
-                        	<input type="text" class="e_verification_input" placeholder="인증번호를 입력해주세요." required>
+                        	<input type="text" class="e_verification_input" id="email" placeholder="인증번호를 입력해주세요." required>
                         	<!-- 확인 버튼 -->
                         	<button style="display:none" type="button" class="e_verify_button">확인</button>
                         	<!-- 아이디 찾기 결과 버튼 -->

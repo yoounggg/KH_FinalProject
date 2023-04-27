@@ -106,7 +106,7 @@ public class MemberMapperTests {
 	
 //	} // memberSignup
 	
-//	셍나 로그인 테스트
+//	셍나 로그인 테스트 - 기본 로그인 되는지 확인
 //	@Disabled
 	@Test
 	@Order(1)
@@ -125,7 +125,7 @@ public class MemberMapperTests {
 		
 	} // memberLogin()
 
-//	셍나 로그인 테스트
+//	셍나 로그인 테스트 - 아이디 찾기 결과값 반환 테스트 - 핸드폰
 //	@Disabled
 	@Test
 	@Order(2)
@@ -145,8 +145,8 @@ public class MemberMapperTests {
 		
 	} // findIdResult()
 	
-	//	찬돌 member정보 얻기 테스트
-	//	@Disabled
+//	찬돌 member정보 얻기 테스트
+//	@Disabled
 	@Test
 	@Order(3)
 	@DisplayName("getMemberInfo Test")
@@ -159,7 +159,7 @@ public class MemberMapperTests {
 		
 	} // TestsgetMemberInfo()
 	
-//	셍나 로그인 테스트
+//	셍나 로그인 테스트 - 이름, 이메일로 아이디 중복 확인 테스트
 //	@Disabled
 	@Test
 	@Order(4)
@@ -178,5 +178,25 @@ public class MemberMapperTests {
 	    log.info("idCheck_e 테스트 결과: {}", memberMapper.idCheck_e( memberDTO.getName(), memberDTO.getEmail() ));
 		
 	} // idCheck_e()
+	
+//	셍나 로그인 테스트 - 아이디 찾기 결과값 반환 테스트 - 이메일
+//	@Disabled
+	@Test
+	@Order(5)
+	@DisplayName("findIdResult_e Test")
+	@Timeout(value=1, unit=TimeUnit.SECONDS)
+	void findIdResult_e() throws Exception {
+		
+		MemberDTO memberDTO = new MemberDTO();
+		
+		memberDTO.setName("전셍나");
+		memberDTO.setEmail("jeonseino.o@gmail.com");
+				
+	    // memberMapper.findIdResult_e에 memberDTO의 이름과 이메일 값을 전달.
+	    memberMapper.findIdResult_e(memberDTO.getName(), memberDTO.getEmail());
+
+	    log.info("findIdResult_e 테스트 결과: {}", memberMapper.findIdResult_e(memberDTO.getName(), memberDTO.getEmail()));
+		
+	} // findIdResult_e()
 	
 } // end class
