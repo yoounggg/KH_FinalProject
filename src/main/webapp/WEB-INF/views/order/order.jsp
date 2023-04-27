@@ -356,10 +356,10 @@
   
         	<input name="memberId" value="${memberInfo.id}" type="hidden"> <!--  member. memberInfo. 둘 중 뭘 써야할까.. -->
        
-        	<input name="addressee" type="hidden" >
-        	<input name="memberAddr1" type="hidden">
-        	<input name="memberAddr2" type="hidden">
-        	<input name="memberAddr3" type="hidden" >
+        	<input name="addressee" type="hidden" value="${memberInfo.name}" >
+        	<input name="memberAddr1" type="hidden" value="${memberInfo.address1}">
+        	<input name="memberAddr2" type="hidden" value="${memberInfo.address2}">
+        	<input name="memberAddr3" type="hidden" value="${memberInfo.address3}">
         	
          </form>
 
