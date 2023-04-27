@@ -34,30 +34,42 @@
         <div class="login_change_pw_wrapper">
 
 				<!-- 비밀번호 변경 컨테이너 -->
-    			<div class="change_pw_container">
+                <div class="change_pw_container">
 
 					<!-- 비밀번호 변경 타이틀 -->
 					<div class="change_pw_title">비밀번호 변경</div>
 					
 					<!-- 비밀번호 변경 wrap - 폼 변경 -->
-				    <ul class="change_pw_wrap">
+                    <ul class="change_pw_wrap">
 						<!-- 휴대폰 인증 버튼 -->
-				        <li id="change_pw_p_btn" class="change_pw_active">휴대폰 인증</li>
-				        
+                        <li id="change_pw_p_btn" class="change_pw_active">휴대폰 인증</li>
+                        
 						<!-- 이메일 인증 버튼 -->
 						<li id="change_pw_e_btn">이메일 인증</li>
-				    </ul>
+                    </ul>
 					
-					<!-- 아이디 조회 -->
-					<form id="id_search_form" class="id_search_form">
+					<!-- 휴대폰 - 아이디 조회 -->
+					<form id="id_search_form_p" class="id_search_form_p">
 						<!-- 아이디 입력창 -->
-				        <input type="text" id="id" class="id_search_input" placeholder="비밀번호 변경을 원하는 아이디를 입력해주세요." required>
-						<button type="submit" class="id_search_button">아이디 조회</button>
-						<button style="display:none" type="submit" class="send_tempPw_button_e">임시 비밀번호 발송</button> 
+                        <input type="text" id="id" class="id_search_input_p" placeholder="비밀번호 변경을 원하는 아이디를 입력해주세요." required>
+                        <!-- 아이디 조회 버튼 -->
+						<button type="submit" class="id_search_button_p">아이디 조회</button>
+                        <!-- 아이디 조회 성공 이후 임시 비밀번호 발송 버튼으로 변경 -->
+						<button style="display:none" type="submit" class="send_tempPw_button_p">임시 비밀번호 발송</button> 
+					</form>
+					
+					<!-- 이메일 - 아이디 조회 -->
+					<form id="id_search_form_e" class="id_search_form_e" style="display:none">
+						<!-- 아이디 입력창 -->
+						<input type="text" id="id" class="id_search_input_e" placeholder="비밀번호 변경을 원하는 아이디를 입력해주세요." required>
+						<!-- 아이디 조회 버튼 -->
+						<button type="submit" class="id_search_button_e">아이디 조회</button>
+						<!-- 아이디 조회 성공 이후 임시 비밀번호 발송 버튼으로 변경 -->
+						<button style="display:none" type="submit" class="send_tempPw_button_e">임시 비밀번호 발송</button>
 					</form>
 	
-    			</div>
-    		</div>
+                </div>
+            </div>
     </main>
     
     <!-- footer -->

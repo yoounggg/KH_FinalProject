@@ -64,6 +64,7 @@ public class MemberServiceImpl implements MemberService {
 		
 	} // idCheck()
 	
+	
 	// [셍나] 이메일 인증 - 회원 정보 입력(이름, 이메일)으로 아이디 존재하는지 찾기
 	@Override
 	public int idCheck_e(String name, String email) {
@@ -75,6 +76,7 @@ public class MemberServiceImpl implements MemberService {
 		return cntIdCheck_e;
 		
 	} // idCheck_e()
+	
 	
 	// [셍나] 비밀번호 변경 - 아이디 조회
 	@Override
