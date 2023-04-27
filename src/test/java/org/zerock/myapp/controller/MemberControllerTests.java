@@ -1,6 +1,5 @@
 package org.zerock.myapp.controller;
 
-import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import javax.mail.internet.MimeMessage;
@@ -15,7 +14,6 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.test.context.ContextConfiguration;
@@ -66,6 +64,8 @@ public class MemberControllerTests {
             mailHelper.setText(content, true);
             
             javaMailSenderImpl.send(mail);
+            
+            log.info("이메일 전송 성공입니다 :-)");
             
         } catch(Exception e) {
             e.printStackTrace();

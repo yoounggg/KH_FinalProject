@@ -206,6 +206,7 @@ $(document).ready(function () {
                 } else {
                     $('#e_verification_input').attr("readonly", true);
                     val_num = data;
+                    console.log
                 } // if-else
             } // success:fn()
         }); // ajax
