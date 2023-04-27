@@ -9,122 +9,95 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>상품 목록</title>
+    <title>공지사항 목록</title>
+    <!-- <link href="/admin_page/css/product/product_list.css" type="text/css" rel="stylesheet" /> -->
     <link rel="stylesheet" href="/resources/css/admin/common.css">
 
     <style>
+
+	button {
+	    float: right;
+	    margin-left : 5px;
+	    margin-bottom : 100px;
+	    font-weight: 800;
+	    width: 75px;
+	    height: 35px;
+	    background-color: rgb(175, 124, 213);
+	    border: 1px solid #ceced2;
+	    font-size: 16px;
+	}
+
+	.button1 {
+		margin-top : 5px;
+	}
+	
+    table {
+        display: table;
+        width: 780px;
+        margin-bottom: 0px;
+        border-top: 4px solid #ceced2;
+    }
+
+    table th {
+        border-bottom: 1px solid #ceced2;
+        padding : 8px;
+    }
+
+    table td {
+        padding: 14px 10px 13px 10px;
+        border-bottom: 1px solid #ceced2;
+        text-align: center;
         
-	span, li {
-            font-size: 16px;
-        }
+    }
 
+    .title {
+        text-align: left;
+    }
 
-        .content {
-            font-size: 13px;
-            font-weight: 600;
-            font-family: "맑은 고딕",AppleGothic,Dotum,"돋움",sans-serif;
-            /* color: #000; */
-            padding: 0;
-            width : 700px;
-            height: 900px;
-            margin : auto;
-        }
-        .content h1 {
-            padding-top : 20px;
-        }
+    /* ====================== 페이지 이동 ======================= */
+    .page {
+        margin-left: 250px;
+    }
 
-        .write {
-            margin-bottom: 20px;
-        }
+    .pagenation {
+        /* display: inline-block; */
+        text-align: center;
+        margin-right: 20%;
+        margin-bottom: 15px;
+    }
 
-        h3 {
-            height: 30px;
-            font-size: 22px;
-        }
+    .pagenation ul {
+        text-align: center;
+        vertical-align: middle;
+        padding: 0px;
+        margin:0px;
+    }
 
-        .product_detail {
-            height: 500px;
-            font-size: 20px;
-            font-weight: 700;
-        }
+    .pagenation li {
+        /* border: 1px black solid; */
+        display: inline-block;
+        min-width: 30px;
+        vertical-align: middle;
+        text-decoration: none;
+        border: 1px solid #ceced2;
+        margin-bottom: 20px;
+    }
 
-        form {
-            width: 650px;
-            margin-top: 40px;
-        }
-
-        button {
-            float: right;
-            margin-left : 5px;
-            margin-bottom : 100px;
-            font-weight: 800;
-            width: 75px;
-            height: 35px;
-            background-color: rgb(175, 124, 213);
-            border: 1px solid #ceced2;
-            font-size: 16px;
-        }
-        
-        .product_button {
-     		margin-top : 20px;
-     	}
-
-        .reg_date {
-            float: right;
-        }
-
-
-/* --------------------- 농가 상세 페이지 --------------------------------- */
-
-        .product {
-            background-color: #f7f7f7;
-            padding: 30px;
-
-        }
-
-
-        .box1 {
-            border: 1px solid rgb(195, 195, 195);
-            padding: 0;
-            width: 590px;
-            height:120px;
-            /* display : flex; */
-            /* justify-content: center; */
-            /* align-items: center; */
-            /* vertical-align: middle; */
-        }
-
-        .box2 {
-            border-bottom: 1px solid rgb(195, 195, 195);
-        }
-
-        .box3 {
-            padding-top: 15px;
-        }
-
-        p {
-            padding-left: 20px;
-            font-size: 16;
-        }
-
-
-        #info {
-            width: 550px;
-            height: 30px;
-            font-size: 20px;
-            margin-left: 20px;
-        }
-
-        select {
-            width: 150px;
-            height: 30px;
-            margin-left: 20px;
-        }
-	  
-	 a:link {color:black; text-decoration: none;}
-	 a:visited {color:black; text-decoration: none;}
-/* 	 a:hover {color:black; text-decoration: underline;} */
-        
+    /* ======================수정,삭제======================= */  
+     
+ 
+	  .pageInfo{
+	    list-style : none;
+	    display: inline-block;
+	    margin: 50px 0 0 100px;      
+	  }
+	  .pageInfo li{
+	    float: left;
+	    font-size: 20px;
+	    margin-left: 18px;
+	    padding: 7px;
+	    font-weight: 500;
+	  }
 
     </style>
     
@@ -133,233 +106,39 @@
 <body>
 
 <!-- 헤더 - 로그인/로그아웃 로고, 관리자페이지 메인글씨 -->
-<header>
-    <div class="state">
-        <span class="login">admin님 로그인하였습니다</span>
-        <span class="login">Ι</span>
-        <span class="login"><a href="/main">홈페이지</a></span>
-        <span class="login">Ι</span>
-        <span class="login"><a href="#">로그아웃</a></span>
-    </div>
-    <div>
-        <h1><a href="/admin/main"><img src="/resources/css/admin/logo.png" id="logo" width="200"><a/></h1> 
-    </div>
-    <h2 class="admin">관리자 페이지</h2>
-    
-</header>
-
+<%@include file= "/WEB-INF/views/admin/common/header.jsp" %> 
 <!-- 메인 - 보라색 가로줄(메인페이지글자), 왼쪽 메뉴 -->
 <main>
     <div class="sub_content">
-        <nav> 메인페이지 </nav>
-        <div class="menu1">
-            <ul id="menu2">
-                    <li><a href="/admin/product/register">상품등록</a></li>
-                    <li><a href="/admin/product/list">상품목록</a></li>
-                    <li><a href="/admin/notice/list">공지사항</a></li>
-                    <li><a href="/admin/faq/list">FAQ</a></li>
-                    <li><a href="/admin/member/list">회원관리</a></li>
-                    <li><a href="/admin/farm/list">거래처관리</a></li>
-            </ul>
-        </div>   
         
 <!-- 메인 - 공지사항 글 목록 테이블, 이동페이지, 수정, 삭제 -->            
                 
         <div class="content">
-            <h2>상품등록 <span class="test">테스트</span></h2>
-            <div class="write">
-                <form action="/admin/product/register" method="POST">
-                    <div class="product">
-
-                    <div class="box1">
-                        <div class="box2">
-                            <p>카테고리1</p>
-                        </div>
-                        <div class="box3">
-                            <select>
-                                <option value="">선택하기</option>
-                                <option value="${product.category1}">농가</option>
-                            </select>
-                        </div>                      
-                    </div>
-                    <br>
-
-
-                    <div class="box1">
-                        <div class="box2">
-                            <p>카테고리2</p>
-                        </div>
-                        <div class="box3">
-                            <select>
-                                <option value="">선택하기</option>
-                                <option value="${product.category2}">오늘의과일채소</option>
-                                <option value="${product.category2}">국내외과일</option>
-                                <option value="${product.category2}">친환경유기농채소</option>
-                                <option value="${product.category2}">우리땅채소</option>
-                                <option value="${product.category2}">채소/샐러드</option>
-                                <option value="${product.category2}">주곡/잡곡</option>
-                                <option value="${product.category2}">오늘의특가</option>
-                                <option value="${product.category2}">신상품</option>
-    
-                            </select>
-                        </div>                      
-                    </div>
-                    <br>
-
-
-                    <div class="box1">
-                        <div class="box2">
-                            <p>상품이름</p>
-                        </div>
-                        <div class="box3">
-                            <input type="text"  id="info">
-                        </div>                      
-                    </div>
-                    <br>
-
-                    <div class="box1">
-                        <div class="box2">
-                            <p>상품 가격</p>
-                        </div>
-                        <div class="box3">
-                            <input type="text"  id="info">
-                        </div>         
-                    </div>
-                    <br>
-
-                    <div class="box1">
-                        <div class="box2">
-                            <p>할인(%)</p>
-                        </div>
-                        <div class="box3">
-                            <input type="text"  id="info">
-                        </div>         
-                    </div>
-                    <br>
-
-                    <div class="box1">
-                        <div class="box2">
-                            <p>할인된 가격</p>
-                        </div>
-                        <div class="box3">
-                            <input type="text"  id="info">
-                        </div>         
-                    </div>
-                    <br>
-
-                    <div class="box1">
-                        <div class="box2">
-                            <p>중량</p>
-                        </div>
-                        <div class="box3">
-                            <input type="text"  id="info">
-                        </div>         
-                    </div>
-                    <br>
-
-                    <div class="box1">
-                        <div class="box2">
-                            <p>원산지</p>
-                        </div>
-                        <div class="box3">
-                            <input type="text"  id="info">
-                        </div>         
-                    </div>
-                    <br>
-
-                    <div class="box1">
-                        <div class="box2">
-                            <p>재고수량</p>
-                        </div>
-                        <div class="box3">
-                            <input type="text"  id="info">
-                        </div>         
-                    </div>
-                    <br>
-
-                    <!-- <p>농가업체</p> -->
-                    <input type="hidden"  id="info">
-
-                    <div class="box1">
-                        <div class="box2">
-                            <p>메인 이미지</p>
-                        </div>
-                        <div class="box3">
-                            <input type="text"  id="info">
-                        </div>         
-                    </div>
-                    <br>
-
-                    <div class="box1">
-                        <div class="box2">
-                            <p>서브 이미지1</p>
-                        </div>
-                        <div class="box3">
-                            <input type="text"  id="info">
-                        </div>         
-                    </div>
-                    <br>
-                
-                    <div class="box1">
-                        <div class="box2">
-                            <p>서브 이미지2</p>
-                        </div>
-                        <div class="box3">
-                            <input type="text"  id="info">
-                        </div>         
-                    </div>
-                    <br>
-                    
-                    <div class="box1">
-                        <div class="box2">
-                            <p>서브 이미지3</p>
-                        </div>
-                        <div class="box3">
-                            <input type="text"  id="info">
-                        </div>         
-                    </div>
-                    <br>
-
-                    <div class="box1">
-                        <div class="box2">
-                            <p>서브 이미지4</p>
-                        </div>
-                        <div class="box3">
-                            <input type="text"  id="info">
-                        </div>         
-                    </div>
-                    <br>
-
-                    <div class="box1">
-                        <div class="box2">
-                            <p>상세정보내용</p>
-                        </div>
-                        <div class="box3">
-                            <input type="text"  id="info">
-                        </div>         
-                    </div>
-                    <br>
-
-                    <div class="box1">
-                        <div class="box2">
-                            <p>상세정보내용 이미지</p>
-                        </div>
-                        <div class="box3">
-                            <input type="text"  id="info">
-                        </div>         
-                    </div>
-                    <br>
-
-
-                    <div class="product_button">
-                        <button type="button" id="modifyBtn">등록</button>
-                        <button type="button" id="listBtn">목록</button>
-                    </div>
-                 </form>
-            </div>
+            <table>
+                <h2>상품목록 <span class="test">테스트</span></h2>
+                <!-- <a href="javascript:all_del()">전체선택 / 전체해제</a> -->
+                <thead>
+	                <tr>
+	                    <th><input type="checkbox" name="selectall" value="selectall" onclick="selectAll(this)"></th>
+	                    <th>번호</th>
+	                    <th>제목</th>
+	                    <th>작성날짜</th>
+	                </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items="${list}" var="ProductDTO">
+                        <tr>
+                        	<td><input type="checkbox" name="item" onclick="checkSelectAll()" /></td>
+                            <td>${ProductDTO.no}</td>
+                            <td><a href="/admin/product/get?no=${ProductDTO.no}">${ProductDTO.name}</a></td>
+                            <td>${ProductDTO.reg_date}</td>
+                        </tr>       
+                    </c:forEach>    
+                </tbody>
+            </table>
             
             
-			<div class="pageInfo_wrap" >
+	 		<div class="pageInfo_wrap" >
 			  <form id=moveForm method="get">
 			    <div class="pageInfo_area">
 			    	<ul id="pageInfo" class="pageInfo">
@@ -371,9 +150,9 @@
 			            
 		            	<!-- 각 번호 페이지 버튼 -->
 		                <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-		                    <li class="pageInfo_btn "><a href="/admin/farm/list?currPage=${num}&amount=${pageMaker.cri.amount}">${num}</a></li>
+		                    <li class="pageInfo_btn "><a href="/admin/product/list?currPage=${num}&amount=${pageMaker.cri.amount}">${num}</a></li>
 		                </c:forEach>
-			                
+		             
 			            <!-- 다음페이지 버튼 -->
 			            <c:if test="${pageMaker.next}">
 			                <li class="pageInfo_btn next"><a href="${pageMaker.endPage + 1 }">Next</a></li>
@@ -451,7 +230,7 @@
         var registerBtn = document.querySelector('#registerBtn');
 
         registerBtn.addEventListener('click', function () {
-            location = '/admin/farm/register';
+            location = '/admin/product/register';
         }); // registerBtn
 
       //만약 결과값에 어떤 값이든 들어왔다면(null이 아니라면) -> 결과값을 alert창으로 띄운다.
@@ -473,7 +252,7 @@
 
 
             form.setAttribute('method', 'POST');
-            form.setAttribute('action', '/admin/farm/remove');
+            form.setAttribute('action', '/admin/product/remove');
             form.submit();
 
         }); // removeBtn
@@ -489,11 +268,11 @@
         	e.preventDefault();
         	
         	moveForm.append("<input type='hidden' name='no' value='"+(this).attr("href")"'>");
-/*         	moveForm.attr("action", "/notice/get");
+/*         	moveForm.attr("action", "/product/get");
         	moveForm.submit(); */
         	
 /*         	moveForm.setAttribute('method', 'POST');
-        	moveForm.setAttribute('action', '/notice/get');
+        	moveForm.setAttribute('action', '/product/get');
         	moveForm.submit();      	
         	
         });  */
@@ -503,7 +282,7 @@
         	 
             e.preventDefault();
             moveForm.find("input[name='currPage']").val($(this).attr("href"));
-            moveForm.attr("action", "/notice/list");
+            moveForm.attr("action", "/product/list");
             moveForm.submit();
             
         }); */
