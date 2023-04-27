@@ -76,11 +76,13 @@ $(document).ready(function () {
 		
 		var phone = $("#tel").val();
 		
-		// // 인증번호 발송을 위한 ajax 요청
+		// 인증 번호 발송을 위한 ajax 요청
         $.ajax({
             type: 'GET',
             url:'/login/findid/telCheck' + phone,
-            data: {tel: phone},
+            data: {
+				tel: phone
+			},
             cache: false,
             success:function(data){
                 if(data == 'error'){
@@ -134,6 +136,8 @@ $(document).ready(function () {
 	
 // -----------------------------------------------------
     
+    /* 아이디 찾기 - 이메일 인증 ajax 구현 */
+    
     $(".findid_button_e").click(function (event) {
 		
 		// 페이지 새로고침 방지
@@ -163,7 +167,7 @@ $(document).ready(function () {
 
                 if (cntIdCheck_e === 1) {
                     $(".e_verification").css("display", "block");
-                    alert("회원정보를 확인했습니다. \n인증번호 발송 버튼을 눌러, 휴대폰 번호 인증을 진행해주세요.")
+                    alert("회원정보를 확인했습니다. \n인증번호 발송 버튼을 눌러, 이메일 인증을 진행해주세요.")
                     $(".findid_button_e").hide();
                     $(".send_verification_button_e").show();
                 } else {
@@ -176,7 +180,37 @@ $(document).ready(function () {
         }); // ajax
     }); // 아이디 찾기 버튼 클릭 fn()
     
+    // 인증 번호 발송 버튼 클릭 이벤트
+	var val_num = ""; // 인증번호를 저장할 변수
+    $(".send_verification_button_e").click(function () {
+        alert("인증번호를 인증번호 입력창에 입력해주세요.");
+        
+        // 인증 번호 발송 버튼 클릭 이후 인증번호 입력창, 확인 버튼을 표시하도록 변경
+        $(".e_verification_input").css("display", "block");
+        $(".e_verify_button").css("display", "block");
+		
+		var email = $("#find_id_e_form input[type=email]").val();
+		
+		// 인증 번호 발송을 위한 ajax 요청
+        $.ajax({
+            type: 'GET',
+            url:'/login/findid/mailCheck' + email,
+            data: {
+				email: email
+			},
+            cache: false,
+            success:function(data){
+                if(data == 'error'){
+                    alert("이메일 주소가 올바르지 않습니다.")
+                    $('#e_verification_input').attr("autofocus", true);
+                } else {
+                    $('#e_verification_input').attr("readonly", true);
+                    val_num = data;
+                    console.log
+                } // if-else
+            } // success:fn()
+        }); // ajax
+    }); // 인증 번호 발송 버튼 클릭 fn()
     
     
-    
-});
+}); // (document).ready(function () {})

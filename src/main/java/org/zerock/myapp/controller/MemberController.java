@@ -1,14 +1,15 @@
 package org.zerock.myapp.controller;
 
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletResponse;
+import javax.mail.internet.MimeMessage;
 
-//import org.apache.maven.model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.zerock.myapp.mapper.MemberMapper;
@@ -42,7 +43,10 @@ public class MemberController {
 	private MemberMapper memberMapper;
 	
 	// 이메일 인증
-	@Inject
+	@Autowired
+	private JavaMailSender javaMailSender;
+	
+	@Autowired
 	MailSendService mailSendService;
 	
 //	---------------------- 휴대폰 인증 ----------------------------------------------------------------------------------------------
@@ -101,18 +105,58 @@ public class MemberController {
 		
 	} // idCheck_e()
 	
+
+	@RequestMapping(value = "/sendMail", method = RequestMethod.GET)
+	public void mailCheckGET(String email) throws Exception {
+		
+		int randomNum = (int) ( Math.random() * 900000 ) + 100000;
+		
+		log.info("이메일 데이터의 전송을 확인합니다. 인증번호: {}", randomNum);
+		
+
+		 
+        /* 이메일 보내기 */
+        String setFrom = "dhcksehf1@naver.com";
+        String toMail = email;
+        String title = "[MYMG] 아이디 찾기 인증을 위한 이메일입니다.";
+        String content = "인증 번호는 [" + randomNum + "]입니다.";
+		
+//		String subject = "테스트 메일입니당!";
+//		String content = "잘 가는지 테스트 하는 중 -ㅇ-!!!!";
+//		String from = "dhcksehf1@naver.com";
+//		String to = "jeonseino.o@gmail.com";
+		
+		try {
+			
+			MimeMessage mail = javaMailSender.createMimeMessage();
+			
+			MimeMessageHelper mailHelper = new MimeMessageHelper(mail,true,"UTF-8");
+			
+			mailHelper.setFrom(from);
+			mailHelper.setTo(to);
+			mailHelper.setSubject(subject);
+			mailHelper.setText(content, true);
+			
+			javaMailSender.send(mail);
+			
+		} catch(Exception e) {
+			
+			e.printStackTrace();
+			
+		} // try-catch
+		
+	} // mailCheckGET()
 	
-	// [이메일] 이메일 인증
-	@RequestMapping("/login/mailAuth")
+	
+	// [이메일] 아이디 찾기 인증 결과 반환
+	@PostMapping("/findid/result_e")
 	@ResponseBody
-	public String mailAuth(String mail, HttpServletResponse resp) throws Exception {
+	public String findIdResult_e(@RequestParam("name") String name, @RequestParam("email") String email) {
+
+	    String foundId_e = memberMapper.findIdResult_e(name, email);
 	    
-		// 사용자의 이메일 주소로 메일 보냄!
-		String authKey = mailSendService.sendAuthMail(mail);
-	    
-		// 인증키
-	    return authKey;
-	    
-	} // mailAuth()
+	    return foundId_e;
+	
+	} // findIdResult_e()
 	
 } // end class

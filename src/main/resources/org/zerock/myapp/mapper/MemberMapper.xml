@@ -39,7 +39,7 @@
 				AND TEL = #{tel}
 		</select>
 		
-		<!-- 셍나 아이디 찾기 : 결과 -->
+		<!-- 셍나 아이디 찾기 : 휴대폰 결과 -->
 		<select id="findIdResult" parameterType="String" resultType="String">
 			SELECT
 				ID
@@ -58,6 +58,17 @@
 				MEMBER
 			WHERE
 				NAME = #{name}
+				AND EMAIL = #{email}
+		</select>
+		
+		<!-- 셍나 아이디 찾기 : 이메일 결과 -->
+		<select id="findIdResult_e" parameterType="String" resultType="String">
+			SELECT
+				ID
+			FROM
+				MEMBER
+			WHERE 
+				NAME = #{name} 
 				AND EMAIL = #{email}
 		</select>
 
