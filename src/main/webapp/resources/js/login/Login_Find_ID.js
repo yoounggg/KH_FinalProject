@@ -65,6 +65,7 @@ $(document).ready(function () {
         }); // ajax
     }); // // 아이디 찾기 버튼 클릭
 
+
 	// 인증 번호 발송 버튼 클릭 이벤트
 	var val_num = ""; // 인증번호를 저장할 변수
     $(".send_verification_button_p").click(function () {
@@ -194,7 +195,7 @@ $(document).ready(function () {
 		// 인증 번호 발송을 위한 ajax 요청
         $.ajax({
             type: 'GET',
-            url:'/login/findid/mailCheck' + email,
+            url:'/login/findid/sendMail',
             data: {
 				email: email
 			},
@@ -212,5 +213,42 @@ $(document).ready(function () {
         }); // ajax
     }); // 인증 번호 발송 버튼 클릭 fn()
     
+        // 휴대폰 인증번호 대조
+    $('.e_verify_button').click(function(){
+        if($('.e_verification_input').val() == val_num){
+            alert("인증번호가 일치합니다.")
+            $(".e_verify_button").hide();
+            $(".e_verify_button_result").show();
+        } else {
+            alert("인증번호가 일치하지 않습니다. 인증 절차를 다시 시도해주세요.")
+        } // if-else
+    }); // 휴대폰 인증 번호 대조 fn()
+    
+    // 확인 버튼 클릭
+	$('.e_verify_button_result').click(function(){
+	    var name = $("#find_id_e_form input[type=text]").val();
+	    var email = $("#find_id_e_form input[type=email]").val();
+	    
+	    // 사용자 이름과 휴대폰 번호를 이용해 찾은 아이디를 표시하는 ajax 요청
+	    $.ajax({
+	        url: '/login/findid/result_e',
+	        type: 'POST',
+	        data: {
+	            name: name, // 찾을 이름 값
+	            email: email // 찾을 전화번호 값
+	        },
+	        dataType: 'text',
+	        success: function(idResult_e) {
+	            // 결과 값을 보여줄 영역에 결과 값을 설정 (예: 알림창, 팝업, 모달 등)
+	            alert("찾은 아이디: " + idResult_e);
+	            $(".e_verify_button_result").hide();
+	            // 기존 아이디 찾기 폼 다 숨기고 로그인 하러 가기 버튼 만들기
+	        },
+	        error: function(xhr, status, error) {
+	            console.error(error);
+	        }
+	    });
+	    
+	}); // 확인 버튼 클릭 fn()
     
 }); // (document).ready(function () {})
