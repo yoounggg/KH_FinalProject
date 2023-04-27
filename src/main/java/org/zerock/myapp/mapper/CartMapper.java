@@ -30,4 +30,6 @@ public interface CartMapper { // 인터페이스!!
 //	카트 확인
 	public abstract CartDTO checkCart(CartDTO cart); //회원정보(memberid)와 상품정보(product_no) 넘겨서 해당하는 row있는지 확인해서 한번에 넘기려고 cartdto 선언 
 	
+	/* 카트 제거(주문) -> 찬돌 */ 
+	public Integer deleteOrderCart(CartDTO dto);
 } //end class

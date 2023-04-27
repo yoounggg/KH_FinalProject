@@ -145,4 +145,18 @@ public class MemberMapperTests {
 		
 	} // findIdResult()
 	
+	//	찬돌 member정보 얻기 테스트
+	//	@Disabled
+	@Test
+	@Order(3)
+	@DisplayName("getMemberInfo Test")
+	@Timeout(value=1, unit=TimeUnit.SECONDS)
+	void TestsgetMemberInfo() throws Exception {
+		
+        String memberId = "chandoll";
+        
+        MemberDTO memberDTO = memberMapper.getMemberInfo(memberId);
+		
+	} // findIdResult()
+	
 } // end class

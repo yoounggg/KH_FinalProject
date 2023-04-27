@@ -20,6 +20,6 @@ public interface MemberMapper {
 	public String findIdResult(@Param("name")String name, @Param("tel")String tel);
 	
 	// 주문자 주소 정보 (찬돌)
-	public MemberDTO getMemberInfo(String ID); // memberId 가 테이블에 ID로 되어있고 String임
+	public MemberDTO getMemberInfo(String id); // memberId 가 테이블에 ID로 되어있고 String임
 	
 } // end class

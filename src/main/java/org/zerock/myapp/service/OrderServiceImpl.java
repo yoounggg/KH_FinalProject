@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.zerock.myapp.domain.CartDTO;
 import org.zerock.myapp.domain.MemberDTO;
 import org.zerock.myapp.domain.OrderDTO;
 import org.zerock.myapp.domain.OrderItemDTO;
@@ -106,10 +107,20 @@ public class OrderServiceImpl implements OrderService {
 		}
 		
 		/* 재고 차감 */
-		for(OrderItemDTO oit : odt.getOrders()) {
-//			productDTO product = productMapper.get
-		}
+//		for(OrderItemDTO oit : odt.getOrders()) {
+////			productDTO product = productMapper.get
+//			ProductDTO product = productMapper.select(oit.getNo());
+//			product.setStock(product.getStock() - oit.getCount());
+//		}
 		
+		/* 장바구니 제거 */
+		for(OrderItemDTO oit : odt.getOrders()) {
+			CartDTO dto = new CartDTO();
+			dto.setMember_id(odt.getMember_id());
+			dto.setProduct_No(oit.getProduct_no());
+			
+			cartMapper.deleteOrderCart(dto);
+		}
 		
 	} // order
 
