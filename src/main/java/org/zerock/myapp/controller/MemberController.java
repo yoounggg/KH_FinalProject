@@ -1,5 +1,7 @@
 package org.zerock.myapp.controller;
 
+import java.util.Random;
+
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,9 +46,7 @@ public class MemberController {
 	// 이메일 인증
 	@Autowired
 	private JavaMailSender javaMailSender;
-	
-	@Autowired
-	MailSendService mailSendService;
+
 	
 //	---------------------- [아이디 찾기] - 휴대폰 인증 ----------------------------------------------------------------------------------------------
 	
@@ -111,12 +111,11 @@ public class MemberController {
 	@ResponseBody
 	// 사용자가 입력한 이메일 주소를 매개 변수로 받는 mailCheck()
 	public String mailCheck(@RequestParam("email") String email) throws Exception {
-//	public void mailCheck(@PathVariable("email") String email) throws Exception {
 		
 		// 인증 번호를 위한 6자리 랜덤 난수 생성
 		int randomNum = (int) ( Math.random() * 900000 ) + 100000;
 		
-		log.info("=생성된 인증번호: {}", randomNum);
+		log.info("생성된 인증번호: {}", randomNum);
 		
         /* 이메일 보내기 - 이메일 데이터 설정! */
         String setFrom = "dhcksehf1@naver.com";
@@ -186,36 +185,63 @@ public class MemberController {
 		
 	} // idSearch()
 	
-	// [핸드폰] 비밀번호 변경 - 해당 정보로 임시 비밀번호 전송
-	@GetMapping("/changepw/sendTelTempPw")
-	public @ResponseBody String sendTelTempPw(@RequestParam("tel") String userPhoneNumber) {				// 문자 보내기
-		int randomNumber = (int)((Math.random() * 8999 ) + 1000 );									// 난수 1000 ~ 9999 생성
-		
-		msgSendService.msgSend(userPhoneNumber, randomNumber);
-		
-		log.trace("userPhoneNumber : {} , ramdomNumber : {}  " , userPhoneNumber, randomNumber );
-		
-		return Integer.toString(randomNumber);
-		
-	} // msgSend()
+	// 임시 비밀번호를 위한 메소드!
+	// 영어 대문자 + 소문자 + 숫자 랜덤으로 10자리 문자열 생성
+	public String generateTempPw (int length) {
+	    String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	    
+	    Random random = new Random();
+	    
+	    StringBuilder stringBuilder = new StringBuilder(length);
+
+	    for (int i = 0; i < length; i++) {
+	    	
+	        int randomIndex = random.nextInt(characters.length());
+	        
+	        stringBuilder.append(characters.charAt(randomIndex));
+	        
+	    } // for
+
+	    return stringBuilder.toString();
+	    
+	} // generateTempPw()
 	
-	// [이메일] 아이디 찾기 - 이메일 전송
+	// [핸드폰] 비밀번호 변경 - 임시 비밀번호 휴대폰 전송
+	@GetMapping("/changepw/sendTelTempPw")
+	// 해당 아이디와 일치하는 휴대폰 번호로 임시 비밀번호 발송
+	public @ResponseBody String sendTelTempPw(@RequestParam("tel") String userPhoneNumber) {				// 문자 보내기
+		
+		
+		// 임시 비밀번호 메소드를 통한 임시 비밀번호
+	    String tempPw_p = generateTempPw(10);
+		
+		log.info("tempPw_p()에서 생성된 임시 비밀번호: {}", tempPw_p);
+	    
+		msgSendService.msgSendSein(userPhoneNumber, tempPw_p);
+		
+		log.trace("userPhoneNumber: {} , tempPw: {}  " , userPhoneNumber, tempPw_p);
+		
+		return tempPw_p;
+		
+	} // sendTelTempPw()
+	
+	
+	// [이메일] 비밀번호 변경 - 임시 비밀번호 이메일 전송
 	@GetMapping("/changepw/sendEmailTempPw")
 	@ResponseBody
-	// 사용자가 입력한 이메일 주소를 매개 변수로 받는 mailCheck()
+	// 해당 아이디와 일치하는 이메일 주소로 임시 비밀번호 발송
 	public String sendEmailTempPw(@RequestParam("email") String email) throws Exception {
-//	public void mailCheck(@PathVariable("email") String email) throws Exception {
 		
-		// 인증 번호를 위한 6자리 랜덤 난수 생성
-		int randomNum = (int) ( Math.random() * 900000 ) + 100000;
+		// 임시 비밀번호 메소드를 통한 임시 비밀번호
+		String tempPw_e = generateTempPw(10);
 		
-		log.info("=생성된 인증번호: {}", randomNum);
+		log.info("tempPw_e()에서 생성된 임시 비밀번호: {}", tempPw_e);
 		
         /* 이메일 보내기 - 이메일 데이터 설정! */
         String setFrom = "dhcksehf1@naver.com";
         String setTo = email;
-        String setTitle = "[MYMG] 아이디 찾기 인증을 위한 이메일입니다.";
-        String setContent = "인증 번호는 [" + randomNum + "]입니다.";
+        String setTitle = "[MYMG] 임시 비밀번호를 알려드립니다.";
+        String setContent = "임시 비밀번호는 [" + tempPw_e + "]입니다.";
 		
         try {
             
@@ -244,11 +270,9 @@ public class MemberController {
 
 		} // try-catch
         
-        String authKey = Integer.toString(randomNum);
-        
-        return authKey;
+        return tempPw_e;
 		
-	} // mailCheck()
+	} // sendEmailTempPw()
 	
 	
 } // end class

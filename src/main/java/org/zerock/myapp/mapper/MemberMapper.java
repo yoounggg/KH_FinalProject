@@ -28,6 +28,12 @@ public interface MemberMapper {
 	// [셍나] 비밀번호 변경 - 아이디 조회 (아이디 값 입력해서 존재하는 아이디인지 확인)
 	public int idSearch(@Param("id") String id);
 	
+	// [셍나] 비밀번호 변경 - 아이디 값으로 핸드폰 번호 가져오기
+	public String changePW_p(@Param("id") String id);
+	
+	// [셍나] 비밀번호 변경 - 아이디 값으로 이메일 주소 가져오기
+	public String changePW_e(@Param("id") String id);
+	
 	// 주문자 주소 정보 (찬돌)
 	public MemberDTO getMemberInfo(String id); // memberId 가 테이블에 ID로 되어있고 String임
 	

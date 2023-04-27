@@ -218,4 +218,42 @@ public class MemberMapperTests {
 		
 	} // idSearch()
 	
+//	셍나 로그인 테스트 - 아이디로 휴대폰 번호 조회 테스트
+//	@Disabled
+	@Test
+	@Order(7)
+	@DisplayName("changePW_p Test")
+	@Timeout(value=1, unit=TimeUnit.SECONDS)
+	void changePW_p() throws Exception {
+		
+		MemberDTO memberDTO = new MemberDTO();
+		
+		memberDTO.setId("jeonseinoo");
+				
+	    // memberMapper.changePW_p에 memberDTO의 아이디값 전달.
+	    memberMapper.changePW_p(memberDTO.getId());
+
+	    log.info("changePW_p 테스트 결과: {}", memberMapper.changePW_p( memberDTO.getId() ));
+		
+	} // changePW_p()
+	
+//	셍나 로그인 테스트 - 아이디로 이메일 주소 조회 테스트
+//	@Disabled
+	@Test
+	@Order(8)
+	@DisplayName("changePW_e Test")
+	@Timeout(value=1, unit=TimeUnit.SECONDS)
+	void changePW_e() throws Exception {
+		
+		MemberDTO memberDTO = new MemberDTO();
+		
+		memberDTO.setId("jeonseinoo");
+				
+	    // memberMapper.changePW_e에 memberDTO의 아이디값 전달.
+	    memberMapper.changePW_e(memberDTO.getId());
+
+	    log.info("changePW_e 테스트 결과: {}", memberMapper.changePW_e( memberDTO.getId() ));
+		
+	} // changePW_e()
+	
 } // end class
