@@ -17,13 +17,19 @@ public interface MemberMapper {
 	public int idCheck(@Param("name") String name, @Param("tel") String tel);
 	
 	// [셍나] 아이디 찾기 - 휴대폰 인증 - 결과
-	public String findIdResult(@Param("name")String name, @Param("tel")String tel);
+	public String findIdResult(@Param("name") String name, @Param("tel") String tel);
 	
 	// [셍나] 아이디 찾기 - 이메일 인증 (이름과 이메일로 사용자 정보가 존재하는지 확인)
-	public int idCheck_e(@Param("name")String name, @Param("email")String email);
+	public int idCheck_e(@Param("name") String name, @Param("email") String email);
 	
 	// [셍나] 아이디 찾기 - 이메일 인증 - 결과
-	public String findIdResult_e(@Param("name")String name, @Param("email")String email);
+	public String findIdResult_e(@Param("name") String name, @Param("email") String email);
+	
+	// [셍나] 비밀번호 변경 - 휴대폰 인증 (아이디와 전화번호로 사용자 정보가 존재하는지 확인)
+	public int idCheckInq(@Param("id") String id, @Param("tel") String tel);
+	
+	// [셍나] 비밀번호 변경 - 이메일 인증 (아이디와 이메일로 사용자 정보가 존재하는지 확인)
+	public int idCheckInq_e(@Param("id")String id, @Param("tel") String tel);
 	
 	// 주문자 주소 정보 (찬돌)
 	public MemberDTO getMemberInfo(String id); // memberId 가 테이블에 ID로 되어있고 String임

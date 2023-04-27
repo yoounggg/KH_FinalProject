@@ -48,7 +48,7 @@ public class MemberController {
 	@Autowired
 	MailSendService mailSendService;
 	
-//	---------------------- 휴대폰 인증 ----------------------------------------------------------------------------------------------
+//	---------------------- [휴대폰 인증] - 아이디 찾기 ----------------------------------------------------------------------------------------------
 	
 	// [핸드폰] 아이디 찾기 - DB에 회원 정보(이름, 전화번호) 존재하는 지 확인
 	@PostMapping("/findid/idCheck")
@@ -91,7 +91,7 @@ public class MemberController {
 	
 	} // findIdResult()
 	
-//	---------------------- 이메일 인증 ----------------------------------------------------------------------------------------------
+//	---------------------- [이메일 인증] - 아이디 찾기 ----------------------------------------------------------------------------------------------
 	
 	// [이메일] 아이디 찾기 - DB에 회원 정보(이름, 이메일) 존재하는 지 확인
 	@PostMapping("/findid/idCheck_e")
@@ -170,5 +170,23 @@ public class MemberController {
 	    return foundId_e;
 	
 	} // findIdResult_e()
+	
+//	---------------------- [휴대폰 인증] - 비밀번호 변경 ----------------------------------------------------------------------------------------------
+	
+	// [휴대폰] 비밀번호 변경을 위한 DB 회원 정보 조회
+	@PostMapping("/changepw/idCheckInq")
+	public @ResponseBody int idCheckInq(@RequestParam("id") String id, @RequestParam("tel") String tel) throws Exception {
+		log.trace("사용자가 입력한 값: idCheck({}, {}) activated.", id, tel);
+		
+		int cntIdCheck = memberService.idCheckInq(id, tel);
+		
+		log.trace("아이디 중복 확인: cntIdCheck : ({})" , cntIdCheck);
+		
+		return cntIdCheck;
+		
+	} // idCheck()
+	
+	
+	
 	
 } // end class

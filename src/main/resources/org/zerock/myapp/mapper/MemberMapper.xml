@@ -27,7 +27,7 @@
 		        ID = #{id} 
 		</select>
 		
-		<!-- 셍나 아이디 찾기 : 휴대폰 인증 (이름, 전화번호) -->
+		<!-- [셍나] 아이디 찾기를 위한 회원정보 조회 - 휴대폰 인증 (이름, 전화번호) -->
 		<!-- COUNT로 1 반환 = 회원정보가 존재한다는 뜻 -->
 		<select id="idCheck" parameterType="String" resultType="int">
 			SELECT 
@@ -39,7 +39,7 @@
 				AND TEL = #{tel}
 		</select>
 		
-		<!-- 셍나 아이디 찾기 : 휴대폰 결과 -->
+		<!-- [셍나] 아이디 찾기 결과 - 휴대폰 인증 -->
 		<select id="findIdResult" parameterType="String" resultType="String">
 			SELECT
 				ID
@@ -50,7 +50,7 @@
 				AND TEL = #{tel}
 		</select>
 		
-		<!-- 셍나 아이디 찾기 : 이메일 인증 (이름, 이메일) -->
+		<!-- [셍나] 아이디 찾기를 위한 회원정보 조회 : 이메일 인증 (이름, 이메일) -->
 		<select id="idCheck_e" parameterType="String" resultType="int">
 			SELECT
 				COUNT(*)
@@ -61,7 +61,7 @@
 				AND EMAIL = #{email}
 		</select>
 		
-		<!-- 셍나 아이디 찾기 : 이메일 결과 -->
+		<!-- [셍나] 아이디 찾기 결과 - 이메일 -->
 		<select id="findIdResult_e" parameterType="String" resultType="String">
 			SELECT
 				ID
@@ -69,6 +69,28 @@
 				MEMBER
 			WHERE 
 				NAME = #{name} 
+				AND EMAIL = #{email}
+		</select>
+		
+		<!-- [셍나] 비밀번호 변경을 위한 휴대폰 인증 (아이디, 휴대폰 번호) -->
+		<select id="idCheckInq" parameterType="String" resultType="int">
+			SELECT
+				COUNT(*)
+			FROM
+				MEMBER
+			WHERE
+				ID = #{id}
+				AND TEL = #{tel}
+		</select>
+		
+		<!-- [셍나] 비밀번호 변경을 위한 이메일 인증 (아이디, 이메일) -->
+		<select id="idCheckInq_e" parameterType="String" resultType="int">
+			SELECT
+				COUNT(*)
+			FROM
+				MEMBER
+			WHERE
+				ID = #{id}
 				AND EMAIL = #{email}
 		</select>
 
