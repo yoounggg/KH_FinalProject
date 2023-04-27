@@ -171,7 +171,22 @@ public class CartMapperTests {
 		log.info("\t+affectedLines:{}", affectedlines);
 		
 	} // testcheckCart
-	
-	
 
+	/* 장바구니 제거(주문 처리) */ //찬돌
+ 	//Disabled
+	@Test
+	@Order(7)
+	@DisplayName("테스트5: deleteOrderCart")
+	@Timeout(value = 1, unit=TimeUnit.MINUTES)
+	public void deleteOrderCart() {
+		String member_id = "chandoll";
+		Integer product_No = 81;
+		
+		CartDTO dto = new CartDTO();
+		dto.setMember_id(member_id);
+		dto.setProduct_No(product_No);
+		
+		mapper.deleteOrderCart(dto);
+		
+	}
 }

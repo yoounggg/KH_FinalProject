@@ -33,6 +33,8 @@
 			SELECT "MYMG"."ISEQ$$_99524".currval FROM dual
 		</selectKey>
 		update member set
+		name = #{name, jdbcType=VARCHAR},
+		tel = #{tel, jdbcType=VARCHAR},
 		address1 = #{address1, jdbcType=INTEGER},
 		address2 = #{address2, jdbcType=VARCHAR},
 		address3 = #{address3, jdbcType=VARCHAR},

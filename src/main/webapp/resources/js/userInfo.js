@@ -69,48 +69,35 @@ function kakaoAdress(){
 	}).open();
 }
 
-//**비밀번호 변경**
-//1. 기존 비밀번호 일치 여부 확인 -> 해시암호화 했기 때문에 이 방법은 사용할 수 없음!
-// function checkPw(){
-// 	const pwInput = document.querySelector('#originPw');
-// 	const pwHiddenInput = document.querySelector('#checkOringinPw');
-	
-// 	if(pwInput.value == pwHiddenInput.dataset.password ){
-// 		alert("비밀번호가 일치합니다")
-// 	} else{
-// 		alert("비밀번호가 불일치합니다")
-// 	} // if-else
-// }; // 
-
-// //2. 변경할 비밀번호 유효성 검사
-//  function newPwforDetails(){
-//  	const newPw = document.querySelector('#newPw');
-	
-//  	const isOk = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,16}$/;    //대소문자 구분 숫자8~16
-	
-//  	if(isOk.test(newPw.value)){
-//  		alert("사용할 수 있는 비밀번호 입니다")
-//  	} else {
-//  		alert("비밀번호를 조건에 맞게 다시 입력해주세요")
-//  	} // if else
-//  }; // newPwforDetails
-
-// // //3. 변경한 비밀번호 다시 입력해서 일치하는지 확인
-//  function confirmNewPw(){
-//  	const newPw = document.querySelector('#newPw');
-//  	const checkNewPw = document.querySelector('#checkNewPw');
-	
-//  	if(newPw.value == checkNewPw.value ){
-//  		alert("비밀번호가 일치합니다")
-//  	}else{
-//  		alert("비밀번호가 불일치합니다")
-//  	} // if-else
-//  }; //  confirmNewPw
-
-
 //회원 정보 수정 form-> submit
 function goform(){
 	$('#userUpdateForm').attr("action",'/mypage/userInfo/update').submit();
 }; // goform
+
+//필수입력값 안넣었을 때 경고창
+function checkInput(){
+	let inputs = document.userUpdateForm;
+	if(!inputs.password.value){
+		alert("현재 비밀번호를 입력하세요.");
+		return false;
+	}
+	if(!inputs.name.value){
+		alert("성명을 입력하세요.");
+		return false;
+	}
+	if(!inputs.tel.value){
+		alert("휴대폰 번호를 입력하세요.");
+		return false;
+	}
+	if(!inputs.address1.value){
+		alert("주소를 입력하세요.");
+		return false;
+	}
+	if(!inputs.address2.value){
+		alert("주소를 입력하세요.");
+		return false;
+	}
+} // checkInput
+
 
       

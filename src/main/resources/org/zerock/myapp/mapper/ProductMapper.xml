@@ -27,9 +27,27 @@
     
 
     <!-- [별이] 관리자페이지 상품 등록 -->
+    <!-- 상품 목록 조회 (페이징) -->
+	<select id="selectAllPaging" resultType="org.zerock.myapp.domain.ProductDTO">
+	  <![CDATA[
+	    
+		SELECT * 
+			FROM PRODUCT
+			ORDER BY no DESC
+			OFFSET (#{currPage} - 1) * #{amount} ROWS
+			FETCH NEXT #{amount} ROWS ONLY
+		
+		]]>	
+	</select>
+    
+    <!-- 게시물 총 갯수 -->
+	<select id="getTotal" resultType="int">
+	  	SELECT count(*) FROM PRODUCT
+	</select>
+  
     
     <!-- 상품 상세 조회 -->
-	<select id="select" resultType="org.zerock.myapp.domain.ProductVO">
+	<select id="select" resultType="org.zerock.myapp.domain.ProductDTO">
 		SELECT * FROM PRODUCT
 		WHERE no = #{no}
 	</select>
@@ -50,10 +68,10 @@
 		VALUES (#{product_no}, #{fileName}, #{uploadPath}, #{uuid})
 	</insert>
 	
-	<!-- 상품 이미지 수정 -->
+	<!-- 상품 수정 -->
 	<update id="update">
 		UPDATE
-        	PRODUCT (category, name, price, discount, discount_price, weight, origin, stock, farm_no, main_image, main_image2, sub_image1, sub_image2, sub_image3, sub_image4, content, content_image)
+        	PRODUCT
         SET 
         	category = #{category}, 
         	name = #{name}, 
@@ -71,13 +89,14 @@
         	sub_image3 = #{sub_image3}, 
         	sub_image4 = #{sub_image4}, 
         	content = #{content}, 
-        	content_image = #{content_image}   
+        	content_image = #{content_image},
+        	update_date = current_date
 		WHERE
 			no = #{no}
 	</update>
 	
 	
-	<!-- 상품 이미지 삭제 -->
+	<!-- 상품 삭제 -->
 	<delete id="delete">
 		DELETE FROM PRODUCT
 		WHERE no = #{no}

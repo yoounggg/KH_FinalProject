@@ -361,7 +361,6 @@ $(document).ready(function () {
         const email = document.getElementById("input_email").value;       //이메일
         const tel = document.getElementById("input_hp").value;            //휴대폰 번호
         const num = document.getElementById("input_num").value;           //인증번호
-        const addr1 = document.getElementById("post_num").value;          //우편번호
         const addr2 = document.getElementById("addr2").value;             //주소
         const addr3 = document.getElementById("detail_addr").value;       //상세주소
 
