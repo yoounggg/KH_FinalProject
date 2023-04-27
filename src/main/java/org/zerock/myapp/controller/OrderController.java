@@ -52,6 +52,9 @@ public class OrderController {
 	@GetMapping("/{id}") // 주문페이지로 이동 mapping
 	public String orderPageGet(@PathVariable("id") String memberId, OrderPageDTO opd, Model model) throws ServiceException {
 		
+		log.trace("\t+ >>>>>>>>>>>>>>>>>>>>>>>>>>>> OrderController의 orderPageGet메서드 호출 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+		
+		
 		log.trace("memberId : " + memberId);
 		log.trace("orders : " + opd.getOrders());
 		
@@ -78,6 +81,8 @@ public class OrderController {
 	public String orderPagePost(OrderDTO dto, HttpServletRequest request) {
 		
 		log.trace("\t+ dto : {}", dto);
+		
+		orderService.order(dto);
 	
 		return "redirect:order/orderSuccess";
 	

@@ -15,12 +15,10 @@ public interface UserInfoMapper {
 //	public abstract MemberDTO update(MemberDTO dto);
 
 	//3. 회원 삭제 == 탈퇴
-//	public abstract MemberDTO delete(MemberDTO dto);
-//	public abstract MemberDTO delete(String id);
 	public abstract Integer delete(String id);
 	
 	//4. 비번 변경
-	public abstract Integer modifyPw(MemberDTO dto);
+	public abstract Integer updatePw(MemberDTO dto);
 	 
 	
 } // end interface

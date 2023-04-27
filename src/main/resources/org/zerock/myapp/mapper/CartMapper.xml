@@ -51,5 +51,10 @@
 		WHERE member_id = #{member_id} and product_No = #{product_No}
 	
 	</select>
+	
+	<select id="deleteOrderCart">
+		DELETE FROM cart
+		WHERE member_id = #{member_id} and product_No = #{product_No}
+	</select>
 
 </mapper>

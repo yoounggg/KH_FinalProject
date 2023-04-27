@@ -117,37 +117,32 @@
     <div class="huiwon">
         <div class="sujeong1">
             <h2 id="sujeong2">비밀번호 변경</h2>
-            <h6 id="sujeong3"><span class="red">*</span>필수 입력</h6>
+            <h6><span class="red">*</span>필수 입력</h6>
         </div>
         
         <!-- form 태그 -->
-        <form action="/mypage/userInfo/update" method="POST" name="userPwUpdateForm" id="userPwUpdateForm">
+        <form>
             <table>
                 <tr>
                     <th>&nbsp;현재 비밀번호<span class="red">*</span></th> 
-                    <td><input type="password" name ="password" required></td>
-                    <!-- <input type="hidden" name = "password" data-password="${details.password}" id="checkOringinPw" >  -->
+                    <td><input type="password" id="password1" name ="password" required></td>                  
                     <td><span id="pwChk" class="btntr">확인</span></td>
-                    <!-- <td class="sletter">&nbsp;*기존 비밀번호를 입력해 주세요.</td>  -->   
                 </tr>
                 
                 <tr>
                     <th>&nbsp;신규 비밀번호<span class="red">*</span></th>
-                    <td><input type="password" id="newPw" onchange="newPwforDetails()"></td>
+                    <td><input type="password" id="newPw" onchange="newPwforDetails()" onclick="checkInput()"></td>
                     <td class="sletter" colspan="2">&nbsp;*대/소문자 구분, 숫자 8~16자리로 입력해주세요.</td>
                 </tr>
                 
                 <tr>
                     <th>&nbsp;신규 비밀번호 확인<span class="red">*</span></th>
-                    <td><input type="password" id="checkNewPw" name="checkedNewPw" onchange="confirmNewPw()"></td>
-                    <!-- <td><span id="newpwChk" class="btntr">변경하기</span></td> -->
-                    <!-- <td class="sletter" colspan="2">&nbsp;*비밀번호 확인을 위해 한 번 더 입력해 주세요.</td>-->
+                    <td><input type="password" id="checkNewPw" name="checkedNewPw" onchange="confirmNewPw()"></td>                  
                 </tr> 
             </table>
 				
 	        <div class="btnset">
-	        <span id="newpwChk" class="btntr">변경하기</span>
-	            <!-- <button class="userbtn1" type="submit" class="modifyPwDetails" onClick="goform()">비밀번호 변경</button> -->
+	        	<input type="button" id="newpwChk" class="userbtn1" value="변경하기" >
 	            <input class="userbtn2" type="button" value="메인으로" onClick="location.href='/main'">
 	        </div>     
 		</form>               
@@ -188,21 +183,26 @@ $('#pwChk').click(function({id}) {
 $('#newpwChk').click(function({id}){
 	$.ajax({
 		type: 'POST',
-		url: '/mypage/userInfo/' + '${id}' + '/changePw',
+		url: '/mypage/userInfo/' + '${id}' + '/changedPw',
         contentType: 'application/json',
         headers: { 
         	'X-HTTP-Method-Override' : 'POST'
         	},
         data: JSON.stringify({password: $('input[name=checkedNewPw]').val()}),
         dataType: 'json',
-        success:function(result){
-        	console.log("result: " + result);
-        	if(result == 'success'){
-        		alert("비밀번호가 변경되었습니다.");
-        	} else {
-        		alert("비밀번호 입력을 다시 시도하세요.");
-        	} // if-else
-        } // function		
+        success:function(success){
+        console.log(success);
+	        if(success == true){
+	       	alert("비밀번호가 변경되었습니다.");
+	       	location.href = '/main';
+	        } else if(success == false){
+	        alert("비밀번호 입력을 다시 시도하세요.");
+	        location.href = '/main';
+	        } // if-else
+        }, // success		
+        error: function(error) {
+            console.log("error: " + error);
+        }
 	});
 });
 

@@ -371,7 +371,7 @@
                                <p>메인 이미지</p>
                            </div>
                            <div class="box3">
-                       <input type="file" id="info" name="files" />
+                       <input type="file" id="main_image" name="files" />
                         <div class="select_main_image"><img src="" /></div>
                                      
                            <script>
@@ -387,7 +387,6 @@
                                  }
                               });
                            </script>
-                           <%= request.getRealPath("/") %>
                              </div>
                   </div>
                      <br>
@@ -398,7 +397,7 @@
                                <p>메인(썸네일) 이미지</p>
                            </div>
                            <div class="box3">
-                       <input type="file" id="info" name="files" />
+                       <input type="file" id="main_image2" name="files" />
                         <div class="select_main_image2"><img src="" /></div>
                                      
                            <script>
@@ -414,7 +413,6 @@
                                  }
                               });
                            </script>
-                           <%= request.getRealPath("/") %>
                              </div>
                   </div>
                      <br>
@@ -425,7 +423,7 @@
                                <p>서브 이미지1</p>
                            </div>
                            <div class="box3">
-                       <input type="file" id="info" name="files" />
+                       <input type="file" id="sub_image1" name="files" />
                         <div class="select_sub_image1"><img src="" /></div>
                                      
                            <script>
@@ -435,7 +433,7 @@
                                     var reader = new FileReader;
                                                      
                                     reader.onload = function(data) {
-                                       $(".select_sub_image1 img").attr("src", data.target.result).width(200);        
+                                       $(".select_sub_image1 img").attr("src", data.target.result).width(200);       
                                     }
                                     reader.readAsDataURL(this.files[0]);
                                  }
@@ -451,7 +449,7 @@
                                <p>서브 이미지2</p>
                            </div>
                            <div class="box3">
-                       <input type="file" id="info" name="files" />
+                       <input type="file" id="sub_image2" name="files" />
                         <div class="select_sub_image2"><img src="" /></div>
                                      
                            <script>
@@ -476,7 +474,7 @@
                            <div class="box2">
                                <p>서브 이미지3</p>
                            <div class="box3">
-                       <input type="file" id="info" name="files" />
+                       <input type="file" id="sub_image3" name="files" />
                         <div class="select_sub_image3"><img src="" /></div>
                                      
                            <script>
@@ -503,7 +501,7 @@
                                <p>서브 이미지4</p>
                            </div>
                            <div class="box3">
-                       <input type="file" id="info" name="files" />
+                       <input type="file" id="sub_image4" name="files" />
                         <div class="select_sub_image4"><img src="" /></div>
                                      
                            <script>
@@ -539,7 +537,7 @@
                                <p>상세정보내용 이미지</p>
                            </div>
                            <div class="box3">
-                       <input type="file" id="info" name="files" />
+                       <input type="file" id="content_image" name="files" />
                         <div class="select_content_image"><img src="" /></div>
                                      
                            <script>

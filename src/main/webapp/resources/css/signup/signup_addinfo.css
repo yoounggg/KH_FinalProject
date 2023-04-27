@@ -1,11 +1,7 @@
-
-
-
 .wrapper {
     margin: 0 auto;
-
+    width: 80%;
     height: 100%;
-    margin-top: 5%;
     margin-bottom: 10%;
 }
 
@@ -16,34 +12,35 @@
     font-size: 18px;
 }
 
-.탑로고 {
-    text-align: center;
-
-}
-
 .정보 {
     margin-left: 50px;
 }
 
-input,
-button {
+input {
     border: none;
 }
 
-button {
-    color: white;
-}
 
-h1 {
+
+.탑로고 {
     text-align: center;
-    font-size: 40px;
-    margin-top: 5%
+    padding-top: 5%;
 }
 
 .line {
     width: 800px;
-    border: 4px solid #000000;
-    margin: 60px 0 30px 0;
+    border: 3px solid #000000;
+    margin-bottom: 10px;
+}
+
+.필수입력 {
+    text-align: right;
+}
+
+h1 {
+    margin: 3% 0 3% 0;
+    text-align: center;
+    font-size: 40px;
 }
 
 .회원정보 {
@@ -57,8 +54,6 @@ h1 {
 
 #addr {
     background-color: #10bc0d;
-    width: 404px;
-    height: 52px;
     color:white;
     cursor: pointer;
 }
@@ -68,6 +63,27 @@ h1 {
     display: inline-block;
 }
 
+#필수빨강 {
+    color: red;
+}
+
+.입력조건 {
+    color: #ff0000;
+    font-size: 12px;
+    margin: 0 0 0 180px;
+    display:none;
+}
+
+#num_form{
+    position: relative;
+}
+
+#countdown{
+    color: #ff0000 !important;
+    position: absolute;
+    right: 220px;
+    top: 20px;
+}
 
 
 .YYYY,
@@ -84,17 +100,19 @@ h1 {
     margin-left: 40px;
 }
 
-
+/* 인증하기 버튼  */
 .인증 {
     background-color: #b1b1b1;
     height: 50px;
     width: 130px;
     border-radius: 10px;
     margin-left: 20px;
+    color:white;
+    cursor: pointer;
 }
 
 .성별 {
-    margin: 50px 0 30px 0;
+    margin: 30px 0 30px 0;
 }
 
 #여자 {
@@ -109,17 +127,15 @@ h1 {
     margin: 50px 0 30px 0;
 }
 
-
-
-.하단버튼 {
+/* 하단 가입, 이전단계 버튼  */
+.btm_btn {
     display: flex; 
     justify-content: center;
     align-items: center; 
     margin-top: 150px;
-    margin-bottom: 15%;
 }
 
-.가입하기 {
+.join {
     height: 40px;
     width: 150px;
     background-color: #10bc0d;
@@ -134,7 +150,7 @@ h1 {
     
 }
 
-.다음에 {
+.next {
     height: 40px;
     width: 150px;
     background-color: #b1b1b1;
@@ -149,7 +165,40 @@ h1 {
 }
 
 
-.popmenu3 {
+/* 인증번호 입력창, 주소 창 숨김} */ 
+
+#num_form, #detail_addr_form, #addr_form2, #postal_code{
+    display:none;
+
+}
+#addr2{
+    background-color:#cfcfcf;
+    font-weight: bold;
+}
+
+
+#addr_btn{
+    background-color: #b1b1b1;
+    height: 50px;
+    width: 130px;
+    border-radius: 10px;
+    margin-left: 20px;
+    color:white;
+    cursor: pointer;
+}
+
+#post_num{
+    background-color: #d0d0d0;
+    height: 40px;
+    width: 150px;
+    border-radius: 10px;
+   margin-top: 30px;
+   font-weight: bold;
+}
+
+/* 팝업 */
+
+#common_pop {
     display:none;
     position: fixed;
     left: 50%;
@@ -162,11 +211,11 @@ h1 {
    
 }
 
-.popmenu3 p {
+#common_pop p {
     margin-top: 80px;
 }
 
-.exit3 {
+#common_btn {
     position: fixed;
     left: 50%;
     bottom: 10px;
@@ -179,37 +228,4 @@ h1 {
     color: white;
     cursor: pointer;
 }
-
-#addr2{
-    background-color:#cfcfcf;
-    font-weight: bold;
-}
-
-
-
-#post_num{
-    background-color: #d0d0d0;
-    height: 40px;
-    width: 150px;
-    border-radius: 10px;
-   margin-top: 30px;
-   font-weight: bold;
-}
-
-#postal_code{
-	display:none;
-}
-
-#addr_btn{
-    background-color: #b1b1b1;
-    height: 50px;
-    width: 130px;
-    border-radius: 10px;
-    margin-left: 20px;
-    color:white;
-    cursor: pointer;
-}
-
-#num_form, #detail_addr_form, #addr_form2 {
-    display:none;
-}
+ 

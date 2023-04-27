@@ -30,12 +30,15 @@ public interface ProductMapper {
 	
 	/* 상품 전체 조회 */
 	@Select("SELECT * FROM PRODUCT ORDER BY NO DESC")
-	public abstract List<ProductVO> selectAll();
+	public abstract List<ProductDTO> selectAll();
+	
+	/* 상품 전체 조회(페이징처리) */
+	public abstract List<ProductDTO> selectAllPaging(Criteria cri);
 	
 	//-------------------------- XML 매핑 방식 ------------------------------//
 	
 	/* 상품 상세 조회 */
-	public abstract ProductVO select(Integer no);
+	public abstract ProductDTO select(Integer no);
 	
 	/* 상품 등록 */
 	public abstract Integer insert(ProductDTO dto);
@@ -46,7 +49,9 @@ public interface ProductMapper {
 	/* 상품 삭제 */
 	public abstract Integer delete(Integer no);
 	
-	
+	/* 상품 게시글 총 갯수 */
+	public abstract Integer getTotal();
+		
 	/* 카테고리 리스트 */
 	public abstract List<CategoryVO> cateList();
 
