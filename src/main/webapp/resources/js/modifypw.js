@@ -63,4 +63,7 @@ $(document).ready(function(){
 		alert("현재 비밀번호 확인을 먼저 해주세요.");
 		firstinput.focus();
 	}// if
+
 } // checkInput
+
+

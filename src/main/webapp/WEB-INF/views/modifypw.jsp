@@ -137,7 +137,7 @@
                 
                 <tr>
                     <th>&nbsp;신규 비밀번호 확인<span class="red">*</span></th>
-                    <td><input type="password" id="checkNewPw" name="checkedNewPw" onchange="confirmNewPw()"></td>                  
+                    <td><input type="password" id="checkNewPw" name="checkedNewPw" onchange="confirmNewPw()" ></td>                  
                 </tr> 
             </table>
 				
@@ -181,6 +181,15 @@ $('#pwChk').click(function({id}) {
 
 //새로운 비밀번호로 변경
 $('#newpwChk').click(function({id}){
+	
+    var password = $('input[name=password]').val();
+    var newPw = $('#newPw').val();
+    var checkNewPw = $('input[name=checkedNewPw]').val();
+    
+    if (password == '' || newPw == '' || checkNewPw == '') {
+        alert("빈 칸을 모두 채워주세요.");
+        return;
+    }    
 	$.ajax({
 		type: 'POST',
 		url: '/mypage/userInfo/' + '${id}' + '/changedPw',
@@ -198,14 +207,13 @@ $('#newpwChk').click(function({id}){
 	        } else if(success == false){
 	        alert("비밀번호 입력을 다시 시도하세요.");
 	        location.href = '/main';
-	        } // if-else
+	        } 
         }, // success		
         error: function(error) {
             console.log("error: " + error);
         }
 	});
 });
-
 
    
 </script>
