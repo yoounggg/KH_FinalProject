@@ -15,6 +15,9 @@ public interface MemberService {
     // [셍나] 아이디 찾기 (이름, 전화번호로 회원 정보 존재 확인) - 휴대폰 인증
     public int idCheck(@Param("name") String name, @Param("tel") String tel) throws ServiceException;
     
+    // [셍나] 아이디 찾기 (이름, 이메일로 회원 정보 존재 확인) - 이메일 인증
+    public int idCheck_e(@Param("name") String name, @Param("email") String email) throws ServiceException;
+    
     // 주문자 정보 (찬돌)
     public MemberDTO getMemberInfo(String memberId) throws ServiceException;
 	

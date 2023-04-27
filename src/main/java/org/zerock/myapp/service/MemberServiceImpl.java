@@ -1,6 +1,5 @@
 package org.zerock.myapp.service;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zerock.myapp.domain.MemberDTO;
@@ -63,6 +62,18 @@ public class MemberServiceImpl implements MemberService {
 		return cntIdCheck;
 		
 	} // idCheck()
+	
+	// 셍나 이메일 인증 - 아이디 존재하는지 찾기
+	@Override
+	public int idCheck_e(String name, String email) {
+		
+		log.trace("셍나: 이메일 인증을 위한 idCheck_e({}, {})가 활성화 되었습니다.", name, email);
+		
+		int cntIdCheck_e = memberMapper.idCheck(name, email);
+		
+		return cntIdCheck_e;
+		
+	} // idCheck_e()
 	
 //	------------------------------------------------------------
 	
