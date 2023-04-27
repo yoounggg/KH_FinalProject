@@ -57,13 +57,14 @@ public class CartController {
 	//2. 장바구니 상품 추가
 	@PostMapping("/add")
 	@ResponseBody // 화면을 반환하는 것이 아니라 데이터를 반환하는 것이기 떄문
-	public String addProductsInCart(CartDTO cart, HttpServletRequest request) throws ControllerException {
+	public String addProductsInCart(CartDTO cart, HttpSession session) throws ControllerException {
+//	public String addProductsInCart(CartDTO cart, HttpServletRequest request) throws ControllerException {
 										// 등록할 데이터 전달받아야 해서 DTO, 로그인 여부 확인하기 위해 SESSION 객체가 필요
 		
 		log.trace("addProductsInCart() invoked(장바구니 상품 추가/등록)");
 		
 		// (1) 로그인 체크
-		HttpSession session = request.getSession();
+		//HttpSession session = request.getSession();
 		MemberVO vo = (MemberVO)session.getAttribute("member");
 		if(vo == null) {
 			return "5"; // 멤버 아니면 5반환 -> 로그인 필요함!

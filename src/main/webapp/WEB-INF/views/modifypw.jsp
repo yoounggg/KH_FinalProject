@@ -181,7 +181,7 @@ $('#pwChk').click(function({id}) {
 
 //새로운 비밀번호로 변경
 $('#newpwChk').click(function({id}){
-	
+	//빈칸으로 두면 버튼 작동할 수 없게!
     var password = $('input[name=password]').val();
     var newPw = $('#newPw').val();
     var checkNewPw = $('input[name=checkedNewPw]').val();
