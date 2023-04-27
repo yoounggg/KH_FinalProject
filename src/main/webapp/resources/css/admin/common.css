@@ -1,8 +1,5 @@
 @charset "UTF-8";
 
-span, li {
-    font-size: 16px;
-}
     
 /* 바디 */
 body {
@@ -100,14 +97,7 @@ a{
     color: rgb(49, 36, 53);
 }
 
-/* .main1 {
-    padding: 20px;
-    margin: 15px;
-    display: inline-block;
-    width: 400px;
-    height: 200px;
-    border: black solid 1px;
-} */
+
 
 h2{
     font-size : 30px;
@@ -129,7 +119,33 @@ h2{
     margin : auto;
 }
 
-    .content h1 {
+.content h1 {
     padding-top : 20px;
 }
 
+
+button {
+    float: right;
+    margin-left : 5px;
+    margin-bottom : 100px;
+    font-weight: 800;
+    width: 75px;
+    height: 35px;
+    background-color: rgb(175, 124, 213);
+    border: 1px solid #ceced2;
+    font-size: 16px;
+}
+
+.button1 {
+	margin-top : 5px;
+}
+
+
+.write {
+    margin-bottom: 20px;
+}
+
+a:link {color:black; text-decoration: none;}
+a:visited {color:black; text-decoration: none;}
+a:hover {color:black; text-decoration: underline;}
+	 
