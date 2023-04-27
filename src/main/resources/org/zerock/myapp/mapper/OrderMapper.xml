@@ -12,14 +12,16 @@
  		</select>
  		
  		<select id="getOrderInfo" resultType="org.zerock.myapp.domain.OrderItemDTO">
-			SELECT no, price, discount
+			SELECT no, price, discount, stock <!-- count가 없어서 stock을 추가했는데 맞을까..? -->
 			FROM product
-			WHERE no = #{no}
+			WHERE no = #{no, jdbcType=VARCHAR}
 		</select>
 		
 		<select id="enrollOrder" resultType="org.zerock.myapp.domain.OrderDTO">		<!-- no 제외 -->
 			INSERT INTO MYMG_ORDER( member_id, receiver_name, receiver_address1, receiver_address2, receiver_address3, receiver_tel, delivery_cost, delivery_state)
-			VALUES ( #{member_id}, #{receiver_name}, #{receiver_address1}, #{receiver_address2}, #{receiver_address3}, #{receiver_tel}, #{delivery_cost}, '배송준비' ) 
+			VALUES ( #{member_id, jdbcType=VARCHAR}, #{receiver_name, jdbcType=VARCHAR}, #{receiver_address1, jdbcType=VARCHAR},
+					 #{receiver_address2, jdbcType=VARCHAR}, #{receiver_address3, jdbcType=VARCHAR}, #{receiver_tel, jdbcType=VARCHAR},
+					 #{delivery_cost, jdbcType=VARCHAR}, '배송준비' ) 
 		</select>
 		
 		<select id="enrollOrderItem"> <!-- no 제외 -->
