@@ -113,36 +113,35 @@ public class MemberController {
 		
 		log.info("이메일 데이터의 전송을 확인합니다. 인증번호: {}", randomNum);
 		
-
-		 
         /* 이메일 보내기 */
         String setFrom = "dhcksehf1@naver.com";
-        String toMail = email;
-        String title = "[MYMG] 아이디 찾기 인증을 위한 이메일입니다.";
-        String content = "인증 번호는 [" + randomNum + "]입니다.";
+        String setTo = email;
+        String setTitle = "[MYMG] 아이디 찾기 인증을 위한 이메일입니다.";
+        String setContent = "인증 번호는 [" + randomNum + "]입니다.";
 		
-//		String subject = "테스트 메일입니당!";
-//		String content = "잘 가는지 테스트 하는 중 -ㅇ-!!!!";
-//		String from = "dhcksehf1@naver.com";
-//		String to = "jeonseino.o@gmail.com";
-		
-		try {
-			
-			MimeMessage mail = javaMailSender.createMimeMessage();
-			
-			MimeMessageHelper mailHelper = new MimeMessageHelper(mail,true,"UTF-8");
-			
-			mailHelper.setFrom(from);
-			mailHelper.setTo(to);
-			mailHelper.setSubject(subject);
-			mailHelper.setText(content, true);
-			
-			javaMailSender.send(mail);
-			
-		} catch(Exception e) {
-			
-			e.printStackTrace();
-			
+        try {
+            
+            // JavaMailSenderImpl 객체인 mailSender에서
+            // MIME 타입의 이메일 메시지를 생성! -> MimeMessage 객체 반환
+            MimeMessage message = javaMailSender.createMimeMessage();
+            
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+            // 보내는 사람
+            helper.setFrom(setFrom);
+            // 받는 사람
+            helper.setTo(setTo);
+            // 이메일 제목
+            helper.setSubject(setTitle);
+            // 이메일 본문
+            helper.setText(setContent,true);
+            
+            // 보내는 메소드
+            javaMailSender.send(message);
+            
+        } catch(Exception e) {
+        	
+            e.printStackTrace();
+
 		} // try-catch
 		
 	} // mailCheckGET()
