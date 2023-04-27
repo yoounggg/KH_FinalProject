@@ -357,7 +357,7 @@ li{ list-style-type: none;}
     padding: 5px;
     margin-right: 20px;
 }
-
+/*============================직접입력============================*/
 /* 이름 입력창 위치 조정 */
 .name_input_r {
     width:250px;
@@ -378,18 +378,18 @@ li{ list-style-type: none;}
 }
 
 /* 주소 입력창 위치 조정 */
-.address_input_r {
+#address_input_r {
     margin-left: 90px;
 }
 /* 주소 입력창 위치 조정 */
-.address_input2_r {
+#address_input2_r {
     width:250px;
     margin-left: 125px;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 /* 주소 입력창 위치 조정 */
-.address_input3_r {
+#address_input3_r {
     /* width:250px; */
     margin-left: 125px;
     margin-bottom: 10px;
@@ -401,6 +401,38 @@ li{ list-style-type: none;}
     margin-left: 76px;
     width:  300px;
 }
+
+
+/*============================기존정보============================*/
+/* 이름 입력창 위치 조정 */
+.name_input2_r {
+    width:250px;
+    margin-left: 90px;
+    margin-bottom: 10px;
+}
+
+/* 주소 입력창 위치 조정 */
+.address_input4_r {
+    margin-left: 90px;
+}
+/* 주소 입력창 위치 조정 */
+.address_input5_r {
+    width:250px;
+    margin-left: 125px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+/* 주소 입력창 위치 조정 */
+.address_input6_r {
+    /* width:250px; */
+    margin-left: 125px;
+    margin-bottom: 10px;
+    width: 400px;
+}
+/*========================================================*/
+
+
+
 /* 배송 요청사항 위치 조정 */
 #배송요청사항 {
     margin-top:10px;
