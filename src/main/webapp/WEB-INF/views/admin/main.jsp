@@ -13,35 +13,10 @@
 </head>
 <body>
     <!-- 헤더 - 로그인,로그아웃, 로고, 관리자페이지, 옆에 메뉴!!까지 -->
-    <header>
-        <div class="state">
-            <span class="login">admin님 로그인하였습니다</span>
-            <span class="login">Ι</span>
-            <span class="login"><a href="/main">홈페이지</a></span>
-            <span class="login">Ι</span>
-            <span class="login"><a href="#">로그아웃</a></span>
-        </div>
-        <div>
-            <h1><img src="/css/admin/logo.png" id="logo" width="200"></h1> 
-        </div>
-        <h2 class="admin">관리자 페이지</h2>
-        
-    </header>
-
+    <%@include file= "/WEB-INF/views/admin/common/header.jsp" %>
     <main>
         <div>
     <!-- 사이드 메인 - 보라색 가로줄(메인페이지글자), 메뉴-->
-            <nav></nav>
-            <div class="menu1">
-                <ul id="menu2">
-                    <li><a href="/admin/product/register">상품등록</a></li>
-                    <li><a href="/admin/product/list">상품목록</a></li>
-                    <li><a href="/admin/notice/list">공지사항</a></li>
-                    <li><a href="/admin/faq/list">FAQ</a></li>
-                    <li><a href="/admin/member/list">회원관리</a></li>
-                    <li><a href="/admin/farm/list">거래처관리</a></li>
-                </ul>
-            </div>
             
     <!-- 메인 - 테이블 목록 -->
             <div class="container">
