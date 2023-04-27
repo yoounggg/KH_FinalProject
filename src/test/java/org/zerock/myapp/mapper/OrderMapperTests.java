@@ -57,11 +57,11 @@ public class OrderMapperTests {
 	@DisplayName("테스트1: TestGetProductsInfo")
 	@Timeout(value = 1, unit=TimeUnit.MINUTES)
 	void TestGetProductsInfo() {
-	    Integer productId = 1; // 테스트용 상품 ID
+	    Integer productId = 10; // 테스트용 상품 ID
 	    OrderPageItemDTO product = orderMapper.getProductsInfo(productId);
 	    assertNotNull(product);
 	    assertEquals(productId, product.getProductId());
-	    // 예를 들어, product.getName(), product.getPrice() 등을 확인하는 코드를 작성할 수 있습니다.
+	    // 예를 들어, product.getName(), product.getPrice() 등을 확인하는 코드를 작성.
 
 	} // TestGetProductsInfo
 	
@@ -97,7 +97,7 @@ public class OrderMapperTests {
 		ord.setOrders(orders);										// 상품을 OrderDTO(상품 여러개)에 넣음
 		
 //		ord.setNo(1);				// 주문번호			
-		ord.setReceiver_name("찬돌");	// 주문받는사람				// MYMG_ORDER 테이블에 넣어야하니까 필드명을 테이블의 컬럼명과 맞춰야 에러가 안남
+		ord.setReceiver_name("대림동불주먹");	// 주문받는사람				// MYMG_ORDER 테이블에 넣어야하니까 필드명을 테이블의 컬럼명과 맞춰야 에러가 안남
 		ord.setMember_id("chandoll");// 주문자
 		ord.setReceiver_address1(2023);
 		ord.setReceiver_address2("서울 특별시 영등포구 대림동");

@@ -1,10 +1,10 @@
 package org.zerock.myapp.controller;
 
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletResponse;
+import javax.mail.internet.MimeMessage;
 
-//import org.apache.maven.model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,10 +42,13 @@ public class MemberController {
 	private MemberMapper memberMapper;
 	
 	// 이메일 인증
-	@Inject
+	@Autowired
+	private JavaMailSender javaMailSender;
+	
+	@Autowired
 	MailSendService mailSendService;
 	
-//	---------------------- 휴대폰 인증 ----------------------------------------------------------------------------------------------
+//	---------------------- [아이디 찾기] - 휴대폰 인증 ----------------------------------------------------------------------------------------------
 	
 	// [핸드폰] 아이디 찾기 - DB에 회원 정보(이름, 전화번호) 존재하는 지 확인
 	@PostMapping("/findid/idCheck")
@@ -82,11 +85,13 @@ public class MemberController {
 
 	    String foundId = memberMapper.findIdResult(name, tel);
 	    
+	    log.info("휴대폰 인증 - 아이디 찾기 결과 반환 메소드 findIdResult: {}", foundId);
+	    
 	    return foundId;
 	
 	} // findIdResult()
 	
-//	---------------------- 이메일 인증 ----------------------------------------------------------------------------------------------
+//	---------------------- [아이디 찾기] - 이메일 인증 ----------------------------------------------------------------------------------------------
 	
 	// [이메일] 아이디 찾기 - DB에 회원 정보(이름, 이메일) 존재하는 지 확인
 	@PostMapping("/findid/idCheck_e")
@@ -101,18 +106,149 @@ public class MemberController {
 		
 	} // idCheck_e()
 	
-	
-	// [이메일] 이메일 인증
-	@RequestMapping("/login/mailAuth")
+	// [이메일] 아이디 찾기 - 이메일 전송
+	@GetMapping("/findid/sendMail")
 	@ResponseBody
-	public String mailAuth(String mail, HttpServletResponse resp) throws Exception {
+	// 사용자가 입력한 이메일 주소를 매개 변수로 받는 mailCheck()
+	public String mailCheck(@RequestParam("email") String email) throws Exception {
+//	public void mailCheck(@PathVariable("email") String email) throws Exception {
+		
+		// 인증 번호를 위한 6자리 랜덤 난수 생성
+		int randomNum = (int) ( Math.random() * 900000 ) + 100000;
+		
+		log.info("=생성된 인증번호: {}", randomNum);
+		
+        /* 이메일 보내기 - 이메일 데이터 설정! */
+        String setFrom = "dhcksehf1@naver.com";
+        String setTo = email;
+        String setTitle = "[MYMG] 아이디 찾기 인증을 위한 이메일입니다.";
+        String setContent = "인증 번호는 [" + randomNum + "]입니다.";
+		
+        try {
+            
+            // JavaMailSenderImpl 객체인 mailSender에서
+            // MIME 타입의 이메일 메시지를 생성! -> MimeMessage 객체 반환
+            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+            
+            // MimeMessageHelper로 이메일 메세지 구성!
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true, "utf-8");
+            
+            // 보내는 사람
+            mimeMessageHelper.setFrom(setFrom);
+            // 받는 사람
+            mimeMessageHelper.setTo(setTo);
+            // 이메일 제목
+            mimeMessageHelper.setSubject(setTitle);
+            // 이메일 본문
+            mimeMessageHelper.setText(setContent,true);
+            
+            // 보내는 메소드
+            javaMailSender.send(mimeMessage);
+            
+        } catch(Exception e) {
+        	
+            e.printStackTrace();
+
+		} // try-catch
+        
+        String authKey = Integer.toString(randomNum);
+        
+        return authKey;
+		
+	} // mailCheck()
+	
+	
+	// [이메일] 아이디 찾기 인증 결과 반환
+	@PostMapping("/findid/result_e")
+	@ResponseBody
+	public String findIdResult_e(@RequestParam("name") String name, @RequestParam("email") String email) {
+
+	    String foundId_e = memberMapper.findIdResult_e(name, email);
 	    
-		// 사용자의 이메일 주소로 메일 보냄!
-		String authKey = mailSendService.sendAuthMail(mail);
+	    log.info("이메일 인증 - 아이디 찾기 결과 반환 메소드 findIdResult_e: {}", foundId_e);
 	    
-		// 인증키
-	    return authKey;
-	    
-	} // mailAuth()
+	    return foundId_e;
+	
+	} // findIdResult_e()
+	
+//	---------------------- [비밀번호 변경] - 아이디 조회 ----------------------------------------------------------------------------------------------
+	
+	// 비밀번호 변경을 위한 DB 회원 정보 조회
+	@PostMapping("/changepw/idSearch")
+	public @ResponseBody int idSearch(@RequestParam("id") String id) throws Exception {
+		log.trace("사용자가 입력한 값: idSearch({}) activated.", id);
+		
+		int cntIdInq = memberService.idSearch(id);
+		
+		log.trace("아이디 중복 확인: cntIdCheck : ({})" , cntIdInq);
+		
+		return cntIdInq;
+		
+	} // idSearch()
+	
+	// [핸드폰] 비밀번호 변경 - 해당 정보로 임시 비밀번호 전송
+	@GetMapping("/changepw/sendTelTempPw")
+	public @ResponseBody String sendTelTempPw(@RequestParam("tel") String userPhoneNumber) {				// 문자 보내기
+		int randomNumber = (int)((Math.random() * 8999 ) + 1000 );									// 난수 1000 ~ 9999 생성
+		
+		msgSendService.msgSend(userPhoneNumber, randomNumber);
+		
+		log.trace("userPhoneNumber : {} , ramdomNumber : {}  " , userPhoneNumber, randomNumber );
+		
+		return Integer.toString(randomNumber);
+		
+	} // msgSend()
+	
+	// [이메일] 아이디 찾기 - 이메일 전송
+	@GetMapping("/changepw/sendEmailTempPw")
+	@ResponseBody
+	// 사용자가 입력한 이메일 주소를 매개 변수로 받는 mailCheck()
+	public String sendEmailTempPw(@RequestParam("email") String email) throws Exception {
+//	public void mailCheck(@PathVariable("email") String email) throws Exception {
+		
+		// 인증 번호를 위한 6자리 랜덤 난수 생성
+		int randomNum = (int) ( Math.random() * 900000 ) + 100000;
+		
+		log.info("=생성된 인증번호: {}", randomNum);
+		
+        /* 이메일 보내기 - 이메일 데이터 설정! */
+        String setFrom = "dhcksehf1@naver.com";
+        String setTo = email;
+        String setTitle = "[MYMG] 아이디 찾기 인증을 위한 이메일입니다.";
+        String setContent = "인증 번호는 [" + randomNum + "]입니다.";
+		
+        try {
+            
+            // JavaMailSenderImpl 객체인 mailSender에서
+            // MIME 타입의 이메일 메시지를 생성! -> MimeMessage 객체 반환
+            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+            
+            // MimeMessageHelper로 이메일 메세지 구성!
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true, "utf-8");
+            
+            // 보내는 사람
+            mimeMessageHelper.setFrom(setFrom);
+            // 받는 사람
+            mimeMessageHelper.setTo(setTo);
+            // 이메일 제목
+            mimeMessageHelper.setSubject(setTitle);
+            // 이메일 본문
+            mimeMessageHelper.setText(setContent,true);
+            
+            // 보내는 메소드
+            javaMailSender.send(mimeMessage);
+            
+        } catch(Exception e) {
+        	
+            e.printStackTrace();
+
+		} // try-catch
+        
+        String authKey = Integer.toString(randomNum);
+        
+        return authKey;
+		
+	} // mailCheck()
+	
 	
 } // end class

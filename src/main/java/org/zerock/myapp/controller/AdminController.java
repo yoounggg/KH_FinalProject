@@ -119,6 +119,27 @@ public class AdminController {
 	} // get()
 	
 	
+	/* 상품 수정 */
+	@PostMapping("/product/modify")
+	public String modify(ProductDTO dto, RedirectAttributes rttrs) 
+			throws ControllerException {
+		
+		log.trace("remove({}, {}, {}) invoked.", dto, rttrs);
+		
+		try {
+			boolean success = this.service.modify(dto); 
+			log.info("\t: success : {}", success);
+			
+			rttrs.addAttribute("result", (success)? "success" : "failure"); 
+
+			return "redirect:/product/list";
+		}catch(Exception e) {
+			throw new ControllerException(e);
+		} // try catch
+	} // modify()
+	
+	
+	
 	/* 상품 삭제 */
 	@PostMapping("/product/remove")
 	public String remove(Criteria cri, Integer no, RedirectAttributes rttrs) 

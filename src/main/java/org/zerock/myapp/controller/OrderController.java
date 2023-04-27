@@ -63,7 +63,7 @@ public class OrderController {
 		} 	// opd가 null일 때는 새로운 객체를 생성하고, 그렇지 않을 때는 이미 생성된 객체를 그대로 사용
 			// null인 경우에도 객체를 사용할 수 있도록 보장하며, 객체를 여러 번 생성하지 않아도 되어
 
-		// opd.getOrders()가 null인 경우, 새로운 ArrayList를 생성하여 opd에 저장합니다.
+		// opd.getOrders()가 null인 경우, 새로운 ArrayList를 생성하여 opd에 저장
 		if(opd.getOrders() == null) {
 			opd.setOrders(new ArrayList<>());
 		}
@@ -79,7 +79,7 @@ public class OrderController {
 
 	@PostMapping("")
 	public String orderPagePost(OrderDTO dto, HttpServletRequest request) {
-		
+		//@RequestBody
 		log.trace("\t+ dto : {}", dto);
 		
 		orderService.order(dto);
