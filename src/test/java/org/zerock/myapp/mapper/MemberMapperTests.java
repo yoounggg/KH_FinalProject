@@ -199,4 +199,23 @@ public class MemberMapperTests {
 		
 	} // findIdResult_e()
 	
+//	셍나 로그인 테스트 - 아이디 조회 테스트
+//	@Disabled
+	@Test
+	@Order(6)
+	@DisplayName("idSearch Test")
+	@Timeout(value=1, unit=TimeUnit.SECONDS)
+	void idSearch() throws Exception {
+		
+		MemberDTO memberDTO = new MemberDTO();
+		
+		memberDTO.setId("jeonseinoo");
+				
+	    // memberMapper.idSearch에 memberDTO의 아이디값 전달.
+	    memberMapper.idSearch(memberDTO.getId());
+
+	    log.info("idSearch 테스트 결과: {}", memberMapper.idSearch( memberDTO.getId() ));
+		
+	} // idSearch()
+	
 } // end class

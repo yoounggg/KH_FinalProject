@@ -1,5 +1,6 @@
 package org.zerock.myapp.service;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zerock.myapp.domain.MemberDTO;
@@ -36,7 +37,7 @@ public class MemberServiceImpl implements MemberService {
 	
 //	------------------------------------------------------------
 	
-	// 세인 로그인	
+	// [세인] 로그인	
 	@Override
 	public MemberDTO memberLogin(MemberDTO memberDTO) throws ServiceException {
 		log.trace("memberLogin({}) invoked.", memberDTO);
@@ -51,7 +52,7 @@ public class MemberServiceImpl implements MemberService {
 	
 //	------------------------------------------------------------
 
-	// 셍나 휴대폰 인증 - 아이디 존재하는지 찾기
+	// [셍나] 휴대폰 인증 - 회원 정보 입력(이름, 전화번호)으로 아이디 존재하는지 찾기
 	@Override
 	public int idCheck(String name, String tel) {
 	
@@ -63,7 +64,8 @@ public class MemberServiceImpl implements MemberService {
 		
 	} // idCheck()
 	
-	// 셍나 이메일 인증 - 아이디 존재하는지 찾기
+	
+	// [셍나] 이메일 인증 - 회원 정보 입력(이름, 이메일)으로 아이디 존재하는지 찾기
 	@Override
 	public int idCheck_e(String name, String email) {
 		
@@ -74,6 +76,19 @@ public class MemberServiceImpl implements MemberService {
 		return cntIdCheck_e;
 		
 	} // idCheck_e()
+	
+	
+	// [셍나] 비밀번호 변경 - 아이디 조회
+	@Override
+	public int idSearch(String id) {
+		
+		log.trace("셍나: 비밀번호 변경을 위한 아이디 조회 기능인 idSearch({})가 활성화 되었습니다.", id);
+		
+		int cntIdInq = memberMapper.idSearch(id);
+		
+		return cntIdInq;
+		
+	} // idSearch()
 	
 //	------------------------------------------------------------
 	

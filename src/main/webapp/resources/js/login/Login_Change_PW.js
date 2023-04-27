@@ -1,77 +1,105 @@
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("change_pw_p_btn").addEventListener("click", function() {
-        switchForm("change_pw_p_form", "change_pw_e_form", this);
-    });
+$(document).ready(function () {
 
-    document.getElementById("change_pw_e_btn").addEventListener("click", function() {
-        switchForm("change_pw_e_form", "change_pw_p_form", this);
-    });
+	// 휴대폰 인증 버튼을 클릭했을 때
+	$("#change_pw_p_btn").click(function () {
+		// 버튼 스타일 및 폼의 display 변경
+		$(this).addClass("change_pw_active");
+		$("#change_pw_e_btn").removeClass("change_pw_active");
+		$("#id_search_form_p").css("display", "block");
+		$("#id_search_form_e").css("display", "none");
+	});
 
-    document.querySelectorAll(".change_pw_form .val_button").forEach(function(btn) {
-        btn.addEventListener("click", function(e) {
-            e.preventDefault();
-            var form = this.closest("form");
+	// 이메일 인증 버튼을 클릭했을 때
+	$("#change_pw_e_btn").click(function () {
+		// 버튼 스타일 및 폼의 display 변경
+		$(this).addClass("change_pw_active");
+		$("#change_pw_p_btn").removeClass("change_pw_active");
+		$("#id_search_form_e").css("display", "block");
+		$("#id_search_form_p").css("display", "none");
+	});
+	
+	// 아이디 조회 - 휴대폰
+	    $(".id_search_button_p").click(function (event) {
+		
+		// 페이지 새로고침 방지
+        event.preventDefault();
 
-            var verificationInput = document.createElement("input");
-            verificationInput.setAttribute("type", "text");
-            verificationInput.setAttribute("placeholder", "인증번호를 입력해주세요.");
-            verificationInput.setAttribute("required", "");
-            verificationInput.classList.add("verification-input");
+		// 사용자 입력값 받기 및 입력값 확인
+        var id = $(".id_search_input_p").val();
+	
+		// 입력값 없는 경우를 위한 알람
+        if (id.trim() == '') {
+            alert("입력값을 모두 입력해주세요.");
+            
+            return;
+        } // if
 
-            var countDown = document.createElement("div");
-            countDown.classList.add("countdown");
+		// DB에 회원 정보가 존재하는지 확인하는 ajax 요청!
+        $.ajax({
+            url: "/login/changepw/idSearch",
+            type: "POST",
+            data: {
+                id: id
+            },
+            dataType: 'json',
+            success: function (cntIdInq) {
+                cntIdInq = parseInt(cntIdInq);
 
-            var countdownWrapper = document.createElement("div");
-            countdownWrapper.classList.add("countdown-wrapper");
-            countdownWrapper.appendChild(verificationInput);
-            countdownWrapper.appendChild(countDown);
-
-            form.insertBefore(countdownWrapper, this);
-
-            var confirmButton = document.createElement("button");
-            confirmButton.setAttribute("type", "submit");
-            confirmButton.textContent = "확인";
-            confirmButton.classList.add("val_button");
-
-            form.insertBefore(confirmButton, this);
-
-            this.remove();
-
-            var timeLeft = 180;
-            var timer = setInterval(function() {
-                if (timeLeft <= 0) {
-                    clearInterval(timer);
-                    countDown.textContent = "인증번호의 유효 시간이 만료되었습니다.";
-                    confirmButton.classList.remove("re_val_button");
-                    confirmButton.classList.add("val_button");
-                    confirmButton.textContent = "인증번호 재발송";
+                if (cntIdInq === 1) {
+                    alert("아이디 정보를 확인했습니다. \n\n임시 비밀번호 발송 버튼을 클릭하시면 \n가입 시 기입하신 핸드폰 번호로 임시 비밀번호가 전송됩니다. \n\n비밀번호 변경을 원하신다면 임시 비밀번호로 로그인 후, \n마이페이지에서 비밀번호 변경이 가능합니다.")
+                    $(".id_search_button_p").hide();
+                    $(".send_tempPw_button_p").show();
                 } else {
-                    countDown.textContent = "남은 시간: " + timeLeft + "초";
-                    timeLeft--;
+                    alert("회원정보를 찾지 못했습니다. 다시 확인해주세요.");
                 }
-            }, 1000);
-        });
-    });
-});
+            },
+            error: function (request, status, error) {
+                console.log("code = " + request.status + " message = " + request.responseText + " error = " + error);
+            }
+        }); // ajax
+    }); // // 아이디 찾기 버튼 클릭
+	
+	
+	// 아이디 조회 - 이메일
+	$(".id_search_button_e").click(function (event) {
+	
+	    // 페이지 새로고침 방지
+	    event.preventDefault();
+	
+	    // 사용자 입력값 받기 및 입력값 확인
+	    var id = $(".id_search_input_e").val();
+	
+	    // 입력값 없는 경우를 위한 알람
+	    if (id.trim() == '') {
+	        alert("입력값을 모두 입력해주세요.");
+	
+	        return;
+	    } // if
+	
+	    // DB에 회원 정보가 존재하는지 확인하는 ajax 요청!
+	    $.ajax({
+	        url: "/login/changepw/idSearch",
+	        type: "POST",
+	        data: {
+	            id: id
+	        },
+	        dataType: 'json',
+	        success: function (cntIdInq) {
+	            cntIdInq = parseInt(cntIdInq);
+	
+	            if (cntIdInq === 1) {
+	                alert("아이디 정보를 확인했습니다. \n임시 비밀번호 발송 버튼을 클릭하시면 \n가입 시 기입하신 이메일로 임시 비밀번호가 전송됩니다. \n비밀번호 변경을 원하신다면 임시 비밀번호로 로그인 후, \n마이페이지에서 비밀번호 변경이 가능합니다.")
+	                $(".id_search_button_e").hide();
+	                $(".send_tempPw_button_e").show();
+	            } else {
+	                alert("회원정보를 찾지 못했습니다. 다시 확인해주세요.");
+	            }
+	        },
+	        error: function (request, status, error) {
+	            console.log("code = " + request.status + " message = " + request.responseText + " error = " + error);
+	        }
+	    }); // ajax
+	}); // 아이디 조회 버튼 클릭 - 이메일
 
-function switchForm(showFormId, hideFormId, activeBtn) {
-    document.getElementById(showFormId).style.display = "block";
-    document.getElementById(hideFormId).style.display = "none";
-
-    activeBtn.classList.add("change_pw_active");
-    if (activeBtn.nextElementSibling) {
-        activeBtn.nextElementSibling.classList.remove("change_pw_active");
-    } else {
-        activeBtn.previousElementSibling.classList.remove("change_pw_active");
-    }
-}
-
-// 이메일 유효성 검사
-function validateEmail(input) {
-    var regex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-    if (regex.test(input.value)) {
-        input.setCustomValidity("");
-    } else {
-        input.setCustomValidity("올바른 이메일 주소 형식을 입력해주세요.");
-    }
-}
+	
+}); // $(document).ready(function () {})
