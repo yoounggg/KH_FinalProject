@@ -72,26 +72,14 @@
 				AND EMAIL = #{email}
 		</select>
 		
-		<!-- [셍나] 비밀번호 변경을 위한 휴대폰 인증 (아이디, 휴대폰 번호) -->
-		<select id="idCheckInq" parameterType="String" resultType="int">
+		<!-- [셍나] 비밀번호 변경을 위한 아이디 조회 -->
+		<select id="idSearch" parameterType="String" resultType="int">
 			SELECT
 				COUNT(*)
 			FROM
 				MEMBER
 			WHERE
 				ID = #{id}
-				AND TEL = #{tel}
-		</select>
-		
-		<!-- [셍나] 비밀번호 변경을 위한 이메일 인증 (아이디, 이메일) -->
-		<select id="idCheckInq_e" parameterType="String" resultType="int">
-			SELECT
-				COUNT(*)
-			FROM
-				MEMBER
-			WHERE
-				ID = #{id}
-				AND EMAIL = #{email}
 		</select>
 
 		<!-- 혁규 회원가입 -->
