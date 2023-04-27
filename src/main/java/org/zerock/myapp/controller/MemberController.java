@@ -85,6 +85,8 @@ public class MemberController {
 
 	    String foundId = memberMapper.findIdResult(name, tel);
 	    
+	    log.info("휴대폰 인증 - 아이디 찾기 결과 반환 메소드 findIdResult: {}", foundId);
+	    
 	    return foundId;
 	
 	} // findIdResult()
@@ -162,6 +164,8 @@ public class MemberController {
 	public String findIdResult_e(@RequestParam("name") String name, @RequestParam("email") String email) {
 
 	    String foundId_e = memberMapper.findIdResult_e(name, email);
+	    
+	    log.info("이메일 인증 - 아이디 찾기 결과 반환 메소드 findIdResult_e: {}", foundId_e);
 	    
 	    return foundId_e;
 	
