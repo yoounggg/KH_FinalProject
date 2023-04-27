@@ -97,7 +97,7 @@ public class OrderMapperTests {
 		ord.setOrders(orders);										// 상품을 OrderDTO(상품 여러개)에 넣음
 		
 //		ord.setNo(1);				// 주문번호			
-		ord.setReceiver_name("찬돌");	// 주문받는사람				// MYMG_ORDER 테이블에 넣어야하니까 필드명을 테이블의 컬럼명과 맞춰야 에러가 안남
+		ord.setReceiver_name("대림동불주먹");	// 주문받는사람				// MYMG_ORDER 테이블에 넣어야하니까 필드명을 테이블의 컬럼명과 맞춰야 에러가 안남
 		ord.setMember_id("chandoll");// 주문자
 		ord.setReceiver_address1(2023);
 		ord.setReceiver_address2("서울 특별시 영등포구 대림동");
