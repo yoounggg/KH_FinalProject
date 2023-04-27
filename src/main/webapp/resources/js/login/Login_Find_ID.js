@@ -21,7 +21,7 @@ $(document).ready(function () {
 // -----------------------------------------------------
 
     /* 아이디 찾기 - 휴대폰 인증 ajax 구현 */
-    // 아이디 찾기 버튼 클릭
+
     $(".findid_button_p").click(function (event) {
 		
 		// 페이지 새로고침 방지
@@ -34,8 +34,9 @@ $(document).ready(function () {
 		// 사용자가 입력값을 모두 입력할 수 있도록, 입력값이 하나라도 없는 경우에는 알람
         if (!name || !tel) {
             alert("입력값을 모두 입력해주세요.");
+            
             return;
-        }
+        } // if
 
 		// DB에 회원 정보가 존재하는지 확인하는 ajax 요청!
         $.ajax({
@@ -61,8 +62,8 @@ $(document).ready(function () {
             error: function (request, status, error) {
                 console.log("code = " + request.status + " message = " + request.responseText + " error = " + error);
             }
-        });
-    });
+        }); // ajax
+    }); // // 아이디 찾기 버튼 클릭
 
 	// 인증 번호 발송 버튼 클릭 이벤트
 	var val_num = ""; // 인증번호를 저장할 변수
@@ -132,5 +133,50 @@ $(document).ready(function () {
 	}); // 확인 버튼 클릭 fn()
 	
 // -----------------------------------------------------
+    
+    $(".findid_button_e").click(function (event) {
+		
+		// 페이지 새로고침 방지
+        event.preventDefault();
+
+		// 사용자 입력값 받기 및 입력값 확인
+        var name = $("#find_id_e_form input[type=text]").val();
+        var email = $("#find_id_e_form input[type=email]").val();
+	
+		// 사용자가 입력값을 모두 입력할 수 있도록, 입력값이 하나라도 없는 경우에는 알람
+        if (!name || !email) {
+            alert("입력값을 모두 입력해주세요.");
+            return;
+        }
+
+		// DB에 회원 정보가 존재하는지 확인하는 ajax 요청!
+        $.ajax({
+            url: "/login/findid/idCheck_e",
+            type: "POST",
+            data: {
+                name: name,
+                email: email
+            },
+            dataType: 'json',
+            success: function (cntIdCheck_e) {
+                cntIdCheck_e = parseInt(cntIdCheck_e);
+
+                if (cntIdCheck_e === 1) {
+                    $(".e_verification").css("display", "block");
+                    alert("회원정보를 확인했습니다. \n인증번호 발송 버튼을 눌러, 휴대폰 번호 인증을 진행해주세요.")
+                    $(".findid_button_e").hide();
+                    $(".send_verification_button_e").show();
+                } else {
+                    alert("회원정보를 찾지 못했습니다. 다시 확인해주세요.");
+                } // if-else
+            }, 
+            error: function (request, status, error) {
+                console.log("code = " + request.status + " message = " + request.responseText + " error = " + error);
+            } // 회원 정보 확인 fn()
+        }); // ajax
+    }); // 아이디 찾기 버튼 클릭 fn()
+    
+    
+    
     
 });

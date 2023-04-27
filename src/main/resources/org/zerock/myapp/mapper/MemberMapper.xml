@@ -47,11 +47,11 @@
 				MEMBER
 			WHERE 
 				NAME = #{name} 
-				AND TEL = #{tel}	
+				AND TEL = #{tel}
 		</select>
 		
 		<!-- 셍나 아이디 찾기 : 이메일 인증 (이름, 이메일) -->
-		<select id="findIdE" resultType="org.zerock.myapp.domain.MemberDTO">
+		<select id="idCheck_e" parameterType="String" resultType="int">
 			SELECT
 				COUNT(*)
 			FROM

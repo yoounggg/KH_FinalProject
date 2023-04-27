@@ -138,7 +138,7 @@ public class MemberMapperTests {
 		memberDTO.setName("전셍나");
 		memberDTO.setTel("01019971216");
 				
-	    // memberMapper.findIdResult에 memberDTO의 이름과 전화번호 값을 전달합니다.
+	    // memberMapper.findIdResult에 memberDTO의 이름과 전화번호 값을 전달.
 	    memberMapper.findIdResult(memberDTO.getName(), memberDTO.getTel());
 
 	    log.info("findIdResult 테스트 결과: {}", memberMapper.findIdResult(memberDTO.getName(), memberDTO.getTel()));
@@ -157,6 +157,26 @@ public class MemberMapperTests {
         
         MemberDTO memberDTO = memberMapper.getMemberInfo(memberId);
 		
-	} // findIdResult()
+	} // TestsgetMemberInfo()
+	
+//	셍나 로그인 테스트
+//	@Disabled
+	@Test
+	@Order(4)
+	@DisplayName("idCheck_e Test")
+	@Timeout(value=1, unit=TimeUnit.SECONDS)
+	void idCheck_e() throws Exception {
+		
+		MemberDTO memberDTO = new MemberDTO();
+		
+		memberDTO.setName("전셍나");
+		memberDTO.setEmail("jeonseino.o@gmail.com");
+				
+	    // memberMapper.findIdResult에 memberDTO의 이름과 이메일 값을 전달.
+	    memberMapper.idCheck_e(memberDTO.getName(), memberDTO.getEmail());
+
+	    log.info("idCheck_e 테스트 결과: {}", memberMapper.idCheck_e( memberDTO.getName(), memberDTO.getEmail() ));
+		
+	} // idCheck_e()
 	
 } // end class
