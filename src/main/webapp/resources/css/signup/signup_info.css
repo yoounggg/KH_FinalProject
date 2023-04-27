@@ -3,7 +3,6 @@
     width: 80%;
     height: 100%;
     margin-bottom: 10%;
-    
 }
 
 .wrapper-input {
@@ -30,7 +29,7 @@ input {
 
 .line {
     width: 800px;
-    border: 4px solid #000000;
+    border: 3px solid #000000;
     margin-bottom: 10px;
 }
 
