@@ -112,8 +112,8 @@ function email_btn() {
     emailInput.value = value; // 소문자로 변환된 값으로 변경
 
     const emailCondition = document.querySelector('#email_input_con');
-    var isOk = /^[a-z0-9]+@[a-z0-9]+\.[a-z]{2,}$/; // 이메일 형식, 소문자만 입력 가능
-
+    var isOk = /^[a-z0-9._-]+@[a-z0-9]+\.[a-z]{2,}$/; // 이메일 형식, 소문자만 입력 가능
+	
     if (isOk.test(value)) {
         emailCondition.style.display = 'none'; // 조건 만족 시 안 보이도록 함
     } else {
@@ -124,7 +124,7 @@ function email_btn() {
 // 이메일 중복 확인
 function checkEmail() {
     var email = $("#input_email").val();       // 이메일 입력값
-    var isOk = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/;         //이메일 형식
+    var isOk = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/;         //이메일 형식
 
     if (isOk.test(email)) {
 
