@@ -15,14 +15,20 @@ public class MailSendService {
     @Autowired
     private JavaMailSenderImpl mailSender;
 
+//    ==========================================
+    
+    // 인증 번호 -> 6자리 수의 랜덤 번호 생성
     private String authKey() {
     	
-        int randomNum = (int) (Math.random() * 900000) + 100000; // 100000 ~ 999999 사이의 난수 생성
+        int randomNum = (int) ( Math.random() * 900000 ) + 100000; // 6자리 난수 생성 (100000 ~ 9999999)
         
         return String.valueOf(randomNum);
         
     } // authKey()
 
+//  ==========================================
+    
+    // 인증 번호 메일 서비스
     public String sendAuthMail(String mail) throws MessagingException {
     	
         String authKey = authKey();
