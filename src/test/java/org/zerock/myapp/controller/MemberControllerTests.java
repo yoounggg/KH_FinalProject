@@ -47,7 +47,10 @@ public class MemberControllerTests {
 	@DisplayName("테스트 1 : mailSendTest()")
 	@Timeout(value=5, unit=TimeUnit.MINUTES)
     public void mailSendTest() throws Exception{
-        
+		
+//		이메일 보내려면 사용 중인 jdk 설정 파일인 java.security에서 TLS 설정 바꿔야 함 !!!!!!!!!!!!!1
+//		= 셍나 노트북으로만.. 가능..하다는..것..
+		
         String subject = "셍나는 뚠둔, 오늘도 뚠뚠, 열심히~ 테스트 하네~";
         String content = "이메일 인증 구현을 위한 컨트롤러 테스트 중입니다!";
         String from = "dhcksehf1@naver.com";
