@@ -69,7 +69,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		log.trace("셍나: 이메일 인증을 위한 idCheck_e({}, {})가 활성화 되었습니다.", name, email);
 		
-		int cntIdCheck_e = memberMapper.idCheck(name, email);
+		int cntIdCheck_e = memberMapper.idCheck_e(name, email);
 		
 		return cntIdCheck_e;
 		

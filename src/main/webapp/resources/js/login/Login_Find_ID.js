@@ -163,7 +163,7 @@ $(document).ready(function () {
 
                 if (cntIdCheck_e === 1) {
                     $(".e_verification").css("display", "block");
-                    alert("회원정보를 확인했습니다. \n인증번호 발송 버튼을 눌러, 휴대폰 번호 인증을 진행해주세요.")
+                    alert("회원정보를 확인했습니다. \n인증번호 발송 버튼을 눌러, 이메일 인증을 진행해주세요.")
                     $(".findid_button_e").hide();
                     $(".send_verification_button_e").show();
                 } else {
