@@ -55,9 +55,12 @@ $(document).ready(function(){
  		alert("비밀번호가 불일치합니다")
  	} // if-else
  }; //  confirmNewPw
-
-
-//회원 정보 수정 form-> submit
-function goform(){
-	$('#modifyPwDetails').attr("action",'/mypage/userInfo/'+ '${id}' + '/changePw').submit();
-}; // goform
+ 
+ // 현재 비밀번호 칸에 입력을 안하고 신규 비밀번호 칸으로 넘어갈 수 없게 하기
+ function checkInput(){
+	let firstinput = document.getElementById("password1");
+	if(firstinput.value === ""){
+		alert("현재 비밀번호 확인을 먼저 해주세요.");
+		firstinput.focus();
+	}// if
+} // checkInput

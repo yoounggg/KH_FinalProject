@@ -316,15 +316,6 @@ main{
 }
 /* -----------테이블------------ */
 
-/* .huiwon{ */
-    /* width: 100px;
-    height: 500px; */
-    /* width: 500px; */
-    /* position: relative; */
-    /* right: 10px; */
-    /* left: 100px; */
-/* } */
-
 .sujeong1{
     display: flex;
     flex-flow: row nowrap;
@@ -371,7 +362,7 @@ th{
     text-align: center;
 }
 .btntr{
-    width: 70px;
+    /* width: 70px; */
     height: 20px;
     padding: 1px;
     border-radius: 5px;
@@ -424,4 +415,4 @@ th{
 
 .successTelCk{font-size:12px;}
 
-/* --------------footer------------------- */
+td{width:180px;}

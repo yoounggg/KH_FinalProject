@@ -63,7 +63,7 @@ public class UserInfoServiceImpl implements UserInfoService, InitializingBean  {
 	} // updateUser
 	
 	
-	@Override
+	@Override // 회원탈퇴
 	public Boolean deleteUser(String id) throws ServiceException {
 		log.trace("delete({}) invoked.", id);
 		
@@ -76,12 +76,13 @@ public class UserInfoServiceImpl implements UserInfoService, InitializingBean  {
 	} // delete
 
 //========================================================================
-	@Override
+	
+	@Override // 비밀번호 수정
 	public Boolean modifyPw(MemberDTO dto) throws ServiceException {
 		log.trace("modifyPw({}) invoked.", dto);
 		
 		try {
-			return this.mapper.modifyPw(dto) == 1;
+			return this.mapper.updatePw(dto) == 1;
 		}catch(Exception e) {
 			throw new ServiceException(e);
 		} // try-catch
