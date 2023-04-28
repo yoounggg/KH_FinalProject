@@ -21,7 +21,7 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-  <!--  <script src="https://cdn.iamport.kr/v1/iamport.js"></script> -->
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
     
  <!--<script>
  function requestPay() {
@@ -84,48 +84,7 @@
 	}
 </script>  -->
 
-	<script>
-	
-	$(document).ready(function() {
-		$(".order_btn").on("click", function() {
-		  /* 주소 정보 & 받는이*/
-		  $(".locate_addressInfo").each(function(i, obj) {
-		    if ($(obj).find(".selectAdressee").val() == 'T') {
-		      $("input[name='addressee']").val($(obj).find(".name_input_r").val());
-		      $("input[name='memberAddr1']").val($(obj).find(".address_input_r").val());
-		      $("input[name='memberAddr2']").val($(obj).find(".address_input2_r").val());
-		      $("input[name='memberAddr3']").val($(obj).find(".address_input3_r").val());
-		    }
-		  });
-		
-		/* 상품정보 */
-		let form_contents = '';
-		$(".products_table_price_td").each(function(index, element) {
-		  let productId = $(element).find(".individual_productId_input").val();
-		  let productCount = $(element).find(".individual_productCount_input").val();
-		  let productId_input = "<input name='orders[" + index + "].productId' type='hidden' value='" + productId + "'>";
-		  form_contents += productId_input + "\n";
-		  let productCount_input = "<input name='orders[" + index + "].productCount' type='hidden' value='" + productCount + "'>";
-		  form_contents += productCount_input + "\n";
-		});
-		$(".order_form").append(form_contents);
-		
-		  /* 주문 양식 제출 */
-		  $(".order_form").submit();
-		}); 
-	});
-	
-	</script>
- 
-    <script>
-	    $(document).ready(function(){
-	    	
-	    	/* 주문 조합정보란 최신화 */
-	    	setTotalInfo();
-	    	
-	    });    
-    </script>
-	    
+
 </head>
 <body>
 
@@ -243,58 +202,57 @@
            <!-- <div class="locate">  --> 
            <div class="locate_addressInfo">
 				<div class="locate address_btn address_btn_1">
+
 					<div class="input_row2">
 	                    <label for="name_title_r">이름</label>
-	                    <input type="text" class="name_input_r" name="name" placeholder="이름을 입력하세요">
+	                    <input type="text" class="name_input_r" name="receiver_name" placeholder="이름을 입력하세요">
 	                </div>
 	
 	                <div class="input_row2">
 	                    <label for="address_title_r">주소</label>
-						
-						<input class="selectAdressee" value="F" type="hidden">
-						<input type="text" class="address_input_r" placeholder="우편번호">
+						<input class="selectAdressee" value="T" type="hidden">
+						<input type="text" id="address_input_r"  placeholder="우편번호">
 	                    <input type="button" onclick="sample4_execDaumPostcode()" value="주소입력" class="address_button" ><br>
 	                    <div></div>
-	                    <input type="text" class="address_input2_r" placeholder="ㅇㅇㅇㅇ">
+	                    <input type="text" id="address_input2_r" placeholder="ㅇㅇㅇㅇ">
 	
 	                  	<div></div>
-	                  	<input type="text" class="address_input3_r" placeholder="ㅇㅇㅇㅇ">
+	                  	<input type="text" id="address_input3_r" placeholder="ㅇㅇㅇㅇ">
 	                    <div></div>
 	                  	<!-- <input  type="text" id="address_input4_r" value="상세주소">   -->
 	                </div>
 	
 	                <div class="input_row2">
 	                    <label for="phone_title_r">연락처</label>
-	                    <input type="phone" id="phone_input_r" name="phone" placeholder="000-0000-0000">
+	                    <input type="phone" id="phone_input_r" name="receiver_tel" placeholder="000-0000-0000">
 	                </div>    
 				</div>
 				
 				<div class="address_btn_2_wrap" style="display: none;">
 				
-					<div class="locate address_btn address_btn_2">
+					<div class="locate address_btn address_btn_2" >
 						<div class="input_row2">
 		                    <label for="name_title_r">이름</label>
-		                    <input type="text" class="name_input_r" name="name" value="${memberInfo.name}">
+		                    <input type="text" class="name_input2_r" name="receiver_name" value="${memberInfo.name}">
 		                </div>
 		
 		                <div class="input_row2">
 		                    <label for="address_title_r">주소</label>
-							
-							<input class="selectAdressee" value="T" type="hidden">
-							<input type="text" class="address_input_r" value="${memberInfo.address1}">
+							<input class="selectAdressee" value="F" type="hidden">
+							<input type="text" class="address_input4_r" value="${memberInfo.address1}">
 		                    <input type="button" onclick="sample4_execDaumPostcode()" value="주소입력" class="address_button" ><br>
 		                    <div></div>
-		                    <input type="text" class="address_input2_r" value="${memberInfo.address2}">
+		                    <input type="text" class="address_input5_r" value="${memberInfo.address2}">
 		
 		                  	<div></div>
-		                  	<input type="text" class="address_input3_r" value="${memberInfo.address3}">
+		                  	<input type="text" class="address_input6_r" value="${memberInfo.address3}">
 		                    <div></div>
 		                  	<!-- <input  type="text" id="address_input4_r" value="상세주소">   -->
 		                </div>
 		
 		                <div class="input_row2">
 		                    <label for="phone_title_r">연락처</label>
-		                    <input type="phone" id="phone_input_r" name="phone" value="${memberInfo.tel}">
+		                    <input type="phone" id="phone_input2_r" name="receiver_tel" value="${memberInfo.tel}">
 		                </div>    
 		                      
 					</div>
@@ -354,12 +312,13 @@
 
          <form class="order_form" action="/order" method="post">
   
-        	<input name="memberId" value="${memberInfo.id}" type="hidden"> <!--  member. memberInfo. 둘 중 뭘 써야할까.. -->
+        	<input name="member_id" value="${memberInfo.id}" type="hidden">
        
-        	<input name="addressee" type="hidden" >
-        	<input name="memberAddr1" type="hidden">
-        	<input name="memberAddr2" type="hidden">
-        	<input name="memberAddr3" type="hidden" >
+			<input name="receiver_name" type="hidden" value="">
+			<input name="receiver_address1" type="hidden" value="">
+			<input name="receiver_address2" type="hidden" value="">
+			<input name="receiver_address3" type="hidden" value="">
+			<input name="receiver_tel" type="hidden" value="">
         	
          </form>
 
@@ -369,5 +328,80 @@
 	<%@include file= "../common/footer.jsp" %>
 
 </body>
+
+	<script>
+
+    /* ============================== 주소 입력란 버튼 동작 (숨김, 동작) =========================================== */
+    
+	  function showAddress(className) {
+	        // 모든 .addressInfo_input_div를 숨긴다
+	        $(".addressInfo_input_div").hide();
+	        // 클래스 이름에 해당하는 .addressInfo_input_div를 보여준다
+	        $(".addressInfo_input_div_" + className).show();
+	        if (className === "1") {
+	        	// 직접 입력 버튼을 클릭한 경우
+	        	// .address_btn_2_wrap를 숨긴다
+	        	$(".address_btn_2_wrap").hide();
+	        	// .locate.address_btn.address_btn_1를 보여준다
+	        	$(".locate.address_btn.address_btn_1").show();
+	        	// 기존 주소 버튼을 보여준다
+	        	$(".locate.address_btn.address_btn_2").show();
+	        	//$(".address_btn_2_wrap").show();
+	        } else if (className === "2") {
+	          	// 기존 주소 버튼을 클릭한 경우
+	          	// .address_btn_2_wrap를 보여준다
+	          	$(".address_btn_2_wrap").show();
+	          	// .locate.address_btn.address_btn_1를 숨긴다
+	         	$(".locate.address_btn.address_btn_1").hide();
+	        }
+	    	    // 모든 .selectAdressee를 false로 설정
+	    	    $(".selectAdressee").val("F");
+	    	    // 해당하는 .addressInfo_input_div의 .selectAdressee를 true로 설정
+	    	    $(".addressInfo_input_div_" + className).find(".selectAdressee").val("T");
+	      }
+	      
+	
+	$(document).ready(function() {
+		
+    	/* 주문 조합정보란 최신화 */
+    	setTotalInfo();
+    	
+		$(".order_btn").on("click", function() {
+
+			  $(".locate_addressInfo").each(function(i, obj) {
+			    if ($(obj).find(".selectAdressee").val() == 'T') {
+			      $("input[name='receiver_name']").val($(obj).find(".name_input_r").val());
+			      $("input[name='receiver_address1']").val($(obj).find("#address_input_r").val());
+			      $("input[name='receiver_address2']").val($(obj).find("#address_input2_r").val());
+			      $("input[name='receiver_address3']").val($(obj).find("#address_input3_r").val());
+			      $("input[name='receiver_tel']").val($(obj).find("#phone_input_r").val());
+			    } else if  ($(obj).find(".selectAdressee").val() == 'F') {
+				      $("input[name='receiver_name']").val($(obj).find(".name_input2_r").val());
+				      $("input[name='receiver_address1']").val($(obj).find(".address_input4_r").val());
+				      $("input[name='receiver_address2']").val($(obj).find(".address_input5_r").val());
+				      $("input[name='receiver_address3']").val($(obj).find(".address_input6_r").val());
+				      $("input[name='receiver_tel']").val($(obj).find("#phone_input2_r").val());
+			    }
+			  });
+		
+		/* 상품정보 */
+		let form_contents = '';
+		$(".products_table_price_td").each(function(index, element) {
+		  let productId = $(element).find(".individual_productId_input").val();
+		  let productCount = $(element).find(".individual_productCount_input").val();
+		  let productId_input = "<input name='orders[" + index + "].productId' type='hidden' value='" + productId + "'>";
+		  form_contents += productId_input + "\n";
+		  let productCount_input = "<input name='orders[" + index + "].productCount' type='hidden' value='" + productCount + "'>";
+		  form_contents += productCount_input + "\n";
+		});
+		$(".order_form").append(form_contents);
+		
+		  /* 주문 양식 제출 */
+		  $(".order_form").submit();
+		}); 
+	});
+	
+	</script>
+	    
 
 </html>

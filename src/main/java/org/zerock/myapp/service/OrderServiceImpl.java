@@ -1,6 +1,8 @@
 package org.zerock.myapp.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,6 +79,11 @@ public class OrderServiceImpl implements OrderService {
 		List<OrderItemDTO> orders = new ArrayList<>();
 		for(OrderItemDTO oit : odt.getOrders()) {
 			OrderItemDTO orderItem = orderMapper.getOrderInfo(oit.getProduct_no());
+			
+		    if (orderItem == null) {
+		        // 해당 상품번호에 대한 주문 정보가 존재하지 않음
+		        continue;
+		    }
 			
 			// 수량
 			orderItem.setCount(oit.getCount());

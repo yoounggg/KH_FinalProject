@@ -22,26 +22,24 @@ li{ list-style-type: none;}
 
 /* ---------------- Sengna ---------------- */
 
-/* 아이디 찾기 창 container */
+/* 비밀번호 변경을 위한 컨테이너 */
 .change_pw_container {
-    width: 300px;
-    
-    /* padding 줘서 크기 조절 */
-    padding: 10px;
-    
-    /* 오른쪽으로 띄우기 */
+    width: 380px;
+    padding: 16px;
     margin: 100px auto;
+    margin-bottom: 150px;
 }
 
-/* 아이디 찾기 타이틀 */
+/* 비밀번호 변경 타이틀 */
 .change_pw_title {
     font-size: 20px;
     font-weight: bold;
     text-align: center;
+    margin-top: 50px;
     margin-bottom: 50px;
 }
 
-/* 휴대폰 인증, 이메일 인증 버튼들 묶어주는 wrap 클래스 */
+/* 휴대폰 인증, 이메일 인증 버튼 wrap */
 .change_pw_wrap {
     display: flex;
     list-style-type: none;
@@ -49,43 +47,37 @@ li{ list-style-type: none;}
     margin-bottom: 20px;
 }
 
-/* 각 버튼들 속성 */
+/* 각 버튼 요소 */
 .change_pw_wrap li {
     font-size: 14px;
-
-    /* li 요소들이 가로로 동일한 비율로 공간을 차지하도록 설정 */
     flex-grow: 1;
-
     background-color: #f1f1f1;
     padding: 10px;
     text-align: center;
     cursor: pointer;
 }
-/* flex-grow : 
-flex 아이템이 flex 컨테이너 내에서 남은 공간을 어떻게 차지할지 정의합니다. 
-flex-grow 속성 값은 양의 정수 또는 0이며, 
-값이 클수록 해당 아이템이 더 많은 공간을 차지합니다. */
 
-
-/* 각 버튼들 활성화되었을 때 효과 */
+/* 인증 방식 선택 버튼 활성화 */
 .change_pw_wrap li.change_pw_active {
     background-color: #11BC0D;
     color: white;
     font-weight: bold;
 }
 
-/* 버튼들 hover 안했을 때 효과 */
+/* 인증 방식 선택 버튼 비활성화 */
 .change_pw_wrap li:not(.change_pw_active):hover {
     background-color: #cccccc;
 }
 
-/* 입력폼(입력창) 너비 설정 */
-.change_pw_form {
+/* 아이디 조회 폼 */
+.id_search_form_p,
+.id_search_form_e {
     width: 100%;
 }
 
-/* 입력창 속성 */
-input[type="text"].change_pw_p_input, /* 수정 완! */
+/* 입력창 */
+input[type="text"].id_search_input_p,
+input[type="text"].id_search_input_e,
 input[type="tel"],
 input[type="email"] {
     width: 100%;
@@ -99,12 +91,17 @@ input[type="email"] {
 
 /* 이거 수정해야지 검색창 뚱대지 안댐 -ㅇ- */
 /* 수정 완! */
-input[type="text"].change_pw_p_input {
+input[type="text"].id_search_input_p,
+input[type="text"].id_search_input_e {
     margin: 30px 0 8px;
+    margin-bottom: 30px;
 }
 
-/* 인증번호 발송 버튼 */
-button.val_button {
+/* 아이디 조회하기 버튼, 임시 비밀번호 발송 버튼 */
+button.id_search_button_p,
+button.id_search_button_e,
+button.send_tempPw_button_p,
+button.send_tempPw_button_e {
     width: 100%;
     background-color: #11BC0D;
     color: white;
@@ -117,28 +114,10 @@ button.val_button {
     font-weight: bold;
 }
 
-/* 인증번호 발송 버튼 hover 효과 */
-button.val_button:hover {
+/* 아이디 조회하기 버튼, 임시 비밀번호 발송 버튼 hover 효과 */
+button.id_search_button_p:hover ,
+button.id_search_button_e:hover ,
+button.send_tempPw_button_p:hover ,
+button.send_tempPw_button_e:hover {
     opacity: 0.8;
 }
-
-/* 인증번호 발송 이후 카운트 다운 */
-.countdown {
-    text-align: right;
-    font-weight: bold;
-    color: red;
-    margin-top: 2px;
-    margin-bottom: 10px;
-    font-size: 13px;
-}
-
-/* 인증번호 입력창 스타일 */
-.verification-input {
-    width: 100%;
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    margin-top: 20px;
-}
-

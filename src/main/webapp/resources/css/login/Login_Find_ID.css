@@ -137,7 +137,8 @@ button.send_verification_button_e:hover {
 /* 확인 버튼 */
 button.p_verify_button,
 button.e_verify_button,
-button.p_verify_button_result {
+button.p_verify_button_result,
+button.e_verify_button_result {
     width: 100%;
     background-color: #11BC0D;
     color: white;
@@ -157,7 +158,7 @@ button.e_verify_button:hover {
 }
 
 
-/* 인증번호 발송 이후 생기는 확인 버튼 */
+/* 인증번호 발송 이후 생기는 확인 버튼
 button.re_val_button {
     width: 100%;
     background-color: #11BC0D;
@@ -172,17 +173,7 @@ button.re_val_button {
     margin-top: 20px;
 }
 
-/* 확인 버튼 hover 효과 */
+확인 버튼 hover 효과
 button.re_val_button:hover {
     opacity: 0.8;
-}
-
-/* 인증번호 발송 이후 카운트 다운 */
-.countdown {
-    text-align: right;
-    font-weight: bold;
-    color: red;
-    margin-top: 2px;
-    margin-bottom: 10px;
-    font-size: 13px;
-}
+}  */
