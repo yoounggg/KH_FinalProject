@@ -213,7 +213,7 @@ $(document).ready(function () {
         }); // ajax
     }); // 인증 번호 발송 버튼 클릭 fn()
     
-        // 휴대폰 인증번호 대조
+        // 이메일 인증번호 대조
     $('.e_verify_button').click(function(){
         if($('.e_verification_input').val() == val_num){
             alert("인증번호가 일치합니다.")
@@ -222,14 +222,14 @@ $(document).ready(function () {
         } else {
             alert("인증번호가 일치하지 않습니다. 인증 절차를 다시 시도해주세요.")
         } // if-else
-    }); // 휴대폰 인증 번호 대조 fn()
+    }); // 이메일 인증 번호 대조 fn()
     
     // 확인 버튼 클릭
 	$('.e_verify_button_result').click(function(){
 	    var name = $("#find_id_e_form input[type=text]").val();
 	    var email = $("#find_id_e_form input[type=email]").val();
 	    
-	    // 사용자 이름과 휴대폰 번호를 이용해 찾은 아이디를 표시하는 ajax 요청
+	    // 사용자 이름과 이메일 주소를 이용해 찾은 아이디를 표시하는 ajax 요청
 	    $.ajax({
 	        url: '/login/findid/result_e',
 	        type: 'POST',

@@ -76,7 +76,8 @@ public class MsgSendServiceImpl implements MsgSendService {
 				} // for
 				
 				JSONObject obj = (JSONObject) coolsms.send(params);
-				log.trace("JSONObject ({}) invoked.", obj) ;
+				
+				log.trace("JSONObject = ({}).", obj) ;
 				
 			} catch (Exception e) {
 

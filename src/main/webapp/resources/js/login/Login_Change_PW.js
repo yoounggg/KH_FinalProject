@@ -57,7 +57,7 @@ $(document).ready(function () {
                 console.log("code = " + request.status + " message = " + request.responseText + " error = " + error);
             }
         }); // ajax
-    }); // // 아이디 찾기 버튼 클릭
+    }); // // 아이디 찾기 버튼 클릭 - 휴대폰
 	
 	
 	// 아이디 조회 - 이메일
@@ -88,8 +88,9 @@ $(document).ready(function () {
 	            cntIdInq = parseInt(cntIdInq);
 	
 	            if (cntIdInq === 1) {
-	                alert("아이디 정보를 확인했습니다. \n임시 비밀번호 발송 버튼을 클릭하시면 \n가입 시 기입하신 이메일로 임시 비밀번호가 전송됩니다. \n비밀번호 변경을 원하신다면 임시 비밀번호로 로그인 후, \n마이페이지에서 비밀번호 변경이 가능합니다.")
+	                alert("아이디 정보를 확인했습니다. \n\n임시 비밀번호 발송 버튼을 클릭하시면 \n가입 시 기입하신 핸드폰 번호로 임시 비밀번호가 전송됩니다. \n\n비밀번호 변경을 원하신다면 임시 비밀번호로 로그인 후, \n마이페이지에서 비밀번호 변경이 가능합니다.")
 	                $(".id_search_button_e").hide();
+	                // 임시 비밀번호 발송 버튼
 	                $(".send_tempPw_button_e").show();
 	            } else {
 	                alert("회원정보를 찾지 못했습니다. 다시 확인해주세요.");
@@ -101,5 +102,28 @@ $(document).ready(function () {
 	    }); // ajax
 	}); // 아이디 조회 버튼 클릭 - 이메일
 
+	// 임시 비밀번호 발송 버튼 클릭 이벤트
+	var val_num = ""; // 임시 비밀번호 저장할 변수
+    $(document).on('click', '.send_tempPw_button_e', function () {
+        alert("임시 비밀번호가 발송되었습니다. \n임시 비밀번호로 로그인 후, 마이페이지에서 비밀번호 변경이 가능합니다.");
+		
+		// 임시 비밀번호 발송을 위한 ajax 요청
+        $.ajax({
+            type: 'GET',
+            url:'/login/changepw/sendEmailTempPw',
+            data: {
+            	id: $(".id_search_input_e").val() // id 값을 전송하도록 수정
+      		},
+            cache: false,
+            success:function(data){
+                if(data == 'error'){
+                    alert("이메일 주소가 올바르지 않습니다.")
+                } else {
+                    val_num = tempPw;
+                    console.log("임시 비밀번호: " + val_num); // 임시 비밀번호 출력
+                } // if-else
+            } // success:fn()
+        }); // ajax
+    }); // 임시 비밀번호 발송 버튼 클릭 fn()
 	
 }); // $(document).ready(function () {})

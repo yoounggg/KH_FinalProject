@@ -74,6 +74,7 @@ public class LoginController {
         	
         	origin_pw = memberDTO.getPassword();	// 사용자가 입력한 비밀번호
         	log.trace("origin_pw = memberDTO.getPassword() = {}", memberDTO.getPassword());
+        	
         	encoded_pw = m_dto.getPassword();       // DB에 저장된 인코딩 된! 비밀번호
         	log.trace("encoded_pw = m_dto.getPassword() = {}", memberDTO.getPassword());
         	

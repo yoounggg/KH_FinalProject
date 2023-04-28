@@ -83,7 +83,7 @@
 		</select>
 		
 		<!-- [셍나] 비밀번호 변경을 위한 핸드폰 번호 가져오기 -->
-		<select id="changePW_p" parameterType="String" resultType="String">
+		<select id="changePW_p" parameterType="String" resultType="org.zerock.myapp.domain.MemberDTO">
 			SELECT
 				TEL
 			FROM
@@ -93,7 +93,7 @@
 		</select>
 		
 		<!-- [셍나] 비밀번호 변경을 위한 이메일 주소 가져오기 -->
-		<select id="changePW_e" parameterType="String" resultType="String">
+		<select id="changePW_e" parameterType="String" resultType="org.zerock.myapp.domain.MemberDTO">
 			SELECT
 				EMAIL
 			FROM
@@ -101,6 +101,16 @@
 			WHERE
 				ID = #{id}
 		</select>
+
+		<!-- [셍나] -->
+		<update id="updatePw_e">
+		    UPDATE 
+		    	MEMBER
+		    SET
+		    	PASSWORD = #{encryptedTempPw_e}
+		    WHERE 
+		    	ID = #{id}
+		</update>
 
 		<!-- 혁규 회원가입 -->
 		<insert id="memberSignup" >
