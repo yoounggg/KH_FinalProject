@@ -211,19 +211,43 @@ public class MemberController {
 	// [핸드폰] 비밀번호 변경 - 임시 비밀번호 휴대폰 전송
 	@GetMapping("/changepw/sendTelTempPw")
 	// 해당 아이디와 일치하는 휴대폰 번호로 임시 비밀번호 발송
-	public @ResponseBody String sendTelTempPw(@RequestParam("tel") String userPhoneNumber) {				// 문자 보내기
+	public @ResponseBody String sendTelTempPw(@RequestParam("id") String id, @RequestParam("phone") String phone) throws Exception {				// 문자 보내기
 		
+		MemberDTO memberDTO = memberService.getTelById(id);
 		
-		// 임시 비밀번호 메소드를 통한 임시 비밀번호
-	    String tempPw_p = generateTempPw(10);
-		
-		log.info("tempPw_p()에서 생성된 임시 비밀번호: {}", tempPw_p);
-	    
-		msgSendService.msgSendSein(userPhoneNumber, tempPw_p);
-		
-		log.trace("userPhoneNumber: {} , tempPw: {}  " , userPhoneNumber, tempPw_p);
-		
-		return tempPw_p;
+	    // 조회 결과 해당 휴대폰 번호가 존재할 경우
+	    if (memberDTO != null) {
+
+	        // memberDTO에서 tel값 뽑아옴!
+	        String userPhoneNumber = memberDTO.getTel();
+
+	        // 임시 비밀번호 메소드를 통한 임시 비밀번호
+	        String tempPw_p = generateTempPw(10);
+
+	        log.info("tempPw_p()에서 생성된 임시 비밀번호: {}", tempPw_p);
+
+	        // BCryptPasswordEncoder 객체 생성
+	        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+	        // 임시 비밀번호 암호화
+	        String encryptedTempPw_p = passwordEncoder.encode(tempPw_p);
+
+	        // 암호화된 임시 비밀번호를 사용하여 데이터베이스에 저장하는 로직 추가
+	        memberService.updatePw_p(id, encryptedTempPw_p);
+
+	        // 문자 전송!
+	        msgSendService.msgSendSein(userPhoneNumber, tempPw_p);
+
+	        log.trace("userPhoneNumber: {} , tempPw: {}  " , userPhoneNumber, tempPw_p);
+
+	        return tempPw_p;
+	        
+	    } else {
+	    	
+	        log.info("회원 정보가 존재하지 않습니다.");
+	        return null;
+	        
+	    } // if-else
 		
 	} // sendTelTempPw()
 	

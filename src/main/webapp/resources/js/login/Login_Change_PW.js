@@ -18,6 +18,8 @@ $(document).ready(function () {
 		$("#id_search_form_p").css("display", "none");
 	});
 	
+//	-------------------------------------------------------------------------	
+	
 	// 아이디 조회 - 휴대폰
 	    $(".id_search_button_p").click(function (event) {
 		
@@ -59,6 +61,33 @@ $(document).ready(function () {
         }); // ajax
     }); // // 아이디 찾기 버튼 클릭 - 휴대폰
 	
+	// 인증 번호 발송 버튼 클릭 이벤트 - 휴대폰
+	var val_num = ""; // 인증번호를 저장할 변수
+    $(document).on('click', '.send_tempPw_button_p', function () {
+        alert("임시 비밀번호가 발송되었습니다. \n임시 비밀번호로 로그인 후, 마이페이지에서 비밀번호 변경이 가능합니다.");
+		
+		var phone = $("#tel").val();
+		
+		// 인증 번호 발송을 위한 ajax 요청
+        $.ajax({
+		    type: 'GET',
+		    url: '/login/changepw/sendTelTempPw?phone=' + phone,
+		    data: {
+		        id: $(".id_search_input_p").val() // id 값을 전송하도록 수정
+		    },
+		    cache: false,
+		    success:function(data){
+		        if(data == 'error'){
+		            alert("휴대폰 번호가 올바르지 않습니다.")
+		        } else {
+		            val_num = tempPw;
+		            console.log("임시 비밀번호: " + val_num); // 임시 비밀번호 출력
+		        } // if-else
+		    } // success:fn()
+		}); // ajax
+    }); // 인증 번호 발송 버튼 클릭 fn()
+
+//	-------------------------------------------------------------------------	
 	
 	// 아이디 조회 - 이메일
 	$(".id_search_button_e").click(function (event) {
@@ -81,7 +110,7 @@ $(document).ready(function () {
 	        url: "/login/changepw/idSearch",
 	        type: "POST",
 	        data: {
-	            id: id
+	            id: $(".id_search_input_e").val() // id 값을 전송하도록 수정
 	        },
 	        dataType: 'json',
 	        success: function (cntIdInq) {
@@ -102,7 +131,7 @@ $(document).ready(function () {
 	    }); // ajax
 	}); // 아이디 조회 버튼 클릭 - 이메일
 
-	// 임시 비밀번호 발송 버튼 클릭 이벤트
+	// 임시 비밀번호 발송 버튼 클릭 이벤트 - 이메일
 	var val_num = ""; // 임시 비밀번호 저장할 변수
     $(document).on('click', '.send_tempPw_button_e', function () {
         alert("임시 비밀번호가 발송되었습니다. \n임시 비밀번호로 로그인 후, 마이페이지에서 비밀번호 변경이 가능합니다.");

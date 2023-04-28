@@ -66,7 +66,7 @@ $(document).ready(function () {
     }); // // 아이디 찾기 버튼 클릭
 
 
-	// 인증 번호 발송 버튼 클릭 이벤트
+	// 인증 번호 발송 버튼 클릭 이벤트 - 휴대폰
 	var val_num = ""; // 인증번호를 저장할 변수
     $(".send_verification_button_p").click(function () {
         alert("인증번호를 인증번호 입력창에 입력해주세요.");

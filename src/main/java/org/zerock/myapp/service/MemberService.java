@@ -32,7 +32,10 @@ public interface MemberService {
     // [셍나] 비밀번호 변경 - 아이디 값으로 이메일 주소 가져오기
     public MemberDTO getEamilById(String id) throws ServiceException;
     
-    // [셍나] 비밀번호 암호화해서 DB에 저장하기 - 이메일 인증
+    // [셍나] 비밀번호 암호화해서 DB에 저장하기 - 휴대폰으로 전송
+    public void updatePw_p(String id, String encryptedTempPw_p);
+    
+    // [셍나] 비밀번호 암호화해서 DB에 저장하기 - 이메일로 전송
     public void updatePw_e(String id, String encryptedTempPw_e);
     
 //	---------------------------------------------------------------------------------------
