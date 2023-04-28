@@ -1,8 +1,10 @@
 package org.zerock.myapp.service;
 
-import org.apache.ibatis.annotations.Param;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.zerock.myapp.domain.Criteria;
 import org.zerock.myapp.domain.MemberDTO;
 import org.zerock.myapp.exception.ServiceException;
 import org.zerock.myapp.mapper.MemberMapper;
@@ -99,5 +101,60 @@ public class MemberServiceImpl implements MemberService {
 		return memberMapper.getMemberInfo(memberId);
 		
 	} // getMemberInfo
+
+//	------------------------------------------------------------
+	
+	// 별이 회원 목록 전체 조회
+	@Override
+	public List<MemberDTO> getList() throws ServiceException {
+		log.trace("getList() invoked. - [관리자]회원 목록 전체 조회");
+		
+		try {
+			return this.memberMapper.selectAll();
+		} catch(Exception e) {
+			throw new ServiceException(e);
+		} // try
+		
+	} // getList
+
+	// 별이 회원 상세 조회
+	@Override
+	public MemberDTO get(String id) throws ServiceException {
+		log.trace("get() invoked. - [관리자]회원 상세 조회");
+		
+		try {
+			return this.memberMapper.select(id);
+		} catch(Exception e) {
+			throw new ServiceException(e);
+		} // try
+	
+	} //get
+
+	
+	// 별이 회원 목록 전체 조회
+	@Override
+	public List<MemberDTO> getListPaging(Criteria cri) throws ServiceException {
+		log.trace("getListPaging() invoked. - [관리자]회원 목록 전체 조회(페이징)");
+		
+		try {
+			return this.memberMapper.selectAllPaging(cri);
+		} catch(Exception e) {
+			throw new ServiceException(e);
+		} // try
+	} //get
+	
+	// 별이 회원 목록 조회
+	@Override
+	public Integer getTotal() throws ServiceException {
+		log.trace("getList() invoked. - [관리자]인원수 조회");
+		
+		try {
+			return this.memberMapper.getTotal();			
+		} catch(Exception e) {
+			throw new ServiceException(e);
+		} // try
+	
+	} // getTotal
+
  
 } // end class

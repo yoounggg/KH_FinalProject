@@ -110,8 +110,17 @@ public class AdminController {
 		log.trace("get({}, {}) invoked.", no, model);
 		
 		try {
-			ProductDTO dto = this.service.get(no);
-			model.addAttribute("product", dto);
+			
+	         ObjectMapper objm = new ObjectMapper();
+	         
+	         List<CategoryVO> list = this.service.getCateList();
+	         
+	         String cateList = objm.writeValueAsString(list);
+	         
+	         model.addAttribute("cateList", cateList);
+	         
+	         ProductDTO dto = this.service.get(no);
+	         model.addAttribute("product", dto);
 		} catch (Exception e) {
 			throw new ControllerException(e);
 		} // try-catch
@@ -289,5 +298,7 @@ public class AdminController {
       
    } // deleteFile
    
+   
+
    
 } // end class

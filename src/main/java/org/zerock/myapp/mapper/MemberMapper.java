@@ -1,6 +1,11 @@
 package org.zerock.myapp.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.zerock.myapp.domain.Criteria;
+import org.zerock.myapp.domain.FarmVO;
 import org.zerock.myapp.domain.MemberDTO;
 
 public interface MemberMapper {
@@ -30,5 +35,17 @@ public interface MemberMapper {
 	
 	// 주문자 주소 정보 (찬돌)
 	public MemberDTO getMemberInfo(String id); // memberId 가 테이블에 ID로 되어있고 String임
+	
+	// [별이] 회원 조회
+	public abstract List<MemberDTO> selectAll();
+	
+	// [별이] 회원 상세 조회
+	public abstract MemberDTO select(String id);
+	
+	// [별이] 회원 조회 페이징
+	public abstract List<MemberDTO> selectAllPaging(Criteria cri);
+	
+	// [별이]
+	public abstract Integer getTotal();
 	
 } // end class

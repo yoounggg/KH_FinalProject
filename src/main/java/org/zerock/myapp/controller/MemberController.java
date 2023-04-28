@@ -251,4 +251,9 @@ public class MemberController {
 	} // mailCheck()
 	
 	
+	
+	
+	
+	
+	
 } // end class

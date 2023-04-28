@@ -1,6 +1,9 @@
 package org.zerock.myapp.service;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
+import org.zerock.myapp.domain.Criteria;
 import org.zerock.myapp.domain.MemberDTO;
 import org.zerock.myapp.exception.ServiceException;
 
@@ -24,4 +27,17 @@ public interface MemberService {
     // 주문자 정보 (찬돌)
     public MemberDTO getMemberInfo(String memberId) throws ServiceException;
 	
+    
+    // [별이] 회원 목록 전체 조회
+    public abstract List<MemberDTO> getList() throws ServiceException;
+    
+    // [별이] 회원 목록 전체 조회(페이징)
+    public abstract List<MemberDTO> getListPaging(Criteria cri) throws ServiceException;
+    
+    // [별이] 회원 상세 조회
+    public abstract MemberDTO get(String id) throws ServiceException;
+  
+    // [별이] 회원 총 인원수
+    public abstract Integer getTotal() throws ServiceException;
+    
 } // end class
