@@ -115,4 +115,9 @@ public class MemberController {
 	    
 	} // mailAuth()
 	
+	
+	
+	
+	
+	
 } // end class
