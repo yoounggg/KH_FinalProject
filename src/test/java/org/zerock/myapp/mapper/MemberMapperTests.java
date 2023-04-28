@@ -183,46 +183,7 @@ public class MemberMapperTests {
 		
 	} // idCheck_e()
 	
-<<<<<<< HEAD
 	
-	
-//	[별이] 회원 전체 목록 조회
-//	@Disabled
-	@Test
-	@Order(5)
-	@DisplayName("member selectAllPaging test")
-	@Timeout(value=1, unit=TimeUnit.SECONDS)
-	void selectAllPaging() throws Exception {
-		log.trace("selectAll() invoked.");
-		
-		Criteria cri = new Criteria();
-		cri.setCurrPage(1);
-		
-		List<MemberDTO> list = this.memberMapper.selectAllPaging(cri);
-		assertNotNull(list);
-		
-	    list.forEach(log::info);
-		
-	} // selectAll
-	
-	
-//	[별이] 회원 전체 목록 조회
-//	@Disabled
-	@Test
-	@Order(6)
-	@DisplayName("member select test")
-	@Timeout(value=1, unit=TimeUnit.SECONDS)
-	void select() throws Exception {
-		log.trace("select() invoked.");
-		
-		String id = "mooyaho";
-		MemberDTO dto = this.memberMapper.select(id);
-		
-	    log.info("member select 테스트 결과: {}", dto);
-		
-	} // select
-	
-=======
 //	셍나 로그인 테스트 - 아이디 찾기 결과값 반환 테스트 - 이메일
 //	@Disabled
 	@Test
@@ -261,6 +222,44 @@ public class MemberMapperTests {
 	    log.info("idSearch 테스트 결과: {}", memberMapper.idSearch( memberDTO.getId() ));
 		
 	} // idSearch()
->>>>>>> 8f4a50ff8ab164d6d455ed0cd04e226403aae733
+	
+	
+//	[별이] 회원 전체 목록 조회
+//	@Disabled
+	@Test
+	@Order(5)
+	@DisplayName("member selectAllPaging test")
+	@Timeout(value=1, unit=TimeUnit.SECONDS)
+	void selectAllPaging() throws Exception {
+		log.trace("selectAll() invoked.");
+		
+		Criteria cri = new Criteria();
+		cri.setCurrPage(1);
+		
+		List<MemberDTO> list = this.memberMapper.selectAllPaging(cri);
+		assertNotNull(list);
+		
+	    list.forEach(log::info);
+		
+	} // selectAll
+	
+	
+//	[별이] 회원 전체 목록 조회
+//	@Disabled
+	@Test
+	@Order(6)
+	@DisplayName("member select test")
+	@Timeout(value=1, unit=TimeUnit.SECONDS)
+	void select() throws Exception {
+		log.trace("select() invoked.");
+		
+		String id = "mooyaho";
+		MemberDTO dto = this.memberMapper.select(id);
+		
+	    log.info("member select 테스트 결과: {}", dto);
+		
+	} // select
+	
+	
 	
 } // end class

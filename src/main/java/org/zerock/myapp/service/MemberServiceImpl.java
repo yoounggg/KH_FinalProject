@@ -1,11 +1,7 @@
 package org.zerock.myapp.service;
 
-<<<<<<< HEAD
 import java.util.List;
 
-=======
-import org.apache.ibatis.annotations.Param;
->>>>>>> 8f4a50ff8ab164d6d455ed0cd04e226403aae733
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zerock.myapp.domain.Criteria;
@@ -135,6 +131,7 @@ public class MemberServiceImpl implements MemberService {
 	} //get
 
 	
+	// 별이 회원 목록 전체 조회
 	@Override
 	public List<MemberDTO> getListPaging(Criteria cri) throws ServiceException {
 		log.trace("getListPaging() invoked. - [관리자]회원 목록 전체 조회(페이징)");
@@ -146,9 +143,10 @@ public class MemberServiceImpl implements MemberService {
 		} // try
 	} //get
 	
+	// 별이 회원 목록 조회
 	@Override
 	public Integer getTotal() throws ServiceException {
-		log.trace("getList() invoked. - [관리자]회원 목록 전체 조회(페이징)");
+		log.trace("getList() invoked. - [관리자]인원수 조회");
 		
 		try {
 			return this.memberMapper.getTotal();			
