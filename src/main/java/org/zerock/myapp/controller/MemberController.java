@@ -274,4 +274,9 @@ public class MemberController {
 	} // sendEmailTempPw()
 	
 	
+	
+	
+	
+	
+	
 } // end class

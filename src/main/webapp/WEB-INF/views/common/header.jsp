@@ -49,7 +49,6 @@
             <ul class="container2">
             
             	<!--로그인 x-->
-            	<!--로그인 성공하면 세션에 사용자 정보를 저장하는 model 상자의 이름 = member로 기재-->
                 <c:if test = "${member == null}">
                     <li><a href="/login/main">로그인</a></li>
                     <li><a href="/signup/main">회원가입</a></li>
@@ -73,11 +72,11 @@
 
             <div class="container3">
                 <a href="/main"><img id="logo" src="/resources/imgs/logo.png" alt="로고"></a>
-            <!-- action에는 jsp 파일인듯?/ GET방식 /  -->
-                <form class="search1" action="#" method="GET">
-                    <input class="search-txt" type="text" placeholder=" 검색어를 입력해주세요!">    
+              	
+              	<form id="mainsearch" class="search1" action="/search" method="GET">
+                    <input class="search-txt" name="keyword" type="text" placeholder=" 검색어를 입력해주세요!">    
                     <button class="search-btn" type="submit"><img id="btn" src="/resources/imgs/search.png" alt="메인검색버튼"></button>
-                </form>   
+                </form>    
                  
             </div>
     </header>

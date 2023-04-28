@@ -1,5 +1,8 @@
 package org.zerock.myapp.mapper;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
@@ -16,6 +19,7 @@ import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.zerock.myapp.domain.Criteria;
 import org.zerock.myapp.domain.MemberDTO;
 
 import lombok.NoArgsConstructor;
@@ -179,6 +183,7 @@ public class MemberMapperTests {
 		
 	} // idCheck_e()
 	
+	
 //	셍나 로그인 테스트 - 아이디 찾기 결과값 반환 테스트 - 이메일
 //	@Disabled
 	@Test
@@ -255,5 +260,43 @@ public class MemberMapperTests {
 	    log.info("changePW_e 테스트 결과: {}", memberMapper.changePW_e( memberDTO.getId() ));
 		
 	} // changePW_e()
+	
+//	[별이] 회원 전체 목록 조회
+//	@Disabled
+	@Test
+	@Order(5)
+	@DisplayName("member selectAllPaging test")
+	@Timeout(value=1, unit=TimeUnit.SECONDS)
+	void selectAllPaging() throws Exception {
+		log.trace("selectAll() invoked.");
+		
+		Criteria cri = new Criteria();
+		cri.setCurrPage(1);
+		
+		List<MemberDTO> list = this.memberMapper.selectAllPaging(cri);
+		assertNotNull(list);
+		
+	    list.forEach(log::info);
+		
+	} // selectAll
+	
+	
+//	[별이] 회원 전체 목록 조회
+//	@Disabled
+	@Test
+	@Order(6)
+	@DisplayName("member select test")
+	@Timeout(value=1, unit=TimeUnit.SECONDS)
+	void select() throws Exception {
+		log.trace("select() invoked.");
+		
+		String id = "mooyaho";
+		MemberDTO dto = this.memberMapper.select(id);
+		
+	    log.info("member select 테스트 결과: {}", dto);
+		
+	} // select
+	
+	
 	
 } // end class
