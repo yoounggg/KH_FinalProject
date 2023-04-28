@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.zerock.myapp.mapper.MemberMapper;
-import org.zerock.myapp.service.MailSendService;
 import org.zerock.myapp.service.MemberService;
 import org.zerock.myapp.service.MsgSendService;
 
