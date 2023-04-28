@@ -78,12 +78,12 @@ public class OrderServiceImpl implements OrderService {
 		/* 주문 정보 */
 		List<OrderItemDTO> orders = new ArrayList<>();
 		for(OrderItemDTO oit : odt.getOrders()) {
-			OrderItemDTO orderItem = orderMapper.getOrderInfo(oit.getProduct_no());
-			
-		    if (orderItem == null) {
-		        // 해당 상품번호에 대한 주문 정보가 존재하지 않음
-		        continue;
-		    }
+			OrderItemDTO orderItem = orderMapper.getOrderInfo(oit.getNo()); //product_no?
+//			
+//		    if (orderItem == null) {
+//		        // 해당 상품번호에 대한 주문 정보가 존재하지 않음
+//		        continue;
+//		    }
 			
 			// 수량
 			orderItem.setCount(oit.getCount());
@@ -96,21 +96,29 @@ public class OrderServiceImpl implements OrderService {
 		odt.setOrders(orders);
 		odt.getOrderPriceInfo(); // 음..? 비용,배송비,최종비용
 		
-		
-	// DB 주문, 주문상품(배송정보) 넣기 
-		
-		/* orderId만들기 및 OrderDTO 객체를 orderId에 저장 */
 //		Date date = new Date();
 //		SimpleDateFormat format = new SimpleDateFormat("_yyyyMMddmm");
-//		String orderId = member.getId() + format.format(date);
-//		odt.setNo(orderId);
-//		=======================================> 음.. orderId 우리는 pk로 자동으로 들어가게 해놔서 안만들어도..?
+//		String order_no = member.getId() + format.format(date);
+//		oit(order_no);
 		
 		/* DB넣기 */
 		orderMapper.enrollOrder(odt);        // MYMG_ORDER 등록
+		
 		for(OrderItemDTO oit : odt.getOrders()) {		//ORDER_LIST 등록
-//				oit.setOrder_no();  // 흠. .자동생성 되니 안만들어도..?
+				oit.setOrder_no(odt.getNo());
+//				oit.setOrder_no();  // 흠. .자동생성 되니 안만들어도..? -> 이게 아님.. 
 				orderMapper.enrollOrderItem(oit);
+		}
+		
+		/* 장바구니 제거 */
+		for(OrderItemDTO oit : odt.getOrders()) {
+			log.info("\t+ ********************장바구니 제거 테스트********************");
+			CartDTO dto = new CartDTO();
+			dto.setMember_id(odt.getMember_id());
+			dto.setProduct_No(oit.getProduct_no());
+			
+			cartMapper.deleteOrderCart(dto);
+			log.info("\t+ ********************장바구니 제거 테스트********************");
 		}
 		
 		/* 재고 차감 */
@@ -120,14 +128,6 @@ public class OrderServiceImpl implements OrderService {
 //			product.setStock(product.getStock() - oit.getCount());
 //		}
 		
-		/* 장바구니 제거 */
-		for(OrderItemDTO oit : odt.getOrders()) {
-			CartDTO dto = new CartDTO();
-			dto.setMember_id(odt.getMember_id());
-			dto.setProduct_No(oit.getProduct_no());
-			
-			cartMapper.deleteOrderCart(dto);
-		}
 		
 	} // order
 

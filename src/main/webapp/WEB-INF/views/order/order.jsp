@@ -136,12 +136,12 @@
 									<td class="products_table_price_td">
 										<fmt:formatNumber value="${ol.price}" pattern="#,### 원" /> | 수량 ${ol.productCount}개
 										<br><fmt:formatNumber value="${ol.totalPrice}" pattern="#,### 원" />
-										<input type="hidden" class="individual_productName_input" value="${ol.name}">
-										<input type="hidden" class="individual_productPrice_input" value="${ol.price}">		
-										<input type="hidden" class="individual_productCount_input" value="${ol.productCount}">
+										<input type="hidden" class="individual_productName_input" name="name" value="${ol.name}">
+										<input type="hidden" class="individual_productPrice_input" name="price" value="${ol.price}">		
+										<input type="hidden" class="individual_productCount_input"  name="Count" value="${ol.productCount}">
 										<input type="hidden" class="individual_totalPrice_input" value="${ol.productCount * ol.price}">
-										<input type="hidden" class="individual_salePrice_input" value="${ol.salePrice}"> 
-										<input type="hidden" class="individual_productId_input" value="${ol.productId}">
+										<input type="hidden" class="individual_salePrice_input" name="Discount" value="${ol.salePrice}"> 
+										<input type="hidden" class="individual_productId_input" name="No" value="${ol.productId}">
 									</td>
 								</tr>			
 							</c:forEach>
@@ -329,79 +329,126 @@
 
 </body>
 
-	<script>
+<script>
 
-    /* ============================== 주소 입력란 버튼 동작 (숨김, 동작) =========================================== */
+/* ============================== 주소 입력란 버튼 동작 (숨김, 동작) =========================================== */
+	function showAddress(className) {
+		// 모든 .addressInfo_input_div를 숨긴다
+		$(".addressInfo_input_div").hide();
+    	// 클래스 이름에 해당하는 .addressInfo_input_div를 보여준다
+		$(".addressInfo_input_div_" + className).show();
+		if (className === "1") {
+		// 직접 입력 버튼을 클릭한 경우
+		// .address_btn_2_wrap를 숨긴다
+		$(".address_btn_2_wrap").hide();
+		// .locate.address_btn.address_btn_1를 보여준다
+		$(".locate.address_btn.address_btn_1").show();
+		// 기존 주소 버튼을 보여준다
+		$(".locate.address_btn.address_btn_2").show();
+		//$(".address_btn_2_wrap").show();
+	} else if (className === "2") {
+	    // 기존 주소 버튼을 클릭한 경우
+	    // .address_btn_2_wrap를 보여준다
+	    $(".address_btn_2_wrap").show();
+	    // .locate.address_btn.address_btn_1를 숨긴다
+	    $(".locate.address_btn.address_btn_1").hide();
+	}
+	    // 모든 .selectAdressee를 false로 설정
+	    $(".selectAdressee").val("F");
+	     // 해당하는 .addressInfo_input_div의 .selectAdressee를 true로 설정
+	    $(".addressInfo_input_div_" + className).find(".selectAdressee").val("T");
+	}
     
-	  function showAddress(className) {
-	        // 모든 .addressInfo_input_div를 숨긴다
-	        $(".addressInfo_input_div").hide();
-	        // 클래스 이름에 해당하는 .addressInfo_input_div를 보여준다
-	        $(".addressInfo_input_div_" + className).show();
-	        if (className === "1") {
-	        	// 직접 입력 버튼을 클릭한 경우
-	        	// .address_btn_2_wrap를 숨긴다
-	        	$(".address_btn_2_wrap").hide();
-	        	// .locate.address_btn.address_btn_1를 보여준다
-	        	$(".locate.address_btn.address_btn_1").show();
-	        	// 기존 주소 버튼을 보여준다
-	        	$(".locate.address_btn.address_btn_2").show();
-	        	//$(".address_btn_2_wrap").show();
-	        } else if (className === "2") {
-	          	// 기존 주소 버튼을 클릭한 경우
-	          	// .address_btn_2_wrap를 보여준다
-	          	$(".address_btn_2_wrap").show();
-	          	// .locate.address_btn.address_btn_1를 숨긴다
-	         	$(".locate.address_btn.address_btn_1").hide();
-	        }
-	    	    // 모든 .selectAdressee를 false로 설정
-	    	    $(".selectAdressee").val("F");
-	    	    // 해당하는 .addressInfo_input_div의 .selectAdressee를 true로 설정
-	    	    $(".addressInfo_input_div_" + className).find(".selectAdressee").val("T");
-	      }
+	/* ==============================배송지=========================================== */
+	  
+	function sample4_execDaumPostcode() {
+		new daum.Postcode({
+		    oncomplete: function(data) {
+		    	var roadAddr = data.roadAddress; 
+		        var extraRoadAddr = ''; 
+	
+		        if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+		        	extraRoadAddr += data.bname;
+		        }
+	
+		        if(data.buildingName !== '' && data.apartment === 'Y'){
+		        	extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+		        }
+	
+		        if(extraRoadAddr !== ''){
+		        	extraRoadAddr = ' (' + extraRoadAddr + ')';
+		        }
+	
+		        document.getElementById('address_input_r').value = data.zonecode; 
+		        document.getElementById("address_input2_r").value = roadAddr; 
+		       	document.getElementById("address_input3_r").value = data.jibunAddress; 
+	
+		        if(roadAddr !== ''){
+		        	document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+		        } else {
+		        	document.getElementById("sample4_extraAddress").value = '';
+		        }
+	
+		        var guideTextBox = document.getElementById("guide");
+	
+		        if(data.autoRoadAddress) {
+		        	var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+		            guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+		            guideTextBox.style.display = 'block';
+	
+		        } else if(data.autoJibunAddress) {
+		        	var expJibunAddr = data.autoJibunAddress;
+		        	guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+		       		guideTextBox.style.display = 'block';
+		        } else {
+		        	guideTextBox.innerHTML = '';
+		        	guideTextBox.style.display = 'none';
+		        }
+			}
+		}).open();
+	} 
 	      
 	
 	$(document).ready(function() {
-		
     	/* 주문 조합정보란 최신화 */
-    	setTotalInfo();
+		setTotalInfo();
     	
 		$(".order_btn").on("click", function() {
-
 			  $(".locate_addressInfo").each(function(i, obj) {
 			    if ($(obj).find(".selectAdressee").val() == 'T') {
-			      $("input[name='receiver_name']").val($(obj).find(".name_input_r").val());
-			      $("input[name='receiver_address1']").val($(obj).find("#address_input_r").val());
-			      $("input[name='receiver_address2']").val($(obj).find("#address_input2_r").val());
-			      $("input[name='receiver_address3']").val($(obj).find("#address_input3_r").val());
-			      $("input[name='receiver_tel']").val($(obj).find("#phone_input_r").val());
+					$("input[name='receiver_name']").val($(obj).find(".name_input_r").val());
+			      	$("input[name='receiver_address1']").val($(obj).find("#address_input_r").val());
+			      	$("input[name='receiver_address2']").val($(obj).find("#address_input2_r").val());
+			      	$("input[name='receiver_address3']").val($(obj).find("#address_input3_r").val());
+			      	$("input[name='receiver_tel']").val($(obj).find("#phone_input_r").val());
 			    } else if  ($(obj).find(".selectAdressee").val() == 'F') {
-				      $("input[name='receiver_name']").val($(obj).find(".name_input2_r").val());
-				      $("input[name='receiver_address1']").val($(obj).find(".address_input4_r").val());
-				      $("input[name='receiver_address2']").val($(obj).find(".address_input5_r").val());
-				      $("input[name='receiver_address3']").val($(obj).find(".address_input6_r").val());
-				      $("input[name='receiver_tel']").val($(obj).find("#phone_input2_r").val());
+				    $("input[name='receiver_name']").val($(obj).find(".name_input2_r").val());
+					$("input[name='receiver_address1']").val($(obj).find(".address_input4_r").val());
+				    $("input[name='receiver_address2']").val($(obj).find(".address_input5_r").val());
+				    $("input[name='receiver_address3']").val($(obj).find(".address_input6_r").val());
+				    $("input[name='receiver_tel']").val($(obj).find("#phone_input2_r").val());
 			    }
-			  });
-		
+			});
 		/* 상품정보 */
-		let form_contents = '';
-		$(".products_table_price_td").each(function(index, element) {
-		  let productId = $(element).find(".individual_productId_input").val();
-		  let productCount = $(element).find(".individual_productCount_input").val();
-		  let productId_input = "<input name='orders[" + index + "].productId' type='hidden' value='" + productId + "'>";
-		  form_contents += productId_input + "\n";
-		  let productCount_input = "<input name='orders[" + index + "].productCount' type='hidden' value='" + productCount + "'>";
-		  form_contents += productCount_input + "\n";
-		});
-		$(".order_form").append(form_contents);
+			let form_contents = '';
+			$(".products_table_price_td").each(function(index, element) {
+
+		  		let product_no = $(element).find(".individual_productId_input").val();
+		  		let count = $(element).find(".individual_productCount_input").val();
+
+		  		let product_no_input = "<input name='orders[" + index + "].product_no' type='hidden' value='" + product_no + "'>";
+		  		form_contents += product_no_input;
+		  		let productCount_input = "<input name='orders[" + index + "].count' type='hidden' value='" + count + "'>";
+		  		form_contents += productCount_input;
+			});
+			$(".order_form").append(form_contents);
 		
-		  /* 주문 양식 제출 */
-		  $(".order_form").submit();
+		  	/* 주문 양식 제출 */
+		  	$(".order_form").submit();
 		}); 
 	});
 	
-	</script>
+</script>
 	    
 
 </html>
