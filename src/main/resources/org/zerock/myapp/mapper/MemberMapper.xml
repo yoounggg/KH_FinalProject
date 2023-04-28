@@ -102,7 +102,17 @@
 				ID = #{id}
 		</select>
 
-		<!-- [셍나] -->
+		<!-- [셍나] 임시 비밀번호 생성 후 암호화 시켜서 디비에 저장! - 휴대폰 -->
+		<update id="updatePw_p">
+		    UPDATE 
+		    	MEMBER
+		    SET
+		    	PASSWORD = #{encryptedTempPw_p}
+		    WHERE 
+		    	ID = #{id}
+		</update>
+
+		<!-- [셍나] 임시 비밀번호 생성 후 암호화 시켜서 디비에 저장! - 이메일 -->
 		<update id="updatePw_e">
 		    UPDATE 
 		    	MEMBER

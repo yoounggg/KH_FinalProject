@@ -81,7 +81,7 @@ public class LoginController {
         	// 비밀번호 일치 여부 판단을 위한 if문 작성
         	if(true == bCryptPasswordEncoder.matches(origin_pw, encoded_pw)) {	// BCryptPasswordEncoder의 .matches()로 비밀번호 일치 여부 판단
         		
-        		log.trace("비밀번호 일치 여부 판단을 위한 if문에 들어왔습니다.");
+        		log.trace("[셍나]: 비밀번호 일치 여부 판단을 위한 if문에 들어왔습니다.");
                  
         		m_dto.setPassword("");		// 인코딩된 비밀번호의 정보를 지워줌
         		session.setAttribute("member", m_dto);	// member 세션에 사용자 정보 저장

@@ -40,6 +40,9 @@ public interface MemberMapper {
 	public MemberDTO changePW_e(@Param("id") String id);
 	
 	// [셍나] 비밀번호 변경 - 임시 비밀번호 암호화 후 DB 저장(이메일)
+	public void updatePw_p(@Param("id") String id, @Param("encryptedTempPw_p") String encryptedTempPw_p);
+	
+	// [셍나] 비밀번호 변경 - 임시 비밀번호 암호화 후 DB 저장(이메일)
 	public void updatePw_e(@Param("id") String id, @Param("encryptedTempPw_e") String encryptedTempPw_e);
 	
 //	---------------------------------------------------------------------------------------

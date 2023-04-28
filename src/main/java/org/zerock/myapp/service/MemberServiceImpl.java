@@ -114,7 +114,19 @@ public class MemberServiceImpl implements MemberService {
 		
 	} // getEamilById()
 	
-	// [셍나] 비밀번호 변경 - 임시 비밀번호 발급 이후 암호화 시켜서 DB에 저장하기
+	
+	// [셍나] 비밀번호 변경 - 임시 비밀번호 발급 이후 암호화 시켜서 DB에 저장하기 - 휴대폰
+	@Override
+	public void updatePw_p(String id, String encryptedTempPw_p) {
+		
+		memberMapper.updatePw_p(id, encryptedTempPw_p);
+
+		log.info("이메일 - 임시 비밀번호 암호화 후 DB에 저장시키는 encodingPw_p() 활성화! id:{}, encryptedTempPw_p:{}", id, encryptedTempPw_p);
+		
+	} // encodingPw_p()
+	
+	
+	// [셍나] 비밀번호 변경 - 임시 비밀번호 발급 이후 암호화 시켜서 DB에 저장하기 - 이메일
 	@Override
 	public void updatePw_e(String id, String encryptedTempPw_e) {
 		
