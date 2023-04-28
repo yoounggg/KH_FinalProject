@@ -56,8 +56,8 @@
     <!-- 상품 등록 -->
     <insert id="insert">
 		INSERT
-        INTO PRODUCT (category, name, price, discount, discount_price, weight, origin, stock, farm_no, main_image, main_image2, sub_image1, sub_image2, sub_image3, sub_image4, content, content_image)
-         VALUES (#{category}, #{name}, #{price}, #{discount}, #{discount_price}, #{weight}, #{origin}, #{stock}, #{farm_no}, #{main_image}, #{main_image2}, #{sub_image1}, #{sub_image2}, #{sub_image3}, #{sub_image4}, #{content}, #{content_image})    
+        INTO PRODUCT (category, name, price, discount, discount_price, weight, origin, stock, farm_no, title, main_image, sub_image1, sub_image2, sub_image3, sub_image4, content, content_image)
+         VALUES (#{category}, #{name}, #{price}, #{discount}, #{discount_price}, #{weight}, #{origin}, #{stock}, #{farm_no}, #{title}, #{main_image}, #{sub_image1}, #{sub_image2}, #{sub_image3}, #{sub_image4}, #{content}, #{content_image})    
 	</insert>
 	
 	
@@ -81,9 +81,9 @@
         	weight = #{weight}, 
         	origin= #{origin}, 
         	stock = #{stock}, 
-        	farm_no = #{farm_no}, 
+        	farm_no = #{farm_no},
+        	title = #{title},
         	main_image = #{main_image}, 
-        	main_image2 = #{main_image2}, 
         	sub_image1 = #{sub_image1}, 
         	sub_image2 = #{sub_image2}, 
         	sub_image3 = #{sub_image3}, 
