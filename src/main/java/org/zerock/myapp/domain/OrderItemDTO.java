@@ -1,4 +1,4 @@
-package org.zerock.myapp.domain;
+ 	package org.zerock.myapp.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +11,7 @@ import lombok.extern.log4j.Log4j2;
 public class OrderItemDTO { // 하나의 주문상품정보를 담음
 	    
 	private Integer order_no; // 주문번호
-	private Integer product_no; // 상품 번호 -> orderMapper.xml에서 no임
+	private Integer product_no; // 상품 번호
 	private Integer count; // 주문 수량
 	private Integer no; // ORDER_LIST (PK)의 기본키
 	private Integer price; // 상품 한개 가격 - OrderPageItemDTO클래스와 맞춰봄

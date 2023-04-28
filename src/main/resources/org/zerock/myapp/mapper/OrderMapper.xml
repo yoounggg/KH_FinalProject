@@ -8,38 +8,33 @@
  		<select id="getProductsInfo" resultType="org.zerock.myapp.domain.OrderPageItemDTO">
  			SELECT *
  			FROM product
- 			WHERE No = #{No}
+ 			WHERE No = #{No, jdbcType=VARCHAR}
  		</select>
  		
- 		<select id="getOrderInfo" resultType="org.zerock.myapp.domain.OrderItemDTO">
-			SELECT no, price, discount, stock <!-- count가 없어서 stock을 추가했는데 맞을까..? -->
+ 		<select id="getOrderInfo" parameterType="org.zerock.myapp.domain.OrderItemDTO">
+			SELECT no, price, discount
 			FROM product
-			WHERE no = #{no, jdbcType=VARCHAR}
+			WHERE no = #{no, jdbcType=VARCHAR} <!-- jdbcType넣어야 에러안남 -->
 		</select>
 		
 		<select id="enrollOrder" parameterType="org.zerock.myapp.domain.OrderDTO">		<!-- no 제외 -->
 			INSERT INTO MYMG_ORDER( member_id, receiver_name, receiver_address1, receiver_address2, receiver_address3, receiver_tel, delivery_cost, delivery_state)
 			VALUES ( #{member_id, jdbcType=VARCHAR}, #{receiver_name, jdbcType=VARCHAR}, #{receiver_address1, jdbcType=VARCHAR},
-					 #{receiver_address2, jdbcType=VARCHAR}, #{receiver_address3, jdbcType=VARCHAR}, #{receiver_tel},
-					 #{delivery_cost, jdbcType=VARCHAR}, '배송준비' ) 
+					 #{receiver_address2, jdbcType=VARCHAR}, #{receiver_address3, jdbcType=VARCHAR}, #{receiver_tel, jdbcType=VARCHAR},
+					 #{delivery_cost,  jdbcType=NUMERIC}, '배송준비' ) 
 		</select>
 		
-		<select id="enrollOrderItem"> <!-- no 제외 -->
+		<select id="enrollOrderItem" resultType="org.zerock.myapp.domain.OrderItemDTO"> <!-- no 제외 -->
 			INSERT INTO ORDER_LIST(order_no, product_no, count, price, discount)
-			VALUES (#{order_no}, #{product_no}, #{count}, #{price}, #{discount})
+			VALUES (#{order_no, jdbcType=VARCHAR}, #{product_no, jdbcType=VARCHAR}, #{count, jdbcType=VARCHAR}, #{price, jdbcType=VARCHAR}, #{discount, jdbcType=VARCHAR})
 		</select>
 		
 		<select id="deductStock" resultType="org.zerock.myapp.domain.ProductDTO">
 			UPDATE product
-			set stock = #{stock}
+			set stock = #{stock, jdbcType=INTEGER}
 			WHERE no = #{no}
 		</select>
 
-		<select id="deleteOrderCart">
-			DELETE FROM cart
-			WHERE  member_id = #{member_id} AND product_id = #{product_id}
-		</select>
-		
  </mapper>
  
  <!-- SELECT No, Name, Price, Discount  -->

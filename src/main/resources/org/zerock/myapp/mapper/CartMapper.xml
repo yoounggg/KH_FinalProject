@@ -52,6 +52,7 @@
 	
 	</select>
 	
+	<!-- 주문완료시 장바구니에서 삭제 (찬돌) -->
 	<select id="deleteOrderCart">
 		DELETE FROM cart
 		WHERE member_id = #{member_id} and product_No = #{product_No}
