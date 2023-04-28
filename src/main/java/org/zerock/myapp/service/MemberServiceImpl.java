@@ -92,6 +92,38 @@ public class MemberServiceImpl implements MemberService {
 		
 	} // idSearch()
 	
+	
+	// [셍나] 비밀번호 변경 - 아이디로 핸드폰 번호 가져오기
+	@Override
+	public MemberDTO getTelById(String id) {
+		
+		log.trace("Service 계층에서 아이디로 핸드폰 번호 가져오기! {}", memberMapper.changePW_p(id));
+		
+		return memberMapper.changePW_p(id);
+		
+	} // getTelById()
+	
+	
+	// [셍나] 비밀번호 변경 - 아이디로 이메일 주소 가져오기
+	@Override
+	public MemberDTO getEamilById(String id) {
+		
+		log.trace("Service 계층에서 아이디로 이메일 주소 가져오기! {}", memberMapper.changePW_e(id));
+		
+		return memberMapper.changePW_e(id);
+		
+	} // getEamilById()
+	
+	// [셍나] 비밀번호 변경 - 임시 비밀번호 발급 이후 암호화 시켜서 DB에 저장하기
+	@Override
+	public void updatePw_e(String id, String encryptedTempPw_e) {
+		
+		memberMapper.updatePw_e(id, encryptedTempPw_e);
+
+		log.info("이메일 - 임시 비밀번호 암호화 후 DB에 저장시키는 encodingPw_e() 활성화! id:{}, encryptedTempPw_e:{}", id, encryptedTempPw_e);
+		
+	} // encodingPw_e()
+	
 //	------------------------------------------------------------
 	
 	// MemberDTO 객체 반환 하는 구현객체 생성 (찬돌)

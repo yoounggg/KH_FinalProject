@@ -3,9 +3,7 @@ package org.zerock.myapp.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 import org.zerock.myapp.domain.Criteria;
-import org.zerock.myapp.domain.FarmVO;
 import org.zerock.myapp.domain.MemberDTO;
 
 public interface MemberMapper {
@@ -13,6 +11,8 @@ public interface MemberMapper {
 	// 회원 가입  혁규
 	public void memberSignup(MemberDTO memberDTO);
 
+//	---------------------------------------------------------------------------------------
+	
 	// [셍나] 로그인
 	// MemberVO로 하면 MemberVO 어노테이션 @Value라서 객체 생성이 안댐!
 	// DTO 따로 생성해서 @Data 값 주고 사용하기
@@ -34,13 +34,20 @@ public interface MemberMapper {
 	public int idSearch(@Param("id") String id);
 	
 	// [셍나] 비밀번호 변경 - 아이디 값으로 핸드폰 번호 가져오기
-	public String changePW_p(@Param("id") String id);
+	public MemberDTO changePW_p(@Param("id") String id);
 	
 	// [셍나] 비밀번호 변경 - 아이디 값으로 이메일 주소 가져오기
-	public String changePW_e(@Param("id") String id);
+	public MemberDTO changePW_e(@Param("id") String id);
 	
-	// 주문자 주소 정보 (찬돌)
+	// [셍나] 비밀번호 변경 - 임시 비밀번호 암호화 후 DB 저장(이메일)
+	public void updatePw_e(@Param("id") String id, @Param("encryptedTempPw_e") String encryptedTempPw_e);
+	
+//	---------------------------------------------------------------------------------------
+	
+	// [찬돌] 주문자 주소 정보
 	public MemberDTO getMemberInfo(String id); // memberId 가 테이블에 ID로 되어있고 String임
+	
+//	---------------------------------------------------------------------------------------
 	
 	// [별이] 회원 조회
 	public abstract List<MemberDTO> selectAll();
