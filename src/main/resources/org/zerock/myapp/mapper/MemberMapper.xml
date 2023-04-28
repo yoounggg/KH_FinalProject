@@ -6,7 +6,7 @@
 
 	<mapper namespace="org.zerock.myapp.mapper.MemberMapper">
 	
-		<!-- 셍나 로그인: memberLogin() -->
+		<!-- [셍나] 로그인: memberLogin() -->
 		<!-- 암호화 미적용 -->
 		<!-- <select id="memberLogin" resultType="org.zerock.myapp.domain.MemberDTO">
 		    SELECT 
@@ -76,6 +76,26 @@
 		<select id="idSearch" parameterType="String" resultType="int">
 			SELECT
 				COUNT(*)
+			FROM
+				MEMBER
+			WHERE
+				ID = #{id}
+		</select>
+		
+		<!-- [셍나] 비밀번호 변경을 위한 핸드폰 번호 가져오기 -->
+		<select id="changePW_p" parameterType="String" resultType="String">
+			SELECT
+				TEL
+			FROM
+				MEMBER
+			WHERE
+				ID = #{id}
+		</select>
+		
+		<!-- [셍나] 비밀번호 변경을 위한 이메일 주소 가져오기 -->
+		<select id="changePW_e" parameterType="String" resultType="String">
+			SELECT
+				EMAIL
 			FROM
 				MEMBER
 			WHERE
