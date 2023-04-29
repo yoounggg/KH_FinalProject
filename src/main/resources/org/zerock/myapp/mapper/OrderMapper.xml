@@ -8,21 +8,21 @@
  		<select id="getProductsInfo" resultType="org.zerock.myapp.domain.OrderPageItemDTO">
  			SELECT *
  			FROM product
- 			WHERE No = #{No, jdbcType=VARCHAR}
+ 			WHERE no = #{no, jdbcType=VARCHAR}
  		</select>
  		
- 		<select id="getOrderInfo" parameterType="org.zerock.myapp.domain.OrderItemDTO">
-			SELECT no, price, discount
-			FROM product
-			WHERE no = #{no, jdbcType=VARCHAR} <!-- jdbcType넣어야 에러안남 -->
+		<select id="getOrderInfo" parameterType="org.zerock.myapp.domain.OrderItemDTO">
+		    SELECT no, price, discount
+		    FROM product
+		    WHERE no = #{no, jdbcType=VARCHAR}
 		</select>
 		
-		<select id="enrollOrder" parameterType="org.zerock.myapp.domain.OrderDTO">		<!-- no 제외 -->
+		<insert id="enrollOrder" parameterType="org.zerock.myapp.domain.OrderDTO">
 			INSERT INTO MYMG_ORDER( member_id, receiver_name, receiver_address1, receiver_address2, receiver_address3, receiver_tel, delivery_cost, delivery_state)
 			VALUES ( #{member_id, jdbcType=VARCHAR}, #{receiver_name, jdbcType=VARCHAR}, #{receiver_address1, jdbcType=VARCHAR},
-					 #{receiver_address2, jdbcType=VARCHAR}, #{receiver_address3, jdbcType=VARCHAR}, #{receiver_tel, jdbcType=VARCHAR},
+					 #{receiver_address2, jdbcType=VARCHAR}, #{receiver_address3, jdbcType=VARCHAR}, #{receiver_tel},
 					 #{delivery_cost,  jdbcType=NUMERIC}, '배송준비' ) 
-		</select>
+		</insert>
 		
 		<select id="enrollOrderItem" resultType="org.zerock.myapp.domain.OrderItemDTO"> <!-- no 제외 -->
 			INSERT INTO ORDER_LIST(order_no, product_no, count, price, discount)
