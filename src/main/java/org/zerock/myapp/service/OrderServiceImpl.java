@@ -49,7 +49,7 @@ public class OrderServiceImpl implements OrderService {
 		
 		for(OrderPageItemDTO ord : orders) {	// 장바구니 페이지(Veiw)에서 전달 받은 정보 List객체의 수 만큼 반복해주는 for문 작성
 			//  상품 정보를 만들어내는 OrderMapper의 getProductsInfo() 메서드를 호출 , productsInfo 변수에 저장
-			OrderPageItemDTO productsInfo = orderMapper.getProductsInfo(ord.getProductId());
+			OrderPageItemDTO productsInfo = orderMapper.getProductsInfo(ord.getProduct_no());
 			
 			//현재의 productsInfo 변수에 있는 상품 정보 객체는 productCount에 대한 정보는 없기 때문에 뷰로부터 전달받은 productCount 값을 대입
 			productsInfo.setProductCount(ord.getProductCount());
@@ -78,13 +78,16 @@ public class OrderServiceImpl implements OrderService {
 		/* 주문 정보 */
 		List<OrderItemDTO> orders = new ArrayList<>();
 		for(OrderItemDTO oit : odt.getOrders()) {
-			OrderItemDTO orderItem = orderMapper.getOrderInfo(oit.getNo()); //product_no?
-//			
-//		    if (orderItem == null) {
-//		        // 해당 상품번호에 대한 주문 정보가 존재하지 않음
-//		        continue;
-//		    }
+			OrderItemDTO orderItem = orderMapper.getOrderInfo(oit.getProduct_no()); //product_no?
 			
+		    if (orderItem == null) {
+//		        throw new RuntimeException("상품번호 " + oit.getProduct_no() + "에 대한 주문 정보가 존재하지 않습니다.");
+		    	continue;
+		    }
+		    
+			orderItem.setNo(oit.getNo());
+			orderItem.setDiscount(oit.getDiscount());
+			orderItem.setPrice(oit.getTotalPrice());;
 			// 수량
 			orderItem.setCount(oit.getCount());
 			// 기본정보
