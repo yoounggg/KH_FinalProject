@@ -11,105 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>거래처관리 목록</title>
     <link rel="stylesheet" href="/resources/css/admin/common.css">
-
-    <style>
-
-	button {
-	    float: right;
-	    margin-left : 5px;
-	    margin-bottom : 100px;
-	    font-weight: 800;
-	    width: 75px;
-	    height: 35px;
-	    background-color: rgb(175, 124, 213);
-	    border: 1px solid #ceced2;
-	    font-size: 16px;
-	}
-
-	.button1 {
-		margin-top : 5px;
-	}
-	
-    table {
-        display: table;
-        width: 780px;
-        margin-bottom: 0px;
-        border-top: 4px solid #ceced2;
-    }
-
-    table th {
-        border-bottom: 1px solid #ceced2;
-        padding : 8px;
-    }
-
-    table td {
-        padding: 14px 10px 13px 10px;
-        border-bottom: 1px solid #ceced2;
-        text-align: center;
-        
-    }
-
-    .title {
-        text-align: left;
-    }
-
-    /* ====================== 페이지 이동 ======================= */
-    .page {
-        margin-left: 250px;
-    }
-
-    .pagenation {
-        /* display: inline-block; */
-        text-align: center;
-        margin-right: 20%;
-        margin-bottom: 15px;
-    }
-
-    .pagenation ul {
-        text-align: center;
-        vertical-align: middle;
-        padding: 0px;
-        margin:0px;
-    }
-
-    .pagenation li {
-        /* border: 1px black solid; */
-        display: inline-block;
-        min-width: 30px;
-        vertical-align: middle;
-        text-decoration: none;
-        border: 1px solid #ceced2;
-        margin-bottom: 20px;
-    }
-
-    /* ======================수정,삭제======================= */
-		
-	.farm_button {
-     	margin-top : 20px;
-	}
-     
-     
- 
-	  .pageInfo{
-	    list-style : none;
-	    display: inline-block;
-	    margin: 50px 0 0 100px;      
-	  }
-	  .pageInfo li{
-	    float: left;
-	    font-size: 20px;
-	    margin-left: 18px;
-	    padding: 7px;
-	    font-weight: 500;
-	  }
-	  
-	 a:link {color:black; text-decoration: none;}
-	 a:visited {color:black; text-decoration: none;}
-/* 	 a:hover {color:black; text-decoration: underline;} */
-        
-
-    </style>
-    
+	<link rel="stylesheet" href="/resources/css/admin/list.css"> 
 </head>
 
 <body>
@@ -119,10 +21,11 @@
 
 <!-- 메인 - 보라색 가로줄(메인페이지글자), 왼쪽 메뉴 -->
 <main>  
-        
+    <div class="sub_content"> 
 <!-- 메인 - 공지사항 글 목록 테이블, 이동페이지, 수정, 삭제 -->            
                 
         <div class="content">
+        <form>
             <table>
                 <h2>거래처관리 <span class="test">테스트</span></h2>
                 <!-- <a href="javascript:all_del()">전체선택 / 전체해제</a> -->
@@ -147,44 +50,36 @@
                     </c:forEach>    
                 </tbody>
             </table>
+		</form>
             
-            
-			<div class="pageInfo_wrap" >
-			  <form id=moveForm method="get">
-			    <div class="pageInfo_area">
-			    	<ul id="pageInfo" class="pageInfo">
-			    	
-			    		<!-- 이전페이지 버튼 -->
-			            <c:if test="${pageMaker.prev}">
-			                <li class="pageInfo_btn previous"><a href="${pageMaker.startPage-1}">Previous</a></li>
-			            </c:if>
-			            
-		            	<!-- 각 번호 페이지 버튼 -->
-		                <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-		                    <li class="pageInfo_btn "><a href="/admin/farm/list?currPage=${num}&amount=${pageMaker.cri.amount}">${num}</a></li>
-		                </c:forEach>
-			                
-			            <!-- 다음페이지 버튼 -->
-			            <c:if test="${pageMaker.next}">
-			                <li class="pageInfo_btn next"><a href="${pageMaker.endPage + 1 }">Next</a></li>
-			            </c:if>  
-		             </ul>
-		            
-            	</div>
-            
-            
-	            <div class="button1">
-	 				<button type="button" id="registerBtn">등록</button>
-	                <button type="button" id="removeBtn">삭제</button>
-	            </div>
-
-			        <input type="hidden" name="currPage" value="${pageMaker.cri.currPage }">
-			        <input type="hidden" name="amount" value="${pageMaker.cri.amount }">
-		        
-            </form>
-           </div>
+		 		<div class="pageInfo_wrap" >
+					    <div class="pageInfo_area">
+					    	<ul id="pageInfo" class="pageInfo">
+					    	
+					    		<!-- 이전페이지 버튼 -->
+					            <c:if test="${pageMaker.prev}">
+					                <li class="pageInfo_btn previous"><a href="${pageMaker.startPage-1}">Previous</a></li>
+					            </c:if>
+					            
+				            	<!-- 각 번호 페이지 버튼 -->
+				                <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+				                    <li class="pageInfo_btn "><a href="/admin/farm/list?currPage=${num}&amount=${pageMaker.cri.amount}">${num}</a></li>
+				                </c:forEach>
+				             
+					            <!-- 다음페이지 버튼 -->
+					            <c:if test="${pageMaker.next}">
+					                <li class="pageInfo_btn next"><a href="${pageMaker.endPage + 1 }">Next</a></li>
+					            </c:if>  
+				             </ul>
+								<div class="button1">
+									<button type="button" id="registerBtn">등록</button>
+									<button type="button" id="removeBtn">삭제</button>
+								</div>
+								
+		            	</div>
+	           </div>
         </div>
-
+	</div>
 </main>
 
     

@@ -13,30 +13,7 @@
 
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
     <link rel="stylesheet" href="/resources/css/admin/common.css">
-
-    <style>
-    
-    .text_title {
-        width: 945px;
-        height: 30px;
-        font-size: 20px;
-    }
-    
-    textarea {
-        width: 940px;
-        height: 500px;
-        font-size: 20px;
-        font-weight: 700;
-        padding: 0px;
-    }
-
-
-    .ck-content {
-/*      width: 948px; */
-        height: 500px;
-        padding: 0px;
-    }
-    </style>
+    <link rel="stylesheet" href="/resources/css/admin/modify.css">
 </head>
 
 

@@ -12,59 +12,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>거래처관리 상세</title>
     <link rel="stylesheet" href="/resources/css/admin/common.css">
+    <link rel="stylesheet" href="/resources/css/admin/get.css">
     <style>
-
-        h3 {
-            width: 950px;
-            height: 30px;
-            font-size: 22px;
-        }
-
-        .farm_detail {
-            width: 950px;
-            height: 500px;
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        form {
-            width: 950px;
-            margin-top: 40px;
-        }
-
-        .farm_button {
-     		margin-top : 20px;
-     	}
-
-        .reg_date {
-            float: right;
-        }
-
-
-/* --------------------- 농가 상세 페이지 --------------------------------- */
-
-        .farm {
-            background-color: #f7f7f7;
-            text-align: center;
-            padding: 30px;
-
-        }
-
         p {
             display: inline-block;
-            font-size: 20px;
-
+            font-size: 16px;
             width: 150px;
             height: 50px;
 
         }
-
-        #info {
-            width: 600px;
-            height: 50px;
-            font-size: 20px;
-        }
-        
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <body>
@@ -80,7 +36,7 @@
             <h2>거래처관리 <span class="test">테스트</span></h2>
             <div class="write">
                 <form>
-                    <div class="farm">
+                    <div class="information">
                     <h3>농가 정보</h3>
                     <br>
                     <br>
@@ -106,12 +62,12 @@
                         <br>
                     </div>
 
-
-                    <div class="farm_button">
+                    <div class="button">
                         <button type="button" id="modifyBtn">수정</button>
                         <button type="button" id="removeBtn">삭제</button>
                         <button type="button" id="listBtn">목록</button>
                     </div>
+                    
                  </form>
             </div>
         </div>

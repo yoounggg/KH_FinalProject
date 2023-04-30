@@ -75,10 +75,7 @@ nav {
 
 #menu2>li {
     display: block;
-    /* padding: 0 0 23 0px; */
-    /* font-size: 14px; */
     color: #616161;
-    /* text-align: -webkit-match-parent; */
     text-decoration: none;
     height: 48px;
     line-height: 48px;
@@ -87,7 +84,6 @@ nav {
 
 #menu2>li:hover {
     background-color: rgb(175, 124, 213);
-    /* color: white; */
 }
 
 
@@ -111,7 +107,7 @@ h2{
 
 .content {
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 500;
     font-family: "맑은 고딕",AppleGothic,Dotum,"돋움",sans-serif;
     padding: 0;
     width : 700px;
@@ -122,24 +118,6 @@ h2{
 .content h1 {
     padding-top : 20px;
 }
-
-
-button {
-    float: right;
-    margin-left : 5px;
-    margin-bottom : 100px;
-    font-weight: 800;
-    width: 75px;
-    height: 35px;
-    background-color: rgb(175, 124, 213);
-    border: 1px solid #ceced2;
-    font-size: 16px;
-}
-
-.button1 {
-	margin-top : 5px;
-}
-
 
 .write {
     margin-bottom: 20px;

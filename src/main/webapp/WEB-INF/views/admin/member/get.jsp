@@ -12,59 +12,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원관리 상세</title>
     <link rel="stylesheet" href="/resources/css/admin/common.css">
+	<link rel="stylesheet" href="/resources/css/admin/get.css">
     <style>
-
-        h3 {
-            width: 950px;
-            height: 30px;
-            font-size: 22px;
-        }
-
-        .member_detail {
-            width: 950px;
-            height: 500px;
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        form {
-            width: 950px;
-            margin-top: 40px;
-        }
-
-        .member_button {
-     		margin-top : 20px;
-     	}
-
-        .reg_date {
-            float: right;
-        }
-
-
-/* --------------------- 농가 상세 페이지 --------------------------------- */
-
-        .member {
-            background-color: #f7f7f7;
-            text-align: center;
-            padding: 30px;
-
-        }
-
         p {
             display: inline-block;
-            font-size: 20px;
-
+            font-size: 16px;
             width: 150px;
             height: 50px;
 
         }
-
-        #info {
-            width: 600px;
-            height: 50px;
-            font-size: 20px;
-        }
-        
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <body>
@@ -80,51 +36,47 @@
             <h2>회원관리 <span class="test">테스트</span></h2>
             <div class="write">
                 <form>
-                    <div class="member">
+                    <div class="information">
                     <h3>회원 정보</h3>
                     <br>
                     <br>
                     <br>
                         <p>회원 번호</p>
-                        <input type="text" value="${member.no}" id="info" readonly>
+                        <p id="info">${member.no}</p>
                         <br>
     
                         <p>회원 이름</p>
-                        <input type="text" value="${member.name}" id="info" readonly>
+                        <p id="info">${member.name}</p>
                         <br>
     
                         <p>회원 생일</p>
-                        <span>${member.birth_year}</span>.
-                        <span>${member.birth_month}</span>.
-                        <span>${member.birth_day}</span>
+                        <p id="info">${member.birth_year}. ${member.birth_month}. ${member.birth_day}.</p>
                         <br>
                         
                         <p>회원 이메일</p>
-                        <input type="text" value="${member.email}" id="info" readonly>
+                        <p id="info">${member.email}</p>
                         <br>
     
                         <p>회원 전화번호</p>
-                        <input type="text" value="${member.tel}" id="info" readonly>
+                        <p id="info">${member.tel}</p>
                         <br>
     
                         <p>회원 주소</p>
-                        <span>${member.address1}</span><br>
-                        <span>${member.address2}</span><br>
-                        <span>${member.address3}</span>
+                        <p id="info">(${member.address1}) ${member.address2} ${member.address3}</p>
                         <br>
                         
                         <p>회원 성별</p>
-                        <input type="text" value="${member.gender}" id="info" readonly>
+                        <p id="info">${member.gender}</p>
                         <br>
                         
                         <p>회원 소셜 가입여부</p>
-                        <input type="text" value="${member.social_type}" id="info" readonly>
+                        <p id="info">${member.social_type}</p>
                         <br>
                         
                     </div>
 
 
-                    <div class="member_button">
+                    <div class="button">
                         <button type="button" id="listBtn">목록</button>
                     </div>
                  </form>
