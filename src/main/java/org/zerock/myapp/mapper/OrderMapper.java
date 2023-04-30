@@ -18,7 +18,7 @@ public interface OrderMapper {
 	public Integer enrollOrder(OrderDTO ord);
 	
 	// ORDER_LIST 테이블에 주문 상품 등록 테이블
-	public Integer enrollOrderItem(OrderItemDTO orid);
+	public Integer enrollOrderItem(OrderItemDTO oit);
 	
 	// 회원이 주문한 상품의 개수만큼 '상품 재고'를 차감
 	public Integer deductStock(ProductDTO product);
