@@ -97,7 +97,7 @@
                         </li>
                     </ul>
                 <li><a href="/product/list?code=10800">오늘의 특가</a></li>
-                <li><a href="#">신상품</a></li>
+                <li><a href="/product/list?code=10900">신상품</a></li>
                 <li><a href="/help/main">고객센터</a></li>
             </ul>
         </div>
@@ -213,7 +213,7 @@
         </div>
     </main>
 
-    <aside>
+    <!-- <aside>
         <div class="container7">
             <div id="choikun1">
                 <div id="choikun2">
@@ -225,7 +225,7 @@
                 <input id="topbtn" type="button" name="TOP" value="TOP">
             </div> 
         </div>
-    </aside>
+    </aside> -->
 
     <footer>
         <div class="yakgwan1">
