@@ -24,7 +24,6 @@
 
 	<%@include file= "../common/header.jsp" %>
 	
-	
 
     <div class="wrapper">
 
@@ -47,23 +46,23 @@
             <div class="left-box">
                 <div class="input-box">
                     <label for="name">이름</label>
-                    <input type="text" id="name" name="name">
+                    <input type="text" id="name" name="name" value="${name}">
                     <!-- <label for="name">이름</label>
                     <input type="text" id="name" name="name"> -->
                 </div>
 
                 <div class="input-box">
                     <label for="address">주소</label>
-                    <input type="text" id="address1" name="address">
+                    <input type="text" id="address1" name="address" value="${address1 }">
                 </div>
 
                 <div>
-                    <input type="text" id="address2" name="address">
+                    <input type="text" id="address2" name="address" value="${address2}">
                 </div>
 
                 <div class="input-box">
                     <label for="phone">연락처</label>
-                    <input type="tel" id="phone" name="phone">
+                    <input type="tel" id="phone" name="phone" value="${tel}">
                 </div>
 
                 <div class="input-box">
@@ -76,22 +75,22 @@
             <div class="right-box">
                 <div class="price-box">
                     <div class="price-label">총상품가격</div>
-                    <div class="price-value">100,000원</div>
+                    <div class="totalPrice_span">${totalPrice}원</div>
                 </div>
 
                 <div class="price-box">
                     <div class="price-label">할인금액</div>
-                    <div class="price-value">10,000원</div>
+                    <div class="salePrice_span">${salePrice}원</div>
                 </div>
 
                 <div class="price-box">
                     <div class="price-label">배송비</div>
-                    <div class="price-value">3,000원</div>
+                    <div class="delivery_price_span" >${delivery_cost }원</div>
                 </div>
                 
                 <div class="price-box total">
                     <div class="price-label">총결제금액</div>
-                    <div class="price-value">93,000원</div>
+                    <div class="finalTotalPrice_span">${price}원</div>
                 </div>
             </div> <!-- right-box -->
         </div> <!-- line2 -->
@@ -100,10 +99,9 @@
 
     </div>
 
-    
-
 	<%@include file= "../common/footer.jsp" %>
 
 </body>
+
 
 </html>

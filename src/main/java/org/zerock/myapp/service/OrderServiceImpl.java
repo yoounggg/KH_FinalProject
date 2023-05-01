@@ -90,7 +90,7 @@ public class OrderServiceImpl implements OrderService {
 		    
 			orderItem.setOrder_no(odt.getNo());
 			orderItem.setProduct_no(oit.getProduct_no()); // 상품 번호 저장
-			
+
 			orderItem.setCount(oit.getCount()); // 수량 저장
 			
 			orderItem.initSaleTotal(); // 기본정보
@@ -99,13 +99,7 @@ public class OrderServiceImpl implements OrderService {
 		}
 		/* orderDTO 세팅 */
 		odt.setOrders(orders);
-		odt.getOrderPriceInfo(); // 음..? 비용,배송비,최종비용
-		
-//		Date date = new Date();
-//		SimpleDateFormat format = new SimpleDateFormat("_yyyyMMddmm");
-//		String orderId = member.getId() + format.format(date);
-//		odt.setNo(orderId);    나는 주문번호를 번호가 자동으로 생성되도록 했는데..(identity)
-		
+		odt.getOrderPriceInfo(); // 음..? 비용,배송비,최종비용	
 
 		/* DB넣기 */
 	    /* MYMG_ORDER 등록 */
@@ -122,25 +116,24 @@ public class OrderServiceImpl implements OrderService {
 	        orderMapper.enrollOrderItem(oit);
 	    }
 		
-//		/* 장바구니 제거 */
-//		for(OrderItemDTO oit : odt.getOrders()) {
-//			log.info("\t+ ********************장바구니 제거 테스트********************");
-//			CartDTO dto = new CartDTO();
-//			dto.setMember_id(odt.getMember_id());
-//			dto.setProduct_No(oit.getProduct_no());
-//			
-//			cartMapper.deleteOrderCart(dto);
-//			log.info("\t+ ********************장바구니 제거 테스트********************");
-//		}
+		/* 장바구니 제거 */
+		for(OrderItemDTO oit : odt.getOrders()) {
+			log.info("\t+ ********************장바구니 제거 테스트********************");
+			CartDTO dto = new CartDTO();
+			dto.setMember_id(odt.getMember_id());
+			dto.setProduct_No(oit.getProduct_no());
+			
+			cartMapper.deleteOrderCart(dto);
+			log.info("\t+ ********************장바구니 제거 테스트********************");
+		}
 		
-		/* 재고 차감 */
+//		/* 재고 차감 */
 //		for(OrderItemDTO oit : odt.getOrders()) {
 ////			productDTO product = productMapper.get
 //			ProductDTO product = productMapper.select(oit.getNo());
 //			product.setStock(product.getStock() - oit.getCount());
 //		}
-		
-		
+
 	} // order
 
 }// end class
