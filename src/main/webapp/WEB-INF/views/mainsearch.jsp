@@ -15,7 +15,7 @@
     <!-- include favicon -->
     <%@include file="/WEB-INF/views/common/favicon.jsp" %>
     
-    <link rel="stylesheet" href="../resources/css/search.css">
+    <link rel="stylesheet" href="/resources/css/mainsearch.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,100,1,-25" />
@@ -27,37 +27,6 @@
     <script src="/resources/js/search.js"></script>
 	
 </head>
-<style>
-.searchtitle {
-padding: 60px 0px;
-width: 80%;
-margin: 0 auto;
-font-size: 28px;
-text-align: center;
-}
-.searchtitle>strong {color: #11BC0D;}
-.toptotal>strong {color: #11BC0D;}
-
-.toptotal{
-padding: 20px 0 30px 0;
-width: 80%;
-margin: 0 auto;
-font-size: 18px;
-}
-.listcontent{width: 100%;}
-.listproduct{
-width: 80%;
-margin: 0 auto;
-text-align: center;
-}
-.searchedproduct{
-display:inline-block;
-margin: 40px;
-}
-.imgbox>a>img{border-radius: 10px;}
-
-
-</style>
 
 <body>
 <%@include file= "../views/common/header.jsp" %>
@@ -74,15 +43,16 @@ margin: 40px;
 	                <ul>
 	                    <li>
 	                        <div>
-	                            <div class="imgbox">
-	                                <a href="#"><img src="/resources/product/감자밭.jpg" width="200" height="200" alt="검색상품이미지"></a>
-	
+	                            <div class="imgbox">	
+	                            	<a href="/product/info?no=${productVO.no}"><img src="/resources/product/${mainsearchlist.main_image}" width="220" height="220" alt="검색상품이미지"></a>
 	                            </div>
 	                            <div class="infobox">
-	                                <div>${mainsearchlist.name}</div>
-	                             	<div>${mainsearchlist.discount}%</div>
-	                                <div>${mainsearchlist.price}</div>
-	                                <div>${mainsearchlist.discount_price}</div>
+	                                <div class="searchname"><a href="/product/info?no=${productVO.no}">${mainsearchlist.name}</a></div>
+	                             	<div>
+		                             	<span class="discount">${mainsearchlist.discount}%</span>
+		                             	<span class="discountprice">${mainsearchlist.discount_price}원</span>
+		                             	<span class="price"><del>${mainsearchlist.price}원</del></span>
+	                             	</div>	                             
 	                            </div>
 	                        </div>
 	                    </li>
@@ -91,7 +61,24 @@ margin: 40px;
 			</c:forEach>
 	        </div>
     </div>
-<div>${__PAGE_MAKER__}</div>
+	<div>
+	<!-- 페이징 -->
+		<div class="searchpageinfo">
+			<ul>
+				<c:if test="${__PAGE_MAKER__.prev}">
+					<li class="searchprev"><a href="${__PAGE_MAKER__.startPage-1}">prev</a></li>
+				</c:if>
+				
+				<c:forEach var="num" begin="${__PAGE_MAKER__.startPage}" end="${__PAGE_MAKER__.endPage}">
+		        	<li class="searchbutton"><a href="/mainsearch?keyword=${__PAGE_MAKER__.cri.keyword}&currPage=${num}&amount=${__PAGE_MAKER__.cri.amount}">${num}</a></li>
+		        </c:forEach>
+		        
+		        <c:if test="${__PAGE_MAKER__.next}">
+					<li class="searchnext"><a href="${__PAGE_MAKER__.endPage + 1 }">next</a></li>
+				</c:if>
+			</ul>
+		</div>
+	</div>
 </main>
   
 <%@include file= "../views/common/footer.jsp" %>
