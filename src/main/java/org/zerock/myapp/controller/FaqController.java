@@ -153,6 +153,8 @@ public class FaqController {
 		
 	} // register()
 	
+	
+	
 //	==============================================================================
 //	HttpSession, HttpServletRequest, HttpServletResponse 객체가 정말
 //	필요하면, DispatcherServlet에게 "달라!"라고 지정하면 "줍니다!"

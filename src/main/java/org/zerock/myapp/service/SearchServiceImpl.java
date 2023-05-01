@@ -40,7 +40,8 @@ public class SearchServiceImpl implements SearchService, InitializingBean{
 	@Override
 	public List<ProductDTO> productList(Criteria cri) {
 		log.trace("productList() invoked");
-		
+		cri.setAmount(12);
+		cri.setPagesPerPage(3);
 		return mapper.productList(cri);
 	} // productList
 

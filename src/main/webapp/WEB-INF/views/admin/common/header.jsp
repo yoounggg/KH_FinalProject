@@ -14,7 +14,7 @@
         <span class="login">Ι</span>
         <span class="login"><a href="/main">홈페이지</a></span>
         <span class="login">Ι</span>
-        <span class="login"><a href="#">로그아웃</a></span>
+        <span class="login"><a id="logout" href="/login/logout">로그아웃</a></span>
     </div>
     <div>
         <h1><a href="/admin/main"><img src="/resources/css/admin/logo.png" id="logo" width="200"></a></h1> 
@@ -39,5 +39,22 @@
         </div>   
 	</div>
 </main>
+<script>
+
+	/* gnb_area 로그아웃 버튼 작동 */
+	
+ 	$("#logout").click(function(){
+	    alert("버튼 작동");
+	    $.ajax({
+            type:"POST",
+            url:"/admin/logout",
+            success:function(data){
+                alert("로그아웃 성공");
+                document.location.reload();     
+            } 
+        }); // ajax 
+	});
+	
+</script>
 </body>
 </html>

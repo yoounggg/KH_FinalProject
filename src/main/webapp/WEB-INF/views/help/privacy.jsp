@@ -13,8 +13,8 @@
       <%@include file="/WEB-INF/views/common/favicon.jsp" %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOYAMOGA</title>
-</head>
 
+</head>
 <body>
 <%@include file= "../common/header.jsp" %>
 <main>

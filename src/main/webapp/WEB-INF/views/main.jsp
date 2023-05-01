@@ -74,7 +74,7 @@
             <div class="container3">
                 <a href="/main"><img id="logo" src="/resources/imgs/logo.png" alt="로고"></a>
        
-                <form id="mainsearch" class="search1" action="/search" method="GET">
+                <form id="mainsearch" class="search1" action="/mainsearch" method="GET">
                     <input class="search-txt" name="keyword" type="text" placeholder=" 검색어를 입력해주세요!">    
                     <button class="search-btn" type="submit"><img id="btn" src="/resources/imgs/search.png" alt="메인검색버튼"></button>
                 </form>   
@@ -89,15 +89,10 @@
                     <ul class="menu2">
                         <li><a href="#">농산 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > </a>
                             <ul class="menu3">
-                                <li><a href="#">전체보기</a></li>
-                                <li><a href="#">오늘과일채소</a></li>
-                                <li><a href="#">국내외과일</a></li>
-                                <li><a href="#">친환경유기농채소</a></li>
-                                <li><a href="#">우리땅채소</a></li>
-                                <li><a href="#">채소/샐러드</a></li>
-                                <li><a href="#">주곡/잡곡</a></li>
-                                <li><a href="#">오늘의 특가</a></li>
-                                <li><a href="#">신상품</a></li>
+                            	<!-- [05/01 진호] -->
+                            	<c:forEach var="cate" items="${__CategoryAll__}">
+                                    <li><a href="/product/list?code=${cate.code}">${cate.categoryName}</a></li>
+                                </c:forEach>
                             </ul>
                         </li>
                     </ul>

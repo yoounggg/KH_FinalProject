@@ -11,172 +11,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>상품 목록</title>
     <link rel="stylesheet" href="/resources/css/admin/common.css">
-   <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
+    <link rel="stylesheet" href="/resources/css/admin/register.css">
+    <link rel="stylesheet" href="/resources/css/admin/product_register.css">
+	<script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.0/jquery-migrate.min.js"></script>
-    <style>
-
-
-        h3 {
-            height: 30px;
-            font-size: 22px;
-        }
-
-        .product_detail {
-            height: 500px;
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        form {
-            width: 650px;
-            margin-top: 40px;
-        }
-
-        
-        .product_button {
-           margin-top : 20px;
-        }
-
-        .reg_date {
-            float: right;
-        }
-
-
-/* --------------------- 농가 상세 페이지 --------------------------------- */
-
-        .product {
-            background-color: #f7f7f7;
-            padding: 30px;
-
-        }
-
-
-        .box1 {
-            border: 1px solid rgb(195, 195, 195);
-            padding: 0;
-            width: 590px;
-            /* display : flex; */
-            /* justify-content: center; */
-            /* align-items: center; */
-            /* vertical-align: middle; */
-        }
-
-        .box2 {
-            border-bottom: 1px solid rgb(195, 195, 195);
-        }
-
-        .box3 {
-            padding-top: 15px;
-            padding-bottom: 15px;
-        }
-        
-        .box4 {
-            border: 1px solid rgb(195, 195, 195);
-            padding: 0;
-            width: 590px;
-            height:255px;
-        }
-        
-
-
-        p {
-            padding-left: 20px;
-            font-size: 16;
-        }
-
-
-        #info {
-           padding:0px;
-            width: 550px;
-            height: 30px;
-            font-size: 20px;
-            margin-left: 20px;
-        }
-        
-        
-        #price, #discount, #discount_price{
-           padding:0px;
-            width: 550px;
-            height: 30px;
-            font-size: 20px;
-            margin-left: 20px;
-        }
-
-        .category1, .category2 {
-            width: 200px;
-            height: 30px;
-            margin-left: 20px;
-        }
-        
-        #discount_price {
-           margin : 0;
-           margin-left : 20px;
-           padding: 0;
-           width: 550;
-           height: 30px;
-           border : 1px solid #767676;
-           background-color: white;
-        }
-        
-        
-        /* 위지윅 에디터 높이*/
-      .ck-content {               
-
-          height: 170px;
-      }
-        
-     
-    a:link {color:black; text-decoration: none;}
-    a:visited {color:black; text-decoration: none;}
-/*     a:hover {color:black; text-decoration: underline;} */
-
-
-/* --------------------- 이미지 크기 조정 및 삭제 --------------------------------- */
-   
-   #result_card img {
-      max-width: 200px;
-      height:auto;
-      display:block;
-      padding:5px;
-      margin-top:10px;
-      margin:auto;
-   }
-   
-   #result_card {
-      position : relative;
-   }
-   
-   .imgDeleteBtn {
-      position : absolute;
-      top: 0;
-      right:5%;
-       background-color: #ef7d7d;
-       color: wheat;
-       font-weight: 900;
-       width: 30px;
-       height: 30px;
-       border-radius: 50%;
-       line-height: 26px;
-       text-align: center;
-       border: none;
-       display: block;
-       cursor: pointer;
-   }
-   
-   #result_card img{
-      max-width : 100%;
-      height : auto;
-      display : block;
-      padding: 5px;
-      margin-top: 10px;
-      margin : auto;
-   }
-        
-
-    </style>
-    
 </head>
+<style>
+	
+	button {
+	    float: right;
+	    margin-left : 5px;
+	    margin-bottom : 100px;
+	    font-weight: 800;
+	    width: 75px;
+	    height: 35px;
+	    background-color: rgb(175, 124, 213);
+	    border: 1px solid #ceced2;
+	    font-size: 16px;
+	}
+        
+    .ck-content {
+        min-height: 170px;
+        padding: 0px;
+    }
+        
+</style>
 
 <body>
 
@@ -238,6 +98,16 @@
                            </div>
                            <div class="box3">
                                <input type="text"  name="name" id="info">
+                           </div>                      
+                       </div>
+                       <br>
+                       
+                       <div class="box1">
+                           <div class="box2">
+                               <p>타이틀-레시피('사과, 오렌지' 처럼 과일 명만 적기)</p>
+                           </div>
+                           <div class="box3">
+                               <input type="text"  name="title" id="info">
                            </div>                      
                        </div>
                        <br>
@@ -314,7 +184,7 @@
                            </div>
                            <div class="box3">
                        <input type="file" id="main_image" name="files" />
-                        <div class="select_main_image"><img src="" /></div>
+                       <div class="select_main_image"><img src="" /></div>
                                      
                            <script>
                               $("#main_image").change(function(){
@@ -330,34 +200,8 @@
                               });
                            </script>
                              </div>
-                  </div>
-                     <br>
-                     
-                     
-                     <div class="box1">
-                             <div class="box2">
-                               <p>메인(썸네일) 이미지</p>
-                           </div>
-                           <div class="box3">
-                       <input type="file" id="main_image2" name="files" />
-                        <div class="select_main_image2"><img src="" /></div>
-                                     
-                           <script>
-                              $("#main_image2").change(function(){
-                                 if(this.files && this.files[0]) {
-                                                  
-                                    var reader = new FileReader;
-                                                     
-                                    reader.onload = function(data) {
-                                       $(".select_main_image2 img").attr("src", data.target.result).width(200);        
-                                    }
-                                    reader.readAsDataURL(this.files[0]);
-                                 }
-                              });
-                           </script>
-                             </div>
-                  </div>
-                     <br>
+		               </div>
+		               <br>
                      
    
                        <div class="box1">
@@ -499,12 +343,12 @@
                        </div>
                        <br>
 
-
-                       <div class="product_button">
-                           <button type="submit" id="registerBtn">등록</button>
-                           <button type="button" id="listBtn">목록</button>
-                       </div>
                     </div>
+					<div class="product_button">
+						<button type="submit" id="registerBtn">등록</button>
+						<button type="button" id="listBtn">목록</button>
+					</div>
+                       
                  </form>
             </div>
             
@@ -527,7 +371,7 @@
    //목록 버튼을 눌러 목록으로 돌아가기
    listBtn.addEventListener('click', function() {
       console.log('listBtn clicked');
-      location.href='/admin/farm/list';
+      location.href='/admin/product/list';
    });
    
 

@@ -12,94 +12,7 @@
     <title>회원 전체 목록</title>
     <!-- <link href="/admin_page/css/member/member_list.css" type="text/css" rel="stylesheet" /> -->
     <link rel="stylesheet" href="/resources/css/admin/common.css">
-
-    <style>
-
-	button {
-	    float: right;
-	    margin-left : 5px;
-	    margin-bottom : 100px;
-	    font-weight: 800;
-	    width: 75px;
-	    height: 35px;
-	    background-color: rgb(175, 124, 213);
-	    border: 1px solid #ceced2;
-	    font-size: 16px;
-	}
-
-	.button1 {
-		margin-top : 5px;
-	}
-
-    table {
-        display: table;
-        width: 780px;
-        margin-bottom: 0px;
-        border-top: 4px solid #ceced2;
-    }
-
-    table th {
-        border-bottom: 1px solid #ceced2;
-        padding : 8px;
-    }
-
-    table td {
-        padding: 14px 10px 13px 10px;
-        border-bottom: 1px solid #ceced2;
-        text-align: center;
-        
-    }
-
-    .title {
-        text-align: left;
-    }
-
-    /* ====================== 페이지 이동 ======================= */
-    .page {
-        margin-left: 250px;
-    }
-
-    .pagenation {
-        /* display: inline-block; */
-        text-align: center;
-        margin-right: 20%;
-        margin-bottom: 15px;
-    }
-
-    .pagenation ul {
-        text-align: center;
-        vertical-align: middle;
-        padding: 0px;
-        margin:0px;
-    }
-
-    .pagenation li {
-        /* border: 1px black solid; */
-        display: inline-block;
-        min-width: 30px;
-        vertical-align: middle;
-        text-decoration: none;
-        border: 1px solid #ceced2;
-        margin-bottom: 20px;
-    }
-
-    /* ======================수정,삭제======================= */
-
-	  .pageInfo{
-	    list-style : none;
-	    display: inline-block;
-	    margin: 50px 0 0 100px;      
-	  }
-	  .pageInfo li{
-	    float: left;
-	    font-size: 20px;
-	    margin-left: 18px;
-	    padding: 7px;
-	    font-weight: 500;
-	  }
-
-    </style>
-    
+	<link rel="stylesheet" href="/resources/css/admin/list.css">
 </head>
 
 <body>
@@ -178,38 +91,5 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.1/jquery-migrate.min.js"></script>
-
-<script>      
-     
- 	// 페이지 이동 번호가 동작!
- 	
-        /*  let moveForm = ${"#moveForm"}; 
-        
-         $(".move").on("click", function(e) {
-        	e.preventDefault();
-        	
-        	moveForm.append("<input type='hidden' name='no' value='"+(this).attr("href")"'>");
-/*         	moveForm.attr("action", "/member/get");
-        	moveForm.submit(); */
-        	
-/*         	moveForm.setAttribute('method', 'POST');
-        	moveForm.setAttribute('action', '/member/get');
-        	moveForm.submit();      	
-        	
-        });  */
-        
-
-        /*$(".pageInfo a").on("click", function(e){
-        	 
-            e.preventDefault();
-            moveForm.find("input[name='currPage']").val($(this).attr("href"));
-            moveForm.attr("action", "/member/list");
-            moveForm.submit();
-            
-        }); */
-        
-        
-
-</script>
 
 </html>

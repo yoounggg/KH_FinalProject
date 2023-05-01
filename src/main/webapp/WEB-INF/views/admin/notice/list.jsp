@@ -12,94 +12,7 @@
     <title>공지사항 목록</title>
     <!-- <link href="/admin_page/css/notice/notice_list.css" type="text/css" rel="stylesheet" /> -->
     <link rel="stylesheet" href="/resources/css/admin/common.css">
-
-    <style>
-
-	button {
-	    float: right;
-	    margin-left : 5px;
-	    margin-bottom : 100px;
-	    font-weight: 800;
-	    width: 75px;
-	    height: 35px;
-	    background-color: rgb(175, 124, 213);
-	    border: 1px solid #ceced2;
-	    font-size: 16px;
-	}
-
-	.button1 {
-		margin-top : 5px;
-	}
-
-    table {
-        display: table;
-        width: 780px;
-        margin-bottom: 0px;
-        border-top: 4px solid #ceced2;
-    }
-
-    table th {
-        border-bottom: 1px solid #ceced2;
-        padding : 8px;
-    }
-
-    table td {
-        padding: 14px 10px 13px 10px;
-        border-bottom: 1px solid #ceced2;
-        text-align: center;
-        
-    }
-
-    .title {
-        text-align: left;
-    }
-
-    /* ====================== 페이지 이동 ======================= */
-    .page {
-        margin-left: 250px;
-    }
-
-    .pagenation {
-        /* display: inline-block; */
-        text-align: center;
-        margin-right: 20%;
-        margin-bottom: 15px;
-    }
-
-    .pagenation ul {
-        text-align: center;
-        vertical-align: middle;
-        padding: 0px;
-        margin:0px;
-    }
-
-    .pagenation li {
-        /* border: 1px black solid; */
-        display: inline-block;
-        min-width: 30px;
-        vertical-align: middle;
-        text-decoration: none;
-        border: 1px solid #ceced2;
-        margin-bottom: 20px;
-    }
-
-    /* ======================수정,삭제======================= */
-
-	  .pageInfo{
-	    list-style : none;
-	    display: inline-block;
-	    margin: 50px 0 0 100px;      
-	  }
-	  .pageInfo li{
-	    float: left;
-	    font-size: 20px;
-	    margin-left: 18px;
-	    padding: 7px;
-	    font-weight: 500;
-	  }
-
-    </style>
-    
+	<link rel="stylesheet" href="/resources/css/admin/list.css"> 
 </head>
 
 <body>
@@ -113,15 +26,16 @@
 <!-- 메인 - 공지사항 글 목록 테이블, 이동페이지, 수정, 삭제 -->            
                 
         <div class="content">
-            <table>
+        <form>
+            <table id="list">
                 <h2>공지사항 <span class="test">테스트</span></h2>
-                <!-- <a href="javascript:all_del()">전체선택 / 전체해제</a> -->
                 <thead>
 	                <tr>
 	                    <th><input type="checkbox" name="selectall" value="selectall" onclick="selectAll(this)"></th>
 	                    <th>번호</th>
 	                    <th>제목</th>
 	                    <th>작성날짜</th>
+	                    <th></th>
 	                </tr>
                 </thead>
                 <tbody>
@@ -131,49 +45,41 @@
                             <td>${NoticeVO.no}</td>
                             <td><a href="/admin/notice/get?no=${NoticeVO.no}">${NoticeVO.title}</a></td>
                             <td>${NoticeVO.reg_date}</td>
+                            <td><input type="hidden" name="no" value="${NoticeVO.no}"></td>
                         </tr>       
                     </c:forEach>    
                 </tbody>
             </table>
+		</form>
             
             
-	 		<div class="pageInfo_wrap" >
-			  <form id=moveForm method="get">
-			    <div class="pageInfo_area">
-			    	<ul id="pageInfo" class="pageInfo">
-			    	
-			    		<!-- 이전페이지 버튼 -->
-			            <c:if test="${pageMaker.prev}">
-			                <li class="pageInfo_btn previous"><a href="${pageMaker.startPage-1}">Previous</a></li>
-			            </c:if>
-			            
-		            	<!-- 각 번호 페이지 버튼 -->
-		                <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-		                    <li class="pageInfo_btn "><a href="/admin/notice/list?currPage=${num}&amount=${pageMaker.cri.amount}">${num}</a></li>
-		                </c:forEach>
-		             
-			            <!-- 다음페이지 버튼 -->
-			            <c:if test="${pageMaker.next}">
-			                <li class="pageInfo_btn next"><a href="${pageMaker.endPage + 1 }">Next</a></li>
-			            </c:if>  
-		             </ul>
-		            
-            	</div>
-            
-            
-	            <div class="button1">
-	 				<button type="button" id="registerBtn">등록</button>
-	                <button type="button" id="removeBtn">삭제</button>
-	            </div>
-
-			        <input type="hidden" name="currPage" value="${pageMaker.cri.currPage }">
-			        <input type="hidden" name="amount" value="${pageMaker.cri.amount }">
-		        
-            </form>
-           </div>
+		 		<div class="pageInfo_wrap" >
+					    <div class="pageInfo_area">
+					    	<ul id="pageInfo" class="pageInfo">
+					    	
+					    		<!-- 이전페이지 버튼 -->
+					            <c:if test="${pageMaker.prev}">
+					                <li class="pageInfo_btn previous"><a href="${pageMaker.startPage-1}">Previous</a></li>
+					            </c:if>
+					            
+				            	<!-- 각 번호 페이지 버튼 -->
+				                <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+				                    <li class="pageInfo_btn "><a href="/admin/notice/list?currPage=${num}&amount=${pageMaker.cri.amount}">${num}</a></li>
+				                </c:forEach>
+				             
+					            <!-- 다음페이지 버튼 -->
+					            <c:if test="${pageMaker.next}">
+					                <li class="pageInfo_btn next"><a href="${pageMaker.endPage + 1 }">Next</a></li>
+					            </c:if>  
+				             </ul>
+								<div class="button1">
+									<button type="button" id="registerBtn">등록</button>
+									<button type="button" id="removeBtn">삭제</button>
+								</div>
+								
+		            	</div>
+	           </div>
         </div>
-        
-
     </div>
 </main>
 
@@ -181,7 +87,6 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.1/jquery-migrate.min.js"></script>
-
 <script>
 
 //  ================= 공지사항 목록 전체선택 / 전체해제 / 체크 삭제 ========================= 
@@ -218,9 +123,8 @@
         }
 
     }
-
+    
 </script>
-
 <script>	
 //  ================== 5. 버튼을 클릭하면 이동함. =============================
 
@@ -231,63 +135,38 @@
         registerBtn.addEventListener('click', function () {
             location = '/admin/notice/register';
         }); // registerBtn
+       
+       
 
-      //만약 결과값에 어떤 값이든 들어왔다면(null이 아니라면) -> 결과값을 alert창으로 띄운다.
-      
-        var result = "${param.result}";
-        if(result != null && result != "") {        
-            alert('result: ' + result);
-        } // if
-        
-        
-        
-		// 글 삭제!!
-        removeBtn.addEventListener('click', function(){
-            console.log('removeBtn clicked ㅇ_<');
-
-            //form 태그를 조작해서 삭제요청을 전송! 
-            var form = document.querySelector('form');
-            console.log(form.constructor.prototype);
-
-
-            form.setAttribute('method', 'POST');
-            form.setAttribute('action', '/admin/notice/remove');
-            form.submit();
-
-        }); // removeBtn
+        // 글 삭제!! - 체크박스
+    	document.querySelector('#removeBtn').addEventListener('click', function () {
+    	    const checkedItems = document.querySelectorAll('input[name="item"]:checked');
+    	    
+    	    // 체크된 상품의 번호를 배열로 저장
+    	    const checkedItemNos = Array.from(checkedItems).filter((item) => item.checked).map((item) => item.parentNode.parentNode.querySelector('input[name="no"]').value);
+    	    
+    	    if (checkedItems.length === 0) {
+    	        alert("삭제할 게시글을 선택해주세요.");
+    	        return;
+    	    }
+    	    
+    	    if (confirm('선택한 게시글을 삭제하시겠습니까?')) {
+    	        const form = document.createElement('form');
+    	        form.setAttribute('method', 'post');
+    	        form.setAttribute('action', '/admin/notice/remove');
+    	        checkedItemNos.forEach(checkedItemNo => {
+    	            const input = document.createElement('input');
+    	            input.setAttribute('type', 'hidden');
+    	            input.setAttribute('name', 'no');
+    	            input.setAttribute('value', checkedItemNo);
+    	            form.appendChild(input);
+    	            
+    	        });
+    	        document.body.appendChild(form);
+    	        form.submit();
+    	        alert("삭제되었습니다.");
+    	    }
+    	});
         
  </script>
- <script>      
-     
- 	// 페이지 이동 번호가 동작!
- 	
-        /*  let moveForm = ${"#moveForm"}; 
-        
-         $(".move").on("click", function(e) {
-        	e.preventDefault();
-        	
-        	moveForm.append("<input type='hidden' name='no' value='"+(this).attr("href")"'>");
-/*         	moveForm.attr("action", "/notice/get");
-        	moveForm.submit(); */
-        	
-/*         	moveForm.setAttribute('method', 'POST');
-        	moveForm.setAttribute('action', '/notice/get');
-        	moveForm.submit();      	
-        	
-        });  */
-        
-
-        /*$(".pageInfo a").on("click", function(e){
-        	 
-            e.preventDefault();
-            moveForm.find("input[name='currPage']").val($(this).attr("href"));
-            moveForm.attr("action", "/notice/list");
-            moveForm.submit();
-            
-        }); */
-        
-        
-
-</script>
-
 </html>

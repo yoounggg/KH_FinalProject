@@ -15,20 +15,20 @@
     <style>
 
         h3 {
-            width: 950px;
+            width: 780px;
             height: 30px;
-            font-size: 22px;
+            font-size: 20px;
         }
 
         .notice_detail {
-            width: 950px;
-            height: 500px;
-            font-size: 20px;
-            font-weight: 700;
+			width: 780px;
+		    min-height: 300px;
+		    font-size: 16px;
+		    font-weight: 700;
         }
 
         form {
-            width: 950px;
+            width: 780px;
             margin-top: 40px;
         }
 
