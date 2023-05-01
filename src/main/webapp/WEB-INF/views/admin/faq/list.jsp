@@ -12,6 +12,8 @@
     <title>FAQ 목록</title>
     <link rel="stylesheet" href="/resources/css/admin/common.css">
 	<link rel="stylesheet" href="/resources/css/admin/list.css">
+	<!-- include favicon -->
+	<%@include file="/WEB-INF/views/common/favicon.jsp" %>
 </head>
 
 <body>
@@ -134,27 +136,37 @@
 
       //만약 결과값에 어떤 값이든 들어왔다면(null이 아니라면) -> 결과값을 alert창으로 띄운다.
       
-        var result = "${param.result}";
-        if(result != null && result != "") {        
-            alert('result: ' + result);
-        } // if
         
         
-        
-		// 글 삭제!!
-        removeBtn.addEventListener('click', function(){
-            console.log('removeBtn clicked ㅇ_<');
-
-            //form 태그를 조작해서 삭제요청을 전송! 
-            var form = document.querySelector('form');
-            console.log(form.constructor.prototype);
-
-
-            form.setAttribute('method', 'POST');
-            form.setAttribute('action', '/admin/faq/remove');
-            form.submit();
-
-        }); // removeBtn
+        // 글 삭제!! - 체크박스
+    	document.querySelector('#removeBtn').addEventListener('click', function () {
+    	    const checkedItems = document.querySelectorAll('input[name="item"]:checked');
+    	    
+    	    // 체크된 상품의 번호를 배열로 저장
+    	    const checkedItemNos = Array.from(checkedItems).filter((item) => item.checked).map((item) => item.parentNode.parentNode.querySelector('input[name="no"]').value);
+    	    
+    	    if (checkedItems.length === 0) {
+    	        alert("삭제할 게시글을 선택해주세요.");
+    	        return;
+    	    }
+    	    
+    	    if (confirm('선택한 게시글을 삭제하시겠습니까?')) {
+    	        const form = document.createElement('form');
+    	        form.setAttribute('method', 'post');
+    	        form.setAttribute('action', '/admin/notice/remove');
+    	        checkedItemNos.forEach(checkedItemNo => {
+    	            const input = document.createElement('input');
+    	            input.setAttribute('type', 'hidden');
+    	            input.setAttribute('name', 'no');
+    	            input.setAttribute('value', checkedItemNo);
+    	            form.appendChild(input);
+    	            
+    	        });
+    	        document.body.appendChild(form);
+    	        form.submit();
+    	        alert("삭제되었습니다.");
+    	    }
+    	});
         
  </script>
 

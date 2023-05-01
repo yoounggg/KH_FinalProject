@@ -59,8 +59,10 @@
                     <ul class="helf_search_ul">
                         <p>공지사항 검색</p>
                         <div class="helf_search_input_a">
-                            <input type="text" id="noticeKeyword" value="" placeholder="자주 찾는 질문을 검색해 보세요! ">
+                        <form action="/help/search2" id="searchForm" method="get">
+                            <input type="text" id="keyword" name="keyword" placeholder="자주 찾는 질문을 검색해 보세요! ">
                             <button id="search" style="color: #fff;">검색</button>
+                        </form>
                         </div>
                     </ul>
                 </div>
@@ -85,7 +87,7 @@
                         <h2>공지사항 <span class="test">새로운 소식들을 확인하세요</span></h2>
                         <br>
                         <br>
-                        <h2><span>'${__PAGE_MAKER__.cri.keyword}'　</span>검색 결과</h2>
+                        <h2><span style="color:#11BC0D;">${__PAGE_MAKER__.cri.keyword}</span> 검색 결과　총 <strong style="color:#11BC0D;">${__PAGE_MAKER__.totalAmount}</strong>개</h2>
                         <br>
                         <div class="content_list">
 			            <table>
@@ -111,22 +113,18 @@
 						  <form id=moveForm method="get">
 						    <div class="pageInfo_area">
 						    	<ul id="pageInfo" class="pageInfo">
-						    	
-						    		<!-- 이전페이지 버튼 -->
-						            <c:if test="${pageMaker.prev}">
-						                <li class="pageInfo_btn previous"><a href="${pageMaker.startPage-1}">Previous</a></li>
-						            </c:if>
-						            
-					            	<!-- 각 번호 페이지 버튼 -->
-					                <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-					                    <li class="pageInfo_btn "><a href="/help/search2?keyword=${__PAGE_MAKER__.cri.keyword}&currPage=${num}&amount=${pageMaker.cri.amount}">${num}</a></li>
-					                </c:forEach>
-					             
-						            <!-- 다음페이지 버튼 -->
-						            <c:if test="${pageMaker.next}">
-						                <li class="pageInfo_btn next"><a href="${pageMaker.endPage + 1 }">Next</a></li>
-						            </c:if>  
-					             </ul>
+									<c:if test="${__PAGE_MAKER__.prev}">
+										<li class="searchprev"><a href="${__PAGE_MAKER__.startPage-1}">prev</a></li>
+									</c:if>
+									
+									<c:forEach var="num" begin="${__PAGE_MAKER__.startPage}" end="${__PAGE_MAKER__.endPage}">
+							        	<li class="searchbutton"><a href="/help/search2?keyword=${__PAGE_MAKER__.cri.keyword}&currPage=${num}&amount=${__PAGE_MAKER__.cri.amount}">${num}</a></li>
+							        </c:forEach>
+							        
+							        <c:if test="${__PAGE_MAKER__.next}">
+										<li class="searchnext"><a href="${__PAGE_MAKER__.endPage + 1 }">next</a></li>
+									</c:if>
+								</ul>
 					            
 			            	</div>
 			            	</form>

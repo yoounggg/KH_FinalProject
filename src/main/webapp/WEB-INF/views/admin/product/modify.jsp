@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="/resources/css/admin/common.css">
     <link rel="stylesheet" href="/resources/css/admin/modify.css">
 	<link rel="stylesheet" href="/resources/css/admin/product_modify.css">
+	<!-- include favicon -->
+	<%@include file="/WEB-INF/views/common/favicon.jsp" %>
    	<script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.0/jquery-migrate.min.js"></script>

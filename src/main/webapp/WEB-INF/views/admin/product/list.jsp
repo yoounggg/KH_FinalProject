@@ -13,6 +13,8 @@
     <!-- <link href="/admin_page/css/product/product_list.css" type="text/css" rel="stylesheet" /> -->
     <link rel="stylesheet" href="/resources/css/admin/common.css">
 	<link rel="stylesheet" href="/resources/css/admin/list.css">
+	<!-- include favicon -->
+	<%@include file="/WEB-INF/views/common/favicon.jsp" %>
 <body>
 
 <!-- 헤더 - 로그인/로그아웃 로고, 관리자페이지 메인글씨 -->
@@ -31,6 +33,7 @@
 	                <tr>
 	                    <th><input type="checkbox" name="selectall" value="selectall" onclick="selectAll(this)"></th>
 	                    <th>번호</th>
+	                    <th>카테고리</th>
 	                    <th>제목</th>
 	                    <th>작성날짜</th>
 	                    <th>
@@ -41,6 +44,7 @@
                         <tr>
                         	<td><input type="checkbox" name="item" onclick="checkSelectAll()" /></td>
                             <td>${ProductDTO.no}</td>
+                            <td>${ProductDTO.category}</td>
                             <td><a href="/admin/product/get?no=${ProductDTO.no}">${ProductDTO.name}</a></td>
                             <td>${ProductDTO.reg_date}</td>
                             <td><input type="hidden" name="no" value="${ProductDTO.no}"></td>

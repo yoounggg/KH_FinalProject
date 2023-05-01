@@ -10,7 +10,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지사항 목록</title>
-    <!-- <link href="/admin_page/css/notice/notice_list.css" type="text/css" rel="stylesheet" /> -->
+    <!-- include favicon -->
+	<%@include file="/WEB-INF/views/common/favicon.jsp" %>
     <link rel="stylesheet" href="/resources/css/admin/common.css">
 	<link rel="stylesheet" href="/resources/css/admin/list.css"> 
 </head>

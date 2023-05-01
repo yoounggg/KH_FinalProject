@@ -9,7 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MYMG</title>
     <link rel="stylesheet" href="/resources/css/admin/main.css">
-
+	<!-- include favicon -->
+	<%@include file="/WEB-INF/views/common/favicon.jsp" %>
 </head>
 <body>
     <!-- 헤더 - 로그인,로그아웃, 로고, 관리자페이지, 옆에 메뉴!!까지 -->
