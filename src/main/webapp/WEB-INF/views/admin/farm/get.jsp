@@ -13,6 +13,8 @@
     <title>거래처관리 상세</title>
     <link rel="stylesheet" href="/resources/css/admin/common.css">
     <link rel="stylesheet" href="/resources/css/admin/get.css">
+    <!-- include favicon -->
+	<%@include file="/WEB-INF/views/common/favicon.jsp" %>
     <style>
         p {
             display: inline-block;

@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/css/admin/common.css">
+<!-- include favicon -->
+<%@include file="/WEB-INF/views/common/favicon.jsp" %>
 </head>
 <!-- 헤더 - 로그인/로그아웃 로고, 관리자페이지 메인글씨 -->
 <header>

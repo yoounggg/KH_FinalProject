@@ -10,7 +10,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ 등록</title>
-
+	<!-- include favicon -->
+	<%@include file="/WEB-INF/views/common/favicon.jsp" %>
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
     <link rel="stylesheet" href="/resources/css/admin/common.css">
     <link rel="stylesheet" href="/resources/css/admin/register.css">

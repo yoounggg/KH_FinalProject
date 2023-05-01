@@ -10,9 +10,9 @@
     <title>login</title>
     <link rel="stylesheet" href="/resources/css/admin/login.css">
 	<script src="https://kit.fontawesome.com/1fe7ba446e.js" crossorigin="anonymous"></script>
-
+    <!-- include favicon -->
+	<%@include file="/WEB-INF/views/common/favicon.jsp" %>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.0/jquery-migrate.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>

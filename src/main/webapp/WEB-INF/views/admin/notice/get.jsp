@@ -12,6 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지사항 상세</title>
     <link rel="stylesheet" href="/resources/css/admin/common.css">
+    <!-- include favicon -->
+	<%@include file="/WEB-INF/views/common/favicon.jsp" %>
     <style>
 
         h3 {

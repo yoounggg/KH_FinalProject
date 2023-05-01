@@ -13,6 +13,8 @@
     <title>FAQ 상세</title>
     <link rel="stylesheet" href="/resources/css/admin/common.css">
     <link rel="stylesheet" href="/resources/css/admin/get.css">
+    <!-- include favicon -->
+	<%@include file="/WEB-INF/views/common/favicon.jsp" %>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <body>
 	<!-- 헤더 - 로그인/로그아웃 로고, 관리자페이지 메인글씨 -->

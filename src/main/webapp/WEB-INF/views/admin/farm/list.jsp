@@ -11,7 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>거래처관리 목록</title>
     <link rel="stylesheet" href="/resources/css/admin/common.css">
-	<link rel="stylesheet" href="/resources/css/admin/list.css"> 
+	<link rel="stylesheet" href="/resources/css/admin/list.css">
+	<!-- include favicon -->
+	<%@include file="/WEB-INF/views/common/favicon.jsp" %>
 </head>
 
 <body>
@@ -146,53 +148,36 @@
         
         
         
-		// 글 삭제!!
-        removeBtn.addEventListener('click', function(){
-            console.log('removeBtn clicked ㅇ_<');
-
-            //form 태그를 조작해서 삭제요청을 전송! 
-            var form = document.querySelector('form');
-            console.log(form.constructor.prototype);
-
-
-            form.setAttribute('method', 'POST');
-            form.setAttribute('action', '/admin/farm/remove');
-            form.submit();
-
-        }); // removeBtn
+        // 글 삭제!! - 체크박스
+    	document.querySelector('#removeBtn').addEventListener('click', function () {
+    	    const checkedItems = document.querySelectorAll('input[name="item"]:checked');
+    	    
+    	    // 체크된 상품의 번호를 배열로 저장
+    	    const checkedItemNos = Array.from(checkedItems).filter((item) => item.checked).map((item) => item.parentNode.parentNode.querySelector('input[name="no"]').value);
+    	    
+    	    if (checkedItems.length === 0) {
+    	        alert("삭제할 게시글을 선택해주세요.");
+    	        return;
+    	    }
+    	    
+    	    if (confirm('선택한 게시글을 삭제하시겠습니까?')) {
+    	        const form = document.createElement('form');
+    	        form.setAttribute('method', 'post');
+    	        form.setAttribute('action', '/admin/notice/remove');
+    	        checkedItemNos.forEach(checkedItemNo => {
+    	            const input = document.createElement('input');
+    	            input.setAttribute('type', 'hidden');
+    	            input.setAttribute('name', 'no');
+    	            input.setAttribute('value', checkedItemNo);
+    	            form.appendChild(input);
+    	            
+    	        });
+    	        document.body.appendChild(form);
+    	        form.submit();
+    	        alert("삭제되었습니다.");
+    	    }
+    	});
         
- </script>
- <script>      
-     
- 	// 페이지 이동 번호가 동작!
- 	
-        /*  let moveForm = ${"#moveForm"}; 
-        
-         $(".move").on("click", function(e) {
-        	e.preventDefault();
-        	
-        	moveForm.append("<input type='hidden' name='no' value='"+(this).attr("href")"'>");
-/*         	moveForm.attr("action", "/notice/get");
-        	moveForm.submit(); */
-        	
-/*         	moveForm.setAttribute('method', 'POST');
-        	moveForm.setAttribute('action', '/notice/get');
-        	moveForm.submit();      	
-        	
-        });  */
-        
-
-        /*$(".pageInfo a").on("click", function(e){
-        	 
-            e.preventDefault();
-            moveForm.find("input[name='currPage']").val($(this).attr("href"));
-            moveForm.attr("action", "/notice/list");
-            moveForm.submit();
-            
-        }); */
-        
-        
-
 </script>
 
 </html>

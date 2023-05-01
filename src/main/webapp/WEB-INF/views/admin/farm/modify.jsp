@@ -12,6 +12,8 @@
     <title>거래처관리 수정</title>
     <link rel="stylesheet" href="/resources/css/admin/common.css">
 	<link rel="stylesheet" href="/resources/css/admin/modify.css">
+	<!-- include favicon -->
+	<%@include file="/WEB-INF/views/common/favicon.jsp" %>
 	
     <style>    
        .farm {
