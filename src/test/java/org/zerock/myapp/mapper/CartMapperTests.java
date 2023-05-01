@@ -65,8 +65,8 @@ public class CartMapperTests {
 	void testaddCart() { //db에 memberid와 productno가 이미 존재해야함! 임시로 넣어줬음  
 		log.trace("testaddCart() invoked");
 		
-		String member_id = "chandoll"; // 회원 아이디
-		Integer product_No = 10; // 상품번호
+		String member_id = "codud123"; // 회원 아이디
+		Integer product_No = 147; // 상품번호
 		Integer count = 2;  // 개수
 		
 		CartDTO cart = new CartDTO();

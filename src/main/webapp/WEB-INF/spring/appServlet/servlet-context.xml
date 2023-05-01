@@ -85,12 +85,12 @@
    
 
   	  <interceptors>
-  	    <!-- 장바구니 -> 로그인 상태여야 함
-         <interceptor>
-            <mapping path="/cart/main" /> -> 수정..
+  	  <!--장바구니 -> 로그인 상태여야 함 -->
+        <interceptor>
+            <mapping path="/cart/*" ></mapping>
 
-            <beans:ref bean="cartInterceptor" />
-        </interceptor> -->
+            <beans:bean id="cartInterceptor" class="org.zerock.myapp.interceptor.CartInterceptor"></beans:bean>
+        </interceptor>
          
         <!-- 관리자페이지 인터셉터 적용 -->
         <interceptor>

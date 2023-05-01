@@ -213,7 +213,7 @@
         </div>
     </main>
 
-    <aside>
+    <!-- <aside>
         <div class="container7">
             <div id="choikun1">
                 <div id="choikun2">
@@ -225,7 +225,7 @@
                 <input id="topbtn" type="button" name="TOP" value="TOP">
             </div> 
         </div>
-    </aside>
+    </aside> -->
 
     <footer>
         <div class="yakgwan1">
