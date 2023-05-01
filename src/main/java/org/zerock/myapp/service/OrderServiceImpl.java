@@ -90,12 +90,12 @@ public class OrderServiceImpl implements OrderService {
 		    
 			orderItem.setOrder_no(odt.getNo());
 			orderItem.setProduct_no(oit.getProduct_no()); // 상품 번호 저장
-			// 수량
-			orderItem.setCount(oit.getCount());
-			// 기본정보
-			orderItem.initSaleTotal();
-			// List 객체 추가
-			orders.add(orderItem);
+			
+			orderItem.setCount(oit.getCount()); // 수량 저장
+			
+			orderItem.initSaleTotal(); // 기본정보
+			
+			orders.add(orderItem); // List 객체 추가
 		}
 		/* orderDTO 세팅 */
 		odt.setOrders(orders);
@@ -104,20 +104,21 @@ public class OrderServiceImpl implements OrderService {
 //		Date date = new Date();
 //		SimpleDateFormat format = new SimpleDateFormat("_yyyyMMddmm");
 //		String orderId = member.getId() + format.format(date);
-//		odt.setNo(orderId);    나는 주문번호를 번호가 자동으로 생성되도록 했는데..
+//		odt.setNo(orderId);    나는 주문번호를 번호가 자동으로 생성되도록 했는데..(identity)
 		
 
 		/* DB넣기 */
 	    /* MYMG_ORDER 등록 */
 	    orderMapper.enrollOrder(odt); // MYMG_ORDER 등록 후, no 값이 생성됨
 	    
-	 // 등록된 no 값을 orderDTO에 세팅
-	    odt.setNo(odt.getNo());
 	    /* 생성된 no 값을 가져와서 orderItemDTO에 설정 */
 	    Integer orderNo = odt.getNo();
+	    log.info("\t+ >>>>>>>>>>>>>>> orderNo: {}", orderNo);
 	    
 	    for(OrderItemDTO oit : odt.getOrders()) {
 	    	oit.setOrder_no(orderNo);
+		    log.info("\t+ >>>>>>>>>>>>>>> oit: {}", oit);
+		    
 	        orderMapper.enrollOrderItem(oit);
 	    }
 		
