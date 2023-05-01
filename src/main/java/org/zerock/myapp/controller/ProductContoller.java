@@ -220,6 +220,7 @@ public class ProductContoller {
 				StringTokenizer stk = new StringTokenizer(cri.getWeight(), ",");
 				StringBuilder sb = new StringBuilder();
 				
+				sb.append("(");
 				while(stk.hasMoreTokens()) {
 					switch(stk.nextToken()) {
 					case "w1": weight_info = "(case when weight like '%kg' then to_number(replace(weight,'kg','')) * 1000\r\n"
@@ -246,7 +247,7 @@ public class ProductContoller {
 				} // while
 				
 				String str = sb.substring(0, sb.length()-3);
-				cri.setWeight_info(str);
+				cri.setWeight_info(str + ")");
 
 			} else {
 				switch(cri.getWeight()) {

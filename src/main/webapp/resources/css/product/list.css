@@ -9,6 +9,7 @@
 
 .subject{
     text-align: center;
+    margin-top: 50px;
 }
 
 .subject > a {
@@ -26,6 +27,8 @@
 }
 
 .side_search {
+	position: initial;
+	
     width: 15%;
     height: 50%;
 
@@ -39,7 +42,7 @@
 .side_search > ul {
     list-style-type: none;
 
-    padding : 0 15px;
+    padding : 20px 15px;
 
     line-height: 30px;
 }
@@ -72,8 +75,8 @@ label {
 }
 
 .list {
-    /* margin: 0 30px; */
-    position: absolute;
+     margin: 0 22%; 
+    /* position: absolute;*/
 
     left: 20%;
     width: 80%;    
@@ -172,7 +175,7 @@ img {
 
 #pagination {
     text-align: center;
-    margin: 50px auto;
+    margin: 50px auto 100px;
 
     word-spacing: 20px;
 }
