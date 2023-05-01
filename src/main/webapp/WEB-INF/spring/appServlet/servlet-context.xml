@@ -98,7 +98,5 @@
         	<beans:bean id="AdminInterceptor" class="org.zerock.myapp.interceptor.AdminInterceptor"></beans:bean>
         </interceptor> 
       </interceptors>
-      
-     
    
 </beans:beans>
