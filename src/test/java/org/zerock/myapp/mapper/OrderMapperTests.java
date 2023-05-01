@@ -120,8 +120,8 @@ public class OrderMapperTests {
 		
 //		oid.setNo(1);
 		oid.setOrder_no(1);
-		oid.setProduct_no(10);
-		oid.setCount(4);
+		oid.setProduct_no(21);
+		oid.setCount(1);
 		oid.setPrice(100);
 		oid.setDiscount(10);
 		

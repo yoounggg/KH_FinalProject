@@ -140,8 +140,8 @@
 										<input type="hidden" class="individual_productPrice_input" name="price" value="${ol.price}">		
 										<input class="individual_productCount_input"  name="Count" value="${ol.productCount}">
 										<input type="hidden" class="individual_totalPrice_input" value="${ol.productCount * ol.price}">
-										<input type="hidden" class="individual_salePrice_input" name="Discount" value="${ol.salePrice}"> 
-										<input class="individual_productId_input" name="no" value="${ol.product_no}">
+										<input class="individual_salePrice_input" name="Discount" value="${ol.salePrice}"> 
+										<input class="individual_productId_input" name="productId" value="${ol.productId}">
 									</td>
 								</tr>			
 							</c:forEach>
@@ -439,7 +439,7 @@
 		  		//totalPrice_span
 
 		  		let product_no_input = "<input name='orders[" + index + "].product_no' type='hidden' value='" + product_no + "'>";
-		  		form_contents += no_input;
+		  		form_contents += product_no_input;
 		  		let productCount_input = "<input name='orders[" + index + "].count' type='hidden' value='" + count + "'>";
 		  		form_contents += productCount_input;
 		  		let price_input = "<input name='orders[" + index + "].price' type='hidden' value='" + price + "'>";
