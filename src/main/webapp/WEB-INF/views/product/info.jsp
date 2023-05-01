@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@include file= "/WEB-INF/views/common/header.jsp" %>
+<%@include file="/WEB-INF/views/common/favicon.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +18,7 @@
 <body>
     <div class="container">
         <div class="link">
-            <span><i class="fa fa-home" style="font-size:20px"></i></span> > <span>농산</span> > <span>국내외과일</span>
+            <span><a href="/main"><i class="fa fa-home" style="font-size:20px"></i></a></span> > <span>농산</span> > <span>국내외과일</span>
         </div> 
 
         <div class="images">
@@ -29,7 +31,6 @@
                 <li><img src="/resources/product/${__INFO__.sub_image4}" alt="이미지4"></li>
             </ul>
         </div>
-
         
         <div class="info">
             <div class="title">${__INFO__.name}</div>
@@ -305,7 +306,7 @@
         
     </div>
 </body>
-
+<%@include file= "/WEB-INF/views/common/footer.jsp" %>
 </html>
 
 <script>

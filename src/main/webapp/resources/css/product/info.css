@@ -2,7 +2,7 @@
 
 .container{
     width: 80%;
-    margin: 20px auto;
+    margin: 50px auto;
 
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -166,12 +166,12 @@ ul {
 }
 
 .detailInfo {
-    position: absolute;
+    /*position: absolute;*/
 
     width: 60%;
     height: 100%;
     
-    margin: 50px 100px;
+    margin: 50px 100px 25%;
     /* border: 1px solid red; */
 }
 .detailInfoHead {

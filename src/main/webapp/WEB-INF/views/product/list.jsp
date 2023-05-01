@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@include file= "/WEB-INF/views/common/header.jsp" %>
+<%@include file="/WEB-INF/views/common/favicon.jsp" %>
     <!DOCTYPE html>
     <html lang="ko">
     <head>
@@ -25,7 +27,7 @@
                 <h1 class="subject"><a href="/product/list?code=${cate.code}">${cate.categoryName}</a></h1>
             
                 <div class="link">
-                    <span><i class="fa fa-home" style="font-size:20px"></i></span> > <span>농산</span> > <span>${cate.categoryName}</span>
+                    <span><a href="/main"><i class="fa fa-home" style="font-size:20px"></i></a></span> > <span>농산</span> > <span>${cate.categoryName}</span>
                 </div> 
             </c:forEach>
 
@@ -131,13 +133,13 @@
                             </li>
                         </c:forEach>
                     </div>
-                    
-                    <p id="test1" value="test2"></p>
                 </div>
-
             </div>
         </div>   
     </body>
+    <%@include file= "/WEB-INF/views/common/footer.jsp" %>
+ </html>
+ 
     <script>
 
         const url = new URL(window.location.href);
@@ -157,10 +159,10 @@
 
             if(urlParams.has('amount') == true){
                 urlParams.set('amount', valueNum);
-                location.href = "/product/list?" + urlParams.toString();
             } else {
-                location.href = "/product/list?amount="+valueNum;
+            	urlParams.append('amount', valueNum);
             } // if-else
+            location.href = "/product/list?" + urlParams.toString();
         });
 
         // 상품목록 출력 개수 확인
@@ -433,4 +435,4 @@
         } // switch
 
     </script>
-    </html>
+    

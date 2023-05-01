@@ -22,55 +22,6 @@ function calculatetotal() {
 }
 
 /* ==========================결제======================================= */
-    
-    /* ==============================총 주문 정보=========================================== */
-    
- function setTotalInfo() {
-    
-    let totalPrice = 0;          // 총 가격
-    let totalCount = 0;          // 총 갯수
-    let totalKind = 0;           // 총 종류
-    let delivery = 0;            // 배송비
-    let totalDiscount = 0;		 // 할인금액
-    let finalTotalPrice = 0;     // 최종 가격 (총 가격 + 배송비)
-    
-
-    $(".products_table_price_td").each(function(index, element) {
-        // 총 가격
-        totalPrice += parseInt($(element).find(".individual_totalPrice_input").val());
-        // 총 갯수
-        totalCount += parseInt($(element).find(".individual_productCount_input").val());
-        // 할인금액
-        // totalDiscount += parseInt($(element).find(".individual_salePrice_input").val());
-        totalDiscount += parseInt($(element).find(".individual_salePrice_input").val());
-
-        if(totalPrice >= 30000) {           // 총 가격이 3만원 이상이면 배송비 무료
-            delivery = 0;           
-        } else if (totalPrice == 0) {       
-           delivery = 0;           
-        } else {                            // 아니면 3000원 배송비 부담
-            delivery = 3000;
-        }
-        
-
-        finalTotalPrice = totalPrice + delivery - totalDiscount;    // 최종 가격 : 총 가격 + 배송비 - 할인가격
-
-    		
-    		/* 값 삽입 */
-    		// 총 가격
-    		$(".totalPrice_span").text(totalPrice.toLocaleString());
-    		// 총 갯수
-    		$("#products_kind_div_count").text(totalCount);
-    		// 할인 금액
-    		$(".salePrice_span").text(totalDiscount.toLocaleString());
-    		// 배송비
-    		$(".delivery_price_span").text(delivery.toLocaleString());
-    		// 최종 가격
-    		$(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());
-    		
-    	}); 
-    }
-    
 
       function sample4_execDaumPostcode() {
         new daum.Postcode({

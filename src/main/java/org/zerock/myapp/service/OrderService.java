@@ -3,6 +3,7 @@ package org.zerock.myapp.service;
 import java.util.List;
 
 import org.zerock.myapp.domain.OrderDTO;
+import org.zerock.myapp.domain.OrderItemDTO;
 import org.zerock.myapp.domain.OrderPageItemDTO;
 import org.zerock.myapp.exception.ServiceException;
 
@@ -16,4 +17,11 @@ public interface OrderService {
 
 	// 주문
 	public void order(OrderDTO odt);
+	
+	// 주문한 상품 정보
+//	public List<OrderItemDTO> getOrdersInfo(List<OrderItemDTO> ordersInfo) throws ServiceException;
+	
+	// 주문한 멤버 정보
+
+	
 }

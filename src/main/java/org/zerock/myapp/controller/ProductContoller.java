@@ -5,11 +5,13 @@ package org.zerock.myapp.controller;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.zerock.myapp.domain.ApiRecipesRowVO;
 import org.zerock.myapp.domain.Criteria;
 import org.zerock.myapp.domain.PageDTO;
 import org.zerock.myapp.domain.Page_ProductDTO;
@@ -220,6 +222,7 @@ public class ProductContoller {
 				StringTokenizer stk = new StringTokenizer(cri.getWeight(), ",");
 				StringBuilder sb = new StringBuilder();
 				
+				sb.append("(");
 				while(stk.hasMoreTokens()) {
 					switch(stk.nextToken()) {
 					case "w1": weight_info = "(case when weight like '%kg' then to_number(replace(weight,'kg','')) * 1000\r\n"
@@ -246,7 +249,7 @@ public class ProductContoller {
 				} // while
 				
 				String str = sb.substring(0, sb.length()-3);
-				cri.setWeight_info(str);
+				cri.setWeight_info(str + ")");
 
 			} else {
 				switch(cri.getWeight()) {
@@ -337,30 +340,30 @@ public class ProductContoller {
 	
 	
 	// 상세정보 페이지
-//	@GetMapping("/info")
-//	public void info(@Param("no") Integer no, Model model) throws ControllerException{
-//		log.trace("info() invoked");
-//		
-//		try {
-//			Page_ProductDTO dto = this.service.getProductDetail(no);
-//			
-//			model.addAttribute("__INFO__", dto);
-//			
-//			String title = dto.getTitle();
-//			
-//			if(title != null) {
-//				List<ApiRecipesRowVO> apiVO = this.service.getRecipes(title);
-//				
-//				model.addAttribute("__API__", apiVO);
-//				
-//				Integer recipesCount = this.service.getRecipesCount(title);
-//				
-//				model.addAttribute("__APICOUNT__", recipesCount);
-//			} // if 
-//		} catch(Exception e) {
-//			throw new ControllerException(e);
-//		} // try-catch
-//	} // info
+	@GetMapping("/info")
+	public void info(@Param("no") Integer no, Model model) throws ControllerException{
+		log.trace("info() invoked");
+		
+		try {
+			Page_ProductDTO dto = this.service.getProductDetail(no);
+			
+			model.addAttribute("__INFO__", dto);
+			
+			String title = dto.getTitle();
+			
+			if(title != null) {
+				List<ApiRecipesRowVO> apiVO = this.service.getRecipes(title);
+				
+				model.addAttribute("__API__", apiVO);
+				
+				Integer recipesCount = this.service.getRecipesCount(title);
+				
+				model.addAttribute("__APICOUNT__", recipesCount);
+			} // if 
+		} catch(Exception e) {
+			throw new ControllerException(e);
+		} // try-catch
+	} // info
 //	============================================================================================
 	
 	

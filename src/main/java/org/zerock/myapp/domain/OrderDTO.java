@@ -4,7 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 import lombok.Data;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Data
 public class OrderDTO {
 	
@@ -23,17 +25,31 @@ public class OrderDTO {
 	private int delivery_cost; // 배송비
 	private Date order_date; // 주문 날짜
 	
-	// DB테이블 존재 하지 않는 데이터 
+	// DB테이블 존재 하지 않는 데이터
 
-	private int orderSalePrice; // 상품가격
+	private int totalPrice;	// 총 가격
+	private int orderSalePrice; // 할인된 적용 상품가격
+	private int salePrice; // 할인되는 가격
 	private int orderFinalSalePrice; // 최종 상품 가격
 
 	// 주문작업에 필요한 데이터 세팅
 	public void getOrderPriceInfo() {
 		// 상품 비용
+		for(OrderItemDTO order : orders) {
+		    int quantity = order.getCount(); // 상품의 수량
+		    int price = order.getPrice(); // 상품의 가격
+		    int itemTotalPrice = price * quantity; // 상품의 가격 * 수량
+		    totalPrice += itemTotalPrice; // 주문된 상품의 총 가격
+		    log.trace("\t+ ******************************totalPrice = {}*********************************", totalPrice);
+		}
+		
+		// 할인적용된 상품 비용
 			for(OrderItemDTO order : orders) {
-				orderSalePrice += order.getTotalPrice();
+				orderSalePrice += order.getDiscountedPrice();
 			}
+			//할인되는 가격	
+			salePrice = totalPrice - orderSalePrice;
+			
 		// 배송비
 			if(orderSalePrice >= 30000) {
 				delivery_cost = 0;
@@ -42,7 +58,7 @@ public class OrderDTO {
 	        } else {
 	        	delivery_cost = 3000;
 			}
-		// 최종 비용(상품 비용 + 배송비) -> 흠.. 할인가격 넣어줘야하나.. 나중에 출력해보고 다시 보자!
+		// 최종 비용(상품 비용 + 배송비 - 할인가격) 
 			orderFinalSalePrice = orderSalePrice + delivery_cost;
 	}
  
