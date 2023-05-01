@@ -12,36 +12,8 @@
     <title>거래처관리 등록</title>
 
     <link rel="stylesheet" href="/resources/css/admin/common.css">
-
+	<link rel="stylesheet" href="/resources/css/admin/register.css">
     <style>
-
-    .text_title {
-        width: 945px;
-        height: 30px;
-        font-size: 20px;
-    }
-    textarea {
-        width: 940px;
-        height: 500px;
-        font-size: 20px;
-        font-weight: 700;
-        padding: 0px;
-    }
-     
-     .farm_button {
-     	margin-top : 20px;
-     }
-
-
-    /* --------------------- 농가 상세 페이지 --------------------------------- */
-
-     .farm {
-		background-color: #f7f7f7;
-		text-align: center;
-		padding: 30px;
-
-     }
-
      p {
 		display: inline-block;
 		font-size: 20px;
@@ -77,7 +49,7 @@
                 <div class="write">
                     <form action="/admin/farm/register" method="POST">
 
-	                    <div class="farm">
+	                    <div class="information">
 	                    <h3>농가 정보</h3>
 	                    <br>
 	                    <br>
@@ -101,7 +73,7 @@
 	                        <br>
 	                    </div>
 	                    
-	                    <div class="farm_button">
+	                    <div class="button">
 	                        <button type="submit" id="registerBtn">등록</button>
 	                        <button type="button" id="listBtn">목록</button>
                     	</div>

@@ -12,35 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ 상세</title>
     <link rel="stylesheet" href="/resources/css/admin/common.css">
-    <style>
-
-        .write {
-            margin-bottom: 20px;
-        }
-
-        h3 {
-            width: 950px;
-            height: 30px;
-            font-size: 22px;
-        }
-
-        .faq_detail {
-            width: 950px;
-            height: 500px;
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        form {
-            width: 950px;
-            margin-top: 40px;
-        }
-
-        .reg_date {
-            float: right;
-        }
-
-    </style>
+    <link rel="stylesheet" href="/resources/css/admin/get.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <body>
 	<!-- 헤더 - 로그인/로그아웃 로고, 관리자페이지 메인글씨 -->
@@ -61,11 +33,11 @@
                     <span>${faq.no}]</span> <span>작성자 : ${faq.writer}</span>
                     <span class="reg_date">작성날짜 : ${faq.reg_date}</span>
                     <hr>
-                    <div class="faq_detail">
+                    <div class="detail">
                         ${faq.answer}
                     </div>
                     <hr>
-                    <div class="faq_button">
+                    <div class="button">
                         <button type="button" id="modifyBtn">수정</button>
                         <button type="button" id="removeBtn">삭제</button>
                         <button type="button" id="listBtn">목록</button>

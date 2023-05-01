@@ -79,14 +79,14 @@ public class Criteria {
 	} // getPagingUri
    
    
-   // [별이]원하는 currPage, 원하는 amount
+	// [별이]원하는 currPage, 원하는 amount
 	public Criteria() {
 		this.currPage = currPage;
 		this.amount = amount;
 		this.skip = (currPage-1)*amount;
-	
+		
 	} // criteria
-	
+		
 	//[별이]원하는 currPage, 원하는 amount
 	public Criteria(int currPage, int amount) {
 		this.currPage = currPage;

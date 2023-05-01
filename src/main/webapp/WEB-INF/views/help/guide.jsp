@@ -24,7 +24,6 @@
     <!-- slick: cdn 방식으로 css, js 가져오기 -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>			
-    
 
 </head>
 <script type="text/javascript">

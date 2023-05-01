@@ -7,11 +7,12 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zerock.myapp.domain.ApiRecipesRowVO;
+//import org.zerock.myapp.domain.ApiRecipesRowVO;
 import org.zerock.myapp.domain.CategoryVO;
 import org.zerock.myapp.domain.Criteria;
 import org.zerock.myapp.domain.Page_ProductDTO;
+//import org.zerock.myapp.domain.Page_ProductDTO;
 import org.zerock.myapp.domain.ProductDTO;
-import org.zerock.myapp.domain.ProductVO;
 import org.zerock.myapp.exception.ServiceException;
 import org.zerock.myapp.mapper.ProductMapper;
 

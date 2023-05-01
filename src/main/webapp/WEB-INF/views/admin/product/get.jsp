@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -11,170 +12,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>상품 목록</title>
     <link rel="stylesheet" href="/resources/css/admin/common.css">
-   <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
+    <link rel="stylesheet" href="/resources/css/admin/get.css">
+    <link rel="stylesheet" href="/resources/css/admin/product_get.css">
+   	<script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.0/jquery-migrate.min.js"></script>
-    <style>
-
-
-        h3 {
-            height: 30px;
-            font-size: 22px;
-        }
-
-        .product_detail {
-            height: 500px;
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        form {
-            width: 650px;
-            margin-top: 40px;
-        }
-
-        
-        .product_button {
-           margin-top : 20px;
-        }
-
-        .reg_date {
-            float: right;
-        }
-
-
-/* --------------------- 농가 상세 페이지 --------------------------------- */
-
-        .product {
-            background-color: #f7f7f7;
-            padding: 30px;
-
-        }
-
-
-        .box1 {
-            border: 1px solid rgb(195, 195, 195);
-            padding: 0;
-            width: 590px;
-            /* display : flex; */
-            /* justify-content: center; */
-            /* align-items: center; */
-            /* vertical-align: middle; */
-        }
-
-        .box2 {
-            border-bottom: 1px solid rgb(195, 195, 195);
-        }
-
-        .box3 {
-            padding-top: 15px;
-            padding-bottom: 15px;
-        }
-        
-        .box4 {
-            border: 1px solid rgb(195, 195, 195);
-            padding: 0;
-            width: 590px;
-            height:255px;
-        }
-        
-
-
-        p {
-            padding-left: 20px;
-            font-size: 16;
-        }
-
-
-        #info {
-           padding:0px;
-            width: 550px;
-            height: 30px;
-            font-size: 20px;
-            margin-left: 20px;
-        }
-        
-        
-        #price, #discount, #discount_price{
-           padding:0px;
-            width: 550px;
-            height: 30px;
-            font-size: 20px;
-            margin-left: 20px;
-        }
-        
-        #discount_price, #category2 {
-           margin : 0;
-           margin-left : 20px;
-           padding: 0;
-           width: 550;
-           height: 30px;
-           border : 1px solid #767676;
-           background-color: white;
-        }
-        
-	        
- 		#info_textarea {
-			margin-top: 20px;
-		    margin-left: 20px;
-		    padding: 0;
-		    width: 550px;
-		    min-height: 170px;
-		    border: 1px solid #767676;
-		    background-color: white;
-		} 
-     
-    a:link {color:black; text-decoration: none;}
-    a:visited {color:black; text-decoration: none;}
-/*     a:hover {color:black; text-decoration: underline;} */
-
-
-/* --------------------- 이미지 크기 조정 및 삭제 --------------------------------- */
-   
-   #result_card img {
-      max-width: 200px;
-      height:auto;
-      display:block;
-      padding:5px;
-      margin-top:10px;
-      margin:auto;
-   }
-   
-   #result_card {
-      position : relative;
-   }
-   
-   .imgDeleteBtn {
-      position : absolute;
-      top: 0;
-      right:5%;
-       background-color: #ef7d7d;
-       color: wheat;
-       font-weight: 900;
-       width: 30px;
-       height: 30px;
-       border-radius: 50%;
-       line-height: 26px;
-       text-align: center;
-       border: none;
-       display: block;
-       cursor: pointer;
-   }
-   
-   #result_card img{
-      max-width : 100%;
-      height : auto;
-      display : block;
-      padding: 5px;
-      margin-top: 10px;
-      margin : auto;
-   }
-        
-
-    </style>
-    
 </head>
-
+<style>
+	button {
+	    float: right;
+	    margin-left : 5px;
+	    margin-bottom : 100px;
+	    font-weight: 800;
+	    width: 75px;
+	    height: 35px;
+	    background-color: rgb(175, 124, 213);
+	    border: 1px solid #ceced2;
+	    font-size: 16px;
+	}
+</style>
 <body>
 
 <!-- 헤더 - 로그인/로그아웃 로고, 관리자페이지 메인글씨 -->
@@ -307,22 +163,9 @@
                                <p>메인 이미지</p>
 		                    </div>
                            <div class="box3">
-	                        <div class="select_main_image"><img src="/resources/product/${product.main_image}" id="main_image" /></div>
-	                                     
-	                           <script>
-	                              $("#main_image").change(function(){
-	                                 if(this.files && this.files[0]) {
-	                                                  
-	                                    var reader = new FileReader;
-	                                                     
-	                                    reader.onload = function(data) {
-	                                       $(".select_main_image img").attr("src", data.target.result).width(100);        
-	                                    }
-	                                    reader.readAsDataURL(this.files[0]);
-	                                 }
-	                              });
-	                           </script>
-                             </div>
+	                        <div class="select_image">
+	                        	<img src="/resources/product/${product.main_image}" id="main_image" style="width:200px" /></div>
+							</div>
 						</div>
                      	<br>
                      
@@ -332,21 +175,9 @@
                                <p>서브 이미지1</p>
                            </div>
                            <div class="box3">
-                        	<div class="select_sub_image1"><img src="/resources/product/${product.sub_image1}" id="sub_image1" /></div>
-                                     
-	                           <script>
-	                              $("#sub_image1").change(function(){
-	                                 if(this.files && this.files[0]) {
-	                                                  
-	                                    var reader = new FileReader;
-	                                                     
-	                                    reader.onload = function(data) {
-	                                       $(".select_sub_image1 img").attr("src", data.target.result).width(100);       
-	                                    }
-	                                    reader.readAsDataURL(this.files[0]);
-	                                 }
-	                              });
-	                           </script>
+                        	<div class="select_image">
+	                        	<img src="/resources/product/${product.sub_image1}" id="sub_image1" style="width:200px"/>
+                        	</div>
                            </div>
                        </div>
                        <br>
@@ -357,21 +188,9 @@
                                <p>서브 이미지2</p>
                            </div>
                            <div class="box3">
-                        <div class="select_sub_image2"><img src="/resources/product/${product.sub_image2}" id="sub_image2" /></div>
-                                     
-                           <script>
-                              $("#sub_image2").change(function(){
-                                 if(this.files && this.files[0]) {
-                                                  
-                                    var reader = new FileReader;
-                                                     
-                                    reader.onload = function(data) {
-                                       $(".select_sub_image2 img").attr("src", data.target.result).width(100);        
-                                    }
-                                    reader.readAsDataURL(this.files[0]);
-                                 }
-                              });
-                           </script>
+                        		<div class="select_image">
+                        			<img src="/resources/product/${product.sub_image2}" id="sub_image2" style="width:200px"/>
+                        		</div>
                              </div>             
                        </div>
                        <br>
@@ -381,48 +200,24 @@
                            <div class="box2">
                                <p>서브 이미지3</p>
                            <div class="box3">
-                        <div class="select_sub_image3"><img src="/resources/product/${product.sub_image3}" id="sub_image3" /></div>
-                                     
-                           <script>
-                              $("#sub_image3").change(function(){
-                                 if(this.files && this.files[0]) {
-                                                  
-                                    var reader = new FileReader;
-                                                     
-                                    reader.onload = function(data) {
-                                       $(".select_sub_image3 img").attr("src", data.target.result).width(100);        
-                                    }
-                                    reader.readAsDataURL(this.files[0]);
-                                 }
-                              });
-                           </script>
-                             </div>           
+		                        <div class="select_image">
+		                        	<img src="/resources/product/${product.sub_image3}" id="sub_image3" style="width:200px" />
+		                        </div>
+							</div>           
                        </div>
                        </div>
                        <br>
    
    
                        <div class="box1">
-                           <div class="box2">
-                               <p>서브 이미지4</p>
-                           </div>
-                           <div class="box3">
-                        <div class="select_sub_image4"><img src="/resources/product/${product.sub_image4}" id="sub_image4" /></div>
-                                     
-                           <script>
-                              $("#sub_image4").change(function(){
-                                 if(this.files && this.files[0]) {
-                                                  
-                                    var reader = new FileReader;
-                                                     
-                                    reader.onload = function(data) {
-                                       $(".select_sub_image4 img").attr("src", data.target.result).width(100);        
-                                    }
-                                    reader.readAsDataURL(this.files[0]);
-                                 }
-                              });
-                           </script>
-                             </div>
+							<div class="box2">
+								<p>서브 이미지4</p>
+							</div>
+							<div class="box3">
+	                        	<div class="select_image">
+	                        		<img src="/resources/product/${product.sub_image4}" id="sub_image4" style="width:200px"/>
+	                        	</div>
+							</div>
                        </div>
                        <br>
    
@@ -441,32 +236,18 @@
                            <div class="box2">
                                <p>상세정보내용 이미지</p>
                            </div>
-                           <div class="box3">
-                        <div class="select_content_image"><img src="/resources/product/${product.content_image}" id="content_image" /></div>
-                                     
-                           <script>
-                              $("#content_image").change(function(){
-                                 if(this.files && this.files[0]) {
-                                                  
-                                    var reader = new FileReader;
-                                                     
-                                    reader.onload = function(data) {
-                                       $(".select_content_image img").attr("src", data.target.result).width(200);        
-                                    }
-                                    reader.readAsDataURL(this.files[0]);
-                                 }
-                              });
-                           </script>
-                             </div>
+							<div class="box3">
+	                        	<div class="select_image">
+	                        		<img src="/resources/product/${product.content_image}" id="content_image" style="width:500px"/>
+	                        	</div>
+							</div>
                        </div>
                        <br>
-
-
-                    <div class="product_button">
+                    </div>
+					<div class="button">
                         <button type="button" id="modifyBtn">수정</button>
                         <button type="button" id="removeBtn">삭제</button>
                         <button type="button" id="listBtn">목록</button>
-                    </div>
                     </div>
                  </form>
             </div>

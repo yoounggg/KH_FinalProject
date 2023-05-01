@@ -2,11 +2,11 @@ package org.zerock.myapp.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URLDecoder;
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.myapp.domain.CategoryVO;
 import org.zerock.myapp.domain.Criteria;
-import org.zerock.myapp.domain.NoticeVO;
 import org.zerock.myapp.domain.PageDTO;
 import org.zerock.myapp.domain.ProductDTO;
 import org.zerock.myapp.exception.AException;
@@ -68,7 +68,19 @@ public class AdminController {
    } // adminMain
    
    
+   /* 관리자 페이지 비동기 방식 로그아웃 */
    
+
+	 @PostMapping("/logout")
+	 @ResponseBody 
+	 public void adminLogout(HttpServletRequest req, RedirectAttributes rttrs) throws Exception{ 
+		 log.trace("adminMain() invoked. (관리자 페이지에서 비동기 로그아웃)");
+	 
+		 HttpSession session = req.getSession();
+		 session.invalidate();
+
+	 } // adminMain
+
    
 //   =========================== 상품 ===========================
    

@@ -3,12 +3,12 @@ package org.zerock.myapp.service;
 import java.util.List;
 
 import org.zerock.myapp.domain.ApiRecipesRowVO;
+//import org.zerock.myapp.domain.ApiRecipesRowVO;
 import org.zerock.myapp.domain.CategoryVO;
 import org.zerock.myapp.domain.Criteria;
-import org.zerock.myapp.domain.FarmVO;
 import org.zerock.myapp.domain.Page_ProductDTO;
+//import org.zerock.myapp.domain.Page_ProductDTO;
 import org.zerock.myapp.domain.ProductDTO;
-import org.zerock.myapp.domain.ProductVO;
 import org.zerock.myapp.exception.ServiceException;
 
 public interface ProductService {

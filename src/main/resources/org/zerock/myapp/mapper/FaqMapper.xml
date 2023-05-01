@@ -8,14 +8,14 @@
 
 <mapper namespace="org.zerock.myapp.mapper.FaqMapper">
 
-	<!-- 게시글 조건 조회 -->
+	<!-- FAQ 조건 조회 -->
 	<select id="select" resultType="org.zerock.myapp.domain.FaqVO">
 		SELECT * FROM FAQ
 		WHERE no = #{no}
 	</select>
 	
 	
-	  <!-- 게시글 목록 조회 (페이징) -->
+	  <!-- FAQ 목록 조회 (페이징) -->
  	<select id="getListPaging" resultType="org.zerock.myapp.domain.FaqVO">
     <![CDATA[
     
@@ -29,26 +29,26 @@
  	</select>
   
 	  
-	<!-- 게시물 총 갯수 -->
+	<!-- FAQ 총 갯수 -->
 	<select id="getTotal" resultType="int">
 	  	SELECT count(*) FROM FAQ
 	</select>
 	  
   
   
-	<!-- 게시글 삭제 -->
+	<!-- FAQ 삭제 -->
 	<delete id="delete">
 		DELETE FROM FAQ
 		WHERE no = #{no}
 	</delete>
 	
-	<!-- 게시글 등록 -->
+	<!-- FAQ 등록 -->
 	<insert id="insert">
 		INSERT INTO FAQ (title, answer, writer)
 		VALUES (#{title}, #{answer}, #{writer})
 	</insert>
 	
-	<!-- 게시글 수정 -->
+	<!-- FAQ 수정 -->
 	<update id="update">
 		UPDATE FAQ
 		SET

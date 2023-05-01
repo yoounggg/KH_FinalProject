@@ -8,11 +8,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.zerock.myapp.domain.Criteria;
+import org.zerock.myapp.domain.FaqDTO;
 import org.zerock.myapp.domain.FaqVO;
+import org.zerock.myapp.domain.NoticeDTO;
 import org.zerock.myapp.domain.NoticeVO;
 import org.zerock.myapp.domain.PageDTO;
 import org.zerock.myapp.exception.ControllerException;
+import org.zerock.myapp.exception.ServiceException;
+import org.zerock.myapp.service.FaqSearchService;
 import org.zerock.myapp.service.FaqService;
+import org.zerock.myapp.service.NoticeSearchService;
 import org.zerock.myapp.service.NoticeService;
 
 import lombok.AllArgsConstructor;
@@ -61,7 +66,7 @@ public class HelpController {
         } // try-catch
 		
 	} // faqList
-	
+		
 	
 //	================================================================================
 	
@@ -101,6 +106,70 @@ public class HelpController {
 		} // try-catch
 		
 	} // get()
+	
+	
+//	================================================================================
+	
+	private FaqSearchService service3;
+	
+	@GetMapping("/search") // 
+	public String faqSearchList (Criteria cri, Model model) throws ServiceException {
+		log.info("faqSearchList({}) invoked.", cri);
+		
+		
+		List<FaqDTO> list = this.service3.faqSearchList(cri);
+		log.info("searchList:" + list);
+		
+		if(!list.isEmpty()) {
+			model.addAttribute("searchList", list);
+			
+			log.info("searchList: " + list);
+			
+		} else {
+			
+			model.addAttribute("emptylist", "empty");
+			
+			return "/help/search"; 
+		} // if-else
+		
+		//페이징
+		model.addAttribute("__PAGE_MAKER__", new PageDTO(cri, service3.totalFaq(cri)));
+		
+		return "/help/search";
+	} // searchproductList
+	
+	
+//	================================================================================
+	
+	
+	private NoticeSearchService service4;
+	
+	@GetMapping("/search2") // 
+	public String NoticeSearchList (Criteria cri, Model model) throws ServiceException {
+		log.info("faqSearchList({}) invoked.", cri);
+		
+		
+		List<NoticeDTO> list = this.service4.noticeSearchList(cri);
+		log.info("searchList2:" + list);
+		
+		if(!list.isEmpty()) {
+			model.addAttribute("searchList2", list);
+			
+			log.info("searchList: " + list);
+			
+		} else {
+			
+			model.addAttribute("emptylist", "empty");
+			
+			return "/help/search2"; 
+		} // if-else
+		
+		//페이징
+		model.addAttribute("__PAGE_MAKER__", new PageDTO(cri, service4.totalNotice(cri)));
+		
+		return "/help/search2";
+	} // searchproductList
+	
 	
 //	================================================================================
 	

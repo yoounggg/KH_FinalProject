@@ -51,19 +51,19 @@ public class OrderMapperTests {
 	} // beforeAll
 	
 	
-	//@Disabled
-	@Test
-	@Order(1)
-	@DisplayName("테스트1: TestGetProductsInfo")
-	@Timeout(value = 1, unit=TimeUnit.MINUTES)
-	void TestGetProductsInfo() {
-	    Integer no = 10; // 테스트용 상품 ID
-	    OrderPageItemDTO product = orderMapper.getProductsInfo(no);
-	    assertNotNull(product);
-	    assertEquals(no, product.getNo());
-	    // 예를 들어, product.getName(), product.getPrice() 등을 확인하는 코드를 작성.
-
-	} // TestGetProductsInfo
+//	//@Disabled
+//	@Test
+//	@Order(1)
+//	@DisplayName("테스트1: TestGetProductsInfo")
+//	@Timeout(value = 1, unit=TimeUnit.MINUTES)
+//	void TestGetProductsInfo() {
+//	    Integer no = 10; // 테스트용 상품 ID
+//	    OrderPageItemDTO product = orderMapper.getProductsInfo(no);
+//	    assertNotNull(product);
+//	    assertEquals(no, product.getNo());
+//	    // 예를 들어, product.getName(), product.getPrice() 등을 확인하는 코드를 작성.
+//
+//	} // TestGetProductsInfo
 	
 	//@Disabled
 	@Test

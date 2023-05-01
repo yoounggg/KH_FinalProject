@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+.text_title {
+	width: 693px;
+	height: 30px;
+	font-size: 16px;
+	
+}
+textarea {
+	width: 780px;
+	height: 500px;
+	font-size: 20px;
+	font-weight: 700;
+	padding: 0px;
+}
+
+.ck-content {
+	min-height: 400px;
+	padding: 0px;
+}
