@@ -21,12 +21,6 @@
     
     <body>
         <div class="container">
-            <div>
-                <c:forEach var="cate1" items="${__CategoryAll__}">
-                    <li style="display: inline-block; list-style: none;"><a href="/product/list?code=${cate1.code}">${cate1.categoryName}</a></li>
-                </c:forEach>
-            </div>
-
             <c:forEach var="cate" items="${__Category__}">
                 <h1 class="subject"><a href="/product/list?code=${cate.code}">${cate.categoryName}</a></h1>
             

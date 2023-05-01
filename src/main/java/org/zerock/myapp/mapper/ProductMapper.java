@@ -42,6 +42,8 @@ public interface ProductMapper {
 	@Select("""
 			SELECT name AS categoryName, code
 			FROM category
+			WHERE code NOT IN (10000)
+			ORDER BY code
 			""")
 	public abstract List<Page_ProductDTO> SelectCategoryAll();		// 전체 카테고리 가져오기
 	
