@@ -24,18 +24,23 @@
     <!-- slick: cdn 방식으로 css, js 가져오기 -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>			
-    
-<!--     <style>
-    	.content_list {
-		    width: 760px;
-		    margin: 40px;
-		    border-top: 3px solid #ceced2;
-		
-		    font-size: 11px;
-		    /* font-weight: bold; */
+	<style>
+		#search {
+		    position: absolute;
+		    display: inline-block;
+		    width: 87px;
+			height: 32px;
+		    padding-top: 3.2px;
+		    line-height: 20px;
+		    border: 2px solid #5d5d5d;
+		    background: #5d5d5d;
+		    text-align: center;
+		    font-size: 16px;
+		    font-weight: 500;
+		    color: #fff;
+		    text-decoration: none;
 		}
-    </style> -->
-
+	</style> 
 </head>
 <body>
 	<!-- header -->
@@ -54,8 +59,10 @@
                     <ul class="helf_search_ul">
                         <p>공지사항 검색</p>
                         <div class="helf_search_input_a">
-                            <input type="text" id="noticeKeyword" value="" placeholder="자주 찾는 질문을 검색해 보세요! ">
-                            <a href="#" onclick="noticeSearch(); return false;" style="color: #fff;">검색</a>
+                        <form action="/help/search2" id="searchForm" method="get">
+                            <input type="text" id="keyword" name="keyword" placeholder="궁금하신 것을 검색해 보세요! ">
+                            <button id="search" style="color: #fff;">검색</button>
+                        </form>
                         </div>
                     </ul>
                 </div>

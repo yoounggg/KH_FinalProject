@@ -24,7 +24,7 @@
     <!-- slick: cdn 방식으로 css, js 가져오기 -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>			
-	<style>
+    <style>
 		#search {
 		    position: absolute;
 		    display: inline-block;
@@ -41,6 +41,7 @@
 		    text-decoration: none;
 		}
 	</style> 
+
 </head>
 <body>
 	<!-- header -->
@@ -85,14 +86,17 @@
                 <!-- 중간 - 게시물 -->
                 <div class="content_wrap">
                         <h2>FAQ <span class="test">가장 자주하시는 질문과 답변을 확인하세요</span></h2>
-
+                        <br>
+                        <br>
+                        <h2><span>'${__PAGE_MAKER__.cri.keyword}'　</span>검색 결과</h2>
+                        <br>
                         <div class="content_list">
-							<c:forEach items="${faqList}" var="FaqVO" varStatus="status">
-							  <input type="radio" name="accodion" id="answer${FaqVO.no}">
-							  <label for="answer${FaqVO.no}"><input type="hidden" name="no" value="${FaqVO.no}">${FaqVO.title}<em></em></label>
+							<c:forEach items="${searchList}" var="FaqDTO" varStatus="status">
+							  <input type="radio" name="accodion" id="answer${FaqDTO.no}">
+							  <label for="answer${FaqDTO.no}"><input type="hidden" name="no" value="${FaqDTO.no}">${FaqDTO.title}<em></em></label>
 							  <div>
 							    <p class="answer02">
-							      <input type="hidden" name="no" value="${FaqVO.no}">${FaqVO.answer}
+							      <input type="hidden" name="no" value="${FaqDTO.no}">${FaqDTO.answer}
 							    </p>
 							  </div> 
 							</c:forEach>

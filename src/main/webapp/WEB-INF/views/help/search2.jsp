@@ -13,8 +13,8 @@
     
 	<!-- include favicon -->
     <%@include file="/WEB-INF/views/common/favicon.jsp" %>
-    
-    <link rel="stylesheet" href="/resources/css/help/faq.css">
+
+    <link rel="stylesheet" href="/resources/css/help/notice.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,100,1,-25" />
@@ -57,12 +57,10 @@
                 </div>
                 <div class="helf_search">
                     <ul class="helf_search_ul">
-                        <p>FAQ 검색</p>
+                        <p>공지사항 검색</p>
                         <div class="helf_search_input_a">
-                        <form action="/help/search" id="searchForm" method="get">
-                            <input type="text" id="keyword" name="keyword" placeholder="자주 찾는 질문을 검색해 보세요! ">
+                            <input type="text" id="noticeKeyword" value="" placeholder="자주 찾는 질문을 검색해 보세요! ">
                             <button id="search" style="color: #fff;">검색</button>
-                        </form>
                         </div>
                     </ul>
                 </div>
@@ -84,21 +82,32 @@
 
                 <!-- 중간 - 게시물 -->
                 <div class="content_wrap">
-                        <h2>FAQ <span class="test">가장 자주하시는 질문과 답변을 확인하세요</span></h2>
-
+                        <h2>공지사항 <span class="test">새로운 소식들을 확인하세요</span></h2>
+                        <br>
+                        <br>
+                        <h2><span>'${__PAGE_MAKER__.cri.keyword}'　</span>검색 결과</h2>
+                        <br>
                         <div class="content_list">
-							<c:forEach items="${faqList}" var="FaqVO" varStatus="status">
-							  <input type="radio" name="accodion" id="answer${FaqVO.no}">
-							  <label for="answer${FaqVO.no}"><input type="hidden" name="no" value="${FaqVO.no}">${FaqVO.title}<em></em></label>
-							  <div>
-							    <p class="answer02">
-							      <input type="hidden" name="no" value="${FaqVO.no}">${FaqVO.answer}
-							    </p>
-							  </div> 
-							</c:forEach>
-	    				</div>
-        				
-        				<div class="pageInfo_wrap" >
+			            <table>
+			                 <thead>
+			                    <tr>
+			                        <th>번호</th>
+			                        <th>제목</th>
+			                        <th>작성날짜</th>
+			                    </tr>
+			                </thead>
+			                <tbody>
+			                    <c:forEach items="${searchList2}" var="NoticeDTO">
+			                        <tr>
+			                            <td>${NoticeDTO.no}</td>
+			                            <td><a href="/help/get?no=${NoticeDTO.no}">${NoticeDTO.title}</a></td>
+			                            <td>${NoticeDTO.reg_date}</td>
+			                        </tr>       
+			                    </c:forEach>    
+			                </tbody>
+			            </table>
+			            
+						<div class="pageInfo_wrap" >
 						  <form id=moveForm method="get">
 						    <div class="pageInfo_area">
 						    	<ul id="pageInfo" class="pageInfo">
@@ -110,7 +119,7 @@
 						            
 					            	<!-- 각 번호 페이지 버튼 -->
 					                <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-					                    <li class="pageInfo_btn "><a href="/help/faq?currPage=${num}&amount=${pageMaker.cri.amount}">${num}</a></li>
+					                    <li class="pageInfo_btn "><a href="/help/search2?keyword=${__PAGE_MAKER__.cri.keyword}&currPage=${num}&amount=${pageMaker.cri.amount}">${num}</a></li>
 					                </c:forEach>
 					             
 						            <!-- 다음페이지 버튼 -->
@@ -122,7 +131,9 @@
 			            	</div>
 			            	</form>
 				    	</div>
+        
             	</div>
+        </div>
         </div>
         </div>
     </main>

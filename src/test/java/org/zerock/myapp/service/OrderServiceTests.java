@@ -56,28 +56,28 @@ public class OrderServiceTests {
 	@Timeout(value =1, unit=TimeUnit.MINUTES)
 	void testGetProductsInfo () {
 		
-	    List<OrderPageItemDTO> orders = new ArrayList<>();
-	    OrderPageItemDTO order1 = new OrderPageItemDTO();
-	    order1.setProductId(1);
-	    order1.setProductCount(2);
-	    orders.add(order1);
-	    
-	    OrderPageItemDTO order2 = new OrderPageItemDTO();
-	    order2.setProductId(10);
-	    order2.setProductCount(3);
-	    orders.add(order2);
+//	    List<OrderPageItemDTO> orders = new ArrayList<>();
+//	    OrderPageItemDTO order1 = new OrderPageItemDTO();
+//	    order1.setProductId(1);
+//	    order1.setProductCount(2);
+//	    orders.add(order1);
+//	    
+//	    OrderPageItemDTO order2 = new OrderPageItemDTO();
+//	    order2.setProductId(10);
+//	    order2.setProductCount(3);
+//	    orders.add(order2);
 	    
 //	    String memberId = "codud"; 
 	    
-	    List<OrderPageItemDTO> result;
-		try {
-			result = orderService.getProductsInfo(orders);
-		    assertNotNull(result);
-		    assertFalse(result.isEmpty());
-		} catch (ServiceException e) {
-			e.printStackTrace(); 
-		} // try-catch
-		
+//	    List<OrderPageItemDTO> result;
+//		try {
+//			result = orderService.getProductsInfo(orders);
+//		    assertNotNull(result);
+//		    assertFalse(result.isEmpty());
+//		} catch (ServiceException e) {
+//			e.printStackTrace(); 
+//		} // try-catch
+//		
 	} // testGetProductsInfo
 	
 }

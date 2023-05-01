@@ -134,8 +134,8 @@ public class FaqServiceImpl implements FaqService, InitializingBean {
 		} // try-catch
 	
 	} // getTotal
-	
-	
+
+
 
 
 } // end class

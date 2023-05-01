@@ -2,33 +2,17 @@ package org.zerock.myapp.controller;
 
 
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.zerock.myapp.domain.ApiRecipesRowVO;
-import org.zerock.myapp.domain.AttachImageVO;
 import org.zerock.myapp.domain.Criteria;
 import org.zerock.myapp.domain.PageDTO;
 import org.zerock.myapp.domain.Page_ProductDTO;
-import org.zerock.myapp.domain.ProductDTO;
-import org.zerock.myapp.domain.ProductVO;
 import org.zerock.myapp.exception.ControllerException;
 import org.zerock.myapp.service.AttachService;
 import org.zerock.myapp.service.ProductService;
@@ -353,30 +337,30 @@ public class ProductContoller {
 	
 	
 	// 상세정보 페이지
-	@GetMapping("/info")
-	public void info(@Param("no") Integer no, Model model) throws ControllerException{
-		log.trace("info() invoked");
-		
-		try {
-			Page_ProductDTO dto = this.service.getProductDetail(no);
-			
-			model.addAttribute("__INFO__", dto);
-			
-			String title = dto.getTitle();
-			
-			if(title != null) {
-				List<ApiRecipesRowVO> apiVO = this.service.getRecipes(title);
-				
-				model.addAttribute("__API__", apiVO);
-				
-				Integer recipesCount = this.service.getRecipesCount(title);
-				
-				model.addAttribute("__APICOUNT__", recipesCount);
-			} // if 
-		} catch(Exception e) {
-			throw new ControllerException(e);
-		} // try-catch
-	} // info
+//	@GetMapping("/info")
+//	public void info(@Param("no") Integer no, Model model) throws ControllerException{
+//		log.trace("info() invoked");
+//		
+//		try {
+//			Page_ProductDTO dto = this.service.getProductDetail(no);
+//			
+//			model.addAttribute("__INFO__", dto);
+//			
+//			String title = dto.getTitle();
+//			
+//			if(title != null) {
+//				List<ApiRecipesRowVO> apiVO = this.service.getRecipes(title);
+//				
+//				model.addAttribute("__API__", apiVO);
+//				
+//				Integer recipesCount = this.service.getRecipesCount(title);
+//				
+//				model.addAttribute("__APICOUNT__", recipesCount);
+//			} // if 
+//		} catch(Exception e) {
+//			throw new ControllerException(e);
+//		} // try-catch
+//	} // info
 //	============================================================================================
 	
 	
