@@ -32,6 +32,7 @@
    <context:component-scan base-package="org.zerock.myapp.controller" />
    <context:component-scan base-package="org.zerock.myapp.interceptor" />
    <context:component-scan base-package="org.zerock.myapp.exception" />
+   <context:component-scan base-package="org.zerock.myapp.service" />
    
    <!-- path = request URI가 됨 -->
    <view-controller 
