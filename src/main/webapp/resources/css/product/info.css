@@ -155,14 +155,16 @@ ul {
     font-weight: bold;
     background-color: #06e19a;
     border: none;
-    color: #ffffff
+    color: #ffffff;
+   cursor: pointer;
 }
 
 .btn > input:nth-of-type(2) {
     font-weight: bold;
     background-color: #000000;
     border: none;
-    color: #ffffff
+    color: #ffffff;
+    cursor: pointer;
 }
 
 .detailInfo {
