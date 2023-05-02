@@ -34,7 +34,7 @@
         <div class="cartmain">			
             <div class="carttitleset">
                 <div class="carttitle">장바구니</div>
-                <div class="carttitle2">일반배송</div>
+				<br>
             </div>
 			<div>
 				<!-- 체크박스 전체 여부 -->
