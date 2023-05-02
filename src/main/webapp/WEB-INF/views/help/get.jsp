@@ -95,9 +95,8 @@
 									<td>
 										<div class="notice_detail">${notice.content}</div>
 									</td>
-								</tr>                               
+								</tr>
 							</table>
-		
 							<h4><button id="listBtn"><a href="/help/notice" id="Btn">전체보기</a></button></h4>
 		
 						</div>
