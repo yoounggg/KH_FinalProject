@@ -2,7 +2,6 @@ package org.zerock.myapp.controller;
 
 import java.util.Objects;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.zerock.myapp.domain.CartDTO;
-import org.zerock.myapp.domain.MemberVO;
+import org.zerock.myapp.domain.MemberDTO;
 import org.zerock.myapp.exception.ControllerException;
 import org.zerock.myapp.service.CartService;
 
@@ -33,12 +32,12 @@ public class CartController {
 	private CartService service;
 	
 	
-//	@RequestMapping(value = "/cart", method = RequestMethod.GET)
-//	public String cartPageGET() {
-//		log.trace("cartPageGET() invoked(장바구니 페이지로 이동)");
-//		
-//		return "cart";
-//	} // cartPageGET
+	@GetMapping("/")
+	public String cartPageGET() { // 로그인 안 했을 때! -> CartInterceptor때문에 장바구니 진입 불가
+		log.trace("cartPageGET() invoked(장바구니 페이지로 이동)");
+		
+		return "cart";
+	} // cartPageGET
 	
 	// 1. 장바구니 조회는 회원만 할 수 있으니까 member_id데이터를 얻기 위해 파라미터 추가
 	// 장바구니 데이터를 뷰에 넘길 때 model상자에 담아서 넘기기
@@ -65,8 +64,8 @@ public class CartController {
 		
 		// (1) 로그인 체크
 		//HttpSession session = request.getSession();
-		MemberVO vo = (MemberVO)session.getAttribute("member");
-		if(vo == null) {
+		MemberDTO dto = (MemberDTO)session.getAttribute("member");
+		if(dto == null) {
 			return "5"; // 멤버 아니면 5반환 -> 로그인 필요함!
 		}
 		

@@ -53,7 +53,7 @@
                 <c:if test = "${member == null}">
                     <li><a href="/login/main">로그인</a></li>
                     <li><a href="/signup/main">회원가입</a></li>
-                    <li><a href="/cart/${member.id}">장바구니</a></li>
+                    <li class="nullcart"><a href="/cart/">장바구니</a></li>
                 </c:if> 
                 
                 <!--로그인 O -->

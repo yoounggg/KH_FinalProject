@@ -44,10 +44,10 @@
 	                    <li>
 	                        <div>
 	                            <div class="imgbox">	
-	                            	<a href="/product/info?no=${productVO.no}"><img src="/resources/product/${mainsearchlist.main_image}" width="220" height="220" alt="검색상품이미지"></a>
+	                            	<a href="/product/info?no=${mainsearchlist.no}"><img src="/resources/product/${mainsearchlist.main_image}" width="220" height="220" alt="검색상품이미지"></a>
 	                            </div>
 	                            <div class="infobox">
-	                                <div class="searchname"><a href="/product/info?no=${productVO.no}">${mainsearchlist.name}</a></div>
+	                                <div class="searchname"><a href="/product/info?no=${mainsearchlist.no}">${mainsearchlist.name}</a></div>
 	                             	<div>
 		                             	<span class="discount">${mainsearchlist.discount}%</span>
 		                             	<span class="discountprice">${mainsearchlist.discount_price}원</span>

@@ -26,22 +26,22 @@ $(document).ready(function(){
   setTotalInfo();	
       
   /* 이미지 삽입 */
-  $(".image_wrap").each(function(i, obj){
+  // $(".image_wrap").each(function(i, obj){
       
-    const bobj = $(obj);
+  //   const bobj = $(obj);
         
-    if(bobj.data("product_no")){
-      const uploadPath = bobj.data("path");
-      const uuid = bobj.data("uuid");
-      const fileName = bobj.data("filename");
+  //   if(bobj.data("product_no")){
+  //     const uploadPath = bobj.data("path");
+  //     const uuid = bobj.data("uuid");
+  //     const fileName = bobj.data("filename");
           
-      const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+  //     const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
           
-      $(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
-    } else {
-      $(this).find("img").attr('src', '/resources/img/goodsNoImage.png');
-    }  
-  });    
+  //     $(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
+  //   } else {
+  //     $(this).find("img").attr('src', '/resources/img/goodsNoImage.png');
+  //   }  
+  // });    
 // });	
 
 

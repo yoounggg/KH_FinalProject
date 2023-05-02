@@ -62,12 +62,14 @@
 									<input type="hidden" class="cartCountInput" value="${cartInfo.count}">
 									<input type="hidden" class="cartTotalPriceInput" value="${cartInfo.discount_price * cartInfo.count}">
 									<input type="hidden" class="productNameInput" value="${cartInfo.name}">
-									<input type="hidden" class="cartProductNoInput" value="${cartInfo.product_No}">									
+									<input type="hidden" class="cartProductNoInput" value="${cartInfo.product_No}">	
+									<input type="hidden" class="cartMainImage" value="${cartInfo.main_image}">											
 								</td>
 
 								<td class="td_2">
-									<div class="image_wrap" data-product_no="${cartInfo.imageList[0].product_No}" data-path="${cartInfo.imageList[0].uploadPath}" data-uuid="${cartInfo.imageList[0].uuid}" data-filename="${cartInfo.imageList[0].fileName}">
-										<img>
+									
+									<div class="image_wrap" >	
+										<img src="/resources/product/${cartInfo.main_image}" alt="장바구니 상품 이미지">
 									</div>								
 								</td>
 

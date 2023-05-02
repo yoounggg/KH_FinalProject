@@ -37,7 +37,7 @@
 	<select id="getCart" resultType="org.zerock.myapp.domain.CartDTO">
 	<!-- <select id="getCart" resultType="org.zerock.myapp.domain.CartVO"> -->
 	
-		SELECT a.no, a.member_id, a.product_No, a.count, b.name, b.price, b.discount_price
+		SELECT a.no, a.member_id, a.product_No, a.count, b.name, b.price, b.discount_price, b.main_image
 		FROM cart a left outer join product b on a.product_No = b.no
 		WHERE member_id = #{member_id}	
 	
