@@ -6,6 +6,7 @@ import java.util.concurrent.ExecutionException;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.zerock.myapp.api.NaverLoginApi;
 
@@ -20,6 +21,7 @@ import lombok.NoArgsConstructor;
 
 
 @NoArgsConstructor
+@Service
 // 비즈니스 로직을 캡슐화하고 다른 계층과 상호 작용을 관리하는 역할을 위한 Business Object class 생성
 public class NaverBO {
 
@@ -33,7 +35,7 @@ public class NaverBO {
     private final static String CLIENT_SECRET = "Fq5QQZ3JgK";
     
     //redirect_uri: 네이버 로그인 인증의 결과를 전달받을 콜백 URL(URL 인코딩). 애플리케이션을 등록할 때 Callback URL에 설정한 정보입니다.
-    private final static String REDIRECT_URI = "http://localhost:8080/login/main";
+    private final static String REDIRECT_URI = "http://localhost:8080/login/callBack";
     
     //state: 애플리케이션이 생성한 상태 토큰
     private final static String SESSION_STATE = "oauth_state";
@@ -44,7 +46,7 @@ public class NaverBO {
 //  -------------------------------------------------------------------------------------------------
     
     /* getAuthorizationUrl() = 네이버 아이디로 인증  URL 생성  */
-    public String getAuthorizationUrl(HttpSession session) {
+    public String getAuthorizationUrl(HttpSession session) throws Exception {
  
         // 세션의 유효성 검증을 위한 난수 생성
         String state = generateRandomString();
@@ -53,14 +55,14 @@ public class NaverBO {
         setSession(session,state);        
  
         // Scribe에서 제공하는 인증 URL 생성 기능을 이용하여 네이버로 로그인하기 인증 URL 생성
-        OAuth20Service oauthService = new ServiceBuilder(CLIENT_ID)
-                .apiSecret(CLIENT_SECRET)
-                .callback(REDIRECT_URI)
-                .build(NaverLoginApi.instance());
-
-        String authorizationUrl = oauthService.getAuthorizationUrl() + "&state=" + state;
+        OAuth20Service oauthService = new ServiceBuilder()
+        		.apiKey(CLIENT_ID)
+        		.apiSecret(CLIENT_SECRET)
+        		.callback(REDIRECT_URI)
+        		.state(state) //앞서 생성한 난수값을 인증 URL생성시 사용함
+        		.build(NaverLoginApi.instance());
         
-        return authorizationUrl;
+        return oauthService.getAuthorizationUrl();
  
     } // getAuthorizationUrl()
  
@@ -72,12 +74,14 @@ public class NaverBO {
         String sessionState = getSession(session);
         
         // 전달받은 상태 토큰과 세션에 저장된 상태 토큰이 일치하는지 확인
-        if (StringUtils.pathEquals(sessionState, state)) {
-     
-            OAuth20Service oauthService = new ServiceBuilder(CLIENT_ID)
-                    .apiSecret(CLIENT_SECRET)
-                    .callback(REDIRECT_URI)
-                    .build(NaverLoginApi.instance());
+        if(StringUtils.pathEquals(sessionState, state)) {
+        	
+        	OAuth20Service oauthService = new ServiceBuilder()
+        			.apiKey(CLIENT_ID)
+        			.apiSecret(CLIENT_SECRET)
+        			.callback(REDIRECT_URI)
+        			.state(state)
+        			.build(NaverLoginApi.instance());
      
             /* Scribe에서 제공하는 AccessToken 획득 기능으로 네아로 Access Token을 획득 */
             OAuth2AccessToken accessToken = oauthService.getAccessToken(code);
@@ -120,23 +124,23 @@ public class NaverBO {
     /* Access Token을 이용하여 네이버 사용자 프로필 API를 호출 */
     public String getUserProfile(OAuth2AccessToken oauthToken) throws Exception {
     	
-    	 // OAuth2.0 서비스 객체를 생성하고, 필요한 정보(클라이언트 ID, 시크릿, 콜백 URL)를 설정.
-        OAuth20Service oauthService = new ServiceBuilder(CLIENT_ID)
-                .apiSecret(CLIENT_SECRET)
-                .callback(REDIRECT_URI)
-                .build(NaverLoginApi.instance());
+    	// OAuth2.0 서비스 객체를 생성하고, 필요한 정보(클라이언트 ID, 시크릿, 콜백 URL)를 설정.
+    	OAuth20Service oauthService =new ServiceBuilder()
+    			.apiKey(CLIENT_ID)
+    			.apiSecret(CLIENT_SECRET)
+    			.callback(REDIRECT_URI).build(NaverLoginApi.instance());
         
-        // 네이버 프로필 조회 API를 호출하기 위한 OAuthRequest 객체 생성
-        OAuthRequest request = new OAuthRequest(Verb.GET, PROFILE_API_URL);
-        
-        // Access Token을 사용하여 요청에 서명합니다.
-        oauthService.signRequest(oauthToken, request);
-        
-        // OAuthRequest 객체를 전달하여 API 요청을 실행하고 응답을 받습니다.
-        Response response = oauthService.execute(request);
-        
-        // 응답 객체에서 사용자 프로필 정보를 JSON 형식으로 반환합니다.
-        return response.getBody();
+    	// 네이버 프로필 조회 API를 호출하기 위한 OAuthRequest 객체 생성
+    	OAuthRequest request = new OAuthRequest(Verb.GET, PROFILE_API_URL, oauthService);
+    	
+    	// Access Token을 사용하여 요청에 서명
+    	oauthService.signRequest(oauthToken, request);
+    	
+    	// OAuthRequest 객체를 전달하여 API 요청을 실행 후 응답 받음
+    	Response response = request.send();
+    	
+    	// 응답 객체에서 사용자 프로필 정보를 JSON 형식으로 반환
+    	return response.getBody();
         
     } // getUserProfile()
     
