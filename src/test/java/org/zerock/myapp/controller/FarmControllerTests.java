@@ -29,43 +29,29 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 import org.zerock.myapp.domain.FarmVO;
 
+import lombok.AllArgsConstructor;
+import lombok.Cleanup;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 
-@Log4j2
 @NoArgsConstructor
+@Log4j2
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations= {
-//		"file:src/main/webapp/spring/**/*.xml",
-		"file:src/main/webapp/**/spring/**/root-*.xml",
-		"file:src/main/webapp/**/spring/**/servlet-*.xml"
-})
-
-//Spring MVC 까지 작동(=> 결과적으로 spring core인, ** spring beans container **까지 생성함)시키는
-//어노테이션으로, 표현계층의 컨트롤러 핸들러 메소드를 테스트할 때에는,
-//반드시 넣어주어야 하는 어노테이션입니다. (***)
-@WebAppConfiguration	
+						"file:src/main/webapp/**/spring/root-*.xml",
+						"file:src/main/webapp/**/spring/**/servlet-*.xml"
+					  })
+@WebAppConfiguration
 
 @TestInstance(Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FarmControllerTests {
 	
-//	다른 계층처럼, 아래와 같이 하면 안됩니다!! (***)
-//	@Setter(onMethod_={@Autowired})
-//	private BoardController controller;
-	
 	@Setter(onMethod_= {@Autowired})
-//	이게 뭡니까? 바로 , spring beans container 의 구현객체임(***)
-//	이걸필요로 한다. 이거없이 빈즈컨테이너가 구동되지않다고 하신건감
-//	 
 	private WebApplicationContext ctx;
-	// 가상의 Spring MVC를 테스트하는 POSTMAN 과 비슷한 역할을 수행
-	// 이 타입의 객체를 통해서, 실질적으로 컨트롤러의 핸들러 메소드 테스트를 수행합니다.
-	// 이거사용법이 좀어려움!!
-	private MockMvc mockMvc;  // 이..이게머노.... 서블릿으로 목mvc가 들어있음. 목...목업 모형 장난감
-	//실체처럼 만든 모형 mvc를 목업한다.
+	private MockMvc mockMvc;
 	
 	@BeforeAll
 	void beforeAll() {	//1회성 전처리 수행
@@ -78,41 +64,26 @@ public class FarmControllerTests {
 	} // beforeAll()
 
 	
-//	목업 건설사
 //	@Disable
 	@Test
 	@Order(1)
-	@DisplayName("testList")
-	@Timeout(value=60, unit=TimeUnit.SECONDS)
-	void testList() throws Exception{
+	@DisplayName("테스트 1 : list")
+	@Timeout(value=2, unit=TimeUnit.SECONDS)
+	void testList() throws Exception {		
 		log.trace("testList() invoked.");
-	
-		MockMvcBuilder mockMvcBuilder = MockMvcBuilders.webAppContextSetup(ctx); 
-		//일단 ctx를 목업 어쩌꾸에 넣어주면 됨. 건설사 획득
-		// MockMvc를 지어줄 "건설사Builder" 부터 획득
+		// MockMvc를 지어줄 "건설사(Builder)"부터 획득
+		MockMvcBuilder mockMvcBuilder = MockMvcBuilders.webAppContextSetup(ctx);
 		MockMvc mockMvc = mockMvcBuilder.build();
-		// 이게 브라우저 역할 하는거임
-//		욫청을 만드는 핸들클래스가 따로 있음 이건 정적요청방식을 쓰고
 		
-		//BoardController의 /board/list, GET 핸들러 테스트
+		// BoardController의 /board/list, GET 핸들러 테스트
 		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/admin/farm/list");
-		requestBuilder.param("currPage", "2");
+		requestBuilder.param("currPage", "1");
 		requestBuilder.param("amount", "10");
 		
-		// 상위타입에 넣음
-		
-		// 이제 가상의 MVC 환경에서, BoardController에 요청생성 및 전송
-//		@Cleanup("clear")
+		// 이제 가상의 MVC 환경에서, BoardController에 요청 생성 및 전송
+//		@Cleanup("clear") // Collection은 clear 메소드로 닫아야 함!
 		ModelAndView modelAndView = mockMvc.perform(requestBuilder).andReturn().getModelAndView();
 		log.info("\t+ modelAndView : {}, type : {}", modelAndView.getViewName(), modelAndView.getClass().getName());
-		
-		// 요청이 날라감. 겟방식의 요청유알아이로 요청을 보내는자! 건설하는 자를 넣어줌 저 유아이로 리퀘스트
-		// 만들어 보냄
-		
-		// 테스트 대상 컨트롤러 핸들러(메소드)가 반환한 (1) 모델 (2) 뷰 이름 중,
-		// 모델(ModelMap)을 얻었으니, 순회하여 그 안의 모든 모델속성(즉, 비지니스 데이터인 모델객체들)
-		// 출력
-//		log.info("\t+ modelMap: {}", modelMap);
 		
 		
 	} // testList
@@ -122,25 +93,25 @@ public class FarmControllerTests {
 //	@Disable
 	@Test
 	@Order(2)
-	@DisplayName("testGet")
-	@Timeout(value=60, unit=TimeUnit.SECONDS)
-	void testGet() throws Exception{
+	@DisplayName("테스트 2 : get")
+	@Timeout(value=2, unit=TimeUnit.SECONDS)
+	void testGet() throws Exception {		
 		log.trace("testGet() invoked.");
-	
-		// MockMvc를 지어줄 "건설사Builder" 부터 획득
-		MockMvcBuilder mockMvcBuilder = MockMvcBuilders.webAppContextSetup(ctx); 
+
+		MockMvcBuilder mockMvcBuilder = MockMvcBuilders.webAppContextSetup(ctx);
 		MockMvc mockMvc = mockMvcBuilder.build();
 		
-		//BoardController의 /board/list, GET 핸들러 테스트
 		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/admin/farm/get");
-		requestBuilder.param("no", "17"); // ... <- 가변인자
+		requestBuilder.param("no", "41");
 		
-		// 컬렉션 아니어서 cleanup 안해도됨.
-		// 이제 가상의 MVC 환경에서, BoardController에 요청생성 및 전송
-		ModelAndView modelAndView = mockMvc.perform(requestBuilder).andReturn().getModelAndView();		
-		log.info("\t+ modelAndView : {}, type : {}", modelAndView.getViewName(), modelAndView.getClass().getName());
+		ModelAndView modelAndView 
+		= mockMvc.perform(requestBuilder).andReturn().getModelAndView();
 
-	} // testList
+		log.info("\t+ viewName: {}, type: {}", 
+				modelAndView.getViewName(), modelAndView.getClass().getName());
+		
+		
+	} // testGet
 	
 	
 	
@@ -220,7 +191,7 @@ public class FarmControllerTests {
 		//========================== STEP 1. 게시글을 상세 조회 ======================
 		//BoardController의 /board/list, GET 핸들러 테스트
 		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/admin/farm/get");
-		requestBuilder.param("no", "18"); // ... <- 가변인자
+		requestBuilder.param("no", "40"); // ... <- 가변인자
 		
 		// 컬렉션 아니어서 cleanup 안해도됨.
 		// 이제 가상의 MVC 환경에서, BoardController에 요청생성 및 전송

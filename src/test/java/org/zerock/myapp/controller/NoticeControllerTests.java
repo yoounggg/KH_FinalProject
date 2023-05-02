@@ -40,8 +40,7 @@ import lombok.extern.log4j.Log4j2;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations= {
 						"file:src/main/webapp/**/spring/root-*.xml",
-						"file:src/main/webapp/**/spring/**/servlet-*.xml"
-					  })
+						"file:src/main/webapp/**/spring/**/servlet-*.xml"})
 @WebAppConfiguration
 
 @TestInstance(Lifecycle.PER_CLASS)
@@ -50,6 +49,8 @@ public class NoticeControllerTests {
 
 	@Setter(onMethod_= {@Autowired})
 	private WebApplicationContext ctx;
+	
+	@Setter(onMethod_= {@Autowired})
 	private MockMvc mockMvc;
 	
 	@BeforeAll

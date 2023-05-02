@@ -16,8 +16,26 @@
     <link rel="stylesheet" href="/resources/css/admin/common.css">
 	<link rel="stylesheet" href="/resources/css/admin/modify.css">
 </head>
+<style>
 
-
+	button {
+	    float: right;
+	    margin-left : 5px;
+	    margin-bottom : 100px;
+	    font-weight: 800;
+	    width: 75px;
+	    height: 35px;
+	    background-color: rgb(175, 124, 213);
+	    border: 1px solid #ceced2;
+	    font-size: 16px;
+	}
+        
+    .ck-content {
+        min-height: 400px;
+        padding: 0px;
+    }
+    
+</style>
 <body>
 <!-- 헤더 - 로그인/로그아웃 로고, 관리자페이지 메인글씨 -->
 <%@include file= "/WEB-INF/views/admin/common/header.jsp" %> 

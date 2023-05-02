@@ -106,7 +106,7 @@
                        
                        <div class="box1">
                            <div class="box2">
-                               <p>타이틀-레시피('사과, 오렌지' 처럼 과일 명만 적기)</p>
+                               <p>타이틀-레시피('사과, 오렌지' 처럼 "과일 명/채소 명"만 적기)</p>
                            </div>
                            <div class="box3">
                                <input type="text"  name="title" id="info">
@@ -344,7 +344,6 @@
                              </div>
                        </div>
                        <br>
-
                     </div>
 					<div class="product_button">
 						<button type="submit" id="registerBtn">등록</button>
