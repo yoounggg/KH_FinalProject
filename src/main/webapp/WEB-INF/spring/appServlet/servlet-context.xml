@@ -88,16 +88,19 @@
   	  <interceptors>
   	  <!--장바구니 -> 로그인 상태여야 함 -->
         <interceptor>
-            <mapping path="/cart/*" ></mapping>
-
-            <beans:bean id="cartInterceptor" class="org.zerock.myapp.interceptor.CartInterceptor"></beans:bean>
+            <mapping path="/cart/**" ></mapping>
+            <exclude-mapping path="/cart/{member_id}" />
+			<exclude-mapping path="/cart/add" />
+			<exclude-mapping path="/cart/update" />
+			<exclude-mapping path="/cart/delete" />
+            <beans:bean id="CartInterceptor" class="org.zerock.myapp.interceptor.CartInterceptor"></beans:bean>
         </interceptor>
          
         <!-- 관리자페이지 인터셉터 적용 -->
-        <interceptor>
+          <interceptor>
         	<mapping path="/admin/**"></mapping>
         	<beans:bean id="AdminInterceptor" class="org.zerock.myapp.interceptor.AdminInterceptor"></beans:bean>
-        </interceptor> 
+        </interceptor>
       </interceptors>
    
 </beans:beans>

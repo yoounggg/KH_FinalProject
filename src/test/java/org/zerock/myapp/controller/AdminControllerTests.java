@@ -27,15 +27,14 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 import org.zerock.myapp.domain.ProductDTO;
-import org.zerock.myapp.domain.ProductDTO;
 import org.zerock.myapp.service.ProductService;
 
-import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
-@NoArgsConstructor
+@AllArgsConstructor
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations={
@@ -47,7 +46,6 @@ import lombok.extern.log4j.Log4j2;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class AdminControllerTests {
 	
-	@Setter(onMethod_= {@Autowired})
 	private WebApplicationContext ctx;
 	private ProductService service;
 	

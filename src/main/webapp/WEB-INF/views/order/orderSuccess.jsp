@@ -46,28 +46,28 @@
             <div class="left-box">
                 <div class="input-box">
                     <label for="name">이름</label>
-                    <input type="text" id="name" name="name" value="${name}">
+                    <input type="text" id="name" name="name" value="${name}" readonly>
                     <!-- <label for="name">이름</label>
                     <input type="text" id="name" name="name"> -->
                 </div>
 
                 <div class="input-box">
                     <label for="address">주소</label>
-                    <input type="text" id="address1" name="address" value="${address1 }">
+                    <input type="text" id="address1" name="address" value="${address1 }" readonly>
                 </div>
 
                 <div>
-                    <input type="text" id="address2" name="address" value="${address2}">
+                    <input type="text" id="address2" name="address" value="${address2}" readonly>
                 </div>
 
                 <div class="input-box">
                     <label for="phone">연락처</label>
-                    <input type="tel" id="phone" name="phone" value="${tel}">
+                    <input type="tel" id="phone" name="phone" value="${tel}" readonly>
                 </div>
 
                 <div class="input-box">
                     <label for="delivery">배송요청사항</label>
-                    <textarea id="delivery" name="delivery"></textarea>
+                    <textarea id="delivery" name="delivery" value="${delivery_comment}" readonly></textarea>
                 </div>
 
             </div><!-- left-box -->

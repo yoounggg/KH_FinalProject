@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -24,20 +26,18 @@
                 <div class="box1">
                     <div class="box2">
                         <h3>상품목록</h3>
-                        <ul id="main_list">
-                            <li><a href="#">[귤]제주감귤</a></li>
-                            <li><a href="#">[감자]강원도감자</a></li>
-                            <li><a href="#">[고추]청양고추</a></li>
-                            <li><a href="#">[딸기]논산딸기</a></li>
-                        </ul>
+							<ul id="main_list">
+							<c:forEach items="${mainProduct}" var="ProductDTO" varStatus="status" end="4">
+							    <li><a href="/admin/product/get?no=${ProductDTO.no}">${ProductDTO.name}</a></li>
+							</c:forEach>
+							</ul>         
                     </div>
                     <div class="box2">
                         <h3>공지사항</h3>
                         <ul id="main_list">
-                            <li><a href="#">[이벤트]12월 당첨자</a></li>
-                            <li><a href="#">[이벤트]11월 당첨자</a></li>
-                            <li><a href="#">[이벤트]10월 당첨자</a></li>
-                            <li><a href="#">[이벤트]9월 당첨자</a></li>
+							<c:forEach items="${mainNotice}" var="NoticeVO" varStatus="status" end="4">
+							    <li><a href="/admin/notice/get?no=${NoticeVO.no}">${NoticeVO.title}</a></li>
+							</c:forEach>
                         </ul>
                     </div>
                 </div>
@@ -47,18 +47,17 @@
                 <div class="box2">
                     <h3>FAQ</h3>
                     <ul id="main_list">
-                        <li><a href="#">[상품] 상품이 파손되었습니다.</a></li>
-                        <li><a href="#">[회원] 로그인이 안 돼요.</a></li>
-                        <li><a href="#">[배송] 배송이 지연됐어요.</a></li>
-                        <li><a href="#">[배송] 취소하면 어떻게 되나요?</a></li>
+							<c:forEach items="${mainFaq}" var="FaqVO" varStatus="status" end="4">
+							    <li><a href="/admin/faq/get?no=${FaqVO.no}">${FaqVO.title}</a></li>
+							</c:forEach>
                     </ul>
                 </div>
                 <div class="box2">
                     <h3>TEST</h3>
                     <ul id="main_list">
-                        <li><a href="#">[test]test</a></li>
-                        <li><a href="#">[test]test</a></li>
-                        <li><a href="#">[test]test</a></li>
+                        <li>당일 주문량 : </li>
+                        <li>당일 매출액 : </li>
+                        <li>당일 방문수 : </li>
                         <li><a href="#">[test]test</a></li>
                     </ul>
                 </div>
@@ -67,6 +66,8 @@
 
         </div>  
     </main>
+    <footer>
+    </footer>
 
 </body>
 </html>

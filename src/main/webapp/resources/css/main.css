@@ -73,7 +73,7 @@ li{ list-style-type: none;}
 .container2 li a, .container2 li{
     width: 70px;
     color: black;
-    font-size: 12px;
+    font-size: 13px;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
@@ -93,7 +93,7 @@ li{ list-style-type: none;}
 /* ------------------------------------------ */
 
 .container3{
-    padding: 40px 0 50px 0;
+    padding: 60px 0 80px 0;
     width: 80%;
     /* height: 90px; */
     margin: 0 auto;
@@ -123,6 +123,7 @@ li{ list-style-type: none;}
 }
 
 .search1 .search-txt{
+	font-size: 13px;
     width: 300px;
     /* height: 30px; */
     border: none;
@@ -181,9 +182,9 @@ li{ list-style-type: none;}
 
 .container4 li a{
     padding: 0 0 0 20px;
-    height: 45px;
-    line-height: 45px;
-    font-size: 14px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 15px;
     display: block;
     color: black;
     text-align: left;
@@ -241,29 +242,73 @@ li{ list-style-type: none;}
     z-index: 99;
 }
 
+/* --------------aside--------------- */
+
+aside{
+    /*position: relative;*/
+    /*top: -1300px;*/
+    /* right: -1300px;*/
+    /*bottom: -250%; */
+}
+
+.container7{
+	display: block;
+    position: fixed;
+    /* width: calc(80%+10px); */
+    right: 50%;
+    margin-right: -680px;
+    transform: translateY(-50%);
+
+    /* left: 50%; */
+    /* left: calc(80% + 10px);
+    top: 0; */
+}
+#choikun1{
+    /* position: absolute; */
+    /* right: -600px; */
+    /* top: 280px; */
+    width: 80px;
+    height: 220px;
+    border-radius: 20px;
+    background-color: #F9F9F4;
+    font-size: 12px;
+}
+
+#choikun2{
+    margin: 0 0 20px 0;
+    padding: 15px 0 10px 0;
+    text-align: center;
+}
+
+#choikun1 img{
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    border-radius: 70%;
+}
+
+#topbtn{
+    height: 30px;
+    width: 80px;
+    border: 1px solid #11BC0D;
+    border-radius: 20px;
+    background-color: #11BC0D;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+
 /* --------------------banner---------------------- */
 .slideShow{
-    /* position: relative; */
     width: 100%;
     min-width: 1026px;
-    /* height: 0; */
-    /* padding-bottom: 56.26%; */
-    /* padding-top: 75%; */
-    /* overflow: hidden;  */
 }
 
 .slides{
     padding: 0;
     width: 100%;
-    /* width: 360px; */
-    /* height: 330px; */
     min-width: 1026px;
 }
-
-/* .slides li{
-    width: 360px;
-    height: 330px;
-} */
 
 .banner-img {
     width: 360px;
@@ -273,19 +318,12 @@ li{ list-style-type: none;}
 }
 
 .slides img{
-    /* 30차이가 나지 않으면 border-radius가 이상하게 설정됨 */
     width: 100%;
-    /* margin: 5px; */
-    /* height: 330px; */
     object-fit: fill;
     border-radius: 30px;
     overflow: hidden;
-    /* position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%; */
 }
+
 .banner-btn{
     padding-top: 10px;
     cursor: pointer;
@@ -296,12 +334,6 @@ li{ list-style-type: none;}
     justify-content: center;
 }
 
-/* .btnradius{
-    height: 25px;
-    border: 1px solid #909090;
-    border-radius: 50px;
-} */
-
 .material-symbols-outlined {
     font-size: 30px;
     line-height: 30px;
@@ -310,7 +342,7 @@ li{ list-style-type: none;}
 /* -----------mini banner --------- */
 
 .minibanner1{
-    padding: 30px 0 30px 0;
+    padding: 50px 0 50px 0;
     width: 80%;
     margin: 0 auto;
 }
@@ -320,10 +352,9 @@ li{ list-style-type: none;}
     height: 200px;
 }
 
-
 /* ----------------main----------------- */
 .container5, .container6{
-    padding: 50px 0 100px 0;
+    padding: 50px 0 200px 0;
     width: 80%;
     margin: 0 auto;
     font-weight: bold;
@@ -333,7 +364,7 @@ li{ list-style-type: none;}
 }
 
 .minititle{
-    padding: 50px 0 20px 0;
+    padding: 30px 0 20px 0;
     width: 80%;
     margin: 0 auto;
     font-size: 20pt;
@@ -341,13 +372,12 @@ li{ list-style-type: none;}
     text-align: center;
 }
 
-/* 샘플 이미지!! */
 .container5 img, .container6 img{
     display: inline-block;
     margin: 0 auto;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     width: 240px;
-    height: 250px;
+    height: 240px;
     border-radius: 10px;
 }
 
@@ -359,7 +389,7 @@ li{ list-style-type: none;}
 }
 
 .thumbnail>span{
-    padding-top: 20px;
+    padding-top: 10px;
 }
 .dis_Green{
     color: #11BC0D;
@@ -367,7 +397,7 @@ li{ list-style-type: none;}
 }
 
 .recipe{
-    padding: 50px 0 50px 0;
+    padding: 20px 0 100px 0;
     width: 80%;
     margin: 0 auto;
     display: flex;
@@ -381,7 +411,6 @@ li{ list-style-type: none;}
 }
 
 .recipe2{
-    /* padding: 0 0 0 200px; */
     font-size: 16pt;
 }
 
@@ -395,9 +424,6 @@ li{ list-style-type: none;}
     font-size: 15pt;
     cursor: pointer;
 }
-
-/* --------------aside--------------- */
-
 
 /* --------------footer------------------- */
 
@@ -414,20 +440,16 @@ li{ list-style-type: none;}
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-start;
-    /* 수직정렬!!!! */
     align-items: center;
 }
 
 .yakgwan2 li{
-    /* 가로로 중간 (세로로 중간까지 해야 글자가 정 가운데 올 듯) */
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold;
-    /* vertical-align: middle; */
 }
 
 .yakgwan2 li a{
     padding: 30px;
-    /* height: 40px; */
     color: black;
 }
 
