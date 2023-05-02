@@ -1,4 +1,4 @@
-    		
+  /*  		
         IMP.init("imp11157675"); // 예: imp00000000a
 
         function requestPay() {
@@ -57,7 +57,7 @@
                 }
             });
         }
-
+*/
 $(".order_btn").on("click", function() {
         
         // 배송 요청사항 select 태그에서 선택한 option 값 받아오기
@@ -107,7 +107,7 @@ $(".order_btn").on("click", function() {
           /* 주문 양식 제출 */
           $(".order_form").submit();   
           
-          requestPay();     
+  /*        requestPay();  */     
     }); 
 
 

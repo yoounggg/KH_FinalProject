@@ -83,10 +83,10 @@ public class OrderServiceImpl implements OrderService {
 		for(OrderItemDTO oit : odt.getOrders()) {
 			OrderItemDTO orderItem = orderMapper.getOrderInfo(oit.getProduct_no()); //product_no?
 			
-//		    if (orderItem == null) {
-//		        // 해당 상품번호에 대한 주문 정보가 존재하지 않음
-//		        continue;
-//		    }
+		    if (orderItem == null) {
+		        // 해당 상품번호에 대한 주문 정보가 존재하지 않음
+		        continue;
+		    }
 		    
 			orderItem.setOrder_no(odt.getNo());
 			orderItem.setProduct_no(oit.getProduct_no()); // 상품 번호 저장
