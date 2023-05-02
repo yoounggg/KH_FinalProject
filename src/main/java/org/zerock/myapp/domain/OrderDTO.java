@@ -19,7 +19,8 @@ public class OrderDTO {
 	private Integer receiver_address1; // 우편번호
 	private String receiver_address2; // 회원 주소
 	private String receiver_address3; // 회원 상세주소
-	private Integer receiver_tel;
+	private String receiver_tel; // 받는사람 주소
+	private String delivery_comment; // 배송요청사항
 	private String orderState; // 주문 상태
 	private List<OrderItemDTO> orders;	// 주문 상품
 	private int delivery_cost; // 배송비

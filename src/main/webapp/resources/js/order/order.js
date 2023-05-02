@@ -1,25 +1,3 @@
-function selectMemo(select) {       // 배송요청사항 직접입력
-    var TTT1 = document.getElementById("selboxDirect");
-
-    if(select.value === "직접입력") {
-        TTT1.style.display = "inline";
-        TTT1.required = true;
-    } else {
-        TTT1.style.display = "none";
-        TTT1.required = false;
-    }
-}
-
-var productPrice = 10000;
-var deliveryFee= 3000;
-var discount = 3000;
-
-function calculatetotal() {
-    var total = productPrice + deliveryFee - discount;
-
-    var totalElement = document.getElementById("total_price");
-    totalElement.textContent = total.toLocaleString() + "원";
-}
 
 /* ==========================결제======================================= */
 

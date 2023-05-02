@@ -40,7 +40,7 @@ public class NaverController {
 
 		model.addAttribute("url", naverAuthUrl);
 		
-		return "/login/main";
+		return "/login/Login_Main";
 		
 	} // login()
 	

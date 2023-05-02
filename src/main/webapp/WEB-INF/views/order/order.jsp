@@ -104,7 +104,7 @@
             <div class="orderProducts_div">
 				
 				<div class="products_kind_div">
-					주문상품 <span class="products_kind_div_kind"></span>종<span class="products_kind_div_count"></span>개
+					주문상품
 				</div>
 				
 				<table class="products_subject_table">
@@ -168,20 +168,19 @@
             <div class="locate">
 
                 <div class="input_row">
-                    <label for="name_title">이름</label>   
-                    <input type="text" id="name_input" name="name" value="${memberInfo.name}">
+                    <label for="name_title">이름</label>  
+                    <input type="text" id="name_input" name="name" value="${memberInfo.name}" readonly>
                     <button class="edit_button">수정</button>
                 </div>
 
                 <div class="input_row">
                     <label for="phone_title">핸드폰 번호</label>
-                    <input type="tel" id="phone_input" name="phone" value="${memberInfo.tel}">
-                    <button class="edit_button">수정</button>
+                    <input type="tel" id="phone_input" name="phone" value="${memberInfo.tel}" readonly>
                 </div>
 
                 <div class="input_row">
                     <label for="email_title">이메일</label>
-                    <input type="email" id="email_input" name="email" value="${memberInfo.email}">
+                    <input type="email" id="email_input" name="email" value="${memberInfo.email}" readonly/>
                 </div>
 
             </div>
@@ -211,13 +210,13 @@
 	                <div class="input_row2">
 	                    <label for="address_title_r">주소</label>
 						<input class="selectAdressee" value="T" type="hidden">
-						<input type="text" id="address_input_r"  placeholder="우편번호">
+						<input type="text" id="address_input_r"  placeholder="우편번호" readonly>
 	                    <input type="button" onclick="sample4_execDaumPostcode()" value="주소입력" class="address_button" ><br>
 	                    <div></div>
-	                    <input type="text" id="address_input2_r" placeholder="ㅇㅇㅇㅇ">
+	                    <input type="text" id="address_input2_r" placeholder="도로명주소" readonly>
 	
 	                  	<div></div>
-	                  	<input type="text" id="address_input3_r" placeholder="ㅇㅇㅇㅇ">
+	                  	<input type="text" id="address_input3_r" placeholder="상세주소">
 	                    <div></div>
 	                  	<!-- <input  type="text" id="address_input4_r" value="상세주소">   -->
 	                </div>
@@ -226,6 +225,19 @@
 	                    <label for="phone_title_r">연락처</label>
 	                    <input type="phone" id="phone_input_r" name="receiver_tel" placeholder="000-0000-0000">
 	                </div>    
+	                
+	               <div class="input_row2">
+						<label for="request_title_r">배송 요청사항</label>
+						<select name='selbox'
+							id="배송요청사항" onchange="selectMemo(this)">
+							<option value='' selected id="선택">---------------------선택 ---------------------</option>
+							<option value='부재시, 연락 바랍니다.'>부재시, 연락 바랍니다.</option>
+							<option value='부재시, 무인 택배함 보관 후 연락바랍니다.'>부재시, 무인 택배함 보관 후 연락바랍니다.</option>
+							<option value='부재시, 경비실에 맡겨주세요.'>부재시, 경비실에 맡겨주세요.</option>
+							<option value="직접입력">직접입력</option>
+						</select> <br> <input id="selboxDirect" type="text"
+							placeholder="직접 입력하세요" style="display: none;">
+					</div>
 				</div>
 				
 				<div class="address_btn_2_wrap" style="display: none;">
@@ -233,19 +245,19 @@
 					<div class="locate address_btn address_btn_2" >
 						<div class="input_row2">
 		                    <label for="name_title_r">이름</label>
-		                    <input type="text" class="name_input2_r" name="receiver_name" value="${memberInfo.name}">
+		                    <input type="text" class="name_input2_r" name="receiver_name" value="${memberInfo.name}" readonly>
 		                </div>
 		
 		                <div class="input_row2">
 		                    <label for="address_title_r">주소</label>
 							<input class="selectAdressee" value="F" type="hidden">
-							<input type="text" class="address_input4_r" value="${memberInfo.address1}">
+							<input type="text" class="address_input4_r" value="${memberInfo.address1}" readonly>
 		                    <input type="button" onclick="sample4_execDaumPostcode()" value="주소입력" class="address_button" ><br>
 		                    <div></div>
-		                    <input type="text" class="address_input5_r" value="${memberInfo.address2}">
+		                    <input type="text" class="address_input5_r" value="${memberInfo.address2}" readonly>
 		
 		                  	<div></div>
-		                  	<input type="text" class="address_input6_r" value="${memberInfo.address3}">
+		                  	<input type="text" class="address_input6_r" value="${memberInfo.address3}" readonly>
 		                    <div></div>
 		                  	<!-- <input  type="text" id="address_input4_r" value="상세주소">   -->
 		                </div>
@@ -254,24 +266,22 @@
 		                    <label for="phone_title_r">연락처</label>
 		                    <input type="phone" id="phone_input2_r" name="receiver_tel" value="${memberInfo.tel}">
 		                </div>    
+		                
+		            <div class="input_row2">
+						<label for="request_title_r">배송 요청사항</label>
+						<select name='selbox'
+							id="배송요청사항" onchange="selectMemo(this)">
+							<option value='' selected id="선택">---------------------선택 ---------------------</option>
+							<option value='부재시, 연락 바랍니다.'>부재시, 연락 바랍니다.</option>
+							<option value='부재시, 무인 택배함 보관 후 연락바랍니다.'>부재시, 무인 택배함 보관 후 연락바랍니다.</option>
+							<option value='부재시, 경비실에 맡겨주세요.'>부재시, 경비실에 맡겨주세요.</option>
+							<option value="직접입력">직접입력</option>
+						</select> <br> <input id="selboxDirect" type="text"
+							placeholder="직접 입력하세요" style="display: none;">
+					</div>
 		                      
 					</div>
 				
-				</div>
-
-				<div class="input_row2">
-					<label for="request_title_r">배송 요청사항</label> <select name='selbox'
-						id="배송요청사항" onchange="selectMemo(this)">
-						<option value='' selected id="선택">---------------------
-							선택 ---------------------</option>
-						<option value='부재시, 연락 바랍니다.'>부재시, 연락 바랍니다.</option>
-						<option value='부재시, 무인 택배함 보관 후 연락바랍니다.'>부재시, 무인 택배함 보관 후
-							연락바랍니다.</option>
-						<option value='부재시, 경비실에 맡겨주세요.'>부재시, 경비실에 맡겨주세요.</option>
-						<option value="직접입력">직접입력</option>
-					</select> <br> <input id="selboxDirect" type="text"
-						placeholder="직접 입력하세요" style="display: none;">
-
 				</div>
 
 			</div> 
@@ -319,6 +329,7 @@
 			<input name="receiver_address2" type="hidden" value="">
 			<input name="receiver_address3" type="hidden" value="">
 			<input name="receiver_tel" type="hidden" value="">
+			<input name="delivery_comment" type="hidden" value="">
 				
          </form>
 
@@ -330,6 +341,31 @@
 </body>
 
 <script>
+
+/* ============================== 배송요청사항 직접입력 =========================================== */
+	function selectMemo(select) {       // 배송요청사항 직접입력
+	    var TTT1 = document.getElementById("selboxDirect");
+	
+	    if(select.value === "직접입력") {
+	        TTT1.style.display = "inline";
+	        TTT1.required = true;
+	    } else {
+	        TTT1.style.display = "none";
+	        TTT1.required = false;
+	    }
+	}
+	
+	var productPrice = 10000;
+	var deliveryFee= 3000;
+	var discount = 3000;
+	
+	function calculatetotal() {
+	    var total = productPrice + deliveryFee - discount;
+	
+	    var totalElement = document.getElementById("total_price");
+	    totalElement.textContent = total.toLocaleString() + "원";
+	}
+
 
 /* ============================== 주소 입력란 버튼 동작 (숨김, 동작) =========================================== */
 	function showAddress(className) {
@@ -363,10 +399,16 @@
 	  
 	function sample4_execDaumPostcode() {
 		new daum.Postcode({
+			
+			
+			
 		    oncomplete: function(data) {
 		    	var roadAddr = data.roadAddress; 
 		        var extraRoadAddr = ''; 
-	
+		        var themeObj = {
+		        		   searchBgColor: "#0B65C8", //검색창 배경색
+		        		   queryTextColor: "#FFFFFF" //검색창 글자색
+		        		};
 		        if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
 		        	extraRoadAddr += data.bname;
 		        }
@@ -379,15 +421,23 @@
 		        	extraRoadAddr = ' (' + extraRoadAddr + ')';
 		        }
 	
-		        document.getElementById('address_input_r').value = data.zonecode; 
-		        document.getElementById("address_input2_r").value = roadAddr; 
-		       	document.getElementById("address_input3_r").value = data.jibunAddress; 
+		        var addressInputR = document.getElementById('address_input_r');
+		        var addressInput2R = document.getElementById('address_input2_r');
+		        var addressInput3R = document.getElementById('address_input3_r');
+		        var sample4ExtraAddress = document.getElementById('sample4_extraAddress');
 	
-		        if(roadAddr !== ''){
-		        	document.getElementById("sample4_extraAddress").value = extraRoadAddr;
-		        } else {
-		        	document.getElementById("sample4_extraAddress").value = '';
-		        }
+		        if (addressInputR) {
+		            addressInputR.value = data.zonecode;
+		          }
+		          if (addressInput2R) {
+		            addressInput2R.value = roadAddr;
+		          }
+		          if (addressInput3R) {
+		            addressInput3R.value = data.jibunAddress;
+		          }
+		          if (sample4ExtraAddress) {
+		            sample4ExtraAddress.value = extraRoadAddr !== '' ? extraRoadAddr : '';
+		          }
 	
 		        var guideTextBox = document.getElementById("guide");
 	
@@ -428,7 +478,15 @@
 				    $("input[name='receiver_address3']").val($(obj).find(".address_input6_r").val());
 				    $("input[name='receiver_tel']").val($(obj).find("#phone_input2_r").val());
 			    }
+				// 배송 요청사항 select 태그에서 선택한 option 값 받아오기
+				var deliveryRequest = $("#배송요청사항 option:selected").val();
+			    // 만약 "직접입력"을 선택했다면 해당 input 태그의 값을 deliveryRequest 변수에 저장하기
+				if (deliveryRequest == "직접입력") {
+	            deliveryRequest = $("#selboxDirect").val();
+			  	}
+				$("input[name='delivery_memo']").val(deliveryRequest);
 			});
+
 		/* 상품정보 */
 			let form_contents = '';
 			$(".products_table_price_td").each(function(index, element) {
@@ -450,7 +508,8 @@
 		  	/* 주문 양식 제출 */
 		  	$(".order_form").submit();        
 		}); 
-	});
+	});	
+	
 	
     /* ==============================총 주문 정보=========================================== */
     
@@ -499,7 +558,6 @@
 	    		
 	    	}); 
 	    }
-	    
 	
 </script>
 	    

@@ -429,6 +429,12 @@ li{ list-style-type: none;}
     margin-bottom: 10px;
     width: 400px;
 }
+/* 전화번호 입력창 위치 조정 */
+#phone_input2_r {
+    margin-left: 76px;
+    width:  300px;
+}
+
 /*========================================================*/
 
 
