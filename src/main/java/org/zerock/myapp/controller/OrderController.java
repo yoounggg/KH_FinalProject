@@ -97,7 +97,8 @@ public class OrderController {
 		model.addAttribute("tel", dto.getReceiver_tel());
 		model.addAttribute("delivery_comment", dto.getDelivery_comment());
 		
-		log.info("\t+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> delivey_comment : {}", model.getAttribute("delivery_comment"));
+		log.info("\t+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> delivey_comment : {}", dto.getDelivery_comment());
+//		log.info("\t+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> delivey_comment : {}", model.getAttribute("delivery_comment"));
 		
 		model.addAttribute("totalPrice", dto.getTotalPrice());  // 총상품가격 할인가격x
 		model.addAttribute("salePrice", dto.getSalePrice()); // 할인되는 가격

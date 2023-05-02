@@ -478,13 +478,15 @@
 				    $("input[name='receiver_address3']").val($(obj).find(".address_input6_r").val());
 				    $("input[name='receiver_tel']").val($(obj).find("#phone_input2_r").val());
 			    }
-				// 배송 요청사항 select 태그에서 선택한 option 값 받아오기
-				var deliveryRequest = $("#배송요청사항 option:selected").val();
+			    // 배송 요청사항 select 태그에서 선택한 option 값 받아오기
+			    var deliveryRequest = $("#배송요청사항 option:selected").val();
 			    // 만약 "직접입력"을 선택했다면 해당 input 태그의 값을 deliveryRequest 변수에 저장하기
-				if (deliveryRequest == "직접입력") {
-	            deliveryRequest = $("#selboxDirect").val();
-			  	}
-				$("input[name='delivery_memo']").val(deliveryRequest);
+			    if (deliveryRequest == "직접입력") {
+			      deliveryRequest = $("#selboxDirect").val();
+			    }
+			    // form 태그의 hidden input 요소에 값을 할당하기
+			    $("input[name='delivery_comment']").val(deliveryRequest);
+	
 			});
 
 		/* 상품정보 */
