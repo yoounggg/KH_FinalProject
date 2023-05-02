@@ -12,21 +12,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOYAMOGA</title>
 
-    <!-- include favicon -->
     <%@include file="/WEB-INF/views/common/favicon.jsp" %>
     
     <link rel="stylesheet" href="/resources/css/cart.css">
-
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,100,1,-25" />
 
-    <script src="https://kit.fontawesome.com/1fe7ba446e.js" crossorigin="anonymous"></script>
-    
+    <script src="https://kit.fontawesome.com/1fe7ba446e.js" crossorigin="anonymous"></script>    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.0/jquery-migrate.min.js"></script>
-
-    
-    <!-- js가 위 jquery, slick코드 보다 위에 나오면 적용이 안됨 -->
     <script src="/resources/js/cart.js"></script>
 
 </head>
@@ -63,7 +57,7 @@
 									<input type="hidden" class="cartTotalPriceInput" value="${cartInfo.discount_price * cartInfo.count}">
 									<input type="hidden" class="productNameInput" value="${cartInfo.name}">
 									<input type="hidden" class="cartProductNoInput" value="${cartInfo.product_No}">	
-									<input type="hidden" class="cartMainImage" value="${cartInfo.main_image}">											
+									<input type="hidden" class="cartMainImage" value="${cartInfo.main_image}">												
 								</td>
 
 								<td class="td_2">
@@ -78,6 +72,7 @@
 								<td class="td_4 tablecenter">
                                     <div class="tablecenter quantity_div">
                                         <input type="text" value="${cartInfo.count}" class="quantity_input">	
+
 										<button class="quantity_btn plus_btn">+</button>
 										<button class="quantity_btn minus_btn">-</button>
 									</div>
@@ -132,20 +127,20 @@
                 <a href="/main" class="shop_btn">쇼핑 계속하기</a>
 			</div>
 			
-			<!-- 수량 조정 form -->
+			<!-- 수량 조정 update  -->
 			<form action="/cart/update" method="post" class="quantity_update_form">
 				<input type="hidden" name="no" class="update_cartId">
 				<input type="hidden" name="count" class="update_cartCount">
 				<input type="hidden" name="member_id" value="${member.id}">
 			</form>
 			
-			<!-- 삭제 form -->
+			<!-- 삭제 delete -->
 			<form action="/cart/delete" method="post" class="quantity_delete_form">
 				<input type="hidden" name="no" class="delete_cartNo">
 				<input type="hidden" name="member_id" value="${member.id}">
 			</form>
 
-			<!-- 주문 form -->
+			<!-- 주문하기 -->
 			<form action="/order/${member.id}" method="post" class="order_form">
 			</form>													
 		</div>

@@ -24,25 +24,6 @@ $(document).ready(function(){
 	
   /* 종합 정보 섹션 정보 삽입 */
   setTotalInfo();	
-      
-  /* 이미지 삽입 */
-  // $(".image_wrap").each(function(i, obj){
-      
-  //   const bobj = $(obj);
-        
-  //   if(bobj.data("product_no")){
-  //     const uploadPath = bobj.data("path");
-  //     const uuid = bobj.data("uuid");
-  //     const fileName = bobj.data("filename");
-          
-  //     const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
-          
-  //     $(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
-  //   } else {
-  //     $(this).find("img").attr('src', '/resources/img/goodsNoImage.png');
-  //   }  
-  // });    
-// });	
 
 
 /* 체크여부에따른 종합 정보 변화 */
@@ -90,7 +71,7 @@ function setTotalInfo(){
       deliveryPrice = 3000;
     }
       
-    //최종가격~!!!!!!!!!!!!
+    //최종가격~!!
     finalTotalPrice = totalPrice + deliveryPrice;
       
       
@@ -108,6 +89,7 @@ function setTotalInfo(){
 /* 수량버튼 */
 $(".plus_btn").on("click", function(){
   let quantity = $(this).parent("div").find("input").val();
+ 
   $(this).parent("div").find("input").val(++quantity);
 });
 

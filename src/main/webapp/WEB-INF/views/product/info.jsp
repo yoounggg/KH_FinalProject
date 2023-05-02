@@ -53,6 +53,7 @@
 
             </div>
             <div class="btn">
+            	<!-- [채영] 장바구니 버튼 -->
                 <input type="button" value="장바구니" class="cartbtn">
                 <input type="button"  value="구매하기">
             </div>
@@ -469,7 +470,7 @@
     });
 //============================================================
 
-  //채영 - 장바구니 버튼
+  //[채영] 장바구니 버튼
     const form = {
     		member_id : '${member.id}',
     		product_No : '${__INFO__.no}',
@@ -485,11 +486,11 @@
     		data: form, 
     		success: function(result){
     			if(result == '0'){
-    				alert("장바구니에 추가 하지 못하였습니다.");
+    				alert("장바구니에 추가하지 못하였습니다.");
     			} else if(result == '1'){
     				alert("장바구니에 추가되었습니다.");
     			} else if(result == '2'){
-    				alert("장바구니에 이미 추가되어져 있습니다.");
+    				alert("장바구니에 이미 추가되어 있습니다.");
     			} else if(result == '5'){
     				alert("로그인이 필요합니다.");	
     			}

@@ -26,7 +26,6 @@ public class CartInterceptor implements HandlerInterceptor{
 		
 		HttpSession session = request.getSession();
 		MemberDTO dto = (MemberDTO)session.getAttribute("member");
-//		MemberVO vo = (MemberVO)session.getAttribute("member");
 		
 		if(dto == null) {
 			log.info("장바구니는 로그인 후 이용바랍니다.");

@@ -63,7 +63,6 @@ public class CartController {
 		log.trace("addProductsInCart() invoked(장바구니 상품 추가/등록)");
 		
 		// (1) 로그인 체크
-		//HttpSession session = request.getSession();
 		MemberDTO dto = (MemberDTO)session.getAttribute("member");
 		if(dto == null) {
 			return "5"; // 멤버 아니면 5반환 -> 로그인 필요함!
@@ -86,9 +85,9 @@ public class CartController {
 	@PostMapping("/update")
 	public String modifyCount(CartDTO cart) {
 		log.trace("modifyProductsInCart() invoked(장바구니 수량 변경)");
-		
-		service.modifyCount(cart);
-		
+
+		service.modifyCount(cart);			
+
 		return "redirect:/cart/" + cart.getMember_id();
 	} // modifyCount
 	
@@ -100,6 +99,6 @@ public class CartController {
 		log.trace("deleteCart() invoked(장바구니 수량 삭제)");
 		service.deleteCart(cart.getNo());
 		return "redirect:/cart/" + cart.getMember_id();
-	}
+	} // deleteCart
 	
-}
+} // end class
