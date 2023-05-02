@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.zerock.myapp.business.NaverBO;
+import org.zerock.myapp.service.NaverService;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
@@ -20,29 +20,33 @@ import lombok.extern.log4j.Log4j2;
 @Controller
 public class NaverController {
 
-	// 네아로 -> NaverBO
-	private NaverBO naverBO;
+	// 네아로 -> NaverService
+	private NaverService naverService;
 	private String apiResult = null;
 	
 	@Autowired
-	private void setNaverLoginBO(NaverBO naverBO) {
-		this.naverBO = naverBO;
-	} // setNaverLoginBO()
+	private void setNaverService(NaverService naverService) {
+		
+		this.naverService = naverService;
+	
+	} // setNaverService()
+	
+//	-------------------------------------------------------------------------------------------------
 	
 	//로그인 첫 화면 요청 메소드
-	@RequestMapping(value = "/login/naverLogin", method = { RequestMethod.GET, RequestMethod.POST })
-		public String login(Model model, HttpSession session) throws Exception {
+	@RequestMapping(value = "/login/naver", method = { RequestMethod.GET, RequestMethod.POST })
+		public String naverLogin(Model model, HttpSession session) throws Exception {
 		
 		// 네이버 아이디로 인증 URL을 생성하기 위하여 NaverBO클래스의 getAuthorizationUrl() 호출
-		String naverAuthUrl = naverBO.getAuthorizationUrl(session);
+		String naverAuthUrl = naverService.getAuthorizationUrl(session);
 		
 		log.info("네이버 naverAuthUrl : {}", naverAuthUrl);
 
-		model.addAttribute("url", naverAuthUrl);
+		model.addAttribute("naverAuthUrl", naverAuthUrl);
 		
-		return "/login/main";
+		return "/login/Login_Main";
 		
-	} // login()
+	} // naverLogin()
 	
 	//네이버 로그인 성공시 callBack호출 메소드
 	@RequestMapping(value = "/login/callBack", method = { RequestMethod.GET, RequestMethod.POST })
@@ -53,10 +57,10 @@ public class NaverController {
 
 		OAuth2AccessToken oauthToken;
 	
-		oauthToken = naverBO.getAccessToken(session, code, state);
+		oauthToken = naverService.getAccessToken(session, code, state);
 		
 		//1. 로그인 사용자 정보를 읽어온다.
-		apiResult = naverBO.getUserProfile(oauthToken); //String형식의 json데이터
+		apiResult = naverService.getUserProfile(oauthToken); //String형식의 json데이터
 		/** apiResult json 구조
 		{
 			"resultcode":"00",

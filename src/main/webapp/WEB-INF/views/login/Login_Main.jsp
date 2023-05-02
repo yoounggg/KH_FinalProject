@@ -88,11 +88,12 @@
             
                     <!-- 네이버로 로그인 -->
                     <div class="naverLogin">
-                        <!-- <button type="button" id="naverLoginButton">
-                            <img src="/resources//imgs/btnG_완성형.png" class="nimg"></button>
+                        <!-- button type="button" id="naverLoginButton" a href="${naverAuthUrl}">
+                            <<img src="/resources//imgs/btnG_완성형.png" class="nimg"></button>
                         -->
-                        <a type="button" href="${url}" id="naverLoginButton">
-                            <img src="/resources//imgs/btnG_완성형.png" class="nimg"></a>
+                        <a type="button" href="${naverAuthUrl}" id="naverLoginButton" >
+                            <img src="/resources//imgs/btnG_완성형.png" class="nimg">
+                        </a>
                     </div>
 
                     <!-- 카카오로 로그인 -->
