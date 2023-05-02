@@ -9,8 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOYAMOGA</title>
-    
-    <!-- include favicon -->
+
     <%@include file="/WEB-INF/views/common/favicon.jsp" %>
 
     <link rel="stylesheet" href="/resources/css/userInfo.css">
@@ -19,10 +18,8 @@
     <script src="https://kit.fontawesome.com/1fe7ba446e.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.0/jquery-migrate.min.js"></script>
-
 	<!-- 카카오 주소 api -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
     <script src="/resources/js/userInfo.js"></script>
 </head>
 <body>
@@ -43,7 +40,7 @@
             	<c:if test = "${member == null}">
                     <li><a href="/login">로그인</a></li>
                     <li><a href="/signup/main">회원가입</a></li>
-                    <li><a href="/cart/${member.id}">장바구니</a></li>
+                    <li class="nullcart"><a href="/cart/">장바구니</a></li>
                 </c:if> 
                 
                 <!--로그인 O -->

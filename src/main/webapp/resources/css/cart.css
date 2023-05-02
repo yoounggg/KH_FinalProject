@@ -280,7 +280,7 @@ table{
 .contentbtn_section a{
   
     margin: 30px;
-    border: 1px solid black;
+    border: 1px solid #11BC0D;
     border-radius: 10px;
     
     width: 150px;
@@ -290,8 +290,9 @@ table{
     text-align: center;
     
     font-size: 18px;
-    color: black;
-    background-color: white;
+    font-weight: bold;
+    color: white;
+    background-color: #11BC0D;
     cursor: pointer;
 }
 
@@ -434,6 +435,7 @@ th{
     height: 100%;
 }
 .image_wrap img{
+	border-radius: 10px;
     max-width: 85%;
     height: auto;
     display: block;		
