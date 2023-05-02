@@ -226,18 +226,6 @@
 	                    <input type="phone" id="phone_input_r" name="receiver_tel" placeholder="000-0000-0000">
 	                </div>    
 	                
-	               <div class="input_row2">
-						<label for="request_title_r">배송 요청사항</label>
-						<select name='selbox'
-							id="배송요청사항" onchange="selectMemo(this)">
-							<option value='' selected id="선택">---------------------선택 ---------------------</option>
-							<option value='부재시, 연락 바랍니다.'>부재시, 연락 바랍니다.</option>
-							<option value='부재시, 무인 택배함 보관 후 연락바랍니다.'>부재시, 무인 택배함 보관 후 연락바랍니다.</option>
-							<option value='부재시, 경비실에 맡겨주세요.'>부재시, 경비실에 맡겨주세요.</option>
-							<option value="직접입력">직접입력</option>
-						</select> <br> <input id="selboxDirect" type="text"
-							placeholder="직접 입력하세요" style="display: none;">
-					</div>
 				</div>
 				
 				<div class="address_btn_2_wrap" style="display: none;">
@@ -265,8 +253,12 @@
 		                <div class="input_row2">
 		                    <label for="phone_title_r">연락처</label>
 		                    <input type="phone" id="phone_input2_r" name="receiver_tel" value="${memberInfo.tel}">
-		                </div>    
-		                
+		                </div>   
+		                      
+					</div>
+				
+				</div>
+
 		            <div class="input_row2">
 						<label for="request_title_r">배송 요청사항</label>
 						<select name='selbox'
@@ -279,10 +271,6 @@
 						</select> <br> <input id="selboxDirect" type="text"
 							placeholder="직접 입력하세요" style="display: none;">
 					</div>
-		                      
-					</div>
-				
-				</div>
 
 			</div> 
             
@@ -464,6 +452,15 @@
 		setTotalInfo();
     	
 		$(".order_btn").on("click", function() {
+		    // 배송 요청사항 select 태그에서 선택한 option 값 받아오기
+		    var deliveryRequest = $("#배송요청사항 option:selected").val();
+		    // 만약 "직접입력"을 선택했다면 해당 input 태그의 값을 deliveryRequest 변수에 저장하기
+		    if (deliveryRequest == "직접입력") {
+		      deliveryRequest = $("#selboxDirect").val();
+		    }
+		    // form 태그의 hidden input 요소에 값을 할당하기
+		    $("input[name='delivery_comment']").val(deliveryRequest);
+			
 			  $(".locate_addressInfo").each(function(i, obj) {
 			    if ($(obj).find(".selectAdressee").val() == 'T') {
 					$("input[name='receiver_name']").val($(obj).find(".name_input_r").val());
@@ -478,15 +475,7 @@
 				    $("input[name='receiver_address3']").val($(obj).find(".address_input6_r").val());
 				    $("input[name='receiver_tel']").val($(obj).find("#phone_input2_r").val());
 			    }
-			    // 배송 요청사항 select 태그에서 선택한 option 값 받아오기
-			    var deliveryRequest = $("#배송요청사항 option:selected").val();
-			    // 만약 "직접입력"을 선택했다면 해당 input 태그의 값을 deliveryRequest 변수에 저장하기
-			    if (deliveryRequest == "직접입력") {
-			      deliveryRequest = $("#selboxDirect").val();
-			    }
-			    // form 태그의 hidden input 요소에 값을 할당하기
-			    $("input[name='delivery_comment']").val(deliveryRequest);
-	
+			    
 			});
 
 		/* 상품정보 */
