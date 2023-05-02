@@ -88,11 +88,13 @@
             
                     <!-- 네이버로 로그인 -->
                     <div class="naverLogin">
-                        <!-- <button type="button" id="naverLoginButton">
-                            <img src="/resources//imgs/btnG_완성형.png" class="nimg"></button>
+                        <!-- button type="button" id="naverLoginButton" a href="${naverAuthUrl}">
+                            <<img src="/resources//imgs/btnG_완성형.png" class="nimg"></button>
                         -->
-                        <a type="button" href="${url}" id="naverLoginButton">
-                            <img src="/resources//imgs/btnG_완성형.png" class="nimg"></a>
+                        <a type="button" href="/login/naver" id="naverLoginButton">
+                            <img src="/resources//imgs/btnG_완성형.png" class="nimg">
+                        </a>
+                        <a type="button" href="${naverAuthUrl}" id="naverLoginButton2" style="display:none"></a>
                     </div>
 
                     <!-- 카카오로 로그인 -->
@@ -115,5 +117,29 @@
 	<!-- 이거 헤드에다가 넣으면 작동 XX 왜인지는 모르겠음 ㅠㅠ -->
 	<!-- 로그인 메인창 js -->
 	<script src="/resources/js/login/Login_Main.js"></script>
+	
+	<!-- /login/naver로 보내버리기..흑흑.. -->
+	<script>
+		(function() {
+            // naverLoginButton 클릭 이벤트
+            $("#naverLoginButton").on("click", function(e) {
+                e.preventDefault(); // 기본 동작 중단
+                sessionStorage.setItem("trigger_naverLoginButton2", "true");
+                // /login/naver 페이지로 이동
+                window.location.href = "/login/naver";
+            });
 
+            // 페이지가 /login/naver 인 경우
+            if (window.location.pathname === "/login/naver") {
+                // 세션 스토리지에서 flag 확인
+                if (sessionStorage.getItem("trigger_naverLoginButton2") === "true") {
+                    // flag 제거
+                    sessionStorage.removeItem("trigger_naverLoginButton2");
+                    // naverLoginButton2 클릭 이벤트 실행
+                    $("#naverLoginButton2")[0].click();
+                }
+            }
+        })();
+    </script>
+	
 </html>

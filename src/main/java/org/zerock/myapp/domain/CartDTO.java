@@ -10,19 +10,16 @@ public class CartDTO { // maper 메서드에 필요한 장바구니 데이터를
 	//CART TABLE
 	private Integer no; // <- cartNumber 
 	private String member_id;
-	private Integer count;
-	
+	private Integer count;	
 	private Integer product_No; // ** product의 no (pk)를 fk로 가져옴
-//	private Date cartDate; // ORACLE에 아직 없음 필요하면 추가해야함
+
 	
 	//product TABLE
 	private String name;
 	private Integer price; // -> 상품 한 개의 원가 
 	private Integer discount_price; // -> 상품 한 개의 최종 가격
-	
-	
-	//상품 이미지
-	private List<AttachImageVO> imageList;
+	private String main_image;
+	private Integer stock;
 	
 	//가격 계산 (cart_Count, price, discount_price-> 3개가 필요)
 //	private Integer salePrice;
@@ -38,7 +35,7 @@ public class CartDTO { // maper 메서드에 필요한 장바구니 데이터를
 	public String toString() { // 우선 + ", cartDate=" + cartDate  제외함 
 		return "CartDTO [no=" + no + ", member_id=" + member_id + ", product_no=" + product_No + ", count="
 				+ count + ", name=" + name + ", price=" + price
-				+ ", discount_price=" + discount_price + ", totalPrice=" + totalPrice + ", imageList=" + imageList+"]";
+				+ ", discount_price=" + discount_price + ", totalPrice=" + totalPrice + ", main_image=" + main_image+",stock=" + stock +"]";
 	} // toString
 	
-}
+} // end class

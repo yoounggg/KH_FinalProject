@@ -11,24 +11,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOYAMOGA</title>
     
-    <!-- include favicon -->
     <%@include file="/WEB-INF/views/common/favicon.jsp" %>
 
     <link rel="stylesheet" href="/resources/css/main.css">
-
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,100,1,-25" />
 
     <script src="https://kit.fontawesome.com/1fe7ba446e.js" crossorigin="anonymous"></script>
 
-    <!-- slick: cdn 방식으로 css, js 가져오기 -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.0/jquery-migrate.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    
-    <!-- js가 위 jquery, slick코드 보다 위에 나오면 적용이 안됨 -->
     <script src="/resources/js/main.js"></script>
 
 </head>
@@ -49,16 +44,14 @@
             <ul class="container2">
             
             	<!--로그인 x-->
-            	<!--로그인 성공하면 세션에 사용자 정보를 저장하는 model 상자의 이름 = member로 기재-->
                 <c:if test = "${member == null}">
                     <li><a href="/login/main">로그인</a></li>
                     <li><a href="/signup/main">회원가입</a></li>
-                    <li><a href="/cart/${member.id}">장바구니</a></li>
+                    <li class="nullcart"><a href="/cart/">장바구니</a></li>
                 </c:if> 
                 
                 <!--로그인 O -->
                 <c:if test = "${member != null}">
-
                         <!-- 관리자 계정 -->
                         <c:if test="${member.adminCk == 1}">
                             <li id="main_adminpage"><a href="/admin/main" id="main_adminpage">*관리자 페이지 click!</a></li>
@@ -102,6 +95,20 @@
             </ul>
         </div>
     </nav>
+    
+    <!-- <aside>  -->
+        <div class="container7">
+            <div id="choikun1">
+                <div id="choikun2">
+                    <div>최근 본 상품</div>
+                        <img src="/resources/imgs/sample.jpg" alt="최근1">
+                        <img src="/resources/imgs/sample.jpg" alt="최근2">
+                        <img src="/resources/imgs/sample.jpg" alt="최근3">
+                </div>    
+                <input id="topbtn" type="button" name="TOP" value="TOP">
+            </div> 
+        </div>
+    <!--</aside>  -->
 
     <main>
         <!-- 메인 배너 이미지 -->
@@ -213,24 +220,10 @@
         </div>
     </main>
 
-    <!-- <aside>
-        <div class="container7">
-            <div id="choikun1">
-                <div id="choikun2">
-                    <div>최근 본 상품</div>
-                        <img src="/resources/imgs/sample.jpg" alt="최근1">
-                        <img src="/resources/imgs/sample.jpg" alt="최근2">
-                        <img src="/resources/imgs/sample.jpg" alt="최근3">
-                </div>    
-                <input id="topbtn" type="button" name="TOP" value="TOP">
-            </div> 
-        </div>
-    </aside> -->
-
     <footer>
         <div class="yakgwan1">
             <div class="yakgwan2">
-                <li><a href="#">고객센터</a></li>
+                <li><a href="/help/main">고객센터</a></li>
                 <li><a href="/help/terms">약관 및 정책</a></li>
                 <li><a id="gaein" href="/help/privacy">개인정보 취급방침</a></li>
             </div>

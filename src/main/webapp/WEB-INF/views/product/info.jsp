@@ -53,7 +53,8 @@
 
             </div>
             <div class="btn">
-                <input type="button" value="장바구니">
+            	<!-- [채영] 장바구니 버튼 -->
+                <input type="button" value="장바구니" class="cartbtn">
                 <input type="button"  value="구매하기">
             </div>
         </div> 
@@ -67,7 +68,9 @@
             </div>
             <div class="de1">
                 <div class="p_Info_detail">
-                    <!-- <img src="https://picsum.photos/id/1081/600/400" alt=""> -->
+                    <p>
+                        <img src="/resources/product/${__INFO__.content_image}" alt="" onerror="this.style.display='none';"> 
+                    </p>
                     <p>
                         ${__INFO__.content}
                     </p>
@@ -297,19 +300,18 @@
                                 <div class="tip">* 조리 정보 : ${api.rcp_na_tip}</div>
                             </c:if>
                         </div>
-                        
                     </c:forEach>
+                    <div class="r_btn1"></div>
                 </div>
-
             </div>
         </div> 
-        
     </div>
 </body>
 <%@include file= "/WEB-INF/views/common/footer.jsp" %>
 </html>
 
 <script>
+
     const main_img = document.querySelector('#main_img');
     const sub_img = document.querySelectorAll('#sub_img > li > img');
     const minus = document.querySelector("#minus");
@@ -404,6 +406,32 @@
         p_Return.style.borderBottom = '1px solid darkgray';
         p_Info.style.borderBottom = '1px solid darkgray';
         p_recipes.style.borderBottom = 'none';
+        
+     	// 레시피 더보기 
+        const recipeLength = '${__APICOUNT__}';
+
+        if(recipeLength <=5){
+            document.querySelector('.r_btn1').style.display="none";
+        } else {
+            for(i=6; i<=recipeLength; i++){  // 최초 로딩했을 때 레시피 6번부터 나머지 모두 none 처리
+                document.querySelector(".recipe_btn_"+i).style.display="none";
+            } // for
+            document.querySelector('.r_btn1').innerHTML = "레시피 더보기 (" + (recipeLength - 5) + ")";
+        } // if-else
+
+        let apiCnt = 0;
+        document.querySelector('.r_btn1').addEventListener('click', () =>{    
+            apiCnt++;
+            for(i=(apiCnt * 5)+1; i<=(apiCnt * 5)+5; i++){
+                if(i > recipeLength){
+                    document.querySelector('.r_btn1').style.display="none";
+                    break;
+                } else {
+                    document.querySelector(".recipe_btn_"+i).style.display="block";
+                } // if-else
+            } // for
+            document.querySelector('.r_btn1').innerHTML = "레시피 더보기 (" + ((recipeLength -(apiCnt * 5))-5) + ")";
+        });
 
     });
 
@@ -413,16 +441,22 @@
         p_recipes.style.display = 'none';
         p_Info.style.width = '50%';
         p_Return.style.width = '50%';
-    }
+    } // if
 
     for(let i=1; i<=reCnt; i++){
         let reBtn = document.querySelector('.recipe_btn_' + i);
         let reBody = document.querySelector('.recipe_' + i);
 
         reBtn.addEventListener('click', () => {
-            reBody.style.display = 'block';
+            if(reBtn.classList.toggle('on') == true){
+                reBtn.classList.add("on");
+                reBody.style.display = 'block';
+            } else {
+                reBtn.classList.remove("on");
+                reBody.style.display = 'none';
+            } // if-else
         });
-    }
+    } // for
 
 
     // 서브 이미지 오류 처리
@@ -434,6 +468,37 @@
             imgNo.style.display = "none";
         } // for
     });
+//============================================================
 
+  //[채영] 장바구니 버튼
+    const form = {
+    		member_id : '${member.id}',
+    		product_No : '${__INFO__.no}',
+    		count : ''
+    }
 
+    $('.cartbtn').on("click", function(e){
+    	form.count = $('#p_num').val();
+    	
+    	$.ajax({
+    		url: '/cart/add',
+    		type: 'POST',
+    		data: form, 
+    		success: function(result){
+    			if(result == '0'){
+    				alert("장바구니에 추가하지 못하였습니다.");
+    			} else if(result == '1'){
+    				alert("장바구니에 추가되었습니다.");
+    			} else if(result == '2'){
+    				alert("장바구니에 이미 추가되어 있습니다.");
+    			} else if(result == '5'){
+    				alert("로그인이 필요합니다.");	
+    			}
+    		}
+    	})
+    	
+    });
+
+    
+    
 </script>

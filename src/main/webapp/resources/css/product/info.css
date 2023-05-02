@@ -38,7 +38,7 @@ ul {
 }
 
 .sub_img > li > img {
-    width: 110px;
+    width: 122px;
     height: 100px;
 
     padding: 0 5px;
@@ -155,20 +155,22 @@ ul {
     font-weight: bold;
     background-color: #06e19a;
     border: none;
-    color: #ffffff
+    color: #ffffff;
+   cursor: pointer;
 }
 
 .btn > input:nth-of-type(2) {
     font-weight: bold;
     background-color: #000000;
     border: none;
-    color: #ffffff
+    color: #ffffff;
+    cursor: pointer;
 }
 
 .detailInfo {
     /*position: absolute;*/
 
-    width: 60%;
+    width: 90%;
     height: 100%;
     
     margin: 50px 100px 25%;
@@ -176,6 +178,7 @@ ul {
 }
 .detailInfoHead {
     display: flex;
+    cursor: pointer;
 }
 
 .p_Info {
@@ -435,4 +438,18 @@ table{
     text-align: center;
     line-height: 50px;
     color:#ffffff;
+}
+
+/* 레시피 더보기 */
+.r_btn1 {
+    width: 200px;
+    height: 50px;
+    
+    margin: 0 100px;
+    
+    text-align: center;
+    line-height: 50px;
+    font-size: 16px;
+    border: 1px solid lightgray;
+    background-color: lightgray;
 }
