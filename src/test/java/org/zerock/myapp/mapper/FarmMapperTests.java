@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.zerock.myapp.domain.Criteria;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.zerock.myapp.domain.FarmDTO;
 import org.zerock.myapp.domain.FarmVO;
 
@@ -31,6 +31,8 @@ import lombok.extern.log4j.Log4j2;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations="file:src/main/webapp/WEB-INF/spring/**/root-*.xml")
+
+@WebAppConfiguration
 
 @TestInstance(Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)

@@ -73,6 +73,7 @@ public class NoticeController {
 		
 		try {
 			NoticeVO vo = this.service.get(no);
+			
 			model.addAttribute("notice", vo);
 		} catch (Exception e) {
 			throw new ControllerException(e);
