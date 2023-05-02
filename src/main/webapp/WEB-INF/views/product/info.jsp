@@ -53,7 +53,8 @@
 
             </div>
             <div class="btn">
-                <input type="button" value="장바구니">
+            	<!-- [채영] 장바구니 버튼 -->
+                <input type="button" value="장바구니" class="cartbtn">
                 <input type="button"  value="구매하기">
             </div>
         </div> 
@@ -310,6 +311,7 @@
 </html>
 
 <script>
+
     const main_img = document.querySelector('#main_img');
     const sub_img = document.querySelectorAll('#sub_img > li > img');
     const minus = document.querySelector("#minus");
@@ -466,6 +468,37 @@
             imgNo.style.display = "none";
         } // for
     });
+//============================================================
 
+  //[채영] 장바구니 버튼
+    const form = {
+    		member_id : '${member.id}',
+    		product_No : '${__INFO__.no}',
+    		count : ''
+    }
 
+    $('.cartbtn').on("click", function(e){
+    	form.count = $('#p_num').val();
+    	
+    	$.ajax({
+    		url: '/cart/add',
+    		type: 'POST',
+    		data: form, 
+    		success: function(result){
+    			if(result == '0'){
+    				alert("장바구니에 추가하지 못하였습니다.");
+    			} else if(result == '1'){
+    				alert("장바구니에 추가되었습니다.");
+    			} else if(result == '2'){
+    				alert("장바구니에 이미 추가되어 있습니다.");
+    			} else if(result == '5'){
+    				alert("로그인이 필요합니다.");	
+    			}
+    		}
+    	})
+    	
+    });
+
+    
+    
 </script>
