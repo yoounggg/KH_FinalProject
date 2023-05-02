@@ -9,12 +9,14 @@
 <mapper namespace="org.zerock.myapp.mapper.SocialMemberMapper">
 
 
-<!-- email id로 회원정보 조회 -->
+	<!-- [혁규] 카카오 소셜 -->
+
+	<!-- email id로 회원정보 조회 -->
 	<select id="idEmailCheck" parameterType="String" resultType="org.zerock.myapp.domain.MemberDTO">
 		SELECT * FROM member WHERE email = #{email} OR id = #{id}
 	</select>
 
-<!-- 회원가입 -->
+	<!-- 회원가입 -->
 	<insert id="insert" parameterType="java.util.HashMap">
 
 		<selectKey keyProperty="no" order="BEFORE" resultType="java.lang.Integer">
@@ -26,7 +28,7 @@
 		(#{id, jdbcType=VARCHAR}, #{email, jdbcType=VARCHAR}, 'KAKAO')
 	</insert>
 	
-<!-- 추가정보입력 -->
+	<!-- 추가정보입력 -->
 	<update id="kakaoSignupAddInfo"
 		parameterType="org.zerock.myapp.domain.MemberDTO">
 		<selectKey keyProperty="no" order="BEFORE" resultType="java.lang.Integer">
@@ -44,6 +46,13 @@
 		birth_day = #{birth_day, jdbcType=INTEGER}
 		WHERE no = #{no, jdbcType=INTEGER}
 	</update>
+	
+	<!-- [셍나와 찬돌이 도움 3%] 네이버 소셜 -->
+	
+	
+	
+	
+	
 </mapper>
 
 

@@ -95,7 +95,9 @@ public class NaverController {
 		log.info("response_obj.get(nickname)의 값은 : {}입니다.", nickname);
 		
 		//4. 파싱 닉네임 세션으로 저장
-		session.setAttribute("sessionId",nickname); //세션 생성
+//		session.setAttribute("sessionId",nickname); //세션 생성
+		
+		
 		
 		model.addAttribute("result", apiResult);
 		
