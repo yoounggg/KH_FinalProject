@@ -232,7 +232,7 @@ li{ list-style-type: none;}
 
 
 .cartmain{
-    padding: 20px 0 0 0;
+    padding: 100px 0 0 0;
 	width: 80%;
     margin: 0 auto;
 }
@@ -272,6 +272,7 @@ table{
 }	
 
 .contentbtn_section{
+	margin-bottom: 100px;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
@@ -437,7 +438,7 @@ th{
 .image_wrap img{
 	border-radius: 10px;
     max-width: 85%;
-    height: auto;
+    max-height: 80%;
     display: block;		
 }
 
