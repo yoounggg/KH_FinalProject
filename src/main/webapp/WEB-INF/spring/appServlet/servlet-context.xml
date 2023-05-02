@@ -16,6 +16,8 @@
    <!-- Enables the Spring MVC @Controller programming model -->
    <annotation-driven />
    
+	<beans:bean class="org.zerock.myapp.business.NaverBO" id="naverBO"/>
+   
 	<beans:bean class="java.lang.String" id="uploadPath">
 		<beans:constructor-arg value="C:\\app\\2023\\eclipse\\workspace\\jee-2022-06\\MYMG\\src\\main\\webapp\\resources" />
 	</beans:bean>
@@ -32,6 +34,7 @@
    <context:component-scan base-package="org.zerock.myapp.controller" />
    <context:component-scan base-package="org.zerock.myapp.interceptor" />
    <context:component-scan base-package="org.zerock.myapp.exception" />
+   <context:component-scan base-package="org.zerock.myapp.business" />
    
    <!-- path = request URI가 됨 -->
    <view-controller 

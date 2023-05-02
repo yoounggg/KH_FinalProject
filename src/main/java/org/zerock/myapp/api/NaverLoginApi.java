@@ -22,6 +22,7 @@ public class NaverLoginApi extends DefaultApi20 {
         
     } // instance()
  
+    
     @Override
     public String getAccessTokenEndpoint() { 		// 액세스 토큰 엔드포인트 URL을 반환하는 메서드
     	
@@ -29,6 +30,7 @@ public class NaverLoginApi extends DefaultApi20 {
         
     } // getAccessTokenEndpoint()
  
+    
     @Override
     protected String getAuthorizationBaseUrl() {	// 인증 엔드포인트 URL을 반환하는 메서드
     	
@@ -36,4 +38,5 @@ public class NaverLoginApi extends DefaultApi20 {
         
     } // getAuthorizationBaseUrl()
  
+    
 } // end class
