@@ -36,6 +36,7 @@
 	                    <th>번호</th>
 	                    <th>제목</th>
 	                    <th>작성날짜</th>
+	                    <th>수정날짜</th>
 	                    <th></th>
 	                </tr>
                 </thead>
@@ -46,6 +47,7 @@
                             <td>${NoticeVO.no}</td>
                             <td><a href="/admin/notice/get?no=${NoticeVO.no}">${NoticeVO.title}</a></td>
                             <td>${NoticeVO.reg_date}</td>
+                            <td>${NoticeVO.update_date}</td>
                             <td><input type="hidden" name="no" value="${NoticeVO.no}"></td>
                         </tr>       
                     </c:forEach>    

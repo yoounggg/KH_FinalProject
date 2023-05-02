@@ -82,6 +82,7 @@ public class FaqController {
 		
 		try {
 			FaqVO vo = this.service.get(no);
+			
 			model.addAttribute("faq", vo);
 		} catch (Exception e) {
 			throw new ControllerException(e);

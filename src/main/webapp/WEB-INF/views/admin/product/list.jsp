@@ -36,7 +36,8 @@
 	                    <th>카테고리</th>
 	                    <th>제목</th>
 	                    <th>작성날짜</th>
-	                    <th>
+	                    <th>수정날짜</th>
+	                    <th></th>
 	                </tr>
                 </thead>
                 <tbody>
@@ -47,6 +48,7 @@
                             <td>${ProductDTO.category}</td>
                             <td><a href="/admin/product/get?no=${ProductDTO.no}">${ProductDTO.name}</a></td>
                             <td>${ProductDTO.reg_date}</td>
+                            <td>${ProductDTO.update_date}</td>
                             <td><input type="hidden" name="no" value="${ProductDTO.no}"></td>
                         </tr>       
                     </c:forEach>    

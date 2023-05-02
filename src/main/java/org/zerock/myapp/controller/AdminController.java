@@ -7,7 +7,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,11 +19,15 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.myapp.domain.CategoryVO;
 import org.zerock.myapp.domain.Criteria;
+import org.zerock.myapp.domain.FaqVO;
+import org.zerock.myapp.domain.NoticeVO;
 import org.zerock.myapp.domain.PageDTO;
 import org.zerock.myapp.domain.ProductDTO;
 import org.zerock.myapp.exception.AException;
 import org.zerock.myapp.exception.ControllerException;
 import org.zerock.myapp.exception.ServiceException;
+import org.zerock.myapp.service.FaqService;
+import org.zerock.myapp.service.NoticeService;
 import org.zerock.myapp.service.ProductService;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -36,36 +39,41 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @AllArgsConstructor
 
-@Component
 @SessionAttributes({"product", "productDTO"})
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
    
-   
-   private ProductService service;
    private ProductDTO dto;
+   private ProductService service;
+   private NoticeService service2;
+   private FaqService service3;
+
    
-   //채영 테스트
-   
-   
-   /* 1. 관리자 페이지 이동 */
-   
+   /* 1. 관리자 페이지 메인 */
+
    @GetMapping("/main")
-   public String adminMain() throws AException{
+   public String adminMain(Model model) throws AException, ControllerException{
       log.trace("adminMain() invoked. (관리자 페이지 이동)");
-      
-      return "admin/main";
-      
-      // 어드민 수정 테스트입니당~
-      // 다시수정할게용
-      // 졸리당
-      // 테스트입니당당당
-      // 테스트예요 TT
-      // TEST
-      
-   } // adminMain
+
+  		try {
+  				List<ProductDTO> mainProduct = this.service.getList();
+  				List<NoticeVO> mainNotice = this.service2.getList();
+  				List<FaqVO> mainFaq = this.service3.getList();
+  				
+  				model.addAttribute("mainProduct", mainProduct);
+  				model.addAttribute("mainNotice", mainNotice);
+  				model.addAttribute("mainFaq", mainFaq);
+
+  				return "/admin/main";
+  		} catch (Exception e) {
+  			throw new ControllerException(e);
+  		} // try-catch
+  		
+  	} // list()
+   
+//   ======================================================
    
    
    /* 관리자 페이지 비동기 방식 로그아웃 */
@@ -132,6 +140,7 @@ public class AdminController {
 	         model.addAttribute("cateList", cateList);
 	         
 	         ProductDTO dto = this.service.get(no);
+	         
 	         model.addAttribute("product", dto);
 		} catch (Exception e) {
 			throw new ControllerException(e);
@@ -321,6 +330,7 @@ public class AdminController {
             } // try-catch
          
       } // register-post
+   
 
    
 } // end class
