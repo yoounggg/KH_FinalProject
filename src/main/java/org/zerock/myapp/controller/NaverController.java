@@ -37,6 +37,8 @@ public class NaverController {
 	@RequestMapping(value = "/login/naver", method = { RequestMethod.GET, RequestMethod.POST })
 		public String naverLogin(Model model, HttpSession session) throws Exception {
 		
+		log.trace("naverLogin({}, {}) invoked.", model, session);
+		
 		// 네이버 아이디로 인증 URL을 생성하기 위하여 NaverBO클래스의 getAuthorizationUrl() 호출
 		String naverAuthUrl = naverService.getAuthorizationUrl(session);
 		
