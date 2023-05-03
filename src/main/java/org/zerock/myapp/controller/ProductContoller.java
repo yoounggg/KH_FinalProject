@@ -57,11 +57,16 @@ public class ProductContoller {
 					
 			if(cri.getOrder() == null && cri.getOrigin() == null && cri.getWeight() == null && cri.getPrice() == null){
 				if(cri.getCode().equals("10100")) {
-				
+					cri.setWhereNo("no");
 				} else if(cri.getCode().equals("10800")) {
 					cri.setCode_info("WHERE discount >= 30");
+					cri.setWhereNo("discount");
+				} else if(cri.getCode().equals("10900")) {
+					cri.setCode_info("WHERE REG_DATE >= TO_CHAR(current_date-7,'YYYYMMDD')");
+					cri.setWhereNo("reg_date");
 				} else {
 				 	cri.setCode_info("WHERE category = "+cri.getCode());
+				 	cri.setWhereNo("no");
 				} // if
 				
 				list = this.service.getList(cri);
@@ -69,7 +74,6 @@ public class ProductContoller {
 					totalCount = 0;
 				} else {
 					totalCount = list.get(0).getTotalCount();
-					log.info(">>>>>>>>>>>>>>>>.. : {}",totalCount);
 				} // if-else
 			} else {
 				Criteria criTemp = new Criteria();
@@ -326,8 +330,10 @@ public class ProductContoller {
 			
 			if(cri.getCode().equals("10100")) { // 전체보기
 				
-			} else if(cri.getCode().equals("10800")){ // 오늘의 특가 
+			} else if(cri.getCode().equals("10800")) { // 오늘의 특가 
 				cri.setCode_info(" discount >= 30");
+			} else if(cri.getCode().equals("10900")) { // 신상품
+				cri.setCode_info(" REG_DATE >= TO_CHAR(current_date-7,'YYYYMMDD')");
 			} else {
 				cri.setCode_info(" category="+cri.getCode());
 			} // if-else
