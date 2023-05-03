@@ -62,6 +62,7 @@
                     <div class="btn">
                         <input type="button" value="장바구니">
 						<input type="button"  value="구매하기">
+						
                     </div>
                 </c:if>
         </div> 
