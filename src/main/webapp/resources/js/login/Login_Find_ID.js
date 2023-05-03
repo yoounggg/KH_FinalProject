@@ -245,6 +245,7 @@ $(document).ready(function () {
 	            
 	            $(".e_verify_button_result").hide();
 	            // 기존 아이디 찾기 폼 다 숨기고 로그인 하러 가기 버튼 만들기
+	            location.href = "/main";
 	        },
 	        error: function(xhr, status, error) {
 	            console.error(error);
