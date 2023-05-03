@@ -23,7 +23,7 @@
     <script src="/resources/js/userInfo.js"></script>
 </head>
 <body>
-    <body>
+
      <div class="topBanner">
         <div class="topbox">
             <div class="topcontent">
@@ -207,7 +207,7 @@
 <script>
 //회원탈퇴 버튼
 function deleteUser(id){
-if(window.confirm("탈퇴하시겠습니다?")){
+if(window.confirm("탈퇴하시겠습니까?")){
 	location.href = "/mypage/userInfo/"+ id+ "/delete";
 	}
 };

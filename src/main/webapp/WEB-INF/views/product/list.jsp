@@ -112,7 +112,7 @@
                         </c:if> 
                         <c:forEach var="productVO" items="${__List__}" varStatus="status">
                             <div class="info" id="info_${status.count}" name="info">
-                                <a href="/product/info?no=${productVO.no}"><img src="/resources/product/${productVO.main_image}" width="200" height="200" alt=""></a>
+                                <a href="/product/info?no=${productVO.no}" onclick="saveRecentItem('${productVO.no}', '${productVO.name}', '/resources/product/${productVO.main_image}')"><img src="/resources/product/${productVO.main_image}" width="200" height="200" alt=""></a>
                                 <p class="pname">${productVO.name}</p>
                                 <span class="discount">${productVO.discount}%</span> 
                                     
