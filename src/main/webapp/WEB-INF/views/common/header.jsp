@@ -15,21 +15,12 @@
     <%@include file="/WEB-INF/views/common/favicon.jsp" %>
 
     <link rel="stylesheet" href="/resources/css/main.css">
-
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,100,1,-25" />
 
     <script src="https://kit.fontawesome.com/1fe7ba446e.js" crossorigin="anonymous"></script>
-
-    <!-- slick: cdn 방식으로 css, js 가져오기 -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.0/jquery-migrate.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    
-    <!-- js가 위 jquery, slick코드 보다 위에 나오면 적용이 안됨 -->
-    <script src="/resources/js/main.js"></script>
 
 </head>
 
@@ -52,7 +43,7 @@
                 <c:if test = "${member == null}">
                     <li><a href="/login/main">로그인</a></li>
                     <li><a href="/signup/main">회원가입</a></li>
-                    <li><a href="/cart/${member.id}">장바구니</a></li>
+                    <li class="nullcart"><a href="/cart/">장바구니</a></li>
                 </c:if> 
                 
                 <!--로그인 O -->
@@ -88,18 +79,85 @@
                     <ul class="menu2">
                         <li><a href="#">농산 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > </a>
                             <ul class="menu3">
-                            	<c:forEach var="cate" items="${__CategoryAll__}">
-                                    <li><a href="/product/list?code=${cate.code}">${cate.categoryName}</a></li>
-                                </c:forEach>
+                               <li><a href="/product/list?code=10100">전체보기</a></li>
+                                <li><a href="/product/list?code=10200">오늘과일채소</a></li>
+                                <li><a href="/product/list?code=10300">국내외과일</a></li>
+                                <li><a href="/product/list?code=10400">친환경유기농채소</a></li>
+                                <li><a href="/product/list?code=10500">우리땅채소</a></li>
+                                <li><a href="/product/list?code=10600">채소/샐러드</a></li>
+                                <li><a href="/product/list?code=10700">주곡/잡곡</a></li>
+                                <li><a href="/product/list?code=10900">오늘의 특가</a></li>
+                                <li><a href="/product/list?code=10900">신상품</a></li>
                             </ul>
                         </li>
                     </ul>
                 <li><a href="/product/list?code=10800">오늘의 특가</a></li>
-                <li><a href="#">신상품</a></li>
+                <li><a href="/product/list?code=10900">신상품</a></li>
                 <li><a href="/help/main">고객센터</a></li>
             </ul>
         </div>
     </nav>
-</body>
 
+<input id="maintopbtn" type="button" name="TOP" value="TOP">
+    
+</body>
+<script>
+//비동기식 로그아웃!
+$("#gnb_logout").click(function() {
+	// alert("로그아웃 버튼 활성화")
+		$.ajax({
+    		type:"POST",
+    		url:"/login/logout",
+    		success:function(data){
+    			// alert("비동기식 로그아웃 성공");
+    			document.location.reload();
+    	}
+    }); // ajax
+});
+
+//top banner
+$(document).ready(function(){
+    $(".topBannerBtn").on("click", function(){ // 버튼 클릭하면
+      $(".topBanner").slideUp(); // 탑배너 사라지게 함
+      });
+    });
+    
+//상단 nav 메뉴 고정
+$(document).ready(function(){
+    var menuOffset = $('.menu').offset();
+    $(window).scroll(function(){
+       if($(document).scrollTop() > menuOffset.top){
+          $('.menu').addClass('fixedmenu').css('z-index', '999');
+       } else{
+          $('.menu').removeClass('fixedmenu').css('z-index', '');
+          }
+       });
+ });
+ 
+//로그인 하지 않으면 장바구니 이용불가능함 -> 알람창
+$('.nullcart').click(function(){
+	alert('로그인 후 이용바랍니다.');
+});
+
+//top버튼
+$(window).scroll(function(){
+    $("#maintopbtn").css("margin-top",Math.max(50,0-$(this).scrollTop()));
+});
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 500) {
+                $('#maintopbtn').fadeIn();
+            } else {
+                $('#maintopbtn').fadeOut();
+            }
+        });
+        
+        $("#maintopbtn").click(function() {
+            $('html, body').animate({
+                scrollTop : 0
+            }, 400);
+            return false;
+        });
+    });
+</script>
 </html>

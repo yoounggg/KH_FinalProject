@@ -15,11 +15,11 @@ public interface ProductMapper {
 //	[04/29 진호]
 //	======================================================================================
 	@Select("""
-			SELECT no, name, price, discount, discount_price, main_image, category AS code,
+			SELECT no, name, price, discount, discount_price, main_image, category AS code, TO_CHAR(reg_date,'YYYY-MM-DD') as regDate, stock,
 			( SELECT count(no) FROM product ${code_info}) as totalCount
 			FROM product 
 			${code_info}
-			ORDER BY no DESC
+			ORDER BY ${whereNo} DESC
 			OFFSET ( #{currPage} -1) * #{amount} ROWS FETCH NEXT #{amount} ROWS ONLY
 			""")
 	public abstract List<Page_ProductDTO> SelectAllList(Criteria cri);		// 전체목록 가져오기

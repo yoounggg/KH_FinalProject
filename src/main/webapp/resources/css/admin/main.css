@@ -13,6 +13,7 @@ body {
 /* 메인 */
 main {
     margin: 0 200px;
+    margin-bottom: 300px;
 }
 
 /* 헤더 - 로그인 상태 */
@@ -140,6 +141,5 @@ h3 {
 #main_list li {
     list-style: square;
     padding-top: 5px;
-    font-size : 18px;
     
 }

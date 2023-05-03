@@ -20,6 +20,8 @@ public class OrderPageItemDTO { // view에서 전달한 상품데이터를 담�
 	//private double discount;		// 할인 productDiscount
 	private Integer discount;        // 할인 금액 productDiscount
 	
+	private String main_image;
+	
 	/* 만들어 낼 값 */
 	private Integer salePrice; 			// 할인될 가격
 

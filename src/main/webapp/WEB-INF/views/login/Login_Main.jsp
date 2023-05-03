@@ -18,9 +18,9 @@
     <link rel="shortcut icon" href="/resources/ico/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/resources/ico/favicon.ico" type="image/x-icon">
     
-	<!-- 로그인 메인창 css -->
+	<!-- 로그인 메인창 css --> 
     <link rel="stylesheet" href="/resources/css/login/Login_Main.css">
-
+	 
 </head>
 
 <body>
@@ -88,8 +88,13 @@
             
                     <!-- 네이버로 로그인 -->
                     <div class="naverLogin">
-                        <button type="button" id="naverLoginButton">
-                            <img src="/resources//imgs/btnG_완성형.png" class="nimg"></button>
+                        <!-- button type="button" id="naverLoginButton" a href="${naverAuthUrl}">
+                            <<img src="/resources//imgs/btnG_완성형.png" class="nimg"></button>
+                        -->
+                        <a type="button" href="/login/naver" id="naverLoginButton">
+                            <img src="/resources//imgs/btnG_완성형.png" class="nimg">
+                        </a>
+                        <a type="button" href="${naverAuthUrl}" id="naverLoginButton2" style="display:none"></a>
                     </div>
 
                     <!-- 카카오로 로그인 -->
@@ -104,20 +109,6 @@
 
     </main>
     
-    
-    <%
-    String clientId = "0uv9EITi7mWXq43C1IuC";//애플리케이션 클라이언트 아이디값";
-    String redirectURI = URLEncoder.encode("http://localhost:8080/main", "UTF-8");
-    SecureRandom random = new SecureRandom();
-    String state = new BigInteger(130, random).toString();
-    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
-    apiURL += "&client_id=" + clientId;
-    apiURL += "&redirect_uri=" + redirectURI;
-    apiURL += "&state=" + state;
-    session.setAttribute("state", state);
- 	%>
-  	<a href="<%=apiURL%>"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
-    
     <!-- footer -->
     <%@include file= "../common/footer.jsp" %>
     
@@ -126,5 +117,29 @@
 	<!-- 이거 헤드에다가 넣으면 작동 XX 왜인지는 모르겠음 ㅠㅠ -->
 	<!-- 로그인 메인창 js -->
 	<script src="/resources/js/login/Login_Main.js"></script>
+	
+	<!-- /login/naver로 보내버리기..흑흑.. -->
+	<script>
+		(function() {
+            // naverLoginButton 클릭 이벤트
+            $("#naverLoginButton").on("click", function(e) {
+                e.preventDefault(); // 기본 동작 중단
+                sessionStorage.setItem("trigger_naverLoginButton2", "true");
+                // /login/naver 페이지로 이동
+                window.location.href = "/login/naver";
+            });
 
+            // 페이지가 /login/naver 인 경우
+            if (window.location.pathname === "/login/naver") {
+                // 세션 스토리지에서 flag 확인
+                if (sessionStorage.getItem("trigger_naverLoginButton2") === "true") {
+                    // flag 제거
+                    sessionStorage.removeItem("trigger_naverLoginButton2");
+                    // naverLoginButton2 클릭 이벤트 실행
+                    $("#naverLoginButton2")[0].click();
+                }
+            }
+        })();
+    </script>
+	
 </html>

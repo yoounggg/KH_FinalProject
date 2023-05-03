@@ -11,31 +11,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>거래처관리 수정</title>
     <link rel="stylesheet" href="/resources/css/admin/common.css">
-	<link rel="stylesheet" href="/resources/css/admin/modify.css">
+	<link rel="stylesheet" href="/resources/css/admin/farm_modify.css">
 	<!-- include favicon -->
 	<%@include file="/WEB-INF/views/common/favicon.jsp" %>
 	
-    <style>    
-       .farm {
-            background-color: #f7f7f7;
-            text-align: center;
-            padding: 30px;
-        }
-
+    <style>
         p {
             display: inline-block;
-            font-size: 20px;
+            font-size: 16px;
             width: 150px;
             height: 50px;
 
         }
-
-        #info {
-            width: 600px;
-            height: 50px;
-            font-size: 20px;
-        }
         
+        button {
+		    float: right;
+		    margin-left : 5px;
+		    margin-bottom : 100px;
+		    font-weight: 800;
+		    width: 75px;
+		    height: 35px;
+		    background-color: rgb(175, 124, 213);
+		    border: 1px solid #ceced2;
+		    font-size: 16px;
+		}
+
     </style>
 </head>
 
@@ -56,8 +56,8 @@
                 <div class="write">
                     <form action="/admin/farm/modify" method="POST">
 
-	                    <div class="farm">
-	                    <h3>농가 정보</h3>
+	                    <div class="information">
+	                    <h3>농가 정보 수정</h3>
 	                    <br>
 	                    <br>
 	                    <br>
@@ -81,7 +81,7 @@
 	                        <input type="text" value="${farm.tel}" name="tel"  id="info">
 	                        <br>
 	                    </div>
-	                    <div class="farm_button">
+	                    <div class="button">
 	                        <button type="submit" id="modifyBtn">수정</button>
 	                        <button type="button" id="removeBtn">삭제</button>
 	                        <button type="button" id="listBtn">목록</button>
@@ -115,7 +115,7 @@
 	/* 게시물 삭제하기! */
     var removeBtn = document.querySelector('#removeBtn');
        
-    removeBtn.addEventListener('click', function(){
+    	removeBtn.addEventListener('click', function(){
         console.log('removeBtn clicked ㅇ_<');
 
         //form 태그를 조작해서 삭제요청을 전송! 

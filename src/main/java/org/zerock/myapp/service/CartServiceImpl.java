@@ -26,10 +26,6 @@ public class CartServiceImpl implements CartService, InitializingBean { // pojo 
    @Setter(onMethod_= {@Autowired})
    private CartMapper mapper;
    
-   //상품 리스트를 getcart할 때 상품 이미지도 불러오기 위해서 attachmapper 주입
-   @Setter(onMethod_= {@Autowired})
-   private AttachMapper attach;
-
    
    @Override
    public void afterPropertiesSet() throws ServiceException {
@@ -75,12 +71,6 @@ public class CartServiceImpl implements CartService, InitializingBean { // pojo 
       
       for(CartDTO cart : list) {
          cart.initPrice(); // 장바구니에 들어가는 종합 정보 초기화
-         
-         //** attachimage 테이블 아직 없어서 오류나서 주석 처리
-         Integer product_no = cart.getProduct_No(); // dto에서 getter메소드로 상품의 productno를 먼저 얻어서,          
-         List<AttachImageVO> cartimage = attach.getAttachList(product_no); // 얻은 productno로 attachmapper의 메소드 이용         
-         cart.setImageList(cartimage); // dto의 setter메소드로 해당되는 이미지 얻기 
-         
       } // for
       
       return list; // 카트에 값이 모두 세팅된 게 나옴
@@ -94,16 +84,15 @@ public class CartServiceImpl implements CartService, InitializingBean { // pojo 
 		log.trace("modifyProductsInCart({})invoked", cart);
 		
 		return mapper.modifyCount(cart);
-
-	}
+	} // modifyCount
 
 	//4. 장바구니 삭제
 	@Override
 	public Integer deleteCart(Integer no) {
 		log.trace("deleteCart({})invoked", no);
 		
-		return mapper.deleteCart(no)
-				;
+		return mapper.deleteCart(no);
+				
 	} // getCart
 
 } // end class

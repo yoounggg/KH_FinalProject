@@ -12,19 +12,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOYAMOGA</title>
     
-    <!-- include favicon -->
     <%@include file="/WEB-INF/views/common/favicon.jsp" %>
     
     <link rel="stylesheet" href="/resources/css/mainsearch.css">
-
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,100,1,-25" />
 
     <script src="https://kit.fontawesome.com/1fe7ba446e.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.0/jquery-migrate.min.js"></script>
-    
-    <script src="/resources/js/search.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.0/jquery-migrate.min.js"></script>   
 	
 </head>
 
@@ -44,10 +40,10 @@
 	                    <li>
 	                        <div>
 	                            <div class="imgbox">	
-	                            	<a href="/product/info?no=${productVO.no}"><img src="/resources/product/${mainsearchlist.main_image}" width="220" height="220" alt="검색상품이미지"></a>
+	                            	<a href="/product/info?no=${mainsearchlist.no}"><img src="/resources/product/${mainsearchlist.main_image}" width="220" height="220" alt="검색상품이미지"></a>
 	                            </div>
 	                            <div class="infobox">
-	                                <div class="searchname"><a href="/product/info?no=${productVO.no}">${mainsearchlist.name}</a></div>
+	                                <div class="searchname"><a href="/product/info?no=${mainsearchlist.no}">${mainsearchlist.name}</a></div>
 	                             	<div>
 		                             	<span class="discount">${mainsearchlist.discount}%</span>
 		                             	<span class="discountprice">${mainsearchlist.discount_price}원</span>
@@ -66,7 +62,7 @@
 		<div class="searchpageinfo">
 			<ul>
 				<c:if test="${__PAGE_MAKER__.prev}">
-					<li class="searchprev"><a href="${__PAGE_MAKER__.startPage-1}">prev</a></li>
+					<li class="searchprev"><a href="/mainsearch?keyword=${__PAGE_MAKER__.cri.keyword}&currPage=${__PAGE_MAKER__.startPage-1}">prev</a></li>
 				</c:if>
 				
 				<c:forEach var="num" begin="${__PAGE_MAKER__.startPage}" end="${__PAGE_MAKER__.endPage}">
@@ -74,7 +70,7 @@
 		        </c:forEach>
 		        
 		        <c:if test="${__PAGE_MAKER__.next}">
-					<li class="searchnext"><a href="${__PAGE_MAKER__.endPage + 1 }">next</a></li>
+					<li class="searchnext"><a href="/mainsearch?keyword=${__PAGE_MAKER__.cri.keyword}&currPage=${__PAGE_MAKER__.endPage + 1 }&amount=${__PAGE_MAKER__.cri.amount}">next</a></li>
 				</c:if>
 			</ul>
 		</div>

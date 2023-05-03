@@ -142,30 +142,6 @@ li{ list-style-type: none;}
     position: fixed;
     top: 0px;
 }
-/* ------------------드롭다운메뉴-------------------- */
-
-/* .dropdown{
-    position: relative;
-    display: inline-block;
-}
-.dropdown-content{
-    display: none;
-    position: absolute;
-    z-index: 1;
-}
-.dropdown-content a {
-    color: black;
-}
-.dropdown:hover .dropdown-content{
-    display: block;
-} */
-.dropdown-content{
-    display: none;
-}
-
-.dropdown-content2{
-    display: none;
-}
 
 /*----------------------------- 공통 태그---------------------------- */
 
@@ -198,6 +174,14 @@ li{ list-style-type: none;}
 }
 
 /*  ======================= 주문상품 정보 ============================= */
+
+/* 이미지 */
+.products_image_wrap img{
+	border-radius: 10px;
+    max-width: 50%;
+    height: auto;
+    display: block;		
+}
 
 .orderProducts_div{
     margin-bottom: 20px;
@@ -344,9 +328,10 @@ li{ list-style-type: none;}
 }
 
 /* 이름, 주소, 연락처, 배송요청사항 전체 클래스 이름 */
-.input-row2 {
+.input_row3 {
     display: flex;
     align-items: center;
+    margin-left: 200px;
     margin-bottom: 10px;
     position: relative; /* 입력창 위치 고정 */
 }
@@ -357,6 +342,7 @@ li{ list-style-type: none;}
     padding: 5px;
     margin-right: 20px;
 }
+
 /*============================직접입력============================*/
 /* 이름 입력창 위치 조정 */
 .name_input_r {
@@ -429,6 +415,12 @@ li{ list-style-type: none;}
     margin-bottom: 10px;
     width: 400px;
 }
+/* 전화번호 입력창 위치 조정 */
+#phone_input2_r {
+    margin-left: 76px;
+    width:  300px;
+}
+
 /*========================================================*/
 
 
@@ -436,7 +428,7 @@ li{ list-style-type: none;}
 /* 배송 요청사항 위치 조정 */
 #배송요청사항 {
     margin-top:10px;
-    margin-left: 28px;
+    margin-left: 30px;
     width:  300px;
     height: 30px;
 }
@@ -446,6 +438,12 @@ li{ list-style-type: none;}
     margin-left: 125px;
     width: 350px;
 }
+.input_row3 input {
+    flex: 3;
+    padding: 5px;
+    margin-right: 20px;
+}
+
 
 /*==================================결제 금액===================================*/
 

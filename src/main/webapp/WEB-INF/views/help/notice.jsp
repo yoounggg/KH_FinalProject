@@ -106,7 +106,7 @@
 			                </tbody>
 			            </table>
 			            
-						<div class="pageInfo_wrap" >
+												<div class="pageInfo_wrap" >
 						  <form id=moveForm method="get">
 						    <div class="pageInfo_area">
 						    	<ul id="pageInfo" class="pageInfo">

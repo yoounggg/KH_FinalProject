@@ -1,0 +1,86 @@
+@charset "utf-8";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    min-width: 1026px;
+    height: 100vh;
+    min-height: 100%;
+    background-color: white;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* a, li태그 전체에 공통 적용 */
+a{ text-decoration: none;}
+
+li{ list-style-type: none;}
+
+/* ---------aside------- */
+.userinfoAside{
+    display: flex;
+    flex-flow: column wrap;
+    margin: 0 auto; 
+    position: relative;
+    left:-100px;
+    /* 왜 밑으로 안가지..? */
+    z-index: 97;
+}
+.userinfoAside>ul{
+    /*margin: 0;*/
+    /*padding: 0;*/
+    width: 150px;
+    display: inline-block;
+    /* border: 1px solid black; */
+    text-align: center;
+}
+.userinfoAside>ul>li>a{
+    color: black;
+}
+.userinfoAside>ul>li>a:hover{
+    text-decoration: underline;
+}
+.box1{
+    height: 160px;
+    padding-top: 10px;
+    border: 1px solid black;
+    font-size: 11px;
+    background-color: #EFEFEF;
+}
+.box1>img{
+    /* padding-top: 10px; */
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 50%;
+}
+.small1{
+    padding: 1px;
+}
+.box2{
+    height: 210px;
+    font-size: 14px;
+}
+.small2{
+	/*border: 1px solid black; */
+    padding: 25px;
+}
+.small3{
+    border-bottom: 1px solid black;
+}
+.small4{
+	border-right: 1px solid black;
+	border-left: 1px solid black;
+}
+.small5{
+	border-right: 1px solid black;
+	border-left: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+/* ---------------- 주문 내역 ---------------- */

@@ -60,10 +60,12 @@
                 </div>
                 <div class="helf_search">
                     <ul class="helf_search_ul">
-                        <p>공지사항 검색</p>
+                        <p>FAQ 검색</p>
                         <div class="helf_search_input_a">
-                            <input type="text" id="noticeKeyword" value="" placeholder="자주 찾는 질문을 검색해 보세요! ">
+                        <form action="/help/search" id="searchForm" method="get">
+                            <input type="text" id="keyword" name="keyword" placeholder="FAQ 자주 찾는 질문을 검색해 보세요! ">
                             <button id="search" style="color: #fff;">검색</button>
+                        </form>
                         </div>
                     </ul>
                 </div>

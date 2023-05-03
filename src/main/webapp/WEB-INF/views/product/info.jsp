@@ -52,12 +52,19 @@
                 <input type="number" id="tPrice" value="${__INFO__.discount_price}" readonly disabled>원
 
             </div>
-            <div class="btn">
-                <input type="button" value="장바구니">
-                <input type="button"  value="구매하기">
-            </div>
-        </div> 
+                <c:if test="${__INFO__.stock+0 <= 0}"> 
+                    <div class="soldOut_info">
+                        품절 되었습니다.    
+                    </div>
+                </c:if>
 
+                <c:if test="${__INFO__.stock+0 > 0}">  
+                    <div class="btn">
+                        <input type="button" value="장바구니">
+                        <input type="button"  value="구매하기">
+                    </div>
+                </c:if>
+        </div> 
 
         <div class="detailInfo">
             <div class="detailInfoHead">
@@ -67,7 +74,9 @@
             </div>
             <div class="de1">
                 <div class="p_Info_detail">
-                    <!-- <img src="https://picsum.photos/id/1081/600/400" alt=""> -->
+                    <p class=detail_img>
+                        <img src="/resources/product/${__INFO__.content_image}" alt="" onerror="this.style.display='none';"> 
+                    </p>
                     <p>
                         ${__INFO__.content}
                     </p>
@@ -297,13 +306,11 @@
                                 <div class="tip">* 조리 정보 : ${api.rcp_na_tip}</div>
                             </c:if>
                         </div>
-                        
                     </c:forEach>
+                    <div class="r_btn1"></div>
                 </div>
-
             </div>
         </div> 
-        
     </div>
 </body>
 <%@include file= "/WEB-INF/views/common/footer.jsp" %>
@@ -339,7 +346,6 @@
         p_num.value = num;
 
         const defaultPrice = "${__INFO__.discount_price}";
-        //console.log(defaultPrice);
 
         let totalPrice = num * defaultPrice;
         tPrice.value = totalPrice;
@@ -404,6 +410,32 @@
         p_Return.style.borderBottom = '1px solid darkgray';
         p_Info.style.borderBottom = '1px solid darkgray';
         p_recipes.style.borderBottom = 'none';
+        
+     	// 레시피 더보기 
+        const recipeLength = '${__APICOUNT__}';
+
+        if(recipeLength <=5){
+            document.querySelector('.r_btn1').style.display="none";
+        } else {
+            for(i=6; i<=recipeLength; i++){  // 최초 로딩했을 때 레시피 6번부터 나머지 모두 none 처리
+                document.querySelector(".recipe_btn_"+i).style.display="none";
+            } // for
+            document.querySelector('.r_btn1').innerHTML = "레시피 더보기 (" + (recipeLength - 5) + ")";
+        } // if-else
+
+        let apiCnt = 0;
+        document.querySelector('.r_btn1').addEventListener('click', () =>{    
+            apiCnt++;
+            for(i=(apiCnt * 5)+1; i<=(apiCnt * 5)+5; i++){
+                if(i > recipeLength){
+                    document.querySelector('.r_btn1').style.display="none";
+                    break;
+                } else {
+                    document.querySelector(".recipe_btn_"+i).style.display="block";
+                } // if-else
+            } // for
+            document.querySelector('.r_btn1').innerHTML = "레시피 더보기 (" + ((recipeLength -(apiCnt * 5))-5) + ")";
+        });
 
     });
 
@@ -413,17 +445,22 @@
         p_recipes.style.display = 'none';
         p_Info.style.width = '50%';
         p_Return.style.width = '50%';
-    }
+    } // if
 
     for(let i=1; i<=reCnt; i++){
         let reBtn = document.querySelector('.recipe_btn_' + i);
         let reBody = document.querySelector('.recipe_' + i);
 
         reBtn.addEventListener('click', () => {
-            reBody.style.display = 'block';
+            if(reBtn.classList.toggle('on') == true){
+                reBtn.classList.add("on");
+                reBody.style.display = 'block';
+            } else {
+                reBtn.classList.remove("on");
+                reBody.style.display = 'none';
+            } // if-else
         });
-    }
-
+    } // for
 
     // 서브 이미지 오류 처리
     const subImg = document.querySelector(".sub_img > li > img");
@@ -434,6 +471,4 @@
             imgNo.style.display = "none";
         } // for
     });
-
-
 </script>

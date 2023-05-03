@@ -16,10 +16,12 @@ public class Page_ProductDTO {
 	private Integer totalCount;	// 전체 개수
 	private String code;		// 카테고리 번호
 	private String categoryName;// 카테고리 이름
-	
+	private String content_image; // 컨텐츠 이미지
 	private String sub_image1;	// 서브이미지1
 	private String sub_image2;	// 서브이미지2
 	private String sub_image3;	// 서브이미지3
 	private String sub_image4;	// 서브이미지4
 	private String title;		// 상품명()
+	private String regDate;		// 등록날짜(변환)
+	private String stock;		// 수량
 } // end class

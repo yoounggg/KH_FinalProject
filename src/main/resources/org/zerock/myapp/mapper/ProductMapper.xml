@@ -10,7 +10,7 @@
    <!-- 04/29 진호 -->
    <!-- 목록 페이지 사이드 검색 -->
     <select id="SelectOrder" resultType="org.zerock.myapp.domain.Page_ProductDTO">        
-        SELECT no, name, price, discount, discount_price, main_image, weight,
+        SELECT no, name, price, discount, discount_price, main_image, weight, TO_CHAR(reg_date,'YYYY-MM-DD') as regDate, stock,
          ( SELECT count(no)
 	          FROM product 
 	          ${where} ${origin} ${testAnd} ${weight_info} ${testAnd1} ${price_info} ${testAnd2} ${code_info}) as totalCount 
@@ -22,8 +22,8 @@
 
 	<!-- 상세정보 페이지 -->
     <select id="SelectDetail" resultType="org.zerock.myapp.domain.Page_ProductDTO">
-        SELECT no, name, content, main_image, price, discount, discount_price, sub_image1, 
-        sub_image2, sub_image3, sub_image4, title
+        SELECT no, name, content, main_image, price, discount, discount_price, content_image, sub_image1, 
+        sub_image2, sub_image3, sub_image4, title, stock
         FROM product
         WHERE no = #{no}
     </select>
