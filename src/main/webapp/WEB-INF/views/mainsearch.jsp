@@ -62,7 +62,7 @@
 		<div class="searchpageinfo">
 			<ul>
 				<c:if test="${__PAGE_MAKER__.prev}">
-					<li class="searchprev"><a href="${__PAGE_MAKER__.startPage-1}">prev</a></li>
+					<li class="searchprev"><a href="/mainsearch?keyword=${__PAGE_MAKER__.cri.keyword}&currPage=${__PAGE_MAKER__.startPage-1}">prev</a></li>
 				</c:if>
 				
 				<c:forEach var="num" begin="${__PAGE_MAKER__.startPage}" end="${__PAGE_MAKER__.endPage}">
@@ -70,7 +70,7 @@
 		        </c:forEach>
 		        
 		        <c:if test="${__PAGE_MAKER__.next}">
-					<li class="searchnext"><a href="${__PAGE_MAKER__.endPage + 1 }">next</a></li>
+					<li class="searchnext"><a href="/mainsearch?keyword=${__PAGE_MAKER__.cri.keyword}&currPage=${__PAGE_MAKER__.endPage + 1 }&amount=${__PAGE_MAKER__.cri.amount}">next</a></li>
 				</c:if>
 			</ul>
 		</div>

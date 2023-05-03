@@ -23,77 +23,9 @@
     <script src="/resources/js/userInfo.js"></script>
 </head>
 <body>
-    <body>
-     <div class="topBanner">
-        <div class="topbox">
-            <div class="topcontent">
-                    모두의 야채, 모두의 과일<br>
-                    싱싱한 농산물을 합리적인 가격에 제공하는 직거래 유통 마켓
-            </div>
-            <button type="button" class="topBannerBtn">X</button>
-        </div>
-    </div>
 
-    <header>    
-            <ul class="container2">
-            
-            	<c:if test = "${member == null}">
-                    <li><a href="/login">로그인</a></li>
-                    <li><a href="/signup/main">회원가입</a></li>
-                    <li class="nullcart"><a href="/cart/">장바구니</a></li>
-                </c:if> 
-                
-                <!--로그인 O -->
-                <c:if test = "${member != null}">
-
-                        <!-- 관리자 계정 -->
-                        <c:if test="${member.adminCk == 1}">
-                            <li id="main_adminpage"><a href="/admin/main" id="main_adminpage">*관리자 페이지 click!</a></li>
-                        </c:if>  
-                    <li id="container2_name">${member.name}님 환영합니다 ^o^</li> 
-                    <li><a href="/login/logout">로그아웃</a></li>
-                    <!-- => 비동기 방식 로그아웃으로 변경 -->
-                    <li><a href="/mypage/userInfo/${member.id}">마이페이지</a></li>
-                    <li><a href="/cart/${member.id}">장바구니</a></li>
-                </c:if>       
-            </ul>
-
-            <div class="container3">
-                <a href="/main"><img id="logo" src="/resources/imgs/logo.png" alt="로고"></a>
-        
-                <form id="mainsearch" class="search1" action="/mainsearch" method="GET">
-                    <input class="search-txt" name="keyword" type="text" placeholder=" 검색어를 입력해주세요!">    
-                    <button class="search-btn" type="submit"><img id="btn" src="/resources/imgs/search.png" alt="메인검색버튼"></button>
-                </form>     
-                 
-            </div>
-    </header>
-
-    <nav> 
-        <div class="menu">
-            <ul class="container4">
-                <li><a href="#"><i class="fas fa-bars"> 전체 카테고리</i></a>
-                    <ul class="menu2">
-                        <li><a href="#">농산 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > </a>
-                            <ul class="menu3">
-                                <li><a href="#">전체보기</a></li>
-                                <li><a href="#">오늘과일채소</a></li>
-                                <li><a href="#">국내외과일</a></li>
-                                <li><a href="#">친환경유기농채소</a></li>
-                                <li><a href="#">우리땅채소</a></li>
-                                <li><a href="#">채소/샐러드</a></li>
-                                <li><a href="#">주곡/잡곡</a></li>
-                                <li><a href="#">오늘의 특가</a></li>
-                                <li><a href="#">신상품</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                <li><a href="#">오늘의 특가</a></li>
-                <li><a href="#">신상품</a></li>
-                <li><a href="#">고객센터</a></li>
-            </ul>
-        </div>
-    </nav>
+	<!-- header -->
+	<%@include file= "../views/common/header.jsp" %>
 
 <!-- --------------위에는 헤더----------- -->
 
@@ -207,7 +139,7 @@
 <script>
 //회원탈퇴 버튼
 function deleteUser(id){
-if(window.confirm("탈퇴하시겠습니다?")){
+if(window.confirm("탈퇴하시겠습니까?")){
 	location.href = "/mypage/userInfo/"+ id+ "/delete";
 	}
 };

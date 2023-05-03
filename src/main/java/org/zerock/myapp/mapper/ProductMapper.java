@@ -15,7 +15,7 @@ public interface ProductMapper {
 //	[04/29 진호]
 //	======================================================================================
 	@Select("""
-			SELECT no, name, price, discount, discount_price, main_image, category AS code,
+			SELECT no, name, price, discount, discount_price, main_image, category AS code, TO_CHAR(reg_date,'YYYY-MM-DD') as regDate, stock,
 			( SELECT count(no) FROM product ${code_info}) as totalCount
 			FROM product 
 			${code_info}
