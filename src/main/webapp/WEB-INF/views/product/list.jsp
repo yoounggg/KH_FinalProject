@@ -131,8 +131,9 @@
                         <!-- 페이지번호목록 표시-->
                         <c:forEach var="pageNum" begin="${__PAGE_MAKER__.startPage}" end="${__PAGE_MAKER__.endPage}">
                             <li class="${param.currPage eq pageNum ? 'currPage' : ''}">
-                                <a data-temp="${__PAGE_MAKER__.cri.setCurrPage(pageNum)}"
-                                href="/product/list${__PAGE_MAKER__.cri.pagingUri}">${pageNum}</a>
+                                <a data-temp="${__PAGE_MAKER__.cri.setCurrPage(pageNum)}" 
+                                <c:if test="${param.currPage == pageNum}">class="pageChange"</c:if> <c:if test="${param.currPage eq null && pageNum == 1}">class="pageChange"</c:if>
+                                href="/product/list${__PAGE_MAKER__.cri.pagingUri}">${pageNum} </a>
                             </li>
                         </c:forEach>
                     </div>
