@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.zerock.myapp.domain.MemberDTO;
 import org.zerock.myapp.service.NaverService;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
@@ -24,6 +25,9 @@ public class NaverController {
 	private NaverService naverService;
 	private String apiResult = null;
 	
+	// memberDTO
+	private MemberDTO memberDTO;
+	
 	@Autowired
 	private void setNaverService(NaverService naverService) {
 		
@@ -33,11 +37,11 @@ public class NaverController {
 	
 //	-------------------------------------------------------------------------------------------------
 	
-	//로그인 첫 화면 요청 메소드
+	// 로그인 첫 화면 요청 메소드
 	@RequestMapping(value = "/login/naver", method = { RequestMethod.GET, RequestMethod.POST })
 		public String naverLogin(Model model, HttpSession session) throws Exception {
 		
-		log.trace("naverLogin({}, {}) invoked.", model, session);
+		log.trace("네아로: naverLogin({}, {}) invoked.", model, session);
 		
 		// 네이버 아이디로 인증 URL을 생성하기 위하여 NaverBO클래스의 getAuthorizationUrl() 호출
 		String naverAuthUrl = naverService.getAuthorizationUrl(session);
@@ -50,7 +54,7 @@ public class NaverController {
 		
 	} // naverLogin()
 	
-	//네이버 로그인 성공시 callBack호출 메소드
+	// 네이버 로그인 성공 시 callBack 호출 메소드
 	@RequestMapping(value = "/login/callBack", method = { RequestMethod.GET, RequestMethod.POST })
 		public String callBack
 			(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
@@ -73,7 +77,7 @@ public class NaverController {
 		}
 		**/
 		
-		//2. String형식인 apiResult를 json형태로 바꿈
+		// 2. String 형식인 apiResult -> json
 		JSONParser parser = new JSONParser();
 		
 		Object obj = parser.parse(apiResult);
@@ -82,15 +86,15 @@ public class NaverController {
 		
 		JSONObject jsonObj = (JSONObject) obj;
 	
-		//3. 데이터 파싱
-		//Top레벨 단계 _response 파싱
+		// 3. 데이터 파싱
+		// Top레벨 단계 _response 파싱
 		JSONObject response_obj = (JSONObject)jsonObj.get("response");
 		
-		//response의 nickname값 파싱
+		// response의 nickname값 파싱
 		String nickname = (String)response_obj.get("nickname");
 		log.info("response_obj.get(nickname)의 값은 : {}입니다.", nickname);
 		
-		//4.파싱 닉네임 세션으로 저장
+		//4. 파싱 닉네임 세션으로 저장
 		session.setAttribute("sessionId",nickname); //세션 생성
 		
 		model.addAttribute("result", apiResult);

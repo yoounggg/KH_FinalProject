@@ -34,6 +34,8 @@
 	                    <th>번호</th>
 	                    <th>제목</th>
 	                    <th>작성날짜</th>
+	                    <th>수정날짜</th>
+	                    <th></th>
 	                </tr>
                 </thead>
                 <tbody>
@@ -43,6 +45,8 @@
                             <td>${FaqVO.no}</td>
                             <td><a href="/admin/faq/get?no=${FaqVO.no}">${FaqVO.title}</a></td>
                             <td>${FaqVO.reg_date}</td>
+                            <td>${FaqVO.update_date}</td>
+                            <td><input type="hidden" name="no" value="${FaqVO.no}"></td>
                         </tr>       
                     </c:forEach>    
                 </tbody>
@@ -153,7 +157,7 @@
     	    if (confirm('선택한 게시글을 삭제하시겠습니까?')) {
     	        const form = document.createElement('form');
     	        form.setAttribute('method', 'post');
-    	        form.setAttribute('action', '/admin/notice/remove');
+    	        form.setAttribute('action', '/admin/faq/remove');
     	        checkedItemNos.forEach(checkedItemNo => {
     	            const input = document.createElement('input');
     	            input.setAttribute('type', 'hidden');

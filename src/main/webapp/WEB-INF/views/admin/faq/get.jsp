@@ -16,6 +16,22 @@
     <!-- include favicon -->
 	<%@include file="/WEB-INF/views/common/favicon.jsp" %>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+	<style>
+	
+		button {
+		    float: right;
+		    margin-left : 5px;
+		    margin-bottom : 100px;
+		    font-weight: 800;
+		    width: 75px;
+		    height: 35px;
+		    background-color: rgb(175, 124, 213);
+		    border: 1px solid #ceced2;
+		    font-size: 16px;
+		}
+	    
+	</style>
+</head>
 <body>
 	<!-- 헤더 - 로그인/로그아웃 로고, 관리자페이지 메인글씨 -->
     <%@include file= "/WEB-INF/views/admin/common/header.jsp" %>

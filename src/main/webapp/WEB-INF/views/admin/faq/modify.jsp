@@ -15,6 +15,26 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
     <link rel="stylesheet" href="/resources/css/admin/common.css">
     <link rel="stylesheet" href="/resources/css/admin/modify.css">
+    <style>
+
+		button {
+		    float: right;
+		    margin-left : 5px;
+		    margin-bottom : 100px;
+		    font-weight: 800;
+		    width: 75px;
+		    height: 35px;
+		    background-color: rgb(175, 124, 213);
+		    border: 1px solid #ceced2;
+		    font-size: 16px;
+		}
+	        
+	    .ck-content {
+	        min-height: 400px;
+	        padding: 0px;
+	    }
+	    
+	</style>
 </head>
 
 

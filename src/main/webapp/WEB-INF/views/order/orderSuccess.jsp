@@ -67,7 +67,7 @@
 
                 <div class="input-box">
                     <label for="delivery">배송요청사항</label>
-                    <textarea id="delivery" name="delivery" value="${delivery_comment}" readonly></textarea>
+                    <textarea id="delivery" name="delivery" readonly>${delivery_comment}</textarea>
                 </div>
 
             </div><!-- left-box -->

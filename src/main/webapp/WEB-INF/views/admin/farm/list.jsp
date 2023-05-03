@@ -163,7 +163,7 @@
     	    if (confirm('선택한 게시글을 삭제하시겠습니까?')) {
     	        const form = document.createElement('form');
     	        form.setAttribute('method', 'post');
-    	        form.setAttribute('action', '/admin/notice/remove');
+    	        form.setAttribute('action', '/admin/farm/remove');
     	        checkedItemNos.forEach(checkedItemNo => {
     	            const input = document.createElement('input');
     	            input.setAttribute('type', 'hidden');

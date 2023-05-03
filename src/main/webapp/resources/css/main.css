@@ -73,7 +73,7 @@ li{ list-style-type: none;}
 .container2 li a, .container2 li{
     width: 70px;
     color: black;
-    font-size: 12px;
+    font-size: 13px;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
@@ -93,7 +93,7 @@ li{ list-style-type: none;}
 /* ------------------------------------------ */
 
 .container3{
-    padding: 40px 0 50px 0;
+    padding: 60px 0 80px 0;
     width: 80%;
     /* height: 90px; */
     margin: 0 auto;
@@ -123,6 +123,7 @@ li{ list-style-type: none;}
 }
 
 .search1 .search-txt{
+	font-size: 13px;
     width: 300px;
     /* height: 30px; */
     border: none;
@@ -181,9 +182,9 @@ li{ list-style-type: none;}
 
 .container4 li a{
     padding: 0 0 0 20px;
-    height: 45px;
-    line-height: 45px;
-    font-size: 14px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 15px;
     display: block;
     color: black;
     text-align: left;
@@ -297,30 +298,17 @@ aside{
     font-size: 15px;
 }
 
-
 /* --------------------banner---------------------- */
 .slideShow{
-    /* position: relative; */
     width: 100%;
     min-width: 1026px;
-    /* height: 0; */
-    /* padding-bottom: 56.26%; */
-    /* padding-top: 75%; */
-    /* overflow: hidden;  */
 }
 
 .slides{
     padding: 0;
     width: 100%;
-    /* width: 360px; */
-    /* height: 330px; */
     min-width: 1026px;
 }
-
-/* .slides li{
-    width: 360px;
-    height: 330px;
-} */
 
 .banner-img {
     width: 360px;
@@ -330,19 +318,12 @@ aside{
 }
 
 .slides img{
-    /* 30차이가 나지 않으면 border-radius가 이상하게 설정됨 */
     width: 100%;
-    /* margin: 5px; */
-    /* height: 330px; */
     object-fit: fill;
     border-radius: 30px;
     overflow: hidden;
-    /* position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%; */
 }
+
 .banner-btn{
     padding-top: 10px;
     cursor: pointer;
@@ -353,12 +334,6 @@ aside{
     justify-content: center;
 }
 
-/* .btnradius{
-    height: 25px;
-    border: 1px solid #909090;
-    border-radius: 50px;
-} */
-
 .material-symbols-outlined {
     font-size: 30px;
     line-height: 30px;
@@ -367,7 +342,7 @@ aside{
 /* -----------mini banner --------- */
 
 .minibanner1{
-    padding: 30px 0 30px 0;
+    padding: 50px 0 50px 0;
     width: 80%;
     margin: 0 auto;
 }
@@ -379,7 +354,7 @@ aside{
 
 /* ----------------main----------------- */
 .container5, .container6{
-    padding: 50px 0 100px 0;
+    padding: 50px 0 200px 0;
     width: 80%;
     margin: 0 auto;
     font-weight: bold;
@@ -389,7 +364,7 @@ aside{
 }
 
 .minititle{
-    padding: 50px 0 20px 0;
+    padding: 30px 0 20px 0;
     width: 80%;
     margin: 0 auto;
     font-size: 20pt;
@@ -397,13 +372,12 @@ aside{
     text-align: center;
 }
 
-/* 샘플 이미지!! */
 .container5 img, .container6 img{
     display: inline-block;
     margin: 0 auto;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     width: 240px;
-    height: 250px;
+    height: 240px;
     border-radius: 10px;
 }
 
@@ -415,7 +389,7 @@ aside{
 }
 
 .thumbnail>span{
-    padding-top: 20px;
+    padding-top: 10px;
 }
 .dis_Green{
     color: #11BC0D;
@@ -423,7 +397,7 @@ aside{
 }
 
 .recipe{
-    padding: 50px 0 50px 0;
+    padding: 20px 0 100px 0;
     width: 80%;
     margin: 0 auto;
     display: flex;
@@ -437,7 +411,6 @@ aside{
 }
 
 .recipe2{
-    /* padding: 0 0 0 200px; */
     font-size: 16pt;
 }
 
@@ -467,20 +440,16 @@ aside{
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-start;
-    /* 수직정렬!!!! */
     align-items: center;
 }
 
 .yakgwan2 li{
-    /* 가로로 중간 (세로로 중간까지 해야 글자가 정 가운데 올 듯) */
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold;
-    /* vertical-align: middle; */
 }
 
 .yakgwan2 li a{
     padding: 30px;
-    /* height: 40px; */
     color: black;
 }
 

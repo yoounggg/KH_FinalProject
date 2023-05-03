@@ -23,6 +23,20 @@
             height: 50px;
 
         }
+        
+        button {
+		    float: right;
+		    margin-left : 5px;
+		    margin-bottom : 100px;
+		    font-weight: 800;
+		    width: 75px;
+		    height: 35px;
+		    background-color: rgb(175, 124, 213);
+		    border: 1px solid #ceced2;
+		    font-size: 16px;
+		}
+
+
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <body>
