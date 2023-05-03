@@ -97,7 +97,7 @@ public class NaverController {
 		// 4. 파싱 닉네임 세션으로 저장
 //		session.setAttribute("sessionId",nickname); //세션 생성
 		
-		// 5. DTO 객체에 데이터 넣어주기
+		// 5. DTO 객체에 데이터 넣어주기 ( 이름/이메일만 필수 정보 -> 나머지는 추가 정보로 밀어버려서 그쪽에서 기입하게 한 후 DB에 저장!)
 		MemberDTO memberDTO = new MemberDTO();
 		
 		memberDTO.setId((String)response_obj.get("id"));
@@ -107,7 +107,6 @@ public class NaverController {
 		memberDTO.setBirth_year(Integer.parseInt(response_obj.get("birthyear").toString()));
 		memberDTO.setBirth_month(Integer.parseInt(response_obj.get("birthday").toString().split("-")[0]));
 		memberDTO.setBirth_day(Integer.parseInt(response_obj.get("birthday").toString().split("-")[1]));
-		memberDTO.setSocial_type("naver");
 		
 		model.addAttribute("result", apiResult);
 		
