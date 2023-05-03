@@ -64,14 +64,16 @@
 				<table class="products_table">
 					<colgroup>
 						<col width="25%">
-						<col width="25%">
+						<col width="22%">
 						<col width="30%">
 					</colgroup>
 					<tbody>
 						<c:if test="${not empty orderList}">
 							<c:forEach items="${orderList}" var="ol">
 								<tr>
-									<td></td>
+									<td class="products_image_wrap">
+									<img src="/resources/product/${ol.main_image}" alt="상품 이미지">
+									</td>
 									<td class="상품정보">${ol.name}</td>
 									<td class="products_table_price_td">
 										<fmt:formatNumber value="${ol.price}" pattern="#,### 원" /> | 수량 ${ol.productCount}개
@@ -199,17 +201,17 @@
 				
 				</div>
 
-		            <div class="input_row2">
+		            <div class="input_row3">
 						<label for="request_title_r">배송 요청사항</label>
-						<select name='selbox'
-							id="배송요청사항" onchange="selectMemo(this)">
+						<select name='selbox' id="배송요청사항" onchange="selectMemo(this)">
 							<option value='' selected id="선택">---------------------선택 ---------------------</option>
 							<option value='부재시, 연락 바랍니다.'>부재시, 연락 바랍니다.</option>
 							<option value='부재시, 무인 택배함 보관 후 연락바랍니다.'>부재시, 무인 택배함 보관 후 연락바랍니다.</option>
 							<option value='부재시, 경비실에 맡겨주세요.'>부재시, 경비실에 맡겨주세요.</option>
 							<option value="직접입력">직접입력</option>
-						</select> <br> <input id="selboxDirect" type="text"
-							placeholder="직접 입력하세요" style="display: none;">
+						</select>
+						<br>
+						<input id="selboxDirect" type="text" placeholder="직접 입력하세요" style="display: none;">
 					</div>
 
 			</div> 
