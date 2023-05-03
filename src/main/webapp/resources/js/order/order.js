@@ -17,7 +17,7 @@
                 pay_method : 'card',
                 merchant_uid: merchant_uid, 
                 name : productName,
-                amount : price,
+                amount : 101,
                 buyer_email : email,
                 buyer_name : name,
                 buyer_tel : tel,
@@ -26,32 +26,7 @@
             }, function (rsp) { // callback
                 if(rsp.success) {
                     console.log(rsp);
-					var dto = {
-						productId: productId,
-						productName: productName,
-						price: price,
-						email: email,
-						name: name,
-						tel: tel,
-						addr: addr,
-						postcode: postcode,
-						merchantUid: merchant_uid,
-						uid: uid
-       			 	};
-       			 	$.ajax({
-			          url: '/order/${uid}',
-			          method: 'POST',
-			          contentType: "application/json",
-			          dataType: "json",
-			          data: JSON.stringify(dto),
-			          success: function(data) {
-			            console.log(data);
-			            window.location.href = "/order";
-			          },
-			          error: function(xhr, status, error) {
-			            console.log(xhr);
-			          }
-			        });
+					sendOrderInfo();
                 } else {
                     console.log(rsp);
                 }
@@ -59,7 +34,11 @@
         }
 
 $(".order_btn").on("click", function() {
-        
+          
+         requestPay();      
+    }); 
+    
+            function sendOrderInfo() {
         // 배송 요청사항 select 태그에서 선택한 option 값 받아오기
         var deliveryRequest = $("#배송요청사항 option:selected").val();
         // 만약 "직접입력"을 선택했다면 해당 input 태그의 값을 deliveryRequest 변수에 저장하기
@@ -106,9 +85,7 @@ $(".order_btn").on("click", function() {
     
           /* 주문 양식 제출 */
           $(".order_form").submit();   
-          
-          requestPay();     
-    }); 
+        }
 
 
 /* ============================== 배송요청사항 직접입력 =========================================== */
