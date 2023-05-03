@@ -56,14 +56,15 @@
             </table>
 		</form>
 		
-		
+		<form>
 		 		<div class="pageInfo_wrap" >
 					    <div class="pageInfo_area">
 					    	<ul id="pageInfo" class="pageInfo">
-					    	
+					    		
+					    		
 					    		<!-- 이전페이지 버튼 -->
-					            <c:if test="${pageMaker.prev}">
-					                <li class="pageInfo_btn previous"><a href="${pageMaker.startPage-1}">Previous</a></li>
+					            <c:if test="${pageMaker.prev}" >
+					                <li class="pageInfo_btn previous"><a href="/admin/product/list?currPage=${pageMaker.startPage-1}">Previous</a></li>
 					            </c:if>
 					            
 				            	<!-- 각 번호 페이지 버튼 -->
@@ -72,17 +73,24 @@
 				                </c:forEach>
 				             
 					            <!-- 다음페이지 버튼 -->
-					            <c:if test="${pageMaker.next}">
-					                <li class="pageInfo_btn next"><a href="${pageMaker.endPage + 1 }">Next</a></li>
+					            <c:if test="${pageMaker.next}" >
+					                <li class="pageInfo_btn next"><a href="/admin/product/list?currPage=${pageMaker.endPage + 1}&amount=${pageMaker.cri.amount}">Next</a></li>
 					            </c:if>  
 				             </ul>
 								<div class="button1">
 									<button type="button" id="registerBtn">등록</button>
 									<button type="button" id="removeBtn">삭제</button>
 								</div>
-								
 		            	</div>
+						<input type="hidden" name="currPage" value="${pageMaker.cri.currPage}">
+						<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+						<input type="hidden" name="pagePerPage">
+						<input type="hidden" name="type">
+						<input type="hidden" name="keyworkd">
+	           
+	           
 	           </div>
+	    </form>
         </div>
     </div>
 </main>
@@ -168,6 +176,9 @@ document.querySelector('#removeBtn').addEventListener('click', function () {
         alert("삭제되었습니다.");
     }
 });
+
+
+
 </script>
 
 </html>

@@ -98,7 +98,7 @@
 							</c:forEach>
 	    				</div>
         				
-        				<div class="pageInfo_wrap" >
+						<div class="pageInfo_wrap" >
 						  <form id=moveForm method="get">
 						    <div class="pageInfo_area">
 						    	<ul id="pageInfo" class="pageInfo">
@@ -110,7 +110,7 @@
 						            
 					            	<!-- 각 번호 페이지 버튼 -->
 					                <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-					                    <li class="pageInfo_btn "><a href="/help/faq?currPage=${num}&amount=${pageMaker.cri.amount}">${num}</a></li>
+					                    <li class="pageInfo_btn "><a href="/help/notice?currPage=${num}&amount=${pageMaker.cri.amount}">${num}</a></li>
 					                </c:forEach>
 					             
 						            <!-- 다음페이지 버튼 -->

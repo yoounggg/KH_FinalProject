@@ -11,8 +11,8 @@ import lombok.extern.log4j.Log4j2;
 @Data
 
 public class Criteria {
-   private Integer currPage = 1;    //현재 페이지 번호
-   private Integer amount =  10;   // 한 페이지당 보여줄 게시물 갯수(크기)
+   private Integer currPage;    //현재 페이지 번호
+   private Integer amount;   // 한 페이지당 보여줄 게시물 갯수(크기)
    
    // 페이징처리를 위한 공통 전송파라미터인데.. 이를 고정시킬지, 받을지는 구현에 다라 다름
    private Integer pagesPerPage = 10; // 한 Pagination(페이지번호목록)의 크기 -> 몇개의 페이지 번호를 보여줄까?
@@ -84,8 +84,8 @@ public class Criteria {
    
 	// [별이]원하는 currPage, 원하는 amount
 	public Criteria() {
-		this.currPage = currPage;
-		this.amount = amount;
+		this.currPage = 1;
+		this.amount = 10;
 		this.skip = (currPage-1)*amount;
 		
 	} // criteria
