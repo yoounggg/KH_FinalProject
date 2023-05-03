@@ -110,8 +110,8 @@
                         <c:if test="${empty __List__}" > 
                             <p class="empty"> 내용이 없습니다.</p>
                         </c:if> 
-                        <c:forEach var="productVO" items="${__List__}">
-                            <div class="info">
+                        <c:forEach var="productVO" items="${__List__}" varStatus="status">
+                            <div class="info" id="info_${status.count}" name="info">
                                 <a href="/product/info?no=${productVO.no}"><img src="/resources/product/${productVO.main_image}" width="200" height="200" alt=""></a>
                                 <p class="pname">${productVO.name}</p>
                                 <span class="discount">${productVO.discount}%</span> 
@@ -119,6 +119,7 @@
                                 <span class="disprice"><fmt:formatNumber type="number" pattern="0,000" 
                                     value="${productVO.discount_price}"  /><span class="won">원</span></span>    
                                 <span class="price"><fmt:formatNumber type="number" pattern="0,000" value="${productVO.price}" />원</span>
+                                <div class="txt1">특가</div>
                             </div>
                         </c:forEach>
                     </div> 
@@ -433,6 +434,16 @@
                 price4.style.color = "#0000FF";
                 break;
         } // switch
+        
+        // 이미지 텍스트
+        const infoLen = document.querySelectorAll('div[name="info"]').length;
+        for(let i=1; i<=infoLen; i++){
+            const discount = document.querySelector("#info_"+i+">.discount");
+            const disHtml = discount.innerHTML.substring(0, discount.innerHTML.length-1);
+            if(parseInt(disHtml, 10) >= 30){
+                document.querySelector("#info_"+i+">.txt1").style.display = "block";
+            } // if
+        } // for
 
     </script>
     
