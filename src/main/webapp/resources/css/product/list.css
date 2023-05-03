@@ -1,5 +1,12 @@
 @charset "UTF-8";
 
+html {
+	-ms-user-select: none;
+     -moz-user-select: -moz-none;
+     -webkit-user-select: none;
+     -khtml-user-select: none;
+     user-select: none;
+}
 .container{
     width: 80%;
 
@@ -236,9 +243,12 @@ img {
 
 #pagination li > a {
     text-decoration-line: none;
+}
 
-    color:black;
-    font-weight: bold;
+.pageChange {
+	font-weight: bold;
+	font-size: 30px;
+	color: red;
 }
 
 #pagination li > a:hover {
@@ -255,4 +265,6 @@ img {
 	font-size: 1.5rem;
     font-weight: bold;
 }
+
+
 
