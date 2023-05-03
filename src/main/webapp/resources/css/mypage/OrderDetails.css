@@ -20,8 +20,6 @@ a{ text-decoration: none;}
 
 li{ list-style-type: none;}
 
-/* ---------------- 주문 내역 상세 ---------------- */
-
 /* ---------aside------- */
 .userinfoAside{
     display: flex;
@@ -84,6 +82,8 @@ li{ list-style-type: none;}
 	border-left: 1px solid black;
 	border-bottom: 1px solid black;
 }
+
+/* ---------------- 주문 내역 상세 ---------------- */
 
 /* =============== 상세 주문 내역 ================= */
 .order-details {

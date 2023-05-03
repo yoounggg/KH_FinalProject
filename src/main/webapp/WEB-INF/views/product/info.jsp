@@ -74,7 +74,7 @@
             </div>
             <div class="de1">
                 <div class="p_Info_detail">
-                    <p>
+                    <p class=detail_img>
                         <img src="/resources/product/${__INFO__.content_image}" alt="" onerror="this.style.display='none';"> 
                     </p>
                     <p>
