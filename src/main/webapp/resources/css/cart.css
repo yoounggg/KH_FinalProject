@@ -272,7 +272,7 @@ table{
 }	
 
 .contentbtn_section{
-	margin-bottom: 100px;
+	margin: 50px 0 150px 0;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;

@@ -94,15 +94,7 @@
         </div>
     </nav>
     
-    <!-- <aside>  -->
-		<!--<div class="container7"> -->
-
-
-
-        <input id="maintopbtn" type="button" name="TOP" value="TOP">
-
-        <!--</div>-->
-    <!--</aside>  -->
+   <input id="maintopbtn" type="button" name="TOP" value="TOP">
 
     <main>
         <!-- 메인 배너 이미지 -->
