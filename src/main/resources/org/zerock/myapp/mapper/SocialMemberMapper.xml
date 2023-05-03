@@ -51,24 +51,23 @@
 	
 	<!-- 회원 조회 -->
 	<select id="socialMemberCheck" parameterType="String" resultType="org.zerock.myapp.domain.MemberDTO">
-		SELECT 
-			* 
-		FROM 
-			MEMBER 
-		WHERE 
-			EMAIL = #{email} 
-			OR ID = #{id}
+	    SELECT 
+	        * 
+	    FROM 
+	        MEMBER 
+	    WHERE 
+	        EMAIL = #{email, jdbcType=VARCHAR} 
+	        OR ID = #{id, jdbcType=VARCHAR}
 	</select>
 	
 	<!-- 회원 가입 -->
 	<insert id="insertNaverMember" parameterType="java.util.HashMap">
-	
-		<selectKey keyProperty="no" order="BEFORE" resultType="java.lang.Integer">
-			SELECT "MYMG"."ISEQ$$_99524".nextval FROM dual
-		</selectKey>
-		
-    	INSERT INTO member (ID, NAME, EMAIL, SOCIAL_TYPE)
-    	VALUES (#{id, jdbcType=VARCHAR}, #{name}, #{email, jdbcType=VARCHAR}, 'NAVER')
+	    <selectKey keyProperty="no" order="BEFORE" resultType="java.lang.Integer">
+	        SELECT "MYMG"."ISEQ$$_99524".nextval FROM dual
+	    </selectKey>
+	    
+	    INSERT INTO member (ID, NAME, EMAIL, SOCIAL_TYPE)
+	    VALUES (#{id, jdbcType=VARCHAR}, #{name}, #{email, jdbcType=VARCHAR}, 'NAVER')
 	</insert>
 	
 	<!-- 추가 정보 입력 -->
