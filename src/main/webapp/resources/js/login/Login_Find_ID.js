@@ -127,6 +127,7 @@ $(document).ready(function () {
 	            alert("찾은 아이디: " + idResult);
 	            $(".p_verify_button_result").hide();
 	            // 기존 아이디 찾기 폼 다 숨기고 로그인 하러 가기 버튼 만들기
+	            location.href = "/main";
 	        },
 	        error: function(xhr, status, error) {
 	            console.error(error);
@@ -241,6 +242,7 @@ $(document).ready(function () {
 	        success: function(idResult_e) {
 	            // 결과 값을 보여줄 영역에 결과 값을 설정 (예: 알림창, 팝업, 모달 등)
 	            alert("찾은 아이디: " + idResult_e);
+	            
 	            $(".e_verify_button_result").hide();
 	            // 기존 아이디 찾기 폼 다 숨기고 로그인 하러 가기 버튼 만들기
 	        },
