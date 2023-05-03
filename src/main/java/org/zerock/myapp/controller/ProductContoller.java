@@ -51,8 +51,8 @@ public class ProductContoller {
 				cri.setCurrPage(1);
 			} // if
 			
-			if(cri.getAmount() == null) {
-				cri.setAmount(12);
+			if(cri.getAmountpro() == null) {
+				cri.setAmountpro(12);
 			} // if
 					
 			if(cri.getOrder() == null && cri.getOrigin() == null && cri.getWeight() == null && cri.getPrice() == null){
