@@ -98,14 +98,7 @@ public class NaverController {
 		// Top레벨 단계 _response 파싱
 		JSONObject response_obj = (JSONObject)jsonObj.get("response");
 		
-		// ex) response의 name값 파싱
-//		String name = (String)response_obj.get("name");
-//		log.info("response_obj.get(name)의 값은 : {}입니다.", name);
-		
-		// 4. 파싱 닉네임 세션으로 저장
-//		session.setAttribute("sessionId",nickname); //세션 생성
-		
-		// 5. DTO 객체에 데이터 넣어주기 ( 이름/이메일만 필수 정보 -> 나머지는 추가 정보로 밀어버려서 그쪽에서 기입하게 한 후 DB에 저장!)
+		// 4. DTO 객체에 데이터 넣어주기
 		MemberDTO memberDTO = new MemberDTO();
 		
 		memberDTO.setId((String) response_obj.get("id"));
