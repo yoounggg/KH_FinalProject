@@ -63,7 +63,13 @@
                     
                     <!-- [채영] 장바구니 버튼 수정!!!!!! -->
                         <input type="button" value="장바구니" class="cartbtn">
-                        <input type="button"  value="구매하기">
+                    <!-- [찬석] 구매 버튼 -->
+		                <input type="button"  value="구매하기" class="btn_buy">
+		
+		                <form action="/order/${member.id}" method="get" class="order_form">
+							<input type="hidden" name="orders[0].productId" value="${__INFO__.no}">
+							<input type="hidden" name="orders[0].productCount" value="">
+						</form>
                     </div>
                 </c:if>
         </div> 
@@ -501,4 +507,12 @@
     	})
     	
     });
+  
+	// [찬석] 구매하기 버튼
+	/* 바로구매 버튼 */
+	$(".btn_buy").on("click", function(){
+		let count = $("#p_num").val();
+		$(".order_form").find('input[name="orders[0].productCount"]').val(count);
+		$(".order_form").submit();
+	});
 </script>

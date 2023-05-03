@@ -1,8 +1,6 @@
 package org.zerock.myapp.service;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +11,7 @@ import org.zerock.myapp.domain.MemberDTO;
 import org.zerock.myapp.domain.OrderDTO;
 import org.zerock.myapp.domain.OrderItemDTO;
 import org.zerock.myapp.domain.OrderPageItemDTO;
+import org.zerock.myapp.domain.ProductDTO;
 import org.zerock.myapp.exception.ServiceException;
 import org.zerock.myapp.mapper.CartMapper;
 import org.zerock.myapp.mapper.MemberMapper;
@@ -115,6 +114,17 @@ public class OrderServiceImpl implements OrderService {
 		    
 	        orderMapper.enrollOrderItem(oit);
 	    }
+	    
+		/* 재고 차감 */
+		for(OrderItemDTO oit : odt.getOrders()) {
+			log.info("\t+ ********************재고 차감 테스트***********************");
+//			productDTO product = productMapper.get
+			// 변동 값 계산
+			ProductDTO product = productMapper.select(oit.getNo());
+			product.setStock(product.getStock() - oit.getCount());
+			// 차감 메소드 실행
+			orderMapper.deductStock(product);
+		}
 		
 		/* 장바구니 제거 */
 		for(OrderItemDTO oit : odt.getOrders()) {
@@ -126,13 +136,6 @@ public class OrderServiceImpl implements OrderService {
 			cartMapper.deleteOrderCart(dto);
 			log.info("\t+ ********************장바구니 제거 테스트********************");
 		}
-		
-//		/* 재고 차감 */
-//		for(OrderItemDTO oit : odt.getOrders()) {
-////			productDTO product = productMapper.get
-//			ProductDTO product = productMapper.select(oit.getNo());
-//			product.setStock(product.getStock() - oit.getCount());
-//		}
 
 	} // order
 

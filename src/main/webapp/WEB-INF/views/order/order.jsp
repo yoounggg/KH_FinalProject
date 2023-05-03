@@ -204,7 +204,7 @@
 		            <div class="input_row3">
 						<label for="request_title_r">배송 요청사항</label>
 						<select name='selbox' id="배송요청사항" onchange="selectMemo(this)">
-							<option value='' selected id="선택">---------------------선택 ---------------------</option>
+							<option value='' selected id="선택">--------------------------- 선택 ---------------------------</option>
 							<option value='부재시, 연락 바랍니다.'>부재시, 연락 바랍니다.</option>
 							<option value='부재시, 무인 택배함 보관 후 연락바랍니다.'>부재시, 무인 택배함 보관 후 연락바랍니다.</option>
 							<option value='부재시, 경비실에 맡겨주세요.'>부재시, 경비실에 맡겨주세요.</option>
@@ -212,6 +212,7 @@
 						</select>
 						<br>
 						<input id="selboxDirect" type="text" placeholder="직접 입력하세요" style="display: none;">
+						<br>
 					</div>
 
 			</div> 
