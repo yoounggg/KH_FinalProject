@@ -27,7 +27,7 @@
                 <h1 class="subject"><a href="/product/list?code=${cate.code}">${cate.categoryName}</a></h1>
             
                 <div class="link">
-                    <span><a href="/main"><i class="fa fa-home" style="font-size:20px"></i></a></span> > <span>농산</span> > <span>${cate.categoryName}</span>
+                    <span><a href="/main"><i class="fa fa-home" style="font-size:20px"></i></a></span> > <span>농산</span> > <span><a href="/product/list?code=${cate.code}">${cate.categoryName}</a></span>
                 </div> 
             </c:forEach>
 
@@ -161,16 +161,16 @@
                 } // if
             } // for 
 
-            if(urlParams.has('amount') == true){
-                urlParams.set('amount', valueNum);
+            if(urlParams.has('amountpro') == true){
+                urlParams.set('amountpro', valueNum);
             } else {
-            	urlParams.append('amount', valueNum);
+            	urlParams.append('amountpro', valueNum);
             } // if-else
             location.href = "/product/list?" + urlParams.toString();
         });
 
         // 상품목록 출력 개수 확인
-        const amountVal = urlParams.get('amount');
+        const amountVal = urlParams.get('amountpro');
         for(let idx=0; idx<number.options.length; idx++){
             if(number.options[idx].value == amountVal){
                 number.options[idx].selected = true;
@@ -212,19 +212,19 @@
         switch(order) {
             case 'best':
                 sort_i1.style.visibility = "visible";
-                sort1.style.color = "#0000FF";
+                sort1.style.color = "#11bc0d";
                 break;
             case 'newProduct':
                 sort_i2.style.visibility = "visible";
-                sort2.style.color = "#0000FF";
+                sort2.style.color = "#11bc0d";
                 break;
             case 'productName':
                 sort_i3.style.visibility = "visible";
-                sort3.style.color = "#0000FF";
+                sort3.style.color = "#11bc0d";
                 break;
             case 'lowPrice':
                 sort_i4.style.visibility = "visible";
-                sort4.style.color = "#0000FF";
+                sort4.style.color = "#11bc0d";
                 break;
         } // switch
 

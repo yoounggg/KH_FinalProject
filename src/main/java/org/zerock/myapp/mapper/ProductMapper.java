@@ -20,7 +20,7 @@ public interface ProductMapper {
 			FROM product 
 			${code_info}
 			ORDER BY ${whereNo} DESC
-			OFFSET ( #{currPage} -1) * #{amount} ROWS FETCH NEXT #{amount} ROWS ONLY
+			OFFSET ( #{currPage} -1) * #{amountpro} ROWS FETCH NEXT #{amountpro} ROWS ONLY
 			""")
 	public abstract List<Page_ProductDTO> SelectAllList(Criteria cri);		// 전체목록 가져오기
 	

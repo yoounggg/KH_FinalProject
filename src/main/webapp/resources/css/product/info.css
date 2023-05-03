@@ -33,7 +33,7 @@ html {
 
 #main_img {
     width: 500px;
-    height: 400px;
+    height: 500px;
 }
 
 ul {
@@ -106,7 +106,7 @@ ul {
 
     font-size: 1.8rem;
     font-weight: bold;
-    color: #06e19a;
+    color: #11bc0d;
 }
 
 .buyNum {
@@ -166,7 +166,7 @@ ul {
     margin: 0 20px 0 0;
 
     font-weight: bold;
-    background-color: #06e19a;
+    background-color: #11bc0d;
     border: none;
     color: #ffffff
 }
@@ -185,8 +185,9 @@ ul {
     border: 0px solid;
     text-align: center;
     line-height: 50px;
-    background: #aaaaaa;
-    color: white;
+    background: lightgray;
+    color: #000000;
+    font-weight: bold;
 }
 
 .detailInfo {
@@ -347,14 +348,14 @@ table{
     width: 45%;
     margin: 20px 0;
 
-    border: 10px solid #22D6B2;
+    border: 10px solid #11bc0d;
     border-radius: 10px;
 }
 
 .nu_head {
     padding: 10px;
 
-    background-color: #22D6B2;
+    background-color: #11bc0d;
 
 }
 .nu_head_info {
@@ -405,7 +406,7 @@ table{
     width: 70%;
     padding: 10px;
 
-    border: 10px solid #22D6B2;
+    border: 10px solid #11bc0d;
     border-radius: 10px;
     
     font-size: 16px;
@@ -451,7 +452,7 @@ table{
 
     margin: 40px 0;
 
-    background-color: #22D6B2;
+    background-color: #11bc0d;
 
     cursor: pointer;
 

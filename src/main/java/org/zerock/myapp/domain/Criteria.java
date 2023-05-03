@@ -27,29 +27,30 @@ public class Criteria {
    private Integer skip = 0;
    
    //[04/29 진호] 추가
-    private String code; // 카테고리 코드
-	private String code_info;
+   private Integer amountpro;
+   private String code; // 카테고리 코드
+   private String code_info;
 	
-	private String orderby; //
-	private String order;   // 상단(상품명순, 낮은가격순 등...)
-	private String order1;  // asc / desc 
-	private String tempOrder; //
+   private String orderby; //
+   private String order;   // 상단(상품명순, 낮은가격순 등...)
+   private String order1;  // asc / desc 
+   private String tempOrder; //
 	
-	private String where; // where 절
-	private String testAnd;
-	private String testAnd1;
-	private String testAnd2;
-	private String whereNo;
+   private String where; // where 절
+   private String testAnd;
+   private String testAnd1;
+   private String testAnd2;
+   private String whereNo;
 	
-	private String origin; // 원산지 검색
+   private String origin; // 원산지 검색
 	
-	private String weight; // 중량(무게) 검색
-	private String weight_info;
+   private String weight; // 중량(무게) 검색
+   private String weight_info;
 	
-	private String price;
-	private String price_info; // 가격 검색
+   private String price;
+   private String price_info; // 가격 검색
    
-	private Integer no;
+   private Integer no;
 	
    // [04/29 진호] queryString 수정
    // 위의 모든 기준정보를 기반으로, Query String을 만들어 주는 메소드 추가
