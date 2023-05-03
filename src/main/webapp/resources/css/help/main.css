@@ -9,26 +9,26 @@ li{ list-style-type: none;  }
 
 
 /* 고객센터 전체 감싸기 */
-.helf_wrap {
+.help_wrap {
 	width: 1050px;
     margin: auto;
     margin-top: 50px;
 }
 
 /* 고객센터 상단 감싸기 */
-.helf_top {
+.help_top {
     width: 100%;
     height: 150px;
 }
 
 /* 고객센터 중간 사이드 메뉴 / 게시물 */
-.helf_content_wrap {
+.help_content_wrap {
 	margin-bottom : 200px;
 	border: 1px solid #f1f1f1;
 }
 
 /* 상단 사이드 고객센터 글자 */
-.helf_center {
+.help_center {
     float: left;
     width:  180px;
     height: 150px;
@@ -39,7 +39,7 @@ li{ list-style-type: none;  }
     
 }
 
-.helf_center_text {
+.help_center_text {
     margin-top: 65px;
     font-size: 20px;
     font-weight: 700;
@@ -48,7 +48,7 @@ li{ list-style-type: none;  }
 
 /* 상단 중간 검색창 */
 
-.helf_search {
+.help_search {
     display: inline-block;
     width: 870px;
     height: 150px;
@@ -56,30 +56,30 @@ li{ list-style-type: none;  }
     background-color: #F9F9F4;
 }
 
-.helf_search_ul {
+.help_search_ul {
     text-align: center;
     padding: 0;
     margin-top: 50px;
     font-size: 17px;
 }
 
-.helf_search_input_a {
+.help_search_input_a {
     display: inline-block;
     width: 450px;
     height: 30px;
 }
 
-.helf_search_ul p {
+.help_search_ul p {
     display: inline-block;
 }
 
-.helf_search_ul input {
+.help_search_ul input {
     width: 400px;
     height: 30px;
 }
 
 
-.helf_search_ul a {
+.help_search_ul a {
     position: absolute;
     display: inline-block;
     width: 87px;
@@ -99,7 +99,7 @@ li{ list-style-type: none;  }
 
 
 /* 중간 컨텐츠 사이드 메뉴 */
-.helf_side_menu {
+.help_side_menu {
     float: left;
     padding: 0;
     margin: 0;
@@ -207,7 +207,7 @@ h2{
             text-align: left;
         }
 
-        .helf_box1 {
+        .help_box1 {
             display: flex;
             align-items: center;
             width: 100%;
@@ -215,7 +215,7 @@ h2{
             border: 4px solid #ceced2;
         }
 
-        .helf_box12 {
+        .help_box12 {
             display: inline-block;
             width: 50%;
             padding-left: 20px;
@@ -231,7 +231,7 @@ h2{
         }
 
 
-        .helf_box2 {
+        .help_box2 {
             /* display: inline-block; */
             display: flex;
             /* margin */
@@ -240,7 +240,7 @@ h2{
             text-align: center;
         }
 
-        .helf_box3 {
+        .help_box3 {
             /* border: 1px solid black; */
             margin: 6px;;
             width : 100px;
@@ -257,7 +257,7 @@ h2{
 
         }
 
-        .helf_box3 p {
+        .help_box3 p {
             color: #fff;
         }
 

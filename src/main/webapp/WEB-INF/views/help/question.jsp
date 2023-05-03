@@ -13,8 +13,8 @@
     
 	<!-- include favicon -->
     <%@include file="/WEB-INF/views/common/favicon.jsp" %>
-    
-    <link rel="stylesheet" href="/resources/css/help/get.css">
+
+    <link rel="stylesheet" href="/resources/css/help/notice.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,100,1,-25" />
@@ -24,24 +24,7 @@
     <!-- slick: cdn 방식으로 css, js 가져오기 -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>			
-    <style>
-		#search {
-		    position: absolute;
-		    display: inline-block;
-		    width: 87px;
-			height: 32px;
-		    padding-top: 3.2px;
-		    line-height: 20px;
-		    border: 2px solid #5d5d5d;
-		    background: #5d5d5d;
-		    text-align: center;
-		    font-size: 16px;
-		    font-weight: 500;
-		    color: #fff;
-		    text-decoration: none;
-		}
-	</style> 
-
+ 
 </head>
 <body>
 	<!-- header -->
@@ -57,13 +40,7 @@
                     <p class="help_center_text">고객센터</p>
                 </div>
                 <div class="help_search">
-                    <ul class="help_search_ul">
-                        <p>공지사항 검색</p>
-                        <div class="help_search_input_a">
-                            <input type="text" id="noticeKeyword" value="" placeholder="자주 찾는 질문을 검색해 보세요! ">
-                            <button id="search" style="color: #fff;">검색</button>
-                        </div>
-                    </ul>
+                   
                 </div>
             </div>
 
@@ -76,6 +53,7 @@
                         <li id="sm_li"><a href="/help/faq">FAQ</a></li>
                         <li id="sm_li"><a href="/help/notice">공지사항</a></li>
                         <li id="sm_li"><a href="/help/guide">이용안내</a></li>
+                        <li id="sm_li"><a href="/help/question">1:1문의</a></li>
                     </ul>
 
                 </div>
@@ -83,26 +61,28 @@
 
                 <!-- 중간 - 게시물 -->
                 <div class="content_wrap">
-                        <h2>공지사항 <span class="test">새로운 소식들을 확인하세요</span></h2>
-						<form>
+                        <h2>1:1문의 <span class="test">나의 1:1 문의 내역</span></h2>
+
                         <div class="content_list">
-			                <table>
-			                	<p><input type="hidden" name="no" value="${notice.no}"></p>
-								<tr>
-									<th><h3>${notice.title}</h3></th>
-								</tr>
-								<tr>
-									<td>
-										<div class="notice_detail">${notice.content}</div>
-									</td>
-								</tr>
-							</table>
-							<h4><button id="listBtn"><a href="/help/notice" id="Btn">전체보기</a></button></h4>
-		
-						</div>
-						</form>
-	    		</div>
-        </div>
+			            <table>
+			                 <thead>
+			                    <tr>
+			                        <th>번호</th>
+			                        <th>제목</th>
+			                        <th>작성날짜</th>
+			                    </tr>
+			                </thead>
+			                <tbody>
+			                    <c:forEach items="${noticeList}" var="NoticeVO">
+			                        <tr>
+			                            <td>${NoticeVO.no}</td>
+			                            <td><a href="/help/get?no=${NoticeVO.no}">${NoticeVO.title}</a></td>
+			                            <td>${NoticeVO.reg_date}</td>
+			                        </tr>       
+			                    </c:forEach>    
+			                </tbody>
+			            </table>
+            	</div>
         </div>
     </main>
     <!-- ==========================footer========================= -->
