@@ -56,44 +56,7 @@ li{ list-style-type: none;  }
     background-color: #F9F9F4;
 }
 
-.help_search_ul {
-    text-align: center;
-    padding: 0;
-    margin-top: 50px;
-    font-size: 17px;
-}
 
-.help_search_input_a {
-    display: inline-block;
-    width: 450px;
-    height: 30px;
-}
-
-.help_search_ul p {
-    display: inline-block;
-}
-
-.help_search_ul input {
-    width: 400px;
-    height: 30px;
-}
-
-
-.help_search_ul a {
-    position: absolute;
-    display: inline-block;
-    width: 87px;
-	height: 32px;
-    padding-top: 3.2px;
-    line-height: 20px;
-    border: 2px solid #5d5d5d;
-    background: #5d5d5d;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 500;
-    color: #fff;
-    text-decoration: none;
-}
 
 
 
@@ -199,16 +162,5 @@ table td {
 	text-align: left;
 }
 
-	  .pageInfo{
-	    list-style : none;
-	    display: inline-block;
-	    margin: 50px 0 0 100px;      
-	  }
-	  .pageInfo li{
-	    float: left;
-	    font-size: 20px;
-	    margin-left: 18px;
-	    padding: 7px;
-	    font-weight: 500;
-	  }
+
 	  

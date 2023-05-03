@@ -52,17 +52,17 @@ function showRefund() {
 	<%@include file= "/WEB-INF/views/common/header.jsp" %>
 	
     <main>
-        <div class="helf_wrap">
+        <div class="help_wrap">
 
 
             <!-- 상단 고객센터, 검색창 -->
-            <div class="helf_top">
-                <div class="helf_center">
-                    <p class="helf_center_text">고객센터</p>
+            <div class="help_top">
+                <div class="help_center">
+                    <p class="help_center_text">고객센터</p>
                 </div>
-                <div class="helf_search">
-                    <ul class="helf_search_ul">
-                        <div class="helf_search_input_a">
+                <div class="help_search">
+                    <ul class="help_search_ul">
+                        <div class="help_search_input_a">
 
                         </div>
                     </ul>
@@ -70,10 +70,10 @@ function showRefund() {
             </div>
 
             <!-- 중간 - notice 사이드 메뉴/ 게시물 -->
-            <div class="helf_content_wrap">
+            <div class="help_content_wrap">
 
                 <!-- 중간 - notice 사이드 메뉴 -->
-                <div class="helf_side_menu">
+                <div class="help_side_menu">
                     <ul class="sm_ul">
                         <li id="sm_li"><a href="/help/faq">FAQ</a></li>
                         <li id="sm_li"><a href="/help/notice">공지사항</a></li>

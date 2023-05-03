@@ -50,18 +50,18 @@
 <!-- BEST10 창 -->
 
     <main>
-        <div class="helf_wrap">
+        <div class="help_wrap">
 
 
             <!-- 상단 고객센터, 검색창 -->
-            <div class="helf_top">
-                <div class="helf_center">
-                    <p class="helf_center_text">고객센터</p>
+            <div class="help_top">
+                <div class="help_center">
+                    <p class="help_center_text">고객센터</p>
                 </div>
-                <div class="helf_search">
-                    <ul class="helf_search_ul">
+                <div class="help_search">
+                    <ul class="help_search_ul">
                         <p>FAQ 검색</p>
-                        <div class="helf_search_input_a">
+                        <div class="help_search_input_a">
                         <form action="/help/search" id="searchForm" method="get">
                             <input type="text" id="keyword" name="keyword" placeholder="FAQ 자주 찾는 질문을 검색해 보세요! ">
                             <button id="search" style="color: #fff;">검색</button>
@@ -72,10 +72,10 @@
             </div>
 
             <!-- 중간 - notice 사이드 메뉴/ 게시물 -->
-            <div class="helf_content_wrap">
+            <div class="help_content_wrap">
 
                 <!-- 중간 - notice 사이드 메뉴 -->
-                <div class="helf_side_menu">
+                <div class="help_side_menu">
                     <ul class="sm_ul">
                         <li id="sm_li"><a href="/help/faq">FAQ</a></li>
                         <li id="sm_li"><a href="/help/notice">공지사항</a></li>
@@ -91,18 +91,18 @@
                     <h2 class="test">상담 문의량이 많아 통화가 어려울 수 있습니다.</h2>
                         <div class="content_list">
 
-                            <div class="helf_box1">
-                                <div class="helf_box12">
+                            <div class="help_box1">
+                                <div class="help_box12">
                                     <p>고객센터</p>
                                     <h1>1588-1234</h1>
                                     <p>평일 07:00~18:00(점심시간 12:00~13:00)</p>
                                     <p>주말 09:00~12:00</p>
                                 </div>
 
-                                <div class="helf_box2">
-                                    <div class="helf_box3"><p>FAQ</p></div>
-                                    <div class="helf_box3"><p>공지사항</p></div>
-                                    <div class="helf_box3"><p>이용안내</p></div>
+                                <div class="help_box2">
+                                    <div class="help_box3"><p>FAQ</p></div>
+                                    <div class="help_box3"><p>공지사항</p></div>
+                                    <div class="help_box3"><p>이용안내</p></div>
                                 </div>
                             </div>
 
