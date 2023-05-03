@@ -59,8 +59,7 @@
                     <li id="container2_name">${member.name}님 환영합니다 ^o^</li> 
                     <li><a id="gnb_logout" href="/login/logout">로그아웃</a></li>
                     <li><a href="/mypage/userInfo/${member.id}">마이페이지</a></li>
-                    <li><a href="/cart/${member.id}">장바구니</a></li>
-                    
+                    <li><a href="/cart/${member.id}">장바구니</a></li>              
                 </c:if>       
             </ul>
 
@@ -70,8 +69,7 @@
                 <form id="mainsearch" class="search1" action="/mainsearch" method="GET">
                     <input class="search-txt" name="keyword" type="text" placeholder=" 검색어를 입력해주세요!">    
                     <button class="search-btn" type="submit"><img id="btn" src="/resources/imgs/search.png" alt="메인검색버튼"></button>
-                </form>   
-                 
+                </form>                    
             </div>
     </header>
 
@@ -113,17 +111,17 @@
     <main>
         <!-- 메인 배너 이미지 -->
         <section class="slideShow">
-            <div class="slides">
-                <div class="banner-img"><img src="/resources/imgs/banner1.png" alt="배너1"></div>
-                <div class="banner-img"><img src="/resources/imgs/banner2.png" alt="배너2"></div>
-                <div class="banner-img"><img src="/resources/imgs/banner3.png" alt="배너3"></div>
-                <div class="banner-img"><img src="/resources/imgs/banner4.png" alt="배너4"></div>
-                <div class="banner-img"><img src="/resources/imgs/banner5.png" alt="배너5"></div>
-                <div class="banner-img"><img src="/resources/imgs/banner6.png" alt="배너6"></div>
-                <div class="banner-img"><img src="/resources/imgs/banner7.png" alt="배너7"></div>
-                <div class="banner-img"><img src="/resources/imgs/banner8.png" alt="배너8"></div>
-                <div class="banner-img"><img src="/resources/imgs/banner9.png" alt="배너9"></div>
-                <div class="banner-img"><img src="/resources/imgs/banner10.png" alt="배너10"></div>
+            <div class="slides"> 
+                <div class="banner-img"><a href="/product/info?no=142"><img src="/resources/imgs/banner1.png" alt="배너1"></a></div>
+                <div class="banner-img"><a href="/product/info?no=164"><img src="/resources/imgs/banner2.png" alt="배너2"></a></div>
+                <div class="banner-img"><a href="/product/info?no="><img src="/resources/imgs/banner3.png" alt="배너3"></a></div>
+                <div class="banner-img"><a href="/product/info?no=155"><img src="/resources/imgs/banner4.png" alt="배너4"></a></div>
+                <div class="banner-img"><a href="/product/info?no=157"><img src="/resources/imgs/banner5.png" alt="배너5"></a></div>
+                <div class="banner-img"><a href="/product/info?no="><img src="/resources/imgs/banner6.png" alt="배너6"></a></div>
+                <div class="banner-img"><a href="/product/info?no=159"><img src="/resources/imgs/banner7.png" alt="배너7"></a></div>
+                <div class="banner-img"><a href="/product/info?no="><img src="/resources/imgs/banner8.png" alt="배너8"></a></div>
+                <div class="banner-img"><a href="/product/info?no=166"><img src="/resources/imgs/banner9.png" alt="배너9"></a></div>
+                <div class="banner-img"><a href="/product/info?no="><img src="/resources/imgs/banner10.png" alt="배너10"></a></div>
             </div>
     
             <div class="banner-btn">
@@ -145,7 +143,7 @@
         </section>
 
             <div class="minibanner1">
-                <a href="#">
+                <a href="/product/info?no=216">
                     <img src="/resources/imgs/minibanner.png" alt="미니배너">
                 </a>
             </div>
@@ -153,28 +151,27 @@
         <div class="minititle">오늘의 특가</div>
         <div class="container5">
             <div class="thumbnail">
-                <a href="#"><img src="/resources/imgs/tangerine.jpg" alt="특가1"></a>
-                <a href="#">[금주의 특가] 유어스펙 귤이네 귤</a>
-                <span><span class="dis_Green">28%</span>&nbsp; 12,600원</span>
+                <a href="/product/info?no=174"><img src ="/resources/product/우엉.png" alt="오늘의 특가1"></a>
+                <a href="/product/info?no=174">[오늘의 특가] <br>친환경 우엉실채 200g</a>
+                <span><span class="dis_Green">33%</span>&nbsp; <del>6,000원</del>&nbsp; 4,010원</span>
                 
             </div>
             <div class="thumbnail">
-                <a href="#"><img src="/resources/imgs/spinach.jpg" alt="특가2"></a>
-                <a href="#">[금주의 특가] 찬돌이네 시금치</a>
-                <span><span class="dis_Green">28%</span>&nbsp; 12,600원</span>
+                <a href="/product/info?no=171"><img src="/resources/product/적상추.png" alt="오늘의 특가2"></a>
+                <a href="/product/info?no=171">[오늘의 특가] <br>적상추/무농약 이상 (120g)</a>
+                <span><span class="dis_Green">33%</span>&nbsp; <del>2,800원</del>&nbsp; 1,870원</span>
             </div>
             <div class="thumbnail">
-                <a href="#"><img src="/resources/imgs/tomato.jpg" alt="특가3"></a>
-                <a href="#">[금주의 특가] 유기농 토마토</a>
-                <span><span class="dis_Green">28%</span>&nbsp; 12,600원</span>
+                <a href="/product/info?no=167"><img src="/resources/product/블루베리.png"" alt="오늘의 특가3"></a>
+                <a href="/product/info?no=167">[오늘의 특가] <br>무농약 곡성 생블루베리(100g)</a>
+                <span><span class="dis_Green">40%</span>&nbsp; <del>12,000원</del>&nbsp; 7,200원</span>
             </div>
             <div class="thumbnail">
-                <a href="#"><img src="/resources/imgs/green_bean.jpg" alt="특가4"></a>
-                <a href="#">[금주의 특가] 갓 수확한 그린빈</a>
-                <span><span class="dis_Green">28%</span>&nbsp; 12,600원</span>
+                <a href="/product/info?no=165"><img src="/resources/product/어린잎 채소.png" alt="오늘의 특가4"></a>
+                <a href="/product/info?no=165">[오늘의 특가] <br>무농약 피크닉 어린잎 채소(100g)</a>
+                <span><span class="dis_Green">30%</span>&nbsp; <del>3,500원</del>&nbsp; 2,450원</span>
             </div>
-        </div>
-
+		</div>
 
         <div class="minititle">모야모과의 레시피</div>
         <div class="recipe">
@@ -191,31 +188,31 @@
                 5. 노릇노릇하니 잘 구워진 감자~ <br>
                 6. 껍질째 먹어도 맛있어요! <br>
                 <br>
-                <a href="https://www.10000recipe.com/recipe/6961911"><i> 레시피 자세히 보기 &nbsp;&nbsp; > </i></a>
+                <a href="/product/info?no=157"><i> 다른 레시피 보러가기 &nbsp;&nbsp; > </i></a>
             </div>    
         </div>
 
         <div class="minititle">신상품</div>
         <div class="container6">
             <div class="thumbnail">
-                <a href="#"><img src="/resources/imgs/kiwi.jpg" alt="신상품1"></a>
-                <a href="#">[금주의 신상품] 제주 참다래 키위</a>
-                <span><span class="dis_Green">28%</span>&nbsp; 12,600원</span>
+                <a href="/product/info?no=145"><img src="/resources/product/청도 아이스 홍시.jpg" alt="신상품1"></a>
+                <a href="/product/info?no=145">[금주의 신상품] <br>청도 아이스 홍시</a>
+                <span><span class="dis_Green">37%</span>&nbsp; <del>11,000원</del>&nbsp; 6,930원</span>
             </div>
             <div class="thumbnail">
-                <a href="#"><img src="/resources/imgs/potato.jpg" alt="신상품2"></a>
-                <a href="#">[금주의 신상품] 맛있는 햇감자</a>
-                <span><span class="dis_Green">28%</span>&nbsp; 12,600원</span>
+                <a href="/product/info?no=215"><img src="/resources/product/부추.png" alt="신상품2"></a>
+                <a href="/product/info?no=215">[금주의 신상품] <br>국내산 영양부추(100g)</a>
+                <span><span class="dis_Green">20%</span>&nbsp; <del>4,500원</del>&nbsp; 3,600원</span>
             </div>
             <div class="thumbnail">
-                <a href="#"><img src="/resources/imgs/rice.jpg" alt="신상품3"></a>
-                <a href="#">[금주의 신상품] 올해 수확한 햅쌀</a>
-                <span><span class="dis_Green">28%</span>&nbsp; 12,600원</span>
+                <a href="/product/info?no=214"><img src="/resources/product/래디시.png" alt="신상품3"></a>
+                <a href="/product/info?no=214">[금주의 신상품] <br>국내산 래디시(100g)</a>
+                <span><span class="dis_Green">10%</span>&nbsp; <del>4,000원</del>&nbsp; 3,600원</span>
             </div>
             <div class="thumbnail">
-                <a href="#"><img src="/resources/imgs/onion.jpg" alt="신상품4"></a>
-                <a href="#">[금주의 신상품] 튼실한 양파</a>
-                <span><span class="dis_Green">28%</span>&nbsp; 12,600원</span>
+                <a href="/product/info?no=211"><img src="/resources/product/오트밀.png" alt="신상품4"></a>
+                <a href="/product/info?no=211">[금주의 신상품] <br>국산 유기농 오트밀(500g)</a>
+                <span><span class="dis_Green">20%</span>&nbsp; <del>15,000원</del>&nbsp; 12,000원</span>
             </div>
         </div>
     </main>
@@ -223,9 +220,9 @@
     <footer>
         <div class="yakgwan1">
             <div class="yakgwan2">
-                <li><a href="/help/main">고객센터</a></li>
-                <li><a href="/help/terms">약관 및 정책</a></li>
-                <li><a id="gaein" href="/help/privacy">개인정보 취급방침</a></li>
+	        	<li><a href="/help/main">고객센터</a></li>
+	        	<li><a href="/help/terms">약관 및 정책</a></li>
+	        	<li><a id="gaein" href="/help/privacy">개인정보 취급방침</a></li>
             </div>
         </div>
 

@@ -19,7 +19,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.0/jquery-migrate.min.js"></script>
 </head>
+<style>
 
+	button {
+	    float: right;
+	    margin-left : 5px;
+	    margin-bottom : 100px;
+	    font-weight: 800;
+	    width: 75px;
+	    height: 35px;
+	    background-color: rgb(175, 124, 213);
+	    border: 1px solid #ceced2;
+	    font-size: 16px;
+	}
+        
+    .ck-content {
+        min-height: 170px;
+        padding: 0px;
+    }
+    
+</style>
 <body>
 
 <!-- 헤더 - 로그인/로그아웃 로고, 관리자페이지 메인글씨 -->
@@ -88,7 +107,7 @@
                        
                        <div class="box1">
                            <div class="box2">
-                               <p>타이틀-레시피('사과, 오렌지' 처럼 과일 명만 적기)</p>
+                               <p>타이틀-레시피('사과, 오렌지' 처럼 "과일 명/채소 명"만 적기)</p>
                            </div>
                            <div class="box3">
                                <input type="text"  name="title" id="info" value="${product.title}">
@@ -351,7 +370,6 @@
 //  ================== 1. 버튼을 클릭하면 이동함. =============================
    
 	var listBtn = document.querySelector('#listBtn');
-	var removeBtn = document.querySelector('#removeBtn');
 	
 	//목록 버튼을 눌러 목록으로 돌아가기
 	listBtn.addEventListener('click', function() {
@@ -360,19 +378,7 @@
 	});
    
 
-	// 삭제 버튼을 눌러 목록으로 돌아가기
-	removeBtn.addEventListener('click', function(){
-		console.log('removeBtn clicked ㅇ_<');
 
-		//form 태그를 조작해서 삭제요청을 전송! 
-		var form = document.querySelector('form');
-		console.log(form.constructor.prototype);
-
-
-		form.setAttribute('method', 'POST');
-		form.setAttribute('action', '/admin/product/remove');
-		form.submit();
-	});
 </script>
 <script>
 //================== 2. 위지윅 편집기 적용 =============================

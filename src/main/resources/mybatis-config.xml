@@ -9,6 +9,7 @@
 
 	<mappers>
 		<mapper resource="org/zerock/myapp/mapper/MemberMapper.xml" />
+		<mapper resource="org/zerock/myapp/mapper/SocialMemberMapper.xml" />
 	</mappers>
 
 </configuration>

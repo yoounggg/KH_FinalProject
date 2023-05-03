@@ -70,8 +70,8 @@ label {
 
 .content {
     position: relative;
-
     margin: 20px 0;
+    padding-bottom: 10%;
 }
 
 .list {
@@ -143,6 +143,30 @@ img {
     display: inline-block;
 }
 
+.info:hover {
+    box-shadow: 0px 0px 10px 2px blue;
+}
+
+.info {
+    position: relative;
+}
+
+.txt1{
+	display: none;
+    position: absolute;
+    top: 4%;
+    left: 7%;
+
+    border: 0px;
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 15px;
+    background-color: #F49A56;
+    color: white;
+}
+
 .pname {
 	width: 200px;
 	height: 40px;
@@ -209,3 +233,4 @@ img {
 	font-size: 1.5rem;
     font-weight: bold;
 }
+

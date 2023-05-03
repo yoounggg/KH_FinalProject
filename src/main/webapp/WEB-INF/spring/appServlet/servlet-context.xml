@@ -97,10 +97,10 @@
         </interceptor>
          
         <!-- 관리자페이지 인터셉터 적용 -->
-        <interceptor>
+          <interceptor>
         	<mapping path="/admin/**"></mapping>
         	<beans:bean id="AdminInterceptor" class="org.zerock.myapp.interceptor.AdminInterceptor"></beans:bean>
-        </interceptor> 
+        </interceptor>
       </interceptors>
    
 </beans:beans>

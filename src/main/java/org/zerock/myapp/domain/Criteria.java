@@ -39,6 +39,7 @@ public class Criteria {
 	private String testAnd;
 	private String testAnd1;
 	private String testAnd2;
+	private String whereNo;
 	
 	private String origin; // 원산지 검색
 	
@@ -48,6 +49,8 @@ public class Criteria {
 	private String price;
 	private String price_info; // 가격 검색
    
+	private Integer no;
+	
    // [04/29 진호] queryString 수정
    // 위의 모든 기준정보를 기반으로, Query String을 만들어 주는 메소드 추가
 	public String getPagingUri() {
