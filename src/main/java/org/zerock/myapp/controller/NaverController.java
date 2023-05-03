@@ -108,6 +108,7 @@ public class NaverController {
 		// 5. DTO 객체에 데이터 넣어주기 ( 이름/이메일만 필수 정보 -> 나머지는 추가 정보로 밀어버려서 그쪽에서 기입하게 한 후 DB에 저장!)
 		MemberDTO memberDTO = new MemberDTO();
 		
+		memberDTO.setId((String) response_obj.get("id"));
 		memberDTO.setName((String)response_obj.get("name"));
 		memberDTO.setEmail((String)response_obj.get("email"));
 		

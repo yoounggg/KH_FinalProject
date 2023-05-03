@@ -1,5 +1,6 @@
 package org.zerock.myapp.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import org.zerock.myapp.domain.MemberDTO;
 
 public interface SocialMemberMapper {
@@ -21,7 +22,7 @@ public interface SocialMemberMapper {
 //	[셍나] 네이버 -------------------------------------------------------------
 
 	// 회원 조회 #1
-	public MemberDTO socialMemberCheck(String id, String email) throws Exception;
+	public MemberDTO socialMemberCheck(@Param("id") String id, @Param("email") String email) throws Exception;
 	
 	// 회원 조회 #2
 	public boolean searchMember(MemberDTO memberDTO) throws Exception;
