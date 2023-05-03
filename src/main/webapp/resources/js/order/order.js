@@ -38,7 +38,7 @@ $(".order_btn").on("click", function() {
          requestPay();      
     }); 
     
-            function sendOrderInfo() {
+        function sendOrderInfo() {
         // 배송 요청사항 select 태그에서 선택한 option 값 받아오기
         var deliveryRequest = $("#배송요청사항 option:selected").val();
         // 만약 "직접입력"을 선택했다면 해당 input 태그의 값을 deliveryRequest 변수에 저장하기
