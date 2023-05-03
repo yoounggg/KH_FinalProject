@@ -199,7 +199,7 @@ li{ list-style-type: none;}
 
 .menu2{
     width: 150px;
-    height: 407px;
+    height: 452px;
     border: 1px solid #909090;
     background-color: white;
     z-index: 98;
@@ -236,7 +236,7 @@ li{ list-style-type: none;}
     width: 148px;
 }
 .menu3{
-    height: 407px;
+    height: 452px;
     border-left: none;
     background-color: white;
     z-index: 99;

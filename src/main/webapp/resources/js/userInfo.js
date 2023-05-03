@@ -69,10 +69,18 @@ function kakaoAdress(){
 }
 
 //회원 정보 수정 form-> submit
-function goform(){
-	$('#userUpdateForm').attr("action",'/mypage/userInfo/update').submit();
-}; // goform
-
+//function goform(){
+//	$('#userUpdateForm').attr("action",'/mypage/userInfo/update').submit();
+//}; // goform
+function goform() {
+  if ($('#tel2Chk').data("clicked") && $('#pwChk').data("clicked")) {
+    $('#userUpdateForm').attr("action",'/mypage/userInfo/update').submit();
+  } else if (!$('#tel2Chk').data("clicked")) {
+    alert("본인인증 버튼을 누르지 않았습니다.");
+  } else if (!$('#pwChk').data("clicked")) {
+    alert("현재 비밀번호 확인 버튼을 누르지 않았습니다.");
+  }
+}
 //필수입력값 안넣었을 때 경고창
 function checkInput(){
 	let inputs = document.userUpdateForm;
@@ -88,6 +96,10 @@ function checkInput(){
 		alert("휴대폰 번호를 입력하세요.");
 		return false;
 	}
+	if(!inputs.tel2.value){
+		alert("휴대폰 번호를 인증하세요.");
+		return false;
+	}
 	if(!inputs.address1.value){
 		alert("주소를 입력하세요.");
 		return false;
@@ -98,5 +110,16 @@ function checkInput(){
 	}
 } // checkInput
 
-
+//핸드폰 번호 유효성 검사
+function newtelforDetails(){
+	const newtel = document.querySelector('#tel');
+	const isOk = /^01([016789])(\d{3,4})(\d{4})$/;
+	
+	if(isOk.test(newtel.value)){
+ 		alert("사용할 수 있는 핸드폰 번호 입니다.")
+ 	} else {
+		newtel.value = null; // 틀린값 입력하면 칸 비워버리기
+ 		alert("숫자 11자리만 다시 입력해주세요.")
+ 	} // if else
+}; // newtelforDetails
       
