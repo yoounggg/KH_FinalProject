@@ -18,9 +18,9 @@
     <link rel="shortcut icon" href="/resources/ico/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/resources/ico/favicon.ico" type="image/x-icon">
     
-	<!-- 로그인 메인창 css -->
+	<!-- 로그인 메인창 css --> 
     <link rel="stylesheet" href="/resources/css/login/Login_Main.css">
-
+	 
 </head>
 
 <body>

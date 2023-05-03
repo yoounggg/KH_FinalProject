@@ -47,7 +47,7 @@
 		WHERE no = #{no, jdbcType=INTEGER}
 	</update>
 	
-	<!-- [셍나와 찬돌이 도움 3%] 네이버 ****************************************************************** -->
+	<!-- [셍나] 네이버 ****************************************************************** -->
 	
 	<!-- 회원 조회 -->
 	<select id="socialMemberCheck" parameterType="String" resultType="org.zerock.myapp.domain.MemberDTO">

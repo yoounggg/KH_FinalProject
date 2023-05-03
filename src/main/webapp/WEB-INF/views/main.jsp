@@ -94,19 +94,7 @@
         </div>
     </nav>
     
-    <!-- <aside>  -->
-        <div class="container7">
-            <div id="choikun1">
-                <div id="choikun2">
-                    <div>최근 본 상품</div>
-                        <img src="/resources/imgs/sample.jpg" alt="최근1">
-                        <img src="/resources/imgs/sample.jpg" alt="최근2">
-                        <img src="/resources/imgs/sample.jpg" alt="최근3">
-                </div>    
-                <input id="topbtn" type="button" name="TOP" value="TOP">
-            </div> 
-        </div>
-    <!--</aside>  -->
+   <input id="maintopbtn" type="button" name="TOP" value="TOP">
 
     <main>
         <!-- 메인 배너 이미지 -->
@@ -114,14 +102,14 @@
             <div class="slides"> 
                 <div class="banner-img"><a href="/product/info?no=142"><img src="/resources/imgs/banner1.png" alt="배너1"></a></div>
                 <div class="banner-img"><a href="/product/info?no=164"><img src="/resources/imgs/banner2.png" alt="배너2"></a></div>
-                <div class="banner-img"><a href="/product/info?no="><img src="/resources/imgs/banner3.png" alt="배너3"></a></div>
+                <div class="banner-img"><a href="/product/info?no=204"><img src="/resources/imgs/banner3.png" alt="배너3"></a></div>
                 <div class="banner-img"><a href="/product/info?no=155"><img src="/resources/imgs/banner4.png" alt="배너4"></a></div>
                 <div class="banner-img"><a href="/product/info?no=157"><img src="/resources/imgs/banner5.png" alt="배너5"></a></div>
-                <div class="banner-img"><a href="/product/info?no="><img src="/resources/imgs/banner6.png" alt="배너6"></a></div>
+                <div class="banner-img"><a href="/product/info?no=202"><img src="/resources/imgs/banner6.png" alt="배너6"></a></div>
                 <div class="banner-img"><a href="/product/info?no=159"><img src="/resources/imgs/banner7.png" alt="배너7"></a></div>
-                <div class="banner-img"><a href="/product/info?no="><img src="/resources/imgs/banner8.png" alt="배너8"></a></div>
+                <div class="banner-img"><a href="/product/info?no=205"><img src="/resources/imgs/banner8.png" alt="배너8"></a></div>
                 <div class="banner-img"><a href="/product/info?no=166"><img src="/resources/imgs/banner9.png" alt="배너9"></a></div>
-                <div class="banner-img"><a href="/product/info?no="><img src="/resources/imgs/banner10.png" alt="배너10"></a></div>
+                <div class="banner-img"><a href="/product/info?no=203"><img src="/resources/imgs/banner10.png" alt="배너10"></a></div>
             </div>
     
             <div class="banner-btn">
@@ -251,5 +239,7 @@
     <script src="/resources/js/main.js"></script>
     
 </body>
+<script>
 
+</script>
 </html>
