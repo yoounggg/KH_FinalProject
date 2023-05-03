@@ -108,4 +108,5 @@ public class KakaoController {
 		log.trace("signupComplete() invoked 완료화면 get");
 
 	} // signupComplete
+	
 } // end class

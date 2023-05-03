@@ -342,20 +342,6 @@
 		
 	<!-- ================= [셍나] 네이버 아이디로 로그인 ================= -->	
 		
-<<<<<<< HEAD
-		<!-- <dependency>
-		    <groupId>com.github.scribejava</groupId>
-		    <artifactId>scribejava-core</artifactId>
-		    <version>8.3.3</version>
-		</dependency> -->
-		
-		  <dependency>
-		    <groupId>com.github.scribejava</groupId>
-		    <artifactId>scribejava-apis</artifactId>
-		    <version>6.9.0</version>
-		  </dependency>
-
-=======
 		<dependency>
 			<groupId>com.github.scribejava</groupId>
 			<artifactId>scribejava-core</artifactId>
@@ -367,7 +353,6 @@
 			<artifactId>json-simple</artifactId>
 			<version>1.1.1</version>
 		</dependency>
->>>>>>> origin/mymg
 		
 	<!-- ================= 찬돌 결제 API ================= -->	
 		<dependency>

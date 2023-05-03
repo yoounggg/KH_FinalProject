@@ -180,7 +180,7 @@ button {
 }
 
 /* 카카오로 로그인하기 */
-.kakaoLogin button {
+.kakaoLogin button{
     display: flex;
     cursor:pointer;
     background-color: #FEE500;
@@ -198,4 +198,35 @@ button {
     float:left;
     height: 40px;
     /* padding: 1px; */
+}
+.소셜회원가입 {
+    margin: 0 auto;
+	left: 39.2%;
+	width:20%;
+    height: 40px;
+    background-color: #FEEB3B;
+    border-radius: 5px;
+    /* border: 1px solid #b2b2b2; */
+    display: inline-block;
+    margin: 15px;
+    position: relative;
+    cursor: pointer;
+    color: white;
+    font-size: 14px;
+    font-weight: lighter;
+}
+
+.pp {
+    position: absolute;
+    top: 30%;
+    left: 42%;
+}
+
+.소셜아이콘 {
+    padding-right: 3px;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 20%;
+    left: 35%;
 }
