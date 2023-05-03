@@ -60,6 +60,8 @@
 
                 <c:if test="${__INFO__.stock+0 > 0}">  
                     <div class="btn">
+                    
+                    <!-- [채영] 장바구니 버튼 수정!!!!!! -->
                         <input type="button" value="장바구니" class="cartbtn">
                         <input type="button"  value="구매하기">
                     </div>
