@@ -94,8 +94,21 @@ public class NaverController {
 		String nickname = (String)response_obj.get("nickname");
 		log.info("response_obj.get(nickname)의 값은 : {}입니다.", nickname);
 		
-		//4. 파싱 닉네임 세션으로 저장
+		// 4. 파싱 닉네임 세션으로 저장
 //		session.setAttribute("sessionId",nickname); //세션 생성
+		
+		// 5. DTO 객체에 데이터 넣어주기
+		MemberDTO memberDTO = new MemberDTO();
+		
+		memberDTO.setId((String)response_obj.get("id"));
+		memberDTO.setName((String)response_obj.get("nickname"));
+		memberDTO.setEmail((String)response_obj.get("email"));
+		memberDTO.setGender((String)response_obj.get("gender"));
+		memberDTO.setBirth_year(Integer.parseInt(response_obj.get("birthyear").toString()));
+		memberDTO.setBirth_month(Integer.parseInt(response_obj.get("birthday").toString().split("-")[0]));
+		memberDTO.setBirth_day(Integer.parseInt(response_obj.get("birthday").toString().split("-")[1]));
+		memberDTO.setSocial_type("naver");
+		
 		
 		
 		
