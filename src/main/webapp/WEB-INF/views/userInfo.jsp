@@ -62,7 +62,7 @@
                 
                 <tr>
                     <th>&nbsp;현재 비밀번호<span class="red">*</span></th> 
-                    <td><input type="password" name ="password"></td>              
+                    <td><input type="password" name ="password" id="pwinput"></td>              
                     <td><span id="pwChk" class="btntr">확인</span></td>
                 </tr>
 
@@ -73,19 +73,19 @@
                 
                 <tr class="specialtr">
                     <th class="th_height" rowspan="3" >&nbsp;휴대전화<span class="red">*</span></th>
-                    <td><input type="text" id="tel" name="tel" value="${details.tel}" required></td>
+                    <td><input type="text" id="tel" name="tel" value="${details.tel}" onchange="newtelforDetails()" required></td>
                     <td><span id="telCk" class="btntr">휴대폰 인증</span></td>
                 </tr>
                 
                 <tr class="specialtr">
-                    <td><input type="text" id="tel2" name="tel2" placeholder="인증번호를 입력하세요" disabled required></td>
+                    <td><input type="text" id="tel2" name="tel2" value="" placeholder="인증번호를 입력하세요" disabled required></td>
                     <td><span id="tel2Chk" class="btntr" >본인인증</span></td>               
                     
                     <input type="hidden" id="telDoubleChk">
                     <!-- <p class="tip">최초 가입시에만 사용하고 있습니다.</p>  -->
                 </tr>
                 <tr>
-                	<td><span class="successTelCk">휴대폰 번호 입력후 인증번호 보내기를 해주세요.</span></td>
+                	<td><span class="successTelCk">휴대폰 번호 입력 후 인증 해주세요.</span></td>
                 </tr>
                 
                 <tr class="specialtr">
@@ -173,19 +173,20 @@ $('#telCk').click(function({id}){
 
 //휴대폰 인증번호 대조
 $('#tel2Chk').click(function(){
-	if($('#tel2').val() == code2){
-		$('.successTelCk').text("인증번호가 일치합니다.");
-		$('.successTelCk').css("color", "green");
-		$('#telDoubleChk').val("true");
-		$('tel2').attr("disabled", true);
-	} else {
-		$('.successTelCk').text("인증번호가 일치하지 않습니다. 확인해주시기 바랍니다");
-		$('.successTelCk').css("color", "red");
-		$('#telDoubleChk').val("false");
-		$(this).attr("autofocus", true);
-	}
+  if ($('#tel2').val() == code2) {
+    $('.successTelCk').text("인증번호가 일치합니다.");
+    $('.successTelCk').css("color", "green");
+    $('#telDoubleChk').val("true");
+    $('tel2').attr("disabled", true);
+    $('#tel2Chk').data("clicked", true); // 버튼이 클릭된 것을 기록
+  } else {
+    $('.successTelCk').text("인증번호가 일치하지 않습니다.");
+    $('.successTelCk').css("color", "red");
+    $('#telDoubleChk').val("false");
+    $(this).attr("autofocus", true);
+    $('#tel2').val('');
+  }
 });
-
 // 현재 비밀번호 확인
 $('#pwChk').click(function({id}) {
     $.ajax({
@@ -204,8 +205,10 @@ $('#pwChk').click(function({id}) {
             console.log(result);
             if (result == true ) {
                 alert("비밀번호가 일치합니다");
+                $('#pwChk').data("clicked", true);
             } else if(result == false){
                 alert("비밀번호가 불일치합니다. \n다시 입력해주세요.");
+                $('#pwinput').val('');
             } // else-if
         }, // success
         error: function(error) {

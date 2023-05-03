@@ -322,6 +322,11 @@
             <p>휴대폰 번호 형식에 맞게 입력해주세요</p>
             <input type="button" class="exit25" id="common_btn" onclick="exit25()" value="확인">
         </div>
+        
+        <div class="popmenu26" id="common_pop">
+            <p>인증하기 버튼을 눌러주세요</p>
+            <input type="button" class="exit26" id="common_btn" onclick="exit26()" value="확인">
+        </div>
     </body>
 
     </html>
