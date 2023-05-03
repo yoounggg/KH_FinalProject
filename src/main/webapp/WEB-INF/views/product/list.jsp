@@ -113,13 +113,15 @@
                         <c:forEach var="productVO" items="${__List__}" varStatus="status">
                             <div class="info" id="info_${status.count}" name="info">
                                 <a href="/product/info?no=${productVO.no}"><img src="/resources/product/${productVO.main_image}" width="200" height="200" alt=""></a>
-                                <p class="pname">${productVO.name}</p>
+                                <p class="pname">${productVO.name}<span class="new">new</span></p>
                                 <span class="discount">${productVO.discount}%</span> 
                                     
                                 <span class="disprice"><fmt:formatNumber type="number" pattern="0,000" 
                                     value="${productVO.discount_price}"  /><span class="won">원</span></span>    
                                 <span class="price"><fmt:formatNumber type="number" pattern="0,000" value="${productVO.price}" />원</span>
-                                <div class="txt1">특가</div>
+                                <div class="regDate">${productVO.regDate}</div>
+                                <div class="disc">특가</div>
+                                <div class="soldOut">${productVO.stock}</div>
                             </div>
                         </c:forEach>
                     </div> 
@@ -259,7 +261,7 @@
                 } else {
                     const origin = urlParams.get('origin');
                     const strIndex = origin.indexOf(',');
-                    // console.log(brchk.value);
+
                     if(strIndex > 0){
                         const strSplit = origin.split(',');
 
@@ -362,8 +364,6 @@
                         urlpage.delete("weight", wechk.value); // weight 파라미터와 값을 삭제
                         location.href = "/product/list?" + urlpage.toString();
                     } // if-else
-
-                    // console.log(brchk.value);
                 } // if-else
             });
         } // for
@@ -390,7 +390,6 @@
                 } // if-else
             } // for 
         } // if
-
 
 
         // 가격 검색
@@ -434,16 +433,48 @@
                 price4.style.color = "#0000FF";
                 break;
         } // switch
-        
-        // 이미지 텍스트
+
+        // 이미지 상단에 텍스트 출력
         const infoLen = document.querySelectorAll('div[name="info"]').length;
         for(let i=1; i<=infoLen; i++){
+
+            // 특가
             const discount = document.querySelector("#info_"+i+">.discount");
             const disHtml = discount.innerHTML.substring(0, discount.innerHTML.length-1);
-            if(parseInt(disHtml, 10) >= 30){
-                document.querySelector("#info_"+i+">.txt1").style.display = "block";
+            if(parseInt(disHtml, 10) >= 30){  
+                document.querySelector("#info_"+i+">.disc").style.display = "block";
             } // if
-        } // for
+                   
+            
+            // 신상품
+            const regDate = new Date(document.querySelector("#info_"+i+">.regDate").innerHTML); // 등록된 날짜
+            const today = new Date(); // 현재 날짜
 
+            const year = today.getFullYear();
+            const month = today.getMonth() + 1;
+            const day = today.getDate();  
+
+            const regDate_y = regDate.getFullYear();
+            const regDate_m = regDate.getMonth() + 1;
+            const regDate_d = regDate.getDate(); 
+            
+            const stDate = new Date(regDate_y, regDate_m, regDate_d);
+            const endDate = new Date(year, month, day);
+            
+            let btMs = endDate.getTime() - stDate.getTime() ;
+            let btDay = btMs / (1000*60*60*24) ;
+
+            if(btDay <= 7) { // 등록된 날짜가 현재날짜보다 7보다 작다면
+                document.querySelector("#info_"+i+">.pname>.new").style.display = "inline-block";
+            } // if
+
+            // 품절
+            const stock = document.querySelector("#info_"+i+">.soldOut").innerHTML;
+            if(parseInt(stock, 10) <= 0){
+                document.querySelector("#info_"+i+">.disc").innerHTML = "품절";
+                document.querySelector("#info_"+i+">.disc").style.backgroundColor = "#a0a0a0";
+                document.querySelector("#info_"+i+">a>img").style.filter = "grayscale(1)";  
+            } // if            
+        } // for
     </script>
     
