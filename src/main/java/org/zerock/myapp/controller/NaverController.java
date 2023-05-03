@@ -1,5 +1,6 @@
 package org.zerock.myapp.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.zerock.myapp.domain.MemberDTO;
+import org.zerock.myapp.service.MemberService;
 import org.zerock.myapp.service.NaverService;
+import org.zerock.myapp.service.SocialMemberService;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
@@ -25,8 +28,13 @@ public class NaverController {
 	private NaverService naverService;
 	private String apiResult = null;
 	
-	// memberDTO
-	private MemberDTO memberDTO;
+	@Autowired
+	private SocialMemberService socialMemberService;
+	
+	@Autowired
+	private MemberService memberService;
+	
+//	-------------------------------------------------------------------------------------------------
 	
 	@Autowired
 	private void setNaverService(NaverService naverService) {
@@ -57,7 +65,7 @@ public class NaverController {
 	// 네이버 로그인 성공 시 callBack 호출 메소드
 	@RequestMapping(value = "/login/callBack", method = { RequestMethod.GET, RequestMethod.POST })
 		public String callBack
-			(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
+			(Model model, @RequestParam String code, @RequestParam String state, HttpSession session, HttpServletRequest request)
 				throws Exception {
 		log.info("네이버 아이디로 로그인 callback() 호출되었습니다.");
 
@@ -91,8 +99,8 @@ public class NaverController {
 		JSONObject response_obj = (JSONObject)jsonObj.get("response");
 		
 		// ex) response의 name값 파싱
-		String name = (String)response_obj.get("name");
-		log.info("response_obj.get(name)의 값은 : {}입니다.", name);
+//		String name = (String)response_obj.get("name");
+//		log.info("response_obj.get(name)의 값은 : {}입니다.", name);
 		
 		// 4. 파싱 닉네임 세션으로 저장
 //		session.setAttribute("sessionId",nickname); //세션 생성
@@ -100,18 +108,36 @@ public class NaverController {
 		// 5. DTO 객체에 데이터 넣어주기 ( 이름/이메일만 필수 정보 -> 나머지는 추가 정보로 밀어버려서 그쪽에서 기입하게 한 후 DB에 저장!)
 		MemberDTO memberDTO = new MemberDTO();
 		
-		memberDTO.setId((String)response_obj.get("id"));
-		memberDTO.setName((String)response_obj.get("nickname"));
+		memberDTO.setName((String)response_obj.get("name"));
 		memberDTO.setEmail((String)response_obj.get("email"));
-		memberDTO.setGender((String)response_obj.get("gender"));
-		memberDTO.setBirth_year(Integer.parseInt(response_obj.get("birthyear").toString()));
-		memberDTO.setBirth_month(Integer.parseInt(response_obj.get("birthday").toString().split("-")[0]));
-		memberDTO.setBirth_day(Integer.parseInt(response_obj.get("birthday").toString().split("-")[1]));
 		
-		model.addAttribute("result", apiResult);
+		boolean searchMember = socialMemberService.searchMember(memberDTO);
 		
-		return "main";
-	
+		if (searchMember == false) {			// 회원 조회 결과 X
+
+			log.trace("socialMemberService.insertNaverMember()가 호출되었습니다!");
+			
+			socialMemberService.insertNaverMember(memberDTO);
+			
+			return "redirect:/signup/addinfo";
+			
+		} else {								// 회원 조회 결과 O
+			
+			log.trace("searchMember() 수행 결과, 중복된 아이디 혹은 이메일이 존재합니다. 로그인을 실행합니다.");
+			
+			// 로그인 처리
+			MemberDTO loginMemberDTO = memberService.memberLogin(memberDTO);
+	        
+			session = request.getSession();
+			
+	        session.setAttribute("member", loginMemberDTO);
+			
+			return "redirect:/main";
+			
+		} // if-else
+		
+//		model.addAttribute("result", apiResult);
+		
 	} // callBack()
 
 } // end class
