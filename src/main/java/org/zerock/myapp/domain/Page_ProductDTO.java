@@ -22,4 +22,6 @@ public class Page_ProductDTO {
 	private String sub_image3;	// 서브이미지3
 	private String sub_image4;	// 서브이미지4
 	private String title;		// 상품명()
+	private String regDate;		// 등록날짜(변환)
+	private String stock;		// 수량
 } // end class

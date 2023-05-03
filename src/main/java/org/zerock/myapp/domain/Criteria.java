@@ -39,6 +39,7 @@ public class Criteria {
 	private String testAnd;
 	private String testAnd1;
 	private String testAnd2;
+	private String whereNo;
 	
 	private String origin; // 원산지 검색
 	

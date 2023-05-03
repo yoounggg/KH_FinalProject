@@ -1,7 +1,6 @@
 package org.zerock.myapp.controller;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,10 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.zerock.myapp.domain.OrderDTO;
-import org.zerock.myapp.domain.OrderItemDTO;
 import org.zerock.myapp.domain.OrderPageDTO;
-import org.zerock.myapp.domain.OrderPageItemDTO;
 import org.zerock.myapp.exception.ServiceException;
 import org.zerock.myapp.service.MemberService;
 import org.zerock.myapp.service.OrderService;
@@ -51,7 +49,8 @@ public class OrderController {
 	}; // orderPage
 
 	// 테스트123
-	@RequestMapping("/{id}") // 주문페이지로 이동 mapping
+	//@GetMapping("/{id}") // 주문페이지로 이동 mapping
+	@RequestMapping(value = "/{id}", method = { RequestMethod.GET, RequestMethod.POST })
 	public String orderPageGet(@PathVariable("id") String memberId, OrderPageDTO opd, Model model)
 			throws ServiceException {
 
