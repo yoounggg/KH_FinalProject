@@ -5,7 +5,7 @@ $("#gnb_logout").click(function() {
     		type:"POST",
     		url:"/login/logout",
     		success:function(data){
-    			// alert("비동기식 로그아웃 성공 ㅜㅜㅜㅜㅜㅜ");
+    			// alert("비동기식 로그아웃 성공");
     			document.location.reload();
     	}
     }); // ajax
@@ -114,3 +114,25 @@ $('.nullcart').click(function(){
 	alert('로그인 후 이용바랍니다.');
 });
     
+//==================================================
+
+//top버튼
+$(window).scroll(function(){
+    $("#maintopbtn").css("margin-top",Math.max(50,0-$(this).scrollTop()));
+});
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 500) {
+                $('#maintopbtn').fadeIn();
+            } else {
+                $('#maintopbtn').fadeOut();
+            }
+        });
+        
+        $("#maintopbtn").click(function() {
+            $('html, body').animate({
+                scrollTop : 0
+            }, 400);
+            return false;
+        });
+    });

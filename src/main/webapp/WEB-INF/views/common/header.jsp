@@ -97,6 +97,9 @@
             </ul>
         </div>
     </nav>
+
+<input id="maintopbtn" type="button" name="TOP" value="TOP">
+    
 </body>
 <script>
 //비동기식 로그아웃!
@@ -106,17 +109,19 @@ $("#gnb_logout").click(function() {
     		type:"POST",
     		url:"/login/logout",
     		success:function(data){
-    			// alert("비동기식 로그아웃 성공 ㅜㅜㅜㅜㅜㅜ");
+    			// alert("비동기식 로그아웃 성공");
     			document.location.reload();
     	}
     }); // ajax
 });
+
 //top banner
 $(document).ready(function(){
     $(".topBannerBtn").on("click", function(){ // 버튼 클릭하면
       $(".topBanner").slideUp(); // 탑배너 사라지게 함
       });
     });
+    
 //상단 nav 메뉴 고정
 $(document).ready(function(){
     var menuOffset = $('.menu').offset();
@@ -128,9 +133,31 @@ $(document).ready(function(){
           }
        });
  });
+ 
 //로그인 하지 않으면 장바구니 이용불가능함 -> 알람창
 $('.nullcart').click(function(){
 	alert('로그인 후 이용바랍니다.');
 });
+
+//top버튼
+$(window).scroll(function(){
+    $("#maintopbtn").css("margin-top",Math.max(50,0-$(this).scrollTop()));
+});
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 500) {
+                $('#maintopbtn').fadeIn();
+            } else {
+                $('#maintopbtn').fadeOut();
+            }
+        });
+        
+        $("#maintopbtn").click(function() {
+            $('html, body').animate({
+                scrollTop : 0
+            }, 400);
+            return false;
+        });
+    });
 </script>
 </html>

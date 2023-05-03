@@ -2,7 +2,7 @@
 
 .searchtitle {
 padding: 60px 0px;
-width: 80%;
+width: 100%;
 margin: 0 auto;
 font-size: 28px;
 text-align: center;
@@ -18,13 +18,13 @@ font-size: 18px;
 }
 .listcontent{width: 100%;}
 .listproduct{
-width: 80%;
+width: 1100px;
 margin: 0 auto;
 text-align: center;
 }
 .searchedproduct{
 display:inline-block;
-margin: 30px;
+margin: 10px 10px 50px 10px;
 }
 .imgbox>a>img{border-radius: 10px;}
 .searchname{
@@ -61,7 +61,7 @@ color: #11BC0D;
 .searchbutton{
 padding: 5px;
 display: inline-block;
-font-size: 20px;
+font-size: 18px;
 }
 .searchnext{
 display: inline-block;
