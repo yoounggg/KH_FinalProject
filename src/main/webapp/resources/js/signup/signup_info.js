@@ -32,7 +32,7 @@ function checkId() {
             success: function (cntId) {
                 if (cntId == 0) {          // 0이면 사용가능 
                     popup_on2();
-                    document.getElementById("input_id").readOnly = "true";            // 아이디 입력창 읽기전용
+                    // document.getElementById("input_id").readOnly = "true";            // 아이디 입력창 읽기전용
                     document.getElementById("id_confirm").disabled = "true";          // 중복확인 버튼 비활성화
                     document.getElementById("id_confirm").style.backgroundColor = "#b1b1b1";	// 배경 변경
 
@@ -151,10 +151,6 @@ function checkEmail() {
                 console.log("AJAX 요청 실패", status, error)
             }
         });
-
-
-
-
     } else {
         popup_on1();
     }
@@ -351,6 +347,7 @@ $(document).ready(function () {
     const id_btn = document.getElementById("id_confirm");             //아이디 중복체크
     const email_btn = document.getElementById("email_confirm");       //이메일 중복체크
     const tel_btn = document.getElementById("hp_confirm");            //휴대폰 번호 인증
+    const num_btn = document.getElementById("num_confirm");            //인증번호 인증
 
     $("#signup_btn").click(function () {
 
@@ -378,8 +375,8 @@ $(document).ready(function () {
 
         } else if (!isOkPw.test(pw)) {                  // 비밀번호 유효성 체크
             popup_on1();
-        }
-        else if (pw2.trim() === "") {                   // 비밀번호 확인 체크 
+            
+        } else if (pw2.trim() === "") {                   // 비밀번호 확인 체크 
             popup_on14();
 
         } else if (pw2 != pw) {                         // 비밀번호 확인 체크 
@@ -405,6 +402,9 @@ $(document).ready(function () {
 
         } else if (num.trim() === "") {                 // 인증번호 체크
             popup_on18();
+
+        } else if (!num_btn.disabled) {                 // 인증번호 인증 체크
+            popup_on26();
 
         } else if (addr2.trim() === "") {               // 주소 체크
             popup_on19();
@@ -881,10 +881,29 @@ function popup_on25() {
 
 function exit25() {
     $(".popmenu25").hide();
-    popup_blur24(false);
+    popup_blur25(false);
 };
 
 function popup_blur25(chk) {
+    if (chk === false)
+        $('#entire').css({ "opacity": "1", "pointer-events": "auto" });
+    else
+        $('#entire').css({ "opacity": "0.3", "pointer-events": "none" });
+};
+
+
+// 팝업 26 인증하기 버튼을 눌러주세요
+function popup_on26() {
+    $(".popmenu26").show();
+    popup_blur26(true);
+};
+
+function exit26() {
+    $(".popmenu26").hide();
+    popup_blur26(false);
+};
+
+function popup_blur26(chk) {
     if (chk === false)
         $('#entire').css({ "opacity": "1", "pointer-events": "auto" });
     else

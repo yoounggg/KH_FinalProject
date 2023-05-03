@@ -97,12 +97,13 @@
                         <a type="button" href="${naverAuthUrl}" id="naverLoginButton2" style="display:none"></a>
                     </div>
 
+                    
                     <!-- 카카오로 로그인 -->
-                    <div class="kakaoLogin">
-                        <button type="button" id="kakaoLoginButton">
-                            <img src="/resources//imgs/kakao_login_large_narrow.png" class="kimg"></button>
-                    </div>
-            
+                   
+                   <a href="https://kauth.kakao.com/oauth/authorize?client_id=4728fdda1dcf6b1dcbc098a9a7ece445&redirect_uri=http://localhost:8080/signup/kakao/callback&response_type=code" class='소셜회원가입'>
+                        <img class='소셜아이콘' src='../resources/imgs/kakaoicon.png'><span class="pp"> 카카오 로그인 </span>
+                    </a>
+           			
                 </form>
             </div>
         </div>

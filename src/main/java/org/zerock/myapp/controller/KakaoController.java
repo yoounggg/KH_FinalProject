@@ -64,7 +64,7 @@ public class KakaoController {
 		
 		if (isMember == false) {
 
-			// 카카오 로그인 후 추가 정보 입력 페이지로 이동
+			// 카카오 로그인 후 추가 정보 입력 페이지로 이동됨
 			log.trace("===============================insert====================================");
 			socialMemberService.insert(memberDTO);
 			return "redirect:/signup/addinfo";
@@ -108,4 +108,5 @@ public class KakaoController {
 		log.trace("signupComplete() invoked 완료화면 get");
 
 	} // signupComplete
+	
 } // end class
