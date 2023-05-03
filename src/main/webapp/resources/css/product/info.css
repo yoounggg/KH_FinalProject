@@ -155,16 +155,25 @@ ul {
     font-weight: bold;
     background-color: #06e19a;
     border: none;
-    color: #ffffff;
-   cursor: pointer;
+    color: #ffffff
 }
 
 .btn > input:nth-of-type(2) {
     font-weight: bold;
     background-color: #000000;
     border: none;
-    color: #ffffff;
-    cursor: pointer;
+    color: #ffffff
+}
+
+.soldOut_info {
+    width: 400px;
+    height: 50px;
+
+    border: 0px solid;
+    text-align: center;
+    line-height: 50px;
+    background: #aaaaaa;
+    color: white;
 }
 
 .detailInfo {
@@ -453,3 +462,4 @@ table{
     border: 1px solid lightgray;
     background-color: lightgray;
 }
+

@@ -27,48 +27,59 @@
 
     <div class="wrapper">
 
-        <div class="주문완료">주문완료</div>
+        <div class="orderSuccess">주문완료</div>
 
         <div class="line"></div>
 
-        <div class="인사">
+        <div class="order_announce">
             주문해주셔서 감사합니다
             <br>
             주문 내역은 마이페이지에서 확인 가능합니다.
         </div>
 
-        <div class="주문내역">주문내역</div>
+        <div class="order_detail">주문내역</div>
 
         <div class="line2"> </div>
 
-        <div class="주문내역박스">
+        <div class="order_detail_box">
 
             <div class="left-box">
-                <div class="input-box">
-                    <label for="name">이름</label>
-                    <input type="text" id="name" name="name" value="${name}" readonly>
-                    <!-- <label for="name">이름</label>
-                    <input type="text" id="name" name="name"> -->
-                </div>
-
-                <div class="input-box">
-                    <label for="address">주소</label>
-                    <input type="text" id="address1" name="address" value="${address1 }" readonly>
-                </div>
-
-                <div>
-                    <input type="text" id="address2" name="address" value="${address2}" readonly>
-                </div>
-
-                <div class="input-box">
-                    <label for="phone">연락처</label>
-                    <input type="tel" id="phone" name="phone" value="${tel}" readonly>
-                </div>
-
-                <div class="input-box">
-                    <label for="delivery">배송요청사항</label>
-                    <textarea id="delivery" name="delivery" readonly>${delivery_comment}</textarea>
-                </div>
+                 <table>
+		            <tr>
+		                <td>
+		                    <label for="name">이름</label>
+		                </td>
+		                <td>
+		                    <span>${name}</span>
+		                </td>
+		            </tr>
+		            <tr>
+		                <td>
+		                    <label for="address">주소</label>
+		                </td>
+		                <td>
+		                    <span class="address1_span">${address1}</span>
+		                    <span class="address2_span">${address2}</span>
+		                    <span class="address3_span">${address3}</span>
+		                </td>
+		            </tr>
+		            <tr>
+		                <td>
+		                    <label for="phone">연락처</label>
+		                </td>
+		                <td>
+		                    <span>${tel}</span>
+		                </td>
+		            </tr>
+		            <tr>
+		                <td>
+		                    <label for="delivery">배송요청사항</label>
+		                </td>
+		                <td>
+		                    <span>${delivery_comment}</span>
+		                </td>
+		            </tr>
+		        </table>
 
             </div><!-- left-box -->
 
@@ -85,7 +96,7 @@
 
                 <div class="price-box">
                     <div class="price-label">배송비</div>
-                    <div class="delivery_price_span" >${delivery_cost }원</div>
+                    <div class="delivery_price_span" >${delivery_cost}원</div>
                 </div>
                 
                 <div class="price-box total">
@@ -95,7 +106,10 @@
             </div> <!-- right-box -->
         </div> <!-- line2 -->
 
-        <input type="submit" class="쇼핑계속하기" value="쇼핑 계속하기">
+		<form action="/main">
+			<button class="orderSuccess_button">쇼핑 계속하기</button>
+		</form>
+        <!--<input type="submit" class="쇼핑계속하기" value="쇼핑 계속하기">-->
 
     </div>
 

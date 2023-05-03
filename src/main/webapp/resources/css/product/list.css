@@ -132,7 +132,7 @@ label {
 .img_list > div {
     display: inline-block;
     
-    margin: 0 31px 40px 0;
+    margin: 0 31px 70px 0;
 }
 
 img {
@@ -151,7 +151,7 @@ img {
     position: relative;
 }
 
-.txt1{
+.disc{
 	display: none;
     position: absolute;
     top: 4%;
@@ -167,11 +167,33 @@ img {
     color: white;
 }
 
+.new {
+    display: none;
+    width: 30px;
+
+    margin: 0 5px;
+    border-radius: 2px;
+    border: 0px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+    background-color: #EB0000;
+    color: white;
+}
+
+.regDate {
+    display: none;
+}
+.soldOut {
+    display: none;
+}
+
+
 .pname {
 	width: 200px;
 	height: 40px;
 	
-    margin: 15px 0 7px;
+    margin: 15px 0 20px;
 
     font-size: 1rem;
     font-weight: 600;
