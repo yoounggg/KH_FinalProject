@@ -52,19 +52,19 @@
                 <input type="number" id="tPrice" value="${__INFO__.discount_price}" readonly disabled>원
 
             </div>
-            <div class="btn">
-            	<!-- [채영] 장바구니 버튼 -->
-                <input type="button" value="장바구니" class="cartbtn">
-                <!-- [찬석] 구매 버튼 -->
-                <input type="button"  value="구매하기" class="btn_buy">
-                
-                <form action="/order/${member.id}" method="get" class="order_form">
-					<input type="hidden" name="orders[0].productId" value="${__INFO__.no}">
-					<input type="hidden" name="orders[0].productCount" value="">
-				</form>
-            </div>
-        </div> 
+                <c:if test="${__INFO__.stock+0 <= 0}"> 
+                    <div class="soldOut_info">
+                        품절 되었습니다.    
+                    </div>
+                </c:if>
 
+                <c:if test="${__INFO__.stock+0 > 0}">  
+                    <div class="btn">
+                        <input type="button" value="장바구니">
+                        <input type="button"  value="구매하기">
+                    </div>
+                </c:if>
+        </div> 
 
         <div class="detailInfo">
             <div class="detailInfoHead">
@@ -317,7 +317,6 @@
 </html>
 
 <script>
-
     const main_img = document.querySelector('#main_img');
     const sub_img = document.querySelectorAll('#sub_img > li > img');
     const minus = document.querySelector("#minus");
@@ -347,7 +346,6 @@
         p_num.value = num;
 
         const defaultPrice = "${__INFO__.discount_price}";
-        //console.log(defaultPrice);
 
         let totalPrice = num * defaultPrice;
         tPrice.value = totalPrice;
@@ -464,7 +462,6 @@
         });
     } // for
 
-
     // 서브 이미지 오류 처리
     const subImg = document.querySelector(".sub_img > li > img");
     subImg.addEventListener('error', () =>{
@@ -474,45 +471,4 @@
             imgNo.style.display = "none";
         } // for
     });
-//============================================================
-
-  //[채영] 장바구니 버튼
-    const form = {
-    		member_id : '${member.id}',
-    		product_No : '${__INFO__.no}',
-    		count : ''
-    }
-
-    $('.cartbtn').on("click", function(e){
-    	form.count = $('#p_num').val();
-    	
-    	$.ajax({
-    		url: '/cart/add',
-    		type: 'POST',
-    		data: form, 
-    		success: function(result){
-    			if(result == '0'){
-    				alert("장바구니에 추가하지 못하였습니다.");
-    			} else if(result == '1'){
-    				alert("장바구니에 추가되었습니다.");
-    			} else if(result == '2'){
-    				alert("장바구니에 이미 추가되어 있습니다.");
-    			} else if(result == '5'){
-    				alert("로그인이 필요합니다.");	
-    			}
-    		}
-    	})
-    	
-    });
-    
-    // [찬석] 구매하기 버튼
-   	/* 바로구매 버튼 */
-	$(".btn_buy").on("click", function(){
-		let count = $("#p_num").val();
-		$(".order_form").find('input[name="orders[0].productCount"]').val(count);
-		$(".order_form").submit();
-	});
-
-    
-    
 </script>
