@@ -45,7 +45,6 @@
         </ul>
     </aside>
     
-    
     <div class="huiwon">
         <div class="sujeong1">
             <h2 id="sujeong2">회원정보수정</h2>

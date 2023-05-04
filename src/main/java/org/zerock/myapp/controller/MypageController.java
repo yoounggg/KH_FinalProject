@@ -19,20 +19,26 @@ import lombok.extern.log4j.Log4j2;
 public class MypageController {
 	
 	// OrderList(주문 내역) 페이지 단순 진입
-	@GetMapping("/orderList/{id}")
-	public String orderList(@PathVariable("id") String id, Model model) throws ControllerException {
+	@GetMapping("/orderList")
+//	@GetMapping("/orderList/{id}")
+	public String orderList() {
+//	public String orderList(@PathVariable("id") String id, Model model) throws ControllerException {
 		
-		log.trace("orderList({},{}) invoked.", id, model);
+		log.trace("orderList() invoked.");
+//		log.trace("orderList({},{}) invoked.", id, model);
 		
 		return "mypage/OrderList";
 
 	} // orderList()
 	
 	// OrderDetails(주문 상세 내역) 페이지 단순 진입
-	@GetMapping("/orderDetails/{id}")
-	public String orderDetails(@PathVariable("id") String id, Model model) throws ControllerException {
+	@GetMapping("/orderDetails")
+//	@GetMapping("/orderDetails/{id}")
+	public String orderDetails() {
+//	public String orderDetails(@PathVariable("id") String id, Model model) throws ControllerException {
 		
-		log.trace("orderDetails({},{}) invoked.", id, model);
+		log.trace("orderDetails() invoked.");
+//		log.trace("orderDetails({},{}) invoked.", id, model);
 
 		return "mypage/OrderDetails";
 		
