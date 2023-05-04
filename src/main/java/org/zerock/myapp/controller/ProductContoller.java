@@ -347,7 +347,7 @@ public class ProductContoller {
 	
 	// 상세정보 페이지
 	@GetMapping("/info")
-	public void info(@Param("no") Integer no, Model model) throws ControllerException{
+	public void info(@Param("no") Integer no, Model model, Criteria cri) throws ControllerException{
 		log.trace("info() invoked");
 		
 		try {
@@ -366,6 +366,11 @@ public class ProductContoller {
 				
 				model.addAttribute("__APICOUNT__", recipesCount);
 			} // if 
+			
+			// 카테고리 정보 가져오기(05/04 수정)
+			List<Page_ProductDTO> categoryVO = this.service.getCategory(cri);
+			model.addAttribute("__Category__", categoryVO);
+			
 		} catch(Exception e) {
 			throw new ControllerException(e);
 		} // try-catch

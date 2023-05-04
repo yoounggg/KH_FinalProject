@@ -112,16 +112,18 @@
                         </c:if> 
                         <c:forEach var="productVO" items="${__List__}" varStatus="status">
                             <div class="info" id="info_${status.count}" name="info">
-                                <a href="/product/info?no=${productVO.no}"><img src="/resources/product/${productVO.main_image}" width="200" height="200" alt=""></a>
-                                <p class="pname">${productVO.name}<span class="new">new</span></p>
-                                <span class="discount">${productVO.discount}%</span> 
-                                    
-                                <span class="disprice"><fmt:formatNumber type="number" pattern="0,000" 
-                                    value="${productVO.discount_price}"  /><span class="won">원</span></span>    
-                                <span class="price"><fmt:formatNumber type="number" pattern="0,000" value="${productVO.price}" />원</span>
-                                <div class="regDate">${productVO.regDate}</div>
-                                <div class="disc">특가</div>
-                                <div class="soldOut">${productVO.stock}</div>
+                                <a href="/product/info?code=${param.code}&no=${productVO.no}">
+	                                <img src="/resources/product/${productVO.main_image}" width="200" height="200" alt="">
+	                                <p class="pname">${productVO.name}<span class="new">new</span></p>
+	                                <span class="discount">${productVO.discount}%</span> 
+	                                    
+	                                <span class="disprice"><fmt:formatNumber type="number" pattern="0,000" 
+	                                    value="${productVO.discount_price}"  /><span class="won">원</span></span>    
+	                                <span class="price"><fmt:formatNumber type="number" pattern="0,000" value="${productVO.price}" />원</span>
+	                                <div class="regDate">${productVO.regDate}</div>
+	                                <div class="disc">특가</div>
+	                                <div class="soldOut">${productVO.stock}</div>
+                                </a>
                             </div>
                         </c:forEach>
                     </div> 
