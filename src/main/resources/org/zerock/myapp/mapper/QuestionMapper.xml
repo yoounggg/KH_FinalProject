@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.zerock.myapp.mapper.QuestionMapper">
+
+
+  <!-- 1:1문의 등록 -->
+  <insert id="write">
+    INSERT INTO QUESTION (TYPE,TITLE, CONTENT)
+  	VALUES (#{type}, #{title}, #{content})
+  </insert>
+  
+  
+
+  
+
+</mapper>
