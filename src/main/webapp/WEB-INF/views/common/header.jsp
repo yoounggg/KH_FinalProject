@@ -91,6 +91,7 @@
                             </ul>
                         </li>
                     </ul>
+                <li><a href="/price/retail">농산물 시세</a></li>        
                 <li><a href="/product/list?code=10800">오늘의 특가</a></li>
                 <li><a href="/product/list?code=10900">신상품</a></li>
                 <li><a href="/help/main">고객센터</a></li>
