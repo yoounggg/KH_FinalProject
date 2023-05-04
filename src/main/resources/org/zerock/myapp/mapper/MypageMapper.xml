@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="org.zerock.myapp.mapper.MypageMapper">
+
+	<!-- 매핑에 필요한 id값 가져오기 위해서 회원 상세 조회 -->
+	<select id="getID" resultType="org.zerock.myapp.domain.MemberDTO">
+ 		SELECT 
+ 			* 
+ 		FROM 
+ 			MEMBER
+ 		WHERE 
+ 			id = #{id}
+ 	</select>
+
+</mapper>
