@@ -78,15 +78,16 @@
             <ul class="container4">
                 <li><a href="#"><i class="fas fa-bars"> 전체 카테고리</i></a>
                     <ul class="menu2">
-                        <li><a href="#">농산 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > </a>
+                        <li><a href="#" id="lidrop">농산 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > </a>
                             <ul class="menu3">
                             	<!-- [05/01 진호] -->
                             	<c:forEach var="cate" items="${__CategoryAll__}">
-                                    <li><a href="/product/list?code=${cate.code}">${cate.categoryName}</a></li>
+                                    <li><a href="/product/list?code=${cate.code}" id="lidrop">${cate.categoryName}</a></li>
                                 </c:forEach>
                             </ul>
                         </li>
                     </ul>
+                <li><a href="/price/retail">농산물 시세</a></li>    
                 <li><a href="/product/list?code=10800">오늘의 특가</a></li>
                 <li><a href="/product/list?code=10900">신상품</a></li>
                 <li><a href="/help/main">고객센터</a></li>
@@ -130,11 +131,11 @@
             </div>
         </section>
 
-            <div class="minibanner1">
-                <a href="/product/info?no=216">
-                    <img src="/resources/imgs/minibanner.png" alt="미니배너">
-                </a>
-            </div>
+		<div class="minibanner1">
+        	<a href="/price/retail">
+        	<img src="/resources/imgs/minibanner2.png" alt="미니배너">
+       		</a>
+        </div>
 
         <div class="minititle">오늘의 특가</div>
         <div class="container5">
@@ -161,26 +162,13 @@
             </div>
 		</div>
 
-        <div class="minititle">모야모과의 레시피</div>
-        <div class="recipe">
-            <img src="/resources/imgs/recipe_potato.png" alt="레시피1">
-            <div class="recipe2">
-                <span><u><i>MOYAMOGA's Recipe</i></u></span><br>
-                <span><i>에어프라이어로 버터 감자구이 만들기</i></span><br>
-                <br>
-                <span><i>STEPS</i></span><br>
-                1. 감자는 껍질채 씻어 준비합니다 <br>
-                2. 취향껏 자른 뒤 녹인 버터를 속까지 바르고 <br>
-                3. 허브솔트를 알맞게 뿌리고 <br>
-                4. 에어프라이어에 넣고 200도 온도에서 20분간 구워요 <br>
-                5. 노릇노릇하니 잘 구워진 감자~ <br>
-                6. 껍질째 먹어도 맛있어요! <br>
-                <br>
-                <a href="/product/info?no=157"><i> 다른 레시피 보러가기 &nbsp;&nbsp; > </i></a>
-            </div>    
+        <div class="minibanner1">
+        	<a href="/product/info?no=216">
+        	<img src="/resources/imgs/minibanner.png" alt="미니배너">
+       		</a>
         </div>
-
-        <div class="minititle">신상품</div>
+            
+ 		<div class="minititle">신상품</div>
         <div class="container6">
             <div class="thumbnail">
                 <a href="/product/info?no=145"><img src="/resources/product/청도 아이스 홍시.jpg" alt="신상품1"></a>
@@ -203,6 +191,27 @@
                 <span><span class="dis_Green">20%</span>&nbsp; <del>15,000원</del>&nbsp; 12,000원</span>
             </div>
         </div>
+        
+        
+        <div class="minititle">모야모과의 레시피</div>
+        <div class="recipe">
+            <img src="/resources/imgs/recipe_potato.png" alt="레시피1">
+            <div class="recipe2">
+                <span><u><i>MOYAMOGA's Recipe</i></u></span><br>
+                <span><i>에어프라이어로 버터 감자구이 만들기</i></span><br>
+                <br>
+                <span><i>STEPS</i></span><br>
+                1. 감자는 껍질채 씻어 준비합니다 <br>
+                2. 취향껏 자른 뒤 녹인 버터를 속까지 바르고 <br>
+                3. 허브솔트를 알맞게 뿌리고 <br>
+                4. 에어프라이어에 넣고 200도 온도에서 20분간 구워요 <br>
+                5. 노릇노릇하니 잘 구워진 감자~ <br>
+                6. 껍질째 먹어도 맛있어요! <br>
+                <br>
+                <a href="/product/info?no=157"><i> 다른 레시피 보러가기 &nbsp;&nbsp; > </i></a>
+            </div>    
+        </div>
+
     </main>
 
     <footer>
