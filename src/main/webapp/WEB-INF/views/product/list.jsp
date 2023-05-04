@@ -114,7 +114,7 @@
                             <div class="info" id="info_${status.count}" name="info">
                                 <a href="/product/info?code=${param.code}&no=${productVO.no}">
 	                                <img src="/resources/product/${productVO.main_image}" width="200" height="200" alt="">
-	                                <p class="pname">${productVO.name}<span class="new">new</span></p>
+	                                <p class="pname">${productVO.name}<span class="new">new</span></p></a>
 	                                <span class="discount">${productVO.discount}%</span> 
 	                                    
 	                                <span class="disprice"><fmt:formatNumber type="number" pattern="0,000" 
@@ -123,7 +123,6 @@
 	                                <div class="regDate">${productVO.regDate}</div>
 	                                <div class="disc">특가</div>
 	                                <div class="soldOut">${productVO.stock}</div>
-                                </a>
                             </div>
                         </c:forEach>
                     </div> 
@@ -468,7 +467,7 @@
             let btDay = btMs / (1000*60*60*24) ;
 
             if(btDay <= 7) { // 등록된 날짜가 현재날짜보다 7보다 작다면
-                document.querySelector("#info_"+i+">.pname>.new").style.display = "inline-block";
+                document.querySelector("#info_"+i+">a>.pname>.new").style.display = "inline-block";
             } // if
 
             // 품절
