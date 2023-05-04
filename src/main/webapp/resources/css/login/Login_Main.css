@@ -48,17 +48,11 @@ button {
 
 /* 로그인 구역 wrapper */
 .login_wrapper {
-    /* padding: 10px; */
+    margin-bottom: 150px;
 }
 
 .login_container {
     width: auto;
-    
-    /* padding 줘서 크기 조절 */
-    /* padding: 10px; */
-    
-    /* 오른쪽으로 띄우기 */
-    /* margin: 100px auto; */
 }
 
 /* 로그인 글씨 */
