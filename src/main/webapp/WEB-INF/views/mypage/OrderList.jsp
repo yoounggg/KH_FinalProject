@@ -16,7 +16,7 @@
     <link rel="icon" href="/resources/ico/favicon.ico" type="image/x-icon">
     
 	<!-- 주문 내역 css -->
-    <link rel="stylesheet" href="/resources/css/mypage/OrderHistory.css">
+    <link rel="stylesheet" href="/resources/css/mypage/OrderList.css">
     
 	<!-- 주문 내역 js -->
     <!-- <script src="/resources/js/mypage/derDetails.js"></script>  -->
@@ -55,7 +55,7 @@
 
 	<!-- DOM이 완전히 로드되지 않은 상태에서 스크립트가 실행되는 것을 막기 위해 아래에다가 위치시키기! -->
     <!-- 주문 내역 js -->
-    <script src="/resources/js/mypage/OrderHistory.js"></script>
+    <script src="/resources/js/mypage/OrderList.js"></script>
 </body>
 
 </html>
