@@ -52,7 +52,7 @@
 
 </body>
 
-	<!-- /login/naver로 보내버리기..흑흑.. -->
+	<!-- /signup/naver로 보내버리기..흑흑.. -->
 	<script>
 		(function() {
             // naverLoginButton 클릭 이벤트
@@ -63,7 +63,7 @@
                 window.location.href = "/signup/naver";
             });
 
-            // 페이지가 /login/naver 인 경우
+            // 페이지가 /signup/naver 인 경우
             if (window.location.pathname === "/signup/naver") {
                 // 세션 스토리지에서 flag 확인
                 if (sessionStorage.getItem("trigger_소셜회원가입2") === "true") {
