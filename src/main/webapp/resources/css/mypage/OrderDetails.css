@@ -85,7 +85,6 @@ li{ list-style-type: none;}
 
 /* ---------------- 주문 내역 상세 ---------------- */
 
-/* =============== 상세 주문 내역 ================= */
 .order-details {
     display: flex;
     flex-direction: column;
