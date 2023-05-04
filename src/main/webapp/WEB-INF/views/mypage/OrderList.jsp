@@ -37,7 +37,7 @@
 	        <ul class="box2">
 	            <li class="small2 small3 small4"><a href="/mypage/userInfo/${member.id}">정보수정</a></li>
 	            <li class="small2 small3 small4"><a href="/mypage/userInfo/${member.id}/changePw">비밀번호 변경</a></li>
-	            <li class="small2 small3 small4"><a href="/mypage/orderList">주문내역</a></li>
+	            <li class="small2 small3 small4"><a href="/mypage/orderList/${member.id}">주문내역</a></li>
 	            <li class="small2 small5"><a href="/mypage/?">배송현황</a></li>
 	        </ul>
 	    </aside>
@@ -103,7 +103,7 @@
 	                    <!-- 상세 주문 내역, 배송조회 버튼 컨테이너 -->
 	                    <div class="button_container">
 	                        <!-- 상세 주문 내역 -->
-	                        <a type="button" href="/mypage/orderDetails" class="orderlist_detail">상세주문내역</a>
+	                        <a type="button" href="/mypage/orderDetails/${member.id}" class="orderlist_detail">상세주문내역</a>
 	                        <!-- 배송 조회 -->
 	                        <a type="button" href=# class="delivery_tracking">배송조회</a>
 	                    </div>
