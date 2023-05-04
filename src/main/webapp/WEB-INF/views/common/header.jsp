@@ -77,17 +77,17 @@
             <ul class="container4">
                 <li><a href="#"><i class="fas fa-bars"> 전체 카테고리</i></a>
                     <ul class="menu2">
-                        <li><a href="#">농산 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > </a>
+                        <li><a href="#" id="lidrop">농산 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > </a>
                             <ul class="menu3">
-                               <li><a href="/product/list?code=10100">전체보기</a></li>
-                                <li><a href="/product/list?code=10200">오늘과일채소</a></li>
-                                <li><a href="/product/list?code=10300">국내외과일</a></li>
-                                <li><a href="/product/list?code=10400">친환경유기농채소</a></li>
-                                <li><a href="/product/list?code=10500">우리땅채소</a></li>
-                                <li><a href="/product/list?code=10600">채소/샐러드</a></li>
-                                <li><a href="/product/list?code=10700">주곡/잡곡</a></li>
-                                <li><a href="/product/list?code=10900">오늘의 특가</a></li>
-                                <li><a href="/product/list?code=10900">신상품</a></li>
+                               	<li><a href="/product/list?code=10100" id="lidrop">전체보기</a></li>
+                                <li><a href="/product/list?code=10200" id="lidrop">오늘과일채소</a></li>
+                                <li><a href="/product/list?code=10300" id="lidrop">국내외과일</a></li>
+                                <li><a href="/product/list?code=10400" id="lidrop">친환경유기농채소</a></li>
+                                <li><a href="/product/list?code=10500" id="lidrop">우리땅채소</a></li>
+                                <li><a href="/product/list?code=10600" id="lidrop">채소/샐러드</a></li>
+                                <li><a href="/product/list?code=10700" id="lidrop">주곡/잡곡</a></li>
+                                <li><a href="/product/list?code=10900" id="lidrop">오늘의 특가</a></li>
+                                <li><a href="/product/list?code=10900" id="lidrop">신상품</a></li>
                             </ul>
                         </li>
                     </ul>
