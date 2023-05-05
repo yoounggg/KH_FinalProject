@@ -14,10 +14,10 @@ public interface MypageService {
 	public abstract MemberDTO getID(String id) throws ServiceException;
 	
 	// 2. 회원 주문 조회 
-	public abstract List<OrderDTO> getOrder(OrderDTO odt) throws ServiceException;
+	public abstract List<OrderDTO> getOrder(String member_id) throws ServiceException;
 	// OrderDTO의 정보들을 List형태로 받음
 	
-	// 3. 회원 주문상품 조회
-	public abstract List<OrderItemDTO> getOrderItemDTO(OrderItemDTO oit) throws ServiceException;
+	// 3. 회원 주문상품 조회 ( 수정 필요 )
+	public abstract List<OrderItemDTO> getOrderItemDTO(String member_id) throws ServiceException;
 
 } // end class

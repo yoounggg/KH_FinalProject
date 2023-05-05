@@ -1,6 +1,8 @@
 package org.zerock.myapp.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,13 +41,20 @@ public class MypageController {
 	public String orderList(@PathVariable("id") String id, OrderDTO dto, OrderItemDTO oit, Model model) throws ControllerException, ServiceException {
 		
 		// 주문 정보 획득
-		List<OrderDTO> orderDTO = mypageService.getOrder(dto);
+		List<OrderDTO> orderDTO = mypageService.getOrder(id);
 		
-		// 주문상품 정보 획득
-		List<OrderItemDTO> orderItemDTO = mypageService.getOrderItemDTO(oit);
+		// 주문상품 정보 획득 ( 수정 필요 )
+		List<OrderItemDTO> orderItemDTO = mypageService.getOrderItemDTO(id);
 
 //		log.trace("orderList() invoked.");
 		log.trace("orderList({},{},{},{}) invoked.", id, orderDTO, orderItemDTO, model);
+		
+//		Map<String, Object> dataMap = new HashMap<>(); // Map 제대로 안되는듯
+//		
+//		dataMap.put("OrderDTO", orderDTO);
+//		dataMap.put("orderItemDTO", orderItemDTO);
+//		
+//		model.addAttribute("orderInfo", dataMap);
 		
 		model.addAttribute("orderDTO", orderDTO);
 		model.addAttribute("orderItemDTO", orderItemDTO);

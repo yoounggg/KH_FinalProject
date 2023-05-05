@@ -12,10 +12,10 @@ public interface MypageMapper {
 	public MemberDTO getID(String id);
 	
 	// 주문 가져오기
-	public List<OrderDTO> getOrder();
+	public List<OrderDTO> getOrder(String member_id);
 	
-	// 주문상품 정보 가져오기
-	public List<OrderItemDTO> getOrderItem();
+	// 주문상품 정보 가져오기 ( 수정 필요 )
+	public List<OrderItemDTO> getOrderItem(String member_id);
 	
 	// 주문 상품정보 가져오기
 //	public OrderDTO getOrderItemDTO(OrderItemDTO oit);

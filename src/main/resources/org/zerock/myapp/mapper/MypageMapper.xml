@@ -22,6 +22,8 @@
  			*
  		FROM
  			MYMG_ORDER
+ 		WHERE
+ 			member_id = #{id, jdbcType=VARCHAR}
 	</select>
 	
 	<select id="getOrderItem" resultType="org.zerock.myapp.domain.OrderItemDTO">

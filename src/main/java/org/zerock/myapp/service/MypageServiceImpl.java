@@ -38,17 +38,17 @@ public class MypageServiceImpl implements MypageService {
 	} // getID()
 	
 	@Override
-	public List<OrderDTO> getOrder(OrderDTO odt) throws ServiceException {
+	public List<OrderDTO> getOrder(String member_id) throws ServiceException {
 		
 //		OrderDTO order = mypageMapper.getOrder(OrderDTO order);
 		
-		return mypageMapper.getOrder();
+		return mypageMapper.getOrder(member_id);
 	}
 
-	@Override
-	public List<OrderItemDTO> getOrderItemDTO(OrderItemDTO oit) throws ServiceException {
+	@Override // ( 수정 필요 )
+	public List<OrderItemDTO> getOrderItemDTO(String member_id) throws ServiceException {
 		
-		return mypageMapper.getOrderItem();
+		return mypageMapper.getOrderItem(member_id);
 	}
 	
 } // end class
