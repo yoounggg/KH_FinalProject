@@ -17,9 +17,12 @@
 
 <body>
     <div class="container">
-        <div class="link">
-            <span><a href="/main"><i class="fa fa-home" style="font-size:20px"></i></a></span> > <span>농산</span> > <span>국내외과일</span>
-        </div> 
+        <c:forEach var="cate" items="${__Category__}"> <!-- 05/04 code 추가-->
+            
+            <div class="link">
+                <span><a href="/main"><i class="fa fa-home" style="font-size:20px"></i></a></span> > <span>농산</span> > <span><a href="/product/list?code=${cate.code}">${cate.categoryName}</a></span>
+            </div> 
+        </c:forEach>
 
         <div class="images">
             <img id="main_img" src="/resources/product/${__INFO__.main_image}" onerror="this.src='https://picsum.photos/id/684/500/400';" alt="">

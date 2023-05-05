@@ -23,7 +23,7 @@
 	<!-- 상세정보 페이지 -->
     <select id="SelectDetail" resultType="org.zerock.myapp.domain.Page_ProductDTO">
         SELECT no, name, content, main_image, price, discount, discount_price, content_image, sub_image1, 
-        sub_image2, sub_image3, sub_image4, title, stock
+        sub_image2, sub_image3, sub_image4, title, stock, category
         FROM product
         WHERE no = #{no}
     </select>

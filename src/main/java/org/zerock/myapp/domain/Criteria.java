@@ -61,7 +61,7 @@ public class Criteria {
 		UriComponentsBuilder builder = UriComponentsBuilder.fromPath("");   // 전송파라미터를 Uri로 만들어준다.
 		builder.queryParam("code", this.code);
 		builder.queryParam("currPage", this.currPage);
-		builder.queryParam("amount", this.amount);
+		builder.queryParam("amountpro", this.amountpro);
 		builder.queryParam("pagesPerPage", this.pagesPerPage);
 		if(order != null) {
 			builder.queryParam("order", this.order);

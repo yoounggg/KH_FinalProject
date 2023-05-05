@@ -97,7 +97,6 @@
                         <a type="button" href="${naverAuthUrl}" id="naverLoginButton2" style="display:none"></a>
                     </div>
 
-                    
                     <!-- 카카오로 로그인 -->
                    
                    <a href="https://kauth.kakao.com/oauth/authorize?client_id=4728fdda1dcf6b1dcbc098a9a7ece445&redirect_uri=http://localhost:8080/signup/kakao/callback&response_type=code" class='소셜회원가입'>
@@ -105,6 +104,7 @@
                     </a>
            			
                 </form>
+
             </div>
         </div>
 
