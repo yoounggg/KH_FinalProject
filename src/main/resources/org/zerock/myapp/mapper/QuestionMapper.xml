@@ -11,8 +11,8 @@
 
   <!-- 1:1문의 등록 -->
   <insert id="write">
-    INSERT INTO QUESTION (TYPE,TITLE, CONTENT)
-  	VALUES (#{type}, #{title}, #{content})
+    INSERT INTO QUESTION (TYPE,TITLE, CONTENT, ID)
+  	VALUES (#{type}, #{title}, #{content}, #{id , jdbcType=VARCHAR})
   </insert>
   
   

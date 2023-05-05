@@ -11,5 +11,6 @@ public class QuestionVO {
 	private String content;
 	private TIMESTAMP regDate;
 	private String type;
+	private String id;
 	
 } // end class
