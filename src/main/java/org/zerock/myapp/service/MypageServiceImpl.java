@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zerock.myapp.domain.MemberDTO;
 import org.zerock.myapp.domain.OrderDTO;
+import org.zerock.myapp.domain.OrderItemDTO;
 import org.zerock.myapp.exception.ServiceException;
 import org.zerock.myapp.mapper.MypageMapper;
 
@@ -42,6 +43,12 @@ public class MypageServiceImpl implements MypageService {
 //		OrderDTO order = mypageMapper.getOrder(OrderDTO order);
 		
 		return mypageMapper.getOrder();
+	}
+
+	@Override
+	public List<OrderItemDTO> getOrderItemDTO(OrderItemDTO oit) throws ServiceException {
+		
+		return mypageMapper.getOrderItem();
 	}
 	
 } // end class

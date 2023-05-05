@@ -14,6 +14,9 @@ public interface MypageMapper {
 	// 주문 가져오기
 	public List<OrderDTO> getOrder();
 	
+	// 주문상품 정보 가져오기
+	public List<OrderItemDTO> getOrderItem();
+	
 	// 주문 상품정보 가져오기
 //	public OrderDTO getOrderItemDTO(OrderItemDTO oit);
 	

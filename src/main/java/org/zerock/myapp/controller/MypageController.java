@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.zerock.myapp.domain.OrderDTO;
+import org.zerock.myapp.domain.OrderItemDTO;
 import org.zerock.myapp.exception.ControllerException;
 import org.zerock.myapp.exception.ServiceException;
 import org.zerock.myapp.service.MypageService;
@@ -35,12 +36,17 @@ public class MypageController {
 //	@GetMapping("/orderList")
 	@RequestMapping("/orderList/{id}")
 //	public String orderList() {
-	public String orderList(@PathVariable("id") String id, OrderDTO dto, Model model) throws ControllerException, ServiceException {
+	public String orderList(@PathVariable("id") String id, OrderDTO dto, OrderItemDTO oit, Model model) throws ControllerException, ServiceException {
 		
+		// 주문 정보 획득
 		List<OrderDTO> orderDTO = mypageService.getOrder(dto);
 		
+		// 주문상품 정보 획득
+		List<OrderItemDTO> orderItemDTO = mypageService.getOrderItemDTO(oit);
+		
+		
 //		log.trace("orderList() invoked.");
-		log.trace("orderList({},{},{}) invoked.", id, orderDTO, model);
+		log.trace("orderList({},{},{},{}) invoked.", id, orderDTO, orderItemDTO, model);
 		
 		return "mypage/OrderList";
 

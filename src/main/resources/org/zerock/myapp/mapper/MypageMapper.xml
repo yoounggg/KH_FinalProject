@@ -23,5 +23,12 @@
  		FROM
  			MYMG_ORDER
 	</select>
+	
+	<select id="getOrderItem" resultType="org.zerock.myapp.domain.OrderItemDTO">
+		SELECT
+			*
+		FROM
+			ORDER_LIST
+	</select>
 
 </mapper>
