@@ -1,13 +1,18 @@
 package org.zerock.myapp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.zerock.myapp.domain.OrderDTO;
 import org.zerock.myapp.exception.ControllerException;
+import org.zerock.myapp.exception.ServiceException;
 import org.zerock.myapp.service.MypageService;
+import org.zerock.myapp.service.OrderService;
 
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,14 +28,19 @@ public class MypageController {
 	@Setter(onMethod_=@Autowired)
 	private MypageService mypageService;
 	
+	@Setter(onMethod_=@Autowired)
+	private OrderService orderService;
+	
 	// OrderList(주문 내역) 페이지 단순 진입
 //	@GetMapping("/orderList")
-	@GetMapping("/orderList/{id}")
+	@RequestMapping("/orderList/{id}")
 //	public String orderList() {
-	public String orderList(@PathVariable("id") String id, Model model) throws ControllerException {
+	public String orderList(@PathVariable("id") String id, OrderDTO dto, Model model) throws ControllerException, ServiceException {
+		
+		List<OrderDTO> orderDTO = mypageService.getOrder(dto);
 		
 //		log.trace("orderList() invoked.");
-		log.trace("orderList({},{}) invoked.", id, model);
+		log.trace("orderList({},{},{}) invoked.", id, orderDTO, model);
 		
 		return "mypage/OrderList";
 
