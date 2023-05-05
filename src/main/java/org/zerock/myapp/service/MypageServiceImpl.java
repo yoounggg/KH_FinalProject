@@ -45,7 +45,7 @@ public class MypageServiceImpl implements MypageService {
 		return mypageMapper.getOrder(member_id);
 	}
 
-	@Override // ( 수정 필요 )
+	@Override // ( 수정 필요, 지금 db에 저장된 모든 데이터 가져옴 )
 	public List<OrderItemDTO> getOrderItemDTO(String member_id) throws ServiceException {
 		
 		return mypageMapper.getOrderItem(member_id);

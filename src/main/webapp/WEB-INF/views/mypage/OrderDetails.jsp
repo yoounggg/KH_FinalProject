@@ -112,30 +112,30 @@
                 <!-- 수령인 -->
                 <div class="delivery_info1">
                     <div id="delivery_title1">수령인</div>
-                    <div id="receiver_name">* 수령인 이름 * DB에서 불러오기</div>
+                    <div id="receiver_name">${orderDTO.receiver_name}</div>
                 </div>
 
                 <!-- 연락처 -->
                 <!-- 수령인 연락처인지 주문한 사람 연락처인지 모르겠음.. -->
                 <div class="delivery_info2">
                     <div id="delivery_title2">연락처</div>
-                    <div id="receiver_tel">* 수령인 연락처 * DB에서 불러오기</div>
+                    <div id="receiver_tel">${orderDTO.receiver_tel}</div>
                 </div>
 
                 <!-- 배송지 -->
                 <div class="delivery_info3">
                     <div id="delivery_title3">배송지</div>
                     <div id="receiver_address">
-                        <div id="receiver_address1">* 우편번호 * DB에서 불러오기</div>
-                        <div id="receiver_address2">* 주소 * DB에서 불러오기</div>
-                        <div id="receiver_address3">* 상세 주소 * DB에서 불러오기</div>
+                        <div id="receiver_address1">${orderDTO.receiver_address1}</div>
+                        <div id="receiver_address2">${orderDTO.receiver_address2}</div>
+                        <div id="receiver_address3">${orderDTO.receiver_address3}</div>
                     </div>
                 </div>
 
                 <!-- 배송메모 -->
                 <div class="delivery_info4">
                     <div id="delivery_title4">배송메모</div>
-                    <div id="delivery_memo">* 배송메모 * DB에서 불러오기</div>
+                    <div id="delivery_memo">${orderDTO.delivery_comment}</div>
                 </div>
 
             </div> 

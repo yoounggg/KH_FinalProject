@@ -14,7 +14,7 @@ public interface MypageMapper {
 	// 주문 가져오기
 	public List<OrderDTO> getOrder(String member_id);
 	
-	// 주문상품 정보 가져오기 ( 수정 필요 )
+	// 주문상품 정보 가져오기 ( 수정 필요, 지금 db에 저장된 모든 데이터 가져옴 )
 	public List<OrderItemDTO> getOrderItem(String member_id);
 	
 	// 주문 상품정보 가져오기

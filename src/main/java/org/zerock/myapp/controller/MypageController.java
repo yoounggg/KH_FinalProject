@@ -1,8 +1,6 @@
 package org.zerock.myapp.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -59,6 +57,8 @@ public class MypageController {
 		model.addAttribute("orderDTO", orderDTO);
 		model.addAttribute("orderItemDTO", orderItemDTO);
 		
+		model.addAttribute("totalPrice", dto.getTotalPrice());
+		
 		return "mypage/OrderList";
 
 	} // orderList()
@@ -67,10 +67,20 @@ public class MypageController {
 //	@GetMapping("/orderDetails")
 	@GetMapping("/orderDetails/{id}")
 //	public String orderDetails() {
-	public String orderDetails(@PathVariable("id") String id, Model model) throws ControllerException {
+	public String orderDetails(@PathVariable("id") String id,OrderDTO dto,OrderItemDTO oit, Model model) throws ControllerException, ServiceException {
+		
+		// List로 모든 정보를 불러올게 아니라 OrderList에서 상세주문내역 클릭 시 어떻게 그 주문번호의 정보만 가져올지 생각중..
+		// 주문 정보 획득
+		List<OrderDTO> orderDTO = mypageService.getOrder(id);
+		
+		// 주문상품 정보 획득 ( 수정 필요 )
+		List<OrderItemDTO> orderItemDTO = mypageService.getOrderItemDTO(id);
 		
 //		log.trace("orderDetails() invoked.");
 		log.trace("orderDetails({},{}) invoked.", id, model);
+		
+		model.addAttribute("orderDTO", orderDTO);
+		model.addAttribute("orderItemDTO", orderItemDTO);
 
 		return "mypage/OrderDetails";
 		
