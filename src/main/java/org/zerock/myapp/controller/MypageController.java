@@ -43,10 +43,12 @@ public class MypageController {
 		
 		// 주문상품 정보 획득
 		List<OrderItemDTO> orderItemDTO = mypageService.getOrderItemDTO(oit);
-		
-		
+
 //		log.trace("orderList() invoked.");
 		log.trace("orderList({},{},{},{}) invoked.", id, orderDTO, orderItemDTO, model);
+		
+		model.addAttribute("orderDTO", orderDTO);
+		model.addAttribute("orderItemDTO", orderItemDTO);
 		
 		return "mypage/OrderList";
 

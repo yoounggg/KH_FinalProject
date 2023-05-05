@@ -513,28 +513,29 @@
   
  // [찬석] 구매하기 버튼
     /* 바로구매 버튼 */
-    $(".btn_buy").on("click", function(){
-      let count = $("#p_num").val();
-      $(".order_form").find('input[name="orders[0].productCount"]').val(count);
-      $(".order_form").submit();
-      
-      $.ajax({
-        url: '/order/{id}',
-        type: 'POST',
-        data: count, 
-        success: function(result){
-          if(result == '0'){
-              $(".order_form").find('input[name="orders[0].productCount"]').val(count);
-              $(".order_form").submit();
-          } else if(result == '1'){
-        	  alert("로그인이 필요합니다.");
-          }
-        },
-        error: function() {
-          alert("로그인이 필요합니다.");
-          window.location.href = '/main';
-        }
-      });
-    });
+	$(".btn_buy").on("click", function(){
+	  let count = $("#p_num").val();
+	  $(".order_form").find('input[name="orders[0].productCount"]').val(count);
+	  
+	  // 로그인 상태인지 확인
+	  $.ajax({
+	    url: '/order/{id}',
+	    type: 'POST',
+	    success: function(data) {
+	      if (data.loggedIn) {
+	          // 로그인하지 않은 경우 팝업 창 띄우고 로그인 페이지로 이동
+	          alert("로그인이 필요합니다.");
+	          window.location.href = '/login/main';
+	          return false;
+	      } else {
+	    	  $(".order_form").submit();
+	      }
+	    },
+	    error: function() {
+	      alert("로그인 상태를 확인할 수 없습니다.");
+	      window.location.href = '/login/main';
+	    }
+	  });
+	});
 
 </script>
