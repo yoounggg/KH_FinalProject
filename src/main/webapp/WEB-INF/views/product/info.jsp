@@ -508,11 +508,30 @@
     	
     });
   
-	// [찬석] 구매하기 버튼
-	/* 바로구매 버튼 */
-	$(".btn_buy").on("click", function(){
-		let count = $("#p_num").val();
-		$(".order_form").find('input[name="orders[0].productCount"]').val(count);
-		$(".order_form").submit();
-	});
+ // [찬석] 구매하기 버튼
+    /* 바로구매 버튼 */
+    $(".btn_buy").on("click", function(){
+      let count = $("#p_num").val();
+      $(".order_form").find('input[name="orders[0].productCount"]').val(count);
+      $(".order_form").submit();
+      
+      $.ajax({
+        url: '/order/{id}',
+        type: 'POST',
+        data: count, 
+        success: function(result){
+          if(result == '0'){
+              $(".order_form").find('input[name="orders[0].productCount"]').val(count);
+              $(".order_form").submit();
+          } else if(result == '1'){
+        	  alert("로그인이 필요합니다.");
+          }
+        },
+        error: function() {
+          alert("로그인이 필요합니다.");
+          window.location.href = '/main';
+        }
+      });
+    });
+
 </script>
