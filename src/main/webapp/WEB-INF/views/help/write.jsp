@@ -13,7 +13,7 @@
 
     <%@include file="/WEB-INF/views/common/favicon.jsp" %>
 
-    <link rel="stylesheet" href="/resources/css/help/write.css">
+    <link rel="stylesheet" href="../resources/css/help/write.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,100,1,-25" />
@@ -24,10 +24,11 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
-    <script src="../resources/css/help/write.js"></script>
+    <script src="../resources/js/help/write.js"></script>
 </head>
 
 <body>
+<div id="entire">
 <!-- header -->
 <%@include file="/WEB-INF/views/common/header.jsp" %>
 
@@ -67,11 +68,16 @@
                                 <option value="개인정보"> 개인정보관련 문의 </option>
                                 <option value="교환/환불"> 교환 및 환불관련 문의 </option>
                                 <option value="기타"> 기타 </option>
-                              </select>
-                            <input id="ttle" type="text" placeholder="제목을 입력해주세요" name="title"><br>
-                            <textarea id="con" placeholder="내용을 입력해주세요" name="content"></textarea><br>
+                            </select>
+
+                              <input id="ttle" type="text" placeholder="제목을 입력해주세요 최대 100자" name="title" required>
+                              
+                              <br>
+
+                              <textarea id="con" placeholder="내용을 입력해주세요" name="content" minlength="10" required></textarea><br>
+
                             <div class="btm_btn">
-                                <button type="submit" class="write" onclick="ok()">문의하기</button>
+                                <button type="submit" id="submit" class="write">문의하기</button>
                     
                                 <div>
                                     <a href="/help/question""><span class="back">뒤로가기</span></a>
@@ -84,8 +90,20 @@
             </div>
     </main>
 
-<!-- ==========================footer========================= -->
-<%@include file="/WEB-INF/views/common/footer.jsp" %>
+    
+    <!-- ==========================footer========================= -->
+    <%@include file="/WEB-INF/views/common/footer.jsp" %>
+</div>
+    
+    <div class="popmenu1" id="common_pop">
+        <p>제목은 100자 이내로 입력해주세요</p>
+        <input type="button" class="exit1" id="common_btn" onclick="exit1()" value="확인">
+    </div>
+
+    <div class="popmenu2" id="common_pop">
+        <p>내용은 2000자 이내로 입력해주세요</p>
+        <input type="button" class="exit2" id="common_btn" onclick="exit2()" value="확인">
+    </div>
 </body>
 
 </html>

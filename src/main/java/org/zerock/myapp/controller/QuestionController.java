@@ -72,4 +72,12 @@ public class QuestionController {
 	} // listGet
 	
 	
+	@GetMapping("page")
+	public void getPage(Integer qno, Model model) {
+		
+		model.addAttribute("pageInfo", questionService.getPage(qno));
+		
+	} // getPage
+	
+	
 } // end class

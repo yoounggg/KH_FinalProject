@@ -21,6 +21,7 @@ public class QuestionServiceImpl implements QuestionService {
 		log.trace("getList() invoked");
 		
 		return questionMapper.getList();
+		
 	} // getList
 
 	
@@ -29,7 +30,7 @@ public class QuestionServiceImpl implements QuestionService {
 		log.trace("QuestionVO {}: ", questionDTO);
 		
 		questionMapper.write(questionDTO);
-	}
+	} // write
 
 
 	@Override
@@ -37,7 +38,17 @@ public class QuestionServiceImpl implements QuestionService {
 		log.trace("getListByParam() invoked");
 
 		return questionMapper.getListByParam(memberId);
-	} 
+		
+	} // getListByParam
+
+
+	@Override
+	public QuestionDTO getPage(Integer qno) {	// 1:1문의 글 조회
+		log.info("getPage() invoked");
+		
+		return questionMapper.getPage(qno);
+		
+	}  //getPage
 
 	
 } // end class
