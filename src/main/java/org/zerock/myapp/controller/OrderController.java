@@ -3,6 +3,7 @@ package org.zerock.myapp.controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.zerock.myapp.domain.MemberDTO;
 import org.zerock.myapp.domain.OrderDTO;
 import org.zerock.myapp.domain.OrderPageDTO;
 import org.zerock.myapp.exception.ServiceException;
@@ -51,7 +53,7 @@ public class OrderController {
 	// 테스트123
 	//@GetMapping("/{id}") // 주문페이지로 이동 mapping
 	@RequestMapping(value = "/{id}", method = { RequestMethod.GET, RequestMethod.POST })
-	public String orderPageGet(@PathVariable("id") String memberId, OrderPageDTO opd, Model model)
+	public String orderPageGet(@PathVariable("id") String memberId, OrderPageDTO opd, HttpSession session, Model model)
 			throws ServiceException {
 
 		log.trace(
@@ -69,6 +71,13 @@ public class OrderController {
 		if (opd.getOrders() == null) {
 			opd.setOrders(new ArrayList<>());
 		}
+		
+		// (1) 로그인 체크
+		MemberDTO dto = (MemberDTO)session.getAttribute("member");
+		if(dto == null) {
+			return "1"; // 멤버 아니면 5반환 -> 로그인 필요함!
+		}
+		
 		// Model객체의 addAttribute 메서드를 사용하여 상품정보, 회원정보를 만들어 내는\
 		// Service 메서드를 호출하여 반환받은 값들을 View단으로 전송
 

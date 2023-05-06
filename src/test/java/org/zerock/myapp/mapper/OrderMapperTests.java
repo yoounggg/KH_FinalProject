@@ -103,7 +103,7 @@ public class OrderMapperTests {
 		ord.setReceiver_address2("서울 특별시 영등포구 대림동");
 		ord.setReceiver_address3("지하철 10번출구");
 		ord.setReceiver_tel("01012341234");
-		ord.setOrderState("배송준비");
+		ord.setDelivery_state("배송준비");
 		ord.getOrderPriceInfo();
 		
 		orderMapper.enrollOrder(ord);
