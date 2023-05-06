@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.zerock.myapp.domain.MemberDTO;
 import org.zerock.myapp.domain.OrderDTO;
 import org.zerock.myapp.domain.OrderItemDTO;
+import org.zerock.myapp.domain.ProductDTO;
 import org.zerock.myapp.exception.ServiceException;
 import org.zerock.myapp.mapper.MypageMapper;
 
@@ -69,10 +70,22 @@ public class MypageServiceImpl implements MypageService {
 		
 	      try {
 		        return this.mypageMapper.ItemSelect(order_no);
-		      } catch(Exception e) { // 비즈니스 계층에서 오류나면 serviceexception 던지기로 약속!
+		  } catch(Exception e) { // 비즈니스 계층에서 오류나면 serviceexception 던지기로 약속!
 		         throw new ServiceException(e);
-		      } // try-catch
+		  } // try-catch
 	      
-	} //getItemSelect
+	}
+
+	@Override
+	public ProductDTO getProductName(Integer product_no) throws ServiceException {
+			
+		try {
+			return this.mypageMapper.productName(product_no);
+		} catch(Exception e) {
+			throw new ServiceException(e);
+		}
+	} // getProductName
+	
+	
 	
 } // end class

@@ -71,7 +71,7 @@
 
                     <div class="product_info">
                         <div id="product_title">상품명:</div>
-                        <div id="product_name">* 상품명 * DB에서 불러오기</div>
+                        <div id="product_name">${productName}</div>
                     </div>
 
                     <!-- 옵션 없어짐

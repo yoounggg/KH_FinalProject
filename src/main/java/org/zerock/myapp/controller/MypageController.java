@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.zerock.myapp.domain.OrderDTO;
 import org.zerock.myapp.domain.OrderItemDTO;
+import org.zerock.myapp.domain.ProductDTO;
 import org.zerock.myapp.exception.ControllerException;
 import org.zerock.myapp.exception.ServiceException;
 import org.zerock.myapp.service.MypageService;
@@ -72,6 +72,7 @@ public class MypageController {
 //	public String orderDetails() {
 	public String orderDetails(@PathVariable("id") String id, @RequestParam("no") Integer no, Model model) throws ControllerException, ServiceException {
 		
+		OrderItemDTO oit = new OrderItemDTO();
 		// List로 모든 정보를 불러올게 아니라 OrderList에서 상세주문내역 클릭 시 어떻게 그 주문번호의 정보만 가져올지 생각중..
 		// 주문 정보 획득
 		List<OrderDTO> orderDTO = mypageService.getOrder(id);
@@ -83,11 +84,13 @@ public class MypageController {
 		log.trace("orderDetails({},{}) invoked.", id, model);
 
 		OrderDTO Infos = this.mypageService.getSelect(no);
-		
 		List<OrderItemDTO> ItemInfos = this.mypageService.getItemSelect(no);
+		// 상품명 가져오기 (매개변수 수정 필요 -> 값 안들어감)
+		ProductDTO productName = this.mypageService.getProductName(oit.getProduct_no());
 
-		log.trace("****************************  orderDetails({},{}) invoked. *****************************", Infos, ItemInfos);
+		log.trace("****************************  orderDetails({},{},{}) invoked. *****************************", Infos, ItemInfos, productName);
 		
+		model.addAttribute("productName", productName);
 		model.addAttribute("info", Infos);
 		model.addAttribute("ItemInfo", ItemInfos);
 		model.addAttribute("orderDTO", orderDTO);
