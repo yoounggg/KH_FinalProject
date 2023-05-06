@@ -50,9 +50,9 @@ li {
     color: white;
 }
 
-/* 상단 중간 검색창 */
 
-.help_search {
+
+.help {
     display: inline-block;
     width: 870px;
     height: 150px;
@@ -60,44 +60,6 @@ li {
     background-color: #F9F9F4;
 }
 
-/* .help_search_ul {
-    text-align: center;
-    padding: 0;
-    margin-top: 50px;
-    font-size: 17px;
-}
-
-.help_search_input_a {
-    display: inline-block;
-    width: 450px;
-    height: 30px;
-}
-
-.help_search_ul p {
-    display: inline-block;
-}
-
-.help_search_ul input {
-    width: 400px;
-    height: 30px;
-}
-
-
-.help_search_ul a {
-    position: absolute;
-    display: inline-block;
-    width: 87px;
-    height: 32px;
-    padding-top: 3.2px;
-    line-height: 20px;
-    border: 2px solid #5d5d5d;
-    background: #5d5d5d;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 500;
-    color: #fff;
-    text-decoration: none;
-} */
 
 #write {
     display: block;
@@ -137,19 +99,6 @@ li {
     color: black;
 }
 
-/* #sm_li_ul {
-    font-size: 16px;
-    padding: 0px;
-    padding-left: 10px;
-
-}
-
-#sm_li_ul li {
-    padding-top: 15px;
-    margin-right: 10px;
-} */
-
-/* 중간 컨텐츠 */
 
 /* 공지사항 글자 */
 h2 {
@@ -179,12 +128,7 @@ h2 {
     padding: 2px;
 }
 
-.content_list {
-    width: 710px;
-    margin: 10px 40px 40px 40px;
-    border-top: 3px solid #ceced2;
-    font-size: 11px;
-}
+
 
 a:link {
     color: #4f4f4f;
@@ -201,28 +145,79 @@ a:hover {
     text-decoration: none;
 }
 
-
-
-/* ====================================== */
-
-table {
-    display: table;
-    width: 750px;
-    margin-bottom: 0px;
+.test {
+    color: rgb(141, 141, 141);
+    font-size: 15px;
+    margin-left: 5px;
 }
 
-table th {
-    border-bottom: 1px solid #ceced2;
-    padding: 8px;
+
+
+/* 문의유형 */
+#box {
+    background-color: #ffffff;
+    margin : 50px 0px 50px 0;
+    border-radius: 5px;
+    border: 1px solid #b2b2b2;
+    padding: 5px;
 }
 
-table td {
-    padding: 14px 10px 13px 0px;
-    border-bottom: 1px solid #ceced2;
-    text-align: center;
-    font-size: 13px;
+/* 제목 */
+#ttle {
+    border: 1px solid #b2b2b2;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    width: 100%;
+}
+/* 내용 */
+#con {
+    border: 1px solid #b2b2b2;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px 0;
+    font-size: 14px;
+    width: 100%;
+    height: 200px;
+    resize: none;
 }
 
-.title {
-    text-align: left;
+
+/*하단 버튼  */
+.btm_btn {
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    margin-top: 150px;
 }
+
+.write {
+    height: 40px;
+    width: 150px;
+    background-color: #10bc0d;
+    margin-right: 40px;
+    border:none;
+    color: white;
+    cursor: pointer;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    
+}
+
+.back {
+    height: 40px;
+    width: 150px;
+    background-color: #b1b1b1;
+    margin-left: 40px;
+    border:none;
+    color: white;
+    cursor: pointer;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    font-size: 15px; 
+}
+

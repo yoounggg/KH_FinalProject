@@ -13,7 +13,7 @@
 
     <%@include file="/WEB-INF/views/common/favicon.jsp" %>
 
-    <link rel="stylesheet" href="/resources/css/help/question.css">
+    <link rel="stylesheet" href="/resources/css/help/write.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,100,1,-25" />
@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
+    <script src="../resources/css/help/write.js"></script>
 </head>
 
 <body>
@@ -37,13 +38,13 @@
                 <div class="help_center">
                     <p class="help_center_text">고객센터</p>
                 </div>
-                <div class="help_search"></div>
+                <div class="help"></div>
             </div>
 
             <!-- 중간 - notice 사이드 메뉴/ 게시물 -->
             <div class="help_content_wrap">
 
-            <!-- 중간 - notice 사이드 메뉴 -->
+                <!-- 중간 - notice 사이드 메뉴 -->
                 <div class="help_side_menu">
                     <ul class="sm_ul">
                         <li id="sm_li"><a href="/help/faq">FAQ</a></li>
@@ -53,38 +54,36 @@
                     </ul>
 
                 </div>
+                <form action="/help/write" method="post">
 
-
-            <!-- 중간 - 게시물 -->
-                <div class="content_wrap">
-                    <h2>1:1문의 <span class="test">나의 문의 내역</span></h2>
-                    <a href="/help/write" id="write">문의하기</a>
-                    <div>
-                </div>
-                    <div class="content_list">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>번호</th>
-                                    <th>문의유형</th>
-                                    <th>제목</th>
-                                    <th>작성날짜</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <c:forEach items="${list}" var="list">
-                                    <tr>
-                                        <td><c:out value="${list.qno}"/></td>
-                                        <td><c:out value="${list.type}"/></td>
-                                        <td><c:out value="${list.title}"/></td>
-                                        <td><fmt:formatDate pattern="yyyy/MM/dd HH:MM" value="${list.regDate}"/></td>
-                                    </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
+                    <!-- 중간 - 게시물 -->
+                    <div class="content_wrap">
+                        <h2>1:1문의<span class="test">문의하신 내용은 영업일 기준 5일이내에 답변해드립니다</span></h2>
+                        
+                            <select id="box" name="type">
+                                <option value="선택안함">문의유형</option>
+                                <option value="배송"> 배송관련 문의 </option>
+                                <option value="상품"> 상품관련 문의 </option>
+                                <option value="개인정보"> 개인정보관련 문의 </option>
+                                <option value="교환/환불"> 교환 및 환불관련 문의 </option>
+                                <option value="기타"> 기타 </option>
+                              </select>
+                            <input id="ttle" type="text" placeholder="제목을 입력해주세요" name="title"><br>
+                            <textarea id="con" placeholder="내용을 입력해주세요" name="content"></textarea><br>
+                            <div class="btm_btn">
+                                <button type="submit" class="write" onclick="ok()">문의하기</button>
+                    
+                                <div>
+                                    <a href="/help/question""><span class="back">뒤로가기</span></a>
+                                </div>
+                                
+                            </div>
                     </div>
-                </div>
+                  
+                </form>
+            </div>
     </main>
+
 <!-- ==========================footer========================= -->
 <%@include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
