@@ -52,5 +52,18 @@
 		WHERE
 			order_no = #{order_no, jdbcType=INTEGER}
 	</select>
+	
+	<!-- 조인으로 상품이름 가져오기 -->
+	<select id="productName" resultType="org.zerock.myapp.domain.OrderItemDTO">
+		SELECT 
+			name
+		FROM 
+			order_list
+		JOIN product
+		ON 
+			order_list.product_no = product.no
+		WHERE 
+			order_list.product_no = #{product_no, jdbcType=INTEGER}
+	</select>
 
 </mapper>
