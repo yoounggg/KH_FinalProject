@@ -61,5 +61,17 @@ public class MypageMapperTests {
 																	
 //		log.trace(" orderInfo : {} " + orderInfo);
 	} // TestGetOrderInfoTest()
+	
+	//@Disabled
+	@Test
+	@Order(3)
+	@DisplayName(" test: TestgetSelect()")
+	@Timeout(value = 1, unit=TimeUnit.MINUTES)
+	void TestgetSelect() {
+		OrderDTO select = mypageMapper.select(304);  	 
+																	
+		log.trace(" select : {} " + select);
+	} // TestGetOrderInfoTest()
+
 
 } // end class

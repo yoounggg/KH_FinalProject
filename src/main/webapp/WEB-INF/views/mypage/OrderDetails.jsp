@@ -88,7 +88,7 @@
 
                     <div class="product_info">
                         <div id="product_title">결제일:</div>
-                        <div id="product_payment_date">* 결제일자 * DB에서 불러오기</div>
+                        <div id="product_payment_date">${info.order_date}</div>
                     </div> 
 
                 </div>
@@ -112,30 +112,30 @@
                 <!-- 수령인 -->
                 <div class="delivery_info1">
                     <div id="delivery_title1">수령인</div>
-                    <div id="receiver_name">${orderDTO.receiver_name}</div>
+                    <div id="receiver_name">${info.receiver_name}</div>
                 </div>
 
                 <!-- 연락처 -->
                 <!-- 수령인 연락처인지 주문한 사람 연락처인지 모르겠음.. -->
                 <div class="delivery_info2">
                     <div id="delivery_title2">연락처</div>
-                    <div id="receiver_tel">${orderDTO.receiver_tel}</div>
+                    <div id="receiver_tel">${info.receiver_tel}</div>
                 </div>
 
                 <!-- 배송지 -->
                 <div class="delivery_info3">
                     <div id="delivery_title3">배송지</div>
                     <div id="receiver_address">
-                        <div id="receiver_address1">${orderDTO.receiver_address1}</div>
-                        <div id="receiver_address2">${orderDTO.receiver_address2}</div>
-                        <div id="receiver_address3">${orderDTO.receiver_address3}</div>
+                        <div id="receiver_address1">${info.receiver_address1}</div>
+                        <div id="receiver_address2">${info.receiver_address2}</div>
+                        <div id="receiver_address3">${info.receiver_address3}</div>
                     </div>
                 </div>
 
                 <!-- 배송메모 -->
                 <div class="delivery_info4">
                     <div id="delivery_title4">배송메모</div>
-                    <div id="delivery_memo">${orderDTO.delivery_comment}</div>
+                    <div id="delivery_memo">${info.delivery_comment}</div>
                 </div>
 
             </div> 
@@ -169,7 +169,7 @@
                 <div class="payment_amount_info">
                     <!-- 배송비 -->
                     <div id="order_title">배송비</div>
-                    <div id="delivery_charge">* 배송비 * DB에서 불러오기</div>
+                    <div id="delivery_charge">${info.delivery_cost}</div>
                 </div>
 
                 <div class="payment_amount_info">

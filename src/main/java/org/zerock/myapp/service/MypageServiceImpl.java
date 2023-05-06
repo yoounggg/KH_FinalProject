@@ -50,5 +50,16 @@ public class MypageServiceImpl implements MypageService {
 		
 		return mypageMapper.getOrderItem(member_id);
 	}
+
+	@Override
+	public OrderDTO getSelect(Integer no) throws ServiceException {
+	     
+	      try {
+	        return this.mypageMapper.select(no);
+	      } catch(Exception e) { // 비즈니스 계층에서 오류나면 serviceexception 던지기로 약속!
+	         throw new ServiceException(e);
+	      } // try-catch
+
+	}
 	
 } // end class

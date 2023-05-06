@@ -104,7 +104,7 @@
 		                    <!-- 상세 주문 내역, 배송조회 버튼 컨테이너 -->
 		                    <div class="button_container">
 		                        <!-- 상세 주문 내역 -->
-		                        <a type="button" href="/mypage/orderDetails/${member.id}" class="orderlist_detail">상세주문내역</a>
+		                        <a type="button" href="/mypage/orderDetails/${member.id}?no=${ol.no}" class="orderlist_detail">상세주문내역</a>
 		                        <!-- 배송 조회 -->
 		                        <a type="button" href=# class="delivery_tracking">배송조회</a>
 		                    </div>

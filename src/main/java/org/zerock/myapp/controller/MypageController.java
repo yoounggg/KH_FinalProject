@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.zerock.myapp.domain.OrderDTO;
 import org.zerock.myapp.domain.OrderItemDTO;
 import org.zerock.myapp.exception.ControllerException;
@@ -65,9 +67,10 @@ public class MypageController {
 	
 	// OrderDetails(주문 상세 내역) 페이지 단순 진입
 //	@GetMapping("/orderDetails")
-	@GetMapping("/orderDetails/{id}")
+//	@RequestMapping("/orderDetails/{id}")
+	@RequestMapping(value = "/orderDetails/{id}", method = { RequestMethod.GET, RequestMethod.POST })
 //	public String orderDetails() {
-	public String orderDetails(@PathVariable("id") String id,OrderDTO dto,OrderItemDTO oit, Model model) throws ControllerException, ServiceException {
+	public String orderDetails(@PathVariable("id") String id, @RequestParam("no") Integer no, OrderDTO dto,OrderItemDTO oit, Model model) throws ControllerException, ServiceException {
 		
 		// List로 모든 정보를 불러올게 아니라 OrderList에서 상세주문내역 클릭 시 어떻게 그 주문번호의 정보만 가져올지 생각중..
 		// 주문 정보 획득
@@ -78,7 +81,10 @@ public class MypageController {
 		
 //		log.trace("orderDetails() invoked.");
 		log.trace("orderDetails({},{}) invoked.", id, model);
-		
+
+		OrderDTO Infos = this.mypageService.getSelect(no);
+
+		model.addAttribute("info", Infos);
 		model.addAttribute("orderDTO", orderDTO);
 		model.addAttribute("orderItemDTO", orderItemDTO);
 
