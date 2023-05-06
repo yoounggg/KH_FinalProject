@@ -5,6 +5,7 @@ import java.util.List;
 import org.zerock.myapp.domain.MemberDTO;
 import org.zerock.myapp.domain.OrderDTO;
 import org.zerock.myapp.domain.OrderItemDTO;
+import org.zerock.myapp.domain.ProductDTO;
 
 public interface MypageMapper {
 
@@ -22,6 +23,9 @@ public interface MypageMapper {
 	
 	// 주문상품 상세 조회
 	public abstract List<OrderItemDTO> ItemSelect(Integer order_no);
+	
+	// 조인으로 상품 이름 가져오기
+	public abstract ProductDTO productName(Integer Product_no);
 	
 	// 주문 상품정보 가져오기
 //	public OrderDTO getOrderItemDTO(OrderItemDTO oit);

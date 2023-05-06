@@ -5,6 +5,7 @@ import java.util.List;
 import org.zerock.myapp.domain.MemberDTO;
 import org.zerock.myapp.domain.OrderDTO;
 import org.zerock.myapp.domain.OrderItemDTO;
+import org.zerock.myapp.domain.ProductDTO;
 import org.zerock.myapp.exception.ServiceException;
 
 
@@ -25,5 +26,8 @@ public interface MypageService {
 	
 	// 5. 회원 주문상품 상세 조회
 	public abstract List<OrderItemDTO> getItemSelect(Integer order_no) throws ServiceException;
+	
+	// 6. 조인으로 상품이름 가져오기
+	public abstract ProductDTO getProductName(Integer product_no) throws ServiceException;
 
 } // end class
