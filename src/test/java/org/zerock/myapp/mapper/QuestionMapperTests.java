@@ -1,5 +1,6 @@
 package org.zerock.myapp.mapper;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -59,4 +60,22 @@ public class QuestionMapperTests {
 		questionMapper.write(questionDTO);
 	} // write
 
+	
+//	@Disable
+	@Test
+	@Order(1)
+	@DisplayName("list")
+	@Timeout(value = 2, unit = TimeUnit.SECONDS)
+	public void getList() {
+		log.trace("getList () invoked");
+
+		List list = questionMapper.getList();
+		
+		  /* foreach문(향상된 for문) */
+        for(Object l : list) {
+            log.info("list : {} ",  l);
+        } // for
+        
+	} // getList
+	
 } // end class

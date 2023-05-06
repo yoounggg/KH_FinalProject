@@ -50,8 +50,8 @@ public class QuestionServiceTests {
 	@DisplayName("write")
 	@Order(1)
 	@Timeout(value = 1, unit = TimeUnit.MINUTES)
-	public void write() {
-		log.trace("write invoked");
+	public void writTest() {
+		log.trace("writTest invoked");
 
 		QuestionDTO  questionDTO= new QuestionDTO();
 
@@ -60,6 +60,21 @@ public class QuestionServiceTests {
 		questionDTO.setContent("service test");
 
 		questionService.write(questionDTO);
-	}
+	} // writTeste
 
+	
+//	@Disabled
+	@Test
+	@DisplayName("list")
+	@Order(2)
+	@Timeout(value = 1, unit = TimeUnit.MINUTES)
+	public void listTest() {
+		log.trace("listTest invoked");
+
+		for (QuestionDTO list : questionService.getList()) {
+		    log.info("list : {} ", list);
+		    
+		} // for 		
+	} // listTest
+	
 } // end class

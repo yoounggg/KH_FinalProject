@@ -207,7 +207,7 @@ a:hover {
 
 table {
     display: table;
-    width: 710px;
+    width: 750px;
     margin-bottom: 0px;
 }
 
@@ -217,7 +217,7 @@ table th {
 }
 
 table td {
-    padding: 14px 10px 13px 10px;
+    padding: 14px 10px 13px 0px;
     border-bottom: 1px solid #ceced2;
     text-align: center;
     font-size: 13px;

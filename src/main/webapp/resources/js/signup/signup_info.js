@@ -270,7 +270,7 @@ function num_compare() {
         popup_on10();                                   // 인증되었습니다.
         clearInterval(timer);                           // 타이머 멈춤
         document.getElementById("num_form").style.display = "none";  // 인증번호 입력창 숨김
-        
+        document.getElementById("num_confirm").disabled = true;		 // 인증번호 버튼 비활성화
     } else if ($("#input_num").val() != random_num) {   // 다르다면
         popup_on8();                                    // 인증번호가 틀렸습니다.
 

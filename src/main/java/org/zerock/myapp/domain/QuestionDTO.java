@@ -1,7 +1,8 @@
 package org.zerock.myapp.domain;
 
+import java.sql.Timestamp;
+
 import lombok.Data;
-import oracle.sql.TIMESTAMP;
 
 @Data
 public class QuestionDTO {
@@ -9,7 +10,7 @@ public class QuestionDTO {
 	private Integer qno;
 	private String title;
 	private String content;
-	private TIMESTAMP regDate;
+	private Timestamp regDate;
 	private String type;
 	private String id;
 	

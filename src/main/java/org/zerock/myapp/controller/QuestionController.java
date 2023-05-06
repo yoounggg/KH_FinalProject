@@ -5,13 +5,15 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.zerock.myapp.domain.MemberDTO;
 import org.zerock.myapp.domain.QuestionDTO;
-import org.zerock.myapp.mapper.QuestionMapper;
+import org.zerock.myapp.exception.ControllerException;
+import org.zerock.myapp.service.QuestionService;
 
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,14 +27,7 @@ import lombok.extern.log4j.Log4j2;
 public class QuestionController {
 
 	@Setter(onMethod_ = @Autowired)
-	private QuestionMapper questionMapper;
-
-	@GetMapping("/question") // 1:1문의 메인페이지
-	public void question() {
-		log.trace("1:1메인페이지 question() invoked");
-
-	} // question
-
+	private QuestionService questionService;
 	
 	@GetMapping("/write") // 1:1 문의 글 등록페이지
 	public void writeGet() {
@@ -50,7 +45,7 @@ public class QuestionController {
 
 	    questionDTO.setId(id);  // id 설정
 
-	    questionMapper.write(questionDTO);
+	    questionService.write(questionDTO);
 
 	    
 	    model.put("questionDTO", questionDTO);  // 모델에 데이터 추가
@@ -61,4 +56,20 @@ public class QuestionController {
 	    return "redirect:/help/question";
 	} // writePost
 
+	
+	@GetMapping("/question")
+	public void listGet(Model model, HttpServletRequest req) throws ControllerException {
+		log.info("1:1문의 메인페이지 : ", model);
+		
+		HttpSession session = req.getSession();
+	    MemberDTO member = (MemberDTO)session.getAttribute("member");
+	    String memberId  = member.getId();
+		log.info("////////////////////////////////////////////"+memberId);
+	    
+		model.addAttribute("list", questionService.getListByParam(memberId));
+		log.info(model);
+		
+	} // listGet
+	
+	
 } // end class

@@ -66,17 +66,18 @@
                             <thead>
                                 <tr>
                                     <th>번호</th>
+                                    <th>문의유형</th>
                                     <th>제목</th>
                                     <th>작성날짜</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach items="${noticeList}" var="NoticeVO">
+                                <c:forEach items="${list}" var="list">
                                     <tr>
-                                         <td>${NoticeVO.no}</td>
-                                         <td><a href="/help/get?no=${NoticeVO.no}">${NoticeVO.title}</a>
-                                        </td>
-                                        <td>${NoticeVO.reg_date}</td>
+                                        <td><c:out value="${list.qno}"/></td>
+                                        <td><c:out value="${list.type}"/></td>
+                                        <td><c:out value="${list.title}"/></td>
+                                        <td><fmt:formatDate pattern="yyyy/MM/dd HH:MM" value="${list.regDate}"/></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
