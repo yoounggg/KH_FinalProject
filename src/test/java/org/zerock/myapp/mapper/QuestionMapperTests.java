@@ -63,7 +63,7 @@ public class QuestionMapperTests {
 	
 //	@Disable
 	@Test
-	@Order(1)
+	@Order(2)
 	@DisplayName("list")
 	@Timeout(value = 2, unit = TimeUnit.SECONDS)
 	public void getList() {
@@ -77,5 +77,19 @@ public class QuestionMapperTests {
         } // for
         
 	} // getList
+	
+//	@Disable
+	@Test
+	@Order(3)
+	@DisplayName("page")
+	@Timeout(value = 2, unit = TimeUnit.SECONDS)
+	public void getPage() {
+		log.trace("getPage () invoked");
+
+		int qno = 19;
+		
+		 log.info("qno : {} " ,questionMapper.getPage(qno));
+        
+	} // getPage	
 	
 } // end class

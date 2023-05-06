@@ -184,7 +184,7 @@ a:hover {
 }
 
 
-/*하단 버튼  */
+/* 하단 버튼  */
 .btm_btn {
     display: flex; 
     justify-content: center;
@@ -221,3 +221,36 @@ a:hover {
     font-size: 15px; 
 }
 
+/* 팝업 */
+
+#common_pop {
+    display:none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 300px;
+    height: 200px;
+    text-align: center;
+    background: white;
+   
+}
+
+#common_pop p {
+    margin-top: 80px;
+}
+
+#common_btn {
+    position: fixed;
+    left: 50%;
+    bottom: 10px;
+    transform: translate(-50%,0);
+    width: 60px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    background: #10bc0d;
+    color: white;
+    cursor: pointer;
+    border:none;
+}

@@ -75,9 +75,14 @@
                                 <c:forEach items="${list}" var="list">
                                     <tr>
                                         <td><c:out value="${list.qno}"/></td>
+                                        
                                         <td><c:out value="${list.type}"/></td>
-                                        <td><c:out value="${list.title}"/></td>
-                                        <td><fmt:formatDate pattern="yyyy/MM/dd HH:MM" value="${list.regDate}"/></td>
+                                        <td>
+                                            <a href="/help/page?qno=${list.qno}">
+                                                ${list.title}
+                                            </a>
+                                        </td>
+                                        <td><fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${list.regDate}"/></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

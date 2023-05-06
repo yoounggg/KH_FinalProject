@@ -12,4 +12,6 @@ public interface QuestionMapper {
 	
 	public List<QuestionDTO> getListByParam(String memberId);	// 특정 로그인 아이디 값 가져오기
 	
+	public QuestionDTO getPage(Integer qno);	// 1:1문의 글 조회
+	
 } // end interface
