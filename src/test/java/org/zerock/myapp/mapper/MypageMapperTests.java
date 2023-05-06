@@ -53,7 +53,7 @@ public class MypageMapperTests {
 
 	//@Disabled
 	@Test
-	@Order(2)
+	@Order(1)
 	@DisplayName(" test: TestGetOrderInfoTest()")
 	@Timeout(value = 1, unit=TimeUnit.MINUTES)
 	void TestgetOrder() {
@@ -64,13 +64,24 @@ public class MypageMapperTests {
 	
 	//@Disabled
 	@Test
-	@Order(3)
+	@Order(2)
 	@DisplayName(" test: TestgetSelect()")
 	@Timeout(value = 1, unit=TimeUnit.MINUTES)
 	void TestgetSelect() {
 		OrderDTO select = mypageMapper.select(304);  	 
 																	
 		log.trace(" select : {} " + select);
+	} // TestGetOrderInfoTest()
+	
+	//@Disabled
+	@Test
+	@Order(3)
+	@DisplayName(" test: TestgetItemSelect()")
+	@Timeout(value = 1, unit=TimeUnit.MINUTES)
+	void TestgetItemSelect() {
+		List<OrderItemDTO> ItemSelect = mypageMapper.ItemSelect(304);  	 
+																	
+		log.trace(" select : {} " + ItemSelect);
 	} // TestGetOrderInfoTest()
 
 

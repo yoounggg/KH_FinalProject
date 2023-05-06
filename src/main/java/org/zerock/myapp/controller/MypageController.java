@@ -43,11 +43,11 @@ public class MypageController {
 		// 주문 정보 획득
 		List<OrderDTO> orderDTO = mypageService.getOrder(id);
 		
-		// 주문상품 정보 획득 ( 수정 필요 )
-		List<OrderItemDTO> orderItemDTO = mypageService.getOrderItemDTO(id);
+		// 주문상품 정보 획득 ( 수정 필요 -> 모든 정보 불러와서 빼놓음 )
+//		List<OrderItemDTO> orderItemDTO = mypageService.getOrderItemDTO(id);
 
 //		log.trace("orderList() invoked.");
-		log.trace("orderList({},{},{},{}) invoked.", id, orderDTO, orderItemDTO, model);
+		log.trace("orderList({},{},{},{}) invoked.", id, orderDTO, model);
 		
 //		Map<String, Object> dataMap = new HashMap<>(); // Map 제대로 안되는듯
 //		
@@ -57,7 +57,7 @@ public class MypageController {
 //		model.addAttribute("orderInfo", dataMap);
 		
 		model.addAttribute("orderDTO", orderDTO);
-		model.addAttribute("orderItemDTO", orderItemDTO);
+//		model.addAttribute("orderItemDTO", orderItemDTO); -> 지금 모든 정보 불러와서 빼놓음
 		
 		model.addAttribute("totalPrice", dto.getTotalPrice());
 		
@@ -70,23 +70,28 @@ public class MypageController {
 //	@RequestMapping("/orderDetails/{id}")
 	@RequestMapping(value = "/orderDetails/{id}", method = { RequestMethod.GET, RequestMethod.POST })
 //	public String orderDetails() {
-	public String orderDetails(@PathVariable("id") String id, @RequestParam("no") Integer no, OrderDTO dto,OrderItemDTO oit, Model model) throws ControllerException, ServiceException {
+	public String orderDetails(@PathVariable("id") String id, @RequestParam("no") Integer no, Model model) throws ControllerException, ServiceException {
 		
 		// List로 모든 정보를 불러올게 아니라 OrderList에서 상세주문내역 클릭 시 어떻게 그 주문번호의 정보만 가져올지 생각중..
 		// 주문 정보 획득
 		List<OrderDTO> orderDTO = mypageService.getOrder(id);
 		
 		// 주문상품 정보 획득 ( 수정 필요 )
-		List<OrderItemDTO> orderItemDTO = mypageService.getOrderItemDTO(id);
+//		List<OrderItemDTO> orderItemDTO = mypageService.getOrderItemDTO(id);
 		
 //		log.trace("orderDetails() invoked.");
 		log.trace("orderDetails({},{}) invoked.", id, model);
 
 		OrderDTO Infos = this.mypageService.getSelect(no);
+		
+		List<OrderItemDTO> ItemInfos = this.mypageService.getItemSelect(no);
 
+		log.trace("****************************  orderDetails({},{}) invoked. *****************************", Infos, ItemInfos);
+		
 		model.addAttribute("info", Infos);
+		model.addAttribute("ItemInfo", ItemInfos);
 		model.addAttribute("orderDTO", orderDTO);
-		model.addAttribute("orderItemDTO", orderItemDTO);
+//		model.addAttribute("orderItemDTO", orderItemDTO);
 
 		return "mypage/OrderDetails";
 		

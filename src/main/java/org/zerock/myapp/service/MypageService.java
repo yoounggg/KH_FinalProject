@@ -20,8 +20,10 @@ public interface MypageService {
 	// 3. 회원 주문상품 조회 ( 수정 필요, 지금 db에 저장된 모든 데이터 가져옴 )
 	public abstract List<OrderItemDTO> getOrderItemDTO(String member_id) throws ServiceException;
 	
-	// 4. 회원 주문상품 상셍조회
+	// 4. 회원 주문 상세조회
 	public abstract OrderDTO getSelect(Integer no) throws ServiceException;
 	
+	// 5. 회원 주문상품 상세 조회
+	public abstract List<OrderItemDTO> getItemSelect(Integer order_no) throws ServiceException;
 
 } // end class

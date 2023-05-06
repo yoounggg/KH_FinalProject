@@ -33,7 +33,7 @@
 			ORDER_LIST
 	</select>
 	
-	<!-- 주문상세 조회 -->
+	<!-- 주문 상세 조회 -->
 	<select id="select" resultType="org.zerock.myapp.domain.OrderDTO">
 		SELECT
 			*
@@ -41,6 +41,16 @@
 			MYMG_ORDER
 		WHERE
 			no = #{no, jdbcType=INTEGER}
+	</select>
+	
+	<!-- 주문상품 상세 조회 -->
+	<select id="ItemSelect" resultType="org.zerock.myapp.domain.OrderItemDTO">
+		SELECT
+			*
+		FROM
+			ORDER_LIST
+		WHERE
+			order_no = #{order_no, jdbcType=INTEGER}
 	</select>
 
 </mapper>

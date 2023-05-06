@@ -43,13 +43,15 @@ public class MypageServiceImpl implements MypageService {
 //		OrderDTO order = mypageMapper.getOrder(OrderDTO order);
 		
 		return mypageMapper.getOrder(member_id);
-	}
+		
+	} // getOrder
 
 	@Override // ( 수정 필요, 지금 db에 저장된 모든 데이터 가져옴 )
 	public List<OrderItemDTO> getOrderItemDTO(String member_id) throws ServiceException {
 		
 		return mypageMapper.getOrderItem(member_id);
-	}
+		
+	} // getOrderItemDTO
 
 	@Override
 	public OrderDTO getSelect(Integer no) throws ServiceException {
@@ -60,6 +62,17 @@ public class MypageServiceImpl implements MypageService {
 	         throw new ServiceException(e);
 	      } // try-catch
 
-	}
+	} //getSelect
+
+	@Override
+	public List<OrderItemDTO> getItemSelect(Integer order_no) throws ServiceException {
+		
+	      try {
+		        return this.mypageMapper.ItemSelect(order_no);
+		      } catch(Exception e) { // 비즈니스 계층에서 오류나면 serviceexception 던지기로 약속!
+		         throw new ServiceException(e);
+		      } // try-catch
+	      
+	} //getItemSelect
 	
 } // end class
