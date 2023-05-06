@@ -35,9 +35,7 @@ public class MypageController {
 	private OrderService orderService;
 	
 	// OrderList(주문 내역) 페이지 단순 진입
-//	@GetMapping("/orderList")
 	@RequestMapping("/orderList/{id}")
-//	public String orderList() {
 	public String orderList(@PathVariable("id") String id, OrderDTO dto, OrderItemDTO oit, Model model) throws ControllerException, ServiceException {
 		
 		// 주문 정보 획득
@@ -66,10 +64,7 @@ public class MypageController {
 	} // orderList()
 	
 	// OrderDetails(주문 상세 내역) 페이지 단순 진입
-//	@GetMapping("/orderDetails")
-//	@RequestMapping("/orderDetails/{id}")
 	@RequestMapping(value = "/orderDetails/{id}", method = { RequestMethod.GET, RequestMethod.POST })
-//	public String orderDetails() {
 	public String orderDetails(@PathVariable("id") String id, @RequestParam("no") Integer no, Model model) throws ControllerException, ServiceException {
 		
 		OrderItemDTO oit = new OrderItemDTO();
@@ -85,10 +80,11 @@ public class MypageController {
 
 		OrderDTO Infos = this.mypageService.getSelect(no);
 		List<OrderItemDTO> ItemInfos = this.mypageService.getItemSelect(no);
+		
 		// 상품명 가져오기 (매개변수 수정 필요 -> 값 안들어감)
 		ProductDTO productName = this.mypageService.getProductName(oit.getProduct_no());
 
-		log.trace("****************************  orderDetails({},{},{}) invoked. *****************************", Infos, ItemInfos, productName);
+		log.trace("****************************  orderDetails({},{},{},{}) invoked. *****************************", Infos, ItemInfos, productName, orderDTO);
 		
 		model.addAttribute("productName", productName);
 		model.addAttribute("info", Infos);
