@@ -80,10 +80,11 @@ public class MypageController {
 
 		OrderDTO Infos = this.mypageService.getSelect(no);
 		List<OrderItemDTO> ItemInfos = this.mypageService.getItemSelect(no);
+		
 		// 상품명 가져오기 (매개변수 수정 필요 -> 값 안들어감)
 		ProductDTO productName = this.mypageService.getProductName(oit.getProduct_no());
 
-		log.trace("****************************  orderDetails({},{},{}) invoked. *****************************", Infos, ItemInfos, productName);
+		log.trace("****************************  orderDetails({},{},{},{}) invoked. *****************************", Infos, ItemInfos, productName, orderDTO);
 		
 		model.addAttribute("productName", productName);
 		model.addAttribute("info", Infos);
