@@ -135,6 +135,7 @@ public class NaverController {
 	} // callBack()
 	
 //	------------------------------------------------------------------------------------------------
+	// 회원 가입 페이지용
 	
 	// 회원가입 첫 화면 요청 메소드
 	@RequestMapping(value = "/signup/naver", method = { RequestMethod.GET, RequestMethod.POST })
@@ -153,7 +154,7 @@ public class NaverController {
 		
 	} // naverSignUp()
 	
-	// 네이버 로그인 성공 시 callBack 호출 메소드
+	// 네이버 callBack 호출 메소드
 	@RequestMapping(value = "/signup/callBack", method = { RequestMethod.GET, RequestMethod.POST })
 		public String signupCallBack
 			(Model model, @RequestParam String code, @RequestParam String state, HttpSession session, HttpServletRequest request)

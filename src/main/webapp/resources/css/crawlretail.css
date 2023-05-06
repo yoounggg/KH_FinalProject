@@ -1,0 +1,96 @@
+@charset "UTF-8";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    min-width: 1026px;
+    height: 100vh;
+    min-height: 100%;
+    background-color: white;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* a, li태그 전체에 공통 적용 */
+a{ text-decoration: none; color: black;}
+
+li{ list-style-type: none;}
+
+/*----------------------------------*/
+
+.box2{
+	margin: 50px 0 0 0;
+	display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+.small2{
+	height: 40px;
+    margin: 5px;
+    width: 200px;
+    border: 1px solid #11BC0D;
+    border-radius: 20px;
+    background-color: #11BC0D;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 36px;
+}
+.small2>a{
+	color:white;
+}
+.sujeong1{
+	padding-bottom: 10px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+}
+#sujeong2{
+    padding: 10px;
+    margin:0;
+}
+
+.retailinfo{
+    margin: 0 auto;
+	padding: 50px 0 100px 0;	
+	display: flex;
+    flex-flow: column;
+    width: 80%;
+}
+#itemTable_1{
+	margin-top: 10px;
+	border-collapse: collapse;
+}
+th{
+	border-bottom: 1px solid #c7c7c7;
+    padding-bottom: 10px;
+}
+td{
+	 border: 1px solid #c7c7c7;  
+}
+tbody{text-align: center;}
+table.wtable3 th {
+    padding: 5px 10px 5px;
+    color: #222;
+    background: #F9F9F4;
+    border: solid 1px #c7c7c7;
+    border-bottom: solid 1px #c7c7c7;
+    font-size: 1.15em;
+    text-align: center;
+}
+table.wtable3 td.cell_tit1 {
+    background: #F9F9F4;
+    font-size: 1.3em;
+    text-align: center;
+}
+.infobox{
+	padding: 50px 0 0 0;
+	width: 80%;
+	margin: 0 auto;
+	
+}

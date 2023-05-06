@@ -28,143 +28,197 @@
 	<!-- header -->
 	<%@include file= "../common/header.jsp" %>
 
-    <main>
-	    <!-- side bar 메뉴 -->
-	    <aside class="userinfoAside">
-	        <ul class="box1">
-	            <img src="/resources/imgs/profileimg.jpg" alt="프로필 사진">
-	            <li class="small1">${details.name} 님</li>
-	            <li class="small1"><a href="/mypage/userInfo/${member.id}"><i class="fab fa-whmcs"></i>회원정보관리</a></li>
-	        </ul>
-	
-	        <ul class="box2">
-	            <li class="small2 small3 small4"><a href="/mypage/userInfo/${member.id}">정보수정</a></li>
-	            <li class="small2 small3 small4"><a href="/mypage/userInfo/${member.id}/changePw">비밀번호 변경</a></li>
-	            <li class="small2 small3 small4"><a href="/mypage/?">주문내역</a></li>
-	            <li class="small2 small5"><a href="/mypage/?">배송현황</a></li>
-	        </ul>
-	    </aside>
-	    
-	<!-- 상세 주문내역 -->
-	
-	    <div class="wrapper">
-	
-	        <h2>상세주문내역</h2>
-	        <div class="line"></div>
-	
-	        <div class="order-details">
-	
-	            <div class="product-info">
-	                <div class="상품사진">
-	                    <img src="imgs/상품이미지.jpg" alt="주문상품사진" class="주문상품사진">
-	                </div>
-	
-	                <div class="상품정보">
-	                    <div class="product-name"> 상품명</div>   
-	                    <div class="option"> 옵션</div> 
-	                    <div class="price"> 가격</div> 
-	                    <div class="payment-date"> 결제일</div> 
-	                </div>
-	
-	            </div>
-	
-	        </div> 
-	        
-	        <!-- ========== 상세 주문 내역1 ============ -->
-	
-	        <div class="order-details2">
-	
-	            <div class="product-info2">
-	                <div class="상품사진">
-	                    <img src="imgs/상품이미지.jpg" alt="주문상품사진" class="주문상품사진2">
-	                </div>
-	
-	                <div class="상품정보2">
-	                    <div class="product-name2"> 상품명</div>   
-	                    <div class="option2"> 옵션</div> 
-	                    <div class="price2"> 가격</div> 
-	                    <div class="payment-date2"> 결제일</div> 
-	                </div>
-	
-	            </div>
-	
-	        </div> 
-	        
-	        <!-- ============== 상세 주문 내역2 ============ -->
-	
-	        <div class="line2"></div>
-	
-	        <h2>배송 정보</h2>
-	
-	        <div class="delivery-info">
-	            <div class="수령인">
-	                <div id="delivery-title1">수령인</div>
-	                <div id="수령인이름">셍나</div>
-	            </div>
-	            <div class="연락처">
-	                <div id="delivery-title2">연락처</div>
-	                <div id="휴대폰번호">010-01010-01010</div>
-	            </div>
-	            <div class="배송지">
-	                <div id="delivery-title3">배송지</div>
-	                <div id="주소123">
-	                    <div id="주소1">우편번호</div>
-	                    <div id="주소2">주소</div>
-	                    <div id="주소3">상세주소</div>
-	                </div>
-	            </div>
-	            <div class="배송메모">
-	                <div id="delivery-title4">배송메모</div>
-	                <div id="배송메모데이터">배송메모데이터불러오기</div>
-	            </div>
-	        </div> 
-	        
-	        <!-- ============ 배송정보 ==========  -->
-	
-	        <div class="line3"></div>
-	
-	        <div class="order-info">
-	            <div class="최초주문금액">
-	                <div id="order-title1">최초 주문금액</div>
-	                <div id="주문금액">100,000원</div>
-	            </div>
-	            <div class="상품금액">
-	                <div id="order-title2">상품금액</div>
-	                <div id="order-title2-1">98,500원</div>
-	            </div>
-	            <div class="배송비">
-	                <div id="order-title3">배송비</div>
-	                <div id="order-title3-1">+2,500원</div>
-	            </div>
-	            <div class="상품할인">
-	                <div id="order-title4">상품 할인</div>
-	                <div id="order-title4-1">-1,000원</div>
-	            </div>
-	        </div> 
-	        
-	        <!-- ========== 결제정보 ============ -->
-	
-	        <div class="line4"></div>
-	
-	        <div class="order-detail-info">
-	            
-	            <h2>결제상세</h2>
-	            <div class="결제상세1">
-	                <div class="order-detail-title1">카드 간편결제</div>
-	                <div class="금액"> 100,000원</div> <!--위 최초 주문금액 가져와야할듯-->
-	            </div>
-	            <div class="결제상세2">
-	                <div class="order-detail-title2">비씨(5555-****-****-****)</div>
-	                <div class="결제방법">일시불</div>
-	            </div>
-	            <div class="카드사정책">
-	                <div> · 카드에 BC 카드가 없는 경우 무이자 할부 적용 불가</div>
-	                <div> · 무이자 적용 여부는 카드사로 문의하시면 정확하게 확인할 수 있습니다. </div>
-	            </div>
-	        </div>
-	
-	    </div> 
-    </main>
+<main>
+
+    <!-- side bar 메뉴 -->
+    <aside class="userinfoAside">
+        <ul class="box1">
+            <img src="/resources/imgs/profileimg.jpg" alt="프로필 사진">
+            <li class="small1">${details.name} 님</li>
+            <li class="small1"><a href="/mypage/userInfo/${member.id}"><i class="fab fa-whmcs"></i>회원정보관리</a></li>
+        </ul>
+
+        <ul class="box2">
+            <li class="small2 small3 small4"><a href="/mypage/userInfo/${member.id}">정보수정</a></li>
+            <li class="small2 small3 small4"><a href="/mypage/userInfo/${member.id}/changePw">비밀번호 변경</a></li>
+            <li class="small2 small3 small4"><a href="/mypage/orderList/${member.id}">주문내역</a></li>
+            <li class="small2 small5"><a href="/mypage/?">배송현황</a></li>
+        </ul>
+    </aside>
+
+    <!-- 주문 내역 상세 컨텐츠 전체 wrapper -->
+    <div class="OrderDetailsWrapper">
+
+        <!-- 상세주문내역 -->
+        <div class="OrderDetailsContainer1">
+
+            <!-- 상세주문내역타이틀 -->
+            <div class="OrderDetailsTitle1">상세주문내역</div>
+            <!-- 구분선 -->
+            <div class="line1"></div>
+
+            <!-- 상세주문내역 contents 조절용 -->
+            <div class="order_details1">
+
+                <!-- 주문 상품 사진 -->
+                <div class="product_photo">
+                    <!-- DB에서 상품 이미지 불러오기 -> 어떻게 하쥐,, -->
+                    <img src="/resources/imgs/profileimg.jpg" alt="주문상품사진" class="product_photo2">
+                </div>
+
+                <!-- 해당 상품에 대한 정보 -->
+                <div class="product_info_container">
+
+                    <div class="product_info">
+                        <div id="product_title">상품명:</div>
+                        <div id="product_name">${productName}</div>
+                    </div>
+
+                    <!-- 옵션 없어짐
+                    <div class="product_info">
+                        <div id="product_title">옵션:</div>
+                        <div id="product_option">DB에서 불러오기</div>
+                    </div>
+                    -->
+
+                    <div class="product_info">
+                        <div id="product_title">가격:</div>
+                        <div id="product_price">* 상품 가격 * DB에서 불러오기</div>
+                    </div> 
+
+                    <div class="product_info">
+                        <div id="product_title">결제일:</div>
+                        <div id="product_payment_date">${info.order_date}</div>
+                    </div> 
+
+                </div>
+
+            </div> 
+
+        </div>
+
+
+        <!-- 배송 정보 -->
+        <div class="OrderDetailsContainer2">
+            
+            <!-- 배송 정보 타이틀 -->
+            <div class="OrderDetailsTitle2">배송 정보</div>
+            <!-- 구분선 -->
+            <div class="line2"></div>
+
+            <!-- 배송 정보 contents 조절용 -->
+            <div class="order_details2">
+
+                <!-- 수령인 -->
+                <div class="delivery_info1">
+                    <div id="delivery_title1">수령인</div>
+                    <div id="receiver_name">${info.receiver_name}</div>
+                </div>
+
+                <!-- 연락처 -->
+                <!-- 수령인 연락처인지 주문한 사람 연락처인지 모르겠음.. -->
+                <div class="delivery_info2">
+                    <div id="delivery_title2">연락처</div>
+                    <div id="receiver_tel">${info.receiver_tel}</div>
+                </div>
+
+                <!-- 배송지 -->
+                <div class="delivery_info3">
+                    <div id="delivery_title3">배송지</div>
+                    <div id="receiver_address">
+                        <div id="receiver_address1">${info.receiver_address1}</div>
+                        <div id="receiver_address2">${info.receiver_address2}</div>
+                        <div id="receiver_address3">${info.receiver_address3}</div>
+                    </div>
+                </div>
+
+                <!-- 배송메모 -->
+                <div class="delivery_info4">
+                    <div id="delivery_title4">배송메모</div>
+                    <div id="delivery_memo">${info.delivery_comment}</div>
+                </div>
+
+            </div> 
+
+        </div>
+
+
+        <!-- 결제 정보 -->
+        <div class="OrderDetailsContainer3">
+
+            <!-- 결제 정보 타이틀 -->
+            <div class="OrderDetailsTitle3">결제 정보</div>
+            <!-- 구분선 -->
+            <div class="line3"></div>
+
+            <!-- 결제 정보 contents 조절용 -->
+            <div class="order_details3">
+
+                <div class="payment_amount_info">
+                    <!-- 할인 안들어간 원래 상품 금액 -->
+                    <div id="order_title">총 상품 가격</div>
+                    <div id="total_product_amount">* 총 상품 가격 * DB에서 불러오기</div>
+                </div>
+
+                <div class="payment_amount_info">
+                    <!-- 할인 얼마나 됐는지 금액 -->
+                    <div id="order_title">할인 금액</div>
+                    <div id="discount_amount">* 할인 금액 * DB에서 불러오기</div>
+                </div>
+
+                <div class="payment_amount_info">
+                    <!-- 배송비 -->
+                    <div id="order_title">배송비</div>
+                    <div id="delivery_charge">${info.delivery_cost}</div>
+                </div>
+
+                <div class="payment_amount_info">
+                    <!-- 총 상품 가격 - 할인 금액 + 배송비 결과 -->
+                    <div id="order_title">총 결제 금액</div>
+                    <div id="total_payment_amount">* 총 결제 금액 * DB에서 불러오기</div>
+                </div>
+
+            </div>
+            
+        </div>
+
+
+        <!-- 결제 상세 -->
+        <div class="OrderDetailsContainer4">
+
+            <!-- 결제 상세 타이틀 -->
+            <div class="OrderDetailsTitle4">결제 상세</div>
+            <div class="line4"></div>
+
+            <!-- 결제 상세 contents 조절용 -->
+            <div class="order_details4">
+
+                <!-- DB에서 끌고 오기 -->
+                <div class="payment_details">
+                    <!-- 결제 방식 -->
+                    <div class="payment_title"> * 결제 방식 (ex: 카드 간편 결제) * DB에서 불러오기</div>
+                    <!-- 총 결제 금액 불러오기 -->
+                    <div class="amount_price"> * 총 결제 금액 * DB에서 불러오기</div>
+                </div>
+
+                <!-- DB에서 끌고 오기 -->
+                <div class="payment_details2">
+                    <!-- 결제 방식 관련 정보 -->
+                    <div class="card_number"> * 카드 번호 (ex: 비씨 (5555-****-****-****)) * DB에서 불러오기</div>
+                    <div class="payment_installments"> * 할부 방식 * DB에서 불러오기</div>
+                </div>
+
+                <!-- 카드사 정책 구현이 가능한지 모르겠음....?? -->
+                <div class="company_policy">
+                    <div> · 카드에 BC 카드가 없는 경우 무이자 할부 적용 불가</div>
+                    <div> · 무이자 적용 여부는 카드사로 문의하시면 정확하게 확인할 수 있습니다. </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</main>
     
     <!-- footer -->
     <%@include file= "../common/footer.jsp" %>

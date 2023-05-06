@@ -17,9 +17,12 @@
 
 <body>
     <div class="container">
-        <div class="link">
-            <span><a href="/main"><i class="fa fa-home" style="font-size:20px"></i></a></span> > <span>농산</span> > <span>국내외과일</span>
-        </div> 
+        <c:forEach var="cate" items="${__Category__}"> <!-- 05/04 code 추가-->
+            
+            <div class="link">
+                <span><a href="/main"><i class="fa fa-home" style="font-size:20px"></i></a></span> > <span>농산</span> > <span><a href="/product/list?code=${cate.code}">${cate.categoryName}</a></span>
+            </div> 
+        </c:forEach>
 
         <div class="images">
             <img id="main_img" src="/resources/product/${__INFO__.main_image}" onerror="this.src='https://picsum.photos/id/684/500/400';" alt="">
@@ -508,11 +511,31 @@
     	
     });
   
-	// [찬석] 구매하기 버튼
-	/* 바로구매 버튼 */
+ // [찬석] 구매하기 버튼
+    /* 바로구매 버튼 */
 	$(".btn_buy").on("click", function(){
-		let count = $("#p_num").val();
-		$(".order_form").find('input[name="orders[0].productCount"]').val(count);
-		$(".order_form").submit();
+	  let count = $("#p_num").val();
+	  $(".order_form").find('input[name="orders[0].productCount"]').val(count);
+	  
+	  // 로그인 상태인지 확인
+	  $.ajax({
+	    url: '/order/{id}',
+	    type: 'POST',
+	    success: function(data) {
+	      if (data.loggedIn) {
+	          // 로그인하지 않은 경우 팝업 창 띄우고 로그인 페이지로 이동
+	          alert("로그인이 필요합니다.");
+	          window.location.href = '/login/main';
+	          return false;
+	      } else {
+	    	  $(".order_form").submit();
+	      }
+	    },
+	    error: function() {
+	      alert("로그인 상태를 확인할 수 없습니다.");
+	      window.location.href = '/login/main';
+	    }
+	  });
 	});
+
 </script>

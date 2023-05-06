@@ -20,6 +20,16 @@ a{ text-decoration: none;}
 
 li{ list-style-type: none;}
 
+/* -----정렬------ */
+main{
+    padding: 100px 0 150px 0;
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+}
+
 /* ---------aside------- */
 .userinfoAside{
     display: flex;
@@ -83,257 +93,278 @@ li{ list-style-type: none;}
 	border-bottom: 1px solid black;
 }
 
-/* ---------------- 주문 내역 상세 ---------------- */
-
 /* =============== 상세 주문 내역 ================= */
-.order-details {
-    display: flex;
-    flex-direction: column;
+
+/* OrderDetailsWrapper : 상세 주문 내역 전체 */
+.OrderDetailsWrapper {
+    margin-right: 140px;
+}
+
+/* 각 항목 별 컨테이너 */
+.OrderDetailsContainer1 {
+    margin-bottom: 110px;
+}
+
+.OrderDetailsContainer2,
+.OrderDetailsContainer3,
+.OrderDetailsContainer4 {
+    margin-bottom: 100px;
+}
+
+/* 각 항목 별 타이틀 */
+.OrderDetailsTitle1,
+.OrderDetailsTitle2,
+.OrderDetailsTitle3,
+.OrderDetailsTitle4 {
+    /* display: flex;
+    flex-direction: column; */
+    font-size: 23px;
+    font-weight: bold;
     width: 700px;
-    /* border:1px solid black; */
-    top:100px;
-    left: 10%;
 }
 
-.line {
+/* 구분선 */
+.line1 {
     width: 100%;
     border: 1px solid black;
     left: 10%;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 15px;
 }
 
-.product-info {
-    display: flex;
-    align-items: center;
-    margin-top: 30px;
-}
-
-.주문상품사진 {
-    float: left;
-    margin-right: 40px;
-    max-width: 100px;
-    max-height: 100px;
-}
-
-.product-name,
-.option,
-.price,
-.payment-date {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.product-info2 {
-    display: flex;
-    align-items: center;
-    margin-top: 50px;
-}
-
-.주문상품사진2 {
-    float: left;
-    margin-right: 40px;
-    max-width: 100px;
-    max-height: 100px;
-}
-
-.product-name2,
-.option2,
-.price2,
-.payment-date2 {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.line2 {
-    width: 100%;
-    border: 1px solid black;
-    left: 10%;
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-
-/* ============= 배송 정보 ===============*/
-.delivery-info {
-    width: 700px;
-    height: 300px;
-    /* border: 1px solid black; */
-}
-
-.수령인 div,
-.연락처 div,
-.배송지 div,
-.배송메모 div {
-  display: inline-block; /* 인라인 블록 요소로 설정하여 가로 정렬 */
-}
-
-#delivery-title1 {
-    /* border: 1px solid black; */
-    font-size: 20px;
-    margin-right: 65px;
-}
-#수령인이름{
-    /* border: 1px solid black; */
-}
-
-#delivery-title2 {
-    /* border: 1px solid black; */
-    font-size: 20px;
-    margin-right: 65px;
-    margin-top: 20px;
-
-}
-#휴대폰번호{
-
-}
-
-.배송지 {
-    display: flex;  /* flexbox 사용 */
-    align-items: center;  /* 수직 정렬 */
-}
-
-#delivery-title3 {
-    font-size: 20px;
-    margin-right: 65px;
-}
-
-#주소123 {
-    display: flex;  /* flexbox 사용 */
-    flex-direction: column;  /* 수직 정렬 */
-    align-items: flex-end;  /* 우측 정렬 */
-    /* margin-left: 49px;  배송지 제목과의 간격 설정 */
-}
-#주소1 {
-    margin-top: 50px;
-}
-
-#주소1, #주소2, #주소3 {
-    margin-bottom: 5px;  /* 주소 요소간의 간격 설정 */
-}
-
-
-#delivery-title4 {
-    /* border: 1px solid black; */
-    font-size: 20px;
-    margin-right: 35px;
-    margin-top: 20px;
-}
-#배송메모데이터 {
-
-}
-
-/* ============결제 정보============== */
-
-.line3 {
-    width: 100%;
-    border: 1px solid black;
-    left: 10%;
-    margin-top: 50px;
-    margin-bottom: 20px;
-}
-.order-info{
-    /* width: 700px;
-    height: 300px; */
-}
-.최초주문금액 div { /*가로정렬위해 container 요소 안의 div태그들 inline-block처리*/
-    display: inline-block;
-    justify-content: space-between;
-}
-#order-title1 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-right: 35px;
-    margin-top: 20px;
-}
-#주문금액 {
-    margin-top: 20px;
-    color: #11BC0D;;
-    font-weight: bold;
-    float: right;
-}
-
-.상품금액 div {
-    display: inline-block;
-    justify-content: space-between;
-}
-#order-title2 {
-    font-size: 20px;
-    margin-right: 35px;
-    margin-top: 20px;
-}
-#order-title2-1{
-    margin-top: 20px;
-    font-weight: bold;
-    float: right;
-}
-
-.배송비 div {
-    display: inline-block;
-    justify-content: space-between;
-}
-#order-title3 {
-    font-size: 20px;
-    margin-right: 35px;
-    margin-top: 20px;
-}
-#order-title3-1 {
-    margin-top: 20px;
-    font-weight: bold;
-    float: right;
-}
-
-.상품할인 div {
-    display: inline-block;
-    justify-content: space-between;
-}
-#order-title4 {
-    font-size: 20px;
-    margin-right: 35px;
-    margin-top: 20px;
-}
-#order-title4-1 {
-    margin-top: 20px;
-    font-weight: bold;
-    float: right;
-}
-/* ================== 결제 상세 ================*/
-
+.line2,
+.line3,
 .line4 {
     width: 100%;
     border: 1px solid black;
     left: 10%;
-    margin-top: 50px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+/* 각 항목들 정보 위치 조절용 */
+.order_details1 {
+    margin-top: 30px;
+}
+
+.order_details2,
+.order_details3
+.order_details4 {
+    align-items: center;
+    margin-top: 40px;
+}
+
+/* --- 상세 주문 내역 --------------------------------------- */
+
+/* 상품 이미지 구간 */
+.product_photo {
+    display: flex;
+    flex-direction: row; 
+    justify-content: flex-start;
+    align-items: flex-start; /* 상단 정렬로 변경 */
+    margin-bottom: 40px;
+    margin-right: 40px;
+    float: left;
+    border: 1px solid black; /* 영역 표시용! 나중에 지우기 */
+    width: 120px;
+    height: 120px;
+    overflow: hidden; /* 이미지가 컨테이너 밖으로 벗어나지 않게 함 */
+}
+
+/* 상품 이미지 -> DB에서 불러와야함 */
+.product_photo2 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지 비율 유지하며 채움 */
+}
+
+/* 상품에 대한 정보 */
+.product_info {
+    display: flex;
+    /* flex-direction: column;
+    align-items: flex-start; */
+}
+
+/* 상품명, 가격, 결제일 */
+#product_title {
+    font-size: 17px;
+    margin-bottom: 15px;
+    width: 120px;
+}
+
+/* 상품명, 가격, 결제일 -> DB에서 불러오는거 표시됨! */
+#product_name,
+#product_price,
+#product_payment_date {
+    font-size: 17px;
+    margin-bottom: 15px;
+}
+
+/* --- 배송 정보 --------------------------------------- */
+
+/* 배송정보 각 항목들 묶는 div */
+.delivery_info1,
+.delivery_info2,
+.delivery_info4 {
+    display: flex;  /*flexbox 사용*/
+    flex-direction: row;  /*수평 정렬*/
+    justify-content: flex-start;
+    align-items: center;  /*중앙 정렬*/
+    margin-bottom: 40px;
+}
+
+/* 배송 정보 항목 묶는 div (배송지) */
+.delivery_info3 {
+    display: flex;  /*flexbox 사용*/
+    flex-direction: row;  /*수평 정렬*/
+    justify-content: flex-start;
+    align-items: center;  /*중앙 정렬*/
+    margin-bottom: 40px;
+    position: relative; /* 상위 요소를 기준으로 배송지 타이틀 위치 설정 */
+}
+
+/* 배송 정보 타이틀 (수령인, 연락처, 배송메모) */
+#delivery_title1,
+#delivery_title2,
+#delivery_title4 {
+    font-size: 17px;
+    margin-bottom: 20px;
+    width: 100px;
+}
+
+/* 배송 정보 타이틀 (배송지) */
+#delivery_title3 {
+    font-size: 17px;
+    margin-bottom: 20px;
+    width: 100px;
+    position: absolute; /* 배송지 타이틀 위치를 절대적으로 설정 */
+    top: 0; /* 상단에서 0 위치 */
+    left: 0; /* 왼쪽에서 0 위치 */
+}
+
+
+/* DB에서 불러올 배송 정보 관련 정보들 (이름, 전화번호, 배송메모) */
+#receiver_name,
+#receiver_tel,
+#delivery_memo {
+    font-size: 17px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    display: inline-block;
+    margin-bottom: 20px;
+    margin-left: 50px;
+}
+
+/* 배송지 위치 조정...8ㅅ8 */
+#receiver_address {
+    float: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 150px;
     margin-bottom: 20px;
 }
-.결제상세1 div{
-    display: inline-block;
-    /* justify-content: space-between; */
-}
-.order-detail-title1 {
-    font-size: 20px;
-    margin-right: 35px;
-    margin-top: 20px;
-}
-.금액 {
-    margin-top: 20px;
-    font-weight: bold;
-    float: right;
+
+/* 우편번호 */
+/* 배송지 타이틀이랑 우편 번호 수평으로 놓으려고..
+-> DB에서 불러옴 */
+#receiver_address1 {
+    margin-top: 3px;
+    font-size: 17px;
 }
 
-.결제상세2 div {
-    display: inline-block;
-}
-.order-detail-title2 {
-    font-size: 20px;
-    margin-right: 35px;
+/* 주소 + 상세주소 */
+/* DB에서 불러올 배송 정보 관련 정보들 (주소 3개 수직 정렬) */
+#receiver_address2,
+#receiver_address3 {
     margin-top: 20px;
-}
-.결제방법 {
-    margin-left: 40px;
+    font-size: 17px;
 }
 
-.카드사정책 {
+/* --- 결제 정보 --------------------------------------- */
+
+.payment_amount_info{
+    /* display: flex;
+    margin-bottom: 25px; */
+    display: flex; /* Flexbox 사용 */
+    justify-content: space-between; /* 요소들 사이의 공간을 최대한 넓게 만듬 */
+    margin-bottom: 25px;
+    width: 100%; /* payment_amount_info의 너비를 100%로 설정 */
+}
+
+/* 총 상품 가격, 할인 금액, 배송비, 총 결제 금액 타이틀 */
+#order_title {
+    font-size: 17px;
     margin-top: 20px;
+    width: 100px;
+}
+
+/* 총 상품 가격 초록색 */
+.total_product_amount {
+    color:#11BC0D;
+    font-weight: 600;
+}
+
+#discount_amount,
+#delivery_charge,
+#total_payment_amount {
+    font-weight: 600;
+}
+
+/* 총 상품 가격, 할인 금액, 배송비, 총 결제 금액 -> DB에서 가져와야 함 */
+#total_product_amount,
+#discount_amount,
+#delivery_charge,
+#total_payment_amount {
+    margin-left: 50px;
+    font-size: 17px;
+    margin-top: 20px;
+}
+
+
+/* --- 결제 상세 --------------------------------------- */
+
+/* 결제 방식과 총 결제 금액 수평으로 놓기 위해서 */
+.payment_details {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* 결제 방식 */
+.payment_title {
+    font-size: 17px;
+}
+
+/* 총 결제 금액 */
+.amount_price {
+    font-size: 17px;
+}
+
+/* 카드 번호, 할부 방식 나란히 정렬 */
+.payment_details2 {
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* 카드 번호 */
+.card_number {
+    font-size: 17px;
+    margin-bottom: 20px;
+    /* 카드 번호랑 할부 방식 사이에 공백 */
+    margin-right: 5px;
+}
+
+/* 할부방식 */
+.payment_installments{
+    font-size: 17px;
+    margin-bottom: 20px;
+}
+
+/* 카드사 정책 구현 어떻게 해야 할지 모르겠음.. */
+.company_policy {
+    margin-top: 25px;
 }
