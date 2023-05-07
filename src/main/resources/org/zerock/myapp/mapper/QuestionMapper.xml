@@ -24,11 +24,17 @@
 		ORDER BY regdate DESC
 	</select>
 	
-	
+	<!-- 문의 내용 보기  -->
 	<select id="getPage" resultType="org.zerock.myapp.domain.QuestionDTO">
 
 		SELECT * from question WHERE qno = #{qno}
 	
 	</select>	
 	
+	<!-- 관리자 문의 내역 전체보기 -->
+	<select id="adminList" resultType="org.zerock.myapp.domain.QuestionDTO">
+
+		SELECT * from question ORDER BY qno DESC
+	
+	</select>	
 </mapper>

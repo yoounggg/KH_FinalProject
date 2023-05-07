@@ -78,7 +78,7 @@
                                         
                                         <td><c:out value="${list.type}"/></td>
                                         <td>
-                                            <a href="/help/page?qno=${list.qno}">
+                                            <a href="/admin/question/page?qno=${list.qno}">
                                                 ${list.title}
                                             </a>
                                         </td>

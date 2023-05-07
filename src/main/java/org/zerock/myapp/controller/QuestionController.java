@@ -22,20 +22,19 @@ import lombok.extern.log4j.Log4j2;
 @Controller
 @Log4j2
 
-@RequestMapping("/help")
 @NoArgsConstructor
 public class QuestionController {
 
 	@Setter(onMethod_ = @Autowired)
 	private QuestionService questionService;
 	
-	@GetMapping("/write") // 1:1 문의 글 등록페이지
+	@GetMapping("/help/write") // 1:1 문의 글 등록페이지
 	public void writeGet() {
 		log.trace("1:1 문의 글 등록 페이지 writeGet() invoked");
 		
 	} // writeGet
 
-	@PostMapping("/write")    // 1:1 문의 글 등록
+	@PostMapping("/help/write")    // 1:1 문의 글 등록
 	public String writePost(QuestionDTO questionDTO, HttpServletRequest req, ModelMap model) {
 	    log.trace("1:1 문의 글 등록 writePost() invoked");
 
@@ -57,8 +56,8 @@ public class QuestionController {
 	} // writePost
 
 	
-	@GetMapping("/question")
-	public void listGet(Model model, HttpServletRequest req) throws ControllerException {
+	@GetMapping("/help/question")
+	public void listGet(Model model, HttpServletRequest req) throws ControllerException {	// 1:1 문의 메인
 		log.info("1:1문의 메인페이지 : ", model);
 		
 		HttpSession session = req.getSession();
@@ -72,12 +71,28 @@ public class QuestionController {
 	} // listGet
 	
 	
-	@GetMapping("page")
-	public void getPage(Integer qno, Model model) {
+	@GetMapping("/help/page")
+	public void getPage(Integer qno, Model model) {			// 1:1 문의 내용보기
+		log.info("getPage() invoked");
 		
 		model.addAttribute("pageInfo", questionService.getPage(qno));
 		
 	} // getPage
 	
+	@GetMapping("/admin/question/list")
+	public void adminList(Model model) {					// 관리자 1:1 전체 내역
+		log.info("adminList() invoked.");
+		
+		model.addAttribute("list", questionService.adminList());
+		
+	} // adminList
+	
+	@GetMapping("/admin/question/page")
+	public void adminGet(Integer qno, Model model) {		// 관리자 1:1문의 내용보기
+		log.info("adminGet() invoked");
+		
+		model.addAttribute("pageInfo", questionService.getPage(qno));
+		
+	} // adminGet
 	
 } // end class
