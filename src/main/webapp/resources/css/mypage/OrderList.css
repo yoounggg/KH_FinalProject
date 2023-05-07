@@ -121,6 +121,7 @@ main{
     height: 150px;
     border-collapse: collapse;
     margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* 위 컨테이너에서 배송 현황 빼고 수평 정렬하기 위해서 하나 더 만들었음 */
