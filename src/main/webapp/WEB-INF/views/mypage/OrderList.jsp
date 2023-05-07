@@ -38,7 +38,7 @@
 	            <li class="small2 small3 small4"><a href="/mypage/userInfo/${member.id}">정보수정</a></li>
 	            <li class="small2 small3 small4"><a href="/mypage/userInfo/${member.id}/changePw">비밀번호 변경</a></li>
 	            <li class="small2 small3 small4"><a href="/mypage/orderList/${member.id}">주문내역</a></li>
-	            <li class="small2 small5"><a href="/mypage/?">배송현황</a></li>
+	            <li class="small2 small5"><a href="/mypage/deliveryConfirm/${member.id}">배송현황</a></li>
 	        </ul>
 	    </aside>
 	    
@@ -65,7 +65,7 @@
 		
 		                <!-- 배송 현황 -->
 		                <div class="order_condition">
-		                    <div>배송현황(${ol.delivery_state})</div>
+		                    <a href="/mypage/deliveryConfirm/${member.id}">배송현황</a>
 		                </div>
 		
 		                <!-- 수평 정렬 -->
@@ -108,7 +108,7 @@
 		                        <!-- 상세 주문 내역 -->
 		                        <a type="button" href="/mypage/orderDetails/${member.id}?no=${ol.no}" class="orderlist_detail">상세주문내역</a>
 		                        <!-- 배송 조회 -->
-		                        <a type="button" href=# class="delivery_tracking">배송조회</a>
+		                        <a type="button" href="/mypage/deliveryConfirm/${member.id}" class="delivery_tracking">배송조회</a>
 		                    </div>
 		                </div>
 		            </div>
