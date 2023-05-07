@@ -30,40 +30,16 @@
 
 	<!-- 메인 - 보라색 가로줄(메인페이지글자), 왼쪽 메뉴 -->
 	<main>
-
-		<!-- 메인 - 공지사항 글 목록 테이블, 이동페이지, 수정, 삭제 -->
-
 		<div class="content">
-
-			<h2>문의내용</h2>
+			<h2>답변하기</h2>
 			<div class="write">
 				<form>
-					<table>
-						<p>
-							<input type="hidden" name="qno" value="${pageInfo.qno}">
-						</p>
-
-						<tr>
-							<th class="th1">문의 유형</th>
-							<th class="th1">제목</th>
-							<th class="th1">등록 날짜</th>
-						</tr>
-
-						<tr>
-							<th class="th2">${pageInfo.type}</th>
-							<th class="th2">${pageInfo.title}</th>
-							<th class="th2"><fmt:formatDate pattern="yyyy/MM/dd HH:mm"
-									value="${pageInfo.regDate}" /></th>
-						</tr>
-					</table>
-					<div id="content_head">문의 내용</div>
-					<table>
-						<tr>
-							<td>
-								<div class="page_detail">${pageInfo.content}</div>
-							</td>
-						</tr>
-					</table>
+					<div id="content_head">1:1문의 답변</div>
+					<input id="ttle" type="text" placeholder="제목을 입력해주세요" name="title" required>
+                              
+					<br>
+					
+					<textarea id="con" placeholder="내용을 입력해주세요" name="content" minlength="10" required></textarea><br>
 
 					<div class="btm_btn">
 						<div>
@@ -71,18 +47,13 @@
 						</div>
 
 						<div>
-							<a href="/admin/question/write"><span class="list">답변하기</span></a>
+							<a href="/admin/question/write"><span class="list">등록하기</span></a>
 						</div>
-
-						<button type="button" class='delete' id="delete_btn">삭제하기</button>
 					</div>
+				</form>
 			</div>
-			</form>
 		</div>
-
-
 	</main>
-
 </body>
 
 <!-- 파일을 따로주면 안먹힘 이유가 뭘까.. -->
