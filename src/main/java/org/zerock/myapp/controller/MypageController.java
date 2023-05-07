@@ -1,5 +1,6 @@
 package org.zerock.myapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,9 +55,10 @@ public class MypageController {
 //		
 //		model.addAttribute("orderInfo", dataMap);
 		
+		// 모델에 orderDTO(주문 정보 담아서 view에 전달)
 		model.addAttribute("orderDTO", orderDTO);
-//		model.addAttribute("orderItemDTO", orderItemDTO); -> 지금 모든 정보 불러와서 빼놓음
 		
+		// totalbPrice는 제대로 안들어간다..
 		model.addAttribute("totalPrice", dto.getTotalPrice());
 		
 		return "mypage/OrderList";
@@ -67,7 +69,6 @@ public class MypageController {
 	@RequestMapping(value = "/orderDetails/{id}", method = { RequestMethod.GET, RequestMethod.POST })
 	public String orderDetails(@PathVariable("id") String id, @RequestParam("no") Integer no, Model model) throws ControllerException, ServiceException {
 		
-		OrderItemDTO oit = new OrderItemDTO();
 		// List로 모든 정보를 불러올게 아니라 OrderList에서 상세주문내역 클릭 시 어떻게 그 주문번호의 정보만 가져올지 생각중..
 		// 주문 정보 획득
 		List<OrderDTO> orderDTO = mypageService.getOrder(id);
@@ -75,18 +76,29 @@ public class MypageController {
 		// 주문상품 정보 획득 ( 수정 필요 )
 //		List<OrderItemDTO> orderItemDTO = mypageService.getOrderItemDTO(id);
 		
-//		log.trace("orderDetails() invoked.");
 		log.trace("orderDetails({},{}) invoked.", id, model);
 
+		// no는 view단에서 id와 함께 전송하도록 해놓음( OrderList 상세주문내역 버튼 )
+		// OrderDTO( 주문 상세 조회하려고 해당 주문 번호만(no) 가져와서 해당 주문번호에 대해서만 조회함  )
 		OrderDTO Infos = this.mypageService.getSelect(no);
+		// OrderItemDTO( 주문 상품 상세 조회하려고 no(MYMG_ORDER) 가져와서 해당 주문번호의 상품에 대해서만 조회함 )
 		List<OrderItemDTO> ItemInfos = this.mypageService.getItemSelect(no);
 		
 		// 상품명 가져오기 (매개변수 수정 필요 -> 값 안들어감)
-		ProductDTO productName = this.mypageService.getProductName(oit.getProduct_no());
+//		ProductDTO productName = this.mypageService.getProductName();
 
-		log.trace("****************************  orderDetails({},{},{},{}) invoked. *****************************", Infos, ItemInfos, productName, orderDTO);
+		log.trace("****************************  orderDetails({},{},{},{}) invoked. *****************************", Infos, ItemInfos, orderDTO);
 		
-		model.addAttribute("productName", productName);
+		//상품 명 가져오기
+		for (OrderItemDTO item : ItemInfos) {
+			int productNo = item.getProduct_no();
+			List<ProductDTO> productName = this.mypageService.getProductName(productNo);
+			// 상품명 리스트를 model에 추가
+			model.addAttribute("productName", productName);
+		}
+		
+		log.trace("****************************  orderDetails({},{}) invoked. *****************************", Infos, ItemInfos);
+
 		model.addAttribute("info", Infos);
 		model.addAttribute("ItemInfo", ItemInfos);
 		model.addAttribute("orderDTO", orderDTO);

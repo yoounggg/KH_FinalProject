@@ -251,6 +251,7 @@
         </div>
         
 
+		 <!-- order_btn 클릭시 주문정보를 같이 전송하기 위함(db에 들어가도록) -->
          <form class="order_form" action="/order" method="post">
   
         	<input name="member_id" value="${memberInfo.id}" type="hidden">
