@@ -70,13 +70,7 @@
 		
 		                <!-- 수평 정렬 -->
 		                <div class="orderlist_container3">
-		
-		                <!-- 주문 내역 이미지 구역 -->
-		                    <div class="orderlist_img">
-		                        <!-- DB에서 불러와야 함. 주문 내역의 가장 첫 번째 상품 이미지 -->
-		                        <img src="/resources/imgs/tomato.jpg" alt="#" class="product_img">
-		                    </div>
-		
+
 		                    <!-- 이미지 옆 주문 번호, 가격, 결제일 간략 정보 -->
 		                    <div class="orderlist_info">
 		
