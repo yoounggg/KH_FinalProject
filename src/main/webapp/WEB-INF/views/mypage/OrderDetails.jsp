@@ -74,13 +74,6 @@
                         <div id="product_name">${productName}</div>
                     </div>
 
-                    <!-- 옵션 없어짐
-                    <div class="product_info">
-                        <div id="product_title">옵션:</div>
-                        <div id="product_option">DB에서 불러오기</div>
-                    </div>
-                    -->
-
                     <div class="product_info">
                         <div id="product_title">가격:</div>
                         <div id="product_price">* 상품 가격 * DB에서 불러오기</div>
@@ -182,40 +175,6 @@
             
         </div>
 
-
-        <!-- 결제 상세 -->
-        <div class="OrderDetailsContainer4">
-
-            <!-- 결제 상세 타이틀 -->
-            <div class="OrderDetailsTitle4">결제 상세</div>
-            <div class="line4"></div>
-
-            <!-- 결제 상세 contents 조절용 -->
-            <div class="order_details4">
-
-                <!-- DB에서 끌고 오기 -->
-                <div class="payment_details">
-                    <!-- 결제 방식 -->
-                    <div class="payment_title"> * 결제 방식 (ex: 카드 간편 결제) * DB에서 불러오기</div>
-                    <!-- 총 결제 금액 불러오기 -->
-                    <div class="amount_price"> * 총 결제 금액 * DB에서 불러오기</div>
-                </div>
-
-                <!-- DB에서 끌고 오기 -->
-                <div class="payment_details2">
-                    <!-- 결제 방식 관련 정보 -->
-                    <div class="card_number"> * 카드 번호 (ex: 비씨 (5555-****-****-****)) * DB에서 불러오기</div>
-                    <div class="payment_installments"> * 할부 방식 * DB에서 불러오기</div>
-                </div>
-
-                <!-- 카드사 정책 구현이 가능한지 모르겠음....?? -->
-                <div class="company_policy">
-                    <div> · 카드에 BC 카드가 없는 경우 무이자 할부 적용 불가</div>
-                    <div> · 무이자 적용 여부는 카드사로 문의하시면 정확하게 확인할 수 있습니다. </div>
-                </div>
-            </div>
-
-        </div>
     </div>
 
 </main>
