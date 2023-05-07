@@ -63,11 +63,6 @@
 		            <!-- 위 컨테이너에서 배송 현황 빼고 수평 정렬하기 위해서 하나 더 만들었음 -->
 		            <div class="orderlist_container2">
 		
-		                <!-- 배송 현황 -->
-		                <div class="order_condition">
-		                    <a href="/mypage/deliveryConfirm/${member.id}">배송현황 보러가기</a>
-		                </div>
-		
 		                <!-- 수평 정렬 -->
 		                <div class="orderlist_container3">
 
