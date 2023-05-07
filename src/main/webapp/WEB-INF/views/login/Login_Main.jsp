@@ -60,14 +60,14 @@
                     <div class="login_box">
 
                         <!-- 아이디 저장 체크박스 -->
-                        <div class="rememberId">
+                        <!-- <div class="rememberId">
                             <input type="checkbox" id="rememberId" name="rememberId" value="off">
                             <label for="rememberId2">아이디 저장</label>
-                        </div>
+                        </div>  -->
 
                         <!-- 자동 로그인 체크박스 -->
                         <div class="autoLogin">
-                            <input type="checkbox" id="rememberMe" name="remember-me" value="true">
+                            <input type="checkbox" id="autoLogin" name="remember-me" value="true">
                             <label for="autoLogin">자동 로그인</label>
                         </div>
                         

@@ -137,6 +137,33 @@ public class OrderServiceImpl implements OrderService {
 			log.info("\t+ ********************장바구니 제거 테스트********************");
 		}
 
+	}
+
+	@Override
+	public void orderList(OrderDTO odt) {
+		/* 주문 정보 */
+		List<OrderItemDTO> orders = new ArrayList<>();
+		for(OrderItemDTO oit : odt.getOrders()) {
+			OrderItemDTO orderItem = orderMapper.getOrderInfo(oit.getProduct_no()); //product_no?
+			
+		    if (orderItem == null) {
+		        // 해당 상품번호에 대한 주문 정보가 존재하지 않음
+		        continue;
+		    }
+		    
+			orderItem.setOrder_no(odt.getNo());
+			orderItem.setProduct_no(oit.getProduct_no()); // 상품 번호 저장
+
+			orderItem.setCount(oit.getCount()); // 수량 저장
+			
+			orderItem.initSaleTotal(); // 기본정보
+			
+			orders.add(orderItem); // List 객체 추가
+		}
+		/* orderDTO 세팅 */
+		odt.setOrders(orders);
+		odt.getOrderPriceInfo(); // 음..? 비용,배송비,최종비용	
+
 	} // order
 	
 

@@ -54,6 +54,8 @@
 	        <!-- 구분선 -->
 	        <div class="separator"></div>
 	        <!-- 상품 반복 -->
+	        <!-- 다른건 다 잘되어 있어서 forEach문만 추가함!
+	        	 forEach문으로 List에 담은 orderDTO(주문정보 MYMG_ORDER)를 반복돌려서 여러개의 상품이 출력되도록 함 -->
 	 		<c:forEach items="${orderDTO}" var="ol">
 		        <!-- 주문 내역 추가할 때마다 생기는 컨테이너 -->
 		        <div class="orderlist_container">
@@ -123,6 +125,7 @@
 	<!-- DOM이 완전히 로드되지 않은 상태에서 스크립트가 실행되는 것을 막기 위해 아래에다가 위치시키기! -->
     <!-- 주문 내역 js -->
     <script src="/resources/js/mypage/OrderList.js"></script>
+    <script src="/resources/js/login/Logout.js"></script>
 </body>
 
 </html>
