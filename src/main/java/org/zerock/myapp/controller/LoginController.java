@@ -1,6 +1,8 @@
 package org.zerock.myapp.controller;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.myapp.domain.MemberDTO;
@@ -27,6 +30,10 @@ public class LoginController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	// 자동 로그인 기능 구현을 위한 필드 추가
+	private static final String AUTO_LOGIN_COOKIE = "AUTO_LOGIN"; 	// 자동 로그인을 위한 쿠키의 이름을 저장
+	private static final int COOKIE_EXPIRY_DATE = 60 * 60 * 24 * 7; 	// 쿠키 유효 기간 => 7일동안 쿠키 유지
 
 //	>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 로그인 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 	
@@ -45,7 +52,8 @@ public class LoginController {
 	// # 로그인 기능 구현 - 암호화 이후!!
     @PostMapping("/main")
     public String loginPost(
-    		MemberDTO memberDTO, HttpServletRequest request, RedirectAttributes rttr
+    		MemberDTO memberDTO, HttpServletResponse response, HttpServletRequest request, RedirectAttributes rttr, 
+    		@RequestParam(value = "autoLogin", required = false) String autoLogin
     ) throws Exception {
 
         log.trace("비밀번호 암호화 이후의 memberLogin 메소드에 진입하였습니다.");
@@ -82,6 +90,29 @@ public class LoginController {
         	if(true == bCryptPasswordEncoder.matches(origin_pw, encoded_pw)) {	// BCryptPasswordEncoder의 .matches()로 비밀번호 일치 여부 판단
         		
         		log.trace("[셍나]: 비밀번호 일치 여부 판단을 위한 if문에 들어왔습니다.");
+        		
+        		// 자동 로그인 처리
+        		if (autoLogin != null && autoLogin.equals("on")) {
+        			
+        			// 쿠키 생성 시작 (세션만 사용하면 웹브라우저 종료 시 사라지기 때문에 쿠키 사용해야 함 -ㅇ-) ------------
+        			// 자동 로그인 기능을 위한 쿠키(AUTO_LOGIN_COOKIE) 생성 후, 이름과 값을 지정! 값은 현재 세션 ID로!
+        			Cookie autoLoginCookie = new Cookie(AUTO_LOGIN_COOKIE, session.getId());
+        			
+        			// 쿠키의 유효 기간을 위 상수 필드에 선언한 int 타입의 COOKIE_EXPIRY_DATE로 설정할 수 있도록 저장!
+        			autoLoginCookie.setMaxAge(COOKIE_EXPIRY_DATE);
+        			
+        			// 쿠키 경로를 "/"로 설정 -> 모든 경로에서 쿠키를 사용할 수 있도록 해줌.
+        			autoLoginCookie.setPath("/");
+        			
+        			// 생성한 쿠키를 사용자의 웹 브라우저에 전송해줌.
+        			response.addCookie(autoLoginCookie);
+        			
+        			// 세션에 자동 로그인 정보 저장
+        			session.setAttribute(AUTO_LOGIN_COOKIE, "AUTO");
+        			
+        			log.trace("세션에 자동 로그인 정보를 저장했습니다.");
+        	        
+        		} // if문 자동 로그인 -> 쿠키 저장을 위한 if문
                  
         		m_dto.setPassword("");		// 인코딩된 비밀번호의 정보를 지워줌
         		session.setAttribute("member", m_dto);	// member 세션에 사용자 정보 저장
@@ -107,7 +138,6 @@ public class LoginController {
         
     } // loginPost()
     
-    
 //	>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 로그아웃 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     
     // # 로그아웃 -> a 태그의 요청은 GET 방식이기 때문에 GET Mapping!
@@ -115,7 +145,8 @@ public class LoginController {
     @GetMapping("/logout")
 	public String logoutGet(
 //			HttpServletRequest request
-			HttpSession session
+			HttpSession session,
+			HttpServletResponse response
 	) throws Exception {
 		
 	    log.trace("logoutPage({}) invoked", session);
@@ -130,17 +161,32 @@ public class LoginController {
 	    session.invalidate();
 //	    session.removeAttribute("member");
 	    
+	    // 자동 로그인용 쿠키 제거 -ㅇ-
+	    // 자동 로그인용 쿠키의 이름을 AUTO_LOGIN_COOKIE로 지정 + 값을 빈 문자열로 설정
+	    Cookie autoLoginCookie = new Cookie(AUTO_LOGIN_COOKIE, "");
+	    
+	    // 쿠키의 유효 기간을 0으로 설정 -> 쿠키를 즉시 만료
+	    autoLoginCookie.setMaxAge(0);
+	    
+	    // 쿠키 경로를 "/"로 설정 -> 모든 경로에서 쿠키를 사용할 수 있도록 해줌.
+	    autoLoginCookie.setPath("/");
+	    
+	    // 생성한 쿠키를 사용자의 웹 브라우저에 전송해줌 
+	    // -> 기존에 저장되어 있던 자동 로그인 쿠키는 만료되어 사라지게 됨!
+	    response.addCookie(autoLoginCookie);
+	    
 	    return "redirect:/main";	// 로그아웃 시 메인으로 이동!
 	    
 	} // logoutGet()
 	
 //	---------------------
     
+//  비동기식으로 하면 로그아웃해도 그 페이지에 남아있기는 하나, 원래 정보 또한 남아있음 ㅠ 어케 할 건지 고민!!
 	// # 로그아웃 -> 비동기 방식
     @Async
 	@PostMapping("/logout")
 	@ResponseBody
-	public void logoutPost(HttpServletRequest request) throws Exception {
+	public void logoutPost(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		log.info("비동기방식 로그아웃 메소드인 logoutPost()에 진입하였습니다.");
 		
@@ -150,6 +196,20 @@ public class LoginController {
 		// 전체 세션 제거
 		session.invalidate();
 		
+	    // 자동 로그인용 쿠키 제거 -ㅇ-
+	    // 자동 로그인용 쿠키의 이름을 AUTO_LOGIN_COOKIE로 지정 + 값을 빈 문자열로 설정
+	    Cookie autoLoginCookie = new Cookie(AUTO_LOGIN_COOKIE, "");
+	    
+	    // 쿠키의 유효 기간을 0으로 설정 -> 쿠키를 즉시 만료
+	    autoLoginCookie.setMaxAge(0);
+	    
+	    // 쿠키 경로를 "/"로 설정 -> 모든 경로에서 쿠키를 사용할 수 있도록 해줌.
+	    autoLoginCookie.setPath("/");
+	    
+	    // 생성한 쿠키를 사용자의 웹 브라우저에 전송해줌 
+	    // -> 기존에 저장되어 있던 자동 로그인 쿠키는 만료되어 사라지게 됨!
+	    response.addCookie(autoLoginCookie);
+	    
 	} // logoutPost()
     
     
