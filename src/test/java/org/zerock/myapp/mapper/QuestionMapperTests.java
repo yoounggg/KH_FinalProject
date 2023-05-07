@@ -69,7 +69,7 @@ public class QuestionMapperTests {
 	public void getList() {
 		log.trace("getList () invoked");
 
-		List list = questionMapper.getList();
+		List list = questionMapper.adminList();
 		
 		  /* foreach문(향상된 for문) */
         for(Object l : list) {
@@ -91,5 +91,21 @@ public class QuestionMapperTests {
 		 log.info("qno : {} " ,questionMapper.getPage(qno));
         
 	} // getPage	
+	
+	
+//	@Disable
+	@Test
+	@Order(4)
+	@DisplayName("delete")
+	@Timeout(value = 2, unit = TimeUnit.SECONDS)
+	public void delete() {
+		log.trace("delete () invoked");
+
+		int result = questionMapper.delete(75);
+		
+		 log.info("result : {} " , result);
+        
+	} // delete	
+	
 	
 } // end class

@@ -71,7 +71,7 @@ public class QuestionServiceTests {
 	public void listTest() {
 		log.trace("listTest invoked");
 
-		for (QuestionDTO list : questionService.getList()) {
+		for (QuestionDTO list : questionService.adminList()) {
 		    log.info("list : {} ", list);
 		    
 		} // for 		
@@ -91,5 +91,20 @@ public class QuestionServiceTests {
 		log.info("bno : {}" , bno );
 				
 	} // getPageTest
+	
+	
+//	@Disable
+	@Test
+	@Order(4)
+	@DisplayName("delete")
+	@Timeout(value = 2, unit = TimeUnit.SECONDS)
+	public void delete() {
+		log.trace("delete () invoked");
+
+		int result = questionService.delete(75);
+		
+		 log.info("result : {} " , result);
+        
+	} // delete	
 	
 } // end class
