@@ -13,14 +13,22 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @Service
 public class QuestionServiceImpl implements QuestionService {
+	
+	@Override
+	public Integer delete(Integer qno) {
+		
+		return questionMapper.delete(qno);
+	} // delete
+
+
 	@Setter(onMethod_ = @Autowired)
 	private QuestionMapper questionMapper;
 
 	@Override
-	public List<QuestionDTO> getList() {
+	public List<QuestionDTO> adminList() {		//관리자 문의 리스트 가져오기
 		log.trace("getList() invoked");
 		
-		return questionMapper.getList();
+		return questionMapper.adminList();
 		
 	} // getList
 

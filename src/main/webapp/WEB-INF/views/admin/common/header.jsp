@@ -37,6 +37,7 @@
                     <li><a href="/admin/faq/list">FAQ</a></li>
                     <li><a href="/admin/member/list">회원관리</a></li>
                     <li><a href="/admin/farm/list">거래처관리</a></li>
+                    <li><a href="/admin/question/list">1:1문의</a></li>
             </ul>
         </div>   
 	</div>
