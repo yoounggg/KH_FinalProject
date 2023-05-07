@@ -91,7 +91,7 @@
 		                        <div class="info_container">
 		                            <div class="info_title">총 결제 금액 :</div>
 		                            <!-- DB에서 정보 불러오기!! DB에 totalPrice가 없어서 안나오는듯-->
-		                            <div class="product_price">${totalPrice}</div>
+		                            <div class="product_price">${totalPriceList}</div>
 		                        </div>
 		
 		                        <!-- 결제일 -->
