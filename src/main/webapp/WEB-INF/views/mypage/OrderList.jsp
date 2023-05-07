@@ -56,7 +56,7 @@
 	        <!-- 상품 반복 -->
 	        <!-- 다른건 다 잘되어 있어서 forEach문만 추가함!
 	        	 forEach문으로 List에 담은 orderDTO(주문정보 MYMG_ORDER)를 반복돌려서 여러개의 상품이 출력되도록 함 -->
-	 		<c:forEach items="${orderDTO}" var="ol">
+	 		<c:forEach items="${orderDTO}" var="ol" varStatus="status">
 		        <!-- 주문 내역 추가할 때마다 생기는 컨테이너 -->
 		        <div class="orderlist_container">
 		        
@@ -91,7 +91,7 @@
 		                        <div class="info_container">
 		                            <div class="info_title">총 결제 금액 :</div>
 		                            <!-- DB에서 정보 불러오기!! DB에 totalPrice가 없어서 안나오는듯-->
-		                            <div class="product_price">${totalPriceList}</div>
+		                            <div class="product_price">${totalPriceList[status.index]}</div>
 		                        </div>
 		
 		                        <!-- 결제일 -->
