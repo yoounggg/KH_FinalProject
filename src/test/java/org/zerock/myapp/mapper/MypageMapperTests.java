@@ -90,7 +90,7 @@ public class MypageMapperTests {
 	@DisplayName(" test: TestProductName()")
 	@Timeout(value = 1, unit=TimeUnit.MINUTES)
 	void TestProductName() {
-		ProductDTO productName = mypageMapper.productName(147);  	 
+		List<ProductDTO> productName = mypageMapper.productName(147);  	 
 																	
 		log.trace(" productName : {} " + productName);
 	} // TestGetOrderInfoTest()

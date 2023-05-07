@@ -28,6 +28,6 @@ public interface MypageService {
 	public abstract List<OrderItemDTO> getItemSelect(Integer order_no) throws ServiceException;
 	
 	// 6. 조인으로 상품이름 가져오기
-	public abstract ProductDTO getProductName(Integer product_no) throws ServiceException;
+	public abstract List<ProductDTO> getProductName(Integer product_no) throws ServiceException;
 
 } // end class
