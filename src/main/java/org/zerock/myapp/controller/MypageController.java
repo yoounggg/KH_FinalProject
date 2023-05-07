@@ -36,9 +36,7 @@ public class MypageController {
 	private OrderService orderService;
 	
 	// OrderList(주문 내역) 페이지 단순 진입
-//	@GetMapping("/orderList")
 	@RequestMapping("/orderList/{id}")
-//	public String orderList() {
 	public String orderList(@PathVariable("id") String id, OrderDTO dto, OrderItemDTO oit, Model model) throws ControllerException, ServiceException {
 		
 		// 주문 정보 획득
@@ -68,10 +66,7 @@ public class MypageController {
 	} // orderList()
 	
 	// OrderDetails(주문 상세 내역) 페이지 단순 진입
-//	@GetMapping("/orderDetails")
-//	@RequestMapping("/orderDetails/{id}")
 	@RequestMapping(value = "/orderDetails/{id}", method = { RequestMethod.GET, RequestMethod.POST })
-//	public String orderDetails() {
 	public String orderDetails(@PathVariable("id") String id, @RequestParam("no") Integer no, Model model) throws ControllerException, ServiceException {
 		
 		// List로 모든 정보를 불러올게 아니라 OrderList에서 상세주문내역 클릭 시 어떻게 그 주문번호의 정보만 가져올지 생각중..
@@ -88,6 +83,11 @@ public class MypageController {
 		OrderDTO Infos = this.mypageService.getSelect(no);
 		// OrderItemDTO( 주문 상품 상세 조회하려고 no(MYMG_ORDER) 가져와서 해당 주문번호의 상품에 대해서만 조회함 )
 		List<OrderItemDTO> ItemInfos = this.mypageService.getItemSelect(no);
+		
+		// 상품명 가져오기 (매개변수 수정 필요 -> 값 안들어감)
+		ProductDTO productName = this.mypageService.getProductName(oit.getProduct_no());
+
+		log.trace("****************************  orderDetails({},{},{},{}) invoked. *****************************", Infos, ItemInfos, productName, orderDTO);
 		
 		//상품 명 가져오기
 		for (OrderItemDTO item : ItemInfos) {

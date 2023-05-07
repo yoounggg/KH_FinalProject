@@ -21,5 +21,14 @@
 		SELECT *
 		FROM QUESTION
 		WHERE ID = #{id}
+		ORDER BY regdate DESC
 	</select>
+	
+	
+	<select id="getPage" resultType="org.zerock.myapp.domain.QuestionDTO">
+
+		SELECT * from question WHERE qno = #{qno}
+	
+	</select>	
+	
 </mapper>

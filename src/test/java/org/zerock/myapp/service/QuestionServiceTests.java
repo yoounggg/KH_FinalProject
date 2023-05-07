@@ -77,4 +77,19 @@ public class QuestionServiceTests {
 		} // for 		
 	} // listTest
 	
+	
+//	@Disabled
+	@Test
+	@DisplayName("getPage")
+	@Order(3)
+	@Timeout(value = 1, unit = TimeUnit.MINUTES)
+	public void getPageTest() {
+		log.trace("getPageTest invoked");
+
+		int bno = 19;
+		
+		log.info("bno : {}" , bno );
+				
+	} // getPageTest
+	
 } // end class
