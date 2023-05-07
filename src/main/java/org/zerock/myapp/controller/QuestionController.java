@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.myapp.domain.MemberDTO;
 import org.zerock.myapp.domain.QuestionDTO;
 import org.zerock.myapp.exception.ControllerException;
@@ -94,5 +95,17 @@ public class QuestionController {
 		model.addAttribute("pageInfo", questionService.getPage(qno));
 		
 	} // adminGet
+	
+	
+	@PostMapping("/admin/question/delete")
+	public String adminDelete(Integer qno, RedirectAttributes rttrs) {
+		
+		questionService.delete(qno);
+		
+		rttrs.addFlashAttribute("result", "success");
+		
+		return "redirect:/admin/question/list";
+		
+	} // adminDelete
 	
 } // end class

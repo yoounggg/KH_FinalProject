@@ -13,6 +13,14 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @Service
 public class QuestionServiceImpl implements QuestionService {
+	
+	@Override
+	public Integer delete(Integer qno) {
+		
+		return questionMapper.delete(qno);
+	} // delete
+
+
 	@Setter(onMethod_ = @Autowired)
 	private QuestionMapper questionMapper;
 

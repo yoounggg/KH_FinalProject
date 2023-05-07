@@ -13,6 +13,9 @@
 
     <%@include file="/WEB-INF/views/common/favicon.jsp" %>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
     <link rel="stylesheet" href="../resources/css/help/write.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
@@ -55,7 +58,7 @@
                     </ul>
 
                 </div>
-                <form action="/help/write" method="post">
+                <form action="#" method="post" id="form">
 
                     <!-- 중간 - 게시물 -->
                     <div class="content_wrap">
@@ -77,7 +80,7 @@
                               <textarea id="con" placeholder="내용을 입력해주세요" name="content" minlength="10" required></textarea><br>
 
                             <div class="btm_btn">
-                                <button type="submit" id="submit" class="write">문의하기</button>
+                                <button type="button" id="enroll" class="write">문의하기</button>
                     
                                 <div>
                                     <a href="/help/question""><span class="back">뒤로가기</span></a>
@@ -105,5 +108,73 @@
         <input type="button" class="exit2" id="common_btn" onclick="exit2()" value="확인">
     </div>
 </body>
+
+<script>
+
+$(document).ready(function () {
+
+$("#enroll").click(function () {
+  const titleInput = document.getElementById('ttle');
+  const titleLength = titleInput.value.trim().length;
+ 
+  
+    const con = document.getElementById("con")            //내용
+    const conLength = con.value.trim().length;
+
+
+    if (titleLength > 100) {                         // 제목
+        popup_on1();
+        
+    } else if (conLength > 2000) {                  // 내용 
+        popup_on2();
+       
+    } else {
+    	console.log("else");
+    	 var form = $('form');
+        $("#form").attr("action", "/help/write");        
+        $("#form").submit();
+    }
+});
+});
+
+// 팝업 1 제목 길이 확인
+function popup_on1() {
+$(".popmenu1").show();
+popup_blur1(true);
+};
+
+function exit1() {
+$(".popmenu1").hide();
+popup_blur1(false);
+};
+
+function popup_blur1(chk) {
+if (chk === false)
+    $('#entire').css({ "opacity": "1", "pointer-events": "auto" });
+else
+    $('#entire').css({ "opacity": "0.3", "pointer-events": "none" });
+};
+
+
+
+// 팝업 2 내용 확인
+function popup_on2() {
+$(".popmenu2").show();
+popup_blur2(true);
+};
+
+function exit2() {
+$(".popmenu2").hide();
+popup_blur2(false);
+};
+
+function popup_blur2(chk) {
+if (chk === false)
+    $('#entire').css({ "opacity": "1", "pointer-events": "auto" });
+else
+    $('#entire').css({ "opacity": "0.3", "pointer-events": "none" });
+};
+
+</script>
 
 </html>
