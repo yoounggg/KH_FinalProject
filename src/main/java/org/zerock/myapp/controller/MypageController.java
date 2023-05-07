@@ -50,22 +50,26 @@ public class MypageController {
 		
 		log.trace("orderList({},{},{}) invoked.", id, orderDTO, model);
 
-		List<Integer> orderNoList = new ArrayList<>();
+	    List<Integer> orderNoList = new ArrayList<>();
 
-		for (OrderDTO order : orderDTO) {
-		    Integer orderNo = order.getNo();
-		    orderNoList.add(orderNo);
-		    // 이후 로직 처리
-		}
-
-		List<List<OrderItemDTO>> orderItemDTO = new ArrayList<>();
-		for (Integer orderNo : orderNoList) {
-		    List<OrderItemDTO> itemList = mypageMapper.ItemPrice(orderNo);
-		    orderItemDTO.add(itemList);
-		}
-		model.addAttribute("totalPrice", orderItemDTO);
+	    for (OrderDTO order : orderDTO) {
+	        Integer orderNo = order.getNo();
+	        orderNoList.add(orderNo);
+	        // 이후 로직 처리
+	    }
+	    
+	    List<Integer> totalPriceList = new ArrayList<>();
+	    for (Integer orderNo : orderNoList) {
+	        List<OrderItemDTO> itemList = mypageMapper.ItemPrice(orderNo);
+	        int totalPrice = 0;
+	        for (OrderItemDTO item : itemList) {
+	            totalPrice += item.getCount() * item.getPrice() * (100 - item.getDiscount()) / 100;
+	        }
+	        totalPriceList.add(totalPrice);
+	    }
+	    model.addAttribute("totalPriceList", totalPriceList);
 		
-		log.trace("******************* orderItemDTO : {} ******************", orderItemDTO);
+		log.trace("******************* totalPriceList : {} ******************", totalPriceList);
 		
 		// 모델에 orderDTO(주문 정보 담아서 view에 전달)
 		model.addAttribute("orderDTO", orderDTO);
