@@ -72,7 +72,7 @@
 	
 	                    <div class="product_info">
 	                        <div id="product_title">상품명:</div>
-	                        <div id="product_name">${item.get(0).name}</div>
+	                        <div id="product_name">${item.name}</div>
 	                    </div>
 	
 	                    <!-- 옵션 없어짐
@@ -84,7 +84,7 @@
 	
 	                    <div class="product_info">
 	                        <div id="product_title">가격:</div>
-	                        <div id="product_price">${item.get(0).price}</div>
+	                        <div id="product_price">${item.price}</div>
 	                    </div> 
 	
 	                    <div class="product_info">
