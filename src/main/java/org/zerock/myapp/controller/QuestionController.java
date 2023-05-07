@@ -108,4 +108,11 @@ public class QuestionController {
 		
 	} // adminDelete
 	
+	
+	@GetMapping("/admin/question/write")
+	public void adminWrite(Integer qno, Model model) {
+		log.info("adminWrite() invoked");
+		
+	} // adminWrite
+	
 } // end class

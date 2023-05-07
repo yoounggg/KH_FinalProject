@@ -15,7 +15,7 @@ import lombok.extern.log4j.Log4j2;
 public class QuestionServiceImpl implements QuestionService {
 	
 	@Override
-	public Integer delete(Integer qno) {
+	public Integer delete(Integer qno) {		// 문의글 삭제
 		
 		return questionMapper.delete(qno);
 	} // delete
