@@ -94,5 +94,18 @@ public class MypageMapperTests {
 																	
 		log.trace(" productName : {} " + productName);
 	} // TestGetOrderInfoTest()
+	
+	//@Disabled
+	@Test
+	@Order(5)
+	@DisplayName(" test: TestItemPrice()")
+	@Timeout(value = 1, unit=TimeUnit.MINUTES)
+	void TestItemPrice() {				
+		
+		List<OrderItemDTO> productName = mypageMapper.ItemPrice(304);  	 
+		
+		log.trace(" productName : {} " + productName);
+		
+	} // TestdeductStock() 
 
 } // end class

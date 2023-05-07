@@ -85,7 +85,7 @@
 	
 	                    <div class="product_info">
 	                        <div id="product_title">가격:</div>
-	                        <div id="product_price">${item.price}</div>
+	                        <div id="product_price">${orderList.totalPrice}</div>
 	                    </div> 
 	
 	                    <div class="product_info">

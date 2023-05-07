@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.zerock.myapp.domain.OrderDTO;
 import org.zerock.myapp.domain.OrderItemDTO;
+import org.zerock.myapp.domain.OrderPageDTO;
 import org.zerock.myapp.domain.ProductDTO;
 import org.zerock.myapp.exception.ControllerException;
 import org.zerock.myapp.exception.ServiceException;
+import org.zerock.myapp.mapper.MypageMapper;
 import org.zerock.myapp.service.MypageService;
 import org.zerock.myapp.service.OrderService;
 
@@ -34,25 +36,43 @@ public class MypageController {
 
 	@Setter(onMethod_ = @Autowired)
 	private OrderService orderService;
+	
+	@Setter(onMethod_ = @Autowired)
+	private MypageMapper mypageMapper;
 
 	// OrderList(주문 내역) 페이지 단순 진입
 	@RequestMapping("/orderList/{id}")
-	public String orderList(@PathVariable("id") String id, OrderDTO dto, OrderItemDTO oit, Model model) throws ControllerException, ServiceException {
-		
-		orderService.orderList(dto);
+//	@RequestMapping(value = "/{orderList/{id}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String orderList(@PathVariable("id") String id, OrderDTO dto, OrderItemDTO oit,OrderPageDTO opd , Model model) throws ControllerException, ServiceException {
 		
 		// 주문 정보 획득
 		List<OrderDTO> orderDTO = mypageService.getOrder(id);
 		
 		log.trace("orderList({},{},{}) invoked.", id, orderDTO, model);
+
+		List<Integer> orderNoList = new ArrayList<>();
+
+		for (OrderDTO order : orderDTO) {
+		    Integer orderNo = order.getNo();
+		    orderNoList.add(orderNo);
+		    // 이후 로직 처리
+		}
+
+		List<List<OrderItemDTO>> orderItemDTO = new ArrayList<>();
+		for (Integer orderNo : orderNoList) {
+		    List<OrderItemDTO> itemList = mypageMapper.ItemPrice(orderNo);
+		    orderItemDTO.add(itemList);
+		}
+		model.addAttribute("totalPrice", orderItemDTO);
+		
+		log.trace("******************* orderItemDTO : {} ******************", orderItemDTO);
 		
 		// 모델에 orderDTO(주문 정보 담아서 view에 전달)
 		model.addAttribute("orderDTO", orderDTO);
-
-		// totalbPrice는 제대로 안들어간다..
-		model.addAttribute("totalPrice", dto.getOrderFinalSalePrice());
 		
-		log.trace("***********************Total price: {}************************", model.getAttribute("totalPrice"));
+//		model.addAttribute("orderList", orderService.getProductsInfo(opd.getOrders()));
+		
+//		log.trace("***********************Total price: {}************************", model.getAttribute("totalPrice"));
 		
 		return "mypage/OrderList";
 
