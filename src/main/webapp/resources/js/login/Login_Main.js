@@ -34,7 +34,6 @@ $("#signInButton").on("click", function(e) {
 
     if ($("#autoLogin").is(":checked")) {
         // 자동 로그인 체크박스가 체크되어 있으면 로컬 스토리지에 자동 로그인 상태 저장
-        alert("자동 로그인으로 로컬 스토리지에 쿠키 저장");
         localStorage.setItem("autoLogin", "on");
     } else {
         // 체크박스가 체크되어 있지 않으면 로컬 스토리지에서 자동 로그인 상태 삭제
