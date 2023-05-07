@@ -167,11 +167,12 @@ public class LoginController {
 	
 //	---------------------
     
+//  비동기식으로 하면 로그아웃해도 그 페이지에 남아있기는 하나, 원래 정보 또한 남아있음 ㅠ 어케 할 건지 고민!!
 	// # 로그아웃 -> 비동기 방식
     @Async
 	@PostMapping("/logout")
 	@ResponseBody
-	public void logoutPost(HttpServletRequest request) throws Exception {
+	public void logoutPost(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		log.info("비동기방식 로그아웃 메소드인 logoutPost()에 진입하였습니다.");
 		
@@ -180,6 +181,12 @@ public class LoginController {
 		
 		// 전체 세션 제거
 		session.invalidate();
+		
+	    // 자동 로그인으로 인해 생성된 쿠키 제거
+	    Cookie autoLoginCookie = new Cookie(AUTO_LOGIN_ATTRIBUTE, "");
+	    autoLoginCookie.setMaxAge(0);
+	    autoLoginCookie.setPath("/");
+	    response.addCookie(autoLoginCookie);
 		
 	} // logoutPost()
     
