@@ -35,6 +35,7 @@ public class OrderDTO {
 
 	// 주문작업에 필요한 데이터 세팅
 	public void getOrderPriceInfo() {
+		
 		// 상품 비용
 		for(OrderItemDTO order : orders) {
 		    int quantity = order.getCount(); // 상품의 수량
@@ -59,9 +60,9 @@ public class OrderDTO {
 	        } else {
 	        	delivery_cost = 3000;
 			}
+			
 		// 최종 비용(상품 비용 + 배송비 - 할인가격) 
 			orderFinalSalePrice = orderSalePrice + delivery_cost;
 	}
- 
 	
 } // endclass

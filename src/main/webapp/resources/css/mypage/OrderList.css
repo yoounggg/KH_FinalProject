@@ -168,6 +168,7 @@ main{
 
 /* 주문 번호, 가격, 결제일 위치 조정 및 컨텐츠 수평 정렬 */
 .orderlist_info {
+	margin-left:50px;
     display: flex;
     flex-direction: column;
     gap: 10px; /* 요소 사이 간격 설정 */
@@ -220,13 +221,21 @@ main{
     justify-content: center;
     width: 130px;
     border-radius: 5px;
-    background-color: white;
-    border: 1px solid black;
     outline: none;
     cursor: pointer;
     text-align: center;
     height: 35px;
     margin-bottom: 10px;
+    font-weight: 600;
+    background-color: #11BC0D;
+    color: white;
+}
+
+/* 상세주문내역 버튼 hover 효과 */
+.orderlist_detail:hover {
+    background-color: #0D9A0A;
+    border: 1px solid #0D9A0A;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* 배송조회 버튼 */
@@ -242,4 +251,9 @@ main{
     cursor: pointer;
     text-align: center;
     height: 35px;
+}
+
+/* 배송조회 버튼 hover 효과 */
+.delivery_tracking:hover {
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }

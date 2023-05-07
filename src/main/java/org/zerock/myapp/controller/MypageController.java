@@ -66,6 +66,7 @@ public class MypageController {
 	            totalPrice += item.getCount() * item.getPrice() * (100 - item.getDiscount()) / 100;
 	        }
 	        totalPriceList.add(totalPrice);
+	        
 	    }
 	    model.addAttribute("totalPriceList", totalPriceList);
 		
