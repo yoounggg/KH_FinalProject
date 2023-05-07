@@ -65,7 +65,7 @@
 		
 		                <!-- 배송 현황 -->
 		                <div class="order_condition">
-		                    <a href="/mypage/deliveryConfirm/${member.id}">배송현황</a>
+		                    <a href="/mypage/deliveryConfirm/${member.id}">배송현황 보러가기</a>
 		                </div>
 		
 		                <!-- 수평 정렬 -->
