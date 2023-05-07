@@ -1,6 +1,8 @@
 package org.zerock.myapp.controller;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.myapp.domain.MemberDTO;
@@ -27,6 +30,10 @@ public class LoginController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	// 자동 로그인 기능 구현을 위한 필드 추가
+	private static final String AUTO_LOGIN_ATTRIBUTE = "AUTO_LOGIN";
+	private static final int AUTO_LOGIN_MAX_AGE = 60 * 60 * 24 * 7; // 7일동안 쿠키 유지
 
 //	>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 로그인 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 	
@@ -45,7 +52,8 @@ public class LoginController {
 	// # 로그인 기능 구현 - 암호화 이후!!
     @PostMapping("/main")
     public String loginPost(
-    		MemberDTO memberDTO, HttpServletRequest request, RedirectAttributes rttr
+    		MemberDTO memberDTO, HttpServletResponse response, HttpServletRequest request, RedirectAttributes rttr, 
+    		@RequestParam(value = "autoLogin", required = false) String autoLogin
     ) throws Exception {
 
         log.trace("비밀번호 암호화 이후의 memberLogin 메소드에 진입하였습니다.");
@@ -82,6 +90,23 @@ public class LoginController {
         	if(true == bCryptPasswordEncoder.matches(origin_pw, encoded_pw)) {	// BCryptPasswordEncoder의 .matches()로 비밀번호 일치 여부 판단
         		
         		log.trace("[셍나]: 비밀번호 일치 여부 판단을 위한 if문에 들어왔습니다.");
+        		
+        		// 자동 로그인 처리
+        		if (autoLogin != null && autoLogin.equals("on")) {
+        			
+        			// 쿠키 생성 (세션만 사용하면 웹브라우저 종료 시 사라지기 때문에 쿠키 사용해야 함 -ㅇ-)
+        			Cookie autoLoginCookie = new Cookie(AUTO_LOGIN_ATTRIBUTE, session.getId());
+        			
+        			autoLoginCookie.setMaxAge(AUTO_LOGIN_MAX_AGE);
+        			autoLoginCookie.setPath("/");
+        			response.addCookie(autoLoginCookie);
+
+        			// 세션에 자동 로그인 정보 저장
+        			session.setAttribute(AUTO_LOGIN_ATTRIBUTE, "AUTO");
+        			
+        			log.trace("세션에 자동 로그인 정보를 저장했습니다.");
+        	        
+        		} // if문 자동 로그인 -> 쿠키 저장을 위한 if문
                  
         		m_dto.setPassword("");		// 인코딩된 비밀번호의 정보를 지워줌
         		session.setAttribute("member", m_dto);	// member 세션에 사용자 정보 저장
@@ -107,7 +132,6 @@ public class LoginController {
         
     } // loginPost()
     
-    
 //	>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 로그아웃 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     
     // # 로그아웃 -> a 태그의 요청은 GET 방식이기 때문에 GET Mapping!
@@ -115,7 +139,8 @@ public class LoginController {
     @GetMapping("/logout")
 	public String logoutGet(
 //			HttpServletRequest request
-			HttpSession session
+			HttpSession session,
+			HttpServletResponse response
 	) throws Exception {
 		
 	    log.trace("logoutPage({}) invoked", session);
@@ -129,6 +154,12 @@ public class LoginController {
 	    // & removeAttribute() = This method is used to remove a specific attribute from the session, can remove a single attribute by specifying its name as an argument
 	    session.invalidate();
 //	    session.removeAttribute("member");
+	    
+	    // 자동 로그인으로 인해 생성된 쿠키 제거
+	    Cookie autoLoginCookie = new Cookie(AUTO_LOGIN_ATTRIBUTE, "");
+	    autoLoginCookie.setMaxAge(0);
+	    autoLoginCookie.setPath("/");
+	    response.addCookie(autoLoginCookie);
 	    
 	    return "redirect:/main";	// 로그아웃 시 메인으로 이동!
 	    
