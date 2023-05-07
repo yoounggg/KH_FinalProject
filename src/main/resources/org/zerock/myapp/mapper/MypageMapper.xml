@@ -66,7 +66,7 @@
 			order_list.product_no = #{product_no, jdbcType=INTEGER}
 	</select>
 	
-	<!-- 
+	 
 	<select id="ItemPrice" resultType="org.zerock.myapp.domain.OrderItemDTO">
 		SELECT
 			count, price, discount
@@ -74,16 +74,16 @@
 			order_list
 		WHERE
 			order_no = #{order_no, jdbcType=INTEGER}
-	</select> -->
+	</select>
 	
-<select id="ItemPrice" resultType="org.zerock.myapp.domain.OrderItemDTO">
+<!-- <select id="ItemPrice" resultType="org.zerock.myapp.domain.OrderItemDTO">
     SELECT count, price, discount
     FROM order_list
     WHERE order_no IN
     <foreach collection="orderNoList" item="no" open="(" separator="," close=")">
         #{no}
     </foreach>
-</select>
+</select> -->
 
 	
 	
