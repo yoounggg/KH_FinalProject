@@ -16,17 +16,6 @@
  			id = #{id}
  	</select>
  	
- 	<!-- 주문 정보 가져오기 -->
- 	<!-- 
- 	<select id="getOrder" resultType="org.zerock.myapp.domain.OrderDTO">
- 		SELECT
- 			*
- 		FROM
- 			MYMG_ORDER
- 		WHERE
- 			member_id = #{id, jdbcType=VARCHAR}
-	</select>
-	 -->
 	<!-- 주문 정보 가져오기 -->
 	<select id="getOrder" resultType="org.zerock.myapp.domain.OrderDTO">
 	    SELECT
@@ -37,6 +26,8 @@
 	        MYMG_ORDER
 	    WHERE
 	        member_id = #{id, jdbcType=VARCHAR}
+		ORDER BY
+        	order_date DESC
 	</select>
 	
 	<select id="getOrderItem" resultType="org.zerock.myapp.domain.OrderItemDTO">
