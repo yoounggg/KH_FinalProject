@@ -144,10 +144,9 @@ function showAddress(className) {
 /* ==============================배송지=========================================== */
   
 function sample4_execDaumPostcode() {
+	var self = this;
 	new daum.Postcode({
-		
-		
-		
+	
 	    oncomplete: function(data) {
 	    	var roadAddr = data.roadAddress; 
 	        var extraRoadAddr = ''; 
@@ -170,7 +169,7 @@ function sample4_execDaumPostcode() {
 	        var addressInputR = document.getElementById('address_input_r');
 	        var addressInput2R = document.getElementById('address_input2_r');
 	        var addressInput3R = document.getElementById('address_input3_r');
-	        var sample4ExtraAddress = document.getElementById('sample4_extraAddress');
+	        
 
 	        if (addressInputR) {
 	            addressInputR.value = data.zonecode;
@@ -181,28 +180,13 @@ function sample4_execDaumPostcode() {
 	          if (addressInput3R) {
 	            addressInput3R.value = data.jibunAddress;
 	          }
-	          if (sample4ExtraAddress) {
-	            sample4ExtraAddress.value = extraRoadAddr !== '' ? extraRoadAddr : '';
-	          }
-
-	        var guideTextBox = document.getElementById("guide");
-
-	        if(data.autoRoadAddress) {
-	        	var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-	            guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-	            guideTextBox.style.display = 'block';
-
-	        } else if(data.autoJibunAddress) {
-	        	var expJibunAddr = data.autoJibunAddress;
-	        	guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-	       		guideTextBox.style.display = 'block';
-	        } else {
-	        	guideTextBox.innerHTML = '';
-	        	guideTextBox.style.display = 'none';
-	        }
+	          
+	      // 팝업 창 닫기
+	      self.close();
+	      
 		}
 	}).open();
-} 
+}
       
 /*   */
 

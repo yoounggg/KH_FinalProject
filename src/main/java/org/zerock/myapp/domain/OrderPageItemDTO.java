@@ -29,8 +29,6 @@ public class OrderPageItemDTO { // view에서 전달한 상품데이터를 담�
 	
 	private Integer totalPrice;			// 총 가격
 
-	
-	
 	public void initSaleTotal() {
 	    this.totalPrice = this.productCount * this.price;
 	    double discountRate = this.discount / 100.0; // 할인율을 백분율로 변환

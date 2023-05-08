@@ -21,7 +21,7 @@ public class OrderDTO {
 	private String receiver_address3; // 회원 상세주소
 	private String receiver_tel; // 받는사람 주소
 	private String delivery_comment; // 배송요청사항
-	private String orderState; // 주문 상태
+	private String delivery_state; // 주문 상태
 	private List<OrderItemDTO> orders;	// 주문 상품
 	private int delivery_cost; // 배송비
 	private Date order_date; // 주문 날짜
@@ -35,6 +35,7 @@ public class OrderDTO {
 
 	// 주문작업에 필요한 데이터 세팅
 	public void getOrderPriceInfo() {
+		
 		// 상품 비용
 		for(OrderItemDTO order : orders) {
 		    int quantity = order.getCount(); // 상품의 수량
@@ -59,9 +60,9 @@ public class OrderDTO {
 	        } else {
 	        	delivery_cost = 3000;
 			}
+			
 		// 최종 비용(상품 비용 + 배송비 - 할인가격) 
 			orderFinalSalePrice = orderSalePrice + delivery_cost;
 	}
- 
 	
 } // endclass

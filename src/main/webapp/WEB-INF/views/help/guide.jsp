@@ -78,6 +78,7 @@ function showRefund() {
                         <li id="sm_li"><a href="/help/faq">FAQ</a></li>
                         <li id="sm_li"><a href="/help/notice">공지사항</a></li>
                         <li id="sm_li"><a href="/help/guide">이용안내</a></li>
+                        <li id="sm_li"><a href="/help/question">1:1문의</a></li>
                     </ul>
 
                 </div>

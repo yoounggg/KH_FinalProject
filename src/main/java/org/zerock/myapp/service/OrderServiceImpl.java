@@ -137,6 +137,6 @@ public class OrderServiceImpl implements OrderService {
 			log.info("\t+ ********************장바구니 제거 테스트********************");
 		}
 
-	} // order
+	}
 
 }// end class

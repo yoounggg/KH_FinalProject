@@ -3,6 +3,7 @@ package org.zerock.myapp.controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.zerock.myapp.domain.MemberDTO;
 import org.zerock.myapp.domain.OrderDTO;
 import org.zerock.myapp.domain.OrderPageDTO;
 import org.zerock.myapp.exception.ServiceException;
@@ -51,7 +53,7 @@ public class OrderController {
 	// 테스트123
 	//@GetMapping("/{id}") // 주문페이지로 이동 mapping
 	@RequestMapping(value = "/{id}", method = { RequestMethod.GET, RequestMethod.POST })
-	public String orderPageGet(@PathVariable("id") String memberId, OrderPageDTO opd, Model model)
+	public String orderPageGet(@PathVariable("id") String memberId, OrderPageDTO opd, HttpSession session, Model model)
 			throws ServiceException {
 
 		log.trace(
@@ -60,15 +62,22 @@ public class OrderController {
 		log.trace("memberId : " + memberId);
 		log.trace("orders : " + opd.getOrders());
 
-		if (opd == null) {
-			opd = new OrderPageDTO();
-		} // opd가 null일 때는 새로운 객체를 생성하고, 그렇지 않을 때는 이미 생성된 객체를 그대로 사용
-			// null인 경우에도 객체를 사용할 수 있도록 보장하며, 객체를 여러 번 생성하지 않아도 되어
+//		if (opd == null) {
+//			opd = new OrderPageDTO();
+//		} // opd가 null일 때는 새로운 객체를 생성하고, 그렇지 않을 때는 이미 생성된 객체를 그대로 사용
+//			// null인 경우에도 객체를 사용할 수 있도록 보장하며, 객체를 여러 번 생성하지 않아도 되어
 
 		// opd.getOrders()가 null인 경우, 새로운 ArrayList를 생성하여 opd에 저장
 		if (opd.getOrders() == null) {
 			opd.setOrders(new ArrayList<>());
 		}
+		
+		// (1) 로그인 체크
+		MemberDTO dto = (MemberDTO)session.getAttribute("member");
+		if(dto == null) {
+			return "1"; // 멤버 아니면 5반환 -> 로그인 필요함!
+		}
+		
 		// Model객체의 addAttribute 메서드를 사용하여 상품정보, 회원정보를 만들어 내는\
 		// Service 메서드를 호출하여 반환받은 값들을 View단으로 전송
 
@@ -97,7 +106,6 @@ public class OrderController {
 		model.addAttribute("delivery_comment", dto.getDelivery_comment());
 		
 		log.info("\t+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> delivey_comment : {}", dto.getDelivery_comment());
-//		log.info("\t+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> delivey_comment : {}", model.getAttribute("delivery_comment"));
 		
 		model.addAttribute("totalPrice", dto.getTotalPrice());  // 총상품가격 할인가격x
 		model.addAttribute("salePrice", dto.getSalePrice()); // 할인되는 가격

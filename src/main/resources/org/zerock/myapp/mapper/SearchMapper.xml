@@ -18,7 +18,7 @@
 
 	<![CDATA[
 	SELECT * FROM (
-		SELECT /*+ INDEX_DESC(PRODUCT)*/rownum as rowNo, name, no, price, discount_price, discount, main_image 
+		SELECT /*+ INDEX_DESC(PRODUCT)*/rownum as rowNo, name, no, price, discount_price, discount, main_image, category 
 		FROM product
 		WHERE
 	]]>

@@ -42,7 +42,7 @@
             <li class="small2 small3 small4"><a href="/mypage/userInfo/${member.id}">정보수정</a></li>
             <li class="small2 small3 small4"><a href="/mypage/userInfo/${member.id}/changePw">비밀번호 변경</a></li>
             <li class="small2 small3 small4"><a href="/mypage/orderList/${member.id}">주문내역</a></li>
-            <li class="small2 small5"><a href="/mypage/?">배송현황</a></li>
+            <li class="small2 small5"><a href="/mypage/deliveryConfirm/${member.id}">배송현황</a></li>
         </ul>
     </aside>
 
@@ -57,43 +57,46 @@
             <!-- 구분선 -->
             <div class="line1"></div>
 
-            <!-- 상세주문내역 contents 조절용 -->
-            <div class="order_details1">
 
-                <!-- 주문 상품 사진 -->
-                <div class="product_photo">
-                    <!-- DB에서 상품 이미지 불러오기 -> 어떻게 하쥐,, -->
-                    <img src="/resources/imgs/profileimg.jpg" alt="주문상품사진" class="product_photo2">
-                </div>
-
-                <!-- 해당 상품에 대한 정보 -->
-                <div class="product_info_container">
-
-                    <div class="product_info">
-                        <div id="product_title">상품명:</div>
-                        <div id="product_name">* 상품명 * DB에서 불러오기</div>
-                    </div>
-
-                    <!-- 옵션 없어짐
-                    <div class="product_info">
-                        <div id="product_title">옵션:</div>
-                        <div id="product_option">DB에서 불러오기</div>
-                    </div>
-                    -->
-
-                    <div class="product_info">
-                        <div id="product_title">가격:</div>
-                        <div id="product_price">* 상품 가격 * DB에서 불러오기</div>
-                    </div> 
-
-                    <div class="product_info">
-                        <div id="product_title">결제일:</div>
-                        <div id="product_payment_date">* 결제일자 * DB에서 불러오기</div>
-                    </div> 
-
-                </div>
-
-            </div> 
+				<c:forEach var="item" items="${productName}">
+	            <!-- 상세주문내역 contents 조절용 -->
+	            <div class="order_details1">
+	
+	                <!-- 주문 상품 사진 -->
+	                <div class="product_photo">
+	                    <!-- DB에서 상품 이미지 불러오기 -> 어떻게 하쥐,, -->
+	                    <img src="/resources/imgs/profileimg.jpg" alt="주문상품사진" class="product_photo2">
+	                </div>
+	
+	                <!-- 해당 상품에 대한 정보 -->
+	                <div class="product_info_container">
+	
+	                    <div class="product_info">
+	                        <div id="product_title">상품명:</div>
+	                        <div id="product_name">${item.name}</div>
+	                    </div>
+	
+	                    <!-- 옵션 없어짐
+	                    <div class="product_info">
+	                        <div id="product_title">옵션:</div>
+	                        <div id="product_option">DB에서 불러오기</div>
+	                    </div>
+	                    -->
+	
+	                    <div class="product_info">
+	                        <div id="product_title">가격:</div>
+	                        <div id="product_price">${orderList.totalPrice}</div>
+	                    </div> 
+	
+	                    <div class="product_info">
+	                        <div id="product_title">결제일:</div>
+	                        <div id="product_payment_date">${info.order_date}</div>
+	                    </div> 
+	
+	                </div>
+	
+	            </div> 
+				</c:forEach>
 
         </div>
 
@@ -112,30 +115,30 @@
                 <!-- 수령인 -->
                 <div class="delivery_info1">
                     <div id="delivery_title1">수령인</div>
-                    <div id="receiver_name">* 수령인 이름 * DB에서 불러오기</div>
+                    <div id="receiver_name">${info.receiver_name}</div>
                 </div>
 
                 <!-- 연락처 -->
                 <!-- 수령인 연락처인지 주문한 사람 연락처인지 모르겠음.. -->
                 <div class="delivery_info2">
                     <div id="delivery_title2">연락처</div>
-                    <div id="receiver_tel">* 수령인 연락처 * DB에서 불러오기</div>
+                    <div id="receiver_tel">${info.receiver_tel}</div>
                 </div>
 
                 <!-- 배송지 -->
                 <div class="delivery_info3">
                     <div id="delivery_title3">배송지</div>
                     <div id="receiver_address">
-                        <div id="receiver_address1">* 우편번호 * DB에서 불러오기</div>
-                        <div id="receiver_address2">* 주소 * DB에서 불러오기</div>
-                        <div id="receiver_address3">* 상세 주소 * DB에서 불러오기</div>
+                        <div id="receiver_address1">${info.receiver_address1}</div>
+                        <div id="receiver_address2">${info.receiver_address2}</div>
+                        <div id="receiver_address3">${info.receiver_address3}</div>
                     </div>
                 </div>
 
                 <!-- 배송메모 -->
                 <div class="delivery_info4">
                     <div id="delivery_title4">배송메모</div>
-                    <div id="delivery_memo">* 배송메모 * DB에서 불러오기</div>
+                    <div id="delivery_memo">${info.delivery_comment}</div>
                 </div>
 
             </div> 
@@ -169,7 +172,7 @@
                 <div class="payment_amount_info">
                     <!-- 배송비 -->
                     <div id="order_title">배송비</div>
-                    <div id="delivery_charge">* 배송비 * DB에서 불러오기</div>
+                    <div id="delivery_charge">${info.delivery_cost}</div>
                 </div>
 
                 <div class="payment_amount_info">
@@ -182,40 +185,6 @@
             
         </div>
 
-
-        <!-- 결제 상세 -->
-        <div class="OrderDetailsContainer4">
-
-            <!-- 결제 상세 타이틀 -->
-            <div class="OrderDetailsTitle4">결제 상세</div>
-            <div class="line4"></div>
-
-            <!-- 결제 상세 contents 조절용 -->
-            <div class="order_details4">
-
-                <!-- DB에서 끌고 오기 -->
-                <div class="payment_details">
-                    <!-- 결제 방식 -->
-                    <div class="payment_title"> * 결제 방식 (ex: 카드 간편 결제) * DB에서 불러오기</div>
-                    <!-- 총 결제 금액 불러오기 -->
-                    <div class="amount_price"> * 총 결제 금액 * DB에서 불러오기</div>
-                </div>
-
-                <!-- DB에서 끌고 오기 -->
-                <div class="payment_details2">
-                    <!-- 결제 방식 관련 정보 -->
-                    <div class="card_number"> * 카드 번호 (ex: 비씨 (5555-****-****-****)) * DB에서 불러오기</div>
-                    <div class="payment_installments"> * 할부 방식 * DB에서 불러오기</div>
-                </div>
-
-                <!-- 카드사 정책 구현이 가능한지 모르겠음....?? -->
-                <div class="company_policy">
-                    <div> · 카드에 BC 카드가 없는 경우 무이자 할부 적용 불가</div>
-                    <div> · 무이자 적용 여부는 카드사로 문의하시면 정확하게 확인할 수 있습니다. </div>
-                </div>
-            </div>
-
-        </div>
     </div>
 
 </main>
