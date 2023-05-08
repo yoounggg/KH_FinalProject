@@ -81,11 +81,6 @@
 		                        <div id="product_name">${productList.get(0).getName()}</div>
 		                    </div>
 							
-							<div class="product_info">
-								<div id="product_title">개수:</div>
-								<div id="product_count">개</div>
-							</div>
-							
 		                    <div class="product_info">
 		                        <div id="product_title">가격:</div>
 		                        <div id="product_price">${productList.get(0).getPrice()}원</div>
@@ -98,7 +93,7 @@
 		
 		                </div>
 		
-		            </div> 
+		            </div>
 				</c:forEach>
 
         </div>
