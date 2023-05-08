@@ -102,9 +102,13 @@ public class MypageMapperTests {
 	@Timeout(value = 1, unit=TimeUnit.MINUTES)
 	void TestItemPrice() {				
 		
-		List<OrderItemDTO> productName = mypageMapper.ItemPrice(304);  	 
-		
-		log.trace(" productName : {} " + productName);
+	    Integer productNo = 204;
+	    List<ProductDTO> orderItems = mypageMapper.productName(productNo);
+	    assertEquals(1, orderItems.size());
+	    assertEquals("국내산 파프리카 1입 (빨강/노랑, 150g)", orderItems.get(0).getName());
+	    assertEquals(2600, orderItems.get(0).getPrice());
+	    
+		log.trace(" orderItems : {} " + orderItems);
 		
 	} // TestdeductStock() 
 
