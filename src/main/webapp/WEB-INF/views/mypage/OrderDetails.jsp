@@ -73,9 +73,8 @@
 			                <div class="product_photo">
 			                    <!-- DB에서 상품 이미지 불러오기 -> 어떻게 하쥐,, -->
 			                   <!-- <img src="/resources/imgs/profileimg.jpg" alt="주문상품사진" class="product_photo2"> -->
-			                    <img src="/resources/product/${productList.main_image}" alt="상품 이미지">
 			                </div>
-		
+			                
 		                    <div class="product_info">
 		                        <div id="product_title">상품명:</div>
 		                        <div id="product_name">${productList.get(0).getName()}</div>
