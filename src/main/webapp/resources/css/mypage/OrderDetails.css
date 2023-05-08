@@ -168,7 +168,6 @@ main{
     margin-bottom: 40px;
     margin-right: 40px;
     float: left;
-    border: 1px solid black; /* 영역 표시용! 나중에 지우기 */
     width: 120px;
     height: 120px;
     overflow: hidden; /* 이미지가 컨테이너 밖으로 벗어나지 않게 함 */
