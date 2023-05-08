@@ -24,7 +24,8 @@ public class OrderDTO {
 	private String delivery_state; // 주문 상태
 	private List<OrderItemDTO> orders;	// 주문 상품
 	private int delivery_cost; // 배송비
-	private Date order_date; // 주문 날짜
+//	private Date order_date; // 주문 날짜
+	private String order_date;
 	
 	// DB테이블 존재 하지 않는 데이터
 
