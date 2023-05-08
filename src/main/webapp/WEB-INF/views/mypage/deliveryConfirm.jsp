@@ -232,8 +232,10 @@
     const date = new Date(orderDate);
     let count = 1;
     for(let i=1; i<=5; i++){
-        let rNum = 1; //Math.floor(Math.random() * 2 + 1); // 테스트로 시간은 1~2분 사이로 설정
-        let time = rNum * 60;
+        //let rNum = 1; //Math.floor(Math.random() * 2 + 1); // 테스트로 시간은 1~2분 사이로 설정
+        //let time = rNum * 60;
+        let rNum = 10; 
+        let time = 10;
         let min = "";
         let sec = "";
 
@@ -285,28 +287,29 @@
                 document.querySelector(".img"+i+"> div").style.color="#000000";
                 
                 switch(count) {
-                    case 1: date.setMinutes(date.getMinutes() + rNum);
+                    case 1: date.setSeconds(date.getSeconds() + rNum);
                             document.querySelector(".deliTxt"+i).innerHTML = "상품 준비가 완료되었습니다."; 
                             document.querySelector(".deliDate2").innerHTML = "출발 시간 : " +
                                 date.toLocaleDateString().substring(date.toLocaleDateString().length-1,'').replaceAll('. ','-') + " " 
                                 + date.toLocaleTimeString();
                             count++;
                             break;
-                    case 2: date.setMinutes(date.getMinutes() + rNum);
+                    case 2: date.setSeconds(date.getSeconds() + rNum);
                             document.querySelector(".deliTxt"+i).innerHTML = "상품이 배송터미널로 출발하였습니다."; 
                             document.querySelector(".deliDate3").innerHTML = "도착 시간 : " +
                                 date.toLocaleDateString().substring(date.toLocaleDateString().length-1,'').replaceAll('. ','-') + " " 
                                 + date.toLocaleTimeString();
                             count++;
                             break;
-                    case 3: date.setMinutes(date.getMinutes() + rNum);
+                    case 3: date.setSeconds(date.getSeconds() + rNum);
                             document.querySelector(".deliTxt"+i).innerHTML = "상품이 배송터미널에 도착 하였습니다.";
                             document.querySelector(".deliDate4").innerHTML = "출발 시간 : " +
                                 date.toLocaleDateString().substring(date.toLocaleDateString().length-1,'').replaceAll('. ','-') + " " 
                                 + date.toLocaleTimeString();
                             count++;
                             break;
-                    case 4: date.setMinutes(date.getMinutes() + rNum);
+                    case 4: date.setSeconds(date.getSeconds() + rNum);
+                    		document.querySelector(".deliTxt"+i).innerHTML = "상품이 고객의 주소지로 출발하였습니다.";
                             count++;
                             break;
                 } //switch
