@@ -82,7 +82,7 @@
 		
 		                    <div class="product_info">
 		                        <div id="product_title">가격:</div>
-		                        <div id="product_price">${productList.get(0).getPrice()}</div>
+		                        <div id="product_price">${productList.get(0).getPrice()}원</div>
 		                    </div> 
 		
 		                    <div class="product_info">
