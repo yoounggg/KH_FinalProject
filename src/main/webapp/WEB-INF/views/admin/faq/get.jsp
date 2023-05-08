@@ -42,7 +42,7 @@
                  
         <div class="content">
 
-            <h2>FAQ <span class="test">테스트</span></h2>
+            <h2>FAQ</h2>
             <div class="write">
                 <form>
                     <p><input type="hidden" name="no" value="${faq.no}"  readonly></p>
