@@ -63,7 +63,7 @@
                  
         <div class="content">
 
-            <h2>공지사항 <span class="test">테스트</span></h2>
+            <h2>공지사항</h2>
             <div class="write">
                 <form>
                     <p><input type="hidden" name="no" value="${notice.no}"></p>

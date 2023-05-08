@@ -98,10 +98,10 @@
                         <div class="content_list">
 							<c:forEach items="${faqList}" var="FaqVO" varStatus="status">
 							  <input type="radio" name="accodion" id="answer${FaqVO.no}">
-							  <label for="answer${FaqVO.no}"><input type="hidden" name="no" value="${FaqVO.no}">${FaqVO.title}<em></em></label>
+							  <label for="answer${FaqVO.no}"><input type="hidden" name="no" value="${FaqVO.no}">${FaqVO.title}</label>
 							  <div>
 							    <p class="answer02">
-							      <input type="hidden" name="no" value="${FaqVO.no}">${FaqVO.answer}
+							      ${FaqVO.answer}
 							    </p>
 							  </div> 
 							</c:forEach>
@@ -119,7 +119,7 @@
 						            
 					            	<!-- 각 번호 페이지 버튼 -->
 					                <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-					                    <li class="pageInfo_btn "><a href="/help/notice?currPage=${num}&amount=${pageMaker.cri.amount}">${num}</a></li>
+					                    <li class="pageInfo_btn "><a href="/help/faq?currPage=${num}&amount=${pageMaker.cri.amount}">${num}</a></li>
 					                </c:forEach>
 					             
 						            <!-- 다음페이지 버튼 -->

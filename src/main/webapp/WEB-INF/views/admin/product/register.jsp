@@ -51,7 +51,7 @@
 <!-- 메인 - 공지사항 글 목록 테이블, 이동페이지, 수정, 삭제 -->            
                 
         <div class="content">
-            <h2>상품등록 <span class="test">테스트</span></h2>
+            <h2>상품등록</h2>
             <div class="write">
                 <form action="/admin/product/register" method="post" enctype="multipart/form-data">
                     <div class="product">

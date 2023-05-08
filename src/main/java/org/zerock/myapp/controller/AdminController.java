@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.aspectj.weaver.patterns.TypePatternQuestions.Question;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,12 +24,14 @@ import org.zerock.myapp.domain.FaqVO;
 import org.zerock.myapp.domain.NoticeDTO;
 import org.zerock.myapp.domain.PageDTO;
 import org.zerock.myapp.domain.ProductDTO;
+import org.zerock.myapp.domain.QuestionDTO;
 import org.zerock.myapp.exception.AException;
 import org.zerock.myapp.exception.ControllerException;
 import org.zerock.myapp.exception.ServiceException;
 import org.zerock.myapp.service.FaqService;
 import org.zerock.myapp.service.NoticeService;
 import org.zerock.myapp.service.ProductService;
+import org.zerock.myapp.service.QuestionService;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -49,6 +52,7 @@ public class AdminController {
    private ProductService service;
    private NoticeService service2;
    private FaqService service3;
+   private QuestionService service4;
 
    
    /* 1. 관리자 페이지 메인 */
@@ -61,10 +65,12 @@ public class AdminController {
   				List<ProductDTO> mainProduct = this.service.getList();
   				List<NoticeDTO> mainNotice = this.service2.getList();
   				List<FaqVO> mainFaq = this.service3.getList();
+  				List<QuestionDTO> mainQue = this.service4.adminList();	
   				
   				model.addAttribute("mainProduct", mainProduct);
   				model.addAttribute("mainNotice", mainNotice);
   				model.addAttribute("mainFaq", mainFaq);
+  				model.addAttribute("mainQue", mainQue);
 
   				return "/admin/main";
   		} catch (Exception e) {

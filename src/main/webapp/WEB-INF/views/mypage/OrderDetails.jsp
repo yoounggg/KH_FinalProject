@@ -71,8 +71,8 @@
 		                
 			                <!-- 주문 상품 사진 -->
 			                <div class="product_photo">
-			                    <!-- DB에서 상품 이미지 불러오기 -> 어떻게 하쥐,, -->
-			                   <!-- <img src="/resources/imgs/profileimg.jpg" alt="주문상품사진" class="product_photo2"> -->
+			                    <!-- DB에서 상품 이미지 불러오기 -->
+			                    <img src="/resources/product/${productList[0].getMain_image()}" alt="상품 이미지" class="product_photo2"/>
 			                </div>
 			                
 		                    <div class="product_info">
