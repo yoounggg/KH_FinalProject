@@ -22,7 +22,7 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
 	rel="stylesheet">
 
-<link rel="stylesheet" href="/resources/css/admin/get2.css">
+<link rel="stylesheet" href="/resources/css/admin/page.css">
 <script src="/resources/js/admin/page.js"></script>
 <body>
 	<!-- 헤더 - 로그인/로그아웃 로고, 관리자페이지 메인글씨 -->
@@ -74,7 +74,8 @@
 							<a href="/admin/question/write"><span class="list">답변하기</span></a>
 						</div>
 
-						<button type="button" class='delete' id="delete_btn">삭제하기</button>
+						<button type="button" class='delete' id="delete_btn">
+						<span id="ddd">	삭제하기</span></button>
 					</div>
 			</div>
 			</form>
@@ -85,7 +86,6 @@
 
 </body>
 
-<!-- 파일을 따로주면 안먹힘 이유가 뭘까.. -->
 <script>
 	$("#delete_btn").on("click", function(e) {
 		console.log("클릭");
