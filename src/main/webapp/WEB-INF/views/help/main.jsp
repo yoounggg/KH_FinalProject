@@ -109,9 +109,9 @@
                                 </div>
 
                                 <div class="help_box2">
-                                    <div class="help_box3"><p>FAQ</p></div>
-                                    <div class="help_box3"><p>공지사항</p></div>
-                                    <div class="help_box3"><p>이용안내</p></div>
+                                    <div class="help_box3"><a href="/help/faq"><p>FAQ</p></a></div>
+                                    <div class="help_box3"><a href="/help/notice"><p>공지사항</p></a></div>
+                                    <div class="help_box3"><a href="/help/guide"><p>이용안내</p></a></div>
                                 </div>
                             </div>
 
