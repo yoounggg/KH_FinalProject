@@ -87,6 +87,10 @@
                         <p id="info">${member.social_type}</p>
                         <br>
                         
+                        <p>회원 가입 날짜</p>
+                        <p id="info">${member.signup_date}</p>
+                        <br>
+                        
                     </div>
 
 

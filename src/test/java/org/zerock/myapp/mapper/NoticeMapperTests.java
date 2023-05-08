@@ -19,7 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.zerock.myapp.domain.NoticeDTO;
-import org.zerock.myapp.domain.NoticeVO;
+import org.zerock.myapp.domain.NoticeDTO;
 
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -53,7 +53,7 @@ public class NoticeMapperTests {
 	void selectAll() {
 		log.trace("selectAll() invoked.");
 		
-		List<NoticeVO> list = this.mapper.selectAll();
+		List<NoticeDTO> list = this.mapper.selectAll();
 		assertNotNull(list);
 		
 		list.forEach(log::info);
@@ -71,7 +71,7 @@ public class NoticeMapperTests {
 		
 		//값을 부여한 다음 vo에 넣어야 함
 		Integer no = 7;
-		NoticeVO vo = this.mapper.select(no);
+		NoticeDTO vo = this.mapper.select(no);
 		assertNotNull(vo);
 		
 		log.info("\t vo : {}", vo);
