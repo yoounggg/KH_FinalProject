@@ -186,19 +186,20 @@ main{
     display: flex;
 }
 
-/* 상품명, 가격, 결제일 */
+/* 상품명, 개수, 가격, 결제일 */
 #product_title {
     font-size: 17px;
-    margin-bottom: 15px;
+    margin-bottom: 10x;
     width: 120px;
 }
 
-/* 상품명, 가격, 결제일 -> DB에서 불러오는거 표시됨! */
+/* 상품명, 개수, 가격, 결제일 -> DB에서 불러오는거 표시됨! */
 #product_name,
+#product_count,
 #product_price,
 #product_payment_date {
-    font-size: 17px;
-    margin-bottom: 15px;
+    font-size: 16px;
+    margin-bottom: 5px;
 }
 
 /* --- 배송 정보 --------------------------------------- */
