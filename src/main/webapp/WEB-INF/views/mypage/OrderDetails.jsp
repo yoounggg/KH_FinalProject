@@ -72,7 +72,8 @@
 			                <!-- 주문 상품 사진 -->
 			                <div class="product_photo">
 			                    <!-- DB에서 상품 이미지 불러오기 -> 어떻게 하쥐,, -->
-			                    <img src="/resources/imgs/profileimg.jpg" alt="주문상품사진" class="product_photo2">
+			                   <!-- <img src="/resources/imgs/profileimg.jpg" alt="주문상품사진" class="product_photo2"> -->
+			                    <img src="/resources/product/${productList.main_image}" alt="상품 이미지">
 			                </div>
 		
 		                    <div class="product_info">
@@ -157,13 +158,13 @@
                 <div class="payment_amount_info">
                     <!-- 할인 안들어간 원래 상품 금액 -->
                     <div id="order_title">총 상품 가격</div>
-                    <div id="total_product_amount">* 총 상품 가격 * DB에서 불러오기</div>
+                    <div id="total_product_amount">${totalPrice}</div>
                 </div>
 
                 <div class="payment_amount_info">
                     <!-- 할인 얼마나 됐는지 금액 -->
                     <div id="order_title">할인 금액</div>
-                    <div id="discount_amount">* 할인 금액 * DB에서 불러오기</div>
+                    <div id="discount_amount">${totalDiscount}</div>
                 </div>
 
                 <div class="payment_amount_info">
@@ -175,7 +176,7 @@
                 <div class="payment_amount_info">
                     <!-- 총 상품 가격 - 할인 금액 + 배송비 결과 -->
                     <div id="order_title">총 결제 금액</div>
-                    <div id="total_payment_amount">* 총 결제 금액 * DB에서 불러오기</div>
+                    <div id="total_payment_amount">${finalPrice}</div>
                 </div>
 
             </div>

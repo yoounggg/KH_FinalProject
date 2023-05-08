@@ -117,13 +117,44 @@ public class MypageController {
 		// no는 view단에서 id와 함께 전송하도록 해놓음( OrderList 상세주문내역 버튼 )
 		// OrderDTO( 주문 상세 조회하려고 해당 주문 번호만(no) 가져와서 해당 주문번호에 대해서만 조회함 )
 		OrderDTO Infos = this.mypageService.getSelect(no);
+		
+		// ================================================================
 		// OrderItemDTO( 주문 상품 상세 조회하려고 no(MYMG_ORDER) 가져와서 해당 주문번호의 상품에 대해서만 조회함 )
 		List<OrderItemDTO> ItemInfos = this.mypageService.getItemSelect(no);
+		
+		Integer totalPrice = 0;
+		Integer totalDiscount = 0;
+		Integer finalPrice = 0;
+
+		for (OrderItemDTO item : ItemInfos) {
+		    int count = item.getCount();
+		    int price = item.getPrice();
+		    int discount = item.getDiscount();
+
+		    // 상품의 총합(price*count) 계산
+		    Integer total = price * count;
+		    totalPrice += total; // 총합 누적
+
+		    // 할인비용 계산 (%로 계산)
+		    Integer discountAmount = total * discount / 100;
+		    totalDiscount += discountAmount; // 할인비용 누적
+
+		    // 최종 결제금액 계산 (총합+배송비-할인비용)
+		    Integer finalPriceItem = total - discountAmount; // 배송비는 변수가 정의되어 있지 않아 추후 수정이 필요합니다.
+		    finalPrice += finalPriceItem; // 최종 결제금액 누적
+		}
+
+		// 모델에 변수들 추가
+		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("totalDiscount", totalDiscount);
+		model.addAttribute("finalPrice", finalPrice);
+		
+		// ================================================================
 
 		// 상품명 가져오기 (매개변수 수정 필요 -> 값 안들어감)
 //		ProductDTO productName = this.mypageService.getProductName();
 
-		log.trace("****************************  orderDetails({},{},{},{}) invoked. *****************************",
+		log.trace("****************************  orderDetails({},{},{}) invoked. *****************************",
 				Infos, ItemInfos, orderDTO);
 
 		// 상품 명 가져오기
