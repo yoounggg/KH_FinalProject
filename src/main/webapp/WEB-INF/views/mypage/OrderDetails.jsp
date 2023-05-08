@@ -162,25 +162,25 @@
                 <div class="payment_amount_info">
                     <!-- 할인 안들어간 원래 상품 금액 -->
                     <div id="order_title">총 상품 가격</div>
-                    <div id="total_product_amount">${totalPrice}</div>
+                    <div id="total_product_amount">${totalPrice}원</div>
                 </div>
 
                 <div class="payment_amount_info">
                     <!-- 할인 얼마나 됐는지 금액 -->
                     <div id="order_title">할인 금액</div>
-                    <div id="discount_amount">${totalDiscount}</div>
+                    <div id="discount_amount">${totalDiscount}원</div>
                 </div>
 
                 <div class="payment_amount_info">
                     <!-- 배송비 -->
                     <div id="order_title">배송비</div>
-                    <div id="delivery_charge">${info.delivery_cost}</div>
+                    <div id="delivery_charge">${info.delivery_cost}원</div>
                 </div>
 
                 <div class="payment_amount_info">
                     <!-- 총 상품 가격 - 할인 금액 + 배송비 결과 -->
                     <div id="order_title">총 결제 금액</div>
-                    <div id="total_payment_amount">${finalPrice}</div>
+                    <div id="total_payment_amount">${finalPrice}원</div>
                 </div>
 
             </div>
