@@ -20,7 +20,7 @@ public interface OrderService {
 //	public List<OrderItemDTO> getOrdersInfo(List<OrderItemDTO> ordersInfo) throws ServiceException;
 	
 	// 주문가격 주문내역에 보내주기
-	public void orderList(OrderDTO odt);
+//	public List<OrderPageItemDTO> orderList(List<OrderPageItemDTO> orders) throws ServiceException;
 	
 	// 주문한 멤버 정보
 

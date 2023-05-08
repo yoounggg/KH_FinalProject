@@ -18,7 +18,7 @@
 
 	<![CDATA[
 	SELECT * FROM (
-		SELECT /*+ INDEX_DESC(NOTICE)*/rownum as rowNo, title, no, content
+		SELECT /*+ INDEX_DESC(NOTICE)*/rownum as rowNo, title, no, content, reg_date, update_date
 		FROM NOTICE
 		WHERE
 	]]>

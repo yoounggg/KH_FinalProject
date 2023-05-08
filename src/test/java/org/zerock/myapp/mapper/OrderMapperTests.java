@@ -131,7 +131,8 @@ public class OrderMapperTests {
 		
 	} // TestGetOrderInfoTest()
 	
-	//@Disabled
+
+		//@Disabled
 	@Test
 	@Order(5)
 	@DisplayName(" test: TestdeductStock()")

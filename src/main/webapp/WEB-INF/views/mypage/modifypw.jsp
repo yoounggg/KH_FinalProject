@@ -13,7 +13,7 @@
 
     <%@include file="/WEB-INF/views/common/favicon.jsp" %>
 
-    <link rel="stylesheet" href="/resources/css/modifypw.css">
+    <link rel="stylesheet" href="/resources/css/mypage/modifypw.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
     <script src="https://kit.fontawesome.com/1fe7ba446e.js" crossorigin="anonymous"></script>
@@ -23,7 +23,7 @@
 </head>
 <body>
 	<!-- header -->
-	<%@include file= "../views/common/header.jsp" %>
+	<%@include file= "/WEB-INF/views/common/header.jsp" %>
 
 <!-- --------------위에는 헤더----------- -->
 
@@ -80,7 +80,7 @@
 
 </main>
     <!-- ---------------footer---------------- -->
-   <%@include file= "../views/common/footer.jsp" %>
+   <%@include file= "/WEB-INF/views/common/footer.jsp" %>
 </body>
 
 <script>

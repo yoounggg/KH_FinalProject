@@ -67,9 +67,11 @@ function setTotalInfo(){
     //배송비
     if(totalPrice == 0 ){
       deliveryPrice = 0;
+    } else if(totalPrice >= 30000){
+      deliveryPrice = 0;
     } else{
-      deliveryPrice = 3000;
-    }
+	deliveryPrice = 3000;
+	}
       
     //최종가격~!!
     finalTotalPrice = totalPrice + deliveryPrice;

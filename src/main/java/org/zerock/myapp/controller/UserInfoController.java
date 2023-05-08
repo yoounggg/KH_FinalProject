@@ -51,7 +51,7 @@ public class UserInfoController {
 			MemberDTO dto = this.service.userDetail(id);
 			model.addAttribute("details", dto); // 모델 == details
 			
-			return "userInfo";
+			return "mypage/userInfo";
 			
 		} catch (ServiceException e) {
 			throw new ControllerException(e);
@@ -147,10 +147,7 @@ public class UserInfoController {
 			return ResponseEntity.ok(result);
 		} // checkPw
 		
-//		public @ResponseBody String checkPw(@RequestBody String password, @PathVariable("id") String id, Model model) throws Exception{
-//		public @ResponseBody String checkPw(@RequestBody Map<String, String> request, @PathVariable("id") String id, Model model) throws Exception{
-		
-		
+
 //	===========================================================================	
 //	===========================================================================
 	//5. 비밀번호 변경
@@ -159,7 +156,7 @@ public class UserInfoController {
 	public String changePw(@PathVariable("id") String id) {
 		log.info("changePw() invoked(비밀번호 변경 페이지)");
 		
-		return "modifypw";
+		return "mypage/modifypw";
 	} // modifypw
 	
 	

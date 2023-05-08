@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.zerock.myapp.domain.NoticeDTO;
-import org.zerock.myapp.domain.NoticeVO;
 import org.zerock.myapp.exception.ServiceException;
 
 import lombok.NoArgsConstructor;
@@ -50,7 +49,7 @@ public class NoticeServiceTests {
 	void testGetList() throws ServiceException {
 		log.trace("testGetList() invoked.");
 	
-		List<NoticeVO> list = this.service.getList();
+		List<NoticeDTO> list = this.service.getList();
 		
 		assert list != null;
 		list.forEach(log::info);
@@ -67,7 +66,7 @@ public class NoticeServiceTests {
 		log.trace("testGet() invoked.");
 	
 		int no = 6;
-		NoticeVO vo = this.service.get(no);
+		NoticeDTO vo = this.service.get(no);
 		
 		assert vo != null;
 		log.info("\t+ vo : {}", vo);
@@ -121,7 +120,7 @@ public class NoticeServiceTests {
 	void testModify() throws ServiceException {
 		log.trace("testModify() invoked.");
 		
-		NoticeVO vo32 = this.service.get(32);
+		NoticeDTO dto32 = this.service.get(32);
 		
 		NoticeDTO dto = new NoticeDTO();
 		dto.setNo(32);

@@ -12,7 +12,7 @@
 <!-- 헤더 - 로그인/로그아웃 로고, 관리자페이지 메인글씨 -->
 <header>
     <div class="state">
-        <span class="login">admin님 로그인하였습니다</span>
+        <span class="login">mymgadmin 로그인</span>
         <span class="login">Ι</span>
         <span class="login"><a href="/main">홈페이지</a></span>
         <span class="login">Ι</span>

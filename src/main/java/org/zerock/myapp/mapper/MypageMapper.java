@@ -27,6 +27,9 @@ public interface MypageMapper {
 	// 조인으로 상품 이름 가져오기 
 	public abstract List<ProductDTO> productName(Integer Product_no);
 	
+	// Order_List테이블의 수량,가격,할인가 가져오기
+	public List<OrderItemDTO> ItemPrice(Integer order_no);
+	
 	// 주문 상품정보 가져오기
 //	public OrderDTO getOrderItemDTO(OrderItemDTO oit);
 	

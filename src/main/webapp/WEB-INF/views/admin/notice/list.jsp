@@ -27,10 +27,15 @@
 <!-- 메인 - 공지사항 글 목록 테이블, 이동페이지, 수정, 삭제 -->            
                 
         <div class="content">
-        <form>
             <table id="list">
-                <h2>공지사항 <span class="test">테스트</span></h2>
+                <h2>공지사항</h2>
                 <thead>
+                <form action="/admin/notice/search" id="searchForm" method="get">
+                	<div class="search1">
+	                	<input type="text" id="keyword" name="keyword" >
+	                	<button id="search">검색</button>
+                	</div>
+	            </form>
 	                <tr>
 	                    <th><input type="checkbox" name="selectall" value="selectall" onclick="selectAll(this)"></th>
 	                    <th>번호</th>
@@ -41,19 +46,18 @@
 	                </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${list}" var="NoticeVO">
+                    <c:forEach items="${list}" var="NoticeDTO">
                         <tr>
                         	<td><input type="checkbox" name="item" onclick="checkSelectAll()" /></td>
-                            <td>${NoticeVO.no}</td>
-                            <td><a href="/admin/notice/get?no=${NoticeVO.no}">${NoticeVO.title}</a></td>
-                            <td>${NoticeVO.reg_date}</td>
-                            <td>${NoticeVO.update_date}</td>
-                            <td><input type="hidden" name="no" value="${NoticeVO.no}"></td>
+                            <td>${NoticeDTO.no}</td>
+                            <td><a href="/admin/notice/get?no=${NoticeDTO.no}">${NoticeDTO.title}</a></td>
+                            <td><fmt:formatDate pattern="yyyy/MM/dd" value="${NoticeDTO.reg_date}"/></td>
+                            <td><fmt:formatDate pattern="yyyy/MM/dd" value="${NoticeDTO.update_date}"/></td>
+                            <td><input type="hidden" name="no" value="${NoticeDTO.no}"></td>
                         </tr>       
                     </c:forEach>    
                 </tbody>
             </table>
-		</form>
             
             
 		 				<form>
@@ -64,17 +68,17 @@
 					    		
 					    		<!-- 이전페이지 버튼 -->
 					            <c:if test="${pageMaker.prev}" >
-					                <li class="pageInfo_btn previous"><a href="/admin/product/list?currPage=${pageMaker.startPage-1}">Previous</a></li>
+					                <li class="pageInfo_btn previous"><a href="/admin/notice/list?currPage=${pageMaker.startPage-1}">Previous</a></li>
 					            </c:if>
 					            
 				            	<!-- 각 번호 페이지 버튼 -->
 				                <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-				                    <li class="pageInfo_btn "><a href="/admin/product/list?currPage=${num}&amount=${pageMaker.cri.amount}">${num}</a></li>
+				                    <li class="pageInfo_btn "><a href="/admin/notice/list?currPage=${num}&amount=${pageMaker.cri.amount}">${num}</a></li>
 				                </c:forEach>
 				             
 					            <!-- 다음페이지 버튼 -->
 					            <c:if test="${pageMaker.next}" >
-					                <li class="pageInfo_btn next"><a href="/admin/product/list?currPage=${pageMaker.endPage + 1}&amount=${pageMaker.cri.amount}">Next</a></li>
+					                <li class="pageInfo_btn next"><a href="/admin/notice/list?currPage=${pageMaker.endPage + 1}&amount=${pageMaker.cri.amount}">Next</a></li>
 					            </c:if>  
 				             </ul>
 								<div class="button1">

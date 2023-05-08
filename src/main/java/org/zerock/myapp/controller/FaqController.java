@@ -21,6 +21,8 @@ import org.zerock.myapp.domain.FaqDTO;
 import org.zerock.myapp.domain.FaqVO;
 import org.zerock.myapp.domain.PageDTO;
 import org.zerock.myapp.exception.ControllerException;
+import org.zerock.myapp.exception.ServiceException;
+import org.zerock.myapp.service.FaqSearchService;
 import org.zerock.myapp.service.FaqService;
 
 import lombok.AllArgsConstructor;
@@ -192,6 +194,38 @@ public class FaqController {
 	public void register() {
 		log.trace("register() invoked.");
 	}
+	
+	
+//	============================================================================
+	
+	private FaqSearchService service2;
+	
+	@GetMapping("/search") // 
+	public String faqSearchList (Criteria cri, Model model) throws ServiceException {
+		log.info("faqSearchList({}) invoked.", cri);
+		
+		
+		List<FaqDTO> list = this.service2.faqSearchList(cri);
+		log.info("searchList:" + list);
+		
+		if(!list.isEmpty()) {
+			model.addAttribute("searchList", list);
+			
+			log.info("searchList: " + list);
+			
+		} else {
+			
+			model.addAttribute("emptylist", "empty");
+			
+			return "/admin/faq/search"; 
+		} // if-else
+		
+		//페이징
+		model.addAttribute("__PAGE_MAKER__", new PageDTO(cri, service2.totalFaq(cri)));
+		
+		return "/admin/faq/search";
+	} // searchproductList
+	
 	
 	
 } // end class

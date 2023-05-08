@@ -28,7 +28,7 @@
         <div class="content">
         <form>
             <table>
-                <h2>상품목록 <span class="test">테스트</span></h2>
+                <h2>상품목록</h2>
                 <thead>
 	                <tr>
 	                    <th><input type="checkbox" name="selectall" value="selectall" onclick="selectAll(this)"></th>

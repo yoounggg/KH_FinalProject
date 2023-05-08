@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
     
 <!DOCTYPE html>
 <html lang="ko">
@@ -42,7 +43,7 @@
             <li class="small2 small3 small4"><a href="/mypage/userInfo/${member.id}">정보수정</a></li>
             <li class="small2 small3 small4"><a href="/mypage/userInfo/${member.id}/changePw">비밀번호 변경</a></li>
             <li class="small2 small3 small4"><a href="/mypage/orderList/${member.id}">주문내역</a></li>
-            <li class="small2 small5"><a href="/mypage/?">배송현황</a></li>
+            <li class="small2 small5"><a href="/mypage/deliveryConfirm/${member.id}">배송현황</a></li>
         </ul>
     </aside>
 
@@ -56,46 +57,48 @@
             <div class="OrderDetailsTitle1">상세주문내역</div>
             <!-- 구분선 -->
             <div class="line1"></div>
+            
+            <div class="space"></div>
 
+		<!-- <div>${productNames}</div>  -->
+				<c:forEach var="productList" items="${productNames}">
+		            <!-- 상세주문내역 contents 조절용 -->
+		            <div class="order_details1">
+		
+		
+		                <!-- 해당 상품에 대한 정보 -->
+		                <div class="product_info_container">
+		                
+			                <!-- 주문 상품 사진 -->
+			                <div class="product_photo">
+			                    <!-- DB에서 상품 이미지 불러오기 -> 어떻게 하쥐,, -->
+			                 <img src="/resources/product/${productList[0].getMain_image()}" alt="상품 이미지" class="product_photo2"/>
 
-				<c:forEach var="item" items="${productName}">
-	            <!-- 상세주문내역 contents 조절용 -->
-	            <div class="order_details1">
-	
-	                <!-- 주문 상품 사진 -->
-	                <div class="product_photo">
-	                    <!-- DB에서 상품 이미지 불러오기 -> 어떻게 하쥐,, -->
-	                    <img src="/resources/imgs/profileimg.jpg" alt="주문상품사진" class="product_photo2">
-	                </div>
-	
-	                <!-- 해당 상품에 대한 정보 -->
-	                <div class="product_info_container">
-	
-	                    <div class="product_info">
-	                        <div id="product_title">상품명:</div>
-	                        <div id="product_name">${item.name}</div>
-	                    </div>
-	
-	                    <!-- 옵션 없어짐
-	                    <div class="product_info">
-	                        <div id="product_title">옵션:</div>
-	                        <div id="product_option">DB에서 불러오기</div>
-	                    </div>
-	                    -->
-	
-	                    <div class="product_info">
-	                        <div id="product_title">가격:</div>
-	                        <div id="product_price">${item.price}</div>
-	                    </div> 
-	
-	                    <div class="product_info">
-	                        <div id="product_title">결제일:</div>
-	                        <div id="product_payment_date">${info.order_date}</div>
-	                    </div> 
-	
-	                </div>
-	
-	            </div> 
+			                </div>
+		
+		                    <div class="product_info">
+		                        <div id="product_title">상품명:</div>
+		                        <div id="product_name">${productList.get(0).getName()}</div>
+		                    </div>
+							
+							<div class="product_info">
+								<div id="product_title">개수:</div>
+								<div id="product_count">개</div>
+							</div>
+							
+		                    <div class="product_info">
+		                        <div id="product_title">가격:</div>
+		                        <div id="product_price">${productList.get(0).getPrice()}원</div>
+		                    </div> 
+		
+		                    <div class="product_info">
+		                        <div id="product_title">결제일:</div>
+		                        <div id="product_payment_date">${info.order_date}</div>
+		                    </div> 
+		
+		                </div>
+		
+		            </div> 
 				</c:forEach>
 
         </div>
@@ -160,13 +163,13 @@
                 <div class="payment_amount_info">
                     <!-- 할인 안들어간 원래 상품 금액 -->
                     <div id="order_title">총 상품 가격</div>
-                    <div id="total_product_amount">* 총 상품 가격 * DB에서 불러오기</div>
+                    <div id="total_product_amount">${totalPrice}</div>
                 </div>
 
                 <div class="payment_amount_info">
                     <!-- 할인 얼마나 됐는지 금액 -->
                     <div id="order_title">할인 금액</div>
-                    <div id="discount_amount">* 할인 금액 * DB에서 불러오기</div>
+                    <div id="discount_amount">${totalDiscount}</div>
                 </div>
 
                 <div class="payment_amount_info">
@@ -178,7 +181,7 @@
                 <div class="payment_amount_info">
                     <!-- 총 상품 가격 - 할인 금액 + 배송비 결과 -->
                     <div id="order_title">총 결제 금액</div>
-                    <div id="total_payment_amount">* 총 결제 금액 * DB에서 불러오기</div>
+                    <div id="total_payment_amount">${finalPrice}</div>
                 </div>
 
             </div>

@@ -163,7 +163,7 @@
 		</div>
 
         <div class="minibanner1">
-        	<a href="/product/info?no=216">
+        	<a href="/product/info?code=10900&no=201">
         	<img src="/resources/imgs/minibanner.png" alt="미니배너">
        		</a>
         </div>

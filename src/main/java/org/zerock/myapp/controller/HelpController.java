@@ -11,7 +11,6 @@ import org.zerock.myapp.domain.Criteria;
 import org.zerock.myapp.domain.FaqDTO;
 import org.zerock.myapp.domain.FaqVO;
 import org.zerock.myapp.domain.NoticeDTO;
-import org.zerock.myapp.domain.NoticeVO;
 import org.zerock.myapp.domain.PageDTO;
 import org.zerock.myapp.exception.ControllerException;
 import org.zerock.myapp.exception.ServiceException;
@@ -78,7 +77,7 @@ public class HelpController {
 		log.trace("list({}, {}) invoked.", cri, model);
 			
 		try {
-			List<NoticeVO> list = this.service2.getListPaging(cri);
+			List<NoticeDTO> list = this.service2.getListPaging(cri);
 			model.addAttribute("noticeList", list); // view로 날아갈 model 상자 안에 model 데이터를 담음
 				
 				
@@ -99,7 +98,7 @@ public class HelpController {
 		log.trace("get({}, {}) invoked.", no, model);
 		
 		try {
-			NoticeVO vo = this.service2.get(no);
+			NoticeDTO vo = this.service2.get(no);
 			model.addAttribute("notice", vo);
 		} catch (Exception e) {
 			throw new ControllerException(e);
