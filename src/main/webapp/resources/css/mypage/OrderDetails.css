@@ -102,10 +102,16 @@ main{
 
 /* 각 항목 별 컨테이너 */
 .OrderDetailsContainer1 {
-    margin-bottom: 110px;
+    display: flex;
+    flex-direction: column;
 }
 
-.OrderDetailsContainer2,
+.OrderDetailsContainer2 {
+	margin-top:50px;
+	margin-bottom: 70px;
+}
+
+
 .OrderDetailsContainer3,
 .OrderDetailsContainer4 {
     margin-bottom: 100px;
@@ -116,8 +122,6 @@ main{
 .OrderDetailsTitle2,
 .OrderDetailsTitle3,
 .OrderDetailsTitle4 {
-    /* display: flex;
-    flex-direction: column; */
     font-size: 23px;
     font-weight: bold;
     width: 700px;
@@ -131,6 +135,10 @@ main{
     margin-top: 15px;
 }
 
+.space {
+	margin-bottom: 30px;
+}
+
 .line2,
 .line3,
 .line4 {
@@ -141,11 +149,7 @@ main{
     margin-bottom: 15px;
 }
 
-/* 각 항목들 정보 위치 조절용 */
-.order_details1 {
-    margin-top: 30px;
-}
-
+/* 각 항목들 정보 위치 조절용 *
 .order_details2,
 .order_details3
 .order_details4 {
@@ -180,8 +184,6 @@ main{
 /* 상품에 대한 정보 */
 .product_info {
     display: flex;
-    /* flex-direction: column;
-    align-items: flex-start; */
 }
 
 /* 상품명, 가격, 결제일 */

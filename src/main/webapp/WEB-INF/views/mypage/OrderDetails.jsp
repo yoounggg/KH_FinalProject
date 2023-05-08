@@ -56,22 +56,24 @@
             <!-- 상세주문내역타이틀 -->
             <div class="OrderDetailsTitle1">상세주문내역</div>
             <!-- 구분선 -->
-            
             <div class="line1"></div>
+            
+            <div class="space"></div>
 
 		<!-- <div>${productNames}</div>  -->
 				<c:forEach var="productList" items="${productNames}">
 		            <!-- 상세주문내역 contents 조절용 -->
 		            <div class="order_details1">
 		
-		                <!-- 주문 상품 사진 -->
-		                <div class="product_photo">
-		                    <!-- DB에서 상품 이미지 불러오기 -> 어떻게 하쥐,, -->
-		                    <img src="/resources/imgs/profileimg.jpg" alt="주문상품사진" class="product_photo2">
-		                </div>
 		
 		                <!-- 해당 상품에 대한 정보 -->
 		                <div class="product_info_container">
+		                
+			                <!-- 주문 상품 사진 -->
+			                <div class="product_photo">
+			                    <!-- DB에서 상품 이미지 불러오기 -> 어떻게 하쥐,, -->
+			                    <img src="/resources/imgs/profileimg.jpg" alt="주문상품사진" class="product_photo2">
+			                </div>
 		
 		                    <div class="product_info">
 		                        <div id="product_title">상품명:</div>
