@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
     
 <!DOCTYPE html>
 <html lang="ko">
@@ -55,47 +56,41 @@
             <!-- 상세주문내역타이틀 -->
             <div class="OrderDetailsTitle1">상세주문내역</div>
             <!-- 구분선 -->
+            
             <div class="line1"></div>
 
-
-				<c:forEach var="item" items="${productName}">
-	            <!-- 상세주문내역 contents 조절용 -->
-	            <div class="order_details1">
-	
-	                <!-- 주문 상품 사진 -->
-	                <div class="product_photo">
-	                    <!-- DB에서 상품 이미지 불러오기 -> 어떻게 하쥐,, -->
-	                    <img src="/resources/imgs/profileimg.jpg" alt="주문상품사진" class="product_photo2">
-	                </div>
-	
-	                <!-- 해당 상품에 대한 정보 -->
-	                <div class="product_info_container">
-	
-	                    <div class="product_info">
-	                        <div id="product_title">상품명:</div>
-	                        <div id="product_name">${item.name}</div>
-	                    </div>
-	
-	                    <!-- 옵션 없어짐
-	                    <div class="product_info">
-	                        <div id="product_title">옵션:</div>
-	                        <div id="product_option">DB에서 불러오기</div>
-	                    </div>
-	                    -->
-	
-	                    <div class="product_info">
-	                        <div id="product_title">가격:</div>
-	                        <div id="product_price">${orderList.totalPrice}</div>
-	                    </div> 
-	
-	                    <div class="product_info">
-	                        <div id="product_title">결제일:</div>
-	                        <div id="product_payment_date">${info.order_date}</div>
-	                    </div> 
-	
-	                </div>
-	
-	            </div> 
+		<!-- <div>${productNames}</div>  -->
+				<c:forEach var="productList" items="${productNames}">
+		            <!-- 상세주문내역 contents 조절용 -->
+		            <div class="order_details1">
+		
+		                <!-- 주문 상품 사진 -->
+		                <div class="product_photo">
+		                    <!-- DB에서 상품 이미지 불러오기 -> 어떻게 하쥐,, -->
+		                    <img src="/resources/imgs/profileimg.jpg" alt="주문상품사진" class="product_photo2">
+		                </div>
+		
+		                <!-- 해당 상품에 대한 정보 -->
+		                <div class="product_info_container">
+		
+		                    <div class="product_info">
+		                        <div id="product_title">상품명:</div>
+		                        <div id="product_name">${productList.get(0).getName()}</div>
+		                    </div>
+		
+		                    <div class="product_info">
+		                        <div id="product_title">가격:</div>
+		                        <div id="product_price">${productList.get(0).getPrice()}</div>
+		                    </div> 
+		
+		                    <div class="product_info">
+		                        <div id="product_title">결제일:</div>
+		                        <div id="product_payment_date">${info.order_date}</div>
+		                    </div> 
+		
+		                </div>
+		
+		            </div> 
 				</c:forEach>
 
         </div>

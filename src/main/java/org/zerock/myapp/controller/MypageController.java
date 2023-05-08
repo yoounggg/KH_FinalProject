@@ -127,12 +127,19 @@ public class MypageController {
 				Infos, ItemInfos, orderDTO);
 
 		// 상품 명 가져오기
+		List< List<ProductDTO> > productList = new ArrayList<>();
+		
 		for (OrderItemDTO item : ItemInfos) {
 			int productNo = item.getProduct_no();
-			List<ProductDTO> productName = this.mypageService.getProductName(productNo);
-			// 상품명 리스트를 model에 추가
-			model.addAttribute("productName", productName);
-		}
+			
+			log.trace(">>>>>>>>>>>>>>>>>>>>>>>> productNo : {} <<<<<<<<<<<<<<<<<<<<<", productNo);
+			List<ProductDTO> product = this.mypageService.getProductName(productNo);
+			productList.add(product);
+		} // enhanced for
+		
+		// 상품명 리스트를 model에 추가
+		model.addAttribute("productNames", productList);
+		
 
 		log.trace("****************************  orderDetails({},{}) invoked. *****************************", Infos,
 				ItemInfos);
