@@ -32,7 +32,7 @@ public class CartDTO { // maper 메서드에 필요한 장바구니 데이터를
 	}
 	
 	@Override
-	public String toString() { // 우선 + ", cartDate=" + cartDate  제외함 
+	public String toString() { 
 		return "CartDTO [no=" + no + ", member_id=" + member_id + ", product_no=" + product_No + ", count="
 				+ count + ", name=" + name + ", price=" + price
 				+ ", discount_price=" + discount_price + ", totalPrice=" + totalPrice + ", main_image=" + main_image+",stock=" + stock +"]";

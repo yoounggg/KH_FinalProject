@@ -41,7 +41,7 @@ public class CartController {
 	
 	// 1. 장바구니 조회는 회원만 할 수 있으니까 member_id데이터를 얻기 위해 파라미터 추가
 	// 장바구니 데이터를 뷰에 넘길 때 model상자에 담아서 넘기기
-	@GetMapping("/{member_id}") // -> main지우고 {member_id}     //@PathVariable("codud") 
+	@GetMapping("/{member_id}")   
 	public String cartMainPage(@PathVariable("member_id") String member_id, Model model) {
 		log.trace("cartPageGET() invoked(장바구니 메인 페이지로 이동)");
 		
@@ -57,7 +57,6 @@ public class CartController {
 	@PostMapping("/add")
 	@ResponseBody // 화면을 반환하는 것이 아니라 데이터를 반환하는 것이기 떄문
 	public String addProductsInCart(CartDTO cart, HttpSession session) throws ControllerException {
-//	public String addProductsInCart(CartDTO cart, HttpServletRequest request) throws ControllerException {
 										// 등록할 데이터 전달받아야 해서 DTO, 로그인 여부 확인하기 위해 SESSION 객체가 필요
 		
 		log.trace("addProductsInCart() invoked(장바구니 상품 추가/등록)");
