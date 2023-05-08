@@ -43,7 +43,7 @@
                         
             </div>
 
-            <div class='로그인'><a href="/login/main">이미 아이디가 있다면? 로그인 하기></a></div>
+            <div class='로그인'><span id=main_btm>이미 아이디가 있다면?</span><a id=doLogin href="/login/main"> 로그인 하기></a></div>
         </div>
 
   

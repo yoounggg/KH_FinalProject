@@ -70,3 +70,11 @@
     padding: 40px;
     margin-bottom: 10%;
 }
+
+#main_btm{
+	color: #b2b2b2;
+}
+
+#doLogin{
+	font-weight: bolder;
+}

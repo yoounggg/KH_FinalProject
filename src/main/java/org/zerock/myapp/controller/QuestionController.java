@@ -59,15 +59,21 @@ public class QuestionController {
 	
 	@GetMapping("/help/question")
 	public void listGet(Model model, HttpServletRequest req) throws ControllerException {	// 1:1 문의 메인
-		log.info("1:1문의 메인페이지 : ", model);
-		
-		HttpSession session = req.getSession();
-	    MemberDTO member = (MemberDTO)session.getAttribute("member");
-	    String memberId  = member.getId();
-		log.info("////////////////////////////////////////////"+memberId);
-	    
-		model.addAttribute("list", questionService.getListByParam(memberId));
-		log.info(model);
+        log.info("1:1문의 메인페이지 : ", model);
+
+        HttpSession session = req.getSession();
+        MemberDTO member = (MemberDTO) session.getAttribute("member");
+
+        boolean isLogin = member != null;
+        model.addAttribute("isLogin", isLogin);
+
+        if (isLogin) {
+            String memberId = member.getId();
+            log.info("-----------------------------------" + memberId);
+            model.addAttribute("list", questionService.getListByParam(memberId));
+            log.info(model);
+        } // if
+    
 		
 	} // listGet
 	
