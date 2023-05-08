@@ -175,6 +175,7 @@ public class MypageController {
 		log.trace("****************************  orderDetails({},{}) invoked. *****************************", Infos,
 				ItemInfos);
 
+		model.addAttribute("odt", orderDTO);
 		model.addAttribute("info", Infos);
 		model.addAttribute("ItemInfo", ItemInfos);
 		model.addAttribute("orderDTO", orderDTO);
