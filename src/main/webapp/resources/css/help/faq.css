@@ -262,7 +262,7 @@ h2{
        /* =================================================== */
        
        
-               input[id*="answer"] {
+        input[id*="answer"] {
             display: none;
         }
 
@@ -276,15 +276,6 @@ h2{
             font-size: 14px;
         }
 
-        input[id*="answer"] + label em {
-            position: absolute;
-            top: 50%;
-            right: 10px;
-            width: 30px;
-            height: 30px;
-            margin-top: -15px;
-            display: inline-block;
-        }
 
         input[id*="answer"] + label + div {
             max-height: 0;
@@ -294,8 +285,7 @@ h2{
         }
 
         input[id*="answer"] + label + div p {
-            display: inline-block;
-            padding: 20px;
+            padding : 20px;
         }
 
         input[id*="answer"]:checked + label + div {max-height:800px} 

@@ -28,7 +28,7 @@
                 
         <div class="content">
             <table id="list">
-                <h2>공지사항 <span class="test">테스트</span></h2>
+                <h2>공지사항</h2>
                 <thead>
                 <form action="/admin/notice/search" id="searchForm" method="get">
                 	<div class="search1">

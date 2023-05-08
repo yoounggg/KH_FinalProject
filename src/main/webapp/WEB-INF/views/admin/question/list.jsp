@@ -42,7 +42,7 @@
 	                </tr>
                 </thead>
                 <tbody>
-					<c:forEach items="${list}" var="list">
+ 					<c:forEach items="${list}" var="list">
 						<tr>
 							<td><c:out value="${list.qno}"/></td>
 							
@@ -53,8 +53,8 @@
 								</a>
 							</td>
 							<td><fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${list.regDate}"/></td>
-						</tr>
-					</c:forEach>    
+ 						</tr>
+					</c:forEach>
                 </tbody>
             </table>
 		</form>

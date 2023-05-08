@@ -28,7 +28,7 @@
                 
         <div class="content">
             <table id="list">
-                <h2>공지사항 <span class="test">테스트</span></h2>
+                <h2>FAQ</h2>
                 <p><strong>${__PAGE_MAKER__.cri.keyword}</strong> 검색 결과　총 <strong>${__PAGE_MAKER__.totalAmount}</strong>개</p>
                 <thead>
                 <form action="/admin/faq/search" id="searchForm" method="get">
