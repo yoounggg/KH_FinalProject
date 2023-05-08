@@ -54,7 +54,7 @@ table th {
     padding-top: 10px;
     border: 1px solid #b2b2b2;
     font-size: 13px;
-    min-height: 300px;
+    height: 300px;
     width: 740px;
 
 }
@@ -122,7 +122,6 @@ h4 {
     justify-content: center;
     align-items: center; 
     margin-top: 150px;
-    margin-bottom: 150px;
 }
 
 .delete {
