@@ -47,7 +47,7 @@
                  
         <div class="content">
 
-            <h2>회원관리 <span class="test">테스트</span></h2>
+            <h2>회원관리</h2>
             <div class="write">
                 <form>
                     <div class="information">
@@ -55,39 +55,39 @@
                     <br>
                     <br>
                     <br>
-                        <p>회원 번호</p>
+                        <p>번호</p>
                         <p id="info">${member.no}</p>
                         <br>
     
-                        <p>회원 이름</p>
+                        <p>이름</p>
                         <p id="info">${member.name}</p>
                         <br>
     
-                        <p>회원 생일</p>
+                        <p>생일</p>
                         <p id="info">${member.birth_year}. ${member.birth_month}. ${member.birth_day}.</p>
                         <br>
                         
-                        <p>회원 이메일</p>
+                        <p>이메일</p>
                         <p id="info">${member.email}</p>
                         <br>
     
-                        <p>회원 전화번호</p>
+                        <p>전화번호</p>
                         <p id="info">${member.tel}</p>
                         <br>
     
-                        <p>회원 주소</p>
+                        <p>주소</p>
                         <p id="info">(${member.address1}) ${member.address2} ${member.address3}</p>
                         <br>
                         
-                        <p>회원 성별</p>
+                        <p>성별</p>
                         <p id="info">${member.gender}</p>
                         <br>
                         
-                        <p>회원 소셜 가입여부</p>
+                        <p>소셜 가입여부</p>
                         <p id="info">${member.social_type}</p>
                         <br>
                         
-                        <p>회원 가입 날짜</p>
+                        <p>가입 날짜</p>
                         <p id="info">${member.signup_date}</p>
                         <br>
                         

@@ -26,7 +26,7 @@
                 
         <div class="content">
             <table>
-                <h2>FAQ <span class="test">테스트</span></h2>
+                <h2>FAQ</h2>
                 <thead>
                 <form action="/admin/faq/search" id="searchForm" method="get">
                 	<div class="search1">

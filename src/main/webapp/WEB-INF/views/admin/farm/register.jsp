@@ -45,7 +45,7 @@
     <!-- 메인 - 공지사항 글쓰기, 수정, 삭제 -->            
                  
             <div class="content">
-                <h2>거래처관리 <span class="test">테스트</span></h2>
+                <h2>거래처관리</h2>
                         
                 <div class="write">
                     <form action="/admin/farm/register" method="POST">

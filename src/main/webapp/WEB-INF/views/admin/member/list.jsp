@@ -28,7 +28,7 @@
                 
         <div class="content">
             <table>
-                <h2>회원관리 <span class="test">테스트</span></h2>
+                <h2>회원관리</h2>
                 <thead>
 	                <tr>
 	                    <th>회원번호</th>

@@ -18,7 +18,7 @@
     <!-- 헤더 - 로그인,로그아웃, 로고, 관리자페이지, 옆에 메뉴!!까지 -->
     <%@include file= "/WEB-INF/views/admin/common/header.jsp" %>
     <main>
-        <div>
+        <div class="wrap">
     <!-- 사이드 메인 - 보라색 가로줄(메인페이지글자), 메뉴-->
             
     <!-- 메인 - 테이블 목록 -->
@@ -53,12 +53,11 @@
                     </ul>
                 </div>
                 <div class="box2">
-                    <h3>TEST</h3>
+                    <h3>1:1 문의</h3>
                     <ul id="main_list">
-                        <li>당일 주문량 : </li>
-                        <li>당일 매출액 : </li>
-                        <li>당일 방문수 : </li>
-                        <li><a href="#">[test]test</a></li>
+							<c:forEach items="${mainQue}" var="QueDTO" varStatus="status" end="4">
+							    <li><a href="/admin/question/page?qno=${QueDTO.qno}">${QueDTO.title}</a></li>
+							</c:forEach>
                     </ul>
                 </div>
             </div>

@@ -28,7 +28,7 @@
                 
         <div class="content">
             <table>
-                <h2>거래처관리 <span class="test">테스트</span></h2>
+                <h2>거래처관리</h2>
                 <thead>
                 <form action="/admin/farm/search" id="searchForm" method="get">
                 	<div class="search1">

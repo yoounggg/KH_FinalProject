@@ -29,7 +29,7 @@
     <!-- 메인 - 공지사항 글쓰기, 수정, 삭제 -->            
                  
             <div class="content">
-                <h2>공지사항 <span class="test">테스트</span></h2>
+                <h2>공지사항</h2>
                         
                 <div class="write">
                     <form action="/admin/notice/register" method="POST">
