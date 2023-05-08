@@ -56,7 +56,7 @@
 	<!-- 조인으로 상품이름 가져오기 -->
 	<select id="productName" resultType="org.zerock.myapp.domain.ProductDTO">
 		SELECT 
-			product.name as name, product.price as price
+			product.name as name, product.price as price, product.main_image as main_image
 		FROM 
 			order_list
 		JOIN product
