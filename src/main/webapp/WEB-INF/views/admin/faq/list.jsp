@@ -49,8 +49,8 @@
                         	<td><input type="checkbox" name="item" onclick="checkSelectAll()" /></td>
                             <td>${FaqVO.no}</td>
                             <td><a href="/admin/faq/get?no=${FaqVO.no}">${FaqVO.title}</a></td>
-                            <td>${FaqVO.reg_date}</td>
-                            <td>${FaqVO.update_date}</td>
+                            <td><fmt:formatDate pattern="yyyy/MM/dd" value="${FaqVO.reg_date}" /></td>
+                            <td><fmt:formatDate pattern="yyyy/MM/dd" value="${FaqVO.update_date}" /></td>
                             <td><input type="hidden" name="no" value="${FaqVO.no}"></td>
                         </tr>       
                     </c:forEach>    
