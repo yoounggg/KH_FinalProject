@@ -74,8 +74,7 @@
 							<a href="/admin/question/write"><span class="list">답변하기</span></a>
 						</div>
 
-						<button type="button" class='delete' id="delete_btn">
-						<span id="ddd">	삭제하기</span></button>
+						<button type="button" class='delete' id="delete_btn">삭제하기</button>
 					</div>
 			</div>
 			</form>
