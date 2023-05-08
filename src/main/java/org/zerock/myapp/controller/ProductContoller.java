@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.zerock.myapp.domain.ApiRecipesRowVO;
 import org.zerock.myapp.domain.Criteria;
-import org.zerock.myapp.domain.PageDTO;
+import org.zerock.myapp.domain.Page_PageDTO;
 import org.zerock.myapp.domain.Page_ProductDTO;
 import org.zerock.myapp.exception.ControllerException;
 import org.zerock.myapp.service.AttachService;
@@ -107,7 +107,7 @@ public class ProductContoller {
 			
 			model.addAttribute("__List__", list);
 		
-			PageDTO pageDTO = new PageDTO(cri, totalCount);
+			Page_PageDTO pageDTO = new Page_PageDTO(cri, totalCount);
 		
 			if(cri.getOrder() != null) {
 				String orderStr1 = cri.getOrder();
@@ -199,7 +199,7 @@ public class ProductContoller {
 				cri.setOrigin("(\'"+cri.getOrigin()+"\')");
 			} // if-else
 			
-			if(cri.getWeight() != null || cri.getPrice() != null || cri.getCode() != null) {
+			if(cri.getWeight() != null || cri.getPrice() != null || (cri.getCode() != null && !cri.getCode().equals("10100"))) {
 				cri.setTestAnd("AND");
 			} // if
 			
@@ -280,7 +280,7 @@ public class ProductContoller {
 				cri.setWeight_info(weight_info);
 			} // if-else
 			
-			if(cri.getPrice() != null || cri.getCode() != null) {
+			if(cri.getPrice() != null || (cri.getCode() != null && !cri.getCode().equals("10100"))) {
 				cri.setTestAnd1("AND");
 			} // if
 			
@@ -310,7 +310,7 @@ public class ProductContoller {
 			
 			cri.setPrice_info(price_info);
 			
-			if(cri.getCode() != null) {
+			if(cri.getCode() != null && !cri.getCode().equals("10100")) {
 				cri.setTestAnd2("AND");
 			} // if
 			
@@ -329,7 +329,9 @@ public class ProductContoller {
 			} // if
 			
 			if(cri.getCode().equals("10100")) { // 전체보기
-				
+				if(cri.getOrigin() == null && cri.getWeight() == null && cri.getPrice() == null) {
+					 cri.setWhere("");
+				} // if
 			} else if(cri.getCode().equals("10800")) { // 오늘의 특가 
 				cri.setCode_info(" discount >= 30");
 			} else if(cri.getCode().equals("10900")) { // 신상품
