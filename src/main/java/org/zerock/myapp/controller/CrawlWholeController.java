@@ -22,7 +22,7 @@ public class CrawlWholeController { // 크롤링하기!
 	
 	
 	@GetMapping("/wholesale")
-	public String crawlretailpage(Model model) throws IOException{ // 소매 시세 가져오기!
+	public String crawlretailpage(Model model) throws IOException{ // 농산물 도매 시세 가져오기!
 		
 		String url = "https://www.kamis.or.kr/customer/price/wholesale/catalogue.do";
 		
@@ -33,7 +33,7 @@ public class CrawlWholeController { // 크롤링하기!
 		
 		model.addAttribute("wholeSaleInfo", contents);
 		
-		return "crawlwholesale";
+		return "crawl/crawlwholesale";
 		
 	} // crawlwholesale
 

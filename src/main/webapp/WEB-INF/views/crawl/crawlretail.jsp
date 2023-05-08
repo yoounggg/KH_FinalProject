@@ -25,7 +25,7 @@
 </head>
 <body>
 	<!-- header -->
-	<%@include file= "../views/common/header.jsp" %>
+	<%@include file= "/WEB-INF/views/common/header.jsp" %>
 	
 <main>
 	<aside class="crawlbox">
@@ -59,6 +59,6 @@
     
 </main>
 <!-- ==========================footer========================= -->
-   <%@include file= "../views/common/footer.jsp" %>
+   <%@include file= "/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>
