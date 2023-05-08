@@ -75,10 +75,6 @@
 					                <li class="pageInfo_btn next"><a href="/admin/member/list?currPage=${pageMaker.endPage + 1}&amount=${pageMaker.cri.amount}">Next</a></li>
 					            </c:if>  
 				             </ul>
-								<div class="button1">
-									<button type="button" id="registerBtn">등록</button>
-									<button type="button" id="removeBtn">삭제</button>
-								</div>
 		            	</div>
 						<input type="hidden" name="currPage" value="${pageMaker.cri.currPage}">
 						<input type="hidden" name="amount" value="${pageMaker.cri.amount}">

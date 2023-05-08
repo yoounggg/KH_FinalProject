@@ -51,8 +51,8 @@
                         	<td><input type="checkbox" name="item" onclick="checkSelectAll()" /></td>
                             <td>${NoticeDTO.no}</td>
                             <td><a href="/admin/notice/get?no=${NoticeDTO.no}">${NoticeDTO.title}</a></td>
-                            <td>${NoticeDTO.reg_date}</td>
-                            <td>${NoticeDTO.update_date}</td>
+                            <td><fmt:formatDate pattern="yyyy/MM/dd" value="${NoticeDTO.reg_date}"/></td>
+                            <td><fmt:formatDate pattern="yyyy/MM/dd" value="${NoticeDTO.update_date}"/></td>
                             <td><input type="hidden" name="no" value="${NoticeDTO.no}"></td>
                         </tr>       
                     </c:forEach>    
