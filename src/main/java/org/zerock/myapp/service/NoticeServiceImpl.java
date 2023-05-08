@@ -7,7 +7,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
 import org.zerock.myapp.domain.Criteria;
 import org.zerock.myapp.domain.NoticeDTO;
-import org.zerock.myapp.domain.NoticeVO;
+import org.zerock.myapp.domain.NoticeDTO;
 import org.zerock.myapp.exception.ServiceException;
 import org.zerock.myapp.mapper.NoticeMapper;
 
@@ -39,7 +39,7 @@ public class NoticeServiceImpl implements NoticeService, InitializingBean{
 	} //afterPropertiesSet()
 
 	@Override
-	public List<NoticeVO> getList() throws ServiceException {
+	public List<NoticeDTO> getList() throws ServiceException {
 		log.trace("getList() invoked.");
 		
 		try {
@@ -52,7 +52,7 @@ public class NoticeServiceImpl implements NoticeService, InitializingBean{
 
 
 	@Override
-	public List<NoticeVO> getListPaging(Criteria cri) throws ServiceException {
+	public List<NoticeDTO> getListPaging(Criteria cri) throws ServiceException {
 		
 		try {
 			return this.mapper.getListPaging(cri);
@@ -64,7 +64,7 @@ public class NoticeServiceImpl implements NoticeService, InitializingBean{
 	
 	
 	@Override
-	public NoticeVO get(Integer no) throws ServiceException {
+	public NoticeDTO get(Integer no) throws ServiceException {
 		log.trace("get({}) invoked.", no);
 		
 		try {

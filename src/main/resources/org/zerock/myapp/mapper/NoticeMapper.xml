@@ -10,14 +10,14 @@
 
 
   <!-- 게시글 조건 조회 -->
-  <select id="select" resultType="org.zerock.myapp.domain.NoticeVO">
+  <select id="select" resultType="org.zerock.myapp.domain.NoticeDTO">
     SELECT * FROM NOTICE
     WHERE no = #{no}
   </select>
   
   
   <!-- 게시글 목록 조회 (페이징) -->
-	<select id="getListPaging" resultType="org.zerock.myapp.domain.NoticeVO">
+	<select id="getListPaging" resultType="org.zerock.myapp.domain.NoticeDTO">
     <![CDATA[
     
 		SELECT * 

@@ -20,7 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.myapp.domain.CategoryVO;
 import org.zerock.myapp.domain.Criteria;
 import org.zerock.myapp.domain.FaqVO;
-import org.zerock.myapp.domain.NoticeVO;
+import org.zerock.myapp.domain.NoticeDTO;
 import org.zerock.myapp.domain.PageDTO;
 import org.zerock.myapp.domain.ProductDTO;
 import org.zerock.myapp.exception.AException;
@@ -59,7 +59,7 @@ public class AdminController {
 
   		try {
   				List<ProductDTO> mainProduct = this.service.getList();
-  				List<NoticeVO> mainNotice = this.service2.getList();
+  				List<NoticeDTO> mainNotice = this.service2.getList();
   				List<FaqVO> mainFaq = this.service3.getList();
   				
   				model.addAttribute("mainProduct", mainProduct);

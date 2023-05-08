@@ -18,9 +18,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.myapp.domain.Criteria;
 import org.zerock.myapp.domain.NoticeDTO;
-import org.zerock.myapp.domain.NoticeVO;
 import org.zerock.myapp.domain.PageDTO;
 import org.zerock.myapp.exception.ControllerException;
+import org.zerock.myapp.exception.ServiceException;
+import org.zerock.myapp.service.NoticeSearchService;
 import org.zerock.myapp.service.NoticeService;
 
 import lombok.AllArgsConstructor;
@@ -49,7 +50,7 @@ public class NoticeController {
 		
 		try {
 			// 페이징처리된 현재 pageNum에 해당하는 게시글목록 받아옴
-			List<NoticeVO> list = this.service.getListPaging(cri);
+			List<NoticeDTO> list = this.service.getListPaging(cri);
 			model.addAttribute("list", list); // view로 날아갈 model 상자 안에 model 데이터를 담음
 			
 			
@@ -72,9 +73,9 @@ public class NoticeController {
 		log.trace("get({}, {}) invoked.", no, model);
 		
 		try {
-			NoticeVO vo = this.service.get(no);
+			NoticeDTO dto = this.service.get(no);
 			
-			model.addAttribute("notice", vo);
+			model.addAttribute("notice", dto);
 		} catch (Exception e) {
 			throw new ControllerException(e);
 		} // try-catch
@@ -150,10 +151,10 @@ public class NoticeController {
 			HttpSession session,
 			HttpServletRequest req,
 			HttpServletResponse res,
-			@SessionAttribute("notice") NoticeVO vo
+			@SessionAttribute("notice") NoticeDTO dto
 			) {
 	
-		log.trace("temp({}, {}, {}, {}) invoked.", session, req, res, vo);
+		log.trace("temp({}, {}, {}, {}) invoked.", session, req, res, dto);
 		
 	} // temp()
 	
@@ -175,6 +176,37 @@ public class NoticeController {
 	public void register() {
 		log.trace("register() invoked.");
 	} //GetMapping()
+	
+	
+//	=====================================================================================
+	
+	private NoticeSearchService service2;
+	
+	@GetMapping("/search") // 
+	public String NoticeSearchList (Criteria cri, Model model) throws ServiceException {
+		log.info("NoticeSearchList({}) invoked.", cri);
+		
+		
+		List<NoticeDTO> list = this.service2.noticeSearchList(cri);
+		log.info("searchList:" + list);
+		
+		if(!list.isEmpty()) {
+			model.addAttribute("searchList", list);
+			
+			log.info("searchList: " + list);
+			
+		} else {
+			
+			model.addAttribute("emptylist", "empty");
+			
+			return "/admin/notice/search"; 
+		} // if-else
+		
+		//페이징
+		model.addAttribute("__PAGE_MAKER__", new PageDTO(cri, service2.totalNotice(cri)));
+		
+		return "/admin/notice/search";
+	} // searchproductList
 	
 	
 } // end class

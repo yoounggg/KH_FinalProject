@@ -4,19 +4,18 @@ import java.util.List;
 
 import org.zerock.myapp.domain.Criteria;
 import org.zerock.myapp.domain.NoticeDTO;
-import org.zerock.myapp.domain.NoticeVO;
 import org.zerock.myapp.exception.ServiceException;
 
 public interface NoticeService {
 	
 	// 게시글 전체조회 (list) 
-	public abstract List<NoticeVO> getList() throws ServiceException;
+	public abstract List<NoticeDTO> getList() throws ServiceException;
 	
 	// 게시글 전체조회 (페이징)
-	public abstract List<NoticeVO> getListPaging(Criteria cri) throws ServiceException;
+	public abstract List<NoticeDTO> getListPaging(Criteria cri) throws ServiceException;
 	
 	// 게시글 상세조회
-	public abstract NoticeVO get(Integer no) throws ServiceException;
+	public abstract NoticeDTO get(Integer no) throws ServiceException;
 	
 	// 게시글 등록
 	public abstract Boolean register(NoticeDTO dto) throws ServiceException;
