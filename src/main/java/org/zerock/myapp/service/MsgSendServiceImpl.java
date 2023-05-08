@@ -62,6 +62,7 @@ public class MsgSendServiceImpl implements MsgSendService {
 			HashMap<String, String> params = new HashMap<String, String>();
 			
 			// 수신 번호
+//			params.put("to", userPhoneNumber);			// 수신 번호
 			params.put("to", "수신 번호");
 			// 발신 번호
 			params.put("from", "01019971216");
