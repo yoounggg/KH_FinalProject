@@ -139,7 +139,13 @@ JQuery<br>
    <img src="https://user-images.githubusercontent.com/73880564/236978636-ca3a340e-0ae7-45d3-98e5-b4136f77fa8b.png" width="60%"></img>
 </div>
 
-https://github.com/jeonsein/KH_FinalProject/blob/6d58de5d92d7e25839ab67ba011db6b60ac82864/mymg_final_project_ppt.pdf
+<br>
+자세한 구현 결과는 아래 링크에서 확인하실 수 있습니다!
+
+<div>
+<a href="https://github.com/jeonsein/KH_FinalProject/blob/6d58de5d92d7e25839ab67ba011db6b60ac82864/mymg_final_project_ppt.pdf">
+</div>
+   
 <br><br><br>
 
 
