@@ -10,31 +10,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지사항 목록</title>
-    <!-- <link href="/admin_page/css/product/product_list.css" type="text/css" rel="stylesheet" /> -->
-    <link rel="stylesheet" href="/resources/css/admin/common.css">
-	<link rel="stylesheet" href="/resources/css/admin/list.css">
-	<!-- include favicon -->
+    <!-- include favicon -->
 	<%@include file="/WEB-INF/views/common/favicon.jsp" %>
+    <link rel="stylesheet" href="/resources/css/admin/common.css">
+	<link rel="stylesheet" href="/resources/css/admin/list.css"> 
+</head>
+
 <body>
 
 <!-- 헤더 - 로그인/로그아웃 로고, 관리자페이지 메인글씨 -->
 <%@include file= "/WEB-INF/views/admin/common/header.jsp" %> 
+
 <!-- 메인 - 보라색 가로줄(메인페이지글자), 왼쪽 메뉴 -->
 <main>
     <div class="sub_content">
-        
 <!-- 메인 - 공지사항 글 목록 테이블, 이동페이지, 수정, 삭제 -->            
                 
         <div class="content">
-        <form>
-            <table>
-                <h2>상품목록</h2>
+            <table id="list">
+                <h2>product</h2>
+                <p><strong>${__PAGE_MAKER__.cri.keyword}</strong> 검색 결과　총 <strong>${__PAGE_MAKER__.totalAmount}</strong>개</p>
                 <thead>
                 <form action="/admin/product/search" id="searchForm" method="get">
-                	<div class="search1">
-	                	<input type="text" id="keyword" name="keyword" >
-	                	<button id="search">검색</button>
-                	</div>
+                	<div class="search1"><input type="text" id="keyword" name="keyword" >
+                	<button id="search">검색</button></div>
 	            </form>
 	                <tr>
 	                    <th><input type="checkbox" name="selectall" value="selectall" onclick="selectAll(this)"></th>
@@ -46,7 +45,7 @@
 	                    <th></th>
 	                </tr>
                 </thead>
-                <tbody>
+				<tbody>
                     <c:forEach items="${list}" var="ProductDTO">
                         <tr>
                         	<td><input type="checkbox" name="item" onclick="checkSelectAll()" /></td>
@@ -60,43 +59,28 @@
                     </c:forEach>    
                 </tbody>
             </table>
-		</form>
-		
-		<form>
-		 		<div class="pageInfo_wrap" >
-					    <div class="pageInfo_area">
-					    	<ul id="pageInfo" class="pageInfo">
-					    		
-					    		
-					    		<!-- 이전페이지 버튼 -->
-					            <c:if test="${pageMaker.prev}" >
-					                <li class="pageInfo_btn previous"><a href="/admin/product/list?currPage=${pageMaker.startPage-1}">Previous</a></li>
-					            </c:if>
+            
+            
+						<div class="pageInfo_wrap" >
+						  <form id=moveForm method="get">
+						    <div class="pageInfo_area">
+						    	<ul id="pageInfo" class="pageInfo">
+									<c:if test="${__PAGE_MAKER__.prev}">
+										<li class="searchprev"><a href="${__PAGE_MAKER__.startPage-1}">prev</a></li>
+									</c:if>
+									
+									<c:forEach var="num" begin="${__PAGE_MAKER__.startPage}" end="${__PAGE_MAKER__.endPage}">
+							        	<li class="searchbutton"><a href="/admin/product/search?keyword=${__PAGE_MAKER__.cri.keyword}&currPage=${num}&amount=${__PAGE_MAKER__.cri.amount}">${num}</a></li>
+							        </c:forEach>
+							        
+							        <c:if test="${__PAGE_MAKER__.next}">
+										<li class="searchnext"><a href="${__PAGE_MAKER__.endPage + 1 }">next</a></li>
+									</c:if>
+								</ul>
 					            
-				            	<!-- 각 번호 페이지 버튼 -->
-				                <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-				                    <li class="pageInfo_btn "><a href="/admin/product/list?currPage=${num}&amount=${pageMaker.cri.amount}">${num}</a></li>
-				                </c:forEach>
-				             
-					            <!-- 다음페이지 버튼 -->
-					            <c:if test="${pageMaker.next}" >
-					                <li class="pageInfo_btn next"><a href="/admin/product/list?currPage=${pageMaker.endPage + 1}&amount=${pageMaker.cri.amount}">Next</a></li>
-					            </c:if>  
-				             </ul>
-								<div class="button1">
-									<button type="button" id="registerBtn">등록</button>
-									<button type="button" id="removeBtn">삭제</button>
-								</div>
-		            	</div>
-						<input type="hidden" name="currPage" value="${pageMaker.cri.currPage}">
-						<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
-						<input type="hidden" name="pagePerPage">
-						<input type="hidden" name="type">
-						<input type="hidden" name="keyworkd">
-	           
-	           
-	           </div>
-	    </form>
+			            	</div>
+			            	</form>
+				    	</div>
         </div>
     </div>
 </main>
@@ -105,7 +89,6 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.1/jquery-migrate.min.js"></script>
-
 <script>
 
 //  ================= 공지사항 목록 전체선택 / 전체해제 / 체크 삭제 ========================= 
@@ -142,49 +125,50 @@
         }
 
     }
-
+    
 </script>
+<script>	
+//  ================== 5. 버튼을 클릭하면 이동함. =============================
 
-<script>
+	
+		// 글 작성!!
+        var registerBtn = document.querySelector('#registerBtn');
 
-/* 글 작성!! */
-var registerBtn = document.querySelector('#registerBtn');
+        registerBtn.addEventListener('click', function () {
+            location = '/admin/product/register';
+        }); // registerBtn
+       
+       
 
-registerBtn.addEventListener('click', function () {
-    location = '/admin/product/register';
-}); // registerBtn
-
-/* 글 삭제!! */
-document.querySelector('#removeBtn').addEventListener('click', function () {
-    const checkedItems = document.querySelectorAll('input[name="item"]:checked');
-
-    // 체크된 상품의 번호를 배열로 저장
-    const checkedItemNos = Array.from(checkedItems).filter((item) => item.checked).map((item) => item.parentNode.parentNode.querySelector('input[name="no"]').value);
-
-    if (checkedItems.length === 0) {
-        alert("삭제할 상품을 선택해주세요.");
-        return;
-    }
-
-    if (confirm('선택한 상품을 삭제하시겠습니까?')) {
-        const form = document.createElement('form');
-        form.setAttribute('method', 'post');
-        form.setAttribute('action', '/admin/product/remove');
-        checkedItemNos.forEach(checkedItemNo => {
-            const input = document.createElement('input');
-            input.setAttribute('type', 'hidden');
-            input.setAttribute('name', 'no');
-            input.setAttribute('value', checkedItemNo);
-            form.appendChild(input);
-        });
-        document.body.appendChild(form);
-        form.submit();
-        alert("삭제되었습니다.");
-    }
-});
-
-
-
-</script>
-
+        // 글 삭제!! - 체크박스
+    	document.querySelector('#removeBtn').addEventListener('click', function () {
+    	    const checkedItems = document.querySelectorAll('input[name="item"]:checked');
+    	    
+    	    // 체크된 상품의 번호를 배열로 저장
+    	    const checkedItemNos = Array.from(checkedItems).filter((item) => item.checked).map((item) => item.parentNode.parentNode.querySelector('input[name="no"]').value);
+    	    
+    	    if (checkedItems.length === 0) {
+    	        alert("삭제할 게시글을 선택해주세요.");
+    	        return;
+    	    }
+    	    
+    	    if (confirm('선택한 게시글을 삭제하시겠습니까?')) {
+    	        const form = document.createElement('form');
+    	        form.setAttribute('method', 'post');
+    	        form.setAttribute('action', '/admin/product/remove');
+    	        checkedItemNos.forEach(checkedItemNo => {
+    	            const input = document.createElement('input');
+    	            input.setAttribute('type', 'hidden');
+    	            input.setAttribute('name', 'no');
+    	            input.setAttribute('value', checkedItemNo);
+    	            form.appendChild(input);
+    	            
+    	        });
+    	        document.body.appendChild(form);
+    	        form.submit();
+    	        alert("삭제되었습니다.");
+    	    }
+    	});
+        
+ </script>
 </html>
