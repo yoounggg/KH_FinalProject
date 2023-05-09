@@ -140,11 +140,14 @@ JQuery<br>
 </div>
 
 <br>
+<br>
 
+#### 👇자세한 구현 결과를 보시려면 아래를 클릭해주세요!👇
 <div>
 <a href="https://github.com/jeonsein/KH_FinalProject/blob/6d58de5d92d7e25839ab67ba011db6b60ac82864/mymg_final_project_ppt.pdf">
-자세한 구현 결과를 보시려면 여기를 클릭해주세요!</a>
+클릭해주세요!</a>
 </div>
    
 <br><br><br>
+### 감사합니다 😊
 <br><br><br>
