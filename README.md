@@ -168,7 +168,7 @@ JQuery<br>
 <a href="https://github.com/jeonsein/KH_FinalProject/blob/6d58de5d92d7e25839ab67ba011db6b60ac82864/mymg_final_project_ppt.pdf">
 클릭해주세요!</a>
 </div>
-
+<br>
    
 
 
