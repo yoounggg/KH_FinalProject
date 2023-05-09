@@ -139,6 +139,7 @@ JQuery<br>
    <img src="https://user-images.githubusercontent.com/73880564/236978636-ca3a340e-0ae7-45d3-98e5-b4136f77fa8b.png" width="60%"></img>
 </div>
 
+https://github.com/jeonsein/KH_FinalProject/blob/6d58de5d92d7e25839ab67ba011db6b60ac82864/mymg_final_project_ppt.pdf
 <br><br><br>
 
 
