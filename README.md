@@ -142,7 +142,7 @@ JQuery<br>
 <br>
 <br>
 
-#### 👇자세한 구현 결과를 보시려면 아래를 클릭해주세요!👇
+### 👇자세한 구현 결과를 보시려면 아래를 클릭해주세요!👇
 <div>
 <a href="https://github.com/jeonsein/KH_FinalProject/blob/6d58de5d92d7e25839ab67ba011db6b60ac82864/mymg_final_project_ppt.pdf">
 클릭해주세요!</a>
