@@ -32,13 +32,13 @@
 
 ## 📆 프로젝트 기간
 
-### 2022.12.04. ~ ing
 
 <br>
 
 |기간|설명|
 |:---|:---|
-|수정|수정|
+|2023. 01. 04 ~ 2023.02.28|기획, 설계, 퍼블리싱|
+|2023.04.03~2023.05.08|백엔드 구현|
 
 
 <br><br><br>
@@ -58,19 +58,54 @@
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=white" style="height : auto; margin-left : 10px; margin-right : 10px;"/>&nbsp;
 <img src="https://img.shields.io/badge/Postman-FF6C37?style=flat&logo=Postman&logoColor=white"  style="height : auto; margin-left : 10px; margin-right : 10px;"/>&nbsp;
 
-1. Java : 11 version
-2. 어쩌구 저쩍우우
+1. Operating System
+(1) Microsoft Windows 10
+(2) Microsoft Windows 11
 
+2. Java Development Kit(JDK)
+(1) Oracle JDK 17-LTS   v17.0.2
+
+3. Integerated Development Environment (IDE)
+(1) Back-end
+Eclipse JEE v2022-06
+(2) Front-end
+- Microsoft Visual Studio Code v1.75.1
+- Sublime-text v4-4126
+
+4. Web Application Server (WAS)
+(1) Apache Tomcat v9.0.65
+
+5. Project Lifecycle Management Tool
+   (1) Apache Maven v3.8.6
+- Maven Projects based on Maven ArcheTypes
+- Maven Projects Lifecycle Management
+
+6. Detabase Tool 및 Modeling 
+(1) SQL Developer
+(2) ERDCloud
+
+7. 개발 언어 :
+Java
+SpringFramework v.5.3.25
+HTML5
+CSS3
+JavaScript
+JQuery
+
+8. View Tool : Chrome
+
+9. Test Tools
+(1) Google Chrome Web Browser v105.0 
+(2) Live Preview v0.4.0 for Visual Source Code
+(3) Live Server v5.7.9 for Visual Source Code
+(4) junit.jupiter v.5.9.2
+
+10. etc
+(1) 7zip v22.01
+(2) GitHub(3) JSTL
+(4) Ajax
+(5) MyBatis SQL Mapper Framework v3.5.10
 <br><br><br>
-
-
-
-## 🛠 모야모과 프로젝트의 아키텍처
-
-#### 나중에 이미지 추가할게여 ~
-
-<br><br><br>
-
 
 ## 📎 DB 구성
 
