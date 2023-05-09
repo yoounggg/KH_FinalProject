@@ -147,17 +147,4 @@ JQuery<br>
 </div>
    
 <br><br><br>
-
-
-## 🤓 웹 페이지 사용 방법
-
-
-
-
-<br><br><br>
-
-
-
-
-
 <br><br><br>
