@@ -27,6 +27,8 @@
 - <a href="https://github.com/jj03202" target="_blank">장진호 님</a>
 
 <br>
+
+## 🤼‍♀️역할 분담🤼‍♀️
 <div align="left">
    <img src="https://user-images.githubusercontent.com/73880564/236978639-c4f9fe5a-cecc-493c-96ce-ecce41255a51.png" width="60%"></img>
 </div>
@@ -38,8 +40,6 @@
 
 
 ## 📆 프로젝트 기간
-
-
 <br>
 
 |기간|설명|
