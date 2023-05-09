@@ -7,7 +7,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.aspectj.weaver.patterns.TypePatternQuestions.Question;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.myapp.domain.CategoryVO;
 import org.zerock.myapp.domain.Criteria;
+import org.zerock.myapp.domain.FaqDTO;
 import org.zerock.myapp.domain.FaqVO;
 import org.zerock.myapp.domain.NoticeDTO;
 import org.zerock.myapp.domain.PageDTO;
@@ -30,6 +30,7 @@ import org.zerock.myapp.exception.ControllerException;
 import org.zerock.myapp.exception.ServiceException;
 import org.zerock.myapp.service.FaqService;
 import org.zerock.myapp.service.NoticeService;
+import org.zerock.myapp.service.ProductSearchService;
 import org.zerock.myapp.service.ProductService;
 import org.zerock.myapp.service.QuestionService;
 
@@ -53,6 +54,7 @@ public class AdminController {
    private NoticeService service2;
    private FaqService service3;
    private QuestionService service4;
+   private ProductSearchService service5;
 
    
    /* 1. 관리자 페이지 메인 */
@@ -337,6 +339,33 @@ public class AdminController {
          
       } // register-post
    
+   
+		
+		@GetMapping("/product/search") // 
+		public String faqSearchList (Criteria cri, Model model) throws ServiceException {
+			log.info("faqSearchList({}) invoked.", cri);
+			
+			
+			List<ProductDTO> list = this.service5.productSearchList(cri);
+			log.info("searchList:" + list);
+			
+			if(!list.isEmpty()) {
+				model.addAttribute("searchList", list);
+				
+				log.info("searchList: " + list);
+				
+			} else {
+				
+				model.addAttribute("emptylist", "empty");
+				
+				return "/admin/product/search"; 
+			} // if-else
+			
+			//페이징
+			model.addAttribute("__PAGE_MAKER__", new PageDTO(cri, service5.totalProduct(cri)));
+			
+			return "/admin/product/search";
+		} // searchproductList		
 
    
 } // end class
