@@ -133,10 +133,31 @@ JQuery<br>
 
 ## 🎯 구현 결과
 <div align="left">
-   <img src="https://user-images.githubusercontent.com/73880564/236978628-d0f5657c-0a54-4014-acfc-d923cd1ac02c.png" width="60%"></img>
+   <img src="https://user-images.githubusercontent.com/73880564/236986587-ec268e8b-243b-424a-bbdc-3521508e07bd.png" width="60%"></img>
 </div>
 <div align="left">
-   <img src="https://user-images.githubusercontent.com/73880564/236978636-ca3a340e-0ae7-45d3-98e5-b4136f77fa8b.png" width="60%"></img>
+   <img src="https://user-images.githubusercontent.com/73880564/236986609-83f8a8cf-09c6-4d5f-9702-83c937995286.png" width="60%"></img>
+</div>
+<div align="left">
+   <img src="https://user-images.githubusercontent.com/73880564/236986611-963ce1c4-7941-41f5-ad10-cdadaafc5466.png" width="60%"></img>
+</div>
+<div align="left">
+   <img src="https://user-images.githubusercontent.com/73880564/236986613-682e1aeb-fd38-4e95-a755-fb1d150070ce.png" width="60%"></img>
+</div>
+<div align="left">
+   <img src="https://user-images.githubusercontent.com/73880564/236986667-cbd8e02c-105c-4450-a3b7-2cdf6d7eb7b0.png" width="60%"></img>
+</div>
+<div align="left">
+   <img src="https://user-images.githubusercontent.com/73880564/236986672-e8e8360c-d2ab-4f5f-b81b-793854f23b24.png" width="60%"></img>
+</div>
+<div align="left">
+   <img src="https://user-images.githubusercontent.com/73880564/236986679-cddaf324-4c83-4cc9-a07c-ed3d8c4ffbd9.png" width="60%"></img>
+</div>
+<div align="left">
+   <img src="https://user-images.githubusercontent.com/73880564/236986703-457893ab-4f23-4724-a4ed-d2c522420fb2.png" width="60%"></img>
+</div>
+<div align="left">
+   <img src="https://user-images.githubusercontent.com/73880564/236986691-c41b563d-67af-4fb2-86d4-e8c004b65c63.png" width="60%"></img>
 </div>
 
 <br>
@@ -147,7 +168,8 @@ JQuery<br>
 <a href="https://github.com/jeonsein/KH_FinalProject/blob/6d58de5d92d7e25839ab67ba011db6b60ac82864/mymg_final_project_ppt.pdf">
 클릭해주세요!</a>
 </div>
-   
+
+<br>   
 <br><br><br>
 ### 감사합니다 😊
 <br><br><br>
