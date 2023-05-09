@@ -12,15 +12,6 @@
 <div align="left">
    <img src="https://user-images.githubusercontent.com/73880564/228806177-d8c51013-57e4-4fa9-9e4b-87e722eb1374.png" width="60%"></img>
 </div>
-<div align="left">
-   <img src="https://user-images.githubusercontent.com/110173325/236975969-b51d3794-4376-4891-b9b6-03408d9fc270.png" width="60%"></img>
-</div>
-<div align="left">
-   <img src="https://user-images.githubusercontent.com/110173325/236975986-d8522c12-1d8a-470c-b90f-1bfb9964a0bf.png" width="60%"></img>
-</div>
-<div align="left">
-   <img src="https://user-images.githubusercontent.com/110173325/236975990-c0e0a36a-22a6-4345-bbbb-09480a934462.png" width="60%"></img>
-</div>
 <br><br>
 
 
@@ -117,33 +108,36 @@ JQuery
 
 ## 📎 DB 구성
 <div align="left">
-   <img src="https://user-images.githubusercontent.com/110173325/236975944-9effc6a8-2f4e-45be-80ea-eafd83ce2545.png" width="40%"></img>
+   <img src="https://user-images.githubusercontent.com/110173325/236975944-9effc6a8-2f4e-45be-80ea-eafd83ce2545.png" width="60%"></img>
+</div>
+<div align="left">
+   <img src="https://user-images.githubusercontent.com/110173325/236975969-b51d3794-4376-4891-b9b6-03408d9fc270.png" width="60%"></img>
+</div>
+<div align="left">
+   <img src="https://user-images.githubusercontent.com/110173325/236975986-d8522c12-1d8a-470c-b90f-1bfb9964a0bf.png" width="60%"></img>
+</div>
+<div align="left">
+   <img src="https://user-images.githubusercontent.com/110173325/236975990-c0e0a36a-22a6-4345-bbbb-09480a934462.png" width="60%"></img>
 </div>
 <br><br><br>
 
 
 ## 🎯 구현 결과
 
-#### 나중에 구현하면 이미지 추가할게요~
+
 
 <br><br><br>
 
 
 ## 🤓 웹 페이지 사용 방법
 
-#### 나중에 추가할게요~
+
 
 
 <br><br><br>
 
 
-## 🤙🏻 팀 싱싱하조의 규칙!
-### ✅  약속 1
 
-1. 예쁜 말 쓰기로 약속하기 -ㅇ-
-
-
-### ✅  약속 2
 
 
 <br><br><br>
