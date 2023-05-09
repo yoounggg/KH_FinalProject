@@ -10,7 +10,16 @@
 <br>
 
 <div align="left">
-   <img src="https://user-images.githubusercontent.com/73880564/228806177-d8c51013-57e4-4fa9-9e4b-87e722eb1374.png" width="40%"></img>
+   <img src="https://user-images.githubusercontent.com/73880564/228806177-d8c51013-57e4-4fa9-9e4b-87e722eb1374.png" width="60%"></img>
+</div>
+<div align="left">
+   <img src="https://user-images.githubusercontent.com/110173325/236975969-b51d3794-4376-4891-b9b6-03408d9fc270.png" width="60%"></img>
+</div>
+<div align="left">
+   <img src="https://user-images.githubusercontent.com/110173325/236975986-d8522c12-1d8a-470c-b90f-1bfb9964a0bf.png" width="60%"></img>
+</div>
+<div align="left">
+   <img src="https://user-images.githubusercontent.com/110173325/236975990-c0e0a36a-22a6-4345-bbbb-09480a934462.png" width="60%"></img>
 </div>
 <br><br>
 
@@ -20,10 +29,10 @@
 ## 👩🏻‍💻KH_Final Project Moya Moga에 참여한 사람들👨🏻‍💻
 
 - <a href="https://github.com/jeonsein" target="_blank">셍나🐹 님</a> 
-- <a href="https://github.com/choibyul2" target="_blank">⭐별e곤듀 님</a> 
-- <a href="https://github.com/yoounggg" target="_blank">채영곤듀👸🏻 님</a> 
+- <a href="https://github.com/choibyul2" target="_blank">⭐별e 님</a> 
+- <a href="https://github.com/yoounggg" target="_blank">채영👸🏻 님</a> 
 - <a href="https://github.com/CHANOH5" target="_blank">찬돌🪨 님</a>
-- <a href="https://github.com/hyeokgyukwon" target="_blank">혁99999🕊️ 님</a>
+- <a href="https://github.com/hyeokgyukwon" target="_blank">혁🕊️ 님</a>
 - <a href="https://github.com/jj03202" target="_blank">장진호 님</a>
 
 <br><br>
