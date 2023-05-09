@@ -12,7 +12,6 @@
 <div align="left">
    <img src="https://user-images.githubusercontent.com/73880564/228806177-d8c51013-57e4-4fa9-9e4b-87e722eb1374.png" width="40%"></img>
 </div>
-
 <br><br>
 
 
@@ -108,9 +107,9 @@ JQuery
 <br><br><br>
 
 ## 📎 DB 구성
-
-#### 나중에 디비 작업 끝나면 이미지 추가 할게요 ~
-
+<div align="left">
+   <img src="https://user-images.githubusercontent.com/110173325/236975944-9effc6a8-2f4e-45be-80ea-eafd83ce2545.png" width="40%"></img>
+</div>
 <br><br><br>
 
 
