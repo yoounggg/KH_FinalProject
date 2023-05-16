@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+.login {
+
+    width: 500px;
+    height: 300px;
+
+    margin: auto;
+    padding: 10%;
+    margin-top: 50px;
+
+    text-align: center;
+        
+ }
+
+ input {
+    margin: 1px;
+    width: 250px;
+    height: 40px;
+ }
+
+ .button {
+    border: 0;
+    font-weight: 600;
+    font-size: 18px;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 15px;
+
+    background-color: rgb(175, 124, 213);
+    width: 258px;
+    height: 45px;
+ }

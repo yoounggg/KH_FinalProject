@@ -1,0 +1,325 @@
+@charset "utf-8";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    min-width: 1026px;
+    height: 100vh;
+    min-height: 100%;
+    background-color: white;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* a, li태그 전체에 공통 적용 */
+a{ text-decoration: none;}
+
+li{ list-style-type: none;}
+
+/* -----정렬------ */
+main{
+    padding: 100px 0 150px 0;
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+}
+
+/* ---------aside------- */
+.userinfoAside{
+    display: flex;
+    flex-flow: column wrap;
+    margin: 0 auto; 
+    position: relative;
+    left:-100px;
+    /* 왜 밑으로 안가지..? */
+    z-index: 97;
+}
+.userinfoAside>ul{
+    /*margin: 0;*/
+    /*padding: 0;*/
+    width: 150px;
+    display: inline-block;
+    /* border: 1px solid black; */
+    text-align: center;
+}
+.userinfoAside>ul>li>a{
+    color: black;
+}
+.userinfoAside>ul>li>a:hover{
+    text-decoration: underline;
+}
+.box1{
+    height: 160px;
+    padding-top: 10px;
+    border: 1px solid black;
+    font-size: 11px;
+    background-color: #EFEFEF;
+}
+.box1>img{
+    /* padding-top: 10px; */
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 50%;
+}
+.small1{
+    padding: 1px;
+}
+.box2{
+    height: 210px;
+    font-size: 14px;
+}
+.small2{
+	/*border: 1px solid black; */
+    padding: 25px;
+}
+.small3{
+    border-bottom: 1px solid black;
+}
+.small4{
+	border-right: 1px solid black;
+	border-left: 1px solid black;
+}
+.small5{
+	border-right: 1px solid black;
+	border-left: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+/* =============== 상세 주문 내역 ================= */
+
+/* OrderDetailsWrapper : 상세 주문 내역 전체 */
+.OrderDetailsWrapper {
+    margin-right: 140px;
+}
+
+/* 각 항목 별 컨테이너 */
+.OrderDetailsContainer1 {
+    display: flex;
+    flex-direction: column;
+}
+
+.OrderDetailsContainer2 {
+	margin-top:50px;
+	margin-bottom: 70px;
+}
+
+
+.OrderDetailsContainer3,
+.OrderDetailsContainer4 {
+    margin-bottom: 100px;
+}
+
+/* 각 항목 별 타이틀 */
+.OrderDetailsTitle1,
+.OrderDetailsTitle2,
+.OrderDetailsTitle3,
+.OrderDetailsTitle4 {
+    font-size: 23px;
+    font-weight: bold;
+    width: 700px;
+}
+
+/* 구분선 */
+.line1 {
+    width: 100%;
+    border: 1px solid black;
+    left: 10%;
+    margin-top: 15px;
+}
+
+.space {
+	margin-bottom: 30px;
+}
+
+.line2,
+.line3,
+.line4 {
+    width: 100%;
+    border: 1px solid black;
+    left: 10%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+/* 각 항목들 정보 위치 조절용 *
+.order_details2,
+.order_details3
+.order_details4 {
+    align-items: center;
+    margin-top: 40px;
+}
+
+/* --- 상세 주문 내역 --------------------------------------- */
+
+/* 상품 이미지 구간 */
+.product_photo {
+    display: flex;
+    flex-direction: row; 
+    justify-content: flex-start;
+    align-items: flex-start; /* 상단 정렬로 변경 */
+    margin-bottom: 40px;
+    margin-right: 40px;
+    float: left;
+    width: 120px;
+    height: 120px;
+    overflow: hidden; /* 이미지가 컨테이너 밖으로 벗어나지 않게 함 */
+}
+
+/* 상품 이미지 -> DB에서 불러와야함 */
+.product_photo2 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지 비율 유지하며 채움 */
+}
+
+/* 상품에 대한 정보 */
+.product_info {
+    display: flex;
+}
+
+/* 상품명, 개수, 가격, 결제일 */
+#product_title {
+    font-size: 17px;
+    margin-bottom: 10x;
+    width: 120px;
+}
+
+/* 상품명, 개수, 가격, 결제일 -> DB에서 불러오는거 표시됨! */
+#product_name,
+#product_count,
+#product_price,
+#product_payment_date {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+/* --- 배송 정보 --------------------------------------- */
+
+/* 배송정보 각 항목들 묶는 div */
+.delivery_info1,
+.delivery_info2,
+.delivery_info4 {
+    display: flex;  /*flexbox 사용*/
+    flex-direction: row;  /*수평 정렬*/
+    justify-content: flex-start;
+    align-items: center;  /*중앙 정렬*/
+    margin-bottom: 40px;
+}
+
+/* 배송 정보 항목 묶는 div (배송지) */
+.delivery_info3 {
+    display: flex;  /*flexbox 사용*/
+    flex-direction: row;  /*수평 정렬*/
+    justify-content: flex-start;
+    align-items: center;  /*중앙 정렬*/
+    margin-bottom: 40px;
+    position: relative; /* 상위 요소를 기준으로 배송지 타이틀 위치 설정 */
+}
+
+/* 배송 정보 타이틀 (수령인, 연락처, 배송메모) */
+#delivery_title1,
+#delivery_title2,
+#delivery_title4 {
+    font-size: 17px;
+    margin-bottom: 20px;
+    width: 100px;
+}
+
+/* 배송 정보 타이틀 (배송지) */
+#delivery_title3 {
+    font-size: 17px;
+    margin-bottom: 20px;
+    width: 100px;
+    position: absolute; /* 배송지 타이틀 위치를 절대적으로 설정 */
+    top: 0; /* 상단에서 0 위치 */
+    left: 0; /* 왼쪽에서 0 위치 */
+}
+
+
+/* DB에서 불러올 배송 정보 관련 정보들 (이름, 전화번호, 배송메모) */
+#receiver_name,
+#receiver_tel,
+#delivery_memo {
+    font-size: 17px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    display: inline-block;
+    margin-bottom: 20px;
+    margin-left: 50px;
+}
+
+/* 배송지 위치 조정...8ㅅ8 */
+#receiver_address {
+    float: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 150px;
+    margin-bottom: 20px;
+}
+
+/* 우편번호 */
+/* 배송지 타이틀이랑 우편 번호 수평으로 놓으려고..
+-> DB에서 불러옴 */
+#receiver_address1 {
+    margin-top: 3px;
+    font-size: 17px;
+}
+
+/* 주소 + 상세주소 */
+/* DB에서 불러올 배송 정보 관련 정보들 (주소 3개 수직 정렬) */
+#receiver_address2,
+#receiver_address3 {
+    margin-top: 20px;
+    font-size: 17px;
+}
+
+/* --- 결제 정보 --------------------------------------- */
+
+.payment_amount_info{
+    /* display: flex;
+    margin-bottom: 25px; */
+    display: flex; /* Flexbox 사용 */
+    justify-content: space-between; /* 요소들 사이의 공간을 최대한 넓게 만듬 */
+    margin-bottom: 25px;
+    width: 100%; /* payment_amount_info의 너비를 100%로 설정 */
+}
+
+/* 총 상품 가격, 할인 금액, 배송비, 총 결제 금액 타이틀 */
+#order_title {
+    font-size: 17px;
+    margin-top: 20px;
+    width: 100px;
+}
+
+/* 총 상품 가격 초록색 */
+.total_product_amount {
+    color:#11BC0D;
+    font-weight: 600;
+}
+
+#discount_amount,
+#delivery_charge,
+#total_payment_amount {
+    font-weight: 600;
+}
+
+/* 총 상품 가격, 할인 금액, 배송비, 총 결제 금액 -> DB에서 가져와야 함 */
+#total_product_amount,
+#discount_amount,
+#delivery_charge,
+#total_payment_amount {
+    margin-left: 50px;
+    font-size: 17px;
+    margin-top: 20px;
+}
+

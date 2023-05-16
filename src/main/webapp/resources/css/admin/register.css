@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+    .text_title {
+	    width: 773px;
+	    height: 30px;
+	    font-size: 20px;
+    }
+    
+    textarea {
+        width: 940px;
+        height: 500px;
+        font-size: 20px;
+        font-weight: 700;
+        padding: 0px;
+    }
+
+    .ck-content {
+        min-height: 300px;
+        padding: 0px;
+    }
+    
+	.button {
+     	margin-top : 20px;
+     }
+     
+	.information {
+		background-color: #f7f7f7;
+		text-align: center;
+		padding: 30px;
+
+     }
+     
+     button {
+	    float: right;
+	    margin-left : 5px;
+	    margin-bottom : 100px;
+	    font-weight: 800;
+	    width: 75px;
+	    height: 35px;
+	    background-color: rgb(175, 124, 213);
+	    border: 1px solid #ceced2;
+	    font-size: 16px;
+	}

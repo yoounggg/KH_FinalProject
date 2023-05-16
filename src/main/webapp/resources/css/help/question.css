@@ -1,0 +1,228 @@
+@charset "UTF-8";
+
+
+/* a, li태그 전체에 공통 적용 */
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style-type: none;
+}
+
+
+
+/* 고객센터 전체 감싸기 */
+.help_wrap {
+    width: 1050px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+/* 고객센터 상단 감싸기 */
+.help_top {
+    width: 100%;
+    height: 150px;
+}
+
+/* 고객센터 중간 사이드 메뉴 / 게시물 */
+.help_content_wrap {
+    margin-bottom: 200px;
+    border: 1px solid #f1f1f1;
+}
+
+/* 상단 사이드 고객센터 글자 */
+.help_center {
+    float: left;
+    width: 180px;
+    height: 150px;
+    background-color: #11BC0D;
+    text-align: center;
+    vertical-align: middle;
+
+
+}
+
+.help_center_text {
+    margin-top: 65px;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+}
+
+/* 상단 중간 검색창 */
+
+.help_search {
+    display: inline-block;
+    width: 870px;
+    height: 150px;
+    margin: auto;
+    background-color: #F9F9F4;
+}
+
+/* .help_search_ul {
+    text-align: center;
+    padding: 0;
+    margin-top: 50px;
+    font-size: 17px;
+}
+
+.help_search_input_a {
+    display: inline-block;
+    width: 450px;
+    height: 30px;
+}
+
+.help_search_ul p {
+    display: inline-block;
+}
+
+.help_search_ul input {
+    width: 400px;
+    height: 30px;
+}
+
+
+.help_search_ul a {
+    position: absolute;
+    display: inline-block;
+    width: 87px;
+    height: 32px;
+    padding-top: 3.2px;
+    line-height: 20px;
+    border: 2px solid #5d5d5d;
+    background: #5d5d5d;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    text-decoration: none;
+} */
+
+#write {
+    display: block;
+    margin: auto;
+    text-align: center;
+    margin-left: 680px;
+    width: 70px;
+    height: 25px;
+    background-color: #11BC0D;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+    font-size: 12px;
+    padding-top: 2px;
+}
+
+
+/* 중간 컨텐츠 사이드 메뉴 */
+.help_side_menu {
+    float: left;
+    padding: 0;
+    margin: 0;
+    width: 178px;
+    min-height: 400px;
+}
+
+.sm_ul {
+    padding-left: 40px;
+    margin-top: 16px;
+}
+
+
+#sm_li {
+    font-size: 20px;
+    padding: 10px;
+    font-weight: bold;
+    color: black;
+}
+
+/* #sm_li_ul {
+    font-size: 16px;
+    padding: 0px;
+    padding-left: 10px;
+
+}
+
+#sm_li_ul li {
+    padding-top: 15px;
+    margin-right: 10px;
+} */
+
+/* 중간 컨텐츠 */
+
+/* 공지사항 글자 */
+h2 {
+    margin-left: 40px;
+    font-size: 20px;
+
+}
+
+
+.test {
+    color: rgb(141, 141, 141);
+    font-size: 15px;
+}
+
+.content_wrap {
+    display: inline-block;
+    width: 800px;
+    padding: 30px;
+    padding-left: 20px;
+    border-left: 1px solid #f1f1f1;
+}
+
+.content_wrap h2 {
+    padding: 0;
+    margin: 0;
+    margin-left: 40px;
+    padding: 2px;
+}
+
+.content_list {
+    width: 710px;
+    margin: 10px 40px 40px 40px;
+    border-top: 3px solid #ceced2;
+    font-size: 11px;
+}
+
+a:link {
+    color: #4f4f4f;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #4f4f4f;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #4f4f4f;
+    text-decoration: none;
+}
+
+
+
+/* ====================================== */
+
+table {
+    display: table;
+    width: 750px;
+    margin-bottom: 0px;
+}
+
+table th {
+    border-bottom: 1px solid #ceced2;
+    padding: 8px;
+}
+
+table td {
+    padding: 14px 10px 13px 0px;
+    border-bottom: 1px solid #ceced2;
+    text-align: center;
+    font-size: 13px;
+}
+
+.title {
+    text-align: left;
+}

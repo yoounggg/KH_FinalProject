@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.text_title {
+	width: 773px;
+	height: 30px;
+	font-size: 16px;
+	
+}
+textarea {
+	width: 780px;
+	height: 500px;
+	font-size: 20px;
+	font-weight: 700;
+	padding: 0px;
+}

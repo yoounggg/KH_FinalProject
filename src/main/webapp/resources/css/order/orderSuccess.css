@@ -1,0 +1,171 @@
+@charset "utf-8";
+
+/* 주문완료창 전체를 묶는 태그 */
+.wrapper {
+    height: 1200px;
+}
+
+/* 주문완료 타이틀 속성 */
+.orderSuccess {
+    font-size: 25px;
+    top: 90px;
+    left: 10%;
+    position:relative;
+    /* font-size: 20px; */
+    font-weight: bold;
+}
+.line {
+    width: 80%;
+    border:1px solid black;
+    top:100px;
+    left: 10%;
+    position:relative;
+
+}
+/* 주문완료 안내문 */
+.order_announce {
+    font-size: 25px;
+    text-align: center;
+    color: #11BC0D;
+    width: 70%;
+    height: 250px;
+    /* border: solid 1px black; */
+    top: 130px;
+    left: 14%;
+    position:relative;
+    font-weight: bold;
+
+    margin-top: 100px;
+}
+/* 주문내역 타이틀*/
+.order_detail {
+    font-size: 25px;
+    top: 200px;
+    left: 10%;
+    position:relative;
+    font-weight: bold;
+}
+/* 주문내역 박스 위치 조정 */
+.order_detail_box {
+    width: 80%;
+    /* border:1px solid black; */
+    top:220px;
+    left: 135px;
+    position:relative;
+}
+.line2 {
+    width: 80%;
+    border:1px solid black;
+    top:210px;
+    left: 10%;
+    position:relative;
+}
+
+/* 주문내역 박스 전체 위치 조정*/
+.order_detail_box {
+    display: flex;
+    justify-content: space-between; /* flex container 내부의 flex 아이템들을 수평 방향으로 정렬 */
+    align-items: flex-start; /* flex container 내부의 flex 아이템들을 수직 방향으로 정렬 */
+    margin-top: 20px;
+}
+
+/*왼쪽 주문자정보*/
+.left-box {
+    padding: 15px;
+    border: 1px solid black;
+    width: 40%;
+    margin-left: 80px;
+}
+
+/*오른쪽 결제정보*/
+.right-box {
+    padding: 15px;
+    border: 1px solid black;
+    width: 40%;
+    margin-right: 80px;
+}
+
+/* */
+.input-box {
+    display: flex; /* 이거 뭔데...? 한번만에 가로정렬됨!*/ /*container 내부의 item들이 수평 방향으로 배치*/
+    margin-bottom: 10px;
+}
+
+/* 박스 내부의 name 입력창 크기를 조절해야함  수정 필요!!!!! */
+.input-box > .name {
+    /* width: 30px; */
+}
+
+/* 박스 내부의 label 간격 조정 */
+.input-box label {
+    display: inline-block;
+    width: 100px;
+    margin-left: 20px;
+}
+
+/* 상품 정보 박스 내부의 가격표시되는 부분 위치 조정 */
+.price-box {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    margin-bottom: 10px;
+}
+
+.price-value {
+    margin-right: 40px;
+}
+
+/* 상품 정보 박스 내부의 label 위치 조정 */
+.price-label {
+    margin-left: 40px;
+}
+
+.total .price-value {
+    color: red;
+}
+
+/* 버튼 위치, 색상, 크기 조정 */
+.orderSuccess_button {
+    background-color:#10bc0d;
+    color:white;
+    border: white;
+    height:51px;
+    width:180px;
+    border-radius:5px;
+    margin-top: 300px;
+    margin-left: 44%;
+    font-weight: bold;
+    font-size: 17px;
+    /* position: relative; */
+    cursor: pointer;
+}
+
+/* 이름,주소,번호,배송요청사항 */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td span {
+	margin: 2px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+.address1_span {
+	border-bottom: none;
+}
+.address2_span {
+	border-top: none;
+	border-bottom: none;
+}
+.address3_span {
+	border-top: none;
+}
+
+td label {
+    font-weight: bold;
+}
+
+td span {
+    display: block;
+}

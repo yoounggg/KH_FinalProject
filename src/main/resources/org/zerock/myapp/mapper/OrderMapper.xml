@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="org.zerock.myapp.mapper.OrderMapper">
+ 		<select id="getProductsInfo" resultType="org.zerock.myapp.domain.OrderPageItemDTO">
+ 			SELECT *
+ 			FROM product
+ 			WHERE no = #{productId, jdbcType=INTEGER}
+ 		</select>
+ 		
+ 		<select id="getOrderInfo" parameterType="org.zerock.myapp.domain.OrderItemDTO">
+			SELECT no, price, discount, discount_price
+			FROM product
+			WHERE no = #{product_no, jdbcType=INTEGER} <!-- jdbcType넣어야 에러안남 -->
+		</select>
+		
+		<insert id="enrollOrder" parameterType="org.zerock.myapp.domain.OrderDTO">
+			<selectKey keyProperty="no" order="AFTER" resultType="int">
+		        SELECT ISEQ$$_103739.currval FROM dual
+		    </selectKey>
+		
+			INSERT INTO MYMG_ORDER( member_id, receiver_name, receiver_address1, receiver_address2, receiver_address3, receiver_tel, delivery_comment, delivery_cost, delivery_state)
+			VALUES ( #{member_id, jdbcType=VARCHAR}, #{receiver_name, jdbcType=VARCHAR}, #{receiver_address1, jdbcType=VARCHAR},
+					 #{receiver_address2, jdbcType=VARCHAR}, #{receiver_address3, jdbcType=VARCHAR}, #{receiver_tel, jdbcType=VARCHAR},
+					 #{delivery_comment, jdbcType=VARCHAR}, #{delivery_cost,  jdbcType=NUMERIC}, '배송준비' ) 
+		</insert>
+			
+		<insert id="enrollOrderItem" parameterType="org.zerock.myapp.domain.OrderItemDTO">
+			INSERT INTO ORDER_LIST(order_no, product_no, count, price, discount)
+			VALUES (#{order_no, jdbcType=INTEGER}, #{product_no, jdbcType=INTEGER}, #{count, jdbcType=INTEGER}, #{price, jdbcType=INTEGER}, #{discount, jdbcType=INTEGER})
+		</insert>
+		
+		<delete id="deleteOrderCart">
+			DELETE FROM cart
+			WHERE member_no = #{member_id, jdbcType=INTEGER} and product_no = #{product_no, jdbcType=INTEGER}
+		</delete>
+				
+		<select id="deductStock" resultType="org.zerock.myapp.domain.ProductDTO">
+			UPDATE product
+			set stock = #{stock, jdbcType=INTEGER}
+			WHERE no = #{no}
+		</select>
+
+ </mapper>

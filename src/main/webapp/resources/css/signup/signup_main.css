@@ -1,0 +1,80 @@
+
+
+.wrapper {
+
+    width: 100%;
+    height: 100%;
+}
+
+
+
+#title {
+    text-align: center;
+    font-size: 40px;
+    margin: 17% 0 7% 0;
+}
+
+
+.signupbutton {
+    margin: 0 auto;
+    width: 500px;
+}
+#일반 {
+    display: block;
+    text-align: center;
+    margin-top: 23px;
+}
+
+
+
+.일반회원가입 {
+    background-color: #10bc0d;
+    height: 70px;
+    width: 450px;
+    border-radius: 10px;
+    border: none;
+    display: inline-block;
+    margin: 15px;
+    color: white;
+}
+
+.소셜회원가입 {
+    background-color: #ffffff;
+    height: 70px;
+    width: 450px;
+    border-radius: 10px;
+    border: 1px solid #b2b2b2;
+    display: inline-block;
+    margin: 15px;
+    position: relative;
+    cursor: pointer;
+}
+
+.pp {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+}
+
+.소셜아이콘 {
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    top: 20%;
+    left: 5%;
+}
+
+.로그인 {
+    text-align: center;
+    font-size: 20px;
+    padding: 40px;
+    margin-bottom: 10%;
+}
+
+#main_btm{
+	color: #b2b2b2;
+}
+
+#doLogin{
+	font-weight: bolder;
+}

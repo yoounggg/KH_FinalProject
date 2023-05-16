@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project 
+   xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.zerock</groupId>
+	<artifactId>MYMG</artifactId>
+	<version>1.0.0-BUILD-SNAPSHOT</version>
+
+	<packaging>war</packaging>
+
+	<name>MYMG</name>
+
+
+	<properties>
+		<java-version>17</java-version>
+
+		<org.springframework-version>5.3.25</org.springframework-version>
+		<org.aspectj-version>1.9.19</org.aspectj-version>
+		<org.apache.logging.log4j-version>2.20.0</org.apache.logging.log4j-version>
+	</properties>
+
+
+   <!-- =============== API =============== -->
+
+   <!-- 결제API -->
+   <repositories>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+
+
+<!-- ********************************************************************** -->
+
+   <dependencies>
+
+   <!-- =============== 1. Logging =============== -->
+
+      <dependency>
+         <groupId>org.apache.logging.log4j</groupId>
+         <artifactId>log4j-core</artifactId>
+         <version>${org.apache.logging.log4j-version}</version>
+      </dependency>
+
+   <!-- For Spring framework, HikariCP, DriverSpy logging -->
+      <dependency>
+         <groupId>org.apache.logging.log4j</groupId>
+         <artifactId>log4j-slf4j-impl</artifactId>
+         <version>${org.apache.logging.log4j-version}</version>
+      </dependency>
+
+   <!-- ============= 2. Servlet/JSP ============= -->
+   
+   	<!-- [셍나] 스프링 시큐리티 설정을 위한 자카르타 서블릿 -->
+   	<!-- 충돌 일어나는거 같아서 막아두겠삼! -->
+   	<!--
+	<dependency>
+	    <groupId>jakarta.servlet</groupId>
+	    <artifactId>jakarta.servlet-api</artifactId>
+	    <version>5.0.0</version>
+	    <scope>provided</scope>
+	</dependency>
+   	-->
+   
+      <dependency>
+         <groupId>javax.servlet</groupId>
+         <artifactId>javax.servlet-api</artifactId>
+         <version>4.0.1</version>
+         <scope>provided</scope>
+      </dependency>
+   
+      <dependency>
+         <groupId>javax.servlet.jsp</groupId>
+         <artifactId>javax.servlet.jsp-api</artifactId>
+         <version>2.3.3</version>
+         <scope>provided</scope>
+      </dependency>
+   
+      <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+      </dependency>
+
+
+   <!-- =============== 3. AspectJ =============== -->
+
+      <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${org.aspectj-version}</version>
+      </dependency>
+
+      <dependency>
+         <groupId>org.aspectj</groupId>
+         <artifactId>aspectjweaver</artifactId>
+         <version>${org.aspectj-version}</version>
+      </dependency>
+
+
+   <!-- ================ 4. Spring =============== -->
+
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-context</artifactId>
+         <version>${org.springframework-version}</version>
+      </dependency>
+
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-webmvc</artifactId>
+         <version>${org.springframework-version}</version>
+      </dependency>
+
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-test</artifactId>
+         <version>${org.springframework-version}</version>
+         <scope>test</scope>
+      </dependency>
+
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-jdbc</artifactId>
+         <version>${org.springframework-version}</version>
+      </dependency>
+
+
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-tx</artifactId>
+         <version>${org.springframework-version}</version>
+      </dependency>
+
+   <!-- =============== 5. JDBC =============== -->
+
+      <dependency>
+         <groupId>org.bgee.log4jdbc-log4j2</groupId>
+         <artifactId>log4jdbc-log4j2-jdbc4</artifactId>
+         <version>1.16</version>
+      </dependency>
+
+      <dependency>
+         <groupId>com.oracle.database.jdbc</groupId>
+         <artifactId>ojdbc8-production</artifactId>
+         <version>21.5.0.0</version>
+      
+         <type>pom</type>
+      
+         <exclusions>
+            <exclusion>
+               <groupId>com.oracle.database.ha</groupId>
+               <artifactId>simplefan</artifactId>
+            </exclusion>
+      
+            <exclusion>
+               <groupId>com.oracle.database.ha</groupId>
+               <artifactId>ons</artifactId>
+            </exclusion>
+      
+            <exclusion>
+               <groupId>com.oracle.database.jdbc</groupId>
+               <artifactId>rsi</artifactId>
+            </exclusion>
+      
+            <exclusion>
+               <groupId>com.oracle.database.jdbc</groupId>
+               <artifactId>ucp</artifactId>
+            </exclusion>
+      
+            <exclusion>
+               <groupId>com.oracle.database.xml</groupId>
+               <artifactId>xdb</artifactId>
+            </exclusion>
+      
+            <exclusion>
+               <groupId>com.oracle.database.xml</groupId>
+               <artifactId>xmlparserv2</artifactId>
+            </exclusion>
+         </exclusions>
+      </dependency>
+
+   <!-- =============== 6. DataSource =============== -->
+
+      <dependency>
+         <groupId>com.zaxxer</groupId>
+         <artifactId>HikariCP</artifactId>
+         <version>5.0.1</version>
+
+         <exclusions>
+            <exclusion>
+               <groupId>org.slf4j</groupId>
+               <artifactId>slf4j-api</artifactId>
+            </exclusion>
+         </exclusions>
+      </dependency>
+
+   <!-- =============== 7. Testing =============== -->
+   
+      <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.9.2</version>
+            <scope>test</scope>
+      </dependency>
+
+   <!-- ================ 8. Mybatis ================= -->
+
+      <dependency>
+         <groupId>org.mybatis</groupId>
+         <artifactId>mybatis</artifactId>
+         <version>3.5.13</version>
+      </dependency>
+
+      <dependency>
+         <groupId>org.mybatis</groupId>
+         <artifactId>mybatis-spring</artifactId>
+         <version>3.0.1</version>
+      </dependency>
+
+   <!-- ================ 9. Misc ================= -->
+
+      <dependency>
+         <groupId>javax.inject</groupId>
+         <artifactId>javax.inject</artifactId>
+         <version>1</version>
+      </dependency>
+   
+      <dependency>
+         <groupId>org.projectlombok</groupId>
+         <artifactId>lombok</artifactId>
+         <version>1.18.26</version>
+      </dependency>
+
+      <dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.5</version>
+		</dependency>
+	
+	<!-- ================ 문자 인증 =================== -->
+		<dependency>
+			<groupId>net.nurigo</groupId>
+		    <artifactId>javaSDK</artifactId>
+		    <version>2.2</version>
+		</dependency>
+		
+	<!-- ================ [셍나] 이메일 인증 =================== -->
+
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.7</version>
+        </dependency>        
+        
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+
+
+   <!-- ================= converting ================= -->
+   
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.15.0-rc1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+			<version>2.14.2</version>
+		</dependency>
+		
+		
+   <!-- ================= [별이]썸네일이미지 ================= -->		
+		<dependency>
+		    <groupId>net.coobird</groupId>
+		    <artifactId>thumbnailator</artifactId>
+		    <version>0.4.19</version>
+		</dependency>
+
+	
+   <!-- ================= [셍나] spring security ================= -->	
+		<!--
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-core</artifactId>
+		    <version>5.6.0</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-web</artifactId>
+		    <version>5.6.0</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-config</artifactId>
+		    <version>5.6.0</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-taglibs</artifactId>
+		    <version>5.6.0</version>
+		</dependency>
+		-->
+		
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-core</artifactId>
+		    <version>6.0.2</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-web</artifactId>
+		    <version>6.0.2</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-config</artifactId>
+		    <version>6.0.2</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-taglibs</artifactId>
+		    <version>6.0.2</version>
+		</dependency>
+		
+	<!-- ================= [셍나] 네이버 아이디로 로그인 ================= -->	
+		
+		<dependency>
+			<groupId>com.github.scribejava</groupId>
+			<artifactId>scribejava-core</artifactId>
+			<version>2.8.1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		
+	<!-- ================= 찬돌 결제 API ================= -->	
+		<dependency>
+		    <groupId>com.github.iamport</groupId>
+		    <artifactId>iamport-rest-client-java</artifactId>
+		    <version>0.2.22</version>
+		</dependency>
+		
+	<!-- ================= 채영 크롤링 ================= -->		
+		<dependency>
+		    <groupId>org.jsoup</groupId>
+		    <artifactId>jsoup</artifactId>
+		    <version>1.16.1</version>
+		</dependency>
+
+	
+   </dependencies>
+
+<!-- ********************************************************************** -->
+
+	<build>
+
+      <finalName>/</finalName>
+
+         <plugins>
+
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-war-plugin</artifactId>
+               <version>3.3.2</version>
+            </plugin>
+
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-eclipse-plugin</artifactId>
+               <version>2.10</version>
+
+               <configuration>
+                  <downloadSources>true</downloadSources>
+                  <downloadJavadocs>false</downloadJavadocs>
+               </configuration>
+            </plugin>
+
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-compiler-plugin</artifactId>
+               <version>3.11.0</version>
+
+            <configuration>
+               <release>${java-version}</release>
+            </configuration>
+            </plugin>
+
+      </plugins>
+
+   </build>
+
+</project>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="org.zerock.myapp.mapper.AttachMapper">
+
+<!-- '상품 등록 페이지' 에서 사용자가 이미지를 선택하였을때 이미지가 업로드(컴퓨터에 저장) 되고, 
+최종적으로 다른 상품 정보들이 작성된 뒤 '등록 버튼'을 눌렀을 때 '업로드 된 이미지'의 정보가 DB에 저장되도록 하는 방식 -->
+	<select id="getAttachList" resultType="org.zerock.myapp.domain.AttachImageVO">
+	
+		SELECT *
+		FROM MYMG_IMAGE
+		WHERE product_no = #{product_no}
+	
+	</select>  
+
+  </mapper>

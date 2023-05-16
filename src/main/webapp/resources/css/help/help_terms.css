@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+body{
+	width: 100%;
+	min-width: 1026px;
+	height: 100vh;
+	min-height: 100%;
+	background-color: white;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.wrapper{
+    width: 810px;
+    height: 100%;
+    margin: 0 auto; 
+}
+
+#box{
+    font-size: 0;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 10%;
+}
+
+#terms, #privacy{
+    width: 400px;
+    height: 50px;
+    display: inline-block;
+    text-align: center;
+    margin-top: 3%;
+    font-size: 20px;
+    justify-content: center;
+    color: black;
+    text-decoration: none;
+    line-height: 50px;
+    cursor: pointer;
+    
+    border: none;
+}
+
+#terms{
+    background-color: #10bc0d;
+}
+
+#privacy{
+    background-color: #b1b1b1;
+}
+
+#content{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    white-space: pre-wrap;
+    overflow-x: auto;
+    max-width: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+}

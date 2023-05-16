@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="org.zerock.myapp.mapper.MemberMapper">
+	
+		<!-- [셍나] 로그인: memberLogin() -->
+		<!-- 암호화 미적용 -->
+		<!-- <select id="memberLogin" resultType="org.zerock.myapp.domain.MemberDTO">
+		    SELECT 
+		    	*
+		    FROM 
+		    	member 
+		    WHERE 
+		        ID = #{id}
+		        AND PASSWORD = #{password}
+		</select> -->
+		<!-- 암호화 적용 -->
+		<select id="memberLogin" resultType="org.zerock.myapp.domain.MemberDTO">
+		    SELECT 
+		    	ID, PASSWORD, NAME, ADMINCK
+		    FROM 
+		    	member 
+		    WHERE 
+		        ID = #{id} 
+		</select>
+		
+		<!-- [셍나] 아이디 찾기를 위한 회원정보 조회 - 휴대폰 인증 (이름, 전화번호) -->
+		<!-- COUNT로 1 반환 = 회원정보가 존재한다는 뜻 -->
+		<select id="idCheck" parameterType="String" resultType="int">
+			SELECT 
+				COUNT(*) 
+			FROM 
+				MEMBER
+			WHERE 
+				NAME = #{name} 
+				AND TEL = #{tel}
+		</select>
+		
+		<!-- [셍나] 아이디 찾기 결과 - 휴대폰 인증 -->
+		<select id="findIdResult" parameterType="String" resultType="String">
+			SELECT
+				ID
+			FROM
+				MEMBER
+			WHERE 
+				NAME = #{name} 
+				AND TEL = #{tel}
+		</select>
+		
+		<!-- [셍나] 아이디 찾기를 위한 회원정보 조회 : 이메일 인증 (이름, 이메일) -->
+		<select id="idCheck_e" parameterType="String" resultType="int">
+			SELECT
+				COUNT(*)
+			FROM
+				MEMBER
+			WHERE
+				NAME = #{name}
+				AND EMAIL = #{email}
+		</select>
+		
+		<!-- [셍나] 아이디 찾기 결과 - 이메일 -->
+		<select id="findIdResult_e" parameterType="String" resultType="String">
+			SELECT
+				ID
+			FROM
+				MEMBER
+			WHERE 
+				NAME = #{name} 
+				AND EMAIL = #{email}
+		</select>
+		
+		<!-- [셍나] 비밀번호 변경을 위한 아이디 조회 -->
+		<select id="idSearch" parameterType="String" resultType="int">
+			SELECT
+				COUNT(*)
+			FROM
+				MEMBER
+			WHERE
+				ID = #{id}
+		</select>
+		
+		<!-- [셍나] 비밀번호 변경을 위한 핸드폰 번호 가져오기 -->
+		<select id="changePW_p" parameterType="String" resultType="org.zerock.myapp.domain.MemberDTO">
+			SELECT
+				TEL
+			FROM
+				MEMBER
+			WHERE
+				ID = #{id}
+		</select>
+		
+		<!-- [셍나] 비밀번호 변경을 위한 이메일 주소 가져오기 -->
+		<select id="changePW_e" parameterType="String" resultType="org.zerock.myapp.domain.MemberDTO">
+			SELECT
+				EMAIL
+			FROM
+				MEMBER
+			WHERE
+				ID = #{id}
+		</select>
+
+		<!-- [셍나] 임시 비밀번호 생성 후 암호화 시켜서 디비에 저장! - 휴대폰 -->
+		<update id="updatePw_p">
+		    UPDATE 
+		    	MEMBER
+		    SET
+		    	PASSWORD = #{encryptedTempPw_p}
+		    WHERE 
+		    	ID = #{id}
+		</update>
+
+		<!-- [셍나] 임시 비밀번호 생성 후 암호화 시켜서 디비에 저장! - 이메일 -->
+		<update id="updatePw_e">
+		    UPDATE 
+		    	MEMBER
+		    SET
+		    	PASSWORD = #{encryptedTempPw_e}
+		    WHERE 
+		    	ID = #{id}
+		</update>
+
+		<!-- [혁규] 회원가입 -->
+		<insert id="memberSignup" >
+		  INSERT INTO member (
+		  	ID, PASSWORD, NAME, EMAIL, TEL, ADDRESS1, ADDRESS2, ADDRESS3, GENDER, SIGNUP_DATE, BIRTH_YEAR, BIRTH_MONTH, BIRTH_DAY, SOCIAL_TYPE, ADMINCK)
+		  VALUES (
+		  	#{id,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{name}, #{email}, #{tel}, #{address1, jdbcType=INTEGER}, 
+		  	#{address2,jdbcType=VARCHAR}, #{address3,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
+		  	#{signup_date,jdbcType=TIMESTAMP}, #{birth_year,jdbcType=INTEGER}, #{birth_month, jdbcType=INTEGER},
+			#{birth_day, jdbcType=INTEGER}, 'None', #{adminCk}
+		  )
+		</insert>
+		
+		<!-- [찬돌] 주문자 정보 -->
+		<select id="getMemberInfo" parameterType="String" resultType="org.zerock.myapp.domain.MemberDTO">
+			SELECT ID, NAME, TEL, EMAIL, ADDRESS1, ADDRESS2, ADDRESS3
+			FROM Member
+			WHERE Id = #{id, jdbcType=VARCHAR}
+		</select> 
+	
+	
+		<!-- [별이] 관리자페이지 회원 목록 전체 조회 -->
+		<select id="selectAll" parameterType="String" resultType="org.zerock.myapp.domain.MemberDTO">
+			SELECT NO, ID, NAME, GENDER, EMAIL, TEL
+			FROM MEMBER
+			ORDER BY NO DESC
+		</select> 
+		
+		<!-- [별이] 관리자페이지 회원 목록 상세 조회 -->
+		<select id="select" parameterType="String" resultType="org.zerock.myapp.domain.MemberDTO">
+			SELECT NO, ID, NAME, EMAIL, TEL, ADDRESS1, ADDRESS2, ADDRESS3, GENDER, SIGNUP_DATE, BIRTH_YEAR, BIRTH_MONTH, BIRTH_DAY, SOCIAL_TYPE
+			FROM MEMBER
+			WHERE ID = #{id}
+		</select>
+		
+		<!-- [별이] 관리자페이지 회원 목록 전체 조회(페이징) -->
+		<select id="selectAllPaging" resultType="org.zerock.myapp.domain.MemberDTO">
+	  	<![CDATA[
+	    
+			SELECT NO, ID, NAME, EMAIL, TEL, ADDRESS1, ADDRESS2, ADDRESS3, GENDER, SIGNUP_DATE, BIRTH_YEAR, BIRTH_MONTH, BIRTH_DAY, SOCIAL_TYPE
+			FROM MEMBER
+			ORDER BY no DESC
+			OFFSET (#{currPage} - 1) * #{amount} ROWS
+			FETCH NEXT #{amount} ROWS ONLY
+		
+		]]>	
+		</select>
+		
+		<!-- 회원 총 인원수 -->
+		<select id="getTotal" resultType="int">
+		  	SELECT count(*) FROM MEMBER
+		</select>
+	
+		
+	</mapper>
+

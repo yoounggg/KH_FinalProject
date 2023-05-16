@@ -1,0 +1,42 @@
+
+
+
+.wrapper {
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 35px;
+    text-align: center;
+    margin: 10% 0 10% 0;
+}
+
+
+.toLogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: white;
+}
+
+
+#bottombtn {
+    text-align: center;
+    margin: 0 auto;
+    background-color: #10bc0d;
+    height: 40px;
+    width: 150px;
+    border: none;
+    margin-bottom: 10%;
+    cursor: pointer;
+}
+
+.탑로고 {
+    text-align: center;
+    margin-top: 5%;
+
+
+}

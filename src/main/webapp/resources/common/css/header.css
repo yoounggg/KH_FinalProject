@@ -1,0 +1,243 @@
+@charset "UTF-8";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    min-width: 1026px;
+    height: 100vh;
+    min-height: 100%;
+    background-color: white;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* a, li태그 전체에 공통 적용 */
+a{ text-decoration: none; color: black;}
+
+li{ list-style-type: none;}
+
+/* ------------topbanner------------- */
+
+.topBanner{
+    width: 100%;
+    margin: 0;
+    padding: 0 0 10px 0;
+    /* position: absolute; */
+    background-color: #F9F9F4;
+    font-size: 16px;
+    /* text-align: center; */
+}
+.topbox{
+    width: 80%;
+    position: relative;
+    /* text-align: center; */
+    margin: 0 auto;
+}
+.topcontent{
+    padding: 10px 0 0 0;
+    width: 80%;
+    color: #11BC0D;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 auto;
+    /* vertical-align: middle; */
+}
+.topbox>button{
+    position: absolute;
+    top: 30px;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background-color: #F9F9F4;
+    border: none;
+    cursor: pointer;
+}
+
+/* --------------header-------------- */
+
+.container2{
+    padding: 0;
+    padding-top: 50px;
+    width: 80%;
+    margin: 0 auto; 
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+}
+
+.container2 li a, .container2 li{
+    width: 70px;
+    color: black;
+    font-size: 12px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+#container2_name{
+	width: 150px;
+	}
+	
+#main_adminpage{
+	font-weight:bold;
+	width: 150px;
+	color: white;
+	background-color: #11BC0D;
+}	
+/* ------------------------------------------ */
+
+.container3{
+    padding: 10px 0 30px 0;
+    width: 80%;
+    /* height: 90px; */
+    margin: 0 auto;
+    position: relative;
+}
+
+#logo{
+    width: 150px;
+    height: 60px;
+    /* position: absolute; */
+    /* top: 10px; */
+    /* left: 20px; */
+
+}
+
+.search1{
+    position: absolute;
+    left: 50%; 
+    /* top: 10%; */
+    transform: translateX(-50%); 
+    /* align-items: center;  */
+    display: inline-block;
+    border: 5px solid #F9F9F4;
+    padding: 1px;
+    border-radius: 100px;
+
+    background-color: #F9F9F4;
+}
+
+.search1 .search-txt{
+    width: 300px;
+    /* height: 30px; */
+    border: none;
+    background-color: #F9F9F4;
+}
+
+.search1 .search-txt:focus{
+    border: none;
+    outline: none;
+/* 마우스 호버링 했을때 윤곽선 없애기 */
+}
+
+.search1 .search-btn{
+    height: 35px;
+    border: none;
+    background-color: #F9F9F4;
+    cursor: pointer;
+    /* font-family: FontAwesome; */
+}
+
+#btn{
+    width: 16px;
+    height: 16px;
+    border: none;
+    color: #F9F9F4;
+    background-color: #F9F9F4;
+}
+
+/* ----------------------nav--------------------- */
+
+.menu{
+    margin: 0 0 20px 0;
+    background-color:#f9f9f4;
+}
+
+.container4{
+    padding: 0;
+    width: 80%;
+    /* height: 45px; */
+    margin: 0 auto;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+.container4 li{
+    margin: 0;
+    padding: 0;
+    /* 가로로 배열하면서 블록으로 하기 위해 */
+    display: inline-block;
+    width: 200px;
+
+    /* 가로로 중간 (세로로 중간까지 해야 글자가 정 가운데 올 듯) */
+    text-align: center;
+}
+
+.container4 li a{
+    padding: 0 0 0 20px;
+    height: 45px;
+    line-height: 45px;
+    font-size: 14px;
+    display: block;
+    color: black;
+    text-align: left;
+}
+
+.fixedmenu{ /* 상단 메뉴 고정 -> jquery */  
+    width: 100%;
+    position: fixed;
+    top: 0px;
+}
+/* ------------------드롭다운메뉴-------------------- */
+
+.menu2{
+    width: 150px;
+    height: 407px;
+    border: 1px solid #909090;
+    background-color: white;
+    /* z-index: 98; */
+    display: none;
+}
+
+.menu2 li{ width: 148px; }
+
+.container4>li:hover .menu2{
+    display: block;
+    position: absolute;
+}
+
+.container4>li:hover li:hover{
+    /* border-bottom: 0; */
+    background-color: #F9F9F4;
+    box-sizing: border-box;
+}
+
+.container4 li:hover .menu2>li ul{
+    display: none;
+}
+
+.container4 li:hover .menu2>li:hover ul{
+    border: 1px solid #909090;
+    border-left: none;
+    width: 150px;
+    display: block;
+    position: absolute;
+    left: 149px;
+    top: -1px;
+}
+.container4 li:hover .menu2>li:hover ul li{
+    width: 148px;
+}
+.menu3{
+    height: 407px;
+    border-left: none;
+    background-color: white;
+    /* z-index: 99; */
+}
+
+.menu{z-index: 99; !important}

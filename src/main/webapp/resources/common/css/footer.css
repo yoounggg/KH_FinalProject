@@ -1,0 +1,105 @@
+@charset "utf-8";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    min-width: 1026px;
+    height: 100vh;
+    min-height: 100%;
+    background-color: white;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* a, li태그 전체에 공통 적용 */
+a{ text-decoration: none;}
+
+li{ list-style-type: none;}
+
+
+
+/* --------------footer------------------- */
+
+.yakgwan1{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    background-color: white;
+}
+.yakgwan2{
+    width: 80%;
+    padding: 15px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    /* 수직정렬!!!! */
+    align-items: center;
+}
+
+.yakgwan2 li{
+    /* 가로로 중간 (세로로 중간까지 해야 글자가 정 가운데 올 듯) */
+    font-size: 14px;
+    font-weight: bold;
+    /* vertical-align: middle; */
+}
+
+.yakgwan2 li a{
+    padding: 30px;
+    /* height: 40px; */
+    color: black;
+}
+
+.yakgwan2 li #gaein{
+    color: #11BC0D;
+}
+/* --------------------------------- */
+.bottom1{
+    background-color:#f9f9f4;
+}
+
+.bottom2{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+#com_address{
+    padding: 80px 10px 90px 20px;
+    font-size: 14px;
+}
+
+#custom_notice{
+    padding: 80px 20px 90px 10px;
+    font-size: 14px;
+}
+
+#custom_notice a{
+    color: black;
+}
+
+#jusik{
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+}
+
+#gogaek{
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+}
+
+#phnum{
+    color: #11BC0D;
+}
+
+.gray{
+    color: #909090;
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="org.zerock.myapp.mapper.DeliveryConfirmMapper">
+   
+   <!-- 목록 페이지 사이드 검색 -->
+    
+    <insert id="DeliveryConfirmInsert">
+		INSERT
+        INTO delivery_confirm (order_no, member_id, order_date)
+        VALUES (#{order_no}, #{member_id}, #{order_date})    
+	</insert>
+	
+</mapper>

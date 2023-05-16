@@ -1,0 +1,179 @@
+@charset "utf-8";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    min-width: 1026px;
+    height: 100vh;
+    min-height: 100%;
+    background-color: white;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* a, li태그 전체에 공통 적용 */
+a{ text-decoration: none;}
+
+li{ list-style-type: none;}
+
+/* ---------------- Sengna ---------------- */
+
+/* 아이디 찾기 창 container */
+.find_id_container {
+    width: 300px;
+    
+    /* padding 줘서 크기 조절 */
+    padding: 10px;
+    
+    /* 오른쪽으로 띄우기 */
+    margin: 100px auto;
+}
+
+/* 아이디 찾기 타이틀 */
+.find_id_title {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* 휴대폰 인증, 이메일 인증 버튼들 묶어주는 wrap 클래스 */
+.find_id_wrap {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+/* 각 버튼들 속성 */
+.find_id_wrap li {
+    font-size: 14px;
+
+    /* li 요소들이 가로로 동일한 비율로 공간을 차지하도록 설정 */
+    flex-grow: 1;
+
+    background-color: #f1f1f1;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+/* flex-grow : 
+flex 아이템이 flex 컨테이너 내에서 남은 공간을 어떻게 차지할지 정의합니다. 
+flex-grow 속성 값은 양의 정수 또는 0이며, 
+값이 클수록 해당 아이템이 더 많은 공간을 차지합니다. */
+
+
+/* 각 버튼들 활성화되었을 때 효과 */
+.find_id_wrap li.find_id_active {
+    background-color: #11BC0D;
+    color: white;
+    font-weight: bold;
+}
+
+/* 버튼들 hover 안했을 때 효과 */
+.find_id_wrap li:not(.find_id_active):hover {
+    background-color: #cccccc;
+}
+
+/* 입력폼(입력창) 너비 설정 */
+.find_id_form {
+    width: 100%;
+}
+
+/* 입력창 속성 */
+input[type="text"].find_id_p_input,
+input[type="text"].find_id_e_input,
+input[type="text"].p_verification_input,
+input[type="text"].e_verification_input,
+input[type="tel"],
+input[type="email"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* 이거 수정해야지 검색창 뚱대지 안댐 -ㅇ- */
+/* 수정 완! */
+input[type="text"].find_id_p_input,
+input[type="text"].find_id_e_input,
+input[type="text"].p_verification_input,
+input[type="text"].e_verification_input {
+    margin: 30px 0 8px;
+}
+
+/* 아이디 찾기, 인증번호 발송 버튼 */
+button.findid_button_p,
+button.findid_button_e,
+button.send_verification_button_p,
+button.send_verification_button_e {
+    width: 100%;
+    background-color: #11BC0D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* 인증번호 발송 버튼 hover 효과 */
+button.findid_button_p:hover,
+button.findid_button_e:hover,
+button.send_verification_button_p:hover,
+button.send_verification_button_e:hover {
+    opacity: 0.8;
+}
+
+/* 확인 버튼 */
+button.p_verify_button,
+button.e_verify_button,
+button.p_verify_button_result,
+button.e_verify_button_result {
+    width: 100%;
+    background-color: #11BC0D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* 확인 버튼 hover 효과 */
+button.p_verify_button:hover,
+button.e_verify_button:hover {
+    opacity: 0.8;
+}
+
+
+/* 인증번호 발송 이후 생기는 확인 버튼
+button.re_val_button {
+    width: 100%;
+    background-color: #11BC0D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+확인 버튼 hover 효과
+button.re_val_button:hover {
+    opacity: 0.8;
+}  */

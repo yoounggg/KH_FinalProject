@@ -1,0 +1,123 @@
+@charset "utf-8";
+
+*{/* *이랑 body차이가 뭐지....... */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    min-width: 1026px;
+    height: 100vh;
+    min-height: 100%;
+    background-color: white;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* a, li태그 전체에 공통 적용 */
+a{ text-decoration: none;}
+
+li{ list-style-type: none;}
+
+/* ---------------- Sengna ---------------- */
+
+/* 비밀번호 변경을 위한 컨테이너 */
+.change_pw_container {
+    width: 380px;
+    padding: 16px;
+    margin: 100px auto;
+    margin-bottom: 150px;
+}
+
+/* 비밀번호 변경 타이틀 */
+.change_pw_title {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+/* 휴대폰 인증, 이메일 인증 버튼 wrap */
+.change_pw_wrap {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+/* 각 버튼 요소 */
+.change_pw_wrap li {
+    font-size: 14px;
+    flex-grow: 1;
+    background-color: #f1f1f1;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* 인증 방식 선택 버튼 활성화 */
+.change_pw_wrap li.change_pw_active {
+    background-color: #11BC0D;
+    color: white;
+    font-weight: bold;
+}
+
+/* 인증 방식 선택 버튼 비활성화 */
+.change_pw_wrap li:not(.change_pw_active):hover {
+    background-color: #cccccc;
+}
+
+/* 아이디 조회 폼 */
+.id_search_form_p,
+.id_search_form_e {
+    width: 100%;
+}
+
+/* 입력창 */
+input[type="text"].id_search_input_p,
+input[type="text"].id_search_input_e,
+input[type="tel"],
+input[type="email"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* 이거 수정해야지 검색창 뚱대지 안댐 -ㅇ- */
+/* 수정 완! */
+input[type="text"].id_search_input_p,
+input[type="text"].id_search_input_e {
+    margin: 30px 0 8px;
+    margin-bottom: 30px;
+}
+
+/* 아이디 조회하기 버튼, 임시 비밀번호 발송 버튼 */
+button.id_search_button_p,
+button.id_search_button_e,
+button.send_tempPw_button_p,
+button.send_tempPw_button_e {
+    width: 100%;
+    background-color: #11BC0D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* 아이디 조회하기 버튼, 임시 비밀번호 발송 버튼 hover 효과 */
+button.id_search_button_p:hover ,
+button.id_search_button_e:hover ,
+button.send_tempPw_button_p:hover ,
+button.send_tempPw_button_e:hover {
+    opacity: 0.8;
+}

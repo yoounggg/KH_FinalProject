@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="org.zerock.myapp.mapper.MypageMapper">
+
+	<!-- 매핑에 필요한 id값 가져오기 위해서 회원 상세 조회 -->
+	<select id="getID" resultType="org.zerock.myapp.domain.MemberDTO">
+ 		SELECT 
+ 			* 
+ 		FROM 
+ 			MEMBER
+ 		WHERE 
+ 			id = #{id}
+ 	</select>
+ 	
+	<!-- 주문 정보 가져오기 -->
+	<select id="getOrder" resultType="org.zerock.myapp.domain.OrderDTO">
+	    SELECT
+	        no,
+	        TO_CHAR(order_date, 'YYYY-MM-DD') as order_date,
+	        member_id
+	    FROM
+	        MYMG_ORDER
+	    WHERE
+	        member_id = #{id, jdbcType=VARCHAR}
+		ORDER BY
+        	order_date DESC
+	</select>
+	
+	<select id="getOrderItem" resultType="org.zerock.myapp.domain.OrderItemDTO">
+		SELECT
+			*
+		FROM
+			ORDER_LIST
+	</select>
+	
+	<!-- 주문 상세 조회 -->
+	<select id="select" resultType="org.zerock.myapp.domain.OrderDTO">
+		SELECT
+			*
+		FROM
+			MYMG_ORDER
+		WHERE
+			no = #{no, jdbcType=INTEGER}
+	</select>
+	
+	<!-- 주문상품 상세 조회 -->
+	<select id="ItemSelect" resultType="org.zerock.myapp.domain.OrderItemDTO">
+		SELECT
+			*
+		FROM
+			ORDER_LIST
+		WHERE
+			order_no = #{order_no, jdbcType=INTEGER}
+	</select>
+	
+	<!-- 조인으로 상품이름 가져오기 -->
+	<select id="productName" resultType="org.zerock.myapp.domain.ProductDTO">
+		SELECT 
+			product.name as name, product.price as price, product.main_image as main_image
+		FROM 
+			order_list
+		JOIN product
+		ON 
+			order_list.product_no = product.no
+		WHERE 
+			order_list.product_no = #{product_no, jdbcType=INTEGER}
+	</select>
+	
+	 
+	<select id="ItemPrice" resultType="org.zerock.myapp.domain.OrderItemDTO">
+		SELECT
+			count, price, discount
+		FROM
+			order_list
+		WHERE
+			order_no = #{order_no, jdbcType=INTEGER}
+	</select>
+	
+<!-- <select id="ItemPrice" resultType="org.zerock.myapp.domain.OrderItemDTO">
+    SELECT count, price, discount
+    FROM order_list
+    WHERE order_no IN
+    <foreach collection="orderNoList" item="no" open="(" separator="," close=")">
+        #{no}
+    </foreach>
+</select> -->
+
+	
+	
+
+</mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="org.zerock.myapp.mapper.FaqSearchMapper">
+
+<!-- criteria 검색조건 -->
+<sql id="criteria">
+	<if test = "keyword != null">
+		title like '%' || #{keyword} || '%' and
+	</if>
+</sql>
+
+<!-- 상품 검색 -->
+<select id="faqSearchList" resultType="org.zerock.myapp.domain.FaqDTO">
+
+	<![CDATA[
+	SELECT * FROM (
+		SELECT /*+ INDEX_DESC(Faq)*/rownum as rowNo, title, no, answer
+		FROM FAQ
+		WHERE
+	]]>
+	
+	<include refid="criteria"></include>
+	
+	<![CDATA[
+		 rownum <= #{currPage} * #{amount} 
+		 )
+		 where rowNo > (#{currPage} -1) * #{amount}
+		]]>
+</select>
+
+<!-- 상품 총 개수 -->
+<select id="totalFaq" resultType = "Integer">
+	SELECT count(*) FROM FAQ
+	WHERE 
+	<include refid="criteria"></include>
+	NO > 0
+</select>
+
+</mapper>

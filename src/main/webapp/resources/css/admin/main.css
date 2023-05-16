@@ -1,0 +1,149 @@
+@charset "UTF-8";
+
+/* common.css */
+
+
+/* 바디 */
+body {
+    margin: 0px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+}
+
+/* 메인 */
+main {
+    margin: 0 80px;
+    margin-bottom: 300px;
+}
+
+/* 헤더 - 로그인 상태 */
+.state {
+    /* float: right; */
+    text-align: right;
+    /* margin-top: 0px; */
+    margin-bottom: 50px;
+    background-color: rgb(238, 238, 238);
+    padding: 10px;
+    padding-right: 30px;
+}
+
+/* 헤더 - 로그인 간격 띄우기 */
+.login {
+    margin-right: 20px;
+}
+
+/* 로고 */
+div h1 {
+    text-align: center;
+    margin: 0px;
+    /* font-size: 30px; */
+}
+
+
+/* 로고 아래 "관리자 페이지" 글자 */
+.admin {
+    text-align: center;
+    font-weight: 700;
+    margin: 0;
+    font-size : 30px;
+}
+
+
+/* 로고아래 보라색 두꺼운 줄 (메인메뉴가 될 뻔 했던..) */
+nav {
+    height: 50px;
+    padding-left: 30px;
+    margin-top: 30px;
+    background-color: rgb(175, 124, 213);
+    display : flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+/* 사이드 메뉴 - 전체 묶음 */
+.menu1 {
+    display: inline;
+    /* border: black solid 1px; */
+    
+}
+
+/* 사이드 메뉴 - 설정*/
+#menu2 {
+    float: left;
+    text-align: center;
+    margin: 0;
+    padding: 0px;
+    border: 11BC0D solid 1px;
+    display: inline-block;
+    width: 150px;
+    list-style: none;
+    /* border: black solid 1px; */
+    background-color: rgb(238, 238, 238);
+    text-decoration: none;
+    
+}
+
+/* 사이드 메뉴 - 세부 설정*/
+#menu2>li {
+    display: block;
+    /* padding: 0 0 23 0px; */
+    /* font-size: 14px; */
+    color: #616161;
+    /* text-align: -webkit-match-parent; */
+    text-decoration: none;
+    height: 48px;
+    line-height: 48px;
+    border-bottom: 1px solid #ceced2;
+}
+
+/* 사이드 메뉴 - 호버링 */
+#menu2>li:hover {
+    background-color: rgb(175, 124, 213);
+    /* color: white; */
+}
+
+
+/* 링크 설정 */
+a{
+    text-decoration: none!important;
+    color: rgb(64, 51, 70);
+}
+
+
+
+/* ========================  메인  테이블 ========================= */
+
+/* 박스 - 묶음 */
+.box1 {
+    display: flex;
+    justify-content: center;
+    margin-right: 150px;
+}
+
+/* 박스 - 상세 */
+.box2 {
+    display: inline-block;
+    width: 420px; height: 200px;
+    margin: 20px;
+    border: 1px solid #ceced2;
+} 
+
+/* 박스 - 상세 제목 */
+h3 {
+    background-color: #eaeaea;
+    text-align: center;
+    height: 40px;
+    margin: auto;
+    padding-top: 10px;
+}
+
+/* 박스 - 상세 리스트 */
+#main_list li {
+    list-style: square;
+    padding-top: 5px;
+    font-size : 14px;
+}
+
+.wrap {
+	margin-bottom : 200px;
+}

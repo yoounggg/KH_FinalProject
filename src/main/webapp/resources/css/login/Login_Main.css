@@ -1,0 +1,226 @@
+@charset "utf-8";
+
+*{/* *이랑 body차이가 뭐지....... */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    min-width: 1026px;
+    height: 100vh;
+    min-height: 100%;
+    background-color: white;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* a, li태그 전체에 공통 적용 */
+a{ text-decoration: none;}
+
+li{ list-style-type: none;}
+
+/* ----------------------------------------------------------------- */
+
+input{
+    border: 1px solid #D9D9D9;
+    border-radius: 5px;
+    line-height: 35px;
+    font-size: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+div {
+    padding-top: 3px;
+    padding-bottom: 8px;
+}
+
+button {
+    cursor: pointer;
+    border-radius: 5px;
+    line-height: 35px;
+    font-size: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
+    /* height: 30px; */
+}
+
+/* 로그인 구역 wrapper */
+.login_wrapper {
+    margin-bottom: 150px;
+}
+
+.login_container {
+    width: auto;
+}
+
+/* 로그인 글씨 */
+.login_title {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 2%;
+    margin-top: 3%;
+}
+
+/* 아이디 입력창 */
+.id_class input {
+    width: 20%;
+    position:relative;
+    left: 40%;
+}
+
+/* 비밀번호 입력창 */
+.password_class input {
+    width: 20%;
+    position:relative;
+    left: 40%;
+}
+
+/* 로그인 실패 시 띄우는 문구! */
+.login_fail {
+    font-weight: 500;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    color : red;
+}
+
+/* 아이디 저장, 자동 로그인, 아이디 찾기, 비밀번호 찾기 */
+.login_box {
+    /* display: inline-block; */
+    padding: 3px;
+    width: 20%;
+    position:relative;
+    left: 40%;
+    margin-bottom: 2%;
+}
+
+/* 아이디 저장 */
+.rememberId {
+    display: inline-block;
+    text-align:center;
+    margin-right: 2px;
+    font-size: 12px;
+    /* padding: 3px;  */
+}
+
+/* 자동로그인 */
+.autoLogin {
+    display: inline-block;
+    text-align:center;
+    font-size: 12px;
+    /* padding: 3px; */
+}
+
+/* 아이디 찾기, 비밀번호 변경 */
+.finding {
+    font-size: 11px;
+    padding: 3px;
+    float: right;
+    margin:0;
+    text-decoration: none;
+}
+
+.finding li {
+    list-style-type: none;
+}
+
+/* 아이디 찾기 */
+.find_id {
+    margin-right:6px;
+}
+
+/* 비밀번호 변경 */
+.change_pw {
+    margin-left:3px;
+}
+
+/* 로그인 버튼 */
+.signIn button {
+    cursor:pointer;
+    background-color: #11BC0D;
+    color: white;
+    border: 1px solid #D9D9D9;
+    font-weight: 700;
+    position:relative;
+    left: 40%;
+    width: 20%;
+    margin-bottom: 2%;
+}
+
+/* 네이버로 로그인하기 */
+.naverLogin {
+    display: flex;
+    cursor:pointer;
+    background-color: #03C75A;
+    border: 1px solid #D9D9D9;
+    border-radius: 5px;
+    position:relative;
+    left: 40%;
+    height: 40px;
+    width: 20%;
+    justify-content: center;
+    overflow: hidden; /* 이미지가 버튼 바깥으로 넘어가지 않도록 함 */
+}
+
+/* 네이버 로고 이미지 */
+.nimg {
+    height: 38px; /* 이미지 높이를 버튼의 높이와 같게 설정 */
+    width: auto; /* 이미지의 가로 폭을 원본 비율에 맞게 설정 */
+    margin: auto; /* 이미지를 버튼 내부 중앙에 위치하도록 함 */
+}
+
+/* 카카오로 로그인하기 */
+.kakaoLogin button{
+    display: flex;
+    cursor:pointer;
+    background-color: #FEE500;
+    border: none;
+    position:relative;
+    left: 40%;
+    width: 20%;
+    /* height: 35px; */
+    margin-bottom: 5%;
+    justify-content: center;
+}
+
+/* 카카오 로고 이미지 */
+.kimg {
+    float:left;
+    height: 40px;
+    /* padding: 1px; */
+}
+.소셜회원가입 {
+    margin: 0 auto;
+	left: 39.1%;
+	width:20%;
+    height: 40px;
+    background-color: #FEEB3B;
+    border-radius: 5px;
+    /* border: 1px solid #b2b2b2; */
+    display: inline-block;
+    margin: 15px;
+    position: relative;
+    cursor: pointer;
+    color: white;
+    font-size: 14px;
+    font-weight: lighter;
+}
+
+.pp {
+    position: absolute;
+    top: 30%;
+    left: 42%;
+}
+
+.소셜아이콘 {
+    padding-right: 3px;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 20%;
+    left: 35%;
+}
