@@ -19,11 +19,11 @@
 
 ## 👩🏻‍💻KH_Final Project Moya Moga에 참여한 사람들👨🏻‍💻
 
-- <a href="https://github.com/jeonsein" target="_blank">셍나🐹 님</a> 
-- <a href="https://github.com/choibyul2" target="_blank">⭐별e 님</a> 
-- <a href="https://github.com/yoounggg" target="_blank">채영👸🏻 님</a> 
-- <a href="https://github.com/CHANOH5" target="_blank">찬돌🪨 님</a>
-- <a href="https://github.com/hyeokgyukwon" target="_blank">혁🕊️ 님</a>
+- <a href="https://github.com/jeonsein" target="_blank">전세인 님</a> 
+- <a href="https://github.com/choibyul2" target="_blank">최별이 님</a> 
+- <a href="https://github.com/yoounggg" target="_blank">김채영 님</a> 
+- <a href="https://github.com/CHANOH5" target="_blank">오찬석 님</a>
+- <a href="https://github.com/hyeokgyukwon" target="_blank">권혁규 님</a>
 - <a href="https://github.com/jj03202" target="_blank">장진호 님</a>
 
 <br>
